@@ -1,0 +1,7 @@
+#!/bin/dash
+
+
+case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
+  up) printf "^c#e79921^直 ^d^%s" " Connected";;
+  down) printf "^c#e79921^直 ^d^%s" " Disconnected";;
+esac

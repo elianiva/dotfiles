@@ -1,0 +1,3 @@
+#!/bin/dash
+
+printf "^c#e79921^﬙ ^d^%s" "$(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)"

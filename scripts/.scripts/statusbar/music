@@ -1,0 +1,4 @@
+!#/bin/dash
+
+artist=$(playerctl metadata | awk '/artist/ {print $3}')
+title=$(playerctl metadata | awk '/title/ {print $3}')

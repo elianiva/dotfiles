@@ -1,0 +1,2 @@
+#!/bin/dash
+printf "^c#e79921^奔 ^d^%s" "$(pamixer --get-volume-human)"

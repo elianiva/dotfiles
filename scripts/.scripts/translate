@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rofi -e "$(xclip -selection clipboard -o | trans -b :en)" -theme ~/.config/rofi/themes/translate.rasi

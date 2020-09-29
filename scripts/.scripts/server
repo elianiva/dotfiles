@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case $1 in
+  start) sudo systemctl start httpd; systemctl start mysqld
+    ;;
+  stop) sudo systemctl stop httpd; systemctl stop mysqld
+    ;;
+  *) echo 'wrong option'
+    ;;
+esac

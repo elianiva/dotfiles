@@ -1,0 +1,62 @@
+### Directories ###
+ncmpcpp_directory = ~/.config/ncmpcpp
+lyrics_directory  = ~/.config/ncmpcpp/lyrics
+# mpd_music_dir     = ~/music
+
+### Behaviour ###
+execute_on_song_change = "bash ~/.config/ncmpcpp/mpd-notification"
+message_delay_time = 1
+autocenter_mode = "yes"
+centered_cursor = "yes"
+ignore_leading_the = "yes"
+allow_for_physical_item_deletion = "no"
+
+### Visualizer ###
+visualizer_fifo_path = /tmp/mpd.fifo
+visualizer_output_name = "mpd_visualizer"
+visualizer_in_stereo = "yes"
+visualizer_sync_interval = 30
+
+### Appearance ###
+colors_enabled = "yes"
+playlist_display_mode = "columns"
+
+# Window #
+song_window_title_format = "mpd » {%a - }{%t}|{%f}"
+statusbar_visibility = "yes"
+header_visibility = "no"
+titles_visibility = "no"
+
+# Progress bar #
+#progressbar_look = "⠒⠒⠐"
+#progressbar_look = "•••"
+#progressbar_look = "---"
+#progressbar_look = "▀▀ "
+#progressbar_look = "╼·"
+# progressbar_look = "━━━"
+progressbar_look = "━━─"
+#progressbar_look = "◾◾◽"
+#progressbar_look = "─╼─"
+progressbar_color = "black"
+progressbar_elapsed_color = "white"
+# Song status #
+#now_playing_prefix = "$b"
+#now_playing_suffix = "$/b"
+song_status_format = "$b$6%t$/b {$8by} $b$6%a$8$/b"
+#song_status_format = " $2%a $4⟫$3⟫ $7%t $4⟫$3⟫ $5%b "
+#song_status_format = "$8%t $9• $2%a $9•{ $5%b $9• }$7%y$9"
+# Song list #
+# song_list_format = "{$8%a ⠂ }{%t}$R{%l}"
+song_list_format = "{ $8%a $1» $2}{%t} $R$1%b"
+# Playlist #
+# song_columns_list_format = "$L(9)[white]{l} (20)[red]{a} (30)[green]{b}$R(20)[cyan]{t}"
+# song_columns_list_format = "(25)[white]{a} (25)[blue]{brE} (47)[white]{t|f} (6f)[blue]{l}"
+# song_columns_list_format = "(15)[white]{lr} (1)[black]{} (40)[red]{a} (40)[green]{t}"
+# song_columns_list_format = "(40)[magenta]{ar} (40)[green]{t}"
+song_columns_list_format = "(50)[magenta]{ar} (50)[green]{t}"
+# Colors #
+main_window_color = "blue"
+#state_line_color = "yellow"
+#state_flags_color = "green"
+color1 = "white"
+color2 = "red"

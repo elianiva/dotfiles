@@ -1,0 +1,18 @@
+#!/bin/dash
+
+option=$(printf "shutdown\nreboot\nsuspend\nquit\nlockscreen" | rofi -dmenu -i -p "Powermenu: " -theme ~/.config/rofi/themes/gruvbox.rasi)
+
+case $option in
+  shutdown) shutdown now
+    ;;
+  reboot) reboot
+    ;;
+  suspend) systemctl suspend
+    ;;
+  lockscreen) betterlockscreen -l -d
+    ;;
+  quit) bspc quit
+    ;;
+  *) exit 0
+    ;;
+esac

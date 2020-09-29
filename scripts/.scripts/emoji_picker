@@ -1,0 +1,18 @@
+#!/bin/dash
+
+# The famous "get a menu of emojis to copy" script.
+
+# Must have xclip installed to even show menu.
+xclip -h 2>/dev/null || exit 1
+
+chosen=$(cut -d ';' -f1 ~/.scripts/emoji | rofi -dmenu -p "Pick: " -i -l 10 -theme ~/.config/rofi/themes/gruvbox.rasi | sed "s/ .*//")
+
+[ "$chosen" != "" ] || exit
+
+# If you run this command with an argument, it will automatically insert the character.
+if [ -n "$1" ]; then
+	xdotool key Shift+Insert
+else
+	echo "$chosen" | tr -d '\n' | xclip -selection clipboard
+	notify-send "Emoji copied to clipboard." &
+fi

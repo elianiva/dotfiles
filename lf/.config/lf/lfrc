@@ -1,0 +1,130 @@
+set shell sh
+
+set previewer ~/.config/lf/preview
+set previewer ~/.config/lf/preview
+set preview true
+set previewer ~/.config/lf/preview
+set ratios 1:2:3
+set color256 true
+set ignorecase true
+set icons
+
+# Custom Functions
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$f";;
+        video/*) mpv "$f";;
+        image/*) sxiv "$f";;
+        application/pdf) zathura "$f";;
+        *) xdg-open "$f" ;;
+    esac
+}}
+
+cmd mkdir ${{
+  directory=$1
+  if test -e "$directory"; then
+    lf -remote "send $id echo Directory exists: $directory"
+    exit 1
+  fi
+  mkdir -p "$directory"
+  lf -remote "send $id select $directory"
+}}
+
+cmd bulkrename ${{
+	index=$(mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX)
+	if [ -n "${fs}" ]; then
+		echo "$fs" > $index
+	else
+		echo "$(ls "$(dirname $f)" | tr ' ' "\n")" > $index
+	fi
+	index_edit=$(mktemp /tmp/lf-bulk-rename.XXXXXXXXXX)
+	cat $index > $index_edit
+	$EDITOR $index_edit
+	if [ $(cat $index | wc -l) -eq $(cat $index_edit | wc -l) ]; then
+		max=$(($(cat $index | wc -l)+1))
+		counter=1
+		while [ $counter -le $max ]; do
+			a="$(cat $index | sed "${counter}q;d")"
+			b="$(cat $index_edit | sed "${counter}q;d")"
+			counter=$(($counter+1))
+
+			[ "$a" = "$b" ] && continue
+			[ -e "$b" ] && echo "File exists: $b" && continue
+			mv "$a" "$b"
+		done
+	else
+		echo "Number of lines must stay the same"
+	fi
+	rm $index $index_edit
+}}
+
+cmd touch ${{
+  file=$1
+  if test -e "$file"; then
+    lf -remote "send $id echo File exists: $file"
+    exit 1
+  fi
+  touch "$directory"
+  lf -remote "send $id select $directory"
+}}
+
+cmd unarchive ${{
+  extract "$f"
+}}
+
+# Bindings
+# Remove some defaults
+map m
+map o
+map n
+map "'"
+map '"'
+map d
+map c
+map e
+map f
+map r
+map y
+
+# File Openers
+map ee $$EDITOR "$f"
+map u $view "$f"
+
+# Archive Mappings
+map r1 unarchive
+
+# Trash Mappings
+map dD delete
+
+map ss stripspace
+
+# Basic Functions
+map cd push :cd<space>
+map gc cd ~/.config
+map gC cd ~/codes
+map gd cd ~/dls
+map gD cd ~/dox
+map gr cd ~/repos
+map gv cd ~/vids
+map gp cd ~/pix
+map gm cd ~/music
+map gs cd ~/sites
+
+map . set hidden!
+map pp paste
+map dd cut
+map yy copy
+map <enter> open
+map mf mkfile
+map mr sudomkfile
+map md mkdir
+map ms $mkscript
+map bg setwallpaper
+map o open_config
+map br $vimv $fx
+map A rename
+map gg top
+map G bottom
+map R reload
+map C clear
+map U unselect

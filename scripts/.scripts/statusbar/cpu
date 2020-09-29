@@ -1,0 +1,6 @@
+#!/bin/dash
+
+# usage=$(grep 'cpu ' /proc/stat | awk '{print ($2+$4)*100/($2+$4+$5)}')
+# printf "%0.2f%%\n" $usage
+
+printf "^c#e79921^ ^d^%s" "$(top -bn1 | awk '/Cpu\(s\)/ {print (100-$8)"%"}')"

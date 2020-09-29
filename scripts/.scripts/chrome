@@ -1,0 +1,3 @@
+#!/bin/dash
+
+chromium %U --force-dark-mode

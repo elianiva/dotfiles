@@ -1,0 +1,7 @@
+/** Configured For Applets **/
+
+configuration {
+  show-icons: true;
+  icon-theme: "Numix";
+  location:   0;
+}

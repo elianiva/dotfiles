@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/home/elianiva/.config/qutebrowser'
+let g:netrw_dirhist_1='/home/elianiva/sites/jsparadox/css'
+let g:netrw_dirhist_0='/home/elianiva/repos/javacafe/.config/awesome'
+let g:netrw_dirhist_9='/home/elianiva/notes'
+let g:netrw_dirhist_8='/home/elianiva/.config/alacritty'
+let g:netrw_dirhist_7='/home/elianiva/.sysconfig'
+let g:netrw_dirhist_6='/home/elianiva/dox/school/programming/tabll'
+let g:netrw_dirhist_5='/home/elianiva/.config/alacritty'
+let g:netrw_dirhist_4='/home/elianiva/.config/awesome/statusbar'
+let g:netrw_dirhist_3='/home/elianiva/.config/polybar'

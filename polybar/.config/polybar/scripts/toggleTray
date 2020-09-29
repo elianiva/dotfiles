@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PID="$(ps -eo pid,args --cols=10000 | awk '/config.ini bottom/ && $1 != PROCINFO["pid"] { print $1 }')"
+
+bspc config bottom_padding 0
+polybar-msg -p $PID cmd toggle

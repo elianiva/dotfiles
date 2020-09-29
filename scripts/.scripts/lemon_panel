@@ -1,0 +1,227 @@
+#!/bin/dash
+# vim: ft=sh
+
+# some variables
+PANEL_FIFO=/tmp/panel-fifo
+PANEL_HEIGHT=28
+PANEL_FONT="Iosevka:size=11"
+PANEL_WM_NAME=bspwm_panel
+
+# some colours
+COLOR_FG="#959dcb"
+COLOR_BG="#292d3e"
+COLOR_DEFAULT_FG="#959dcb"
+COLOR_DEFAULT_BG="#292d3e"
+COLOR_MONITOR_FG="#82aaff"
+COLOR_MONITOR_BG="#292d3e"
+COLOR_FREE_FG="#959dcb"
+COLOR_FREE_BG="#292d3e"
+COLOR_FOCUSED_FREE_FG="#82aaff"
+COLOR_FOCUSED_FREE_BG="#292d3e"
+COLOR_OCCUPIED_FG="#efefef"
+COLOR_OCCUPIED_BG="#292d3e"
+COLOR_FOCUSED_OCCUPIED_FG="#82aaff"
+COLOR_FOCUSED_OCCUPIED_BG="#292d3e"
+COLOR_URGENT_FG24="#f07178"
+COLOR_URGENT_BG="#292d3e"
+COLOR_FOCUSED_URGENT_FG="#82aaff"
+COLOR_FOCUSED_URGENT_BG="#292d3e"
+
+
+# make sure no double process
+killall -9 lemonbar clock memory cpu battery wlan netspeed
+
+# if xdo id -a "$PANEL_WM_NAME" > /dev/null ; then
+#   printf "%s\n" "The panel is already running." >&2
+#   exit 1
+# fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+clock() {
+  time=$(date '+%a, %I:%M %p | +%d %b %Y ')
+  printf "%s\n" "C$time"
+}
+
+battery(){
+  battery=$(
+    acpi | \
+    sed "s/,//g" | \
+    awk '{if ($3 == "Discharging"){print $4; exit} else {print $4"+"}}' | \
+    tr -d "\n"
+  )
+
+  printf "%s\n" "B $battery"
+}
+
+memory() {
+  mem=$(
+    free -h | \
+    awk '/^Mem/ { print $3" / "$2 }' | sed s/i//g
+  )
+
+  printf "%s\n" "M $mem"
+}
+
+cpu() {
+  cpu=$(
+    top -bn1 | \
+    awk '/Cpu\(s\)/ {print (100-$8)"%"}'
+  )
+
+  printf "%s\n" "U $cpu"
+}
+
+vol() {
+  vol=$(pamixer --get-volume-human)
+  printf "%s\n" "V $vol"
+}
+
+wlan() {
+  case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
+    up) printf "%s\n" "N Connected";;
+    down) printf "%s\n" "N Disconnected";;
+  esac
+}
+
+temp() {
+  temp=$(sensors | awk '/^temp1:/{print $2}')
+  printf "%s\n" "T $temp"
+}
+
+update() {
+  sum=0
+  for arg; do
+    read -r i < "$arg"
+    sum=$(( sum + i ))
+  done
+  cache=${XDG_CACHE_HOME:-$HOME/.cache}/${1##*/}
+  [ -f "$cache" ] && read -r old < "$cache" || old=0
+  printf %d\\n "$sum" > "$cache"
+  printf %d\\n $(( (sum - old) / 1024 ))
+}
+
+netspeed() {
+  rx=$(update /sys/class/net/[ew]*/statistics/rx_bytes)
+  tx=$(update /sys/class/net/[ew]*/statistics/tx_bytes)
+  printf "D %dKiB / %dKiB\\n" "$rx" "$tx"
+}
+
+
+# use different delay each modules
+while :; do clock;    sleep 1m; done > "$PANEL_FIFO" &
+while :; do wlan;     sleep 1m; done > "$PANEL_FIFO" &
+while :; do vol;      sleep 2;  done > "$PANEL_FIFO" &
+while :; do memory;   sleep 2;  done > "$PANEL_FIFO" &
+while :; do cpu;      sleep 2;  done > "$PANEL_FIFO" &
+while :; do temp;     sleep 2;  done > "$PANEL_FIFO" &
+while :; do battery;  sleep 2;  done > "$PANEL_FIFO" &
+while :; do netspeed;  sleep 2;  done > "$PANEL_FIFO" &
+
+bspc subscribe report > "$PANEL_FIFO" &
+
+num_mon=$(bspc query -M | wc -l)
+
+panel_bar() {
+  while read -r line ; do
+  case $line in
+    C*)
+      # clock output
+      clock="%{F#82aaff} %{F-}%{F$COLOR_FG}%{B$COLOR_BG}${line#?} %{B-}%{F-}"
+      ;;
+    B*)
+      # battery output
+      battery="%{F#82aaff}%{F-}%{F$COLOR_FG}%{B$COLOR_BG}${line#?} %{B-}%{F-}"
+      ;;
+    U*)
+      # cpu output
+      cpu="%{F#82aaff} %{F-}%{F$COLOR_FG}%{B$COLOR_BG}${line#?} %{B-}%{F-}"
+      ;;
+    M*)
+      # memory output
+      memory="%{F#82aaff}﬙ %{F-}%{F$COLOR_FG}%{B$COLOR_BG}${line#?} %{B-}%{F-}"
+      ;;
+    T*)
+      # temp output
+      temp="%{F#82aaff}%{F-}%{F$COLOR_FG}%{B$COLOR_BG}${line#?} %{B-}%{F-}"
+      ;;
+    V*)
+      # vol output
+      vol="%{F#82aaff}奔%{F-}%{F$COLOR_FG}%{B$COLOR_BG}${line#?} %{B-}%{F-}"
+      ;;
+    N*)
+      # wlan output
+      wlan="%{F#82aaff}直%{F-}%{F$COLOR_FG}%{B$COLOR_BG}${line#?} %{B-}%{F-}"
+      ;;
+    D*)
+      # netspeed output
+      netspeed="%{F#82aaff}龍%{F-}%{F$COLOR_FG}%{B$COLOR_BG}${line#?} %{B-}%{F-}"
+      ;;
+    W*)
+      # bspwm's state
+      wm=
+      IFS=':'
+      set -- ${line#?}
+      while [ $# -gt 0 ] ; do
+      item=$1
+      name=${item#?}
+      case $item in
+        [fFoOuU]*)
+          case $item in
+            f*)
+              # free desktop
+              FG=$COLOR_FREE_FG
+              BG=$COLOR_FREE_BG
+              UL=$BG
+              ;;
+            F*)
+              # focused free desktop
+              FG=$COLOR_FOCUSED_FREE_FG
+              BG=$COLOR_FOCUSED_FREE_BG
+              UL=$COLOR_FOCUSED_FREE_FG
+              ;;
+            o*)
+              # occupied desktop
+              FG=$COLOR_OCCUPIED_FG
+              BG=$COLOR_OCCUPIED_BG
+              UL=$BG
+              ;;
+            O*)
+              # focused occupied desktop
+              FG=$COLOR_FOCUSED_OCCUPIED_FG
+              BG=$COLOR_FOCUSED_OCCUPIED_BG
+              UL=$COLOR_FOCUSED_OCCUPIED_FG
+              ;;
+            u*)
+              # urgent desktop
+              FG=$COLOR_URGENT_FG
+              BG=$COLOR_URGENT_BG
+              UL=$BG
+              ;;
+            U*)
+              # focused urgent desktop
+              FG=$COLOR_FOCUSED_URGENT_FG
+              BG=$COLOR_FOCUSED_URGENT_BG
+              UL=$BG
+              ;;
+          esac
+        wm="${wm}%{F${FG}}%{B${BG}}%{U${UL}}%{+u}%{A:bspc desktop -f ${name}:} ${name} %{A}%{B-}%{F-}%{-u}"
+        ;;
+      esac
+    shift
+    done
+    ;;
+  esac
+  printf "%s\n" "%{l}${wm} %{r}${netspeed} ${wlan} ${vol} ${memory} ${temp} ${cpu} ${battery} ${clock}"
+  done
+}
+
+panel_bar < "$PANEL_FIFO" | lemonbar -a 32 -u 2 -n "$PANEL_WM_NAME" -g x$PANEL_HEIGHT -f "$PANEL_FONT" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | dash &
+
+wid=$(xdo id -m -a "$PANEL_WM_NAME")
+xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+
+wait

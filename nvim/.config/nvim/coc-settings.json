@@ -1,0 +1,56 @@
+{
+  "coc.preferences.colorSupport": true,
+  "suggest.maxCompleteItemCount": 10,
+
+  // Diagnostic configuration
+  "diagnostic.enable": true,
+  "diagnostic.hintSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.level": "warning",
+  "diagnostic.refreshOnInsertMode": true,
+
+  // stylelint stuff
+  "css.lint.unknownAtRules": "ignore",
+  "css.validate": false,
+
+  // tsserver
+  "tsserver.maxTsServerMemory": 1024,
+  "tsserver.log": "verbose",
+
+  // prettier stuff
+  "prettier.semi": false,
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
+  "prettier.trailingComma": "none",
+  "prettier.arrowParens": "avoid",
+  "prettier.formatterPriority": -1,
+  "eslint.nodePath": "~/.local/npm/bin/eslint",
+  "svelte.plugin.svelte.format.enable": true,
+  "svelte.plugin.html.completions.enable": false,
+
+  "tslint.autoFixOnSave": true,
+  "tslint.jsEnable": true,
+
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  "eslint.quiet": true,
+
+  // LSP configuration
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    }
+  }
+}
