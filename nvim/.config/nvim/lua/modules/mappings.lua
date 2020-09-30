@@ -43,6 +43,9 @@ remap('v', '<A-y>', '"+y', { noremap = true })
 -- no distraction mode for writing
 remap("n", "<Leader>g", "<CMD>Goyo<CR><CMD>set wrap linebreak<CR>", { noremap = true })
 
+-- source init.vim
+remap("n", "<Leader>r", "<CMD>so ~/.config/nvim/init.vim<CR>", { noremap = true })
+
 -- better indenting experience
 remap('v', '<', '<gv', { noremap = true })
 remap('v', '>', '>gv', { noremap = true })

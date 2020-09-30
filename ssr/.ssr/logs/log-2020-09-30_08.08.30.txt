@@ -1,0 +1,70 @@
+2020-09-30 08:08:30.545 (I) ==================== SSR started ====================
+2020-09-30 08:08:30.545 (I) SimpleScreenRecorder 0.4.2
+Compiled with GCC 10.1.0
+Qt: header 5.14.2, lib 5.15.1
+libavformat: header 58.29.100, lib 58.45.100
+libavcodec: header 58.54.100, lib 58.91.100
+libavutil: header 56.31.100, lib 56.51.100
+libswscale: header 5.5.100, lib 5.7.100
+2020-09-30 08:08:30.545 (I) [CPUFeatures::Detect] CPU features: mmx sse sse2 sse3 ssse3 sse4_1 sse4_2 avx
+2020-09-30 08:08:30.587 (I) [ALSAInput::GetSourceList] Generating source list ...
+2020-09-30 08:08:30.587 (I) [ALSAInput::GetSourceList] Found card: [hw:0] HDA Intel PCH
+2020-09-30 08:08:30.587 (I) [ALSAInput::GetSourceList] Found device: [hw:0,0] HDA Intel PCH: CX20590 Analog
+2020-09-30 08:08:30.588 (I) [PulseAudioInput::GetSourceList] Generating source list ...
+2020-09-30 08:08:30.591 (I) [SourceNamesCallback] Found source: [alsa_output.pci-0000_00_1b.0.analog-stereo.monitor] Monitor of Built-in Audio Analog Stereo
+2020-09-30 08:08:30.591 (I) [SourceNamesCallback] Found source: [alsa_input.pci-0000_00_1b.0.analog-stereo] Built-in Audio Analog Stereo
+2020-09-30 08:08:30.591 (I) [SourceNamesCallback] Found source: [viper.monitor] Monitor of Viper4Linux
+2020-09-30 08:08:30.653 (E) [PageRecord::OnStdin] Standard input read error (ioctl).
+2020-09-30 08:08:41.163 (I) [PageRecord::StartPage] Starting page ...
+2020-09-30 08:08:41.163 (I) [PageRecord::StartPage] Started page.
+2020-09-30 08:08:47.206 (I) [PageRecord::StopPage] Stopping page ...
+2020-09-30 08:08:47.206 (I) [PageRecord::StopPage] Stopped page.
+2020-09-30 08:09:03.238 (I) [PageRecord::StartPage] Starting page ...
+2020-09-30 08:09:03.238 (I) [PageRecord::StartPage] Started page.
+2020-09-30 08:09:05.655 (I) [PageRecord::StartOutput] Starting output ...
+2020-09-30 08:09:05.655 (I) [Muxer::Init] Using format mp4 (MP4 (MPEG-4 Part 14)).
+2020-09-30 08:09:05.655 (I) [Muxer::AddStream] Using codec libx264 (libx264 H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10).
+2020-09-30 08:09:05.655 (I) [VideoEncoder::PrepareStream] Using pixel format nv12.
+2020-09-30 08:09:05.656 (S) [libx264 @ 0x55de509b3f40] using SAR=1/1
+2020-09-30 08:09:05.657 (S) [libx264 @ 0x55de509b3f40] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX
+2020-09-30 08:09:05.659 (S) [libx264 @ 0x55de509b3f40] profile High, level 3.1, 4:2:0, 8-bit
+2020-09-30 08:09:05.659 (I) [BaseEncoder::EncoderThread] Encoder thread started.
+2020-09-30 08:09:05.659 (S) [libx264 @ 0x55de509b3f40] 264 - core 160 r3011 cde9a93 - H.264/MPEG-4 AVC codec - Copyleft 2003-2020 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=4 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=10 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+2020-09-30 08:09:05.659 (I) [Muxer::MuxerThread] Muxer thread started.
+2020-09-30 08:09:05.659 (I) [PageRecord::StartOutput] Started output.
+2020-09-30 08:09:05.659 (I) [Synchronizer::SynchronizerThread] Synchronizer thread started.
+2020-09-30 08:09:05.659 (I) [PageRecord::StartInput] Starting input ...
+2020-09-30 08:09:05.660 (I) [X11Input::Init] Using X11 shared memory.
+2020-09-30 08:09:05.660 (I) [PageRecord::StartInput] Started input.
+2020-09-30 08:09:05.660 (I) [X11Input::InputThread] Input thread started.
+2020-09-30 08:10:58.058 (I) [PageRecord::StopOutput] Stopping output ...
+2020-09-30 08:10:58.058 (I) [PageRecord::StopOutput] Stopped output.
+2020-09-30 08:10:58.058 (I) [PageRecord::StopInput] Stopping input ...
+2020-09-30 08:10:58.058 (I) [X11Input::~X11Input] Stopping input thread ...
+2020-09-30 08:10:58.064 (I) [X11Input::InputThread] Input thread stopped.
+2020-09-30 08:10:58.065 (I) [PageRecord::StopInput] Stopped input.
+2020-09-30 08:10:58.065 (I) [PageRecord::StopPage] Stopping page ...
+2020-09-30 08:10:58.065 (I) [Synchronizer::~Synchronizer] Stopping synchronizer thread ...
+2020-09-30 08:10:58.081 (I) [Synchronizer::SynchronizerThread] Synchronizer thread stopped.
+2020-09-30 08:10:58.081 (I) [Muxer::~Muxer] Stopping encoders ...
+2020-09-30 08:10:58.081 (I) [Muxer::~Muxer] Waiting for muxer thread to stop ...
+2020-09-30 08:10:58.100 (I) [BaseEncoder::EncoderThread] Encoder thread stopped.
+2020-09-30 08:10:58.118 (I) [Muxer::MuxerThread] Muxer thread stopped.
+2020-09-30 08:10:58.119 (I) [BaseEncoder::~BaseEncoder] Stopping encoder thread ...
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] frame I:30    Avg QP:15.68  size: 41401
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] frame P:1168  Avg QP:20.32  size:   712
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] frame B:3280  Avg QP:24.20  size:    81
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] consecutive B-frames:  1.8%  1.0%  1.8% 95.4%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] mb I  I16..4: 63.1%  7.3% 29.7%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] mb P  I16..4:  1.5%  0.2%  0.2%  P16..4:  0.8%  0.3%  0.2%  0.0%  0.0%    skip:96.9%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] mb B  I16..4:  0.0%  0.0%  0.0%  B16..8:  0.4%  0.1%  0.0%  direct: 0.0%  skip:99.5%  L0:52.1% L1:45.2% BI: 2.7%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] 8x8 transform intra:7.8% inter:9.3%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] coded y,uvDC,uvAC intra: 20.8% 29.2% 23.1% inter: 0.2% 0.2% 0.0%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] i16 v,h,dc,p: 63% 35%  2%  0%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 21% 41% 22%  3%  3%  2%  3%  2%  3%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 34% 25% 18%  3%  3%  4%  4%  4%  4%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] i8c dc,h,v,p: 61% 24% 14%  1%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] Weighted P-Frames: Y:1.1% UV:0.6%
+2020-09-30 08:10:58.126 (S) [libx264 @ 0x55de509b3f40] kb/s:167.29
+2020-09-30 08:10:58.129 (I) [PageRecord::StopPage] Stopped page.
+2020-09-30 08:10:58.648 (I) ==================== SSR stopped ====================

@@ -209,16 +209,16 @@ augroup Statusline
   au FileType LuaTree setlocal statusline=%!NERDLine()
 augroup END
 
-function ToggleConceal()
-  syn match org_list_checkbox '\[\ \]' conceal cchar=
-  syn match org_list_checkbox '\[x\]' conceal cchar=
-  syn match org_heading_shade_leading_stars '\*' conceal cchar=
-  syn match org_heading_shade_leading_stars '*\*' conceal cchar=
-  syn match org_heading_shade_leading_stars '*\*\*' conceal cchar=
-endfunction
+" function ToggleConceal()
+"   syn match org_list_checkbox '\[\ \]' conceal cchar=
+"   syn match org_list_checkbox '\[x\]' conceal cchar=
+"   syn match org_heading_shade_leading_stars '\*' conceal cchar=
+"   syn match org_heading_shade_leading_stars '*\*' conceal cchar=
+"   syn match org_heading_shade_leading_stars '*\*\*' conceal cchar=
+"   hi Conceal guifg=#d79921
+" endfunction
 
-augroup OrgMode
-  au!
-  au FileType org call ToggleConceal()
-  au FileType org hi Conceal guifg=#d79921
-augroup END
+" augroup OrgMode
+"   au!
+"   au FileType org call ToggleConceal()
+" augroup END
