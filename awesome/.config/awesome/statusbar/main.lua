@@ -22,6 +22,7 @@ require("statusbar.modules.volume")
 require("statusbar.modules.temp")
 require("statusbar.modules.taglist")
 require("statusbar.modules.playerctl")
+local todo = require("statusbar.modules.todo")
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -80,7 +81,7 @@ awful.screen.connect_for_each_screen(function(s)
             margin(downicon, dpi(5), dpi(5), dpi(6), dpi(8)),
             margin(netdown, dpi(0), dpi(8), dpi(0), dpi(4)),
             margin(upicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-            margin(netup.widget, dpi(0), dpi(8), dpi(0), dpi(4)),
+            margin(netup.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
 
             -- Volume
             margin(volicon, dpi(5), dpi(5), dpi(6), dpi(8)),
@@ -88,19 +89,22 @@ awful.screen.connect_for_each_screen(function(s)
 
             -- Temperature
             margin(tempicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-            margin(temp.widget, dpi(0), dpi(8), dpi(0), dpi(4)),
+            margin(temp.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
 
             -- CPU
             margin(cpuicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-            margin(cpu.widget, dpi(0), dpi(8), dpi(0), dpi(4)),
+            margin(cpu.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
 
             -- Memory
             margin(memicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-            margin(mem.widget, dpi(0), dpi(8), dpi(0), dpi(4)),
+            margin(mem.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
 
             -- Battery
             margin(baticon, dpi(5), dpi(5), dpi(6), dpi(8)),
-            margin(bat.widget, dpi(0), dpi(8), dpi(0), dpi(4)),
+            margin(bat.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
+
+            -- Todo
+            margin(todo, dpi(5), dpi(5), dpi(6), dpi(8)),
 
             margin(systray, dpi(0), dpi(2), dpi(4), dpi(4)),
             -- s.mylayoutbox,

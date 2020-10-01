@@ -4,29 +4,13 @@
 # xset +fp ~/.local/share/fonts
 # xset fp rehash
 
-# nitrogen --restore &                          # restore wallpaper
-# dunst &                                       # notification daemon
-# lxpolkit &                                    # policy kit
-# clipmenud &                                   # dmenu based clipboard manager
-# xfce4-power-manager &                         # battery power manager
-# picom --experimental-backends -b &            # compositor to prevent screen tearing
-# xcompmgr &
-# xrandr --output LVDS-1 --gamma 0.8:0.8:0.8    # set screen gamma to be a bit darker
 light -S 40                                   # set brightness
 setxkbmap -option caps:none
-xset b off
-xset r rate 300 50 &                          # gotta go fast
-# xinput set-prop 10 'Device Enabled' 0         # disable touchpad
-# mpd 2>&1>/dev/null && mpc add / &             # start music player daemon, gotta get dem musics
-
-# dwmblocks &                                     # bar
-# # sleep 2; echo "" | lemonbar -g x1+0+28 -d -B "#82aaff" -p &
-# xrdb ~/.Xresources
+xset -b
+xset r rate 300 50 &                            # gotta go fast
 
 # japanese input method using fcitx-mozc
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 fcitx &
-
-# xdo lower -N Polybar                          # place polybar behind all windows
