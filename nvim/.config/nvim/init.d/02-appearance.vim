@@ -62,14 +62,21 @@ function Gruvbox()
   hi Modi guifg=#ebdbb2 guibg=#504945
   hi Filename guifg=#ebdbb2 guibg=#3e3e3e
 
-  hi ModeAlt guibg=#32374d guifg=#82aaff
-  hi GitAlt guibg=#212333 guifg=#32374d
-  hi LineColAlt guibg=#32374d guifg=#f07178
-  hi FiletypeAlt guibg=#212333 guifg=#32374d
+  " hi ModeAlt guibg=#32374d guifg=#82aaff
+  " hi GitAlt guibg=#212333 guifg=#32374d
+  " hi LineColAlt guibg=#32374d guifg=#f07178
+  " hi FiletypeAlt guibg=#212333 guifg=#32374d
   " hi LineHL guibg=#82aaff guifg=#82aaff
 
   hi LuaTreeFolderIcon guifg=#d79921
   hi LuaTreeIndentMarker guifg=#928374
+
+  " Telescope nvim
+  hi TelescopeSelection gui=bold guifg=#d79921 guibg=NONE
+  hi TelescopeMatching gui=bold guifg=#CC241D guibg=NONE
+  hi TelescopePreviewBorder gui=bold guifg=#928374 guibg=NONE
+  hi TelescopePromptBorder gui=bold guifg=#928374 guibg=NONE
+  hi TelescopeResultsBorder gui=bold guifg=#928374 guibg=NONE
 endfunction
 
 augroup NewColor

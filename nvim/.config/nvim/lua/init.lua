@@ -18,3 +18,16 @@ require("modules.coc")
 -- require("modules.treesitter")
 -- require("modules.lsp")
 -- require("modules.statusline")
+
+require'telescope'.setup{
+    defaults = {
+        winblend = 0,
+        prompt_position = "top",
+        sorting_strategy = "ascending",
+        height = 10
+    }
+}
+
+function file_finder()
+    require'telescope.builtin'.find_files{}
+end
