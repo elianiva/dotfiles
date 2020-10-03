@@ -1,14 +1,6 @@
-! -----------------------------------------------------------------------------
-! File: gruvbox-dark.xresources
-! Description: Retro groove colorscheme generalized
-! Author: morhetz <morhetz@gmail.com>
-! Source: https://github.com/morhetz/gruvbox-generalized
-! Last Modified: 6 Sep 2014
-! -----------------------------------------------------------------------------
-
-! hard contrast: *background: #1d2021
+! scheme: "gruvbox"
+! author: "Morhetz (https://github.com/morhetz)"
 *background: #282828
-! soft contrast: *background: #32302f
 *foreground: #ebdbb2
 *color0:  #282828
 *color8:  #928374
@@ -26,6 +18,28 @@
 *color14: #8ec07c
 *color7:  #ebdbb2
 *color15: #ebdbb2
+
+! scheme: "codedark"
+! author: "Tomas Iser (https://github.com/tomasiser)"
+/* *.foreground:   #D4D4D4 */
+/* *.background:   #1E1E1E */
+/* *.cursorColor:  #D4D4D4 */
+/* *.color0:       #1E1E1E */
+/* *.color1:       #D16969 */
+/* *.color2:       #608B4E */
+/* *.color3:       #D7BA7D */
+/* *.color4:       #9CDCFE */
+/* *.color5:       #C586C0 */
+/* *.color6:       #9CDCFE */
+/* *.color7:       #D4D4D4 */
+/* *.color8:       #3C3C3C */
+/* *.color9:       #D16969 */
+/* *.color10:      #608B4E */
+/* *.color11:      #D7BA7D */
+/* *.color12:      #569CD6 */
+/* *.color13:      #C586C0 */
+/* *.color14:      #9CDCFE */
+/* *.color15:      #FFFFFF */
 
 ! ------------------------------------------------------------------------------
 ! Xft Font Configuration

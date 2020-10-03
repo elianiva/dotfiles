@@ -10,19 +10,17 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Colorscheme
 " Plug 'elianiva/palenight.vim'
 Plug 'gruvbox-community/gruvbox'
+Plug 'tomasiser/vim-code-dark'
+" Plug 'tjdevries/colorbuddy.nvim'
 
 " Auto pairs brackets and other stuff
 Plug 'jiangmiao/auto-pairs'
-
-" Orgmode
-" Plug 'jceb/vim-orgmode'
-" Plug 'tpope/vim-speeddating'
 
 " Tree sitter
 " Plug 'nvim-treesitter/nvim-treesitter'
 
 " Scratchpad
-Plug 'metakirby5/codi.vim'
+" Plug 'metakirby5/codi.vim'
 
 " JSONC filetype support
 Plug 'neoclide/jsonc.vim'

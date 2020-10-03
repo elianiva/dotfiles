@@ -1,9 +1,9 @@
 local gears = require("gears")
 local awful = require("awful")
 
-local _M = {}
+local M = {}
 
-function _M.get()
+function M.get()
   local globalkeys = gears.table.join(
     awful.key({}, "XF86AudioLowerVolume",
         function()
@@ -55,4 +55,4 @@ function _M.get()
   return globalkeys
 end
 
-return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })
+return setmetatable({}, { __call = function(_, ...) return M.get(...) end })

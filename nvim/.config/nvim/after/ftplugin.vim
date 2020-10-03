@@ -49,6 +49,3 @@ au BufEnter term://* startinsert
 
 " set json comment highlighting
 au FileType json syntax match Comment +\/\/.\+$+
-
-" Conceal for orgmode
-au FileType org IndentLinesDisable

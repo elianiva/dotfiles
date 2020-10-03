@@ -5,6 +5,7 @@ require("modules.lsp.svelte")
 nvim_lsp.tsserver.setup{
     filetypes = { "javascript", "typescript", "typescriptreact" }
 }
+
 nvim_lsp.html.setup{}
 nvim_lsp.cssls.setup{}
 nvim_lsp.svelte.setup{}

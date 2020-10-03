@@ -6,11 +6,11 @@ local helpers = require("main.helpers")
 -- Custom Local Library
 -- local titlebar = require("anybox.titlebar")
 
-local _M = {}
+local M = {}
 local modkey = RC.vars.modkey
 local ctrlkey = RC.vars.ctrlkey
 
-function _M.get()
+function M.get()
   local clientkeys = gears.table.join(
     awful.key({ modkey, }, "0",
         function (c)
@@ -126,4 +126,4 @@ function _M.get()
   return clientkeys
 end
 
-return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })
+return setmetatable({}, { __call = function(_, ...) return M.get(...) end })

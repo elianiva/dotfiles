@@ -43,6 +43,8 @@ function core_options()
     laststatus = 2, -- enable statusline
     scrolloff = 3, -- make scrolling better
     sidescroll = 3,
+    sidescroll = 3,
+    pumheight = 16,
     sidescrolloff = 15,
     re = 0, -- set regexp engine to auto
     synmaxcol = 300, -- set limit for syntax highlighting in a single line

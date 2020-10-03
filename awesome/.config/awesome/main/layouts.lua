@@ -1,8 +1,8 @@
 local awful = require("awful")
 
-local _M = {}
+local M = {}
 
-function _M.get ()
+function M.get ()
   -- Table of layouts to cover with awful.layout.inc, order matters.
   local layouts = {
     awful.layout.suit.tile,
@@ -15,4 +15,4 @@ function _M.get ()
   return layouts
 end
 
-return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })
+return setmetatable({}, { __call = function(_, ...) return M.get(...) end })

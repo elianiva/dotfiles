@@ -1,6 +1,5 @@
 {
   "coc.preferences.colorSupport": true,
-  "suggest.maxCompleteItemCount": 10,
 
   // Diagnostic configuration
   "diagnostic.enable": true,

@@ -1,9 +1,9 @@
 local awful     = require("awful")
 local beautiful = require("beautiful")
 
-local _M = {}
+local M = {}
 
-function _M.get(clientkeys, clientbuttons)
+function M.get(clientkeys, clientbuttons)
   local rules = {
 
     -- All clients will match this rule.
@@ -80,4 +80,4 @@ function _M.get(clientkeys, clientbuttons)
   return rules
 end
 
-return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })
+return setmetatable({}, { __call = function(_, ...) return M.get(...) end })

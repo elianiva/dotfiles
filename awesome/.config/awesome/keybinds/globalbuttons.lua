@@ -2,11 +2,9 @@
 local gears = require("gears")
 local awful = require("awful")
 
-local _M = {}
+local M = {}
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
-function _M.get()
+function M.get()
   local globalbuttons = gears.table.join(
     -- awful.button({ }, 3, function () RC.mainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
@@ -16,7 +14,5 @@ function _M.get()
   return globalbuttons
 end
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
-return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })
+return setmetatable({}, { __call = function(_, ...) return M.get(...) end })
 

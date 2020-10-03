@@ -42,10 +42,9 @@ local keybinds = {
 
 RC.layouts = main.layouts()
 RC.tags = main.tags()
--- RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
 RC.launcher = awful.widget.launcher({
-        image = beautiful.awesome_icon,
-        menu = RC.mainmenu
+    image = theme.awesome_icon,
+    menu = RC.mainmenu
 })
 
 menubar.utils.terminal = RC.vars.terminal
@@ -58,7 +57,6 @@ RC.mediakeys =  keybinds.mediakeys()
 root.buttons(keybinds.globalbuttons())
 root.keys(gears.table.join(RC.globalkeys, RC.mediakeys))
 
-require("main.volume-widget") -- Volume widget
 
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = main.rules(
@@ -70,4 +68,5 @@ require("statusbar.main") -- Load statusbar
 require("main.signals") -- load events
 require("main.titlebar") -- dual border
 require("main.exitscreen") -- exitscreen
-require("main.autostart") -- Autostart
+require("main.volume-widget") -- Volume widget
+-- require("main.autostart") -- Autostart
