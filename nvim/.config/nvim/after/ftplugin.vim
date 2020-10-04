@@ -11,7 +11,7 @@ au BufNewFile,BufRead *.json set filetype=jsonc
 
 " Set tabsize for each filetype
 au FileType go setlocal sw=8 ts=8
-au FileType lua setlocal sw=4 ts=4
+au FileType lua setlocal sw=2 ts=2
 au FileType java setlocal sw=4 ts=4
 au FileType php setlocal sw=4 ts=4
 

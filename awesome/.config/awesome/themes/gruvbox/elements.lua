@@ -46,26 +46,6 @@ theme.widget_green = theme.green
 theme.widget_black = theme.black
 theme.widget_transparent = "#00000000"
 
-theme.battery_icon = icons_dir .. "battery.svg"
-theme.memory_icon = icons_dir .. "memory.svg"
-
-theme.volume_down = icons_dir .. "volume_down.svg"
-theme.volume_up = icons_dir .. "volume_up.svg"
-theme.volume_mute = icons_dir .. "volume_mute.svg"
-theme.volume_off = icons_dir .. "volume_off.svg"
-
-theme.temp_icon = icons_dir .. "temp.svg"
-
-theme.cpu_icon = icons_dir .. "cpu.svg"
-
-theme.wifi_on = icons_dir .. "wifi_on.svg"
-theme.wifi_off = icons_dir .. "wifi_off.svg"
-
-theme.arrow_up = icons_dir .. "up.svg"
-theme.arrow_down = icons_dir .. "down.svg"
-
-theme.spotify = icons_dir .. "spotify.svg"
-
 theme.titlebar_size = dpi(2)
 theme.titlebar_bg_focus = theme.grey
 theme.titlebar_bg_normal = theme.black .. "f2"

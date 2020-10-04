@@ -2,11 +2,12 @@ local wibox = require("wibox")
 local lgi = require("lgi")
 local markup = require("lain").util.markup
 
+local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/playerctl/icon.svg"
+
 local Playerctl = lgi.Playerctl
--- local player = Playerctl.Player.new_from_name(Playerctl.PlayerName{ name = "spotify" })
 local player = Playerctl.Player{}
 spotifyicon = wibox.widget.imagebox(
-  colorize(theme.spotify, theme.widget_main_color)
+  colorize(icon, theme.widget_main_color)
 )
 
 playerctl_widget = wibox.widget.textbox()

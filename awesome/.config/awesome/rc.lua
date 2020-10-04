@@ -30,7 +30,7 @@ local main = {
   signals = require("main.signals"), -- connect events
   corners = require("main.titlebar"), -- dual border
   exitscreen = require("main.exitscreen"), -- exitscreen
-  volume = require("main.volume") -- Volume widget
+  volume = require("main.volume-widget") -- Volume widget
 }
 
 main.signals()

@@ -1,10 +1,11 @@
 local wibox = require("wibox")
 local lain = require("lain")
 local markup = lain.util.markup
+local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/cpu/icon.svg"
 
 -- CPU
 cpuicon = wibox.widget.imagebox(
-  colorize(theme.cpu_icon, theme.widget_main_color)
+  colorize(icon, theme.widget_main_color)
 )
 cpu = lain.widget.cpu({
   timeout = 2,
