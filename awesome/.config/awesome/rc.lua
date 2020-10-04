@@ -22,13 +22,21 @@ altkey = RC.vars.altkey
 ctrlkey = RC.vars.ctrlkey
 terminal = RC.vars.terminal
 
--- Custom Local Library
 local main = {
-  layouts = require("main.layouts"),
-  tags    = require("main.tags"),
-  menu    = require("main.menu"),
-  rules   = require("main.rules"),
+  layouts = require("main.layouts"), -- layouts
+  tags    = require("main.tags"), -- tags
+  menu    = require("main.menu"), -- menu
+  rules   = require("main.rules"), -- define rules
+  signals = require("main.signals"), -- connect events
+  corners = require("main.titlebar"), -- dual border
+  exitscreen = require("main.exitscreen"), -- exitscreen
+  volume = require("main.volume") -- Volume widget
 }
+
+main.signals()
+main.corners()
+main.exitscreen()
+main.volume()
 
 -- Custom Local Library: Keys and Mouse Binding
 local keybinds = {
@@ -43,8 +51,8 @@ local keybinds = {
 RC.layouts = main.layouts()
 RC.tags = main.tags()
 RC.launcher = awful.widget.launcher({
-    image = theme.awesome_icon,
-    menu = RC.mainmenu
+  image = theme.awesome_icon,
+  menu = RC.mainmenu
 })
 
 menubar.utils.terminal = RC.vars.terminal
@@ -55,8 +63,9 @@ RC.mediakeys =  keybinds.mediakeys()
 
 -- Set root
 root.buttons(keybinds.globalbuttons())
-root.keys(gears.table.join(RC.globalkeys, RC.mediakeys))
-
+root.keys(
+  gears.table.join(RC.globalkeys, RC.mediakeys)
+)
 
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = main.rules(
@@ -64,9 +73,5 @@ awful.rules.rules = main.rules(
   keybinds.clientbuttons()
 )
 
-require("statusbar.main") -- Load statusbar
-require("main.signals") -- load events
-require("main.titlebar") -- dual border
-require("main.exitscreen") -- exitscreen
-require("main.volume-widget") -- Volume widget
-require("main.autostart") -- Autostart
+require("statusbar") -- Load statusbar
+-- require("main.autostart") -- Autostart

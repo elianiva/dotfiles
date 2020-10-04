@@ -2,14 +2,12 @@ local awful = require("awful")
 
 local M = {}
 
-function M.get ()
+function M.get()
   -- Table of layouts to cover with awful.layout.inc, order matters.
   local layouts = {
     awful.layout.suit.tile,
-    -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.floating,
     awful.layout.suit.max,
-    -- awful.layout.suit.max.fullscreen,
  }
 
   return layouts

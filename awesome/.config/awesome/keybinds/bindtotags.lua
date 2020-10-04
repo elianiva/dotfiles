@@ -10,7 +10,6 @@ function M.get(globalkeys)
   -- This should map on the top row of your keyboard, usually 1 to 9.
   for i = 1, 6 do
     globalkeys = gears.table.join(globalkeys,
-
       -- View tag only.
       awful.key({ modkey }, "#" .. i + 9,
         function ()
@@ -20,7 +19,8 @@ function M.get(globalkeys)
             tag:view_only()
           end
         end,
-        {description = "view tag #"..i, group = "tag"}),
+        {description = "view tag #"..i, group = "tag"}
+      ),
 
       -- Toggle tag display.
       awful.key({ modkey, "Control" }, "#" .. i + 9,
@@ -31,7 +31,8 @@ function M.get(globalkeys)
             awful.tag.viewtoggle(tag)
           end
         end,
-        {description = "toggle tag #" .. i, group = "tag"}),
+        {description = "toggle tag #" .. i, group = "tag"}
+      ),
 
       -- Move client to tag.
       awful.key({ modkey, "Shift" }, "#" .. i + 9,
@@ -43,7 +44,8 @@ function M.get(globalkeys)
             end
           end
         end,
-        {description = "move focused client to tag #"..i, group = "tag"}),
+        {description = "move focused client to tag #"..i, group = "tag"}
+      ),
 
       -- Toggle tag on focused client.
       awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
@@ -55,8 +57,8 @@ function M.get(globalkeys)
             end
           end
         end,
-        {description = "toggle focused client on tag #" .. i, group = "tag"})
-
+        {description = "toggle focused client on tag #" .. i, group = "tag"}
+      )
     )
   end
 

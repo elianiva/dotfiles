@@ -7,7 +7,6 @@ theme = {}
 
 dofile(theme_path .. "colours.lua")
 dofile(theme_path .. "elements.lua")
-dofile(theme_path .. "layouts.lua")
 
 theme.wallpaper     = HOME_DIR .. "/pix/walls/babymetal/babymetal-red.jpg"
 -- theme.wallpaper     = HOME_DIR .. "/pix/walls/Kill-la-Kill-Wallpaper-Matoi-Ryuuko.jpg"

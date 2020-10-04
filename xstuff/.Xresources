@@ -51,4 +51,3 @@ Xft.hintstyle:  slight
 Xft.antialias:  1
 Xft.rgba:       rgb
 Xcursor.theme:  Breeze
-! vim: foldmethod=marker
