@@ -69,4 +69,4 @@ require("main.signals") -- load events
 require("main.titlebar") -- dual border
 require("main.exitscreen") -- exitscreen
 require("main.volume-widget") -- Volume widget
--- require("main.autostart") -- Autostart
+require("main.autostart") -- Autostart

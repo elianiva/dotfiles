@@ -13,7 +13,7 @@ HISTFILE=~/.cache/zsh/history
 setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
 
-# Load aliases if existent.
+# Load aliases if exist
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
 
 # Basic auto/tab complete:
@@ -95,5 +95,15 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --ignore-file ".gitignore"'
 # Load zsh plugins; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
+
+git-svn() {
+  if [[ ! -z "$1" && ! -z "$2" ]]; then
+    echo "Starting clone/copy..."
+    repo=$(echo $1 | sed 's/\/$\|.git$//')
+    svn export "$repo/trunk/$2"
+  else
+    echo "Use: git-svn <repository> <subdir>"
+  fi
+}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
