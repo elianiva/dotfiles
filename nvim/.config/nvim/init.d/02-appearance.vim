@@ -181,6 +181,8 @@ function! ActiveLine()
   " Current line and column
   " let statusline .= "%#LineColAlt# "
   let statusline .= "%#LineCol# Ln %l, Col %c "
+
+  let statusline .= "%{coc#status()}"
   return statusline
 endfunction
 

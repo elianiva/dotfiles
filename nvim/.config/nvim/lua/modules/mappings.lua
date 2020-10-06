@@ -2,6 +2,9 @@ local remap = vim.api.nvim_set_keymap
 
 -- use jj instead of Esc
 remap('i', 'jj', '<Esc><Esc>', { noremap = true })
+remap('i', 'Jj', '<Esc><Esc>', { noremap = true })
+remap('i', 'jJ', '<Esc><Esc>', { noremap = true })
+remap('i', 'JJ', '<Esc><Esc>', { noremap = true })
 
 -- toggle luatree
 remap('n', '<C-n>', '<CMD>LuaTreeToggle<CR>', { noremap = true })

@@ -41,6 +41,10 @@
 
   "eslint.quiet": true,
 
+  // python stuff
+  "python.jediPath": "~/.local/lib/python3.8/site-packages/jedi/",
+  "python.pythonPath": "/usr/bin/python3",
+
   // LSP configuration
   "languageserver": {
     "golang": {

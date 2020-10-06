@@ -23,11 +23,6 @@ require'telescope'.setup{
     defaults = {
         winblend = 0,
         prompt_position = "top",
-        sorting_strategy = "ascending",
-        height = 10
+        sorting_strategy = "ascending"
     }
 }
-
-function file_finder()
-    require'telescope.builtin'.find_files{}
-end

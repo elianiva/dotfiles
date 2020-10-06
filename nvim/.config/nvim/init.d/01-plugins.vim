@@ -72,7 +72,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 " Plug 'steelsojka/completion-buffers'
 " Plug 'nvim-lua/diagnostic-nvim'
 Plug 'neoclide/coc.nvim', {'branch' : 'release'}
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 
 " Comment block of code easily
 Plug 'tpope/vim-commentary'
