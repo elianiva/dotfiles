@@ -19,8 +19,8 @@
 *color7:  #ebdbb2
 *color15: #ebdbb2
 
-! scheme: "codedark"
-! author: "Tomas Iser (https://github.com/tomasiser)"
+/* ! scheme: "codedark" */
+/* ! author: "Tomas Iser (https://github.com/tomasiser)" */
 /* *.foreground:   #D4D4D4 */
 /* *.background:   #1E1E1E */
 /* *.cursorColor:  #D4D4D4 */

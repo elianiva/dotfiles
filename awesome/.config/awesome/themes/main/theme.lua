@@ -1,7 +1,7 @@
 local HOME_DIR = os.getenv("HOME")
 
 local xresources = require("beautiful.xresources")
-local theme_path = HOME_DIR .. "/.config/awesome/themes/gruvbox/"
+local theme_path = HOME_DIR .. "/.config/awesome/themes/main/"
 
 theme = {}
 

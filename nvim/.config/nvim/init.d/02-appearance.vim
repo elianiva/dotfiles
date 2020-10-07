@@ -9,8 +9,7 @@ function Palenight()
   hi PmenuSbar guibg=#32374d guifg=#32374d
   hi PmenuThumb guibg=#32374d guifg=#32374d
   hi GitGutterAdd guifg=#82aaff
-  hi VertSplit guifg=#212333
-  hi Statusline guibg=NONE
+  hi VertSplit guifg=#212333 hi Statusline guibg=NONE
   " hi NERDTreeOpenable guifg=#2B2E42
 
   " Syntax override
@@ -58,9 +57,9 @@ function Gruvbox()
   hi Git guibg=#504945 guifg=#ebdbb2
   hi LineCol guibg=#928374 guifg=#1d2021 gui=bold
   hi Mode guibg=#928374 guifg=#1d2021 gui=bold
-  hi Filetype guifg=#ebdbb2 guibg=#504945
-  hi Modi guifg=#ebdbb2 guibg=#504945
-  hi Filename guifg=#ebdbb2 guibg=#3e3e3e
+  hi Filetype guibg=#504945 guifg=#ebdbb2
+  hi Modi guibg=#504945 guifg=#ebdbb2
+  hi Filename guibg=#3e3e3e guifg=#ebdbb2
 
   " hi ModeAlt guibg=#32374d guifg=#82aaff
   " hi GitAlt guibg=#212333 guifg=#32374d
@@ -79,10 +78,51 @@ function Gruvbox()
   hi TelescopeResultsBorder gui=bold guifg=#928374 guibg=NONE
 endfunction
 
+function CodeDark()
+  hi Normal guibg=NONE
+  hi SignColumn guibg=NONE
+  hi GitGutterAdd guifg=#569cd6
+  hi GitGutterChange guifg=#d7ba7d
+  hi GitGutterDelete guifg=#d16969
+  hi jsonMissingCommaError guifg=#d16969
+  hi jsonNoQuotesError guifg=#d16969
+  hi EndOfBuffer guibg=NONE
+  hi NonText guibg=NONE
+  hi LineNr guibg=NONE
+
+  " Statusline colors
+  hi Base guibg=#1e1e1e guifg=#d4d4d4
+  hi Inactive guibg=#141414 guifg=#3c3c3c
+  hi Git guibg=#2b2b2b guifg=#d4d4d4
+  hi LineCol guibg=#3e3e3e guifg=#d4d4d4 gui=bold
+  hi Mode guibg=#3d3d3d guifg=#d4d4d4 gui=bold
+  hi Filetype guibg=#2b2b2b guifg=#d4d4d4
+  hi Modi guibg=#2b2b2b guifg=#d4d4d4
+  hi Filename guibg=#2b2b2b guifg=#d4d4d4
+
+  " Lua tree
+  hi LuaTreeFolderIcon guifg=#d16969
+  hi LuaTreeIndentMarker guifg=#4a4a4a
+
+  " Completion Menu
+  hi Pmenu guibg=#1e1e1e
+  hi PmenuSel guibg=#d16969 guifg=#2b2b2b
+  hi PmenuSbar guibg=#2b2b2b guifg=#2b2b2b
+  hi PmenuThumb guibg=#3e3e3e guifg=#3e3e3e
+
+  " Telescope nvim
+  hi TelescopeSelection gui=bold guifg=#d4d4d4 guibg=NONE
+  hi TelescopeMatching gui=bold guifg=#d16969 guibg=NONE
+  hi TelescopePreviewBorder gui=bold guifg=#3e3e3e guibg=NONE
+  hi TelescopePromptBorder gui=bold guifg=#3e3e3e guibg=NONE
+  hi TelescopeResultsBorder gui=bold guifg=#3e3e3e guibg=NONE
+endfunction
+
 augroup NewColor
   au!
   au ColorScheme palenight call Palenight()
   au ColorScheme gruvbox call Gruvbox()
+  au ColorScheme codedark call CodeDark()
 augroup END
 
 let g:gruvbox_invert_selection=0
@@ -182,7 +222,6 @@ function! ActiveLine()
   " let statusline .= "%#LineColAlt# "
   let statusline .= "%#LineCol# Ln %l, Col %c "
 
-  let statusline .= "%{coc#status()}"
   return statusline
 endfunction
 

@@ -4,7 +4,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 local themes_path = require("gears.filesystem").get_themes_dir()
 
-local icons_dir = os.getenv("HOME") .. "/.config/awesome/themes/gruvbox/icons/"
+local icons_dir = os.getenv("HOME") .. "/.config/awesome/themes/main/icons/"
 
 -- theme.font          = "Iosevka 11"
 theme.font  = "SF UI Display 11"
@@ -33,13 +33,13 @@ theme.tasklist_fg_focus = theme.yellow
 
 theme.taglist_bg_focus = theme.black
 theme.taglist_fg_focus = theme.yellow
--- theme.taglist_fg_focus = "#F52B2B"
+-- theme.taglist_fg_focus = theme.red
 theme.taglist_fg_empty = theme.white_alt
 theme.taglist_fg_occupied = theme.white
 theme.taglist_spacing = dpi(2)
 
 theme.widget_main_color = theme.yellow
--- theme.widget_main_color = "#F52B2B"
+-- theme.widget_main_color = theme.red
 theme.widget_red = theme.red
 theme.widget_yelow = theme.yellow
 theme.widget_green = theme.green

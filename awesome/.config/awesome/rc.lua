@@ -12,7 +12,7 @@ require("awful.autofocus")
 require("main.error-handling") -- error handling
 
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/themes/gruvbox/theme.lua")
+beautiful.init("~/.config/awesome/themes/main/theme.lua")
 
 RC = {} -- global namespace, on top before require any modules
 RC.vars = require("main.variables") -- user defined variables
@@ -74,4 +74,4 @@ awful.rules.rules = main.rules(
 )
 
 require("statusbar") -- Load statusbar
-require("main.autostart") -- Autostart
+-- require("main.autostart") -- Autostart

@@ -10,6 +10,7 @@ vim.g.coc_global_extensions = {
   'coc-tsserver',
   'coc-prettier',
   'coc-svelte',
+  'coc-snippets',
 }
 
 vim.g.coc_snippet_next = '<C-j>'
