@@ -74,4 +74,4 @@ awful.rules.rules = main.rules(
 )
 
 require("statusbar") -- Load statusbar
--- require("main.autostart") -- Autostart
+require("main.autostart") -- Autostart

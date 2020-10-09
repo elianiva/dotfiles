@@ -24,7 +24,7 @@ function M.get()
     function() awful.spawn.with_shell("systemctl poweroff") end
   local reboot_command = function() awful.spawn.with_shell("systemctl reboot") end
   local suspend_command = function()
-    lock_screen_show()
+    -- lock_screen_show()
     awful.spawn.with_shell("systemctl suspend")
   end
   local exit_command = function() awesome.quit() end
