@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-image: url(./bg.jpg);
+  background-size: cover;
+  overflow: hidden;
+  backdrop-filter: blur(0.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  color: #ffffff;
+  font-size: 4rem;
+  line-height: 4rem;
+  margin-top: 12%;
+  text-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+  transition: all ease-out 0.1s;
+}
+
+input {
+  margin: 2rem 0 4rem;
+  width: 50vw;
+  border: none;
+  padding: 1rem;
+  font-size: 1.5rem;
+  outline: none;
+  font-family: "Iosevka", monospace;
+  transition: all ease-out 0.1s;
+  background: none;
+  color: #ffffff;
+  border-bottom: 0.125rem #ffffff solid;
+}
+
+input::placeholder {
+  color: #b0b0b0;
+}
+
+h2 {
+  font-family: "Iosevka";
+  color: #ffffff;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  margin-bottom: 1rem;
+}
+
+.help {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 60rem;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #282828;
+}
+
+.item span {
+  vertical-align: center;
+  font-family: "Iosevka", monospace;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.25rem;
+}
+
+.item span:nth-child(1) {
+  background-color: #fabd2f;
+  border-bottom: 0.25rem #d79921 solid;
+}
+
+.item span:nth-child(2) {
+  background-color: #3c3836;
+  border-bottom: 0.25rem #1d2021 solid;
+  color: #ebdbb2;
+}
+
+.hl {
+  color: #fabd2f;
+}

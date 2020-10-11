@@ -1,0 +1,9 @@
+{
+  "name": "Startpage v2",
+  "version": "1.0",
+  "description": "My personal custom startpage v2",
+  "manifest_version": 2,
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}

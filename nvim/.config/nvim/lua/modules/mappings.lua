@@ -23,7 +23,6 @@ remap('n', '<C-l>', '<C-w><C-l>', { noremap = true })
 remap('', '<A-j>', '<CMD>bd<CR>', { noremap = true })
 remap('', '<A-h>', '<CMD>bp<CR>', { noremap = true })
 remap('', '<A-l>', '<CMD>bn<CR>', { noremap = true })
--- remap('', '<A-k>', '<CMD>', { noremap = true })
 
 -- move vertically by visual line on wrapped lines
 remap('n', 'j', 'gj', { noremap = true })
