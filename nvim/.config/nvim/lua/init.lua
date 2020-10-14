@@ -14,15 +14,16 @@ require("modules.indentline")
 require("modules.luatree")
 require("modules.gitgutter")
 require("modules.coc")
+require("modules.fzf")
 -- require("modules.theme")
 -- require("modules.treesitter")
 -- require("modules.lsp")
 -- require("modules.statusline")
 
-require'telescope'.setup{
-    defaults = {
-        winblend = 0,
-        prompt_position = "top",
-        sorting_strategy = "ascending"
-    }
-}
+-- require'telescope'.setup{
+--     defaults = {
+--         winblend = 0,
+--         prompt_position = "top",
+--         sorting_strategy = "ascending"
+--     }
+-- }

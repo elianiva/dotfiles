@@ -1,5 +1,4 @@
 runtime! init.d/*
-runtime! modules/*
 
 " Change working directory to current file directory
 cd %:p:h

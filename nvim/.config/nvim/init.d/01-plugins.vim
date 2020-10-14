@@ -10,7 +10,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Colorscheme
 " Plug 'elianiva/palenight.vim'
 Plug 'gruvbox-community/gruvbox'
-Plug 'tomasiser/vim-code-dark'
+Plug 'ayu-theme/ayu-vim'
+" Plug 'tomasiser/vim-code-dark'
 " Plug 'tjdevries/colorbuddy.nvim'
 
 " Auto pairs brackets and other stuff
@@ -39,11 +40,10 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 " Syntax support for various language
 Plug 'sheerun/vim-polyglot'
-" Plug 'evanleck/vim-svelte'
+Plug 'evanleck/vim-svelte'
 " Plug 'fatih/vim-go'
+Plug 'euclidianAce/BetterLua.vim'
 Plug 'uiiaoo/java-syntax.vim'
-Plug 'euclidianAce/BetterLua.vim' " better lua syntax
-Plug 'evanleck/vim-svelte' "Svelte stuff
 
 " Indentation guide
 Plug 'Yggdroot/indentline'
@@ -72,7 +72,6 @@ Plug 'kyazdani42/nvim-tree.lua'
 " Plug 'steelsojka/completion-buffers'
 " Plug 'nvim-lua/diagnostic-nvim'
 Plug 'neoclide/coc.nvim', {'branch' : 'release'}
-" Plug 'honza/vim-snippets'
 
 " Comment block of code easily
 Plug 'tpope/vim-commentary'
@@ -83,10 +82,14 @@ Plug 'mattn/emmet-vim'
 " Surround words with symbol
 Plug 'tpope/vim-surround'
 
-" Stupidly fast fuzzy search engine
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/telescope.nvim'
+" " Stupidly fast fuzzy search engine
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-lua/telescope.nvim'
+
+" FZF
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Statusline
 " Plug 'tjdevries/express_line.nvim'

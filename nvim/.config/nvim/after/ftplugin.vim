@@ -34,6 +34,9 @@ au FileType markdown setlocal conceallevel=0
 " Set tsconfig.json to jsonc
 au BufRead,BufNewFile tsconfig.json set ft=jsonc
 
+" Set mdsvex to markdown filetype
+au BufRead,BufNewFile *.svx set ft=markdown
+
 " Remove trailing whitespace on save
 au BufWritePre * %s/\s\+$//e
 
