@@ -6,7 +6,8 @@ local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/playerctl/
 
 local Playerctl = lgi.Playerctl
 local player = Playerctl.Player{}
-spotifyicon = wibox.widget.imagebox(
+
+player_icon = wibox.widget.imagebox(
   colorize(icon, theme.widget_main_color)
 )
 

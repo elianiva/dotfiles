@@ -6,6 +6,26 @@ local dpi = beautiful.xresources.apply_dpi
 local lain = require("lain")
 local markup = lain.util.markup
 local margin = wibox.container.margin
+local bg = wibox.container.background
+
+local text_wrapper = function(widget, left, right, top, bottom)
+  left = left or 0
+  right = right or 6
+  top = top or 0
+  bottom = bottom or 4
+
+  return margin(widget, dpi(left), dpi(right), dpi(top), dpi(bottom))
+end
+
+local icon_wrapper = function(icon, left, right, top, bottom)
+  left = left or 5
+  right = right or 5
+  top = top or 6
+  bottom = bottom or 8
+
+  return margin(icon, dpi(left), dpi(right), dpi(top), dpi(bottom))
+end
+
 
 function colorize(icon, color)
     return gears.color.recolor_image(icon, color)
@@ -55,7 +75,7 @@ awful.screen.connect_for_each_screen(function(s)
   s.wibox = awful.wibar({
     position = "top",
     screen = s,
-    height = beautiful.statusbar_height,
+    height = theme.statusbar_height,
     width = s.geometry.width,
   })
 
@@ -64,48 +84,30 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     expand = "none",
     {
-      margin(launcher, dpi(5), dpi(5)),
+      text_wrapper(launcher, 5, 5, 0, 0),
       s.taglist,
 
-      margin(spotifyicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-      margin(playerctl_widget, dpi(0), dpi(12), dpi(0), dpi(2)),
+      icon_wrapper(player_icon), text_wrapper(playerctl_widget, 0, 12, 0, 2),
 
       layout = wibox.layout.fixed.horizontal,
     },
     {
-      wibox.container.margin(clock, dpi(10), dpi(10), dpi(5), dpi(10)),
+      text_wrapper(clock, 10, 10, 5, 10),
       layout = wibox.layout.fixed.horizontal,
     },
     {
       -- Netstatus
-      margin(neticon, dpi(5), dpi(5), dpi(6), dpi(8)),
-      margin(downicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-      margin(netdown, dpi(0), dpi(8), dpi(0), dpi(4)),
-      margin(upicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-      margin(netup.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
+      icon_wrapper(wifi_icon),
+      icon_wrapper(down_icon), text_wrapper(down_speed),
+      icon_wrapper(up_icon), text_wrapper(netspeed.widget),
 
-      -- Volume
-      margin(volicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-      margin(vol.widget, dpi(0), dpi(8), dpi(0), dpi(4)),
+      icon_wrapper(vol_icon), text_wrapper(vol.widget), -- Volume
+      icon_wrapper(temp_icon), text_wrapper(temp.widget), -- Temperature
+      icon_wrapper(cpu_icon), text_wrapper(cpu.widget), -- CPU
+      icon_wrapper(mem_icon), text_wrapper(mem.widget), -- Memory
+      icon_wrapper(bat_icon), text_wrapper(bat.widget), -- Battery
 
-      -- Temperature
-      margin(tempicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-      margin(temp.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
-
-      -- CPU
-      margin(cpuicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-      margin(cpu.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
-
-      -- Memory
-      margin(memicon, dpi(5), dpi(5), dpi(6), dpi(8)),
-      margin(mem.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
-
-      -- Battery
-      margin(baticon, dpi(5), dpi(5), dpi(6), dpi(8)),
-      margin(bat.widget, dpi(0), dpi(6), dpi(0), dpi(4)),
-
-      -- Todo
-      margin(todo, dpi(5), dpi(5), dpi(6), dpi(8)),
+      margin(todo, dpi(5), dpi(5), dpi(6), dpi(8)), -- Todo
 
       margin(systray, dpi(0), dpi(2), dpi(4), dpi(4)),
       -- s.mylayoutbox,

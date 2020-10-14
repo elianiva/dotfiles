@@ -4,7 +4,7 @@ local markup = lain.util.markup
 local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/battery/icon.svg"
 
 -- Battery
-baticon = wibox.widget.imagebox(
+bat_icon = wibox.widget.imagebox(
   colorize(icon, theme.widget_main_color)
 )
 

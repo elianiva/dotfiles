@@ -4,9 +4,10 @@ local markup = lain.util.markup
 local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/memory/icon.svg"
 
 -- Memory
-memicon = wibox.widget.imagebox(
+mem_icon = wibox.widget.imagebox(
   colorize(icon, theme.widget_main_color)
 )
+
 mem = lain.widget.mem({
   timeout = 2,
   settings = function()

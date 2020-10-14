@@ -4,9 +4,10 @@ local markup = lain.util.markup
 local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/temp/icon.svg"
 
 -- Temperature
-tempicon = wibox.widget.imagebox(
+temp_icon = wibox.widget.imagebox(
   colorize(icon, theme.widget_main_color)
 )
+
 temp = lain.widget.temp({
   tempfile = "/sys/devices/virtual/thermal/thermal_zone0/temp",
   settings = function()

@@ -48,19 +48,8 @@ function M.get()
           end
           awful.mouse.client.move(c)
         end),
-        awful.button({ }, 3, function()
-          c:emit_signal("request::activate", "titlebar", {raise = true})
-          awful.mouse.client.resize(c)
-        end)
-      )
 
-      local borderbuttons = gears.table.join(
         awful.button({ }, 3, function()
-          c:emit_signal("request::activate", "titlebar", {raise = true})
-          awful.mouse.client.resize(c)
-        end),
-
-        awful.button({ }, 1, function()
           c:emit_signal("request::activate", "titlebar", {raise = true})
           awful.mouse.client.resize(c)
         end)
@@ -73,30 +62,30 @@ function M.get()
       floating:connect_signal("button::press", function() c.floating = not c.floating end)
 
       awful.titlebar(c, { position = "left", size = beautiful.titlebar_size}):setup {
-        { floating, layout = wibox.layout.fixed.vertical }, -- left
-        { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle
-        { close, layout = wibox.layout.fixed.vertical }, -- right
+        { close, layout = wibox.layout.fixed.vertical }, -- top left
+        { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle left
+        { floating, layout = wibox.layout.fixed.vertical }, -- bottom left
         layout = wibox.layout.align.vertical
       }
 
       awful.titlebar(c, {position = "right", size = beautiful.titlebar_size}):setup {
-        { floating, layout  = wibox.layout.fixed.vertical }, -- left
-        { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle
-        { close, layout = wibox.layout.fixed.vertical }, -- right
+        { close, layout  = wibox.layout.fixed.vertical }, -- top right
+        { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle right
+        { floating, layout = wibox.layout.fixed.vertical }, -- bottom right
         layout = wibox.layout.align.vertical
       }
 
       awful.titlebar(c, {position = "bottom", size = beautiful.titlebar_size}):setup {
-        { floating, layout  = wibox.layout.fixed.horizontal }, -- left
+        { floating, layout  = wibox.layout.fixed.horizontal }, -- bottom left
         { buttons = buttons, layout  = wibox.layout.flex.horizontal }, -- middle
-        { close, layout = wibox.layout.fixed.horizontal }, -- right
+        { floating, layout = wibox.layout.fixed.horizontal }, -- bottom right
         layout = wibox.layout.align.horizontal
       }
 
       awful.titlebar(c, {position = "top", size = beautiful.titlebar_size}):setup {
-        { floating, layout  = wibox.layout.fixed.horizontal }, -- left
+        { close, layout  = wibox.layout.fixed.horizontal }, -- top left
         { buttons = buttons, layout  = wibox.layout.flex.horizontal }, -- middle
-        { close, layout = wibox.layout.fixed.horizontal }, -- right
+        { close, layout = wibox.layout.fixed.horizontal }, -- top right
         layout = wibox.layout.align.horizontal
       }
     end
