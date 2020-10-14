@@ -56,7 +56,8 @@ draw_bold_text_with_bright_colors: false
 schemes:
   gruvbox: &gruvbox
     primary:
-      background: '#282828'
+      # background: '#282828'
+      background: '#1d2021'
       foreground: '#ebdbb2'
 
     cursor:

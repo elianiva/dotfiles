@@ -1,6 +1,6 @@
 ! scheme: "gruvbox"
 ! author: "Morhetz (https://github.com/morhetz)"
-*background: #282828
+*background: #1d2021
 *foreground: #ebdbb2
 *color0:  #282828
 *color8:  #928374
