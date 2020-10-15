@@ -10,7 +10,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Colorscheme
 " Plug 'elianiva/palenight.vim'
 Plug 'gruvbox-community/gruvbox'
-Plug 'ayu-theme/ayu-vim'
 " Plug 'tomasiser/vim-code-dark'
 " Plug 'tjdevries/colorbuddy.nvim'
 
@@ -18,13 +17,16 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'jiangmiao/auto-pairs'
 
 " Tree sitter
-" Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " Scratchpad
 " Plug 'metakirby5/codi.vim'
 
 " JSONC filetype support
 Plug 'neoclide/jsonc.vim'
+
+" Gotta have sum fun
+Plug 'ThePrimeagen/vim-be-good'
 
 " Gitlens as in vscode
 " Plug 'APZelos/blamer.nvim'
@@ -39,11 +41,11 @@ Plug 'wakatime/vim-wakatime'
 Plug 'norcalli/nvim-colorizer.lua'
 
 " Syntax support for various language
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'evanleck/vim-svelte'
 " Plug 'fatih/vim-go'
-Plug 'euclidianAce/BetterLua.vim'
-Plug 'uiiaoo/java-syntax.vim'
+" Plug 'euclidianAce/BetterLua.vim'
+" Plug 'uiiaoo/java-syntax.vim'
 
 " Indentation guide
 Plug 'Yggdroot/indentline'
@@ -90,9 +92,6 @@ Plug 'tpope/vim-surround'
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-" Statusline
-" Plug 'tjdevries/express_line.nvim'
 
 " Git integration
 Plug 'tpope/vim-fugitive'

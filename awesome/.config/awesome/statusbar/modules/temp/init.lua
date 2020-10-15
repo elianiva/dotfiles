@@ -11,7 +11,7 @@ temp_icon = wibox.widget.imagebox(
 temp = lain.widget.temp({
   tempfile = "/sys/devices/virtual/thermal/thermal_zone0/temp",
   settings = function()
-    widget:set_markup(markup(theme.foreground, coretemp_now .. " °C"))
+    widget:set_markup(markup(theme.foreground, math.floor(coretemp_now) .. "°C"))
   end
 })
 

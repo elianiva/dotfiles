@@ -11,7 +11,7 @@ local bg = wibox.container.background
 local text_wrapper = function(widget, left, right, top, bottom)
   left = left or 0
   right = right or 6
-  top = top or 0
+  top = top or 4
   bottom = bottom or 4
 
   return margin(widget, dpi(left), dpi(right), dpi(top), dpi(bottom))
@@ -20,7 +20,7 @@ end
 local icon_wrapper = function(icon, left, right, top, bottom)
   left = left or 5
   right = right or 5
-  top = top or 6
+  top = top or 8
   bottom = bottom or 8
 
   return margin(icon, dpi(left), dpi(right), dpi(top), dpi(bottom))
@@ -92,7 +92,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal,
     },
     {
-      text_wrapper(clock, 10, 10, 5, 10),
+      text_wrapper(clock, 10, 10, 5, 10), -- Clock
       layout = wibox.layout.fixed.horizontal,
     },
     {
@@ -106,8 +106,7 @@ awful.screen.connect_for_each_screen(function(s)
       icon_wrapper(cpu_icon), text_wrapper(cpu.widget), -- CPU
       icon_wrapper(mem_icon), text_wrapper(mem.widget), -- Memory
       icon_wrapper(bat_icon), text_wrapper(bat.widget), -- Battery
-
-      margin(todo, dpi(5), dpi(5), dpi(6), dpi(8)), -- Todo
+      text_wrapper(todo, 0, 5, 8, 8), -- Todo
 
       margin(systray, dpi(0), dpi(2), dpi(4), dpi(4)),
       -- s.mylayoutbox,

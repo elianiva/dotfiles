@@ -21,4 +21,3 @@ vim.g.fzf_colors = {
   spinner = { 'fg', 'Label' },
   header  = { 'fg', 'Comment' }
 }
-
