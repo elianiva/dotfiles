@@ -4,7 +4,6 @@ require'nvim-treesitter.configs'.setup {
   "typescript",
   "javascript",
   "html",
-  "css",
   "java",
   "php",
   "tsx",

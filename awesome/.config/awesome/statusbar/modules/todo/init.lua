@@ -146,7 +146,7 @@ local function worker(args)
             {
                 {widget = wibox.widget.textbox},
                 {
-                    markup = '<span size="large" font_weight="bold" color="#ffffff">ToDo</span>',
+                    markup = '<span size="large" font_weight="bold" color="#ebdbb2">Todo</span>',
                     align = 'center',
                     forced_width = 350, -- for horizontal alignment
                     forced_height = 40,
@@ -169,8 +169,8 @@ local function worker(args)
                 color         = beautiful.white,
                 paddings      = 2,
                 shape         = gears.shape.circle,
-                forced_width = 20,
-                forced_height = 20,
+                forced_width = 14,
+                forced_height = 14,
                 check_color = beautiful.white,
                 widget        = wibox.widget.checkbox
             }
@@ -187,7 +187,7 @@ local function worker(args)
 
             local trash_button = wibox.widget {
                 {
-                    {    image = colorize(WIDGET_DIR .. '/window-close-symbolic.svg', theme.white),
+                    {   image = colorize(WIDGET_DIR .. '/window-close-symbolic.svg', theme.white),
                         resize = false,
                         widget = wibox.widget.imagebox
                     },

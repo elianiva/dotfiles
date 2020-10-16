@@ -105,7 +105,7 @@ awful.screen.connect_for_each_screen(function(s)
       icon_wrapper(temp_icon), text_wrapper(temp.widget), -- Temperature
       icon_wrapper(cpu_icon), text_wrapper(cpu.widget), -- CPU
       icon_wrapper(mem_icon), text_wrapper(mem.widget), -- Memory
-      icon_wrapper(bat_icon), text_wrapper(bat.widget), -- Battery
+      icon_wrapper(bat_icon), text_wrapper(bat.widget, 0, 0), -- Battery
       text_wrapper(todo, 0, 5, 8, 8), -- Todo
 
       margin(systray, dpi(0), dpi(2), dpi(4), dpi(4)),

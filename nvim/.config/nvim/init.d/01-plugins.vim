@@ -17,7 +17,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'jiangmiao/auto-pairs'
 
 " Tree sitter
-Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'nvim-treesitter/nvim-treesitter'
 
 " Scratchpad
 " Plug 'metakirby5/codi.vim'
@@ -41,11 +41,11 @@ Plug 'wakatime/vim-wakatime'
 Plug 'norcalli/nvim-colorizer.lua'
 
 " Syntax support for various language
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 Plug 'evanleck/vim-svelte'
+Plug 'ollykel/v-vim'
 " Plug 'fatih/vim-go'
-" Plug 'euclidianAce/BetterLua.vim'
-" Plug 'uiiaoo/java-syntax.vim'
+Plug 'euclidianAce/BetterLua.vim'
 
 " Indentation guide
 Plug 'Yggdroot/indentline'
