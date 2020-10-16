@@ -24,7 +24,7 @@ function Palenight()
   hi jsSpreadExpression guifg=#82aaff
 
   " Statusline colors
-  hi Base guibg=#212333 guifg=#959dcb
+  hi Active guibg=#212333 guifg=#959dcb
   hi Git guibg=#32374d guifg=#959dcb
   hi GitAlt guibg=#212333 guifg=#32374d
   hi LineCol guibg=#212333 guifg=#f07178 gui=bold
@@ -50,9 +50,10 @@ function Gruvbox()
   hi GitGutterDelete guifg=#CC241D
   hi jsonMissingCommaError guifg=#CC241D
   hi jsonNoQuotesError guifg=#CC241D
+  hi javaScript guifg=#ebdbb2
 
   " Statusline colors
-  hi Base guibg=#3C3836 guifg=#ebdbb2
+  hi Active guibg=#3C3836 guifg=#ebdbb2
   hi Inactive guifg=#504945 guibg=#1d2021
   hi Git guibg=#504945 guifg=#ebdbb2
   hi LineCol guibg=#928374 guifg=#1d2021 gui=bold
@@ -61,11 +62,11 @@ function Gruvbox()
   hi Modi guibg=#504945 guifg=#ebdbb2
   hi Filename guibg=#3e3e3e guifg=#ebdbb2
 
-  " hi ModeAlt guibg=#32374d guifg=#82aaff
-  " hi GitAlt guibg=#212333 guifg=#32374d
-  " hi LineColAlt guibg=#32374d guifg=#f07178
-  " hi FiletypeAlt guibg=#212333 guifg=#32374d
-  " hi LineHL guibg=#82aaff guifg=#82aaff
+  hi ModeAlt guibg=#504945 guifg=#928374
+  hi GitAlt guibg=#3C3836 guifg=#504945
+  hi LineColAlt guibg=#504945 guifg=#928374
+  hi FiletypeAlt guibg=#3C3836 guifg=#504945
+  hi LineHL guibg=#82aaff guifg=#82aaff
 
   hi LuaTreeFolderIcon guifg=#d79921
   hi LuaTreeIndentMarker guifg=#928374
@@ -91,7 +92,7 @@ function CodeDark()
   hi LineNr guibg=NONE
 
   " Statusline colors
-  hi Base guibg=#1e1e1e guifg=#d4d4d4
+  hi Active guibg=#1e1e1e guifg=#d4d4d4
   hi Inactive guibg=#141414 guifg=#3c3c3c
   hi Git guibg=#2b2b2b guifg=#d4d4d4
   hi LineCol guibg=#3e3e3e guifg=#d4d4d4 gui=bold
@@ -130,129 +131,10 @@ color gruvbox
 
 hi Comment gui=italic
 
-" Get current mode
-let g:currentmode={
-      \'n'  : 'Normal',
-      \'no' : 'N·Operator Pending',
-      \'v'  : 'Visual',
-      \'V'  : 'V·Line',
-      \'^V' : 'V·Block',
-      \'s'  : 'Select',
-      \'S'  : 'S·Line',
-      \'^S' : 'S·Block',
-      \'i'  : 'Insert',
-      \'R'  : 'Replace',
-      \'Rv' : 'V·Replace',
-      \'c'  : 'Command',
-      \'cv' : 'Vim Ex ',
-      \'ce' : 'Ex ',
-      \'r'  : 'Prompt ',
-      \'rm' : 'More ',
-      \'r?' : 'Confirm ',
-      \'!'  : 'Shell ',
-      \'t'  : 'Terminal '
-      \}
-
-" Get current git branch
-function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  let l:branch = fugitive#head()
-  if l:branch == ""
-    return ''
-  else
-    return ' +'.a.' ~'.m.' -'.r.' |  ' .l:branch.' '
-  endif
-endfunction
-
-" Get current mode
-function! ModeCurrent() abort
-    let l:modecurrent = mode()
-    let l:modelist = toupper(get(g:currentmode, l:modecurrent, 'V·Block '))
-    let l:current_status_mode = l:modelist
-    return l:current_status_mode
-endfunction
-
-" Get current filetype
-function! CheckFT(filetype)
-  if a:filetype == ''
-    return ''
-  else
-    return '| '.tolower(a:filetype).' '
-  endif
-endfunction
-
-" Check modified status
-function! CheckMod(modi)
-  if a:modi == 1
-    return expand('%:t').'*'
-  else
-    return expand('%:t')
-  endif
-endfunction
-
-" Set active statusline
-function! ActiveLine()
-  " Set empty statusline and colors
-  let statusline = ""
-  let statusline .= "%#Base#"
-
-  " Current mode
-  let statusline .= "%#Mode# %{ModeCurrent()} "
-
-  " let statusline .= "%#ModeAlt#"
-
-  " Current git branch
-  let statusline .= "%#Git#%{GitStatus()}%)"
-
-  " let statusline .= "%#GitAlt#"
-
-  let statusline .= "%#Base#"
-
-  " Align items to right
-  let statusline .= "%="
-
-  " Current modified status and filename
-  let statusline .= "%#Modi# %{CheckMod(&modified)} "
-
-  " Current filetype
-  " let statusline .= "%#FiletypeAlt# "
-  let statusline .= "%#Filetype#%{CheckFT(&filetype)}"
-
-  " Current line and column
-  " let statusline .= "%#LineColAlt# "
-  let statusline .= "%#LineCol# Ln %l, Col %c "
-
-  return statusline
-endfunction
-
-" Set inactive statusline
-function! InactiveLine()
-  " Set empty statusline and colors
-  let statusline = ""
-  let statusline .= "%#Base#"
-
-  " Full path of the file
-  let statusline .= "%#Inactive# %F "
-
-  return statusline
-endfunction
-
-" Set NERDTree statusline
-function! NERDLine()
-  " Set empty statusline and colors
-  let statusline = ""
-  let statusline .= "%#Base#"
-
-  " NERDTree title
-  let statusline .= "Explorer"
-
-  return statusline
-endfunction
-
 " Change statusline automatically
 augroup Statusline
   au!
-  au WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
-  au WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
-  au FileType LuaTree setlocal statusline=%!NERDLine()
+  au WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline.active()
+  au WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline.inactive()
+  au WinEnter,BufEnter,FileType LuaTree setlocal statusline=%!v:lua.statusline.explorer()
 augroup END
