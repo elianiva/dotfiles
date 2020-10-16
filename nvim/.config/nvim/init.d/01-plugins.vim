@@ -30,7 +30,6 @@ Plug 'ThePrimeagen/vim-be-good'
 
 " Gitlens as in vscode
 " Plug 'APZelos/blamer.nvim'
-
 " stats for wakatime
 Plug 'wakatime/vim-wakatime'
 

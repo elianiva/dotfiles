@@ -111,3 +111,12 @@ statusline.explorer = function()
     colors.active, title:upper(), title_alt
   })
 end
+
+-- set statusline
+vim.cmd('augroup Statusline')
+vim.cmd('au!')
+vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline.active()')
+vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline.inactive()')
+vim.cmd('au WinEnter,BufEnter,FileType LuaTree setlocal statusline=%!v:lua.statusline.explorer()')
+vim.cmd('augroup END')
+

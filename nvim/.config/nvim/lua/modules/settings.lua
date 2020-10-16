@@ -56,3 +56,5 @@ function core_options()
 
   setOptions(options)
 end
+
+core_options()
