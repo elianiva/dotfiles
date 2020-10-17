@@ -10,12 +10,12 @@ remap('i', 'JJ', '<Esc><Esc>', { noremap = true })
 remap('n', '<C-n>', '<CMD>LuaTreeToggle<CR>', { noremap = true })
 
 -- toggle telescope.nvim
--- remap('n', '<C-p>', '<CMD>lua require"telescope.builtin".find_files()<CR>', { noremap = true, silent = true })
--- remap('n', '<C-f>', '<CMD>lua require"telescope.builtin".live_grep()<CR>', { noremap = true, silent = true })
+remap('n', '<C-p>', '<CMD>lua require"telescope.builtin".find_files()<CR>', { noremap = true, silent = true })
+remap('n', '<C-f>', '<CMD>lua require"telescope.builtin".live_grep()<CR>', { noremap = true, silent = true })
 
 -- FZF
-remap('n', '<C-p>', '<CMD>Files<CR>', { noremap = true, silent = true })
-remap('n', '<C-f>', '<CMD>Rg<CR>', { noremap = true, silent = true })
+-- remap('n', '<C-p>', '<CMD>Files<CR>', { noremap = true, silent = true })
+-- remap('n', '<C-f>', '<CMD>Rg<CR>', { noremap = true, silent = true })
 
 -- better movement between buffers
 remap('n', '<C-h>', '<C-w><C-h>', { noremap = true })
@@ -64,5 +64,3 @@ remap('', '<A-r>', '<CMD>so ~/.config/nvim/init.vim<CR>', { noremap = true })
 
 -- prettier mapping
 remap('', '<F5>', '<CMD>', { noremap = true })
-
-remap('n', '<leader>d', '<CMD>delm ', { noremap = true })

@@ -43,6 +43,13 @@ apply_gruvbox = function()
     -- luatree
     {'LuaTreeFolderIcon', { fg = '#D79921' }},
     {'LuaTreeIndentMarker', { fg = '#928374' }},
+
+    -- telescope
+    {'TelescopeSelection', { bg='NONE', fg='#D79921', gui='bold' }},
+    {'TelescopeMatching', { bg='NONE', fg='#CC241D', gui='bold' }},
+    {'TelescopePreviewBorder', { bg='NONE', fg='#928374', gui='bold' }},
+    {'TelescopePromptBorder', { bg='NONE', fg='#928374', gui='bold' }},
+    {'TelescopeResultsBorder', { bg='NONE', fg='#928374', gui='bold' }},
   }
 
   for _, highlight in pairs(highlights) do

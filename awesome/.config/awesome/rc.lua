@@ -3,10 +3,8 @@
 pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 local beautiful = require("beautiful")
 local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
 
 require("awful.autofocus")
 require("main.error-handling") -- error handling

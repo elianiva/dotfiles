@@ -1,3 +1,6 @@
+-- change cwd to current directory
+vim.cmd('cd %:p:h')
+
 -- load vim-plug
 require("plugins.plug")
 
@@ -12,7 +15,8 @@ require("plugins.emmet")
 require("plugins.indentline")
 require("plugins.signify")
 -- require("plugins.coc")
-require("plugins.fzf")
+-- require("plugins.fzf")
+require("plugins.telescope")
 
 -- lua plugins
 require("colorizer").setup{}
@@ -25,11 +29,3 @@ require("modules.statusline")
 
 -- lsp stuff
 require("modules.lsp")
-
--- require'telescope'.setup{
---     defaults = {
---         winblend = 0,
---         prompt_position = "top",
---         sorting_strategy = "ascending"
---     }
--- }
