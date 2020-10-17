@@ -1,10 +1,6 @@
 " Set formatoptions
 au FileType * setlocal formatoptions-=cro
 
-" Enable completion and diagnostics
-" au BufEnter * lua require'diagnostic'.on_attach()
-" au BufEnter * lua require'completion'.on_attach()
-
 " Set filetypes
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.json,.prettierrc,.eslintrc set filetype=jsonc
@@ -15,15 +11,8 @@ au FileType lua setlocal sw=2 ts=2
 au FileType java setlocal sw=4 ts=4
 au FileType php setlocal sw=4 ts=4
 
-" Disable coc-emmet on these filetypes
-" au FileType javascript,typescript,typescriptreact call CocAction('toggleExtension', 'coc-emmet')
-
 " Enable emmet.vim on these filetypes
 au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
-
-" Autoformat using prettier
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" au BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html,*.mjs Prettier
 
 " Auto format go code
 " au BufWritePre *.go :GoFmt

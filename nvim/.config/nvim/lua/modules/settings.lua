@@ -44,7 +44,7 @@ function core_options()
     scrolloff = 3, -- make scrolling better
     sidescroll = 3,
     sidescroll = 3,
-    pumheight = 16,
+    pumheight = 10,
     sidescrolloff = 15,
     re = 0, -- set regexp engine to auto
     synmaxcol = 300, -- set limit for syntax highlighting in a single line
