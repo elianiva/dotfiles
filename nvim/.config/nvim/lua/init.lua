@@ -1,9 +1,11 @@
+-- load vim-plug
+require("plugins.plug")
+
 -- basic settings
 require("modules.settings")
 require("modules.appearances")
 
--- plugins
--- require("plugins.plug")
+-- plugins config
 require("plugins.luatree")
 require("plugins.bufferline")
 require("plugins.emmet")
@@ -19,6 +21,7 @@ require("nvim-web-devicons").setup{}
 -- load modules
 require("modules.mappings")
 require("modules.statusline")
+require("modules.blur")
 
 -- require'telescope'.setup{
 --     defaults = {

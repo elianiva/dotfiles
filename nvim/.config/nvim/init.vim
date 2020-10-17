@@ -1,5 +1,3 @@
-runtime! init.d/*
-
 " Change working directory to current file directory
 cd %:p:h
 

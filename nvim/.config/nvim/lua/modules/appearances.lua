@@ -19,10 +19,11 @@ apply_gruvbox = function()
     {'GitGutterDelete', { fg = '#CC241D' }},
     {'jsonMissingCommaError', { fg = '#CC241D' }},
     {'jsonNoQuotesError', { fg = '#CC241D' }},
+    {'ColorColumn', { bg = 'NONE', fg = '#928374' }},
 
     -- statusline colours
     {'Active', { bg = '#3C3836', fg = '#EBDBB2' }},
-    {'Inactive', { bg = '#504945', fg = '#1D2021' }},
+    {'Inactive', { bg = '#3C3836', fg = '#928374' }},
     {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
     {'LineCol', { bg = '#928374', fg = '#1D2021', gui="bold" }},
     {'Git', { bg = '#504945', fg = '#EBDBB2' }},
