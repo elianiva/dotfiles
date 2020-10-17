@@ -20,8 +20,37 @@ local colors = {
 local is_truncated = function()
   local current_window = vim.fn.winnr()
   local current_width = vim.fn.winwidth(current_window)
-  return current_width > 80
+  return current_width < 90
 end
+
+--[[
+NOTE: I don't use this since the statusline already has
+so much stuff going on. Feel free to use it!
+credit: https://github.com/nvim-lua/lsp-status.nvim
+--]]
+-- local get_lsp_diagnostic = function()
+--   local result = {}
+--   local levels = {
+--     errors = 'Error',
+--     warnings = 'Warning',
+--     info = 'Information',
+--     hints = 'Hint'
+--   }
+
+  -- for k, level in pairs(levels) do
+  --   result[k] = vim.lsp.util.buf_diagnostics_count(level)
+  -- end
+
+  -- if is_truncated() then
+  --   return ''
+  -- else
+  --   return string.format(
+  --     "| E:%s W:%s I:%s H:%s ",
+  --     result['errors'] or 0, result['warnings'] or 0,
+  --     result['info'] or 0, result['hints'] or 0
+  --   )
+  -- end
+-- end
 
 local get_current_mode = function()
   local modes = {
@@ -49,9 +78,9 @@ local get_current_mode = function()
   local current_mode = vim.fn.mode()
 
   if is_truncated() then
-    return string.format(' %s ', modes[current_mode][1]):upper()
-  else
     return string.format(' %s ', modes[current_mode][2]):upper()
+  else
+    return string.format(' %s ', modes[current_mode][1]):upper()
   end
 end
 
@@ -90,9 +119,9 @@ end
 
 local get_line_col = function()
   if is_truncated() then
-    return ' Ln %l, Col %c '
-  else
     return ' %l:%c '
+  else
+    return ' Ln %l, Col %c '
   end
 end
 
@@ -109,12 +138,14 @@ statusline.active = function()
   local filetype = colors.filetype .. get_filetype()
   local line_col = colors.line_col .. get_line_col()
   local line_col_alt = colors.line_col_alt .. right_sep
+  -- local diagnostic = colors.line_col .. get_lsp_diagnostic()
 
   return table.concat({
     colors.active,
     mode, mode_alt, git, git_alt,
     mid,
-    filename_alt, filename, thin_sep, filetype, line_col_alt, line_col
+    filename_alt, filename, thin_sep, filetype, line_col_alt, line_col,
+    -- diagnostic
   })
 end
 
@@ -138,4 +169,3 @@ vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline.active()'
 vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline.inactive()')
 vim.cmd('au WinEnter,BufEnter,FileType LuaTree setlocal statusline=%!v:lua.statusline.explorer()')
 vim.cmd('augroup END')
-
