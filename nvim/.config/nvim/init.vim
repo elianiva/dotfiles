@@ -10,5 +10,3 @@ cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('
 lua require("init")
 
 let $FZF_DEFAULT_OPTS = "--reverse"
-
-

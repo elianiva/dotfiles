@@ -15,6 +15,7 @@ remap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silen
 remap('n', 'gD', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', {noremap = true, silent = true})
 remap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
 remap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true})
+remap('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true})
 
 remap(
   'i', '<Tab>',

@@ -1,3 +1,4 @@
+-- TODO: currently it causes massive lag when used against LSP
 local winhighlight_blurred = table.concat({
   'CursorLineNr:LineNr',
   'EndOfBuffer:ColorColumn',

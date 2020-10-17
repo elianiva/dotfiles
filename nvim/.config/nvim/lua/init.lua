@@ -21,7 +21,7 @@ require("nvim-web-devicons").setup{}
 -- load modules
 require("modules.mappings")
 require("modules.statusline")
-require("modules.blur")
+-- require("modules.blur")
 
 -- lsp stuff
 require("modules.lsp")
