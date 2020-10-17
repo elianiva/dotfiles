@@ -48,7 +48,7 @@ function core_options()
     sidescrolloff = 15,
     re = 0, -- set regexp engine to auto
     synmaxcol = 300, -- set limit for syntax highlighting in a single line
-    updatetime = 300, -- set update time
+    updatetime = 100, -- set update time
     signcolumn = "yes", -- enable sign column all the time
     backupcopy= "yes", -- fix weirdness for postcss
     completeopt='menuone,noinsert,noselect' -- better completion

@@ -14,7 +14,12 @@ apply_gruvbox = function()
     -- normal stuff
     {'Normal', { bg = 'NONE' }},
     {'SignColumn', { bg = 'NONE' }},
-    {'GitGutterAdd', { fg = '#458588' }},
+    -- {'GitGutterAdd', { fg = '#458588' }},
+    -- {'GitGutterChange', { fg = '#D79921' }},
+    -- {'GitGutterDelete', { fg = '#CC241D' }},
+    {'SignifySignAdd', { fg = '#458588', bg = 'NONE' }},
+    {'SignifySignChange', { fg = '#D79921', bg = 'NONE' }},
+    {'SignifySignDelete', { fg = '#CC241D', bg = 'NONE' }},
     {'GitGutterChange', { fg = '#D79921' }},
     {'GitGutterDelete', { fg = '#CC241D' }},
     {'jsonMissingCommaError', { fg = '#CC241D' }},

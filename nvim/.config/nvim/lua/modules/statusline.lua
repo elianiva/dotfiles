@@ -45,7 +45,7 @@ local current_mode = function()
 end
 
 local git_status = function()
-  local s = vim.call('GitGutterGetHunkSummary')
+  local s = vim.call('sy#repo#get_stats')
   local branch = vim.call('fugitive#head')
 
   if branch == '' then

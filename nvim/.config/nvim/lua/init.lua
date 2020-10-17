@@ -10,8 +10,8 @@ require("plugins.luatree")
 require("plugins.bufferline")
 require("plugins.emmet")
 require("plugins.indentline")
-require("plugins.gitgutter")
-require("plugins.coc")
+require("plugins.signify")
+-- require("plugins.coc")
 require("plugins.fzf")
 
 -- lua plugins
@@ -22,6 +22,9 @@ require("nvim-web-devicons").setup{}
 require("modules.mappings")
 require("modules.statusline")
 require("modules.blur")
+
+-- lsp stuff
+require("modules.lsp")
 
 -- require'telescope'.setup{
 --     defaults = {

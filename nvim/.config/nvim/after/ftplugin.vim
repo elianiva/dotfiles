@@ -16,14 +16,14 @@ au FileType java setlocal sw=4 ts=4
 au FileType php setlocal sw=4 ts=4
 
 " Disable coc-emmet on these filetypes
-au FileType javascript,typescript,typescriptreact call CocAction('toggleExtension', 'coc-emmet')
+" au FileType javascript,typescript,typescriptreact call CocAction('toggleExtension', 'coc-emmet')
 
 " Enable emmet.vim on these filetypes
 au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
 
 " Autoformat using prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-au BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html,*.mjs Prettier
+" command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" au BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html,*.mjs Prettier
 
 " Auto format go code
 " au BufWritePre *.go :GoFmt

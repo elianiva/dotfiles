@@ -6,9 +6,16 @@ local plugins_directory = '~/.local/share/nvim/plugged'
 -- TODO: find a better way for this
 if vim.fn.empty(vim.fn.glob(plug_directory)) == 1 then
   vim.cmd([[
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    au VimEnter * PlugInstall --sync
+     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+     au VimEnter * PlugInstall --sync
   ]])
+  -- vim.cmd(table.concat{
+  --  'silent !curl -fLo',
+  --  plug_directory,
+  --  '--create-dirs',
+  --  plug_url
+  -- })
+  -- vim.cmd('au VimEnter * PlugInstall --sync')
 end
 
 -- TODO: find better way instead of using escape ( \' )
@@ -24,17 +31,23 @@ local plugins = {
   -- 'fatih/vim-go' -- golang highlighting
   'euclidianAce/BetterLua.vim', -- better lua highlighting
   'Yggdroot/indentline', -- indentline guide
-  {'junegunn/goyo.vim', '{\'for\': [\'markdown\', \'txt\']}'}, -- zen mode
-  {'dhruvasagar/vim-table-mode', '{\'for\': [\'txt\', \'markdown\']}'}, -- table alignment
+  {
+    'junegunn/goyo.vim',
+    '{\'for\': [\'markdown\', \'txt\']}'
+  }, -- zen mode
+  {
+    'dhruvasagar/vim-table-mode',
+    '{\'for\': [\'txt\', \'markdown\']}'
+  }, -- table alignment
   'psliwka/vim-smoothie', -- smooth scroll
   'kyazdani42/nvim-web-devicons', -- fancy icons
   'akinsho/nvim-bufferline.lua', -- bufferline
   'kyazdani42/nvim-tree.lua', -- file explorer
-  -- 'neovim/nvim-lspconfig' -- builtin lsp config
-  -- 'nvim-lua/completion-nvim' -- completion helper
-  -- 'steelsojka/completion-buffers' -- buffer source for completion
-  -- 'nvim-lua/diagnostic-nvim' -- diagnostic for nvim lsp
-  {'neoclide/coc.nvim', '{\'branch\': \'release\'}'},  -- lsp stuff
+  'neovim/nvim-lspconfig', -- builtin lsp config
+  'nvim-lua/completion-nvim', -- completion helper
+  'steelsojka/completion-buffers', -- buffer source for completion
+  'nvim-lua/diagnostic-nvim', -- diagnostic for nvim lsp
+  -- {'neoclide/coc.nvim', '{\'branch\': \'release\'}'},  -- lsp stuff
   'tpope/vim-commentary', -- comment stuff easier
   'mattn/emmet-vim', -- less typing for html code
   'tpope/vim-surround', -- surround words with symbol
@@ -44,10 +57,11 @@ local plugins = {
   {'junegunn/fzf', '{\'do\': { -> fzf#install() } }'}, -- fuzzy finder
   'junegunn/fzf.vim',
   'tpope/vim-fugitive', -- git helper
-  'airblade/vim-gitgutter', -- show git stuff in signcolumn
+  -- 'airblade/vim-gitgutter', -- show git stuff in signcolumn
+  'mhinz/vim-signify', -- show git stuff in signcolumn
 }
 
-apply_plugins = function()
+local apply_plugins = function()
   vim.call('plug#begin', plugins_directory)
 
   for _, plugin in pairs(plugins) do

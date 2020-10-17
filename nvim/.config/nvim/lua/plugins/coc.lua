@@ -18,15 +18,6 @@ vim.g.coc_snippet_prev = '<C-k>'
 
 vim.g.coc_root_patterns = { '.git', '.env', 'package.json' }
 
-check_backspace = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
-
 remap('i', '<Tab>', 'pumvisible() ? "<C-n>" : v:lua.check_backspace() ? "<Tab>" : coc#refresh()', { noremap = true, silent = true, expr = true })
 remap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
 remap('i', '<CR>', 'pumvisible() ? coc#_select_confirm() : "<C-g>u<CR><C-r>=coc#on_enter()<CR>"', { noremap = true, silent = true, expr = true })
