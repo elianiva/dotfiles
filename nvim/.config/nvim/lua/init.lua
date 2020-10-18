@@ -14,9 +14,9 @@ require("plugins.bufferline")
 require("plugins.emmet")
 require("plugins.indentline")
 require("plugins.signify")
+require("plugins.fzf")
+-- require("plugins.telescope")
 -- require("plugins.coc")
--- require("plugins.fzf")
-require("plugins.telescope")
 
 -- lua plugins
 require("colorizer").setup{}

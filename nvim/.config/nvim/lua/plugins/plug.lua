@@ -51,11 +51,11 @@ local plugins = {
   'tpope/vim-commentary', -- comment stuff easier
   'mattn/emmet-vim', -- less typing for html code
   'tpope/vim-surround', -- surround words with symbol
-  'nvim-lua/popup.nvim',
-  'nvim-lua/plenary.nvim',
-  'nvim-lua/telescope.nvim', -- fuzzy finder
-  -- {'junegunn/fzf', '{\'do\': { -> fzf#install() } }'}, -- fuzzy finder
-  -- 'junegunn/fzf.vim',
+  -- 'nvim-lua/popup.nvim',
+  -- 'nvim-lua/plenary.nvim',
+  -- 'nvim-lua/telescope.nvim', -- fuzzy finder
+  {'junegunn/fzf', '{\'do\': { -> fzf#install() } }'}, -- fuzzy finder
+  'junegunn/fzf.vim',
   'tpope/vim-fugitive', -- git helper
   -- 'airblade/vim-gitgutter', -- show git stuff in signcolumn
   'mhinz/vim-signify', -- show git stuff in signcolumn
