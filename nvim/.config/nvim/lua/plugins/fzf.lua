@@ -1,3 +1,6 @@
+-- default fzf option
+vim.env.FZF_DEFAULT_OPTS = "--reverse"
+
 vim.g.fzf_layout = {
   window = {
     width = 0.9,

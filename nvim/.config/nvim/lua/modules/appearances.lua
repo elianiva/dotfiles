@@ -25,6 +25,7 @@ apply_gruvbox = function()
     {'jsonMissingCommaError', { fg = '#CC241D' }},
     {'jsonNoQuotesError', { fg = '#CC241D' }},
     {'ColorColumn', { bg = 'NONE', fg = '#928374' }},
+    {'IncSearch', { bg='#928374', fg='#282828', gui='bold' }},
 
     -- statusline colours
     {'Active', { bg = '#3C3836', fg = '#EBDBB2' }},

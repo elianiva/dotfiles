@@ -17,10 +17,10 @@ local colors = {
   line_col_alt  = '%#LineColAlt#',
 }
 
-local is_truncated = function()
+local is_truncated = function(width)
   local current_window = vim.fn.winnr()
   local current_width = vim.fn.winwidth(current_window)
-  return current_width < 90
+  return current_width < width
 end
 
 --[[
@@ -77,7 +77,7 @@ local get_current_mode = function()
 
   local current_mode = vim.fn.mode()
 
-  if is_truncated() then
+  if is_truncated(80) then
     return string.format(' %s ', modes[current_mode][2]):upper()
   else
     return string.format(' %s ', modes[current_mode][1]):upper()
@@ -90,9 +90,11 @@ local get_git_status = function()
 
   if branch == '' then
     return ''
+  elseif is_truncated(90) then
+    return string.format(' שׂ %s ', branch)
   else
     return string.format(
-      ' +%s ~%s -%s |  %s ',
+      ' +%s ~%s -%s | שׂ %s ',
       s[1], s[2], s[3], branch
     )
   end
@@ -118,7 +120,7 @@ local get_filetype = function()
 end
 
 local get_line_col = function()
-  if is_truncated() then
+  if is_truncated(60) then
     return ' %l:%c '
   else
     return ' Ln %l, Col %c '

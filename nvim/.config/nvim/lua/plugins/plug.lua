@@ -44,6 +44,7 @@ local plugins = {
   'akinsho/nvim-bufferline.lua', -- bufferline
   'kyazdani42/nvim-tree.lua', -- file explorer
   'neovim/nvim-lspconfig', -- builtin lsp config
+  'mhartington/formatter.nvim', -- formatter
   'nvim-lua/completion-nvim', -- completion helper
   'steelsojka/completion-buffers', -- buffer source for completion
   'nvim-lua/diagnostic-nvim', -- diagnostic for nvim lsp

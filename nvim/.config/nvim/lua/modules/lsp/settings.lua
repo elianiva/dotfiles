@@ -7,8 +7,8 @@ vim.g.diagnostic_virtual_text_prefix = ''
 -- define an chain complete list
 vim.g.completion_chain_complete_list = {
   default = {
-    { complete_items = { 'path' }, triggered_only = { '/' } },
     { complete_items = { 'lsp', 'buffers' } },
+    { complete_items = { 'path' }, triggered_only = { '/' } },
     { mode = { '<c-p>' } },
     { mode = { '<c-n>' } }
   },
