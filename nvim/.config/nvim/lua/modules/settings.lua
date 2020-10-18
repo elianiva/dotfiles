@@ -1,11 +1,13 @@
+local api = vim.api
+
 function setOptions(options)
   for k, v in pairs(options) do
     if v == true then
-      vim.api.nvim_command('set ' .. k)
+      api.nvim_command('set ' .. k)
     elseif v == false then
-      vim.api.nvim_command('set no' .. k)
+      api.nvim_command('set no' .. k)
     else
-      vim.api.nvim_command('set ' .. k .. '=' .. v)
+      api.nvim_command('set ' .. k .. '=' .. v)
     end
   end
 end
@@ -42,7 +44,6 @@ function core_options()
     tabstop = 2, -- tabsize
     laststatus = 2, -- enable statusline
     scrolloff = 3, -- make scrolling better
-    sidescroll = 3,
     sidescroll = 3,
     pumheight = 10,
     sidescrolloff = 15,

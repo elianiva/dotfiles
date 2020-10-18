@@ -48,7 +48,8 @@ function M.get(clientkeys, clientbuttons)
         }
       },
       properties = {
-        floating = true
+        floating = true,
+        placement = awful.placement.centered
       }
     },
 

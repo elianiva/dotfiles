@@ -56,7 +56,7 @@ vim.g.lua_tree_icons = {
   },
 
   folder = {
-    default = " ",
-    open    = "ﱮ "
+    default = "",
+    open    = " "
   }
 }

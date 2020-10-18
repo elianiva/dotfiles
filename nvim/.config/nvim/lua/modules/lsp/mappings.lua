@@ -29,6 +29,15 @@ require'format'.setup{
       }
     end
   },
+  svelte = {
+    prettier = function()
+      return {
+        exe = "prettier",
+        args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+        stdin = true
+      }
+    end
+  },
 }
 remap('n', 'gf', '<cmd>Format<CR>', { noremap = true, silent = true })
 
