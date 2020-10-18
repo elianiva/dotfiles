@@ -10,9 +10,9 @@ local M = {}
 function M.get()
   -- Appearance
   local icon_font = "Iosevka Nerd Font 45"
-  local poweroff_text_icon = " "
-  local reboot_text_icon = " "
-  local suspend_text_icon = " "
+  local poweroff_text_icon = ""
+  local reboot_text_icon = ""
+  local suspend_text_icon = ""
   local exit_text_icon = ""
   local exitscreen_bg = theme.background .. "dd"
 

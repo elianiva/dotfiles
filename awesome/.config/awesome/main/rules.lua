@@ -31,6 +31,7 @@ function M.get(clientkeys, clientbuttons)
           "Pcmanfm",
           "Sxiv",
           "connman-gtk",
+          "Connman-gtk",
           "SimpleScreenRecorder",
           "xdman-Main"
         },
