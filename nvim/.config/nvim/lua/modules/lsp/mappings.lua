@@ -1,12 +1,12 @@
 local remap = vim.api.nvim_set_keymap
 
 check_backspace = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
+  local col = vim.fn.col('.') - 1
+  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+    return true
+  else
+    return false
+  end
 end
 
 -- lsp actions
@@ -16,7 +16,7 @@ remap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, sile
 remap('n', 'gD', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', { noremap = true, silent = true })
 remap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
 remap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
--- remap('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
+remap('n', 'gx', '<cmd>lua xdg_open()<CR>', { noremap = true, silent = true })
 
 -- formatting
 require'format'.setup{
@@ -38,6 +38,15 @@ require'format'.setup{
       }
     end
   },
+  html = {
+    prettier = function()
+      return {
+        exe = "prettier",
+        args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+        stdin = true
+      }
+    end
+  },
 }
 remap('n', 'gf', '<cmd>Format<CR>', { noremap = true, silent = true })
 
@@ -45,7 +54,8 @@ remap('n', 'gf', '<cmd>Format<CR>', { noremap = true, silent = true })
 vim.g.completion_confirm_key = ""
 remap(
   'i', '<CR>',
-  'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)"  : "<c-e><CR>" :  "<CR>"',
+  -- 'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)"  : "<c-e><CR>" :  "<CR>"',
+  'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)"  : "<C-g>u<CR>" :  "<CR>"',
   { noremap = true, expr = true }
 )
 

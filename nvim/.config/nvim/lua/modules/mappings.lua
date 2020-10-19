@@ -42,6 +42,7 @@ remap('n', 'Y', 'y$', { noremap = true })
 
 -- remove annoying exmode
 remap('n', 'Q', '<Nop>', { noremap = true })
+remap('n', 'q:', '<Nop>', { noremap = true })
 
 -- copy to system clipboard
 remap('v', '<A-y>', '"+y', { noremap = true })
@@ -59,8 +60,10 @@ remap("n", "<Leader>r", "<CMD>so ~/.config/nvim/init.vim<CR>", { noremap = true 
 remap('v', '<', '<gv', { noremap = true })
 remap('v', '>', '>gv', { noremap = true })
 
--- reload init.vim
-remap('', '<A-r>', '<CMD>so ~/.config/nvim/init.vim<CR>', { noremap = true })
-
--- prettier mapping
-remap('', '<F5>', '<CMD>', { noremap = true })
+-- preview file using xdg_open
+xdg_open = function()
+  local filename = vim.fn.expand('<cfile>')
+  print(filename)
+  vim.loop.spawn('xdg-open', { args = { filename } })
+end
+vim.cmd('command! -nargs=0 PreviewFile call v:lua.xdg_open()') -- alternative way
