@@ -90,7 +90,7 @@ local get_git_status = function()
 
   if branch == '' then
     return ''
-  elseif is_truncated(90) then
+  elseif is_truncated(90) or s[1] == -1 then
     return string.format(' שׂ %s ', branch)
   else
     return string.format(
