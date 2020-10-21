@@ -22,7 +22,9 @@ end
 -- define your plugins here
 local plugins = {
   'gruvbox-community/gruvbox', -- nice colorscheme
-  'jiangmiao/auto-pairs', -- autopairs brackets, braces, etc
+  -- 'jiangmiao/auto-pairs', -- autopairs brackets, braces, etc
+  'cohama/lexima.vim', -- autopairs brackets, braces, etc
+  -- 'hrsh7th/nvim-compe', -- completion
   'neoclide/jsonc.vim', -- jsonc highlighting
   'wakatime/vim-wakatime', -- track usage time using wakatime
   'norcalli/nvim-colorizer.lua', -- colorize hex/rgb/hsl value
@@ -41,8 +43,8 @@ local plugins = {
   }, -- table alignment
   'psliwka/vim-smoothie', -- smooth scroll
   'kyazdani42/nvim-web-devicons', -- fancy icons
-  'akinsho/nvim-bufferline.lua', -- bufferline
   'kyazdani42/nvim-tree.lua', -- file explorer
+  'akinsho/nvim-bufferline.lua', -- bufferline
   'neovim/nvim-lspconfig', -- builtin lsp config
   'mhartington/formatter.nvim', -- formatter
   'nvim-lua/completion-nvim', -- completion helper
@@ -52,9 +54,9 @@ local plugins = {
   'tpope/vim-commentary', -- comment stuff easier
   'mattn/emmet-vim', -- less typing for html code
   'tpope/vim-surround', -- surround words with symbol
-  -- 'nvim-lua/popup.nvim',
-  -- 'nvim-lua/plenary.nvim',
-  -- 'nvim-lua/telescope.nvim', -- fuzzy finder
+  'nvim-lua/popup.nvim',
+  'nvim-lua/plenary.nvim',
+  'nvim-lua/telescope.nvim', -- fuzzy finder
   {'junegunn/fzf', '{\'do\': { -> fzf#install() } }'}, -- fuzzy finder
   'junegunn/fzf.vim',
   'tpope/vim-fugitive', -- git helper

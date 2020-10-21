@@ -10,18 +10,24 @@ remap('i', 'JJ', '<Esc><Esc>', { noremap = true })
 remap('n', '<C-n>', '<CMD>LuaTreeToggle<CR>', { noremap = true })
 
 -- toggle telescope.nvim
--- remap('n', '<C-p>', '<CMD>lua require"telescope.builtin".find_files()<CR>', { noremap = true, silent = true })
--- remap('n', '<C-f>', '<CMD>lua require"telescope.builtin".live_grep()<CR>', { noremap = true, silent = true })
+remap('n', '<C-p>', '<CMD>lua require"telescope.builtin".find_files()<CR>', { noremap = true, silent = true })
+remap('n', '<C-f>', '<CMD>lua require"telescope.builtin".live_grep()<CR>', { noremap = true, silent = true })
 
 -- FZF
-remap('n', '<C-p>', '<CMD>Files<CR>', { noremap = true, silent = true })
-remap('n', '<C-f>', '<CMD>Rg<CR>', { noremap = true, silent = true })
+-- remap('n', '<C-p>', '<CMD>Files<CR>', { noremap = true, silent = true })
+-- remap('n', '<C-f>', '<CMD>Rg<CR>', { noremap = true, silent = true })
 
 -- better movement between buffers
 remap('n', '<C-h>', '<C-w><C-h>', { noremap = true })
 remap('n', '<C-j>', '<C-w><C-j>', { noremap = true })
 remap('n', '<C-k>', '<C-w><C-k>', { noremap = true })
 remap('n', '<C-l>', '<C-w><C-l>', { noremap = true })
+
+-- resize buffer easier
+remap('n', '<Left>', '<CMD>vertical resize +2<CR>', { noremap = true })
+remap('n', '<Right>', '<CMD>vertical resize -2<CR>', { noremap = true })
+remap('n', '<Up>', '<CMD>resize +2<CR>', { noremap = true })
+remap('n', '<Down>', '<CMD>resize -2<CR>', { noremap = true })
 
 -- move lines using alt
 remap('', '<A-j>', '<CMD>bd<CR>', { noremap = true })

@@ -65,7 +65,7 @@ remap(
   { noremap = true, expr = true }
 )
 
+remap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
+
 -- force completion menu to appear
 remap('i', '<C-c>', '<Plug>(completion_trigger)', { noremap = false, silent = true })
-
-remap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })

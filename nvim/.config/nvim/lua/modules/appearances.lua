@@ -13,6 +13,7 @@ apply_gruvbox = function()
   local highlights = {
     -- normal stuff
     {'Normal', { bg = 'NONE' }},
+    {'Comment', { gui = 'italic' }},
     {'SignColumn', { bg = 'NONE' }},
     -- {'GitGutterAdd', { fg = '#458588' }},
     -- {'GitGutterChange', { fg = '#D79921' }},

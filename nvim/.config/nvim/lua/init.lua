@@ -3,6 +3,7 @@ vim.cmd('cd %:p:h')
 
 -- load vim-plug
 require("plugins.plug")
+-- require("plugins.packer")
 
 -- basic settings
 require("modules.settings")
@@ -15,7 +16,8 @@ require("plugins.emmet")
 require("plugins.indentline")
 require("plugins.signify")
 require("plugins.fzf")
--- require("plugins.telescope")
+require("plugins.telescope")
+-- require("plugins.compe")
 -- require("plugins.coc")
 
 -- lua plugins
@@ -30,4 +32,4 @@ require("modules.statusline")
 -- lsp stuff
 require("modules.lsp")
 
-vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{ timeout = 500 }")
+vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{ timeout = 250 }")

@@ -3,8 +3,10 @@ local telescope_actions = require('telescope.actions')
 require'telescope'.setup{
   defaults = {
     winblend = 0,
-    prompt_position = "top",
-    sorting_strategy = "ascending",
+    -- prompt_position = "top",
+    -- sorting_strategy = "ascending",
+    generic_sorter = require'telescope.sorters'.get_fzy_sorter,
+    file_sorter = require'telescope.sorters'.get_fzy_sorter,
     default_mappings = {
       i = {
         ['<C-j>'] = telescope_actions.move_selection_next,
@@ -17,7 +19,7 @@ require'telescope'.setup{
         ['<C-x>'] = telescope_actions.goto_file_selection_split,
         ['<C-t>'] = telescope_actions.goto_file_selection_tabedit,
         ['<C-c>'] = telescope_actions.close,
-        ['<esc>'] = telescope_actions.close,
+        ['<ESC>'] = telescope_actions.close,
 
         ['<C-u>'] = telescope_actions.preview_scrolling_up,
         ['<C-d>'] = telescope_actions.preview_scrolling_down,
@@ -27,7 +29,7 @@ require'telescope'.setup{
         ['<C-v>'] = telescope_actions.goto_file_selection_vsplit,
         ['<C-x>'] = telescope_actions.goto_file_selection_split,
         ['<C-t>'] = telescope_actions.goto_file_selection_tabedit,
-        ['<esc>'] = telescope_actions.close,
+        ['<ESC>'] = telescope_actions.close,
 
         ["j"] = telescope_actions.move_selection_next,
         ["k"] = telescope_actions.move_selection_previous,
