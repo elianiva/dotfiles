@@ -7,7 +7,7 @@ export CM_LAUNCHER="rofi"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export PATH="$(du "$HOME/.scripts" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$HOME/.local/bin:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/npm/bin:$HOME/.config/composer/vendor/bin:$HOME/go/bin:$HOME/.pub-cache/bin:$PATH"
+export PATH="$(du "$HOME/.scripts" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$HOME/.local/bin:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/npm/bin:$HOME/.config/composer/vendor/bin:$HOME/go/bin:$HOME/.pub-cache/bin:$HOME/.cargo/bin:$PATH"
 
 # Tidy up stuff
 export LESSHISTFILE="${XDG_CONFIG_HOME}less/history"
@@ -81,7 +81,7 @@ ex= :\
 *.img= :\
 *.bib=🎓:\
 *.ged=👪:\
-*.part=💔:\
+*.part=:\
 *.torrent= :\
 *.jar=♨:\
 *.java=♨:\

@@ -26,19 +26,19 @@ window:
 
 font:
   normal:
-    family: Iosevka
+    family: Iosevka Curly Slab
     style: Regular
 
   bold:
-    family: monospace
+    family: Iosevka Curly Slab
     style: Bold
 
   italic:
-    family: monospace
+    family: Iosevka Curly Slab
     style: Italic
 
   bold_italic:
-    family: monospace
+    family: Iosevka Curly Slab
     style: Bold Italic
 
   size: 8

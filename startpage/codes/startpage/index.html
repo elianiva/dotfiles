@@ -13,6 +13,7 @@
       }
       body {
         position: relative;
+        overflow: hidden;
       }
       .container::before {
         content: "";
@@ -36,7 +37,7 @@
         text-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.4);
       }
       .category {
-        font-family: Iosevka, sans-serif;
+        font-family: monospace;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 4rem 1fr;
@@ -56,7 +57,7 @@
         border-radius: 0.5rem;
         color: #efefef;
         outline: 0;
-        font-family: Iosevka, monospace;
+        font-family: monospace;
         box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.4);
         border: 0.25rem rgba(0, 0, 0, 0.4) solid;
       }

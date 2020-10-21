@@ -40,10 +40,10 @@ function M.get(clientkeys, clientbuttons)
         -- and the name shown there might not match defined rules here.
         name = {
           "Event Tester",  -- xev.
+          "Open File",  -- file picker
         },
         role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "ConfigManager",  -- Thunderbird's about:config.
+          "GtkFileChooserDialog",  -- file picker
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       },
