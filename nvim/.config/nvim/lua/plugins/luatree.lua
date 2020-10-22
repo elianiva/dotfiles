@@ -4,6 +4,9 @@ vim.g.lua_tree_width = 30
 vim.g.lua_tree_ignore = {
   '.git',
   'node_modules',
+  '__sapper__',
+  '.routify',
+  'dist',
   '.cache'
 }
 vim.g.lua_tree_auto_open = 0
@@ -17,7 +20,7 @@ vim.g.lua_tree_tab_open = 0
 vim.g.lua_tree_show_icons = {
   git     = 0,
   folders = 1,
-  files   = 1
+  files   = 1,
 }
 
 -- Mappings for luatree

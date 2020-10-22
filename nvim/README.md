@@ -1,48 +1,50 @@
 # My Neovim Config
 
-This neovim config is mostly lua. It's using coc.nvim right now, but it's also has nvim-lsp configuration if you prefer. I use this mainly to write Javascript/Typescript/Svelte code and sometimes Java.
+This neovim config is (almost) all in lua. Moar details soon once I finished making my website.
 
 ## Preview
 ![Preview](preview.png)
 
-## Details
-**Plugins:**
-- [vim-plug](https://github.com/junegunn/vim-plug)
-- [gruvbox](https://github.com/gruvbox-community/gruvbox)
-- [auto-pairs](https://github.com/jiangmiao/auto-pairs)
-- [codi.vim](https://github.com/metakirby5/codi.vim)
-- [jsonc.vim](https://github.com/neoclide/jsonc.vim)
-- [vim-wakatime](https://github.com/wakatime/vim-wakatime)
-- [nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)
-- [vim-polyglot](https://github.com/sheerun/vim-polyglot)
-- [java-syntax.vim](https://github.com/uiiaoo/java-syntax.vim)
-- [BetterLua.vim](https://github.com/euclidianAce/BetterLua.vim)
-- [vim-svelte](https://github.com/evanleck/vim-svelte)
-- [indentline](https://github.com/Yggdroot/indentline)
-- [goyo.vim](https://github.com/junegunn/goyo.vim)
-- [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
-- [vim-smoothie](https://github.com/psliwka/vim-smoothie)
-- [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-- [nvim-bufferline.lua](https://github.com/akinsho/nvim-bufferline.lua)
-- [nvim-treelua](https://github.com/kyazdani42/nvim-tree.lua)
-- [coc.nvim](https://github.com/neoclide/coc.nvim)
-- [vim-snippets](https://github.com/honza/vim-snippets)
-- [vim-commentary](https://github.com/tpope/vim-commentary)
-- [emmet-vim](https://github.com/mattn/emmet-vim)
-- [vim-surround](https://github.com/tpope/vim-surround)
-- [popup.nvim](https://github.com/nvim-lua/popup.nvim)
-- [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [telescope.nvim](https://github.com/nvim-lua/telescope.nvim)
-- [vim-fugitive](https://github.com/tpope/vim-fugitive)
-- [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+> Old preview because I can't be bothered to take the new one, just wait til I finish my website if you want to see it, or try it yourself :)
 
-**COC Extensions:**
-- coc-eslint
-- coc-tslint-plugin
-- coc-json
-- coc-css
-- coc-html
-- coc-stylelint
-- coc-tsserver
-- coc-prettier
-- coc-svelte
+## Plugins
+> Yeah, can't be bothered to list them here so I just took it from my config
+```lua
+local plugins = {
+  'gruvbox-community/gruvbox', -- nice colorscheme
+  'cohama/lexima.vim', -- autopairs brackets, braces, etc
+  'neoclide/jsonc.vim', -- jsonc highlighting
+  'wakatime/vim-wakatime', -- track usage time using wakatime
+  'norcalli/nvim-colorizer.lua', -- colorize hex/rgb/hsl value
+  'sheerun/vim-polyglot', -- various languages highlighting
+  'leafOfTree/vim-svelte-plugin', -- svelte language support
+  'euclidianAce/BetterLua.vim', -- better lua highlighting
+  'Yggdroot/indentline', -- indentline guide
+  {
+    'junegunn/goyo.vim',
+    '{\'for\': [\'markdown\', \'txt\']}'
+  }, -- zen mode
+  {
+    'dhruvasagar/vim-table-mode',
+    '{\'for\': [\'txt\', \'markdown\']}'
+  }, -- table alignment
+  'psliwka/vim-smoothie', -- smooth scroll
+  'kyazdani42/nvim-web-devicons', -- fancy icons
+  'kyazdani42/nvim-tree.lua', -- file explorer
+  'akinsho/nvim-bufferline.lua', -- bufferline
+  'neovim/nvim-lspconfig', -- builtin lsp config
+  'tjdevries/nlua.nvim', -- better lua development experience
+  'mhartington/formatter.nvim', -- formatter
+  'nvim-lua/completion-nvim', -- completion helper
+  'steelsojka/completion-buffers', -- buffer source for completion
+  'nvim-lua/diagnostic-nvim', -- diagnostic for nvim lsp
+  'tpope/vim-commentary', -- comment stuff easier
+  'mattn/emmet-vim', -- less typing for html code
+  'tpope/vim-surround', -- surround words with symbol
+  'nvim-lua/popup.nvim',
+  'nvim-lua/plenary.nvim',
+  'nvim-lua/telescope.nvim', -- fuzzy finder
+  'tpope/vim-fugitive', -- git helper
+  'mhinz/vim-signify', -- show git stuff in signcolumn
+}
+```

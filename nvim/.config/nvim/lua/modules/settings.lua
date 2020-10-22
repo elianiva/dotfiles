@@ -1,6 +1,6 @@
 local api = vim.api
 
-function setOptions(options)
+local setOptions = function(options)
   for k, v in pairs(options) do
     if v == true then
       api.nvim_command('set ' .. k)
@@ -12,7 +12,7 @@ function setOptions(options)
   end
 end
 
-function core_options()
+local core_options = function()
   local options = {
     encoding = "UTF-8", -- set encoding
     number = true, -- enable number
@@ -37,22 +37,22 @@ function core_options()
     termguicolors = true, -- truecolours for better experience
 
     mouse = "a", -- enable mouse support
-    shortmess = "cs", -- disable some stuff on shortmess
+    shortmess = "csa", -- disable some stuff on shortmess
     fillchars = "vert:┃", -- make vertical split sign better
     foldmethod = "marker", -- foldmethod using marker
     shiftwidth = 2, -- set indentation width
     tabstop = 2, -- tabsize
-    laststatus = 2, -- enable statusline
-    scrolloff = 3, -- make scrolling better
-    sidescroll = 3,
-    pumheight = 10,
+    laststatus = 2, -- always enable statusline
+    scrolloff = 2, -- make scrolling better
+    sidescroll = 2, -- make scrolling better
+    pumheight = 10, -- limit completion items
     sidescrolloff = 15,
     re = 0, -- set regexp engine to auto
     synmaxcol = 300, -- set limit for syntax highlighting in a single line
     updatetime = 100, -- set update time
     signcolumn = "yes", -- enable sign column all the time
     backupcopy= "yes", -- fix weirdness for postcss
-    completeopt='menuone,noinsert,noselect' -- better completion
+    completeopt='menuone,noinsert,noselect,longest' -- better completion
   }
 
   setOptions(options)

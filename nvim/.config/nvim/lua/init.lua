@@ -15,14 +15,14 @@ require("plugins.bufferline")
 require("plugins.emmet")
 require("plugins.indentline")
 require("plugins.signify")
-require("plugins.fzf")
 require("plugins.telescope")
+require("plugins.completion")
 -- require("plugins.compe")
 -- require("plugins.coc")
 
 -- lua plugins
-require("colorizer").setup{}
-require("nvim-web-devicons").setup{}
+require"colorizer".setup{}
+require"nvim-web-devicons".setup()
 
 -- load modules
 require("modules.mappings")
