@@ -32,60 +32,20 @@ nvim_lsp.svelte.setup{
   end
 }
 
-nvim_lsp.sumneko_lua.setup{
-  on_attach = function()
-    print("lua-language-server started!")
-    diagnostic.on_attach()
-  end
-}
-
--- nvim_lsp.diagnosticls.setup{
---   filetypes = { 'typescript', 'javascript' },
---   init_options = {
---     linters = {
---       eslint = {
---         command = 'eslint',
---         rootPatterns = {'.git'},
---         debounce = 100,
---         args = {
---           '--stdin',
---           '--stdin-filename',
---           '%filepath',
---           '--format',
---           'json'
---         },
---         sourceName = 'eslint',
---         parseJson = {
---           errorsRoot = '[0].messages',
---           line = 'line',
---           column = 'column',
---           endLine = 'endLine',
---           endColumn = 'endColumn',
---           message = '${message} [${ruleId}]',
---           security = 'severity'
---         },
---         securities = {
---           [2] = 'error',
---           [1] = 'warning',
---         },
---       },
---     },
---     filetypes = {
---       javascript = 'eslint',
---       typescript = 'eslint'
---     },
---     formatters = {
---       prettier = {
---         command = "prettier",
---         args = {"--stdin-filepath" ,"%filepath", "--no-semicolon"}
---       }
---     },
---     formatFiletypes = {
---       javascript = "prettier",
---       typescript = "prettier",
---     },
---   }
+-- nvim_lsp.sumneko_lua.setup{
+--   on_attach = function()
+--     print("lua-language-server started!")
+--     diagnostic.on_attach()
+--   end
 -- }
+
+require'nlua.lsp.nvim'.setup(nvim_lsp, {
+  -- include globals you want to tell the LSP are real
+  globals = {
+    "vim", -- vim
+    "awesome", "theme", "root", -- awesomewm
+  }
+})
 
 require('modules.lsp.settings')
 require('modules.lsp.mappings')

@@ -22,15 +22,13 @@ end
 -- define your plugins here
 local plugins = {
   'gruvbox-community/gruvbox', -- nice colorscheme
-  -- 'jiangmiao/auto-pairs', -- autopairs brackets, braces, etc
   'cohama/lexima.vim', -- autopairs brackets, braces, etc
   -- 'hrsh7th/nvim-compe', -- completion
   'neoclide/jsonc.vim', -- jsonc highlighting
   'wakatime/vim-wakatime', -- track usage time using wakatime
   'norcalli/nvim-colorizer.lua', -- colorize hex/rgb/hsl value
   'sheerun/vim-polyglot', -- various languages highlighting
-  'evanleck/vim-svelte', -- svelte language support
-  -- 'fatih/vim-go' -- golang highlighting
+  'leafOfTree/vim-svelte-plugin', -- svelte language support
   'euclidianAce/BetterLua.vim', -- better lua highlighting
   'Yggdroot/indentline', -- indentline guide
   {
@@ -46,11 +44,11 @@ local plugins = {
   'kyazdani42/nvim-tree.lua', -- file explorer
   'akinsho/nvim-bufferline.lua', -- bufferline
   'neovim/nvim-lspconfig', -- builtin lsp config
+  'tjdevries/nlua.nvim', -- better lua development experience
   'mhartington/formatter.nvim', -- formatter
   'nvim-lua/completion-nvim', -- completion helper
   'steelsojka/completion-buffers', -- buffer source for completion
   'nvim-lua/diagnostic-nvim', -- diagnostic for nvim lsp
-  -- {'neoclide/coc.nvim', '{\'branch\': \'release\'}'},  -- lsp stuff
   'tpope/vim-commentary', -- comment stuff easier
   'mattn/emmet-vim', -- less typing for html code
   'tpope/vim-surround', -- surround words with symbol
@@ -60,7 +58,6 @@ local plugins = {
   {'junegunn/fzf', '{\'do\': { -> fzf#install() } }'}, -- fuzzy finder
   'junegunn/fzf.vim',
   'tpope/vim-fugitive', -- git helper
-  -- 'airblade/vim-gitgutter', -- show git stuff in signcolumn
   'mhinz/vim-signify', -- show git stuff in signcolumn
 }
 

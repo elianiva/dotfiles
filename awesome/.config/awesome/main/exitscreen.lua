@@ -9,7 +9,7 @@ local M = {}
 
 function M.get()
   -- Appearance
-  local icon_font = "Iosevka Nerd Font 45"
+  local icon_font = "Iosevka Curly Slab Nerd Font 45"
   local poweroff_text_icon = ""
   local reboot_text_icon = ""
   local suspend_text_icon = ""

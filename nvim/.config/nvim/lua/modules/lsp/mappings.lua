@@ -54,7 +54,6 @@ remap('n', 'gf', '<cmd>Format<CR>', { noremap = true, silent = true })
 vim.g.completion_confirm_key = ""
 remap(
   'i', '<CR>',
-  -- 'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)"  : "<c-e><CR>" :  "<CR>"',
   'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)"  : "<C-g>u<CR>" :  "<CR>"',
   { noremap = true, expr = true }
 )
@@ -64,8 +63,8 @@ remap(
   'pumvisible() ? "<C-n>" : v:lua.check_backspace() ? "<Tab>" : completion#trigger_completion()',
   { noremap = true, expr = true }
 )
-
 remap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
+
 
 -- force completion menu to appear
 remap('i', '<C-c>', '<Plug>(completion_trigger)', { noremap = false, silent = true })

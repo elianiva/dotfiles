@@ -7,8 +7,7 @@ local themes_path = require("gears.filesystem").get_themes_dir()
 
 local icons_dir = os.getenv("HOME") .. "/.config/awesome/themes/main/icons/"
 
--- theme.font          = "Iosevka 11"
-theme.font  = "Iosevka 11"
+theme.font  = "Iosevka Curly Slab 11"
 theme.taglist_font  = "M+ 2p Medium 11"
 theme.taglist_fg_empty = theme.black_alt
 
@@ -73,8 +72,8 @@ theme.snap_bg = theme.white
 theme.snap_shape = rrect(0)
 
 -- hotkey font
-theme.hotkeys_font = "Iosevka 12"
-theme.hotkeys_description_font = "Iosevka 12"
+theme.hotkeys_font = theme.font
+theme.hotkeys_description_font = theme.font
 theme.hotkeys_modifiers_fg = theme.yellow
 theme.hotkeys_border_width = dpi(4)
 theme.hotkeys_border_color = theme.black

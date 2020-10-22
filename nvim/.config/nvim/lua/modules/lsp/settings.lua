@@ -17,7 +17,7 @@ vim.g.completion_chain_complete_list = {
   comment = {},
 }
 
-vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
 vim.g.completion_auto_change_source = 1
 vim.g.completion_timer_cycle = 200
 
