@@ -2,21 +2,21 @@
 vim.cmd('cd %:p:h')
 
 -- load vim-plug
-require("plugins.plug")
+require("plugins._plug")
 -- require("plugins.packer")
 
 -- basic settings
-require("modules.settings")
-require("modules.appearances")
+require("modules._settings")
+require("modules._appearances")
 
 -- plugins config
-require("plugins.luatree")
-require("plugins.bufferline")
-require("plugins.emmet")
-require("plugins.indentline")
-require("plugins.signify")
-require("plugins.telescope")
-require("plugins.completion")
+require("plugins._luatree")
+require("plugins._bufferline")
+require("plugins._emmet")
+require("plugins._indentline")
+require("plugins._signify")
+require("plugins._telescope")
+require("plugins._completion")
 -- require("plugins.compe")
 -- require("plugins.coc")
 
@@ -25,8 +25,8 @@ require"colorizer".setup{}
 require"nvim-web-devicons".setup()
 
 -- load modules
-require("modules.mappings")
-require("modules.statusline")
+require("modules._mappings")
+require("modules._statusline")
 -- require("modules.blur")
 
 -- lsp stuff

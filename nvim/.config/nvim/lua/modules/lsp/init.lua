@@ -1,7 +1,7 @@
 local nvim_lsp = require('nvim_lsp')
 local diagnostic = require('diagnostic')
 
-require('modules.lsp.svelte')
+require('modules.lsp._svelte')
 
 nvim_lsp.tsserver.setup{
   filetypes = { 'javascript', 'typescript', 'typescriptreact' };
@@ -47,8 +47,8 @@ require'nlua.lsp.nvim'.setup(nvim_lsp, {
   }
 })
 
-require('modules.lsp.settings')
-require('modules.lsp.mappings')
+require('modules.lsp._settings')
+require('modules.lsp._mappings')
 
 -- attach completion-nvim and diagnostic for every filetype
 vim.cmd('au BufEnter * lua require"completion".on_attach()')
