@@ -52,7 +52,8 @@ local core_options = function()
     updatetime = 100, -- set update time
     signcolumn = "yes", -- enable sign column all the time
     backupcopy= "yes", -- fix weirdness for postcss
-    completeopt='menuone,noinsert,noselect,longest' -- better completion
+    completeopt='menuone,noinsert,noselect,longest', -- better completion
+    inccommand="split", -- incrementally show result of command
   }
 
   setOptions(options)

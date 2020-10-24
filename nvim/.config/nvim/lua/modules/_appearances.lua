@@ -1,3 +1,13 @@
+require'nvim-web-devicons'.setup {
+ -- your personnal icons can go here (to override)
+ -- DevIcon will be appended to `name`
+  svg = {
+    icon = "",
+    color = "#ebdbb2",
+    name = "Svg"
+  };
+}
+
 local hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
   local fg = options.fg == nil and '' or 'guifg=' .. options.fg
@@ -26,7 +36,7 @@ apply_gruvbox = function()
     {'jsonMissingCommaError', { fg = '#CC241D' }},
     {'jsonNoQuotesError', { fg = '#CC241D' }},
     {'ColorColumn', { bg = 'NONE', fg = '#928374' }},
-    {'IncSearch', { bg='#928374', fg='#282828', gui='bold' }},
+    {'IncSearch', { bg='#282828', fg='#928374' }},
 
     -- statusline colours
     {'Active', { bg = '#3C3836', fg = '#EBDBB2' }},
@@ -49,9 +59,7 @@ apply_gruvbox = function()
     -- telescope
     {'TelescopeSelection', { bg='NONE', fg='#D79921', gui='bold' }},
     {'TelescopeMatching', { bg='NONE', fg='#CC241D', gui='bold' }},
-    {'TelescopePreviewBorder', { bg='NONE', fg='#928374', gui='bold' }},
-    {'TelescopePromptBorder', { bg='NONE', fg='#928374', gui='bold' }},
-    {'TelescopeResultsBorder', { bg='NONE', fg='#928374', gui='bold' }},
+    {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
   }
 
   for _, highlight in pairs(highlights) do

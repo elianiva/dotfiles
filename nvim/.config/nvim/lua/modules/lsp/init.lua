@@ -1,51 +1,62 @@
 local nvim_lsp = require('nvim_lsp')
+local nlua = require('nlua.lsp.nvim')
 local diagnostic = require('diagnostic')
+local remap = vim.api.nvim_set_keymap
 
 require('modules.lsp._svelte')
 
+local on_attach = function()
+  -- sweet diagnostics
+  diagnostic.on_attach()
+
+  -- lsp actions
+  remap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
+  remap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
+  remap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+  remap('n', 'gD', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', { noremap = true, silent = true })
+  -- remap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
+  remap('n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', { noremap = true, silent = true })
+  remap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
+  remap('n', 'gx', '<cmd>lua xdg_open()<CR>', { noremap = true, silent = true })
+end
+
+local on_init = function()
+  print('Language Server Protocol started!')
+end
+
 nvim_lsp.tsserver.setup{
   filetypes = { 'javascript', 'typescript', 'typescriptreact' };
-  on_attach = function()
-    print('tsserver started!')
-    diagnostic.on_attach()
-  end
+  on_attach = on_attach,
+  on_init = on_init
 }
 
 nvim_lsp.html.setup{
-  on_attach = function()
-    print('html-language-server started!')
-    diagnostic.on_attach()
-  end
+  on_attach = on_attach,
+  on_init = on_init
 }
-
 nvim_lsp.cssls.setup{
-  on_attach = function()
-    print('css-language-server started!')
-    diagnostic.on_attach()
-  end
+  on_attach = on_attach,
+  on_init = on_init
 }
-
 nvim_lsp.svelte.setup{
-  on_attach = function()
-    print("svelte-language-server started!")
-    diagnostic.on_attach()
-  end
+  on_attach = on_attach,
+  on_init = on_init
+}
+nvim_lsp.sumneko_lua.setup{
+  on_attach = on_attach,
+  on_init = on_init,
 }
 
--- nvim_lsp.sumneko_lua.setup{
---   on_attach = function()
---     print("lua-language-server started!")
---     diagnostic.on_attach()
---   end
--- }
+-- nlua.setup(nvim_lsp, {
+--   on_attach = on_attach,
+--   on_init = on_init,
 
-require'nlua.lsp.nvim'.setup(nvim_lsp, {
-  -- include globals you want to tell the LSP are real
-  globals = {
-    "vim", -- vim
-    "awesome", "theme", "root", -- awesomewm
-  }
-})
+--   -- include globals you want to tell the LSP are real
+--   globals = {
+--     "vim", -- vim
+--     "awesome", "theme", "root", -- awesomewm
+--   }
+-- })
 
 require('modules.lsp._settings')
 require('modules.lsp._mappings')

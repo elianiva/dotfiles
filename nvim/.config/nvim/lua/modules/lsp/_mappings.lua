@@ -9,43 +9,27 @@ check_backspace = function()
   end
 end
 
--- lsp actions
-remap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
-remap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
-remap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
-remap('n', 'gD', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', { noremap = true, silent = true })
-remap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
-remap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
-remap('n', 'gx', '<cmd>lua xdg_open()<CR>', { noremap = true, silent = true })
+local prettier = function()
+  return {
+    exe = "prettier",
+    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+    stdin = true
+  }
+end
 
 -- formatting
 require'format'.setup{
   javascript = {
-    prettier = function()
-      return {
-        exe = "prettier",
-        args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-        stdin = true
-      }
-    end
+    prettier = prettier
+  },
+  typescript = {
+    prettier = prettier
   },
   svelte = {
-    prettier = function()
-      return {
-        exe = "prettier",
-        args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-        stdin = true
-      }
-    end
+    prettier = prettier
   },
   html = {
-    prettier = function()
-      return {
-        exe = "prettier",
-        args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-        stdin = true
-      }
-    end
+    prettier = prettier
   },
 }
 remap('n', 'gf', '<cmd>Format<CR>', { noremap = true, silent = true })
@@ -64,7 +48,6 @@ remap(
   { noremap = true, expr = true }
 )
 remap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
-
 
 -- force completion menu to appear
 remap('i', '<C-c>', '<Plug>(completion_trigger)', { noremap = false, silent = true })

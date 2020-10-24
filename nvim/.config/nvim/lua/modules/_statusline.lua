@@ -54,25 +54,25 @@ credit: https://github.com/nvim-lua/lsp-status.nvim
 
 local get_current_mode = function()
   local modes = {
-    n      = { 'Normal', 'N' };
-    no     = { 'N·Pending', 'N' };
-    v      = { 'Visual', 'V' };
-    V      = { 'V·Line', 'V' };
+    ['n']  = { 'Normal', 'N' };
+    ['no'] = { 'N·Pending', 'N' };
+    ['v']  = { 'Visual', 'V' };
+    ['V']  = { 'V·Line', 'V' };
     ['^V'] = {'V·Block', 'V'};
-    s      = {'Select', 'S'};
-    S      = {'S·Line', 'S'};
+    ['s']  = {'Select', 'S'};
+    ['S']  = {'S·Line', 'S'};
     ['^S'] = {'S·Block', 'S'};
-    i      = {'Insert', 'S'};
-    R      = {'Replace', 'R'};
-    Rv     = {'V·Replace', 'V'};
-    c      = {'Command', 'C'};
-    cv     = {'Vim Ex ', 'V'};
-    ce     = {'Ex ', 'E'};
-    r      = {'Prompt ', 'P'};
-    rm     = {'More ', 'M'};
+    ['i']  = {'Insert', 'S'};
+    ['R']  = {'Replace', 'R'};
+    ['Rv'] = {'V·Replace', 'V'};
+    ['c']  = {'Command', 'C'};
+    ['cv'] = {'Vim Ex ', 'V'};
+    ['ce'] = {'Ex ', 'E'};
+    ['r']  = {'Prompt ', 'P'};
+    ['rm'] = {'More ', 'M'};
     ['r?'] = {'Confirm ', 'C'};
     ['!']  = {'Shell ', 'S'};
-    t      = {'Terminal ', 'T'};
+    ['t']  = {'Terminal ', 'T'};
   }
 
   local current_mode = vim.fn.mode()

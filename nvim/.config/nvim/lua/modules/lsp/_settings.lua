@@ -1,6 +1,6 @@
 vim.g.diagnostic_enable_virtual_text = 1
 vim.g.diagnostic_virtual_text_prefix = '»'
-vim.g.diagnostic_trimmed_virtual_text = 20
+vim.g.diagnostic_trimmed_virtual_text = 30
 
 vim.call('sign_define', "LspDiagnosticsErrorSign", { text = "", texthl = "LspDiagnosticsError" })
 vim.call('sign_define', "LspDiagnosticsWarningSign", { text = "", texthl = "LspDiagnosticsWarning" })

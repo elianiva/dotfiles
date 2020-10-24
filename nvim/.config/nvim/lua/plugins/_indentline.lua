@@ -2,6 +2,7 @@
 vim.g.indentLine_first_char = '▏'
 vim.g.indentLine_char = '▏'
 vim.g.indentLine_faster = 1
+vim.g.indentLine_leadingSpaceChar = '˽'
 
 -- Set indentline ignored list
 vim.g.indentLine_bufTypeExclude = {'help'}

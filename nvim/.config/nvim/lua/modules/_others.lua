@@ -12,4 +12,7 @@ vim.g.blamer_relative_time = 1
 vim.g.htl_all_templates = 1
 
 -- svelte
-vim.g.vim_svelte_plugin_has_init_indent = false
+vim.g.vim_svelte_plugin_has_init_indent = 0
+
+-- lexima
+vim.g.lexima_accept_pum_with_enter = 1

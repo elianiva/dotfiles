@@ -7,6 +7,7 @@ require'telescope'.setup{
     -- sorting_strategy = "ascending",
     generic_sorter = require'telescope.sorters'.get_fzy_sorter,
     file_sorter = require'telescope.sorters'.get_fzy_sorter,
+    default_icon = true,
     default_mappings = {
       i = {
         ['<C-j>'] = telescope_actions.move_selection_next,
