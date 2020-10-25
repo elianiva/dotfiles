@@ -34,11 +34,11 @@ local plugins = {
   'Yggdroot/indentline', -- indentline guide
   {
     'junegunn/goyo.vim',
-    '{\'for\': [\'markdown\', \'txt\']}'
+    [[{'for': ['markdown', 'txt']}]],
   }, -- zen mode
   {
     'dhruvasagar/vim-table-mode',
-    '{\'for\': [\'txt\', \'markdown\']}'
+    [[{'for': ['txt', 'markdown']}]],
   }, -- table alignment
   'psliwka/vim-smoothie', -- smooth scroll
   'kyazdani42/nvim-web-devicons', -- fancy icons

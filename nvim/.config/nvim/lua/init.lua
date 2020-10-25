@@ -23,11 +23,11 @@ require("plugins._completion")
 
 -- lua plugins
 require"colorizer".setup{}
-require"nvim-web-devicons".setup()
 
 -- load modules
 require("modules._mappings")
 require("modules._statusline")
+-- require("modules._theme")
 -- require("modules.blur")
 
 -- lsp stuff

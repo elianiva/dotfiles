@@ -1,11 +1,12 @@
 require'nvim-web-devicons'.setup {
- -- your personnal icons can go here (to override)
- -- DevIcon will be appended to `name`
-  svg = {
-    icon = "",
-    color = "#ebdbb2",
-    name = "Svg"
+  override = {
+    svg = {
+      icon = "",
+      color = "#ebdbb2",
+      name = "Svg"
+    }
   };
+  default = true
 }
 
 local hl = function(group, options)
@@ -122,4 +123,5 @@ vim.cmd('augroup END')
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false
 
+-- vim.cmd('color gruvbox')
 vim.cmd('color gruvbox')
