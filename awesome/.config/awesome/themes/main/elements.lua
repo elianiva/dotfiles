@@ -32,9 +32,9 @@ theme.bg_systray            = theme.black
 theme.systray_icon_size     = dpi(10)
 
 -- border stuff
-theme.border_width  = dpi(4)
-theme.border_normal = theme.black .. "f0"
-theme.border_focus  = theme.black .. "f0"
+theme.border_width  = dpi(0)
+theme.border_normal = theme.black .. "ea"
+theme.border_focus  = theme.black .. "ea"
 theme.border_marked = theme.red
 
 -- tasklist
@@ -51,8 +51,12 @@ theme.widget_transparent = "#00000000"
 
 -- titlebar
 theme.titlebar_size = dpi(2)
-theme.titlebar_bg_focus = theme.grey
-theme.titlebar_bg_normal = theme.black .. "f2"
+-- theme.titlebar_bg_focus = theme.black .. "f2"
+-- theme.titlebar_bg_normal = theme.black .. "f2"
+theme.titlebar_bg_focus = theme.black
+theme.titlebar_bg_normal = theme.black
+theme.titlebar_fg_focus = theme.white
+theme.titlebar_fg_normal = theme.white
 
 -- notification
 theme.notification_font = "SF UI Medium 11"

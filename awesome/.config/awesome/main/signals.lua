@@ -1,8 +1,9 @@
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 local beautiful = require("beautiful")
+local dpi = require'beautiful.xresources'.apply_dpi
+local rules = require'main.rules'
 
 local M = {}
 
@@ -13,6 +14,10 @@ function M.get()
     -- i.e. put it at the end of others instead of setting it master.
     if not awesome.startup then awful.client.setslave(c) end
     -- awful.placement.centered(c)
+
+    c.shape = function(cr, w, h)
+      gears.shape.rounded_rect(cr, w, h, dpi(4))
+    end
 
     if awesome.startup
       and not c.size_hints.user_position

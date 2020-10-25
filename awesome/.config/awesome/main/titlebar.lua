@@ -1,8 +1,8 @@
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
-local beautiful = require("beautiful")
-local dpi = require("beautiful.xresources").apply_dpi
+local dpi = require"beautiful.xresources".apply_dpi
+local margin = wibox.container.margin
 
 local M = {}
 
@@ -11,12 +11,13 @@ function M.get()
     local tb_color = wibox.widget {
       bg      = color_focus,
       widget  = wibox.container.background,
+      shape   = gears.shape.circle
     }
 
     local tb = wibox.widget {
       tb_color,
-      width    = dpi(20),
-      height   = dpi(20),
+      width    = dpi(12),
+      height   = dpi(16),
       strategy = "min",
       layout   = wibox.container.constraint
     }
@@ -33,6 +34,7 @@ function M.get()
     c:connect_signal("focus", update)
     c:connect_signal("unfocus", update)
 
+    -- return margin(tb, dpi(2), dpi(2), dpi(4), dpi(4))
     return tb
   end
 
@@ -42,10 +44,8 @@ function M.get()
       -- buttons for the titlebar
       local buttons = gears.table.join(
         awful.button({ }, 1, function()
-          c:emit_signal("request::activate", "titlebar", {raise = true})
-          if c.maximized == true then
-            c.maximized = false
-          end
+          client.focus = c
+          c:raise()
           awful.mouse.client.move(c)
         end),
 
@@ -55,37 +55,56 @@ function M.get()
         end)
       )
 
-      local close = create_title_button(c, theme.widget_main_color, theme.black)
+      local close = create_title_button(c, theme.red, theme.black)
       close:connect_signal("button::press", function() c:kill() end)
 
-      local floating = create_title_button(c, theme.widget_main_color, theme.black)
+      local floating = create_title_button(c, theme.yellow, theme.black)
       floating:connect_signal("button::press", function() c.floating = not c.floating end)
 
-      awful.titlebar(c, { position = "left", size = beautiful.titlebar_size}):setup {
-        { close, layout = wibox.layout.fixed.vertical }, -- top left
-        { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle left
-        { floating, layout = wibox.layout.fixed.vertical }, -- bottom left
-        layout = wibox.layout.align.vertical
+      local fullscreen = create_title_button(c, theme.green, theme.black)
+      floating:connect_signal("button::press", function() c.floating = not c.floating end)
+
+      local window_title = { -- client name
+        align  = 'center',
+        font   = 'Iosevka Curly Slab 10',
+        widget = awful.titlebar.widget.titlewidget(c)
       }
 
-      awful.titlebar(c, {position = "right", size = beautiful.titlebar_size}):setup {
-        { close, layout  = wibox.layout.fixed.vertical }, -- top right
-        { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle right
-        { floating, layout = wibox.layout.fixed.vertical }, -- bottom right
-        layout = wibox.layout.align.vertical
+      local icon = { -- client icon
+        widget = awful.titlebar.widget.iconwidget(c)
       }
 
-      awful.titlebar(c, {position = "bottom", size = beautiful.titlebar_size}):setup {
-        { floating, layout  = wibox.layout.fixed.horizontal }, -- bottom left
-        { buttons = buttons, layout  = wibox.layout.flex.horizontal }, -- middle
-        { floating, layout = wibox.layout.fixed.horizontal }, -- bottom right
-        layout = wibox.layout.align.horizontal
-      }
+      -- awful.titlebar(c, { position = "left", size = beautiful.titlebar_size}):setup {
+      --   { close, layout = wibox.layout.fixed.vertical }, -- top left
+      --   { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle left
+      --   { floating, layout = wibox.layout.fixed.vertical }, -- bottom left
+      --   layout = wibox.layout.align.vertical
+      -- }
 
-      awful.titlebar(c, {position = "top", size = beautiful.titlebar_size}):setup {
-        { close, layout  = wibox.layout.fixed.horizontal }, -- top left
-        { buttons = buttons, layout  = wibox.layout.flex.horizontal }, -- middle
-        { close, layout = wibox.layout.fixed.horizontal }, -- top right
+      -- awful.titlebar(c, {position = "right", size = beautiful.titlebar_size}):setup {
+      --   { close, layout  = wibox.layout.fixed.vertical }, -- top right
+      --   { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle right
+      --   { floating, layout = wibox.layout.fixed.vertical }, -- bottom right
+      --   layout = wibox.layout.align.vertical
+      -- }
+
+      -- awful.titlebar(c, {position = "bottom", size = beautiful.titlebar_size}):setup {
+      --   { floating, layout  = wibox.layout.fixed.horizontal }, -- bottom left
+      --   { buttons = buttons, layout  = wibox.layout.flex.horizontal }, -- middle
+      --   { floating, layout = wibox.layout.fixed.horizontal }, -- bottom right
+      --   layout = wibox.layout.align.horizontal
+      -- }
+
+      awful.titlebar(c, {position = "top", size = dpi(22)}):setup {
+        {
+          margin(close, dpi(8)), floating, fullscreen, spacing = dpi(8),
+          layout = wibox.layout.fixed.horizontal
+        }, -- top right
+
+        { window_title, buttons = buttons, layout  = wibox.layout.flex.horizontal }, -- middle
+        { margin(icon, dpi(2), dpi(2), dpi(2), dpi(2)), layout = wibox.layout.fixed.horizontal }, -- top left
+        -- { floating, close, layout = wibox.layout.fixed.horizontal }, -- top right
+        spacing = dpi(8),
         layout = wibox.layout.align.horizontal
       }
     end
