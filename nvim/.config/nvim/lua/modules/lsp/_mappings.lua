@@ -9,31 +9,6 @@ check_backspace = function()
   end
 end
 
-local prettier = function()
-  return {
-    exe = "prettier",
-    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-    stdin = true
-  }
-end
-
--- formatting
-require'format'.setup{
-  javascript = {
-    prettier = prettier
-  },
-  typescript = {
-    prettier = prettier
-  },
-  svelte = {
-    prettier = prettier
-  },
-  html = {
-    prettier = prettier
-  },
-}
-remap('n', 'gf', '<cmd>Format<CR>', { noremap = true, silent = true })
-
 -- override default mapping that conflicts with vim-auto-pair
 vim.g.completion_confirm_key = ""
 remap(

@@ -45,6 +45,7 @@ local plugins = {
   'kyazdani42/nvim-tree.lua', -- file explorer
   'akinsho/nvim-bufferline.lua', -- bufferline
   'neovim/nvim-lspconfig', -- builtin lsp config
+  -- {'neoclide/coc.nvim', [[{'branch': 'release'}]]}, -- coc.nvim
   'tjdevries/nlua.nvim', -- better lua development experience
   'mhartington/formatter.nvim', -- formatter
   'nvim-lua/completion-nvim', -- completion helper

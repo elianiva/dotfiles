@@ -1,8 +1,6 @@
--- vim: set sw=2 ts=2 sts=2 et tw=80 ft=lua fdm=marker:
+local Color, colors, Group, groups, styles = require'colorbuddy'.setup()
 
-local Color, colors, Group, groups, styles = require('colorbuddy').setup()
-
--- define colours
+-- COLOURS DEFINITION {{{
 Color.new('background', '#272C41')
 Color.new('foreground', '#FEFDF9')
 Color.new('white',      '#FEFDF9')
@@ -10,12 +8,13 @@ Color.new('red',        '#D55355')
 Color.new('green',      '#41E0AB')
 Color.new('yellow',     '#FBFE8A')
 Color.new('orange',     '#FF9552')
-Color.new('blue',       '#5881CA')
+Color.new('blue',       '#6389CC')
 Color.new('cyan',       '#9DC9E5')
 Color.new('magenta',    '#AA6FFF')
 Color.new('purple',     '#8D5DFF')
 Color.new('grey',       '#333842')
 Color.new('lightgrey',  '#969896')
+-- }}}
 
 -- vanilla colorscheme
 -- GENERAL UI: {{{
@@ -129,3 +128,5 @@ Group.new('jsxCloseString', colors.foreground)
 Group.new('jsxAttrib', colors.red)
 Group.new('jsxEqual', colors.cyan)
 -- }}}
+
+-- vim: set sw=2 ts=2 sts=2 et tw=80 ft=lua fdm=marker:

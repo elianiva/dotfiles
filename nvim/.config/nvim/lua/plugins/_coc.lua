@@ -8,7 +8,6 @@ vim.g.coc_global_extensions = {
   'coc-html',
   'coc-stylelint',
   'coc-tsserver',
-  'coc-prettier',
   'coc-svelte',
   'coc-snippets',
 }

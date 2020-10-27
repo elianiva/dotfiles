@@ -17,9 +17,10 @@ require("plugins._indentline")
 require("plugins._signify")
 require("plugins._telescope")
 require("plugins._completion")
+require("plugins._formatter")
 -- require("plugins._treesitter")
 -- require("plugins.compe")
--- require("plugins.coc")
+-- require("plugins._coc")
 
 -- lua plugins
 require"colorizer".setup{}

@@ -1,13 +1,13 @@
-local api = vim.api
+local cmd = vim.api.nvim_command
 
-local setOptions = function(options)
-  for k, v in pairs(options) do
+local apply_options = function(opts)
+  for k, v in pairs(opts) do
     if v == true then
-      api.nvim_command('set ' .. k)
+      cmd('set ' .. k)
     elseif v == false then
-      api.nvim_command('set no' .. k)
+      cmd(string.format('set no%s', k))
     else
-      api.nvim_command('set ' .. k .. '=' .. v)
+      cmd(string.format('set %s=%s', k, v))
     end
   end
 end
@@ -55,4 +55,4 @@ local options = {
   inccommand="split", -- incrementally show result of command
 }
 
-setOptions(options)
+apply_options(options)
