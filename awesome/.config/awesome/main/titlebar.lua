@@ -17,7 +17,7 @@ function M.get()
     local tb = wibox.widget {
       tb_color,
       width    = dpi(12),
-      height   = dpi(16),
+      height   = dpi(12),
       strategy = "min",
       layout   = wibox.container.constraint
     }

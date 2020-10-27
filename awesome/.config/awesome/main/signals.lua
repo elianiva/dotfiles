@@ -15,9 +15,9 @@ function M.get()
     if not awesome.startup then awful.client.setslave(c) end
     -- awful.placement.centered(c)
 
-    c.shape = function(cr, w, h)
-      gears.shape.rounded_rect(cr, w, h, dpi(4))
-    end
+    -- c.shape = function(cr, w, h)
+    --   gears.shape.rounded_rect(cr, w, h, dpi(8))
+    -- end
 
     if awesome.startup
       and not c.size_hints.user_position
