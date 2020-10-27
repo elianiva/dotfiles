@@ -50,6 +50,7 @@ local options = {
   synmaxcol = 300, -- set limit for syntax highlighting in a single line
   updatetime = 100, -- set update time
   signcolumn = "yes", -- enable sign column all the time
+  colorcolumn = 80, -- 80 chars color column
   backupcopy= "yes", -- fix weirdness for postcss
   completeopt='menuone,noinsert,noselect,longest', -- better completion
   inccommand="split", -- incrementally show result of command

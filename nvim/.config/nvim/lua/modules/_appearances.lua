@@ -26,6 +26,7 @@ apply_gruvbox = function()
     {'Normal', { bg = 'NONE' }},
     {'Comment', { gui = 'italic' }},
     {'SignColumn', { bg = 'NONE' }},
+    {'ColorColumn', { bg = '#3C3836' }},
     -- {'GitGutterAdd', { fg = '#458588' }},
     -- {'GitGutterChange', { fg = '#D79921' }},
     -- {'GitGutterDelete', { fg = '#CC241D' }},
@@ -36,7 +37,6 @@ apply_gruvbox = function()
     {'GitGutterDelete', { fg = '#CC241D' }},
     {'jsonMissingCommaError', { fg = '#CC241D' }},
     {'jsonNoQuotesError', { fg = '#CC241D' }},
-    {'ColorColumn', { bg = 'NONE', fg = '#928374' }},
     {'IncSearch', { bg='#282828', fg='#928374' }},
 
     -- statusline colours
