@@ -46,6 +46,10 @@ nvim_lsp.sumneko_lua.setup{
   on_attach = on_attach,
   on_init = on_init,
 }
+nvim_lsp.rust_analyzer.setup{
+  on_attach = on_attach,
+  on_init = on_init
+}
 
 -- nlua.setup(nvim_lsp, {
 --   on_attach = on_attach,
