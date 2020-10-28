@@ -41,6 +41,7 @@ function M.get(clientkeys, clientbuttons)
         name = {
           "Event Tester",  -- xev.
           "Open File",  -- file picker
+          "Media viewer",  -- new telegram image viewer
         },
         role = {
           "GtkFileChooserDialog",  -- file picker
@@ -49,6 +50,18 @@ function M.get(clientkeys, clientbuttons)
       },
       properties = {
         floating = true,
+        placement = awful.placement.centered
+      }
+    },
+
+    {
+      rule_any = {
+        name = {
+          "Media viewer",  -- new telegram image viewer
+        },
+      },
+      properties = {
+        fullscreen = true,
         placement = awful.placement.centered
       }
     },
