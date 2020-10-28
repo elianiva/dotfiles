@@ -54,7 +54,7 @@ remap('n', 'q:', '<Nop>', { noremap = true })
 remap('v', '<A-y>', '"+y', { noremap = true })
 
 -- no distraction mode for writing
-remap("n", "<Leader>g", "<CMD>Goyo<CR><CMD>set wrap linebreak<CR>", { noremap = true })
+remap("n", "<Leader>g", "<CMD>Goyo<CR>", { noremap = true })
 
 -- toggle colorizer
 remap("n", "<Leader>c", "<CMD>ColorizerToggle<CR>", { noremap = true })

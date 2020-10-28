@@ -8,6 +8,8 @@ require("plugins._plug")
 -- basic settings
 require("modules._settings")
 require("modules._appearances")
+require("modules._buffers")
+require("modules._others")
 
 -- plugins config
 require("plugins._luatree")
@@ -33,5 +35,3 @@ require("modules._statusline")
 
 -- lsp stuff
 require("modules.lsp")
-
-vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{ timeout = 250 }")

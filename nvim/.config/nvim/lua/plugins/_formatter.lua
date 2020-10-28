@@ -1,19 +1,19 @@
 local remap = vim.api.nvim_set_keymap
 
-local prettier = function()
-  return {
-    exe = "prettier",
-    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-    stdin = true
-  }
-end
-
--- formatting
-require'format'.setup{
-  javascript = { prettier = prettier },
-  typescript = { prettier = prettier },
-  svelte = { prettier = prettier },
-  html = { prettier = prettier },
-  css = { prettier = prettier },
+local prettier = {
+  { cmd = { "prettier -w" } }
 }
-remap('n', 'gf', '<cmd>Format<CR>', { noremap = true, silent = true })
+
+require'format'.setup {
+  javascript = prettier,
+  typescript = prettier,
+  svelte = prettier,
+  html = prettier,
+  css = prettier,
+}
+remap('n', 'gf', '<cmd>FormatWrite<CR>', { noremap = true, silent = true })
+
+vim.cmd('augroup Format')
+vim.cmd('au!')
+vim.cmd('au BufWritePost * FormatWrite')
+vim.cmd('augroup END')

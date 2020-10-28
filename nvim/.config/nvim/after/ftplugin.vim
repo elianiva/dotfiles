@@ -41,3 +41,9 @@ au BufEnter term://* startinsert
 
 " set json comment highlighting
 au FileType json syntax match Comment +\/\/.\+$+
+
+augroup Goyo
+  au!
+  au User GoyoEnter setlocal linebreak wrap
+  au User GoyoLeave setlocal nolinebreak nowrap
+augroup END

@@ -9,7 +9,9 @@ vim.g.blamer_delay = 250
 vim.g.blamer_relative_time = 1
 
 -- svelte
-vim.g.vim_svelte_plugin_has_init_indent = 1
+vim.g.vim_svelte_plugin_has_init_indent = 0
 
 -- lexima
 vim.g.lexima_accept_pum_with_enter = 1
+
+vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{ timeout = 250 }")

@@ -47,7 +47,7 @@ local plugins = {
   'neovim/nvim-lspconfig', -- builtin lsp config
   -- {'neoclide/coc.nvim', [[{'branch': 'release'}]]}, -- coc.nvim
   'tjdevries/nlua.nvim', -- better lua development experience
-  'mhartington/formatter.nvim', -- formatter
+  'lukas-reineke/format.nvim', -- formatter
   'nvim-lua/completion-nvim', -- completion helper
   'steelsojka/completion-buffers', -- buffer source for completion
   'nvim-lua/diagnostic-nvim', -- diagnostic for nvim lsp
