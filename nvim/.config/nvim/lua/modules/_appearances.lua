@@ -1,13 +1,4 @@
-require'nvim-web-devicons'.setup {
-  override = {
-    svg = {
-      icon = "",
-      color = "#ebdbb2",
-      name = "Svg"
-    }
-  };
-  default = true
-}
+local vim = vim
 
 local hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
@@ -40,7 +31,7 @@ apply_gruvbox = function()
     {'IncSearch', { bg='#282828', fg='#928374' }},
 
     -- statusline colours
-    {'Active', { bg = '#3C3836', fg = '#EBDBB2' }},
+    {'Active', { bg = 'blue', fg = '#EBDBB2' }},
     {'Inactive', { bg = '#3C3836', fg = '#928374' }},
     {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
     {'LineCol', { bg = '#928374', fg = '#1D2021', gui="bold" }},
@@ -61,6 +52,34 @@ apply_gruvbox = function()
     {'TelescopeSelection', { bg='NONE', fg='#D79921', gui='bold' }},
     {'TelescopeMatching', { bg='NONE', fg='#CC241D', gui='bold' }},
     {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
+  }
+
+  for _, highlight in pairs(highlights) do
+    hl(highlight[1], highlight[2])
+  end
+end
+
+apply_eunoia = function()
+  local highlights = {
+    -- statusline colours
+    {'Active', { bg = '#211D35', fg = '#ECEBE6' }},
+    {'Inactive', { bg = '#2C2941', fg = '#4B5573' }},
+    {'Mode', { bg = '#6391F4', fg = '#211D35', gui="bold" }},
+    {'LineCol', { bg = '#E64557', fg = '#211D35', gui="bold" }},
+    {'Git', { bg = '#2C2941', fg = '#ECEBE6' }},
+    {'Filetype', { bg = '#2C2941', fg = '#ECEBE6' }},
+    {'Filename', { bg = '#2C2941', fg = '#ECEBE6' }},
+
+    {'ModeAlt', { bg = '#2C2941', fg = '#6391F4' }},
+    {'GitAlt', { bg = '#211D35', fg = '#2C2941' }},
+    {'LineColAlt', { bg = '#2C2941', fg = '#E64557' }},
+    {'FiletypeAlt', { bg = '#211D35', fg = '#2C2941' }},
+
+    -- telescope
+    {'TelescopeSelection', { bg='#211D35', fg='#6370F4' }},
+    {'TelescopeMatching', { bg='#211D35', fg='#58CDFF' }},
+    {'TelescopeBorder', { bg='#211D35', fg='#4B5573' }},
+    {'TelescopeNormal', { bg='#211D35' }},
   }
 
   for _, highlight in pairs(highlights) do
@@ -118,10 +137,23 @@ hl('Comment', { gui = 'italic' })
 vim.cmd('augroup NewColor')
 vim.cmd('au!')
 vim.cmd('au ColorScheme gruvbox call v:lua.apply_gruvbox()')
+vim.cmd('au ColorScheme gruvbox call v:lua.treesitter_hl()')
+vim.cmd('au ColorScheme eunoia call v:lua.apply_eunoia()')
 vim.cmd('augroup END')
 
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false
-
--- vim.cmd('color gruvbox')
 vim.cmd('color gruvbox')
+
+-- needs to be loaded after setting colourscheme
+require'nvim-web-devicons'.setup {
+  override = {
+    svg = {
+      icon = "",
+      color = "#ebdbb2",
+      name = "Svg"
+    }
+  };
+  default = true
+}
+

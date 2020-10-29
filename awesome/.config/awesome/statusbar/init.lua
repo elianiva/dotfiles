@@ -26,7 +26,6 @@ local icon_wrapper = function(icon, left, right, top, bottom)
   return margin(icon, dpi(left), dpi(right), dpi(top), dpi(bottom))
 end
 
-
 function colorize(icon, color)
     return gears.color.recolor_image(icon, color)
 end

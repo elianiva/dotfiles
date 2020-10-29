@@ -33,8 +33,8 @@ theme.systray_icon_size     = dpi(10)
 
 -- border stuff
 theme.border_width  = dpi(0)
-theme.border_normal = theme.black .. "ea"
-theme.border_focus  = theme.black .. "ea"
+theme.border_normal = theme.black
+theme.border_focus  = theme.blue
 theme.border_marked = theme.red
 
 -- tasklist
@@ -118,7 +118,7 @@ theme.statusbar_height = dpi(30)
 
 -- taglist
 theme.taglist_bg_focus = theme.black
-theme.taglist_fg_focus = theme.yellow
+theme.taglist_fg_focus = theme.widget_main_color
 theme.taglist_fg_empty = theme.white_alt
 theme.taglist_fg_occupied = theme.white
 theme.taglist_spacing = dpi(2)

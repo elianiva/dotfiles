@@ -7,6 +7,7 @@ require("plugins._plug")
 
 -- basic settings
 require("modules._settings")
+require("modules._treesitter_hl")
 require("modules._appearances")
 require("modules._buffers")
 require("modules._others")
@@ -20,8 +21,7 @@ require("plugins._signify")
 require("plugins._telescope")
 require("plugins._completion")
 require("plugins._formatter")
--- require("plugins._treesitter")
--- require("plugins.compe")
+require("plugins._treesitter")
 -- require("plugins._coc")
 
 -- lua plugins
@@ -30,7 +30,6 @@ require"colorizer".setup{}
 -- load modules
 require("modules._mappings")
 require("modules._statusline")
--- require("modules._theme")
 -- require("modules.blur")
 
 -- lsp stuff

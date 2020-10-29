@@ -11,8 +11,8 @@ window:
     y: 0
 
   padding:
-    x: 6
-    y: 6
+    x: 5
+    y: 5
 
   dynamic_title: true
   dynamic_padding: true
@@ -86,35 +86,35 @@ schemes:
       cyan:    '#8ec07c'
       white:   '#ebdbb2'
 
-codedark: &codedark
+eunoia: &eunoia
   # Default colors
   primary:
-    background: '#282828'
-    foreground: '#ebdbb2'
+    background: '#151326'
+    foreground: '#dedbd6'
 
   cursor:
-    text: '#1e1e1e'
-    cursor: '#d4d4d4'
+    text: '#151326'
+    cursor: '#dedbd6'
 
   normal:
-    black:   '#1e1e1e'
-    red:     '#d16969'
-    green:   '#608b4e'
-    yellow:  '#d7ba7d'
-    blue:    '#569cd6'
-    magenta: '#c586c0'
-    cyan:    '#9cdcfe'
-    white:   '#d4d4d4'
+    black:   '#151326'
+    red:     '#FF496F'
+    green:   '#44D695'
+    yellow:  '#FFE064'
+    blue:    '#6391F4'
+    magenta: '#E36DD4'
+    cyan:    '#58CDFF'
+    white:   '#DEDBD6'
 
   bright:
-    black:   '#3c3c3c'
-    red:     '#d16969'
-    green:   '#b5cea8'
-    yellow:  '#d7ba7d'
-    blue:    '#569cd6'
-    magenta: '#c586c0'
-    cyan:    '#9cdcfe'
-    white:   '#d4d4d4'
+    black:   '#2C2941'
+    red:     '#FF4356'
+    green:   '#2bff99'
+    yellow:  '#FFB55E'
+    blue:    '#6370F4'
+    magenta: '#DA6DE3'
+    cyan:    '#58CDFF'
+    white:   '#efefef'
 
 colors: *gruvbox
 

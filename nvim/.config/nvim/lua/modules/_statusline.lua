@@ -152,7 +152,7 @@ statusline.active = function()
 end
 
 statusline.inactive = function()
-  return colors.inactive .. '%F '
+  return colors.inactive .. ' %F '
 end
 
 statusline.explorer = function()

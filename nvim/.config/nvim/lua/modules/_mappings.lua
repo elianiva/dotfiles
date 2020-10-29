@@ -69,7 +69,6 @@ remap('v', '>', '>gv', { noremap = true })
 -- preview file using xdg_open
 xdg_open = function()
   local filename = vim.fn.expand('<cfile>')
-  print(filename)
   vim.loop.spawn('xdg-open', { args = { filename } })
 end
 vim.cmd('command! -nargs=0 PreviewFile call v:lua.xdg_open()') -- alternative way

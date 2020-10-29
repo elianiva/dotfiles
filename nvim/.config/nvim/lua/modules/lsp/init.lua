@@ -1,5 +1,5 @@
 local nvim_lsp = require('nvim_lsp')
-local nlua = require('nlua.lsp.nvim')
+-- local nlua = require('nlua.lsp.nvim')
 local diagnostic = require('diagnostic')
 local remap = vim.api.nvim_set_keymap
 

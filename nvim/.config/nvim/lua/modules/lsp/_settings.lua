@@ -1,4 +1,4 @@
-vim.g.diagnostic_enable_virtual_text = 1
+vim.g.diagnostic_enable_virtual_text = 0
 vim.g.diagnostic_virtual_text_prefix = '»'
 vim.g.diagnostic_trimmed_virtual_text = 30
 

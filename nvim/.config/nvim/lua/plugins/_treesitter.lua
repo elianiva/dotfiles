@@ -6,11 +6,18 @@ require'nvim-treesitter.configs'.setup {
     "html",
     "java",
     "php",
+    "rust",
     "tsx",
     "lua"
   },
+
   highlight = {
     enable = true,
-    -- disable = {'svelte'},
+    disable = {'svelte'},
+    use_languagetree = false,
+    custom_captures = {
+      ["variable"] = "Identifier",
+      ["punctuation.delimiter"] = "Identifier"
+    }
   },
 }
