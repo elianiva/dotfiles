@@ -1,12 +1,10 @@
 local gears = require("gears")
 local awful = require("awful")
 local naughty = require("naughty")
-local hotkeys_popup = require("awful.hotkeys_popup")
-local menubar = require("menubar")
+local exit_screen_show = require("main.exitscreen")
 
 -- Resource Configuration
 local launcher = RC.vars.launcher
-local powermenu = RC.vars.powermenu
 local shot = RC.vars.shot
 local emoji_picker = RC.vars.emoji_picker
 local clipmenu = RC.vars.clipmenu
@@ -16,31 +14,30 @@ local M = {}
 function M.get()
   local globalkeys = gears.table.join(
 
-    awful.key({ modkey }, "s",
-      hotkeys_popup.show_help,
-      {description="show help", group="awesome"}
+    awful.key({ modkey }, "s", function()
+      awful.hotkeys_popup.show_help(nil, awful.screen.focused())
+    end,
+    {description="show help", group="awesome"}
     ),
 
     -- Toggle tray visibility
     awful.key({ modkey }, "=",
-      function ()
-        systray.visible = not systray.visible
-      end,
+      function () systray.visible = not systray.visible end,
       {description = "toggle tray visibility", group = "awesome"}),
 
     -- Tag browsing
     awful.key({ modkey, }, "Left",
-      awful.tag.viewprev,
+      function() awful.tag.viewprev() end,
       {description = "view previous", group = "tag"}
     ),
 
     awful.key({ modkey, }, "Right",
-      awful.tag.viewnext,
+      function() awful.tag.viewnext() end,
       {description = "view next", group = "tag"}
     ),
 
     awful.key({ modkey, }, "Escape",
-      awful.tag.history.restore,
+      function() awful.tag.history.restore() end,
       {description = "go back", group = "tag"}
     ),
 
@@ -86,7 +83,7 @@ function M.get()
     ),
 
     awful.key({ modkey, }, "u",
-      awful.client.urgent.jumpto,
+      function() awful.client.urgent.jumpto() end,
       {description = "jump to urgent client", group = "client"}
     ),
 
@@ -122,12 +119,12 @@ function M.get()
     ),
 
     awful.key({ modkey, "Shift"   }, "r",
-      awesome.restart,
+      function() awesome.restart() end,
       {description = "reload awesome", group = "awesome"}
     ),
 
     awful.key({ modkey, "Shift"   }, "q",
-      awesome.quit,
+      function() awesome.quit() end,
       {description = "quit awesome", group = "awesome"}
     ),
 
@@ -136,17 +133,11 @@ function M.get()
       {description = "set to tiling mode", group = "layout"}
     ),
 
-
     -- Dismiss notifications
     awful.key({ ctrlkey }, "space",
-      function()
-        naughty.destroy_all_notifications()
-      end,
+      function() naughty.destroy_all_notifications() end,
       {description = "dismiss notification", group = "notifications"}
     ),
-
-    -- awful.key({ modkey }, "p", function() menubar.show() end,
-    --           {description = "show the menubar", group = "launcher"}),
 
     -- Screenshot
     awful.key({ modkey }, "Print",
@@ -154,7 +145,7 @@ function M.get()
       {description = "screenshot edited", group = "misc"}
     ),
     awful.key({ }, "Print",
-      function() awful.spawn.with_shell("flameshot gui -p ~/pix/shots") end,
+      function() awful.spawn.with_shell("flameshot gui -p "..os.getenv("HOME").."/pix/shots") end,
       {description = "screenshot no edit", group = "misc"}
     )
   )

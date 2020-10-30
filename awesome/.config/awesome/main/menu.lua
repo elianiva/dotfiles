@@ -6,7 +6,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Create a launcher widget and a main menu
 menu = {
   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-  -- { "manual", terminal .. " -e man awesome" },
   { "restart awesome", awesome.restart },
   { "quit awesome", function() awesome.quit() end },
 }
@@ -34,5 +33,5 @@ launcher = awful.widget.launcher({
   menu = menu
 })
 
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- Set the terminal for applications that require it
+menubar.utils.terminal = terminal

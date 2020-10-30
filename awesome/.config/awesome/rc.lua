@@ -6,11 +6,11 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local menubar = require("menubar")
 
-require("awful.autofocus")
+require("awful.autofocus") -- autofocus window
 require("main.error-handling") -- error handling
 
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/themes/main/theme.lua")
+beautiful.init(os.getenv("HOME").."/.config/awesome/themes/main/theme.lua")
 
 RC = {} -- global namespace, on top before require any modules
 RC.vars = require("main.variables") -- user defined variables
@@ -26,19 +26,16 @@ local main = {
   menu    = require("main.menu"), -- menu
   rules   = require("main.rules"), -- define rules
   signals = require("main.signals"), -- connect events
-  corners = require("main.titlebar"), -- dual border
-  exitscreen = require("main.exitscreen"), -- exitscreen
+  titlebar = require("main.titlebar"), -- dual border
   volume = require("main.volume-widget") -- Volume widget
 }
 
 main.signals()
-main.corners()
-main.exitscreen()
+main.titlebar()
 main.volume()
 
 -- Custom Local Library: Keys and Mouse Binding
 local keybinds = {
-  globalbuttons = require("keybinds.globalbuttons"),
   clientbuttons = require("keybinds.clientbuttons"),
   globalkeys    = require("keybinds.globalkeys"),
   bindtotags    = require("keybinds.bindtotags"),
@@ -55,12 +52,11 @@ RC.launcher = awful.widget.launcher({
 
 menubar.utils.terminal = RC.vars.terminal
 
-RC.globalkeys = keybinds.globalkeys()
-RC.globalkeys = keybinds.bindtotags(RC.globalkeys)
+RC.globalkeys = keybinds.bindtotags(keybinds.globalkeys())
 RC.mediakeys =  keybinds.mediakeys()
 
 -- Set root
-root.buttons(keybinds.globalbuttons())
+-- root.buttons(keybinds.globalbuttons())
 root.keys(
   gears.table.join(RC.globalkeys, RC.mediakeys)
 )

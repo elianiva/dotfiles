@@ -1,6 +1,6 @@
 local naughty = require("naughty")
 local theme_assets = require("beautiful.theme_assets")
-local dpi = require("beautiful.xresources").apply_dpi
+local dpi = require"beautiful.xresources".apply_dpi
 local gears = require("gears")
 
 local themes_path = require("gears.filesystem").get_themes_dir()
@@ -51,9 +51,8 @@ theme.widget_black = theme.black
 theme.widget_transparent = "#00000000"
 
 -- titlebar
-theme.titlebar_size = dpi(2)
--- theme.titlebar_bg_focus = theme.black .. "f2"
--- theme.titlebar_bg_normal = theme.black .. "f2"
+-- theme.titlebar_size = dpi(2)
+theme.titlebar_size = dpi(22)
 theme.titlebar_bg_focus = theme.black
 theme.titlebar_bg_normal = theme.black
 theme.titlebar_fg_focus = theme.white
