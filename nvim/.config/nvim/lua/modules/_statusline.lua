@@ -1,3 +1,5 @@
+local fn = vim.fn
+
 -- change them if you want to different separator
 -- local left_sep = ''
 -- local right_sep = ''
@@ -21,8 +23,8 @@ local colors = {
 }
 
 local is_truncated = function(width)
-  local current_window = vim.fn.winnr()
-  local current_width = vim.fn.winwidth(current_window)
+  local current_window = fn.winnr()
+  local current_width = fn.winwidth(current_window)
   return current_width < width
 end
 
@@ -78,7 +80,7 @@ local get_current_mode = function()
     ['t']  = {'Terminal ', 'T'};
   }
 
-  local current_mode = vim.fn.mode()
+  local current_mode = fn.mode()
 
   if is_truncated(80) then
     return string.format(' %s ', modes[current_mode][2]):upper()
@@ -94,10 +96,10 @@ local get_git_status = function()
   if branch == '' then
     return ''
   elseif is_truncated(90) or s[1] == -1 then
-    return string.format(' שׂ %s ', branch)
+    return string.format('  %s ', branch)
   else
     return string.format(
-      ' +%s ~%s -%s | שׂ %s ',
+      ' +%s ~%s -%s |  %s ',
       s[1], s[2], s[3], branch
     )
   end
@@ -105,7 +107,7 @@ end
 
 local get_filename = function()
   local filetype = vim.bo.filetype
-  local filename = vim.fn.expand('%:t')
+  local filename = fn.expand('%:t')
   local icon = require'nvim-web-devicons'.get_icon(
     filename, filetype, { default = true }
   )
