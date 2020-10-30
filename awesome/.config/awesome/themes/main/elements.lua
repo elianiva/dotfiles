@@ -7,7 +7,8 @@ local themes_path = require("gears.filesystem").get_themes_dir()
 
 local icons_dir = os.getenv("HOME") .. "/.config/awesome/themes/main/icons/"
 
-theme.font  = "Iosevka Curly Slab 11"
+theme.font  = "Noto Sans 11"
+theme.nerd_font  = "Noto Sans 45"
 theme.taglist_font  = "M+ 2p Medium 11"
 theme.taglist_fg_empty = theme.black_alt
 
