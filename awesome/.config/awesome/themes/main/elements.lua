@@ -120,6 +120,8 @@ theme.statusbar_height = dpi(30)
 theme.taglist_bg_focus = theme.black
 theme.taglist_fg_focus = theme.widget_main_color
 theme.taglist_fg_empty = theme.white_alt
+theme.taglist_fg_urgent = theme.black
+theme.taglist_bg_urgent = theme.red
 theme.taglist_fg_occupied = theme.white
 theme.taglist_spacing = dpi(2)
 
