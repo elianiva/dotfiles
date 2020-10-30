@@ -28,6 +28,7 @@ local options = {
   hlsearch = false, -- don't highlight matching search
   ignorecase = true, -- case insensitive on search
   autowrite = true, -- autowrite buffer when it's not focused
+  autoindent = true, -- enable autoindent
   cursorline = true, -- enable cursorline
   splitbelow = true, -- split below instead of above
   splitright = true, -- split right instead of left

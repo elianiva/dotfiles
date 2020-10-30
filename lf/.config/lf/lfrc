@@ -64,8 +64,8 @@ cmd touch ${{
     lf -remote "send $id echo File exists: $file"
     exit 1
   fi
-  touch "$directory"
-  lf -remote "send $id select $directory"
+  touch "$file"
+  lf -remote "send $id select $file"
 }}
 
 cmd unarchive ${{

@@ -1,10 +1,9 @@
 vim.g.completion_enable_auto_hover = 1
 vim.g.completion_auto_change_source = 1
 vim.g.completion_enable_auto_signature = 0
-vim.g.completion_enable_auto_signature = 0
 vim.g.completion_matching_strategy_list = {'exact', 'substring'}
 vim.g.completion_auto_change_source = 1
-vim.g.completion_timer_cycle = 20
+vim.g.completion_enable_auto_paren = 1
 vim.g.completion_sorting = 'length'
 
 -- define an chain complete list
@@ -19,4 +18,18 @@ vim.g.completion_chain_complete_list = {
     { complete_items = {'path'}, triggered_only = {'/'} },
   },
   comment = {},
+}
+
+vim.g.completion_items_priority = {
+  ['Method'] = 10,
+  ['Field'] = 8,
+  ['Function'] = 8,
+  ['Variables'] = 7,
+  ['Interfaces'] = 6,
+  ['Constant'] = 6,
+  ['Class'] = 6,
+  ['Struct'] = 6,
+  ['Keyword'] = 5,
+  ['File']  = 2,
+  ['Buffers']  = 0,
 }

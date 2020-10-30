@@ -31,7 +31,6 @@ au BufWritePre * %s/\s\+$//e
 
 " Set PHP indentation
 let b:PHP_default_indenting = 1
-au BufReadPost * setlocal autoindent
 
 " go to insert mode on nvim terminal
 au BufEnter term://* startinsert
@@ -42,6 +41,7 @@ au BufEnter term://* startinsert
 " set json comment highlighting
 au FileType json syntax match Comment +\/\/.\+$+
 
+" enable/disable wordwrap
 augroup Goyo
   au!
   au User GoyoEnter setlocal linebreak wrap

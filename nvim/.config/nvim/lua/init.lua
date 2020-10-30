@@ -3,11 +3,9 @@ vim.cmd('cd %:p:h')
 
 -- load vim-plug
 require("plugins._plug")
--- require("plugins.packer")
 
 -- basic settings
 require("modules._settings")
-require("modules._treesitter_hl")
 require("modules._appearances")
 require("modules._buffers")
 require("modules._others")
@@ -21,7 +19,7 @@ require("plugins._signify")
 require("plugins._telescope")
 require("plugins._completion")
 require("plugins._formatter")
-require("plugins._treesitter")
+-- require("plugins._treesitter")
 -- require("plugins._coc")
 
 -- lua plugins

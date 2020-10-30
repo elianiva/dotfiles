@@ -1,7 +1,10 @@
 -- change them if you want to different separator
-local left_sep = ''
-local right_sep = ''
-local thin_sep = ''
+-- local left_sep = ''
+-- local right_sep = ''
+-- local thin_sep = ''
+local left_sep = ''
+local right_sep = ''
+local thin_sep = ''
 
 -- highlight groups
 local colors = {
@@ -24,9 +27,9 @@ local is_truncated = function(width)
 end
 
 --[[
-NOTE: I don't use this since the statusline already has
-so much stuff going on. Feel free to use it!
-credit: https://github.com/nvim-lua/lsp-status.nvim
+  NOTE: I don't use this since the statusline already has
+  so much stuff going on. Feel free to use it!
+  credit: https://github.com/nvim-lua/lsp-status.nvim
 --]]
 -- local get_lsp_diagnostic = function()
 --   local result = {}

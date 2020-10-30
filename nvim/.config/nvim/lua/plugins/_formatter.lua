@@ -2,7 +2,11 @@ local remap = vim.api.nvim_set_keymap
 
 local prettier = {
   {
-    cmd = { "prettier -w" },
+    cmd = {
+      function(file)
+        return string.format("prettier -w --config %s/.prettierrc %s", vim.fn.getcwd(), file)
+      end
+    },
     tempfile_dir = os.getenv("HOME").."/.config/nvim"
   }
 }

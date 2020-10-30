@@ -1,5 +1,4 @@
 local vim = vim
-
 local hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
   local fg = options.fg == nil and '' or 'guifg=' .. options.fg
@@ -18,9 +17,6 @@ apply_gruvbox = function()
     {'Comment', { gui = 'italic' }},
     {'SignColumn', { bg = 'NONE' }},
     {'ColorColumn', { bg = '#3C3836' }},
-    -- {'GitGutterAdd', { fg = '#458588' }},
-    -- {'GitGutterChange', { fg = '#D79921' }},
-    -- {'GitGutterDelete', { fg = '#CC241D' }},
     {'SignifySignAdd', { fg = '#458588', bg = 'NONE' }},
     {'SignifySignChange', { fg = '#D79921', bg = 'NONE' }},
     {'SignifySignDelete', { fg = '#CC241D', bg = 'NONE' }},
@@ -29,6 +25,7 @@ apply_gruvbox = function()
     {'jsonMissingCommaError', { fg = '#CC241D' }},
     {'jsonNoQuotesError', { fg = '#CC241D' }},
     {'IncSearch', { bg='#282828', fg='#928374' }},
+    {'mkdLineBreak', { bg='NONE' }},
 
     -- statusline colours
     {'Active', { bg = 'blue', fg = '#EBDBB2' }},
@@ -137,7 +134,6 @@ hl('Comment', { gui = 'italic' })
 vim.cmd('augroup NewColor')
 vim.cmd('au!')
 vim.cmd('au ColorScheme gruvbox call v:lua.apply_gruvbox()')
-vim.cmd('au ColorScheme gruvbox call v:lua.treesitter_hl()')
 vim.cmd('au ColorScheme eunoia call v:lua.apply_eunoia()')
 vim.cmd('augroup END')
 
@@ -156,4 +152,3 @@ require'nvim-web-devicons'.setup {
   };
   default = true
 }
-

@@ -14,7 +14,6 @@ if fn.empty(fn.glob(plug_directory)) == 1 then
   ]])
 end
 
--- TODO: find better way instead of using escape ( \' )
 local plugins = {
   'gruvbox-community/gruvbox', -- nice colorscheme
   '~/.config/nvim/eunoia', -- nice colorscheme
@@ -27,8 +26,8 @@ local plugins = {
     [[{ 'branch': 'color-editor' }]]
   },
   'sheerun/vim-polyglot', -- various languages highlighting
-  'nvim-treesitter/nvim-treesitter', -- better syntax highlighting
-  'nvim-treesitter/playground', -- playground for treesitter
+  -- 'nvim-treesitter/nvim-treesitter', -- better syntax highlighting
+  -- 'nvim-treesitter/playground', -- playground for treesitter
   'leafOfTree/vim-svelte-plugin', -- svelte language support
   'euclidianAce/BetterLua.vim', -- lua language support
   'Yggdroot/indentline', -- indentline guide
@@ -41,16 +40,11 @@ local plugins = {
     [[{'for': ['txt', 'markdown']}]],
   }, -- table alignment
   'psliwka/vim-smoothie', -- smooth scroll
-  -- {
-  --   'kyazdani42/nvim-web-devicons',
-  --   [[{'commit': '56817c27b'}]],
-  -- }, -- fancy icons
   'kyazdani42/nvim-web-devicons', -- fancy icons
   'kyazdani42/nvim-tree.lua', -- file explorer
   'akinsho/nvim-bufferline.lua', -- bufferline
   'neovim/nvim-lspconfig', -- builtin lsp config
   -- {'neoclide/coc.nvim', [[{'branch': 'release'}]]}, -- coc.nvim
-  -- 'tjdevries/nlua.nvim', -- better nvim.lua development experience
   'lukas-reineke/format.nvim', -- formatter
   'nvim-lua/completion-nvim', -- completion helper
   'steelsojka/completion-buffers', -- buffer source for completion

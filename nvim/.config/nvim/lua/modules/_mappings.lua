@@ -72,3 +72,4 @@ xdg_open = function()
   vim.loop.spawn('xdg-open', { args = { filename } })
 end
 vim.cmd('command! -nargs=0 PreviewFile call v:lua.xdg_open()') -- alternative way
+remap('n', 'gx', '<cmd>lua xdg_open()<CR>', { noremap = true, silent = true })
