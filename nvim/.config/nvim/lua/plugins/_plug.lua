@@ -57,7 +57,6 @@ local plugins = {
   'nvim-lua/telescope.nvim', -- fuzzy finder
   -- {'junegunn/fzf', '{\'do\': { -> fzf#install() } }'}, -- fuzzy finder
   -- 'junegunn/fzf.vim',
-  'tpope/vim-fugitive', -- git helper
   'mhinz/vim-signify', -- show git stuff in signcolumn
 }
 

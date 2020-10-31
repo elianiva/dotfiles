@@ -1,12 +1,13 @@
+local Job = require("plenary.job")
 local fn = vim.fn
 
 -- change them if you want to different separator
--- local left_sep = ''
--- local right_sep = ''
--- local thin_sep = ''
-local left_sep = ''
-local right_sep = ''
-local thin_sep = ''
+local left_sep = ''
+local right_sep = ''
+local thin_sep = ''
+-- local left_sep = ''
+-- local right_sep = ''
+-- local thin_sep = ''
 
 -- highlight groups
 local colors = {
@@ -89,19 +90,31 @@ local get_current_mode = function()
   end
 end
 
+-- taken from expressline and modified a bit
+-- https://github.com/tjdevries/express_line.nvim/
 local get_git_status = function()
   local s = vim.call('sy#repo#get_stats')
-  local branch = vim.call('fugitive#head')
+  local j = Job:new({
+    command = "git",
+    args = {"branch", "--show-current"},
+    cwd = fn.fnamemodify(fn.bufname(0), ":h"),
+  })
 
-  if branch == '' then
-    return ''
-  elseif is_truncated(90) or s[1] == -1 then
-    return string.format('  %s ', branch)
+  local ok, branch = pcall(function()
+    return vim.trim(j:sync()[1])
+  end)
+
+  if ok then
+    if is_truncated(90) or s[1] == -1 then
+      return string.format('  %s ', branch)
+    else
+      return string.format(
+        ' +%s ~%s -%s |  %s ',
+        s[1], s[2], s[3], branch
+      )
+    end
   else
-    return string.format(
-      ' +%s ~%s -%s |  %s ',
-      s[1], s[2], s[3], branch
-    )
+    return ''
   end
 end
 
@@ -132,9 +145,9 @@ local get_line_col = function()
   end
 end
 
-statusline = {}
+Statusline = {}
 
-statusline.active = function()
+Statusline.active = function()
   local mid = "%="
   local mode = colors.mode .. get_current_mode()
   local mode_alt = colors.mode_alt .. left_sep
@@ -156,11 +169,11 @@ statusline.active = function()
   })
 end
 
-statusline.inactive = function()
+Statusline.inactive = function()
   return colors.inactive .. ' %F '
 end
 
-statusline.explorer = function()
+Statusline.explorer = function()
   local title = colors.mode .. ' Explorer '
   local title_alt = colors.mode_alt .. left_sep
 
@@ -172,7 +185,7 @@ end
 -- set statusline
 vim.cmd('augroup Statusline')
 vim.cmd('au!')
-vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline.active()')
-vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline.inactive()')
-vim.cmd('au WinEnter,BufEnter,FileType LuaTree setlocal statusline=%!v:lua.statusline.explorer()')
+vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()')
+vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
+vim.cmd('au WinEnter,BufEnter,FileType LuaTree setlocal statusline=%!v:lua.Statusline.explorer()')
 vim.cmd('augroup END')
