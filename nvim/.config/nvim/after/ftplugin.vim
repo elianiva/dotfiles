@@ -14,14 +14,11 @@ au FileType php setlocal sw=4 ts=4
 " Enable emmet.vim on these filetypes
 au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
 
-" Auto format go code
-" au BufWritePre *.go :GoFmt
-
 " Remove conceal in markdown
 au FileType markdown setlocal conceallevel=0
 
-" Set tsconfig.json to jsonc
-au BufRead,BufNewFile tsconfig.json set ft=jsonc
+" Set all json file to jsonc
+au BufRead,BufNewFile *.json set ft=jsonc
 
 " Set mdsvex to markdown filetype
 au BufRead,BufNewFile *.svx set ft=markdown
