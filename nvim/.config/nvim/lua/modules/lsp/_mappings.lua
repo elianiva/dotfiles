@@ -29,14 +29,14 @@ vim.call('lexima#set_default_rules')
 vim.g.completion_confirm_key = ""
 remap(
   'i', '<CR>',
-  'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)" : "<C-g>u<CR>" : v:lua.check_html_char() ? lexima#expand("<CR>", "i")."<ESC>O" : lexima#expand("<CR>", "i")',
-  { expr = true }
+  'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)" : "<C-g>u".lexima#expand("<LT>CR>", "i") : v:lua.check_html_char() ? lexima#expand("<LT>CR>", "i")."<ESC>O" : lexima#expand("<LT>CR>", "i")',
+  { silent = true, expr = true }
 )
 
 remap(
   'i', '<Tab>',
   'pumvisible() ? "<C-n>" : v:lua.check_backspace() ? "<Tab>" : completion#trigger_completion()',
-  { noremap = true, expr = true }
+  { silent = true, noremap = true, expr = true }
 )
 remap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
 
