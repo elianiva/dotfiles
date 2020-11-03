@@ -8,14 +8,14 @@ local themes_path = require("gears.filesystem").get_themes_dir()
 local icons_dir = os.getenv("HOME") .. "/.config/awesome/themes/main/icons/"
 
 theme.font  = "Noto Sans 11"
-theme.color_name  = "eunoia"
+theme.color_name  = "gruvbox"
 theme.nerd_font  = "Noto Sans 45"
 theme.taglist_font  = "M+ 2p Medium 11"
 theme.taglist_fg_empty = theme.black_alt
 
 -- background stuff
 theme.bg_normal     = theme.black
-theme.bg_focus      = theme.blue
+theme.bg_focus      = theme.yellow
 theme.bg_urgent     = theme.red
 theme.bg_minimize   = theme.grey
 
@@ -44,7 +44,7 @@ theme.tasklist_bg_focus = theme.black
 theme.tasklist_fg_focus = theme.yellow
 
 -- widget
-theme.widget_main_color = theme.blue
+theme.widget_main_color = theme.yellow
 theme.widget_red = theme.red
 theme.widget_yelow = theme.yellow
 theme.widget_green = theme.green

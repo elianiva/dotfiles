@@ -16,7 +16,7 @@ end
 
 local plugins = {
   'gruvbox-community/gruvbox', -- nice colorscheme
-  'tjdevries/colorbuddy.nvim', -- colorscheme maker
+  -- 'tjdevries/colorbuddy.nvim', -- colorscheme maker
   'cohama/lexima.vim', -- autopairs brackets, braces, etc
   'neoclide/jsonc.vim', -- jsonc highlighting
   'wakatime/vim-wakatime', -- track usage time using wakatime

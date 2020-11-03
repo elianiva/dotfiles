@@ -25,9 +25,12 @@ local custom_on_init = function()
 end
 
 nvim_lsp.tsserver.setup{
-  filetypes = { 'javascript', 'typescript', 'typescriptreact' };
+  filetypes = { 'javascript', 'typescript', 'typescriptreact' },
   on_attach = custom_on_attach,
-  on_init = custom_on_init
+  on_init = custom_on_init,
+  root_dir = function()
+    return vim.loop.cwd()
+  end
 }
 
 nvim_lsp.html.setup{

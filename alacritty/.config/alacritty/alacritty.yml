@@ -117,7 +117,7 @@ eunoia: &eunoia
     cyan:    '#58CDFF'
     white:   '#efefef'
 
-colors: *eunoia
+colors: *gruvbox
 
 background_opacity: 0.96
 

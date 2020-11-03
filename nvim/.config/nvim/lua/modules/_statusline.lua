@@ -119,13 +119,8 @@ local get_git_status = function()
 end
 
 local get_filename = function()
-  local filetype = vim.bo.filetype
   local filename = fn.expand('%:t')
-  local icon = require'nvim-web-devicons'.get_icon(
-    filename, filetype, { default = true }
-  )
-
-  return string.format(' %s %s ', icon, filename)
+  return string.format(' %s ', filename)
 end
 
 local get_filetype = function()

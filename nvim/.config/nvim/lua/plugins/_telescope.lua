@@ -2,7 +2,7 @@ local telescope_actions = require('telescope.actions')
 
 require'telescope'.setup{
   defaults = {
-    winblend = 8,
+    -- winblend = 8,
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
     file_ignore_patterns = {'node_modules/.*'},
     -- prompt_position = "top",
