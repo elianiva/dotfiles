@@ -9,8 +9,8 @@ local call = vim.call
 -- TODO: find a better way for this
 if fn.empty(fn.glob(plug_directory)) == 1 then
   cmd([[
-     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-     au VimEnter * PlugInstall --sync
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    au VimEnter * PlugInstall --sync
   ]])
 end
 
@@ -20,10 +20,7 @@ local plugins = {
   'cohama/lexima.vim', -- autopairs brackets, braces, etc
   'neoclide/jsonc.vim', -- jsonc highlighting
   'wakatime/vim-wakatime', -- track usage time using wakatime
-  {
-    'norcalli/nvim-colorizer.lua', -- colorize hex/rgb/hsl value
-    [[{ 'branch': 'color-editor' }]]
-  },
+  'norcalli/nvim-colorizer.lua', -- colorize hex/rgb/hsl value
   'sheerun/vim-polyglot', -- various languages highlighting
   -- 'nvim-treesitter/nvim-treesitter', -- better syntax highlighting
   -- 'nvim-treesitter/playground', -- playground for treesitter
@@ -55,8 +52,6 @@ local plugins = {
   'nvim-lua/popup.nvim',
   'nvim-lua/plenary.nvim',
   'nvim-lua/telescope.nvim', -- fuzzy finder
-  -- {'junegunn/fzf', '{\'do\': { -> fzf#install() } }'}, -- fuzzy finder
-  -- 'junegunn/fzf.vim',
   'mhinz/vim-signify', -- show git stuff in signcolumn
 }
 

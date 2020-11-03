@@ -12,5 +12,6 @@ theme.magenta = xrdb.color5
 theme.cyan = xrdb.color6
 theme.white = xrdb.color7
 
-theme.grey = "#3e3e3e"
+-- theme.grey = "#3e3e3e"
+theme.grey = xrdb.color8
 theme.white_alt = "#555555"

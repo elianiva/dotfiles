@@ -4,6 +4,7 @@ require'telescope'.setup{
   defaults = {
     winblend = 8,
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+    file_ignore_patterns = {'node_modules/.*'},
     -- prompt_position = "top",
     -- sorting_strategy = "ascending",
     default_icon = true,

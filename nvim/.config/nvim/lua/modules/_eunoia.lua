@@ -53,7 +53,7 @@ Group.new('eunoia_whitespace', g.NonText)
 Group.new('Underlined', c.eunoia_cyan, nil, s.underline)
 Group.new('Ignore', c.eunoia_grey)
 Group.new('Error', c.eunoia_red_dark)
-Group.new('Todo', c.eunoia_red_dark)
+Group.new('Todo', c.eunoia_red_dark, nil, s.bold)
 Group.new('helpHyperTextJump', g.Underlined)
 Group.new('helpSpecial', c.eunoia_teal)
 Group.new('Hint', c.eunoia_green, nil, s.italic)
@@ -74,7 +74,7 @@ Group.new('SignColumn', nil, nil)
 Group.new('Directory', c.eunoia_ice, nil, s.bold)
 --}}}
 -- Literals{{{
-Group.new('Conseunoia_tant', c.eunoia_orange_light)
+Group.new('Constant', c.eunoia_orange_light)
 Group.new('String', c.eunoia_green)
 Group.new('Character', c.eunoia_red_light)
 Group.new('Number', c.eunoia_pink_light)
@@ -82,7 +82,7 @@ Group.new('Boolean', c.eunoia_yellow)
 Group.new('Float', g.Number)
 --}}}
 -- Identifiers{{{
-Group.new('Identifier', c.eunoia_red)
+Group.new('Identifier', c.eunoia_white)
 Group.new('Function', c.eunoia_teal)
 --}}}
 -- Syntax{{{
@@ -158,8 +158,8 @@ Group.new('DiffDelete', c.eunoia_red, nil)
 Group.new('DiffText', c.eunoia_white, nil)
 --}}}
 -- Searching{{{
-Group.new('IncSearch', nil, c.eunoia_grey_light)
-Group.new('Substitute', nil, c.eunoia_grey_light)
+Group.new('IncSearch', c.eunoia_black, c.eunoia_grey_light)
+Group.new('Substitute', c.eunoia_black, c.eunoia_grey_light)
 Group.new('Search', c.eunoia_white, nil, s.underline)
 Group.new('MatchParen', c.eunoia_green, nil, s.underline + s.bold)
 --}}}
@@ -193,11 +193,11 @@ Group.new('LspDiagnosticsInformation', g.Info)
 Group.new('LspDiagnosticsInformationFloating', g.InfoMsg)
 Group.new('LspDiagnosticsInformationSign', g.InfoMsg)
 
-Group.new('LspDiagnosticsUnderline', c.eunoia_white, nil, s.underline)
-Group.new('LspDiagnosticsUnderlineError', c.eunoia_white, nil, s.underline)
-Group.new('LspDiagnosticsUnderlineHint', c.eunoia_white, nil, s.underline)
-Group.new('LspDiagnosticsUnderlineInfo', c.eunoia_white, nil, s.underline)
-Group.new('LspDiagnosticsUnderlineWarning', c.eunoia_white, nil, s.underline)
+Group.new('LspDiagnosticsUnderline', nil, nil, s.underline)
+Group.new('LspDiagnosticsUnderlineError', nil, nil, s.underline)
+Group.new('LspDiagnosticsUnderlineHint', nil, nil, s.underline)
+Group.new('LspDiagnosticsUnderlineInfo', nil, nil, s.underline)
+Group.new('LspDiagnosticsUnderlineWarning', nil, nil, s.underline)
 --}}}
 -- Cursor{{{
 Group.new('Cursor', nil, nil)
@@ -214,6 +214,11 @@ Group.new('cssSelectorOp', g.Operator)
 Group.new('cssTagName', g.Type)
 Group.new('cssClassName', c.eunoia_tan)
 Group.new('cssClassName', c.eunoia_tan)
+Group.new('cssValueNumber', g.Constant)
+Group.new('cssValueLength', g.Constant)
+Group.new('cssAttr', g.Constant)
+Group.new('cssPositioningAttr', g.Constant)
+Group.new('cssFlexibleBoxAttr', g.Constant)
 Group.new('scssAmpersand', g.Special)
 Group.new('scssAttribute', g.Label)
 Group.new('scssBoolean', g.Boolean)
@@ -251,7 +256,7 @@ Group.new('javascriptFunction', g.Function)
 Group.new('javascriptIdentifier', g.Identifier)
 Group.new('javascriptMember', c.eunoia_blue)
 Group.new('javascriptNumber', g.Number)
-Group.new('javascriptNull', g.Conseunoia_tant)
+Group.new('javascriptNull', g.Constant)
 Group.new('javascriptParens', c.eunoia_white)
 Group.new('javascriptImport', c.eunoia_ice)
 Group.new('javascriptExport', c.eunoia_ice)
@@ -331,11 +336,12 @@ Group.new('jsFunction', c.eunoia_blue)
 Group.new('jsFuncCall', c.eunoia_blue)
 Group.new('jsFuncParens', c.eunoia_blue)
 Group.new('jsParens', c.eunoia_white)
-Group.new('jsNull', g.Conseunoia_tant)
-Group.new('jsUndefined', g.Conseunoia_tant)
+Group.new('jsNull', g.Constant)
+Group.new('jsUndefined', g.Constant)
 Group.new('jsClassDefinition', c.eunoia_yellow)
 Group.new('jsOperatorKeyword', c.eunoia_red)
 Group.new('jsStorageClass', c.eunoia_red)
+Group.new('jsRegexpOr', c.eunoia_ice)
 --}}}
 -- Typescript{{{
 Group.new('typescriptReserved', c.eunoia_ice)
@@ -354,7 +360,7 @@ Group.new('typescriptGlobalObjects', c.eunoia_white)
 Group.new('typescriptParens', c.eunoia_white)
 Group.new('typescriptOpSymbols', c.eunoia_white)
 Group.new('typescriptHtmlElemProperties', c.eunoia_white)
-Group.new('typescriptNull', g.Conseunoia_tant)
+Group.new('typescriptNull', g.Constant)
 Group.new('typescriptInterpolationDelimiter', c.eunoia_ice)
 --}}}
 -- JSX{{{
@@ -367,7 +373,7 @@ Group.new('jsxEqual', c.eunoia_turqoise)
 -- JSON{{{
 Group.new('jsonBraces', g.Structure)
 Group.new('jsonKeywordMatch', g.Operator)
-Group.new('jsonNull', g.Conseunoia_tant)
+Group.new('jsonNull', g.Constant)
 Group.new('jsonQuote', g.Delimiter)
 Group.new('jsonString', g.String)
 Group.new('jsonStringSQError', g.Exception)
@@ -448,9 +454,12 @@ Group.new('javaVarArg', c.eunoia_red)
 -- Xresources{{{
 Group.new('xdefaultsValue', c.eunoia_white)
 --}}}
+-- SQL {{{
+Group.new('sqlKeyword', c.eunoia_red)
+--}}}
 -- }}}
 
--- Plugins {{{
+-- PLUGINS {{{
 -- Signify{{{
 Group.new('SignifySignAdd', c.eunoia_green)
 Group.new('SignifySignChange', c.eunoia_orange)
@@ -493,16 +502,17 @@ Group.new('TSStrong', c.eunoia_red, nil, s.bold)
 Group.new('TSEmphasis', c.eunoia_ice, nil, s.italic)
 Group.new('TSUnderline', c.eunoia_ice, nil, s.underline)
 Group.new('TSSpecial', c.eunoia_ice)
+Group.new('TSProperty', c.eunoia_blue)
 Group.new('TSVariable', g.Identifier)
 Group.new('TSVariableBuiltin', g.Identifier)
 --}}}
--- Bufferline.nvim {{
+-- Bufferline.nvim {{{
 Group.new('BufferLineSelected', c.eunoia_white, c.eunoia_black, s.bold)
 Group.new('BufferLineTabSelectedSeparator', c.eunoia_blue)
 Group.new('BufferLineFill', nil, c.eunoia_grey_darker)
 Group.new('BufferLineBackground', nil, c.eunoia_grey_darker)
 Group.new('BufferLineInactive', nil, c.eunoia_grey_darker)
---}}
+--}}}
 --}}}
 
 -- vim: foldmethod=marker

@@ -11,7 +11,6 @@ local json = require("main.json")
 local awful = require("awful")
 local wibox = require("wibox")
 local spawn = require("awful.spawn")
-local naughty = require("naughty")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local gfs = require("gears.filesystem")
@@ -124,8 +123,8 @@ add_button:connect_signal("button::press", function(c)
     }
     popup:setup(rows)
 end)
-add_button:connect_signal("mouse::enter", function(c) c:set_bg(beautiful.bg_focus) end)
-add_button:connect_signal("mouse::leave", function(c) c:set_bg(beautiful.bg_normal) end)
+add_button:connect_signal("mouse::enter", function(c) c:set_bg(theme.bg_focus) end)
+add_button:connect_signal("mouse::leave", function(c) c:set_bg(theme.bg_normal) end)
 
 local function worker(args)
 
@@ -250,7 +249,7 @@ local function worker(args)
             }
 
             row:connect_signal("mouse::enter", function(c) c:set_bg(theme.grey) end)
-            row:connect_signal("mouse::leave", function(c) c:set_bg(beautiful.bg_normal) end)
+            row:connect_signal("mouse::leave", function(c) c:set_bg(theme.bg_normal) end)
 
             table.insert(rows, row)
         end

@@ -5,17 +5,6 @@ local remap = vim.api.nvim_set_keymap
 
 require('modules.lsp._svelte')
 
--- open definition in split instead of jumping to it
-custom_lsp_jump_definition = function()
-  local winr = vim.fn.winnr("$")
-  if winr >= 4 then
-    vim.lsp.buf.definition()
-  else
-    vim.api.nvim_command("15split")
-    vim.lsp.buf.definition()
-  end
-end
-
 local custom_on_attach = function()
   -- sweet diagnostics
   diagnostic.on_attach()
@@ -23,7 +12,7 @@ local custom_on_attach = function()
   -- lsp actions
   remap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
   remap('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
-  remap('n', 'gd', '<cmd>lua custom_lsp_jump_definition()<CR>', { noremap = true, silent = true })
+  remap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
   remap('i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { noremap = true, silent = true })
   remap('n', 'gD', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', { noremap = true, silent = true })
   -- remap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })

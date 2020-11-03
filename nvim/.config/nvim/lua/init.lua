@@ -6,7 +6,6 @@ require("plugins._plug")
 
 -- basic settings
 require("modules._settings")
-require("modules._buffers")
 require("modules._others")
 require("modules._eunoia")
 require("modules._appearances")

@@ -15,7 +15,7 @@ theme.taglist_fg_empty = theme.black_alt
 
 -- background stuff
 theme.bg_normal     = theme.black
-theme.bg_focus      = theme.yellow
+theme.bg_focus      = theme.blue
 theme.bg_urgent     = theme.red
 theme.bg_minimize   = theme.grey
 
