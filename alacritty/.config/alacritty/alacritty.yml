@@ -27,22 +27,18 @@ window:
 font:
   normal:
     family: Iosevka Curly Slab
-    # family: JetBrains Mono Nerd Font
     style: Regular
 
   bold:
     family: Iosevka Curly Slab
-    # family: JetBrains Mono
     style: Bold
 
   italic:
     family: Iosevka Curly Slab
-    # family: JetBrains Mono
     style: Italic
 
   bold_italic:
     family: Iosevka Curly Slab
-    # family: JetBrains Mono
     style: Bold Italic
 
   # size: 7.5
@@ -121,7 +117,7 @@ eunoia: &eunoia
     cyan:    '#58CDFF'
     white:   '#efefef'
 
-colors: *gruvbox
+colors: *eunoia
 
 background_opacity: 0.96
 

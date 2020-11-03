@@ -28,7 +28,7 @@ function M.get()
   local volume_bar = wibox.widget {
     widget = wibox.widget.progressbar,
     shape = gears.shape.rounded_bar,
-    color = theme.yellow,
+    color = theme.widget_main_color,
     background_color = theme.grey,
     max_value = 100,
     value = 0

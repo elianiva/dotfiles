@@ -58,6 +58,9 @@ end
 
 apply_eunoia = function()
   local highlights = {
+    -- Disable background
+    {'Normal', { bg = 'NONE'}},
+
     -- statusline colours
     {'Active', { bg = '#211D35', fg = '#ECEBE6' }},
     {'Inactive', { bg = '#2C2941', fg = '#4B5573' }},
@@ -73,10 +76,10 @@ apply_eunoia = function()
     {'FiletypeAlt', { bg = '#211D35', fg = '#2C2941' }},
 
     -- telescope
-    {'TelescopeSelection', { bg='#211D35', fg='#6370F4' }},
-    {'TelescopeMatching', { bg='#211D35', fg='#58CDFF' }},
-    {'TelescopeBorder', { bg='#211D35', fg='#4B5573' }},
-    {'TelescopeNormal', { bg='#211D35' }},
+    {'TelescopeSelection', { bg='#2C2941', fg='#dedbd6' }},
+    {'TelescopeMatching', { bg='NONE', fg='#FF496F' }},
+    {'TelescopeBorder', { bg='#151326', fg='#4D5980' }},
+    {'TelescopeNormal', { bg='#151326' }},
   }
 
   for _, highlight in pairs(highlights) do
@@ -139,7 +142,8 @@ vim.cmd('augroup END')
 
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false
-vim.cmd('color gruvbox')
+-- vim.cmd('color gruvbox')
+apply_eunoia()
 
 -- needs to be loaded after setting colourscheme
 require'nvim-web-devicons'.setup {

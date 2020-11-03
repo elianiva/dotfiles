@@ -8,6 +8,7 @@ local themes_path = require("gears.filesystem").get_themes_dir()
 local icons_dir = os.getenv("HOME") .. "/.config/awesome/themes/main/icons/"
 
 theme.font  = "Noto Sans 11"
+theme.color_name  = "eunoia"
 theme.nerd_font  = "Noto Sans 45"
 theme.taglist_font  = "M+ 2p Medium 11"
 theme.taglist_fg_empty = theme.black_alt
@@ -35,7 +36,7 @@ theme.systray_icon_size     = dpi(10)
 -- border stuff
 theme.border_width  = dpi(0)
 theme.border_normal = theme.black
-theme.border_focus  = theme.blue
+theme.border_focus  = theme.white
 theme.border_marked = theme.red
 
 -- tasklist
@@ -43,7 +44,7 @@ theme.tasklist_bg_focus = theme.black
 theme.tasklist_fg_focus = theme.yellow
 
 -- widget
-theme.widget_main_color = theme.yellow
+theme.widget_main_color = theme.blue
 theme.widget_red = theme.red
 theme.widget_yelow = theme.yellow
 theme.widget_green = theme.green
@@ -62,8 +63,8 @@ theme.titlebar_fg_normal = theme.white
 theme.notification_font = "SF UI Medium 11"
 theme.notification_bg = theme.black
 theme.notification_fg = theme.white
-theme.notification_border_color = theme.grey
-theme.notification_border_width = dpi(2)
+theme.notification_border_color = theme.blue
+theme.notification_border_width = dpi(1)
 
 function rrect(radius)
     return function(cr, width, height)

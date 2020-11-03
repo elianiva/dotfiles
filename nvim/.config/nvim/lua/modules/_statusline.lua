@@ -11,8 +11,8 @@ local thin_sep = ''
 
 -- highlight groups
 local colors = {
-  active        = '%#Active#',
-  inactive      = '%#Inactive#',
+  active        = '%#StatusLine#',
+  inactive      = '%#StatuslineNC#',
   mode          = '%#Mode#',
   mode_alt      = '%#ModeAlt#',
   git           = '%#Git#',

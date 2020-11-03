@@ -29,7 +29,14 @@ vim.call('lexima#set_default_rules')
 vim.g.completion_confirm_key = ""
 remap(
   'i', '<CR>',
-  'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)" : "<C-g>u".lexima#expand("<LT>CR>", "i") : v:lua.check_html_char() ? lexima#expand("<LT>CR>", "i")."<ESC>O" : lexima#expand("<LT>CR>", "i")',
+  table.concat{
+  'pumvisible()',
+  '? complete_info()["selected"] != "-1"',
+  '? "<Plug>(completion_confirm_completion)"',
+  ': "<C-g>u".lexima#expand("<LT>CR>", "i")',
+  ': v:lua.check_html_char() ? lexima#expand("<LT>CR>", "i")."<ESC>O"',
+  ': lexima#expand("<LT>CR>", "i")'
+  },
   { silent = true, expr = true }
 )
 

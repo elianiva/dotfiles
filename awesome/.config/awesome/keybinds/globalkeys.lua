@@ -94,12 +94,12 @@ function M.get()
     ),
 
     awful.key({ modkey, }, "d",
-      function () awful.spawn.with_shell(launcher .. "drun") end,
+      function () awful.spawn.with_shell(launcher .. "drun " .. theme.color_name) end,
       {description = "open app launcher", group = "launcher"}
     ),
 
     awful.key({ modkey, "Shift" }, "d",
-      function () awful.spawn.with_shell(launcher .. "run") end,
+      function () awful.spawn.with_shell(launcher .. "run " .. theme.color_name) end,
       {description = "open command launcher", group = "launcher"}
     ),
 

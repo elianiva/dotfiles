@@ -21,7 +21,7 @@ month_calendar = awful.widget.calendar_popup.month({
   style_header = {border_width = 0, bg_color = theme.black},
   style_weekday = {border_width = 0, bg_color = theme.black},
   style_normal = {border_width = 0, bg_color = theme.black},
-  style_focus = {border_width = 0, bg_color = theme.yellow},
+  style_focus = {border_width = 0, bg_color = theme.widget_main_color},
 })
 
 -- Attach calentar to clock_widget

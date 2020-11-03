@@ -1,44 +1,44 @@
-/* ! scheme: "eunoia" */
-/* ! author: "elianiva (https://github.com/elianiva)" */
-/* *background: #151326 */
-/* *foreground: #dedbd6 */
-/* *color0:  #151326 */
-/* *color1:  #ff496f */
-/* *color2:  #44D695 */
-/* *color3:  #ffe064 */
-/* *color4:  #6391F4 */
-/* *color5:  #E36DD4 */
-/* *color6:  #58CDFF */
-/* *color7:  #DEDBD6 */
-/* *color8:  #4B5573 */
-/* *color9:  #FF4356 */
-/* *color10: #2bff99 */
-/* *color11: #FFB55E */
-/* *color12: #6370F4 */
-/* *color13: #DA6DE3 */
-/* *color14: #58CDFF */
-/* *color15: #efefef */
+! scheme: "eunoia"
+! author: "elianiva (https://github.com/elianiva)"
+*background: #151326
+*foreground: #dedbd6
+*color0:  #151326
+*color1:  #ff496f
+*color2:  #44D695
+*color3:  #ffe064
+*color4:  #6391F4
+*color5:  #E36DD4
+*color6:  #58CDFF
+*color7:  #DEDBD6
+*color8:  #4B5573
+*color9:  #FF4356
+*color10: #2bff99
+*color11: #FFB55E
+*color12: #6370F4
+*color13: #DA6DE3
+*color14: #58CDFF
+*color15: #efefef
 
-! scheme: "gruvbox"
-! author: "Morhetz (https://github.com/morhetz)"
-*background: #1d2021
-*foreground: #ebdbb2
-*color0:  #282828
-*color8:  #928374
-*color1:  #cc241d
-*color9:  #fb4934
-*color2:  #98971a
-*color10: #b8bb26
-*color3:  #d79921
-*color11: #fabd2f
-*color4:  #458588
-*color12: #83a598
-*color5:  #b16286
-*color13: #d3869b
-*color6:  #689d6a
-*color14: #8ec07c
-*color7:  #ebdbb2
-*color15: #ebdbb2
+/* ! scheme: "gruvbox" */
+/* ! author: "Morhetz (https://github.com/morhetz)" */
+/* *background: #1d2021 */
+/* *foreground: #ebdbb2 */
+/* *color0:  #282828 */
+/* *color8:  #928374 */
+/* *color1:  #cc241d */
+/* *color9:  #fb4934 */
+/* *color2:  #98971a */
+/* *color10: #b8bb26 */
+/* *color3:  #d79921 */
+/* *color11: #fabd2f */
+/* *color4:  #458588 */
+/* *color12: #83a598 */
+/* *color5:  #b16286 */
+/* *color13: #d3869b */
+/* *color6:  #689d6a */
+/* *color14: #8ec07c */
+/* *color7:  #ebdbb2 */
+/* *color15: #ebdbb2 */
 
 ! ------------------------------------------------------------------------------
 ! Xft Font Configuration
