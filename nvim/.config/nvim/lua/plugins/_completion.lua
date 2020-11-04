@@ -3,14 +3,16 @@ vim.g.completion_auto_change_source = 1
 vim.g.completion_enable_auto_signature = 0
 vim.g.completion_matching_strategy_list = {'exact', 'substring'}
 vim.g.completion_auto_change_source = 1
-vim.g.completion_enable_auto_paren = 1
+vim.g.completion_enable_auto_paren = 0
 vim.g.completion_sorting = 'length'
+vim.g.completion_enable_snippet = 'vim-vsnip'
 
 -- define an chain complete list
 vim.g.completion_chain_complete_list = {
   default = {
     { complete_items = { 'lsp' } },
     { complete_items = { 'buffers' } },
+    { complete_items = { 'snippet' } },
     { mode = { '<c-p>' } },
     { mode = { '<c-n>' } }
   },
@@ -31,5 +33,6 @@ vim.g.completion_items_priority = {
   ['Struct'] = 6,
   ['Keyword'] = 5,
   ['File']  = 2,
+  ['Snippets']  = 1,
   ['Buffers']  = 0,
 }

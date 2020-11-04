@@ -44,6 +44,8 @@ local plugins = {
   -- {'neoclide/coc.nvim', [[{'branch': 'release'}]]}, -- coc.nvim
   'lukas-reineke/format.nvim', -- formatter
   'nvim-lua/completion-nvim', -- completion helper
+  'hrsh7th/vim-vsnip', -- snippets support
+  'hrsh7th/vim-vsnip-integ', -- snippets support
   'steelsojka/completion-buffers', -- buffer source for completion
   'nvim-lua/diagnostic-nvim', -- diagnostic for nvim lsp
   'tpope/vim-commentary', -- comment stuff easier
