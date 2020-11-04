@@ -19,7 +19,7 @@ require("plugins._signify")
 require("plugins._telescope")
 require("plugins._completion")
 require("plugins._formatter")
--- require("plugins._treesitter")
+require("plugins._treesitter")
 -- require("plugins._coc")
 
 -- lua plugins

@@ -19,7 +19,9 @@ vim.g.completion_chain_complete_list = {
   string = {
     { complete_items = {'path'}, triggered_only = {'/'} },
   },
-  comment = {},
+  comment = {
+    { complete_items = { 'buffers' } },
+  },
 }
 
 vim.g.completion_items_priority = {
