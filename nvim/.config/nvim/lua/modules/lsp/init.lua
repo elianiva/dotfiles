@@ -64,7 +64,7 @@ nvim_lsp.sumneko_lua.setup{
 
 nvim_lsp.rust_analyzer.setup{
   on_attach = custom_on_attach,
-  on_init = custom_on_init
+  on_init = custom_on_init,
 }
 
 require('modules.lsp._settings')

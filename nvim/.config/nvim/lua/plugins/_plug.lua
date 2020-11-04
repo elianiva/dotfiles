@@ -21,7 +21,11 @@ local plugins = {
   'neoclide/jsonc.vim', -- jsonc highlighting
   'wakatime/vim-wakatime', -- track usage time using wakatime
   'norcalli/nvim-colorizer.lua', -- colorize hex/rgb/hsl value
-  'sheerun/vim-polyglot', -- various languages highlighting
+  'pangloss/vim-javascript', -- javascript highlights
+  -- {
+  --   'sheerun/vim-polyglot', -- various languages highlighting
+  --   [[{'for': ['svelte']}]]
+  -- },
   'nvim-treesitter/nvim-treesitter', -- better syntax highlighting
   'nvim-treesitter/playground', -- playground for treesitter
   'leafOfTree/vim-svelte-plugin', -- svelte language support

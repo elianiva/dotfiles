@@ -100,7 +100,6 @@ vim.cmd('augroup END')
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false
 vim.cmd('color gruvbox')
--- apply_eunoia()
 
 -- needs to be loaded after setting colourscheme
 require'nvim-web-devicons'.setup {
