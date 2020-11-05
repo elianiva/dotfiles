@@ -11,16 +11,19 @@ local prettier = {
   }
 }
 
+local rustfmt = {
+  {
+    cmd = { 'rustfmt' },
+    tempfile_dir = os.getenv("HOME").."/.config/nvim"
+  }
+}
+
 require'format'.setup {
   javascript = prettier,
   typescript = prettier,
   svelte = prettier,
   html = prettier,
   css = prettier,
+  rust = rustfmt,
 }
 remap('n', 'gf', '<cmd>FormatWrite<CR>', { noremap = true, silent = true })
-
--- vim.cmd('augroup Format')
--- vim.cmd('au!')
--- vim.cmd('au BufWritePost * FormatWrite')
--- vim.cmd('augroup END')

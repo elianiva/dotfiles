@@ -16,7 +16,7 @@ end
 
 local plugins = {
   'gruvbox-community/gruvbox', -- nice colorscheme
-  -- 'tjdevries/colorbuddy.nvim', -- colorscheme maker
+  'tjdevries/colorbuddy.nvim', -- colorscheme maker
   'cohama/lexima.vim', -- autopairs brackets, braces, etc
   'neoclide/jsonc.vim', -- jsonc highlighting
   'wakatime/vim-wakatime', -- track usage time using wakatime
@@ -30,7 +30,7 @@ local plugins = {
   'nvim-treesitter/playground', -- playground for treesitter
   'leafOfTree/vim-svelte-plugin', -- svelte language support
   'euclidianAce/BetterLua.vim', -- better lua highlights
-  'uiiaoo/java-syntax.vim', -- better java highlights
+  -- 'uiiaoo/java-syntax.vim', -- better java highlights
   'Yggdroot/indentline', -- indentline guide
   {
     'junegunn/goyo.vim',

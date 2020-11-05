@@ -7,6 +7,7 @@ require'nvim-treesitter.configs'.setup {
     "php",
     "rust",
     "tsx",
+    "python",
     "lua"
   },
 

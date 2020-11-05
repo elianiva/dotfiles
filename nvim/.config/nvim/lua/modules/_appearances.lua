@@ -15,13 +15,17 @@ apply_gruvbox = function()
     -- normal stuff
     {'Normal', { bg = 'NONE' }},
     {'Comment', { gui = 'italic' }},
+    {'Identifier', { fg = '#EBDBB2' }},
+    {'TSProperty', { fg = '#83a589' }},
     {'SignColumn', { bg = 'NONE' }},
     {'ColorColumn', { bg = '#3C3836' }},
+
     {'SignifySignAdd', { fg = '#458588', bg = 'NONE' }},
     {'SignifySignChange', { fg = '#D79921', bg = 'NONE' }},
     {'SignifySignDelete', { fg = '#CC241D', bg = 'NONE' }},
     {'GitGutterChange', { fg = '#D79921' }},
     {'GitGutterDelete', { fg = '#CC241D' }},
+
     {'jsonMissingCommaError', { fg = '#CC241D' }},
     {'jsonNoQuotesError', { fg = '#CC241D' }},
     {'IncSearch', { bg='#282828', fg='#928374' }},

@@ -1,7 +1,7 @@
 --[[
   taken from https://github.com/glepnir/nvim
+  modified a bit
   big thanks to @glepnir
-  none of this is mine :)
 --]]
 
 local vim,api = vim,vim.api
@@ -136,6 +136,8 @@ local function create_float_contents(contents, filetype,enter,modifiable,opts)
   api.nvim_buf_set_lines(contents_bufnr,0,-1,true,content)
   api.nvim_buf_set_option(contents_bufnr, 'modifiable', modifiable)
   local contents_winid = api.nvim_open_win(contents_bufnr, enter, opts)
+  -- wrap text inside hover window
+  api.nvim_win_set_option(contents_winid, 'wrap', true)
   if filetype == 'markdown' then
     api.nvim_win_set_option(contents_winid, 'conceallevel', 2)
   end

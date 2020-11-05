@@ -1,7 +1,7 @@
 --[[
   taken from https://github.com/glepnir/nvim
+  modified a bit
   big thanks to @glepnir
-  none of this is mine :)
 --]]
 
 local lsp = vim.lsp
@@ -14,7 +14,9 @@ lsp.callbacks['textDocument/hover'] = function(_, method, result)
       markdown_lines = lsp.util.trim_empty_lines(markdown_lines)
       if vim.tbl_isempty(markdown_lines) then return end
 
-      local bufnr, contents_winid, _, border_winid = window.fancy_floating_markdown(markdown_lines)
+      local opts = { max_width = 80 }
+
+      local bufnr, contents_winid, _, border_winid = window.fancy_floating_markdown(markdown_lines, opts)
       lsp.util.close_preview_autocmd({"CursorMoved", "BufHidden", "InsertCharPre"}, contents_winid)
       lsp.util.close_preview_autocmd({"CursorMoved", "BufHidden", "InsertCharPre"}, border_winid)
       return bufnr,contents_winid
