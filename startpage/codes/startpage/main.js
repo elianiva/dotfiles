@@ -16,6 +16,7 @@ const cmd = {
   YOUTUBE: /^:yt/,
   WA: /^:wa/,
   ANKI: /^:an/,
+  TWITTER: /^:tw/,
   TRELLO: /^:tr/
 }
 
@@ -62,6 +63,8 @@ INPUT.addEventListener("keydown", e => {
       window.location.href = "https://ankiweb.net"
     if (value.toLowerCase().match(cmd.TRELLO))
       window.location.href = "https://trello.com"
+    if (value.toLowerCase().match(cmd.TWITTER))
+      window.location.href = "https://twitter.com"
   }
 })
 

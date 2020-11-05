@@ -1,10 +1,16 @@
 local remap = vim.api.nvim_set_keymap
+local fn = vim.fn
 
 local prettier = {
   {
     cmd = {
       function(file)
-        return string.format("prettier -w --config %s/.prettierrc %s", vim.fn.getcwd(), file)
+        if not fn.empty(fn.glob(fn.getcwd()..'/.prettierrc')) then
+          return string.format("prettier -w --config %s/.prettierrc %s", fn.getcwd(), file)
+        else
+          -- fallback to global config
+          return string.format("prettier -w --config ~/.config/nvim/.prettierrc %s", file)
+        end
       end
     },
     tempfile_dir = os.getenv("HOME").."/.config/nvim"

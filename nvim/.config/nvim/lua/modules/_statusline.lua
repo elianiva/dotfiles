@@ -94,14 +94,14 @@ end
 -- https://github.com/tjdevries/express_line.nvim/
 local get_git_status = function()
   local s = vim.call('sy#repo#get_stats')
-  local j = Job:new({
+  local job = Job:new({
     command = "git",
     args = {"branch", "--show-current"},
     cwd = fn.fnamemodify(fn.bufname(0), ":h"),
   })
 
   local ok, branch = pcall(function()
-    return vim.trim(j:sync()[1])
+    return vim.trim(job:sync()[1])
   end)
 
   if ok then
@@ -169,11 +169,11 @@ Statusline.inactive = function()
 end
 
 Statusline.explorer = function()
-  local title = colors.mode .. ' Explorer '
+  local title = colors.mode .. ' EXPLORER '
   local title_alt = colors.mode_alt .. left_sep
 
   return table.concat({
-    colors.active, title:upper(), title_alt
+    colors.active, title, title_alt
   })
 end
 
