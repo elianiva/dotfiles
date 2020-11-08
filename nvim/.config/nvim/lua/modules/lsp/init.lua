@@ -33,6 +33,47 @@ nvim_lsp.tsserver.setup{
   end
 }
 
+nvim_lsp.diagnosticls.setup{
+  filetypes = { 'javascript', 'typescript', 'typescriptreact', 'svelte' },
+  on_attach = custom_on_attach,
+  on_init = function() print("Diagnosticls started") end,
+  init_options = {
+    filetypes = {
+      javascript = "eslint",
+      svelte = "eslint",
+      typescriptreact = "eslint",
+    },
+    linters = {
+      eslint = {
+        sourceName = "eslint",
+        command = "./node_modules/.bin/eslint",
+        rootPatterns = { ".git" },
+        debounce = 100,
+        args = {
+          "--stdin",
+          "--stdin-filename",
+          "%filepath",
+          "--format",
+          "json",
+        },
+        parseJson = {
+          errorsRoot = "[0].messages",
+          line = "line",
+          column = "column",
+          endLine = "endLine",
+          endColumn = "endColumn",
+          message = "${message} [${ruleId}]",
+          security = "severity",
+        };
+        securities = {
+          [2] = "error",
+          [1] = "warning"
+        }
+      }
+    }
+  }
+}
+
 nvim_lsp.html.setup{
   on_attach = custom_on_attach,
   on_init = custom_on_init
