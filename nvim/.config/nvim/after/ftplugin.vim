@@ -2,8 +2,10 @@
 au FileType * setlocal formatoptions-=cro
 
 " Set filetypes
-au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
 au BufNewFile,BufRead *.json,.prettierrc,.eslintrc set filetype=jsonc
+au BufRead,BufNewFile *.json set ft=jsonc
+au BufRead,BufNewFile *.svx set ft=markdown
 
 " Set tabsize for each filetype
 au FileType go setlocal sw=8 ts=8
@@ -16,12 +18,6 @@ au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
 
 " Remove conceal in markdown
 au FileType markdown setlocal conceallevel=0
-
-" Set all json file to jsonc
-au BufRead,BufNewFile *.json set ft=jsonc
-
-" Set mdsvex to markdown filetype
-au BufRead,BufNewFile *.svx set ft=markdown
 
 " Remove trailing whitespace on save
 au BufWritePre * %s/\s\+$//e

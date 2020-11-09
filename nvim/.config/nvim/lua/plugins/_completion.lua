@@ -24,6 +24,7 @@ vim.g.completion_chain_complete_list = {
   },
 }
 
+-- not really sure if this works or not
 vim.g.completion_items_priority = {
   ['Method'] = 10,
   ['Field'] = 8,

@@ -33,6 +33,8 @@ nvim_lsp.tsserver.setup{
   end
 }
 
+-- temporarily disable this stuff, my laptop couldn't handle multiple lsp sadly
+if false then
 nvim_lsp.diagnosticls.setup{
   filetypes = { 'javascript', 'typescript', 'typescriptreact', 'svelte' },
   on_attach = custom_on_attach,
@@ -73,6 +75,7 @@ nvim_lsp.diagnosticls.setup{
     }
   }
 }
+end
 
 nvim_lsp.html.setup{
   on_attach = custom_on_attach,
