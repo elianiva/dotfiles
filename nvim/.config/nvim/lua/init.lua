@@ -3,6 +3,7 @@ vim.cmd('cd %:p:h')
 
 -- load vim-plug
 require("plugins._plug")
+-- require("plugins._packer")
 
 -- basic settings
 require("modules._settings")

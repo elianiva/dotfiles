@@ -10,8 +10,8 @@ remap('i', 'JJ', '<Esc><Esc>', { noremap = true })
 remap('n', '<C-n>', '<CMD>LuaTreeToggle<CR>', { noremap = true })
 
 -- toggle telescope.nvim
-remap('n', '<C-p>', '<CMD>lua require"telescope.builtin".find_files{}<CR>', { noremap = true, silent = true })
-remap('n', '<C-f>', '<CMD>lua require"telescope.builtin".live_grep{}<CR>', { noremap = true, silent = true })
+remap('n', '<C-p>', '<CMD>Telescope find_files<CR>', { noremap = true, silent = true })
+remap('n', '<C-f>', '<CMD>Telescope grep_string<CR>', { noremap = true, silent = true })
 
 -- FZF
 -- remap('n', '<C-p>', '<CMD>Files<CR>', { noremap = true, silent = true })
@@ -56,11 +56,11 @@ remap('v', '<A-y>', '"+y', { noremap = true })
 -- no distraction mode for writing
 remap("n", "<Leader>g", "<CMD>Goyo<CR>", { noremap = true })
 
+-- run luafile on current file
+remap("n", "<Leader>r", "<CMD>luafile %<CR>", { noremap = true })
+
 -- toggle colorizer
 remap("n", "<Leader>c", "<CMD>ColorizerToggle<CR>", { noremap = true })
-
--- source init.vim
-remap("n", "<Leader>r", "<CMD>so ~/.config/nvim/init.vim<CR>", { noremap = true })
 
 -- better indenting experience
 remap('v', '<', '<gv', { noremap = true })

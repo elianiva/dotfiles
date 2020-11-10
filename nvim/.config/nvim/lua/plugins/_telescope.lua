@@ -4,8 +4,9 @@ require'telescope'.setup{
   defaults = {
     -- winblend = 8,
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-    file_ignore_patterns = {'node_modules/.*'},
-    -- prompt_position = "top",
+    -- file_sorter =  require'telescope.sorters'.get_fzy_sorter , -- use fzy after #215 merged
+    layout_strategy = 'horizontal',
+    selection_strategy = 'reset',
     -- sorting_strategy = "ascending",
     default_icon = true,
     default_mappings = {
@@ -20,7 +21,6 @@ require'telescope'.setup{
         ['<C-x>'] = telescope_actions.goto_file_selection_split,
         ['<C-t>'] = telescope_actions.goto_file_selection_tabedit,
         ['<C-c>'] = telescope_actions.close,
-        ['<ESC>'] = telescope_actions.close,
 
         ['<C-u>'] = telescope_actions.preview_scrolling_up,
         ['<C-d>'] = telescope_actions.preview_scrolling_down,
