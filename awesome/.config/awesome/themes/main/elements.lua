@@ -15,7 +15,7 @@ theme.taglist_fg_empty = theme.black_alt
 
 -- background stuff
 theme.bg_normal     = theme.black
-theme.bg_focus      = theme.yellow
+theme.bg_focus      = theme.color_name == "gruvbox" and theme.yellow or theme.blue
 theme.bg_urgent     = theme.red
 theme.bg_minimize   = theme.grey
 
@@ -44,7 +44,7 @@ theme.tasklist_bg_focus = theme.black
 theme.tasklist_fg_focus = theme.yellow
 
 -- widget
-theme.widget_main_color = theme.yellow
+theme.widget_main_color = theme.color_name == "gruvbox" and theme.yellow or theme.blue
 theme.widget_red = theme.red
 theme.widget_yelow = theme.yellow
 theme.widget_green = theme.green

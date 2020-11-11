@@ -13,6 +13,7 @@ require("modules._util")
 
 -- my colourscheme
 -- require("modules._eunoia")
+-- ColorUtil.override_eunoia()
 
 -- plugins config
 require("plugins._luatree")

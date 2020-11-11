@@ -13,6 +13,7 @@ dofile(theme_path .. "elements.lua")
 
 -- theme.wallpaper     = theme_path .. "img/ryuko-dark.png"
 theme.wallpaper     = theme_path .. "img/ryuko-spring.png"
+-- theme.wallpaper     = theme_path .. "img/wall.png"
 theme.awesome_icon  = theme_path .. "icons/killlakill.png"
 
 theme.icon_theme    = "Numix"

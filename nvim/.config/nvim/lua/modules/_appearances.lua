@@ -10,9 +10,9 @@ local hl = function(group, options)
   ))
 end
 
-local M = {}
+ColorUtil = {}
 
-override_gruvbox = function()
+ColorUtil.override_gruvbox = function()
     local highlights = {
       -- normal stuff
       {'Normal', { bg = 'NONE' }},
@@ -28,8 +28,10 @@ override_gruvbox = function()
       {'GitGutterChange', { fg = '#D79921' }},
       {'GitGutterDelete', { fg = '#CC241D' }},
 
-      {'jsonMissingCommaError', { fg = '#CC241D' }},
+      -- misc
+      {'htmlLink', { gui = 'NONE', fg = '#ebdbb2' }},
       {'jsonNoQuotesError', { fg = '#CC241D' }},
+      {'jsonMissingCommaError', { fg = '#CC241D' }},
       {'IncSearch', { bg='#282828', fg='#928374' }},
       {'mkdLineBreak', { bg='NONE' }},
 
@@ -62,7 +64,7 @@ override_gruvbox = function()
   end
 end
 
-override_eunoia = function()
+ColorUtil.override_eunoia = function()
   local highlights = {
     -- Disable background
     {'Normal', { bg = 'NONE'}},
@@ -99,10 +101,9 @@ hl('Comment', { gui = 'italic' })
 -- automatically override colourscheme
 vim.cmd('augroup NewColor')
 vim.cmd('au!')
-vim.cmd('au ColorScheme gruvbox call v:lua.override_gruvbox()')
-vim.cmd('au ColorScheme eunoia call v:lua.override_eunoia()')
+vim.cmd('au ColorScheme gruvbox call v:lua.ColorUtil.override_gruvbox()')
+vim.cmd('au ColorScheme eunoia call v:lua.ColorUtil.override_eunoia()')
 vim.cmd('augroup END')
-
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false
 vim.cmd('color gruvbox')
