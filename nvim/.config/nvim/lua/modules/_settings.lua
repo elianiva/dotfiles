@@ -13,7 +13,7 @@ local apply_options = function(opts)
 end
 
 local options = {
-  encoding = "UTF-8", -- set encoding
+  -- Boolean value
   number = true, -- enable number
   relativenumber = true, -- enable relativenumber
   wrap = false, -- dont wrap lines
@@ -36,10 +36,18 @@ local options = {
   startofline = false, -- don't go to the start of the line when moving to another file
   termguicolors = true, -- truecolours for better experience
 
+  -- String value
+  encoding = "UTF-8", -- set encoding
   mouse = "a", -- enable mouse support
   shortmess = "csa", -- disable some stuff on shortmess
   fillchars = "vert:┃", -- make vertical split sign better
   foldmethod = "marker", -- foldmethod using marker
+  signcolumn = "yes", -- enable sign column all the time, 4 column
+  backupcopy= "yes", -- fix weirdness for postcss
+  completeopt='menuone,noinsert,noselect,longest', -- better completion
+  inccommand="split", -- incrementally show result of command
+
+  -- Number value
   shiftwidth = 2, -- set indentation width
   tabstop = 2, -- tabsize
   laststatus = 2, -- always enable statusline
@@ -50,12 +58,8 @@ local options = {
   re = 0, -- set regexp engine to auto
   synmaxcol = 300, -- set limit for syntax highlighting in a single line
   updatetime = 100, -- set faster update time
-  signcolumn = "yes", -- enable sign column all the time
   colorcolumn = 80, -- 80 chars color column
   -- pumblend = 15, -- transparent completion menu
-  backupcopy= "yes", -- fix weirdness for postcss
-  completeopt='menuone,noinsert,noselect,longest', -- better completion
-  inccommand="split", -- incrementally show result of command
 }
 
 apply_options(options)

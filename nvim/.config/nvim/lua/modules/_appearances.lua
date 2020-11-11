@@ -10,57 +10,59 @@ local hl = function(group, options)
   ))
 end
 
-apply_gruvbox = function()
-  local highlights = {
-    -- normal stuff
-    {'Normal', { bg = 'NONE' }},
-    {'Comment', { gui = 'italic' }},
-    {'Identifier', { fg = '#EBDBB2' }},
-    {'TSProperty', { fg = '#83a589' }},
-    {'SignColumn', { bg = 'NONE' }},
-    {'ColorColumn', { bg = '#3C3836' }},
+local M = {}
 
-    {'SignifySignAdd', { fg = '#458588', bg = 'NONE' }},
-    {'SignifySignChange', { fg = '#D79921', bg = 'NONE' }},
-    {'SignifySignDelete', { fg = '#CC241D', bg = 'NONE' }},
-    {'GitGutterChange', { fg = '#D79921' }},
-    {'GitGutterDelete', { fg = '#CC241D' }},
+override_gruvbox = function()
+    local highlights = {
+      -- normal stuff
+      {'Normal', { bg = 'NONE' }},
+      {'Comment', { gui = 'italic' }},
+      {'Identifier', { fg = '#EBDBB2' }},
+      {'TSProperty', { fg = '#83a589' }},
+      {'SignColumn', { bg = 'NONE' }},
+      {'ColorColumn', { bg = '#3C3836' }},
 
-    {'jsonMissingCommaError', { fg = '#CC241D' }},
-    {'jsonNoQuotesError', { fg = '#CC241D' }},
-    {'IncSearch', { bg='#282828', fg='#928374' }},
-    {'mkdLineBreak', { bg='NONE' }},
+      {'SignifySignAdd', { fg = '#458588', bg = 'NONE' }},
+      {'SignifySignChange', { fg = '#D79921', bg = 'NONE' }},
+      {'SignifySignDelete', { fg = '#CC241D', bg = 'NONE' }},
+      {'GitGutterChange', { fg = '#D79921' }},
+      {'GitGutterDelete', { fg = '#CC241D' }},
 
-    -- statusline colours
-    {'Active', { bg = 'blue', fg = '#EBDBB2' }},
-    {'Inactive', { bg = '#3C3836', fg = '#928374' }},
-    {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
-    {'LineCol', { bg = '#928374', fg = '#1D2021', gui="bold" }},
-    {'Git', { bg = '#504945', fg = '#EBDBB2' }},
-    {'Filetype', { bg = '#504945', fg = '#EBDBB2' }},
-    {'Filename', { bg = '#504945', fg = '#EBDBB2' }},
+      {'jsonMissingCommaError', { fg = '#CC241D' }},
+      {'jsonNoQuotesError', { fg = '#CC241D' }},
+      {'IncSearch', { bg='#282828', fg='#928374' }},
+      {'mkdLineBreak', { bg='NONE' }},
 
-    {'ModeAlt', { bg = '#504945', fg = '#928374' }},
-    {'GitAlt', { bg = '#3C3836', fg = '#504945' }},
-    {'LineColAlt', { bg = '#504945', fg = '#928374' }},
-    {'FiletypeAlt', { bg = '#3C3836', fg = '#504945' }},
+      -- statusline colours
+      {'Active', { bg = 'blue', fg = '#EBDBB2' }},
+      {'Inactive', { bg = '#3C3836', fg = '#928374' }},
+      {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+      {'LineCol', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+      {'Git', { bg = '#504945', fg = '#EBDBB2' }},
+      {'Filetype', { bg = '#504945', fg = '#EBDBB2' }},
+      {'Filename', { bg = '#504945', fg = '#EBDBB2' }},
 
-    -- luatree
-    {'LuaTreeFolderIcon', { fg = '#D79921' }},
-    {'LuaTreeIndentMarker', { fg = '#928374' }},
+      {'ModeAlt', { bg = '#504945', fg = '#928374' }},
+      {'GitAlt', { bg = '#3C3836', fg = '#504945' }},
+      {'LineColAlt', { bg = '#504945', fg = '#928374' }},
+      {'FiletypeAlt', { bg = '#3C3836', fg = '#504945' }},
 
-    -- telescope
-    {'TelescopeSelection', { bg='NONE', fg='#D79921', gui='bold' }},
-    {'TelescopeMatching', { bg='NONE', fg='#CC241D', gui='bold' }},
-    {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
-  }
+      -- luatree
+      {'LuaTreeFolderIcon', { fg = '#D79921' }},
+      {'LuaTreeIndentMarker', { fg = '#928374' }},
+
+      -- telescope
+      {'TelescopeSelection', { bg='NONE', fg='#D79921', gui='bold' }},
+      {'TelescopeMatching', { bg='NONE', fg='#CC241D', gui='bold' }},
+      {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
+    }
 
   for _, highlight in pairs(highlights) do
     hl(highlight[1], highlight[2])
   end
 end
 
-apply_eunoia = function()
+override_eunoia = function()
   local highlights = {
     -- Disable background
     {'Normal', { bg = 'NONE'}},
@@ -97,8 +99,8 @@ hl('Comment', { gui = 'italic' })
 -- automatically override colourscheme
 vim.cmd('augroup NewColor')
 vim.cmd('au!')
-vim.cmd('au ColorScheme gruvbox call v:lua.apply_gruvbox()')
-vim.cmd('au ColorScheme eunoia call v:lua.apply_eunoia()')
+vim.cmd('au ColorScheme gruvbox call v:lua.override_gruvbox()')
+vim.cmd('au ColorScheme eunoia call v:lua.override_eunoia()')
 vim.cmd('augroup END')
 
 -- disable invert selection for gruvbox

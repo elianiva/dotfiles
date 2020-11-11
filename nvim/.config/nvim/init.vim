@@ -6,6 +6,5 @@ if has('nvim-0.5')
   cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
   cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
 
-  packloadall
   lua require("init")
 endif

@@ -64,7 +64,7 @@ local get_current_mode = function()
     ['no'] = { 'N·Pending', 'N' };
     ['v']  = {'Visual', 'V' };
     ['V']  = {'V·Line', 'V' };
-    [''] = {'V·Block', 'V'};
+    [''] = {'V·Block', 'V'}; -- this is not ^V, but , it's different
     ['s']  = {'Select', 'S'};
     ['S']  = {'S·Line', 'S'};
     ['^S'] = {'S·Block', 'S'};
@@ -93,7 +93,7 @@ end
 -- taken from expressline and modified a bit
 -- https://github.com/tjdevries/express_line.nvim/
 local get_git_status = function()
-  local s = vim.call('sy#repo#get_stats')
+  local sy = vim.call('sy#repo#get_stats')
   local job = Job:new({
     command = "git",
     args = {"branch", "--show-current"},
@@ -105,12 +105,12 @@ local get_git_status = function()
   end)
 
   if ok then
-    if is_truncated(90) or s[1] == -1 then
+    if is_truncated(90) or sy[1] == -1 then
       return string.format('  %s ', branch)
     else
       return string.format(
         ' +%s ~%s -%s |  %s ',
-        s[1], s[2], s[3], branch
+        sy[1], sy[2], sy[3], branch
       )
     end
   else

@@ -8,8 +8,11 @@ require("plugins._plug")
 -- basic settings
 require("modules._settings")
 require("modules._others")
--- require("modules._eunoia")
 require("modules._appearances")
+require("modules._util")
+
+-- my colourscheme
+-- require("modules._eunoia")
 
 -- plugins config
 require("plugins._luatree")
