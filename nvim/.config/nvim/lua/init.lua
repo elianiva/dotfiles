@@ -1,7 +1,7 @@
 -- change cwd to current directory
 vim.cmd('cd %:p:h')
 
--- load vim-plug
+-- load plugin manager first
 require("plugins._plug")
 -- require("plugins._packer")
 
@@ -11,8 +11,10 @@ require("modules._others")
 require("modules._appearances")
 require("modules._util")
 
--- my colourscheme
--- require("modules._eunoia")
+-- my colourscheme, not using it, idk why it feels claustrophobic to me
+-- when I use it for too long.
+-- local eunoia = require("modules._eunoia")
+-- eunoia.setup{}
 -- ColorUtil.override_eunoia()
 
 -- plugins config
@@ -27,7 +29,7 @@ require("plugins._formatter")
 require("plugins._treesitter")
 -- require("plugins._coc")
 
--- lua plugins
+-- highlight bg according to hex/rgb/rgba text
 require"colorizer".setup{}
 
 -- load modules

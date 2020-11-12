@@ -112,9 +112,9 @@ vim.cmd('color gruvbox')
 require'nvim-web-devicons'.setup {
   override = {
     svg = {
-      icon = "",
-      color = "#ebdbb2",
-      name = "Svg"
+      icon = '',
+      color = '#ebdbb2',
+      name = 'Svg'
     }
   };
   default = true
