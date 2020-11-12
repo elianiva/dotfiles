@@ -2,12 +2,23 @@ local telescope_actions = require('telescope.actions')
 
 require'telescope'.setup{
   defaults = {
-    -- winblend = 8,
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
     -- file_sorter =  require'telescope.sorters'.get_fzy_sorter , -- use fzy after #215 merged
-    layout_strategy = 'horizontal',
+    scroll_strategy = 'cycle',
     selection_strategy = 'reset',
-    -- sorting_strategy = "ascending",
+    layout_strategy = 'horizontal',
+    layout_defaults = {
+      horizontal = {
+        width_padding = 0.1,
+        height_padding = 0.1,
+        preview_width = 0.6,
+      },
+      vertical = {
+        width_padding = 0.05,
+        height_padding = 1,
+        preview_height = 0.5,
+      }
+    },
     default_icon = true,
     default_mappings = {
       i = {

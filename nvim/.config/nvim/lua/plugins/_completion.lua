@@ -39,3 +39,6 @@ vim.g.completion_items_priority = {
   ['Snippets']  = 1,
   ['Buffers']  = 0,
 }
+
+-- attach completion-nvim and diagnostic for every filetype
+vim.cmd('au BufEnter * lua require"completion".on_attach()')
