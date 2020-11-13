@@ -26,23 +26,27 @@ window:
 
 font:
   normal:
-    family: Iosevka Curly Slab
-    style: Regular
+    # family: Iosevka Curly Slab
+    family: JetBrainsMono Nerd Font
+    style: Medium
 
   bold:
-    family: Iosevka Curly Slab
+    # family: Iosevka Curly Slab
+    family: JetBrainsMono Nerd Font
     style: Bold
 
   italic:
-    family: Iosevka Curly Slab
+    # family: Iosevka Curly Slab
+    family: JetBrainsMono Nerd Font
     style: Italic
 
   bold_italic:
-    family: Iosevka Curly Slab
+    # family: Iosevka Curly Slab
+    family: JetBrainsMono Nerd Font
     style: Bold Italic
 
-  # size: 7.5
-  size: 8
+  size: 7.5
+  # size: 8
 
   offset:
     x: 0
@@ -101,7 +105,7 @@ eunoia: &eunoia
     black:   '#151326'
     red:     '#FF496F'
     green:   '#44D695'
-    yellow:  '#FFE064'
+    yellow:  '#F1DC49'
     blue:    '#6391F4'
     magenta: '#E36DD4'
     cyan:    '#58CDFF'
