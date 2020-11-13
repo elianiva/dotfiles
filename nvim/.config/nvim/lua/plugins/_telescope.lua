@@ -6,7 +6,7 @@ require'telescope'.setup{
     -- file_sorter =  require'telescope.sorters'.get_fzy_sorter , -- use fzy after #215 merged
     scroll_strategy = 'cycle',
     selection_strategy = 'reset',
-    layout_strategy = 'horizontal',
+    layout_strategy = 'flex',
     layout_defaults = {
       horizontal = {
         width_padding = 0.1,

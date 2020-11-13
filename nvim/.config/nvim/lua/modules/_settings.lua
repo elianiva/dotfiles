@@ -35,6 +35,7 @@ local options = {
   smartindent = true, -- smarter indentation
   startofline = false, -- don't go to the start of the line when moving to another file
   termguicolors = true, -- truecolours for better experience
+  lazyredraw = true, -- lazyredraw to make macro faster
 
   -- String value
   encoding = "UTF-8", -- set encoding

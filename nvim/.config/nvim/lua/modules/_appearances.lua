@@ -24,14 +24,14 @@ ColorUtil.override_gruvbox = function()
 
       {'SignifySignAdd', { fg = '#458588', bg = 'NONE' }},
       {'SignifySignChange', { fg = '#D79921', bg = 'NONE' }},
-      {'SignifySignDelete', { fg = '#CC241D', bg = 'NONE' }},
+      {'SignifySignDelete', { fg = '#fb4934', bg = 'NONE' }},
       {'GitGutterChange', { fg = '#D79921' }},
-      {'GitGutterDelete', { fg = '#CC241D' }},
+      {'GitGutterDelete', { fg = '#fb4934' }},
 
       -- misc
       {'htmlLink', { gui = 'NONE', fg = '#ebdbb2' }},
-      {'jsonNoQuotesError', { fg = '#CC241D' }},
-      {'jsonMissingCommaError', { fg = '#CC241D' }},
+      {'jsonNoQuotesError', { fg = '#fb4934' }},
+      {'jsonMissingCommaError', { fg = '#fb4934' }},
       {'IncSearch', { bg='#282828', fg='#928374' }},
       {'mkdLineBreak', { bg='NONE' }},
 
@@ -55,8 +55,11 @@ ColorUtil.override_gruvbox = function()
 
       -- telescope
       {'TelescopeSelection', { bg='NONE', fg='#D79921', gui='bold' }},
-      {'TelescopeMatching', { bg='NONE', fg='#CC241D', gui='bold' }},
+      {'TelescopeMatching', { bg='NONE', fg='#fb4934', gui='bold' }},
       {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
+
+      -- ts override
+      {'TSKeywordOperator', { bg='NONE', fg='#fb4934' }},
     }
 
   for _, highlight in pairs(highlights) do

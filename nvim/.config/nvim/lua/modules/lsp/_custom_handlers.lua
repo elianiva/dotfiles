@@ -7,7 +7,7 @@
 local lsp = vim.lsp
 local window = require('modules.lsp._window')
 
-lsp.callbacks['textDocument/hover'] = function(_, method, result)
+lsp.handlers['textDocument/hover'] = function(_, method, result)
   lsp.util.focusable_float(method, function()
       if not (result and result.contents) then return end
       local markdown_lines = lsp.util.convert_input_to_markdown_lines(result.contents)

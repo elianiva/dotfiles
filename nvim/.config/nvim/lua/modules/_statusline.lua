@@ -93,7 +93,8 @@ end
 -- taken from expressline and modified a bit
 -- https://github.com/tjdevries/express_line.nvim/
 local get_git_status = function()
-  local sy = vim.call('sy#repo#get_stats')
+  -- use fallback because it doesn't set variable on initial `BufEnter`
+  local signs = vim.b.gitsigns_status_dict or { added = 0, changed = 0, removed = 0 }
   local job = Job:new({
     command = "git",
     args = {"branch", "--show-current"},
@@ -105,12 +106,12 @@ local get_git_status = function()
   end)
 
   if ok then
-    if is_truncated(90) or sy[1] == -1 then
+    if is_truncated(90) then
       return string.format('  %s ', branch)
     else
       return string.format(
         ' +%s ~%s -%s |  %s ',
-        sy[1], sy[2], sy[3], branch
+        signs.added, signs.changed, signs.removed, branch
       )
     end
   else

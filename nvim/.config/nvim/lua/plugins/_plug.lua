@@ -51,14 +51,14 @@ local plugins = {
   'hrsh7th/vim-vsnip', -- snippets support
   'hrsh7th/vim-vsnip-integ', -- snippets support
   'steelsojka/completion-buffers', -- buffer source for completion
-  'nvim-lua/diagnostic-nvim', -- diagnostic for nvim lsp
   'tpope/vim-commentary', -- comment stuff easier
   'mattn/emmet-vim', -- less typing for html code
   'tpope/vim-surround', -- surround words with symbol
   'nvim-lua/popup.nvim',
   'nvim-lua/plenary.nvim',
   'nvim-lua/telescope.nvim', -- fuzzy finder
-  'mhinz/vim-signify', -- show git stuff in signcolumn
+  -- 'mhinz/vim-signify', -- show git signs in signcolumn
+  'lewis6991/gitsigns.nvim', -- show git signs in signcolumn
 }
 
 local apply_plugins = function()

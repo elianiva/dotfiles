@@ -3,46 +3,59 @@ local c = require('colorbuddy.color').colors
 local g = require('colorbuddy.group').groups
 local s = require('colorbuddy.style').styles
 
+local M = {}
+
+function M:setup()
+  vim.cmd('hi! clear')
+
+  M:define_colours()
+  M:general_highlights()
+  M:lsp_highlights()
+  M:languages_highlights()
+  M:plugins_highlights()
+  M:treesitter_highlights()
+end
+
+function M:define_colours()
 -- {{{ COLOURS DEFINITION
-Color.new('black', '#151326')
-Color.new('white', '#dedbd6')
+  Color.new('black', '#151326')
+  Color.new('white', '#dedbd6')
 
-Color.new('grey', '#2C2941')
-Color.new('grey_lighter', '#4D5980')
-Color.new('grey_light', '#4B5573')
-Color.new('grey_dark', '#211D35')
-Color.new('grey_darker', '#1D192E')
+  Color.new('grey', '#2C2941')
+  Color.new('grey_lighter', '#4D5980')
+  Color.new('grey_light', '#4B5573')
+  Color.new('grey_dark', '#211D35')
+  Color.new('grey_darker', '#1D192E')
 
-Color.new('tan', '#FFB55E')
+  Color.new('tan', '#FFB55E')
 
-Color.new('red', '#FF496F')
-Color.new('red_dark', '#CC173C')
-Color.new('red_light', '#FF4356')
+  Color.new('red', '#FF496F')
+  Color.new('red_dark', '#CC173C')
+  Color.new('red_light', '#FF4356')
 
-Color.new('yellow', '#F1DC49')
-Color.new('orange', '#FE5B45')
-Color.new('orange_light', '#FC9349')
+  Color.new('yellow', '#F1DC49')
+  Color.new('orange', '#FE5B45')
+  Color.new('orange_light', '#FC9349')
 
-Color.new('green', '#44D695')
-Color.new('green_light', '#51E78C')
-Color.new('green_dark', '#2CBD80')
+  Color.new('green', '#44D695')
 
-Color.new('blue', '#6391F4')
-Color.new('cyan', '#58CDFF')
-Color.new('ice', '#6370F4')
-Color.new('teal', '#4EC2D9')
-Color.new('turqoise', '#2bff99')
+  Color.new('blue', '#6391F4')
+  Color.new('cyan', '#58CDFF')
+  Color.new('ice', '#6370F4')
+  Color.new('teal', '#4EC2D9')
+  Color.new('turqoise', '#2bff99')
 
-Color.new('magenta', '#E36DD4')
-Color.new('magenta_dark', '#BE5DC9')
-Color.new('pink', '#DA6DE3')
-Color.new('pink_light', '#FFA6FF')
-Color.new('purple', '#BA6DFF')
-Color.new('purple_light', '#C874FF')
+  Color.new('magenta', '#E36DD4')
+  Color.new('magenta_dark', '#BE5DC9')
+  Color.new('pink', '#DA6DE3')
+  Color.new('pink_light', '#FFA6FF')
+  Color.new('purple', '#BA6DFF')
+  Color.new('purple_light', '#C874FF')
 -- }}}
+end
 
--- {{{ GENERAL HIGHLIGHTS
--- Text Analysis{{{
+function M:general_highlights()
+-- General {{{
 Group.new('Normal', c.white, c.black)
 Group.new('Comment', c.grey_light, nil, s.italic)
 Group.new('NonText', c.grey_darker)
@@ -169,7 +182,14 @@ Group.new('SpellCap', c.yellow, nil, s.underline)
 Group.new('SpellLocal', c.green, nil, s.underline)
 Group.new('SpellRare', c.orange_light, nil, s.underline)
 --}}}
+-- Cursor{{{
+Group.new('Cursor', nil, nil)
+Group.new('CursorIM', g.Cursor)
+Group.new('CursorColumn', nil, c.grey_dark)
+--}}}
+end
 
+function M:lsp_highlights()
 -- LSP {{{
 Group.new('LspDiagnosticsError', g.Error)
 Group.new('LspDiagnosticsErrorFloating', g.ErrorMsg)
@@ -197,14 +217,9 @@ Group.new('LspDiagnosticsUnderlineHint', nil, nil, s.underline)
 Group.new('LspDiagnosticsUnderlineInfo', nil, nil, s.underline)
 Group.new('LspDiagnosticsUnderlineWarning', nil, nil, s.underline)
 --}}}
--- Cursor{{{
-Group.new('Cursor', nil, nil)
-Group.new('CursorIM', g.Cursor)
-Group.new('CursorColumn', nil, c.grey_dark)
---}}}
--- }}}
+end
 
--- {{{ LANGUAGES
+function M:languages_highlights()
 -- CSS{{{
 Group.new('cssBraces', g.Delimiter)
 Group.new('cssProp', g.Keyword)
@@ -455,15 +470,28 @@ Group.new('xdefaultsValue', c.white)
 -- SQL {{{
 Group.new('sqlKeyword', c.red)
 --}}}
--- }}}
+end
 
--- PLUGINS {{{
+function M:plugins_highlights()
 -- Signify{{{
 Group.new('SignifySignAdd', c.green)
 Group.new('SignifySignChange', c.orange)
 Group.new('SignifySignDelete', c.red)
 Group.new('SignifySignChangeDelete', c.orange_light)
 --}}}
+-- Bufferline.nvim {{{
+Group.new('BufferLineSelected', c.white, c.black, s.bold)
+Group.new('BufferLineTabSelectedSeparator', c.blue)
+Group.new('BufferLineFill', nil, c.grey_darker)
+Group.new('BufferLineBackground', nil, c.grey_darker)
+Group.new('BufferLineInactive', nil, c.grey_darker)
+--}}}
+-- LuaTree{{{
+Group.new('LuaTreeDirty', g.Error)
+-- }}}
+end
+
+function M:treesitter_highlights()
 -- Treesitter {{{
 Group.new('TSBoolean', g.Boolean)
 Group.new('TSConstBuiltin', g.Constant)
@@ -504,16 +532,8 @@ Group.new('TSProperty', c.blue)
 Group.new('TSVariable', g.Identifier)
 Group.new('TSVariableBuiltin', g.Identifier)
 --}}}
--- Bufferline.nvim {{{
-Group.new('BufferLineSelected', c.white, c.black, s.bold)
-Group.new('BufferLineTabSelectedSeparator', c.blue)
-Group.new('BufferLineFill', nil, c.grey_darker)
-Group.new('BufferLineBackground', nil, c.grey_darker)
-Group.new('BufferLineInactive', nil, c.grey_darker)
---}}}
--- LuaTree{{{
-Group.new('LuaTreeDirty', g.Error)
--- }}}
---}}}
+end
+
+return M
 
 -- vim: foldmethod=marker

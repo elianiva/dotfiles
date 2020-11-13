@@ -1,13 +1,11 @@
 local nvim_lsp = require('nvim_lsp')
-local diagnostic = require('diagnostic')
 local mappings = require('modules.lsp._mappings')
 
-require('modules.lsp._svelte')
-require('modules.lsp._diagnostic')
-require('modules.lsp._custom_callbacks')
+require('modules.lsp._svelte') -- svelteserver config
+require('modules.lsp._custom_handlers') -- override hover callback
+require('modules.lsp._diagnostic') -- diagnostic stuff
 
 local custom_on_attach = function()
-  diagnostic.on_attach() -- sweet diagnostics (will be replaced once TJ's PR merged)
   mappings.lsp_mappings() -- lsp related mappings
 end
 
