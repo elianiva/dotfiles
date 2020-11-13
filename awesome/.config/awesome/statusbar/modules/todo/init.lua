@@ -15,6 +15,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local gfs = require("gears.filesystem")
 local dpi = beautiful.xresources.apply_dpi
+local colorize = require("main.helpers").colorize
 
 local HOME_DIR = os.getenv("HOME")
 local WIDGET_DIR = HOME_DIR .. '/.config/awesome/statusbar/modules/todo'

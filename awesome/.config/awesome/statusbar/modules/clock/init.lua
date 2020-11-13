@@ -3,15 +3,17 @@ local wibox = require("wibox")
 local awful = require("awful")
 local dpi = require("beautiful.xresources").apply_dpi
 
+local M = {}
+
 -- Clock
-clock = wibox.widget.textclock("<span color='" .. theme.foreground .."'>%a, %I:%M %p</span>")
+M.widget = wibox.widget.textclock("<span color='" .. theme.foreground .."'>%a, %I:%M %p</span>")
 
 -- Calendar Widget
-cal_shape = function(cr, width, height)
+M.cal_shape = function(cr, width, height)
   gears.shape.rounded_rect(cr, width, height, false, false, true, true, 12)
 end
 
-month_calendar = awful.widget.calendar_popup.month({
+M.month_calendar = awful.widget.calendar_popup.month({
   start_sunday = false,
   spacing = dpi(10),
   font = theme.font,
@@ -25,4 +27,6 @@ month_calendar = awful.widget.calendar_popup.month({
 })
 
 -- Attach calentar to clock_widget
-month_calendar:attach(clock, "tc" , { on_pressed = true, on_hover = false })
+M.month_calendar:attach(M.widget, "tc" , { on_pressed = true, on_hover = false })
+
+return M

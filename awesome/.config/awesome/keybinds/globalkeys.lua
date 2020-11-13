@@ -2,12 +2,14 @@ local gears = require("gears")
 local awful = require("awful")
 local naughty = require("naughty")
 local exit_screen_show = require("main.exitscreen")
+local systray = require("statusbar.modules.systray")
 
 -- Resource Configuration
 local launcher = RC.vars.launcher
 local shot = RC.vars.shot
 local emoji_picker = RC.vars.emoji_picker
 local clipmenu = RC.vars.clipmenu
+local terminal = RC.vars.terminal
 
 local M = {}
 

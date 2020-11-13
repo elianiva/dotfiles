@@ -2,13 +2,16 @@ local wibox = require("wibox")
 local lain = require("lain")
 local markup = lain.util.markup
 local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/battery/icon.svg"
+local colorize = require("main.helpers").colorize
+
+local M = {}
 
 -- Battery
-bat_icon = wibox.widget.imagebox(
+M.icon = wibox.widget.imagebox(
   colorize(icon, theme.widget_main_color)
 )
 
-bat = lain.widget.bat({
+M.widget = lain.widget.bat({
   settings = function()
     if bat_now.status and bat_now.status ~= "N/A" then
       if bat_now.status == "Charging" then
@@ -20,4 +23,6 @@ bat = lain.widget.bat({
       widget:set_markup(markup(theme.foreground, bat_now.perc .. " "))
     end
   end
-})
+}).widget -- call the actual lain widget
+
+return M

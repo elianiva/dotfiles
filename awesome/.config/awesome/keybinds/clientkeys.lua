@@ -22,7 +22,7 @@ function M.get()
     ),
 
     awful.key({ modkey, }, "f",
-      awful.client.floating.toggle,
+      function(c) awful.client.floating.toggle(c) end,
       {description = "toggle floating", group = "client"}
     ),
 

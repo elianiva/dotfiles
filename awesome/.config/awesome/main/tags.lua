@@ -1,9 +1,8 @@
--- Standard awesome library
 local awful = require("awful")
 
 local M = {}
 
-function M.get ()
+M.get = function()
   local tags = {}
 
   awful.screen.connect_for_each_screen(function(s)
@@ -16,4 +15,4 @@ function M.get ()
   return tags
 end
 
-return setmetatable({}, { __call = function(_, ...) return M.get(...) end })
+return M

@@ -10,7 +10,7 @@ local helpers = {}
 local floating_resize_amount = dpi(20)
 local tiling_resize_factor= 0.05
 ---------------
-function helpers.resize_dwim(c, direction)
+helpers.resize_dwim = function(c, direction)
   if c and c.floating then
     if direction == "up" then
       c:relative_move(  0,  0, 0, -floating_resize_amount)
@@ -32,6 +32,10 @@ function helpers.resize_dwim(c, direction)
       awful.tag.incmwfact( tiling_resize_factor)
     end
   end
+end
+
+helpers.colorize = function(icon, color)
+  return gears.color.recolor_image(icon, color)
 end
 
 return helpers

@@ -1,9 +1,13 @@
 local wibox = require("wibox")
 local dpi = require('beautiful').xresources.apply_dpi
 
-systray = wibox.widget.systray({
+local M = {}
+
+-- this needs to be global
+M.widget = wibox.widget.systray({
   forced_height = dpi(28)
 })
-systray:set_base_size(dpi(20))
 
-return systray
+M.widget:set_base_size(dpi(20))
+
+return M

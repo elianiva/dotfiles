@@ -18,14 +18,10 @@ RC.vars = require("main.variables") -- user defined variables
 modkey = RC.vars.modkey
 altkey = RC.vars.altkey
 ctrlkey = RC.vars.ctrlkey
-terminal = RC.vars.terminal
 
 local main = {
-  layouts = require("main.layouts"), -- layouts
-  tags    = require("main.tags"), -- tags
-  menu    = require("main.menu"), -- menu
-  rules   = require("main.rules"), -- define rules
-  signals = require("main.signals"), -- connect events
+  rules = require("main.rules"), -- define rules
+  signals = require("main.signals"), -- define rules
   titlebar = require("main.titlebar"), -- dual border
   volume = require("main.volume-widget") -- Volume widget
 }
@@ -43,8 +39,8 @@ local keybinds = {
   mediakeys     = require("keybinds.mediakeys")
 }
 
-RC.layouts = main.layouts()
-RC.tags = main.tags()
+RC.layouts = require("main.layouts").layouts
+RC.tags = require("main.tags").get()
 RC.launcher = awful.widget.launcher({
   image = theme.awesome_icon,
   menu = RC.mainmenu

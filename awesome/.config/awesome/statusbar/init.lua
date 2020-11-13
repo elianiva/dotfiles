@@ -3,10 +3,7 @@ local wibox = require("wibox")
 local awful = require("awful")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
-local lain = require("lain")
-local markup = lain.util.markup
 local margin = wibox.container.margin
-local bg = wibox.container.background
 
 local text_wrapper = function(widget, left, right, top, bottom)
   left = left or 0
@@ -26,22 +23,19 @@ local icon_wrapper = function(icon, left, right, top, bottom)
   return margin(icon, dpi(left), dpi(right), dpi(top), dpi(bottom))
 end
 
-function colorize(icon, color)
-    return gears.color.recolor_image(icon, color)
-end
-
 -- Modules
-require("statusbar.modules.clock")
-require("statusbar.modules.systray")
-require("statusbar.modules.battery")
-require("statusbar.modules.memory")
-require("statusbar.modules.cpu")
-require("statusbar.modules.netspeed")
-require("statusbar.modules.volume")
-require("statusbar.modules.temp")
-require("statusbar.modules.taglist")
-require("statusbar.modules.playerctl")
+local systray = require("statusbar.modules.systray")
 
+local launcher = require("statusbar.modules.launcher")
+local clock = require("statusbar.modules.clock")
+local battery = require("statusbar.modules.battery")
+local memory = require("statusbar.modules.memory")
+local cpu = require("statusbar.modules.cpu")
+local netspeed = require("statusbar.modules.netspeed")
+local volume = require("statusbar.modules.volume")
+local temp = require("statusbar.modules.temp")
+local taglist = require("statusbar.modules.taglist")
+local playerctl = require("statusbar.modules.playerctl")
 local todo = require("statusbar.modules.todo")
 
 local function set_wallpaper(s)
@@ -64,11 +58,7 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Create a taglist widget
-  s.taglist = awful.widget.taglist {
-    screen  = s,
-    filter  = awful.widget.taglist.filter.all,
-    buttons = taglist_buttons
-  }
+  s.taglist = taglist.widget(s)
 
   -- Create the wibox
   s.wibox = awful.wibar({
@@ -83,31 +73,33 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     expand = "none",
     {
-      text_wrapper(launcher, 5, 5, 0, 0),
+      text_wrapper(launcher.widget, dpi(5), dpi(5), dpi(0), dpi(0)),
       s.taglist,
 
-      icon_wrapper(player_icon), text_wrapper(playerctl_widget, 0, 12, 0, 2),
+      icon_wrapper(playerctl.icon),
+      text_wrapper(playerctl.widget, dpi(0), dpi(12), dpi(0), dpi(0)),
 
       layout = wibox.layout.fixed.horizontal,
     },
     {
-      text_wrapper(clock, 10, 10, 5, 10), -- Clock
+      -- text_wrapper(clock, 10, 10, 5, 10), -- Clock
+      text_wrapper(clock.widget, dpi(10), dpi(10), dpi(5), dpi(10)), -- Clock
       layout = wibox.layout.fixed.horizontal,
     },
     {
       -- Netstatus
-      icon_wrapper(wifi_icon),
-      icon_wrapper(down_icon), text_wrapper(down_speed),
-      icon_wrapper(up_icon), text_wrapper(netspeed.widget),
+      icon_wrapper(netspeed.wifi_icon),
+      icon_wrapper(netspeed.down_icon), text_wrapper(netspeed.down_speed),
+      icon_wrapper(netspeed.up_icon), text_wrapper(netspeed.up_speed),
 
-      icon_wrapper(vol_icon), text_wrapper(vol.widget), -- Volume
-      icon_wrapper(temp_icon), text_wrapper(temp.widget), -- Temperature
-      icon_wrapper(cpu_icon), text_wrapper(cpu.widget), -- CPU
-      icon_wrapper(mem_icon), text_wrapper(mem.widget), -- Memory
-      icon_wrapper(bat_icon), text_wrapper(bat.widget, 0, 0), -- Battery
+      icon_wrapper(volume.icon), text_wrapper(volume.widget), -- Volume
+      icon_wrapper(temp.icon), text_wrapper(temp.widget), -- Temperature
+      icon_wrapper(cpu.icon), text_wrapper(cpu.widget), -- CPU
+      icon_wrapper(memory.icon), text_wrapper(memory.widget), -- Memory
+      icon_wrapper(battery.icon), text_wrapper(battery.widget, 0, 0), -- Battery
       text_wrapper(todo, 0, 5, 8, 8), -- Todo
 
-      margin(systray, dpi(0), dpi(2), dpi(4), dpi(4)),
+      margin(systray.widget, dpi(0), dpi(2), dpi(4), dpi(4)),
       -- s.mylayoutbox,
       layout = wibox.layout.fixed.horizontal,
     },
