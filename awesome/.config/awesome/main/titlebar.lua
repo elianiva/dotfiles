@@ -9,17 +9,17 @@ local M = {}
 function M.get()
   local function create_title_button(c, color_focus, color_unfocus)
     local tb_color = wibox.widget {
-      bg      = color_focus,
-      widget  = wibox.container.background,
-      shape   = gears.shape.circle
+      bg = color_focus,
+      widget = wibox.container.background,
+      shape = gears.shape.circle
     }
 
     local tb = wibox.widget {
       tb_color,
-      width    = dpi(12),
-      height   = dpi(12),
+      width = dpi(12),
+      height = dpi(12),
       strategy = "min",
-      layout   = wibox.container.constraint
+      layout = wibox.container.constraint
     }
 
     local function update()

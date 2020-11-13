@@ -44,9 +44,9 @@ local options = {
   fillchars = "vert:┃", -- make vertical split sign better
   foldmethod = "marker", -- foldmethod using marker
   signcolumn = "yes", -- enable sign column all the time, 4 column
-  backupcopy= "yes", -- fix weirdness for postcss
-  completeopt='menuone,noinsert,noselect,longest', -- better completion
-  inccommand="split", -- incrementally show result of command
+  backupcopy = "yes", -- fix weirdness for postcss
+  completeopt = 'menuone,noinsert,noselect,longest', -- better completion
+  inccommand = "split", -- incrementally show result of command
 
   -- Number value
   shiftwidth = 2, -- set indentation width
@@ -59,7 +59,7 @@ local options = {
   re = 0, -- set regexp engine to auto
   synmaxcol = 300, -- set limit for syntax highlighting in a single line
   updatetime = 100, -- set faster update time
-  colorcolumn = 80, -- 80 chars color column
+  colorcolumn = 80 -- 80 chars color column
   -- pumblend = 15, -- transparent completion menu
 }
 

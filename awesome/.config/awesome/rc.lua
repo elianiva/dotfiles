@@ -10,7 +10,7 @@ require("awful.autofocus") -- autofocus window
 require("main.error-handling") -- error handling
 
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(os.getenv("HOME").."/.config/awesome/themes/main/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/main/theme.lua")
 
 RC = {} -- global namespace, on top before require any modules
 RC.vars = require("main.variables") -- user defined variables
@@ -33,10 +33,10 @@ main.volume()
 -- Custom Local Library: Keys and Mouse Binding
 local keybinds = {
   clientbuttons = require("keybinds.clientbuttons"),
-  globalkeys    = require("keybinds.globalkeys"),
-  bindtotags    = require("keybinds.bindtotags"),
-  clientkeys    = require("keybinds.clientkeys"),
-  mediakeys     = require("keybinds.mediakeys")
+  globalkeys = require("keybinds.globalkeys"),
+  bindtotags = require("keybinds.bindtotags"),
+  clientkeys = require("keybinds.clientkeys"),
+  mediakeys = require("keybinds.mediakeys")
 }
 
 RC.layouts = require("main.layouts").layouts
@@ -49,19 +49,14 @@ RC.launcher = awful.widget.launcher({
 menubar.utils.terminal = RC.vars.terminal
 
 RC.globalkeys = keybinds.bindtotags(keybinds.globalkeys())
-RC.mediakeys =  keybinds.mediakeys()
+RC.mediakeys = keybinds.mediakeys()
 
 -- Set root
 -- root.buttons(keybinds.globalbuttons())
-root.keys(
-  gears.table.join(RC.globalkeys, RC.mediakeys)
-)
+root.keys(gears.table.join(RC.globalkeys, RC.mediakeys))
 
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = main.rules(
-  keybinds.clientkeys(),
-  keybinds.clientbuttons()
-)
+awful.rules.rules = main.rules(keybinds.clientkeys(), keybinds.clientbuttons())
 
 require("statusbar") -- Load statusbar
 require("main.autostart") -- Autostart

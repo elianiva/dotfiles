@@ -24,22 +24,13 @@ local powermenu = {
   { "shutdown", function() os.execute("shutdown now") end },
 }
 
-M.menu_items = awful.menu({
+M.menu_items = awful.menu {
   items = {
-    {
-      "awesome",
-      menu,
-    },
-    {
-      "apps",
-      apps,
-    },
-    {
-      "powermenu",
-      powermenu,
-    },
+    { "awesome", menu },
+    { "apps", apps },
+    { "powermenu", powermenu }
   }
-})
+}
 
 -- Set the terminal for applications that require it
 menubar.utils.terminal = terminal

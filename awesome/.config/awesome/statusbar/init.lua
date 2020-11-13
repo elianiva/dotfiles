@@ -43,9 +43,7 @@ local function set_wallpaper(s)
   if beautiful.wallpaper then
     local wallpaper = beautiful.wallpaper
     -- If wallpaper is a function, call it with the screen
-    if type(wallpaper) == "function" then
-      wallpaper = wallpaper(s)
-    end
+    if type(wallpaper) == "function" then wallpaper = wallpaper(s) end
     gears.wallpaper.maximized(wallpaper, s, true)
   end
 end
@@ -65,11 +63,11 @@ awful.screen.connect_for_each_screen(function(s)
     position = "top",
     screen = s,
     height = theme.statusbar_height,
-    width = s.geometry.width,
+    width = s.geometry.width
   })
 
   -- Add widgets to the wibox
-  s.wibox:setup {
+  s.wibox:setup{
     layout = wibox.layout.align.horizontal,
     expand = "none",
     {
@@ -79,30 +77,36 @@ awful.screen.connect_for_each_screen(function(s)
       icon_wrapper(playerctl.icon),
       text_wrapper(playerctl.widget, dpi(0), dpi(12), dpi(0), dpi(0)),
 
-      layout = wibox.layout.fixed.horizontal,
+      layout = wibox.layout.fixed.horizontal
     },
     {
       -- text_wrapper(clock, 10, 10, 5, 10), -- Clock
       text_wrapper(clock.widget, dpi(10), dpi(10), dpi(5), dpi(10)), -- Clock
-      layout = wibox.layout.fixed.horizontal,
+      layout = wibox.layout.fixed.horizontal
     },
     {
       -- Netstatus
       icon_wrapper(netspeed.wifi_icon),
-      icon_wrapper(netspeed.down_icon), text_wrapper(netspeed.down_speed),
-      icon_wrapper(netspeed.up_icon), text_wrapper(netspeed.up_speed),
+      icon_wrapper(netspeed.down_icon),
+      text_wrapper(netspeed.down_speed),
+      icon_wrapper(netspeed.up_icon),
+      text_wrapper(netspeed.up_speed),
 
-      icon_wrapper(volume.icon), text_wrapper(volume.widget), -- Volume
-      icon_wrapper(temp.icon), text_wrapper(temp.widget), -- Temperature
-      icon_wrapper(cpu.icon), text_wrapper(cpu.widget), -- CPU
-      icon_wrapper(memory.icon), text_wrapper(memory.widget), -- Memory
-      icon_wrapper(battery.icon), text_wrapper(battery.widget, 0, 0), -- Battery
+      icon_wrapper(volume.icon),
+      text_wrapper(volume.widget), -- Volume
+      icon_wrapper(temp.icon),
+      text_wrapper(temp.widget), -- Temperature
+      icon_wrapper(cpu.icon),
+      text_wrapper(cpu.widget), -- CPU
+      icon_wrapper(memory.icon),
+      text_wrapper(memory.widget), -- Memory
+      icon_wrapper(battery.icon),
+      text_wrapper(battery.widget, 0, 0), -- Battery
       text_wrapper(todo, 0, 5, 8, 8), -- Todo
 
       margin(systray.widget, dpi(0), dpi(2), dpi(4), dpi(4)),
       -- s.mylayoutbox,
-      layout = wibox.layout.fixed.horizontal,
-    },
+      layout = wibox.layout.fixed.horizontal
+    }
   }
-end
-)
+end)

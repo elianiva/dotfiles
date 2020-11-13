@@ -17,12 +17,9 @@ local button_bg = "#1d2021"
 local button_size = dpi(120)
 
 -- Commands
-local poweroff_command =
-  function() spawn.with_shell("systemctl poweroff") end
+local poweroff_command = function() spawn.with_shell("systemctl poweroff") end
 local reboot_command = function() spawn.with_shell("systemctl reboot") end
-local suspend_command = function()
-  spawn.with_shell("systemctl suspend")
-end
+local suspend_command = function() spawn.with_shell("systemctl suspend") end
 local exit_command = function() awesome.quit() end
 
 local rrect = function(radius)
@@ -32,30 +29,26 @@ local rrect = function(radius)
 end
 
 local colorize_text = function(txt, fg)
-  return "<span foreground='" .. fg .."'>" .. txt .. "</span>"
+  return "<span foreground='" .. fg .. "'>" .. txt .. "</span>"
 end
 
 local add_hover_cursor = function(widget, hover_cursor)
   local original_cursor = "left_ptr"
 
-  widget:connect_signal("mouse::enter", function ()
+  widget:connect_signal("mouse::enter", function()
     local w = mouse.current_wibox
-    if w then
-      w.cursor = hover_cursor
-    end
+    if w then w.cursor = hover_cursor end
   end)
 
-  widget:connect_signal("mouse::leave", function ()
+  widget:connect_signal("mouse::leave", function()
     local w = mouse.current_wibox
-    if w then
-      w.cursor = original_cursor
-    end
+    if w then w.cursor = original_cursor end
   end)
 end
 
 -- Helper function that generates the clickable buttons
 local create_button = function(symbol, hover_color, text, command)
-  local icon = wibox.widget {
+  local icon = wibox.widget{
     forced_height = button_size,
     forced_width = button_size,
     align = "center",
@@ -65,7 +58,7 @@ local create_button = function(symbol, hover_color, text, command)
     widget = wibox.widget.textbox()
   }
 
-  local button = wibox.widget {
+  local button = wibox.widget{
     {nil, icon, expand = "none", layout = wibox.layout.align.horizontal},
     forced_height = button_size,
     forced_width = button_size,
@@ -77,9 +70,7 @@ local create_button = function(symbol, hover_color, text, command)
   }
 
   -- Bind left click to run the command
-  button:buttons(gears.table.join(
-    awful.button({}, 1, function() command() end))
-  )
+  button:buttons(gears.table.join(awful.button({}, 1, function() command() end)))
 
   -- Change color on hover
   button:connect_signal("mouse::enter", function()
@@ -98,9 +89,12 @@ local create_button = function(symbol, hover_color, text, command)
 end
 
 -- Create the buttons
-local poweroff = create_button(poweroff_text_icon, theme.red, "Poweroff", poweroff_command)
-local reboot = create_button(reboot_text_icon, theme.green, "Reboot", reboot_command)
-local suspend = create_button(suspend_text_icon, theme.yellow, "Suspend", suspend_command)
+local poweroff = create_button(poweroff_text_icon, theme.red, "Poweroff",
+  poweroff_command)
+local reboot = create_button(reboot_text_icon, theme.green, "Reboot",
+  reboot_command)
+local suspend = create_button(suspend_text_icon, theme.yellow, "Suspend",
+  suspend_command)
 local exit = create_button(exit_text_icon, theme.red, "Exit", exit_command)
 
 -- Create the exit screen wibox
@@ -141,9 +135,9 @@ local exit_screen_show = function()
 end
 
 exit_screen:buttons(gears.table.join( -- Left click - Hide exit_screen
-awful.button({}, 1, function() exit_screen_hide() end),
-awful.button({}, 2, function() exit_screen_hide() end),
-awful.button({}, 3, function() exit_screen_hide() end)))
+  awful.button({}, 1, function() exit_screen_hide() end),
+  awful.button({}, 2, function() exit_screen_hide() end),
+  awful.button({}, 3, function() exit_screen_hide() end)))
 
 -- Item placement
 exit_screen:setup{

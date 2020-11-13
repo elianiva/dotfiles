@@ -11,13 +11,9 @@ local wifi_on = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/netspee
 local M = {}
 
 -- Netspeed
-M.up_icon = wibox.widget.imagebox(
-  colorize(up, theme.widget_main_color)
-)
+M.up_icon = wibox.widget.imagebox(colorize(up, theme.widget_main_color))
 
-M.down_icon = wibox.widget.imagebox(
-  colorize(down, theme.widget_main_color)
-)
+M.down_icon = wibox.widget.imagebox(colorize(down, theme.widget_main_color))
 
 M.wifi_icon = wibox.widget.imagebox()
 M.down_speed = wibox.widget.textbox()

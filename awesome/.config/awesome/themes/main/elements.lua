@@ -6,36 +6,36 @@ local gears = require("gears")
 local themes_path = require("gears.filesystem").get_themes_dir()
 
 -- theme.font  = "Noto Sans 11"
-theme.font  = "JetBrainsMono Nerd Font 10"
-theme.color_name  = "gruvbox"
-theme.nerd_font  = "JetBrainsMono Nerd Font 10"
-theme.taglist_font  = "M+ 2p Medium 11"
+theme.font = "JetBrainsMono Nerd Font 10"
+theme.color_name = "gruvbox"
+theme.nerd_font = "JetBrainsMono Nerd Font 10"
+theme.taglist_font = "M+ 2p Medium 11"
 theme.taglist_fg_empty = theme.black_alt
 
 -- background stuff
-theme.bg_normal     = theme.black
-theme.bg_focus      = theme.color_name == "gruvbox" and theme.yellow or theme.blue
-theme.bg_urgent     = theme.red
-theme.bg_minimize   = theme.grey
+theme.bg_normal = theme.black
+theme.bg_focus = theme.color_name == "gruvbox" and theme.yellow or theme.blue
+theme.bg_urgent = theme.red
+theme.bg_minimize = theme.grey
 
 -- foreground stuff
-theme.fg_normal     = theme.white
-theme.fg_focus      = theme.black
-theme.fg_urgent     = theme.black
-theme.fg_minimize   = theme.white
+theme.fg_normal = theme.white
+theme.fg_focus = theme.black
+theme.fg_urgent = theme.black
+theme.fg_minimize = theme.white
 
 -- gaps
-theme.useless_gap   = dpi(4)
+theme.useless_gap = dpi(4)
 
 -- systray
-theme.systray_icon_spacing  = dpi(6)
-theme.bg_systray            = theme.black
-theme.systray_icon_size     = dpi(10)
+theme.systray_icon_spacing = dpi(6)
+theme.bg_systray = theme.black
+theme.systray_icon_size = dpi(10)
 
 -- border stuff
-theme.border_width  = dpi(0)
+theme.border_width = dpi(0)
 theme.border_normal = theme.black
-theme.border_focus  = theme.white
+theme.border_focus = theme.white
 theme.border_marked = theme.red
 
 -- tasklist
@@ -43,7 +43,8 @@ theme.tasklist_bg_focus = theme.black
 theme.tasklist_fg_focus = theme.yellow
 
 -- widget
-theme.widget_main_color = theme.color_name == "gruvbox" and theme.yellow or theme.blue
+theme.widget_main_color = theme.color_name == "gruvbox" and theme.yellow or
+                            theme.blue
 theme.widget_red = theme.red
 theme.widget_yelow = theme.yellow
 theme.widget_green = theme.green
@@ -66,9 +67,9 @@ theme.notification_border_color = theme.blue
 theme.notification_border_width = dpi(1)
 
 function rrect(radius)
-    return function(cr, width, height)
-        gears.shape.rounded_rect(cr, width, height, radius)
-    end
+  return function(cr, width, height)
+    gears.shape.rounded_rect(cr, width, height, radius)
+  end
 end
 
 -- edge snap
@@ -85,18 +86,13 @@ theme.hotkeys_group_margin = dpi(10)
 
 naughty.config.padding = dpi(10)
 naughty.config.icon_dirs = {
-  "/usr/share/icons/Numix/32/actions/",
-  "/usr/share/icons/Numix/32/animations/",
-  "/usr/share/icons/Numix/32/apps/",
-  "/usr/share/icons/Numix/32/categories/",
-  "/usr/share/icons/Numix/32/devices/",
-  "/usr/share/icons/Numix/32/emblems/",
-  "/usr/share/icons/Numix/32/emotes/",
-  "/usr/share/icons/Numix/32/mimetypes/",
-  "/usr/share/icons/Numix/32/places/",
-  "/usr/share/icons/Numix/32/status/",
+  "/usr/share/icons/Numix/32/actions/", "/usr/share/icons/Numix/32/animations/",
+  "/usr/share/icons/Numix/32/apps/", "/usr/share/icons/Numix/32/categories/",
+  "/usr/share/icons/Numix/32/devices/", "/usr/share/icons/Numix/32/emblems/",
+  "/usr/share/icons/Numix/32/emotes/", "/usr/share/icons/Numix/32/mimetypes/",
+  "/usr/share/icons/Numix/32/places/", "/usr/share/icons/Numix/32/status/"
 }
-naughty.config.icon_formats = { "png", "svg" }
+naughty.config.icon_formats = {"png", "svg"}
 naughty.config.defaults.margin = dpi(10)
 naughty.config.defaults.border_width = theme.notification_border_width
 naughty.config.defaults.icon_size = dpi(100)
@@ -107,7 +103,7 @@ naughty.config.defaults.title = "System Notification"
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height = dpi(24)
-theme.menu_width  = dpi(180)
+theme.menu_width = dpi(180)
 
 theme.tooltip_bg = "#282828"
 theme.tooltip_fg = "#ebdbb2"
@@ -127,8 +123,6 @@ theme.taglist_spacing = dpi(2)
 
 local taglist_square_size = dpi(5)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
+                              taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
+                                taglist_square_size, theme.fg_normal)

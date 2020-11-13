@@ -12,9 +12,7 @@ local volume_up = HOME .. "/.config/awesome/statusbar/modules/volume/volume_up.s
 local M = {}
 
 -- Volume
-M.icon = wibox.widget.imagebox(
-  colorize(volume_down, theme.widget_main_color
-))
+M.icon = wibox.widget.imagebox(colorize(volume_down, theme.widget_main_color))
 
 M.widget = lain.widget.pulse({
   settings = function()

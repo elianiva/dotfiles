@@ -11,15 +11,14 @@ local colorize = require("main.helpers").colorize
 
 local M = {}
 
-M.icon = wibox.widget.imagebox(
-  colorize(icon, theme.widget_main_color)
-)
+M.icon = wibox.widget.imagebox(colorize(icon, theme.widget_main_color))
 
 M.widget = wibox.widget.textbox()
 
 local update_metadata = function()
   if player:get_title() then
-    M.widget:set_markup(markup(theme.foreground, player:get_artist() .. " – " .. player:get_title()))
+    M.widget:set_markup(markup(theme.foreground,
+      player:get_artist() .. " – " .. player:get_title()))
   else
     M.widget:set_text('')
   end

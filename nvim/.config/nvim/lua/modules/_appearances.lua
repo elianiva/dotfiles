@@ -13,54 +13,54 @@ end
 ColorUtil = {}
 
 ColorUtil.override_gruvbox = function()
-    local highlights = {
-      -- normal stuff
-      {'Normal', { bg = 'NONE' }},
-      {'Comment', { gui = 'italic' }},
-      {'Identifier', { fg = '#EBDBB2' }},
-      {'TSProperty', { fg = '#83a589' }},
-      {'SignColumn', { bg = 'NONE' }},
-      {'ColorColumn', { bg = '#3C3836' }},
+  local highlights = {
+    -- normal stuff
+    {'Normal', { bg = 'NONE' }},
+    {'Comment', { gui = 'italic' }},
+    {'Identifier', { fg = '#EBDBB2' }},
+    {'TSProperty', { fg = '#83a589' }},
+    {'SignColumn', { bg = 'NONE' }},
+    {'ColorColumn', { bg = '#3C3836' }},
 
-      {'SignifySignAdd', { fg = '#458588', bg = 'NONE' }},
-      {'SignifySignChange', { fg = '#D79921', bg = 'NONE' }},
-      {'SignifySignDelete', { fg = '#fb4934', bg = 'NONE' }},
-      {'GitGutterChange', { fg = '#D79921' }},
-      {'GitGutterDelete', { fg = '#fb4934' }},
+    {'SignifySignAdd', { fg = '#458588', bg = 'NONE' }},
+    {'SignifySignChange', { fg = '#D79921', bg = 'NONE' }},
+    {'SignifySignDelete', { fg = '#fb4934', bg = 'NONE' }},
+    {'GitGutterChange', { fg = '#D79921' }},
+    {'GitGutterDelete', { fg = '#fb4934' }},
 
-      -- misc
-      {'htmlLink', { gui = 'NONE', fg = '#ebdbb2' }},
-      {'jsonNoQuotesError', { fg = '#fb4934' }},
-      {'jsonMissingCommaError', { fg = '#fb4934' }},
-      {'IncSearch', { bg='#282828', fg='#928374' }},
-      {'mkdLineBreak', { bg='NONE' }},
+    -- misc
+    {'htmlLink', { gui = 'NONE', fg = '#ebdbb2' }},
+    {'jsonNoQuotesError', { fg = '#fb4934' }},
+    {'jsonMissingCommaError', { fg = '#fb4934' }},
+    {'IncSearch', { bg='#282828', fg='#928374' }},
+    {'mkdLineBreak', { bg='NONE' }},
 
-      -- statusline colours
-      {'Active', { bg = 'blue', fg = '#EBDBB2' }},
-      {'Inactive', { bg = '#3C3836', fg = '#928374' }},
-      {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
-      {'LineCol', { bg = '#928374', fg = '#1D2021', gui="bold" }},
-      {'Git', { bg = '#504945', fg = '#EBDBB2' }},
-      {'Filetype', { bg = '#504945', fg = '#EBDBB2' }},
-      {'Filename', { bg = '#504945', fg = '#EBDBB2' }},
+    -- statusline colours
+    {'Active', { bg = 'blue', fg = '#EBDBB2' }},
+    {'Inactive', { bg = '#3C3836', fg = '#928374' }},
+    {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+    {'LineCol', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+    {'Git', { bg = '#504945', fg = '#EBDBB2' }},
+    {'Filetype', { bg = '#504945', fg = '#EBDBB2' }},
+    {'Filename', { bg = '#504945', fg = '#EBDBB2' }},
 
-      {'ModeAlt', { bg = '#504945', fg = '#928374' }},
-      {'GitAlt', { bg = '#3C3836', fg = '#504945' }},
-      {'LineColAlt', { bg = '#504945', fg = '#928374' }},
-      {'FiletypeAlt', { bg = '#3C3836', fg = '#504945' }},
+    {'ModeAlt', { bg = '#504945', fg = '#928374' }},
+    {'GitAlt', { bg = '#3C3836', fg = '#504945' }},
+    {'LineColAlt', { bg = '#504945', fg = '#928374' }},
+    {'FiletypeAlt', { bg = '#3C3836', fg = '#504945' }},
 
-      -- luatree
-      {'LuaTreeFolderIcon', { fg = '#D79921' }},
-      {'LuaTreeIndentMarker', { fg = '#928374' }},
+    -- luatree
+    {'LuaTreeFolderIcon', { fg = '#D79921' }},
+    {'LuaTreeIndentMarker', { fg = '#928374' }},
 
-      -- telescope
-      {'TelescopeSelection', { bg='NONE', fg='#D79921', gui='bold' }},
-      {'TelescopeMatching', { bg='NONE', fg='#fb4934', gui='bold' }},
-      {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
+    -- telescope
+    {'TelescopeSelection', { bg='NONE', fg='#D79921', gui='bold' }},
+    {'TelescopeMatching', { bg='NONE', fg='#fb4934', gui='bold' }},
+    {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
 
-      -- ts override
-      {'TSKeywordOperator', { bg='NONE', fg='#fb4934' }},
-    }
+    -- ts override
+    {'TSKeywordOperator', { bg='NONE', fg='#fb4934' }},
+  }
 
   for _, highlight in pairs(highlights) do
     hl(highlight[1], highlight[2])

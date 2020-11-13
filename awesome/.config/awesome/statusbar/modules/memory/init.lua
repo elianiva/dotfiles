@@ -7,9 +7,7 @@ local colorize = require("main.helpers").colorize
 local M = {}
 
 -- Memory
-M.icon = wibox.widget.imagebox(
-  colorize(icon, theme.widget_main_color)
-)
+M.icon = wibox.widget.imagebox(colorize(icon, theme.widget_main_color))
 
 M.widget = lain.widget.mem({
   timeout = 2,
