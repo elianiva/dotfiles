@@ -64,7 +64,7 @@ local get_current_mode = function()
     ['no'] = { 'N·Pending', 'N' };
     ['v']  = {'Visual', 'V' };
     ['V']  = {'V·Line', 'V' };
-    [''] = {'V·Block', 'V'}; -- this is not ^V, but , it's different
+    [''] = {'V·Block', 'V'}; -- this is not ^V, but it's , they're different
     ['s']  = {'Select', 'S'};
     ['S']  = {'S·Line', 'S'};
     ['^S'] = {'S·Block', 'S'};
@@ -92,36 +92,44 @@ end
 
 -- taken from expressline and modified a bit
 -- https://github.com/tjdevries/express_line.nvim/
-local get_git_status = function()
-  -- use fallback because it doesn't set variable on initial `BufEnter`
-  local signs = vim.b.gitsigns_status_dict or { added = 0, changed = 0, removed = 0 }
-  local job = Job:new({
-    command = "git",
-    args = {"branch", "--show-current"},
-    cwd = fn.fnamemodify(fn.bufname(0), ":h"),
-  })
+-- local get_git_status = function()
+--   -- don't do anything if filetype is help
+--   if vim.bo.filetype == 'help' then return '' end
 
-  local ok, branch = pcall(function()
-    return vim.trim(job:sync()[1])
-  end)
+--   -- use fallback because it doesn't set variable on initial `BufEnter`
+--   local signs = vim.b.gitsigns_status_dict or { added = 0, changed = 0, removed = 0 }
+--   local job = Job:new({
+--     command = "git",
+--     args = {"branch", "--show-current"},
+--     cwd = fn.fnamemodify(fn.bufname(0), ":h"),
+--   })
 
-  if ok then
-    if is_truncated(90) then
-      return string.format('  %s ', branch)
-    else
-      return string.format(
-        ' +%s ~%s -%s |  %s ',
-        signs.added, signs.changed, signs.removed, branch
-      )
-    end
-  else
-    return ''
-  end
-end
+--   local ok, branch = pcall(function()
+--     return vim.trim(job:sync()[1])
+--   end)
+
+--   if ok then
+--     if is_truncated(90) then
+--       return string.format('  %s ', branch)
+--     else
+--       return string.format(
+--         ' +%s ~%s -%s |  %s ',
+--         signs.added, signs.changed, signs.removed, branch
+--       )
+--     end
+--   else
+--     return ''
+--   end
+-- end
 
 local get_filename = function()
-  local filename = fn.expand('%:t')
-  return string.format(' %s ', filename)
+  -- local filename = fn.expand('%:p')
+  -- return string.format(' %s ', filename)
+  if is_truncated(90) then
+    return " %f "
+  else
+    return " %F "
+  end
 end
 
 local get_filetype = function()
@@ -147,10 +155,10 @@ Statusline.active = function()
   local mid = "%="
   local mode = colors.mode .. get_current_mode()
   local mode_alt = colors.mode_alt .. left_sep
-  local git = colors.git .. get_git_status()
+  -- local git = colors.git .. get_git_status()
   local git_alt = colors.git_alt .. left_sep
-  local filename = colors.filetype .. get_filename()
-  local filename_alt = colors.filetype_alt .. right_sep
+  local filename = colors.inactive .. get_filename()
+  local filetype_alt = colors.filetype_alt .. right_sep
   local filetype = colors.filetype .. get_filetype()
   local line_col = colors.line_col .. get_line_col()
   local line_col_alt = colors.line_col_alt .. right_sep
@@ -158,9 +166,10 @@ Statusline.active = function()
 
   return table.concat({
     colors.active,
-    mode, mode_alt, git, git_alt,
+    mode, mode_alt, git_alt, filename, -- git, git_alt,
     mid,
-    filename_alt, filename, thin_sep, filetype, line_col_alt, line_col,
+    filetype_alt, filetype, line_col_alt, line_col,
+    -- filename_alt, filename, thin_sep, filetype, line_col_alt, line_col,
     -- diagnostic
   })
 end

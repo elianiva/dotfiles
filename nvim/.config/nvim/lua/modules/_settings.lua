@@ -59,7 +59,8 @@ local options = {
   re = 0, -- set regexp engine to auto
   synmaxcol = 300, -- set limit for syntax highlighting in a single line
   updatetime = 100, -- set faster update time
-  colorcolumn = 80 -- 80 chars color column
+  colorcolumn = 80, -- 80 chars color column
+  timeoutlen = 500 -- faster timeout wait time
   -- pumblend = 15, -- transparent completion menu
 }
 

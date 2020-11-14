@@ -56,7 +56,7 @@ local plugins = {
   'tpope/vim-surround', -- surround words with symbol
   'nvim-lua/popup.nvim',
   'nvim-lua/plenary.nvim',
-  'nvim-lua/telescope.nvim', -- fuzzy finder
+  'nvim-telescope/telescope.nvim', -- fuzzy finder
   -- 'mhinz/vim-signify', -- show git signs in signcolumn
   'lewis6991/gitsigns.nvim', -- show git signs in signcolumn
 }
