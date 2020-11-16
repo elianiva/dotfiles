@@ -5,7 +5,7 @@ au FileType * setlocal formatoptions-=cro
 au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
 au BufNewFile,BufRead *.json,.prettierrc,.eslintrc set filetype=jsonc
 au BufRead,BufNewFile *.json set ft=jsonc
-au BufRead,BufNewFile *.svx set ft=markdown
+au BufRead,BufNewFile *.svx,*.mdx set ft=markdown
 
 " Set tabsize for each filetype
 au FileType go setlocal sw=8 ts=8

@@ -1,10 +1,10 @@
-local Job = require("plenary.job")
+-- local Job = require("plenary.job")
 local fn = vim.fn
 
 -- change them if you want to different separator
 local left_sep = ''
 local right_sep = ''
-local thin_sep = ''
+-- local thin_sep = ''
 -- local left_sep = ''
 -- local right_sep = ''
 -- local thin_sep = ''

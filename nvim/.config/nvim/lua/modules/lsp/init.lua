@@ -1,4 +1,4 @@
-local nvim_lsp = require('nvim_lsp')
+local nvim_lsp = require('lspconfig')
 local mappings = require('modules.lsp._mappings')
 
 require('modules.lsp._svelte') -- svelteserver config
