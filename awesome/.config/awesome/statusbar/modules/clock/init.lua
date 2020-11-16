@@ -7,7 +7,7 @@ local M = {}
 
 -- Clock
 M.widget = wibox.widget.textclock(
-  string.format("<span color='%s'>%a, %I:%M %p</span>", theme.foreground)
+  "<span color='".. theme.foreground .. "'>%a, %I:%M %p</span>"
 )
 
 -- Calendar Widget
