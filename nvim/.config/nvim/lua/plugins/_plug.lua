@@ -22,16 +22,11 @@ local plugins = {
   'wakatime/vim-wakatime', -- track usage time using wakatime
   'norcalli/nvim-colorizer.lua', -- colorize hex/rgb/hsl value
   'pangloss/vim-javascript', -- javascript highlights
-  -- {
-  --   'sheerun/vim-polyglot', -- various languages highlighting
-  --   [[{'for': ['svelte']}]]
-  -- },
   'nvim-treesitter/nvim-treesitter', -- better syntax highlighting
   'nvim-treesitter/playground', -- playground for treesitter
   'leafOfTree/vim-svelte-plugin', -- svelte language support
   'euclidianAce/BetterLua.vim', -- better lua highlights
-  -- 'uiiaoo/java-syntax.vim', -- better java highlights
-  'Yggdroot/indentline', -- indentline guide
+  'Yggdroot/indentline', -- indent guide
   {
     'junegunn/goyo.vim',
     [[{'for': ['markdown', 'txt']}]],
@@ -45,7 +40,6 @@ local plugins = {
   'kyazdani42/nvim-tree.lua', -- file explorer
   'akinsho/nvim-bufferline.lua', -- bufferline
   'neovim/nvim-lspconfig', -- builtin lsp config
-  -- {'neoclide/coc.nvim', [[{'branch': 'release'}]]}, -- coc.nvim
   'lukas-reineke/format.nvim', -- formatter
   'nvim-lua/completion-nvim', -- completion helper
   'hrsh7th/vim-vsnip', -- snippets support
@@ -58,7 +52,7 @@ local plugins = {
   'nvim-lua/plenary.nvim',
   'nvim-telescope/telescope.nvim', -- fuzzy finder
   -- 'mhinz/vim-signify', -- show git signs in signcolumn
-  'lewis6991/gitsigns.nvim', -- show git signs in signcolumn
+  'lewis6991/gitsigns.nvim',
 }
 
 local apply_plugins = function()

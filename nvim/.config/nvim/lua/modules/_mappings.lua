@@ -11,7 +11,7 @@ remap('n', '<C-n>', '<CMD>LuaTreeToggle<CR>', { noremap = true })
 
 -- toggle telescope.nvim
 remap('n', '<C-p>', '<CMD>Telescope find_files<CR>', { noremap = true, silent = true })
-remap('n', '<C-f>', '<CMD>Telescope live_grep<CR>', { noremap = true, silent = true })
+remap('n', '<C-f>', '<CMD>lua require"plugins._telescope".grep_prompt()<CR>', { noremap = true, silent = true })
 
 -- better movement between buffers
 remap('n', '<C-h>', '<C-w><C-h>', { noremap = true })

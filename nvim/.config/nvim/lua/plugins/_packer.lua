@@ -43,9 +43,9 @@ if ok then
     use {
       'haorenW1025/completion-nvim',
       requires = {
-        {'hrsh7th/vim-vsnip', opt = true},
-        {'hrsh7th/vim-vsnip-integ', opt = true},
-        {'steelsojka/completion-buffers', opt = true},
+        {'hrsh7th/vim-vsnip'},
+        {'hrsh7th/vim-vsnip-integ'},
+        {'steelsojka/completion-buffers'},
       },
       config = {'require [[plugins/_completion]]'}
     }
@@ -53,7 +53,7 @@ if ok then
     use 'gruvbox-community/gruvbox' -- nice colorscheme
     -- use 'tjdevries/colorbuddy.nvim' -- colorscheme maker
     use 'cohama/lexima.vim' -- autopairs brackets, braces etc
-    use {'neoclide/jsonc.vim', opt = true}-- jsonc highlighting
+    use 'neoclide/jsonc.vim'-- jsonc highlighting
     use 'wakatime/vim-wakatime' -- track usage time using wakatime
     use 'norcalli/nvim-colorizer.lua' -- colorize hex/rgb/hsl value
     use {'pangloss/vim-javascript', ft = {'svelte'}}-- javascript highlights
@@ -63,10 +63,10 @@ if ok then
       'nvim-treesitter/playground',
       cmd = 'TSHighlightCapturesUnderCursor'
     } -- playground for treesitter
-    use {'leafOfTree/vim-svelte-plugin', opt = true } -- svelte language support
+    use 'leafOfTree/vim-svelte-plugin' -- svelte language support
     -- use 'euclidianAce/BetterLua.vim' -- better lua highlights
     -- 'uiiaoo/java-syntax.vim' -- better java highlights
-    use {'Yggdroot/indentline', opt = true}-- indentline guide
+    -- use 'Yggdroot/indentline'-- indentline guide
     use {
       'junegunn/goyo.vim',
       ft = {'txt', 'markdown'},
@@ -85,7 +85,8 @@ if ok then
     } -- bufferline
     use 'neovim/nvim-lspconfig' -- builtin lsp config
     -- {'neoclide/coc.nvim' [[{'branch': 'release'}]]}, -- coc.nvim
-    use 'lukas-reineke/format.nvim' -- formatter
+    -- use 'lukas-reineke/format.nvim' -- formatter
+    use {'mhartington/formatter.nvim', branch = "refactor"} -- formatter, experimenting
     use 'nvim-lua/diagnostic-nvim' -- diagnostic for nvim lsp
     use 'tpope/vim-commentary' -- comment stuff easier
     use 'mattn/emmet-vim' -- less typing for html code
@@ -93,7 +94,8 @@ if ok then
     use 'nvim-lua/popup.nvim' -- surround words with symbol
     use 'nvim-lua/plenary.nvim' -- surround words with symbol
     use 'nvim-lua/telescope.nvim' -- fuzzy finder
-    use 'mhinz/vim-signify' -- show git stuff in signcolumn
+    -- use 'mhinz/vim-signify' -- show git stuff in signcolumn
+    use 'lewis6991/gitsigns.nvim' -- show git stuff in signcolumn
   end
 
   local config = {

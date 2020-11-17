@@ -1,5 +1,7 @@
 local telescope_actions = require('telescope.actions')
 
+local M = {}
+
 require'telescope'.setup{
   defaults = {
     borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
@@ -52,3 +54,12 @@ require'telescope'.setup{
     }
   }
 }
+
+M.grep_prompt = function()
+  require'telescope.builtin'.grep_string {
+    shorten_path = true,
+    search = vim.fn.input("Grep String > "),
+  }
+end
+
+return M

@@ -2,8 +2,8 @@
 vim.cmd('cd %:p:h')
 
 -- load plugin manager first
-require("plugins._plug")
--- require("plugins._packer")
+-- require("plugins._plug")
+require("plugins._packer")
 
 -- basic settings
 require("modules._settings")

@@ -36,6 +36,7 @@ local options = {
   startofline = false, -- don't go to the start of the line when moving to another file
   termguicolors = true, -- truecolours for better experience
   lazyredraw = true, -- lazyredraw to make macro faster
+  list = true, -- display listchars
 
   -- String value
   encoding = "UTF-8", -- set encoding
@@ -47,6 +48,7 @@ local options = {
   backupcopy = "yes", -- fix weirdness for postcss
   completeopt = 'menuone,noinsert,noselect,longest', -- better completion
   inccommand = "split", -- incrementally show result of command
+  listchars = "eol:↲", -- set listchars
 
   -- Number value
   shiftwidth = 2, -- set indentation width
