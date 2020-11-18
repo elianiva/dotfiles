@@ -48,7 +48,7 @@ local options = {
   backupcopy = "yes", -- fix weirdness for postcss
   completeopt = 'menuone,noinsert,noselect,longest', -- better completion
   inccommand = "split", -- incrementally show result of command
-  listchars = "eol:↲", -- set listchars
+  listchars = "eol:↲,tab:»\\ ", -- set listchars
 
   -- Number value
   shiftwidth = 2, -- set indentation width
