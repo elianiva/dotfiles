@@ -52,7 +52,7 @@ local prettier = function()
     return {
       exe = "prettier",
       args = {
-        "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--config",
+        "--stdin-filepath", "'" .. vim.api.nvim_buf_get_name(0) .. "'", "--config",
         vim.fn.getcwd() .. "/.prettierrc"
       },
       stdin = true
@@ -62,7 +62,7 @@ local prettier = function()
     return {
       exe = "prettier",
       args = {
-        "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--config",
+        "--stdin-filepath", "'" .. vim.api.nvim_buf_get_name(0) .. "'", "--config",
         "~/.config/nvim/.prettierrc"
       },
       stdin = true

@@ -40,3 +40,9 @@ augroup Goyo
   au User GoyoEnter setlocal linebreak wrap
   au User GoyoLeave setlocal nolinebreak nowrap
 augroup END
+
+augroup Compe
+  au!
+  au BufEnter * let g:compe_enabled = v:true
+  au FileType TelescopePrompt let g:compe_enabled = v:false
+augroup END

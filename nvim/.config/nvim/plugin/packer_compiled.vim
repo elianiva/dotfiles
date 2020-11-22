@@ -160,8 +160,6 @@ end
 
 -- Pre-load configuration
 -- Post-load configuration
--- Config for: completion-nvim
-require [[plugins/_completion]]
 -- Conditional loads
 -- Load plugins in order defined by `after`
 END

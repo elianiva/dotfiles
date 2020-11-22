@@ -1,3 +1,5 @@
+local Job = require("plenary.job")
+
 Util = {}
 
 Util.check_backspace = function()
@@ -66,3 +68,16 @@ vim.api.nvim_exec([[
   command! -nargs=? -range=% ToRgb call v:lua.Util.convert_color('rgb')
   command! -nargs=? -range=% ToHex call v:lua.Util.convert_color('hex')
 ]], true)
+
+-- translate selected word, useful for when I do jp assignments
+Util.translate = function(lang)
+  local word = get_word()
+  local job = Job:new({
+    command = "trans",
+    args = {"-b", ":" .. (lang or "en"), word}
+  })
+
+  local ok, result = pcall(function() return vim.trim(job:sync()[1]) end)
+
+  if ok then print(result) end
+end

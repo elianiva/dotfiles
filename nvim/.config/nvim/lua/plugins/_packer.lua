@@ -40,18 +40,25 @@ if ok then
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
+    -- use {
+    --   'haorenW1025/completion-nvim',
+    --   requires = {
+    --     {'hrsh7th/vim-vsnip'},
+    --     {'hrsh7th/vim-vsnip-integ'},
+    --     {'steelsojka/completion-buffers'},
+    --   }
+    -- }
+
     use {
-      'haorenW1025/completion-nvim',
+      'hrsh7th/nvim-compe',
       requires = {
         {'hrsh7th/vim-vsnip'},
-        {'hrsh7th/vim-vsnip-integ'},
-        {'steelsojka/completion-buffers'},
-      },
-      config = {'require [[plugins/_completion]]'}
+        {'hrsh7th/vim-vsnip-integ'}
+      }
     }
 
     use 'gruvbox-community/gruvbox' -- nice colorscheme
-    -- use 'tjdevries/colorbuddy.nvim' -- colorscheme maker
+    use 'tjdevries/colorbuddy.nvim' -- colorscheme maker
     use 'cohama/lexima.vim' -- autopairs brackets, braces etc
     use 'neoclide/jsonc.vim'-- jsonc highlighting
     use 'wakatime/vim-wakatime' -- track usage time using wakatime
@@ -102,12 +109,12 @@ if ok then
     display = {
       open_fn = function(name)
         -- Can only use plenary when we have our plugins.
-        --  We can only get plenary when we don't have our plugins ;)
-        local ok, float_win = pcall(function()
+        -- We can only get plenary when we don't have our plugins ;)
+        local is_ok, float_win = pcall(function()
           return require('plenary.window.float').percentage_range_window(0.8, 0.8)
         end)
 
-        if not ok then
+        if not is_ok then
           vim.cmd [[60vnew  [packer] ]]
 
           return vim.api.nvim_get_current_win(), vim.api.nvim_get_current_buf()

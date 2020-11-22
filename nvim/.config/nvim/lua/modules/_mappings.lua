@@ -1,6 +1,7 @@
 local remap = vim.api.nvim_set_keymap
 
 -- use jj instead of Esc
+-- 4 mappings to prevent typos :p
 remap('i', 'jj', '<Esc><Esc>', { noremap = true })
 remap('i', 'Jj', '<Esc><Esc>', { noremap = true })
 remap('i', 'jJ', '<Esc><Esc>', { noremap = true })
@@ -13,7 +14,7 @@ remap('n', '<C-n>', '<CMD>LuaTreeToggle<CR>', { noremap = true })
 remap('n', '<C-p>', '<CMD>Telescope find_files<CR>', { noremap = true, silent = true })
 remap('n', '<C-f>', '<CMD>lua require"plugins._telescope".grep_prompt()<CR>', { noremap = true, silent = true })
 
--- better movement between buffers
+-- better movement between windows
 remap('n', '<C-h>', '<C-w><C-h>', { noremap = true })
 remap('n', '<C-j>', '<C-w><C-j>', { noremap = true })
 remap('n', '<C-k>', '<C-w><C-k>', { noremap = true })
@@ -25,8 +26,8 @@ remap('n', '<Right>', '<CMD>vertical resize -2<CR>', { noremap = true })
 remap('n', '<Up>', '<CMD>resize +2<CR>', { noremap = true })
 remap('n', '<Down>', '<CMD>resize -2<CR>', { noremap = true })
 
--- move lines using alt
-remap('', '<A-j>', '<CMD>bd<CR>', { noremap = true })
+-- buffer movements
+remap('', '<A-w>', '<CMD>bd<CR>', { noremap = true })
 remap('', '<A-h>', '<CMD>bp<CR>', { noremap = true })
 remap('', '<A-l>', '<CMD>bn<CR>', { noremap = true })
 
@@ -38,8 +39,7 @@ remap('n', 'k', 'gk', { noremap = true })
 remap('n', 'j', 'gj', { noremap = true })
 remap('n', 'k', 'gk', { noremap = true })
 
--- better yank and delete behaviour
-remap('n', 'dD', 'S<Esc>', { noremap = true })
+-- better yank behaviour
 remap('n', 'Y', 'y$', { noremap = true })
 
 -- remove annoying exmode

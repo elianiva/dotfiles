@@ -21,7 +21,6 @@ require'telescope'.setup{
         preview_height = 0.5
       }
     },
-    default_icon = true,
     default_mappings = {
       i = {
         ['<C-j>'] = telescope_actions.move_selection_next,

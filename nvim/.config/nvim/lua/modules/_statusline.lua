@@ -22,7 +22,7 @@ Statusline.colors = {
   line_col_alt  = '%#LineColAlt#',
 }
 
-Statusline.is_truncated = function(self, width)
+Statusline.is_truncated = function(_, width)
   local current_window = fn.winnr()
   local current_width = fn.winwidth(current_window)
   return current_width < width
