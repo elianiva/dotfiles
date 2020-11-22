@@ -1,9 +1,8 @@
-# Environmental variables
-# export NPM_CONFIG_PREFIX=$HOME/.local/npm
 export EDITOR="/usr/bin/nvim"
 export DOTS="/home/elianiva/repos/dotfiles"
-export TERMINAL="/usr/bin/alacritty"
+export TERMINAL="/usr/bin/kitty"
 export CM_LAUNCHER="rofi"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --ignore-file ".gitignore"'
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"

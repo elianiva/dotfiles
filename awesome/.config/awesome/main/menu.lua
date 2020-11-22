@@ -13,6 +13,7 @@ local menu = {
 
 local apps = {
   { "alacritty", function() spawn('alacritty &') end },
+  { "kitty", function() spawn('kitty &') end },
   { "chrome", function() spawn('chrome &') end },
   { "telegram", function() spawn('telegram &') end },
   { "spotify", function() spawn('spotify &') end },

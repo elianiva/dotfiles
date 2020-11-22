@@ -6,11 +6,11 @@ local dpi = xresources.apply_dpi
 local spawn = awful.spawn
 
 -- Appearance
-local icon_font = theme.nerd_font
-local poweroff_text_icon = ""
-local reboot_text_icon = ""
-local suspend_text_icon = ""
-local exit_text_icon = ""
+local icon_font = "JetBrainsMono Nerd Font 30"
+local poweroff_text_icon = " "
+local reboot_text_icon = " "
+local suspend_text_icon = " "
+local exit_text_icon = " "
 local exitscreen_bg = theme.background .. "dd"
 
 local button_bg = "#1d2021"
