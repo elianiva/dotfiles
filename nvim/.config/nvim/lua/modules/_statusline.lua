@@ -92,15 +92,23 @@ end
 
 Statusline.get_git_status = function(self)
   -- use fallback because it doesn't set variable on initial `BufEnter`
-  local signs = vim.b.gitsigns_status_dict or { head = '', added = 0, changed = 0, removed = 0 }
+  local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
 
   if self:is_truncated(90) then
-    return string.format('  %s ', signs.head or '')
+    if signs.head ~= '' then
+      return string.format('  %s ', signs.head or '')
+    else
+      return ''
+    end
   else
-    return string.format(
-      ' +%s ~%s -%s |  %s ',
-      signs.added, signs.changed, signs.removed, signs.head
-    )
+    if signs.head ~= '' then
+      return string.format(
+        ' +%s ~%s -%s |  %s ',
+        signs.added, signs.changed, signs.removed, signs.head
+      )
+    else
+      return ''
+    end
   end
 end
 
@@ -146,7 +154,7 @@ Statusline.set_active = function(self)
   return table.concat({
     self.colors.active,
     mode, mode_alt, git, git_alt,
-    "%=", filename, "%=", -- git, git_alt,
+    "%=", filename, "%=",
     filetype_alt, filetype, line_col_alt, line_col,
   })
 end
@@ -175,4 +183,3 @@ vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()'
 vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
 vim.cmd('au WinEnter,BufEnter,FileType LuaTree setlocal statusline=%!v:lua.Statusline.explorer()')
 vim.cmd('augroup END')
-

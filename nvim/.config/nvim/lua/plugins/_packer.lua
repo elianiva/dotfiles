@@ -57,23 +57,19 @@ if ok then
       }
     }
 
-    use 'gruvbox-community/gruvbox' -- nice colorscheme
+    -- use 'gruvbox-community/gruvbox' -- nice colorscheme
     use 'tjdevries/colorbuddy.nvim' -- colorscheme maker
     use 'cohama/lexima.vim' -- autopairs brackets, braces etc
     use 'neoclide/jsonc.vim'-- jsonc highlighting
     use 'wakatime/vim-wakatime' -- track usage time using wakatime
     use 'norcalli/nvim-colorizer.lua' -- colorize hex/rgb/hsl value
     use {'pangloss/vim-javascript', ft = {'svelte'}}-- javascript highlights
-    -- use 'sheerun/vim-polyglot' -- various syntax highlights
     use 'nvim-treesitter/nvim-treesitter' -- better syntax highlighting
     use {
       'nvim-treesitter/playground',
       cmd = 'TSHighlightCapturesUnderCursor'
     } -- playground for treesitter
     use 'leafOfTree/vim-svelte-plugin' -- svelte language support
-    -- use 'euclidianAce/BetterLua.vim' -- better lua highlights
-    -- 'uiiaoo/java-syntax.vim' -- better java highlights
-    -- use 'Yggdroot/indentline'-- indentline guide
     use {
       'junegunn/goyo.vim',
       ft = {'txt', 'markdown'},
@@ -91,7 +87,6 @@ if ok then
       'akinsho/nvim-bufferline.lua',
     } -- bufferline
     use 'neovim/nvim-lspconfig' -- builtin lsp config
-    -- {'neoclide/coc.nvim' [[{'branch': 'release'}]]}, -- coc.nvim
     -- use 'lukas-reineke/format.nvim' -- formatter
     use {'mhartington/formatter.nvim', branch = "refactor"} -- formatter, experimenting
     use 'nvim-lua/diagnostic-nvim' -- diagnostic for nvim lsp

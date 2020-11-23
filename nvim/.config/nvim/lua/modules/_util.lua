@@ -12,8 +12,7 @@ Util.check_backspace = function()
 end
 
 Util.check_html_char = function()
-  local prev_col = vim.fn.col('.') - 1
-  local next_col = vim.fn.col('.')
+  local prev_col, next_col = vim.fn.col('.') - 1, vim.fn.col('.')
   local prev_char = vim.fn.getline('.'):sub(prev_col, prev_col)
   local next_char = vim.fn.getline('.'):sub(next_col, next_col)
 

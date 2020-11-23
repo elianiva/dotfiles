@@ -2,12 +2,6 @@
 vim.g.python3_host_prog = '/usr/bin/python3'
 vim.g.node_host_prog = os.getenv("HOME") .. '/.local/npm/bin/neovim-node-host'
 
--- gitlens(blamer) delay
-vim.g.blamer_delay = 250
-
--- time format for gitlens(blamer)
-vim.g.blamer_relative_time = 1
-
 -- svelte
 vim.g.vim_svelte_plugin_has_init_indent = 0
 

@@ -13,8 +13,7 @@ require("modules._util")
 
 -- my colourscheme, not using it, idk why it feels claustrophobic to me
 -- when I use it for too long.
--- local eunoia = require("modules._eunoia")
--- eunoia.setup{}
+-- require"modules._eunoia".setup{}
 -- ColorUtil.override_eunoia()
 
 -- plugins config
