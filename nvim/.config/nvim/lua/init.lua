@@ -1,5 +1,5 @@
 -- change cwd to current directory
-vim.cmd('cd %:p:h')
+vim.cmd("cd %:p:h")
 
 -- load plugin manager first
 -- require("plugins._plug")

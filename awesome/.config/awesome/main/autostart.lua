@@ -6,7 +6,6 @@ do
     "clipmenud",
     "xfce4-power-manager",
     "picom --experimental-backends",
-    -- "viper start",
     "xrandr --output LVDS-1 --gamma 0.8:0.8:0.8",
   }
 

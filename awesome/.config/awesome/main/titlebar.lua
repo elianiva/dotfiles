@@ -11,7 +11,7 @@ function M.get()
     local tb_color = wibox.widget {
       bg = color_focus,
       widget = wibox.container.background,
-      shape = gears.shape.circle
+      shape = gears.shape.circle,
     }
 
     local tb = wibox.widget {
@@ -38,8 +38,7 @@ function M.get()
   end
 
   -- Add a titlebar if titlebars_enabled is set to true in the rules.
-  client.connect_signal("request::titlebars",
-    function(c)
+  client.connect_signal("request::titlebars", function(c)
       -- buttons for the titlebar
       local buttons = gears.table.join(
         awful.button({ }, 1, function()
@@ -100,15 +99,15 @@ function M.get()
 
       awful.titlebar(c, {position = "top", size = theme.titlebar_size}):setup {
         {
-          margin(close, dpi(8)),
-          floating,
-          fullscreen,
-          spacing = dpi(8),
+          margin(icon, dpi(2), dpi(2), dpi(2), dpi(2)),
           layout = wibox.layout.fixed.horizontal
         },
         { window_title, buttons = buttons, layout  = wibox.layout.flex.horizontal },
         {
-          margin(icon, dpi(2), dpi(2), dpi(2), dpi(2)),
+          floating,
+          fullscreen,
+          margin(close, dpi(0), dpi(8)),
+          spacing = dpi(8),
           layout = wibox.layout.fixed.horizontal
         },
         layout = wibox.layout.align.horizontal

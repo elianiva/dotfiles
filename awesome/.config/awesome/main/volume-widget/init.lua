@@ -3,6 +3,7 @@ local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
+local colorize = require"main.helpers".colorize
 
 local offsetx = dpi(64)
 local offsety = dpi(300)
@@ -34,10 +35,6 @@ function M.get()
     value = 0
   }
 
-  function colorize(icon, color)
-    return gears.color.recolor_image(icon, color)
-  end
-
   volume_adjust:setup {
     layout = wibox.layout.align.vertical,
     {
@@ -59,9 +56,7 @@ function M.get()
   local hide_volume_adjust = gears.timer {
     timeout = 4,
     autostart = true,
-    callback = function()
-      volume_adjust.visible = false
-    end
+    callback = function() volume_adjust.visible = false end
   }
 
   -- show volume-adjust when "volume_change" signal is emitted
@@ -70,9 +65,7 @@ function M.get()
       -- set new volume value
       awful.spawn.easy_async_with_shell(
         "pulsemixer --get-volume | awk '{print $1}'",
-        function(stdout)
-          volume_bar.value = tonumber(stdout)
-        end,
+        function(stdout) volume_bar.value = tonumber(stdout) end,
         false
       )
 

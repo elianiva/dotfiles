@@ -18,7 +18,8 @@ M.widget = wibox.widget.textbox()
 local update_metadata = function()
   if player:get_title() then
     M.widget:set_markup(markup(theme.foreground,
-      player:get_artist() .. " – " .. player:get_title()))
+      player:get_artist() .. " – " .. player:get_title())
+    )
   else
     M.widget:set_text('')
   end

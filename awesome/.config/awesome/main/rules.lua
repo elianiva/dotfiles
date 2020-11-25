@@ -7,7 +7,7 @@ function M.get(clientkeys, clientbuttons)
   local rules = {
     -- All clients will match this rule.
     {
-      rule = { },
+      rule = {},
       properties = {
         border_width = beautiful.border_width,
         border_color = beautiful.border_normal,

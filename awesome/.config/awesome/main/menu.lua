@@ -7,7 +7,7 @@ local M = {}
 
 local menu = {
   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-  { "restart awesome", awesome.restart },
+  { "restart awesome", function() awesome.restart() end},
   { "quit awesome", function() awesome.quit() end },
 }
 

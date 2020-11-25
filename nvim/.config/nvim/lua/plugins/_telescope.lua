@@ -30,6 +30,7 @@ require'telescope'.setup{
         ['<C-x>'] = telescope_actions.goto_file_selection_split,
         ['<C-t>'] = telescope_actions.goto_file_selection_tabedit,
         ['<C-c>'] = telescope_actions.close,
+        ['<Esc>'] = telescope_actions.close,
 
         ['<C-u>'] = telescope_actions.preview_scrolling_up,
         ['<C-d>'] = telescope_actions.preview_scrolling_down
@@ -39,7 +40,7 @@ require'telescope'.setup{
         ['<C-v>'] = telescope_actions.goto_file_selection_vsplit,
         ['<C-x>'] = telescope_actions.goto_file_selection_split,
         ['<C-t>'] = telescope_actions.goto_file_selection_tabedit,
-        ['<ESC>'] = telescope_actions.close,
+        ['<Esc>'] = telescope_actions.close,
 
         ["j"] = telescope_actions.move_selection_next,
         ["k"] = telescope_actions.move_selection_previous,

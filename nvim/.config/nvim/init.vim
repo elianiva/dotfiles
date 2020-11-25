@@ -1,4 +1,4 @@
-" don't do anything if not using nvim -10.5
+"enable don't do anything if not using nvim -10.5
 if has('nvim-0.5')
   " Prevent typos on command line mode
   cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))

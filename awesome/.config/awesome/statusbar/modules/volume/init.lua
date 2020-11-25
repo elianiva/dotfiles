@@ -1,6 +1,7 @@
 local wibox = require("wibox")
 local lain = require("lain")
 local markup = lain.util.markup
+local colorize = require"main.helpers".colorize
 
 local HOME = os.getenv("HOME")
 

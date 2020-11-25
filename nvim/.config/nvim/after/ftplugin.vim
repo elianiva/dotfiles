@@ -6,6 +6,7 @@ au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
 au BufNewFile,BufRead *.json,.prettierrc,.eslintrc set filetype=jsonc
 au BufRead,BufNewFile *.json set ft=jsonc
 au BufRead,BufNewFile *.svx,*.mdx set ft=markdown
+au BufRead,BufNewFile *.fnl set ft=fennel
 
 " Set tabsize for each filetype
 au FileType go setlocal sw=8 ts=8
@@ -45,4 +46,10 @@ augroup Compe
   au!
   au BufEnter * let g:compe_enabled = v:true
   au FileType TelescopePrompt let g:compe_enabled = v:false
+augroup END
+
+augroup Lexima
+  au!
+  au BufEnter * let g:lexima_disabled = 0
+  au FileType TelescopePrompt let g:lexima_disabled = 1
 augroup END

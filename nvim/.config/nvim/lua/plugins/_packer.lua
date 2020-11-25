@@ -51,7 +51,7 @@ if ok then
 
     use {
       'hrsh7th/nvim-compe',
-      commit = "8c7a321",
+      -- commit = "8c7a321",
       requires = {
         {'hrsh7th/vim-vsnip'},
         {'hrsh7th/vim-vsnip-integ'}
@@ -60,7 +60,7 @@ if ok then
 
     use 'gruvbox-community/gruvbox' -- nice colorscheme
     use 'tjdevries/colorbuddy.nvim' -- colorscheme maker
-    use 'cohama/lexima.vim' -- autopairs brackets, braces etc
+    use { 'cohama/lexima.vim', opt = true} -- autopairs brackets, braces etc
     use 'neoclide/jsonc.vim'-- jsonc highlighting
     use 'wakatime/vim-wakatime' -- track usage time using wakatime
     use 'norcalli/nvim-colorizer.lua' -- colorize hex/rgb/hsl value
