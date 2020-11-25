@@ -24,6 +24,8 @@ require'telescope'.setup{
       i = {
         ['<C-j>'] = telescope_actions.move_selection_next,
         ['<C-k>'] = telescope_actions.move_selection_previous,
+        ['<C-b>'] = telescope_actions.preview_scrolling_up,
+        ['<C-f>'] = telescope_actions.preview_scrolling_down,
         ['<CR>'] = telescope_actions.goto_file_selection_edit,
 
         ['<C-v>'] = telescope_actions.goto_file_selection_vsplit,
@@ -55,9 +57,9 @@ require'telescope'.setup{
 require('telescope').load_extension('fzy_native') -- superfast sorter
 
 M.grep_prompt = function()
-  require'telescope.builtin'.grep_string{
+  require'telescope.builtin'.grep_string {
     shorten_path = true,
-    search = vim.fn.input("Grep String > ")
+    search = vim.fn.input("Grep String > "),
   }
 end
 

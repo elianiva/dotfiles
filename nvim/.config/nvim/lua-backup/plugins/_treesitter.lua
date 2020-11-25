@@ -23,8 +23,4 @@ require'nvim-treesitter.configs'.setup {
       ["punctuation.delimiter"] = "Identifier"
     }
   },
-
-  indent = {
-    enable = true
-  }
 }

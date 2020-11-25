@@ -18,13 +18,6 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
-  playground = {
-    commands = { "TSHighlightCapturesUnderCursor" },
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/playground"
-  },
   ["vim-javascript"] = {
     loaded = false,
     only_sequence = false,
@@ -170,15 +163,14 @@ endfunction
 
 
 " Command lazy-loads
-command! -nargs=* -range -bang -complete=file TSHighlightCapturesUnderCursor call s:load(['playground'], { "cmd": "TSHighlightCapturesUnderCursor", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType markdown ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "markdown" })
-  au FileType txt ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "txt" })
+  au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
+  au FileType txt ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "txt" })
   au FileType svelte ++once call s:load(['vim-javascript'], { "ft": "svelte" })
   " Event lazy-loads
 augroup END

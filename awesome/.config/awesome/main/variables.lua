@@ -2,7 +2,7 @@ local HOME_DIR = os.getenv("HOME")
 local EDITOR = os.getenv("EDITOR")
 
 local M = {
-  terminal = "kitty",
+  terminal = "alacritty",
   editor = EDITOR or "nano",
   shot = HOME_DIR .. "/.scripts/shot",
   emoji_picker = HOME_DIR .. "/.scripts/emoji_picker",

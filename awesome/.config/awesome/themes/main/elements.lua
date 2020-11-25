@@ -111,6 +111,7 @@ theme.tooltip_border_color = "#ebdbb2"
 
 -- statusbar
 theme.statusbar_height = dpi(30)
+theme.statusbar_visible = true
 
 -- taglist
 theme.taglist_bg_focus = theme.black

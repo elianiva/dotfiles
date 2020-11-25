@@ -8,8 +8,5 @@ vim.g.vim_svelte_plugin_has_init_indent = 0
 -- lexima
 vim.g.lexima_accept_pum_with_enter = 1
 
--- disable git messenger default mappings
-vim.g.git_messenger_no_default_mappings = true
-
 -- highlight yanked text for 250ms
 vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{ timeout = 250 }")

@@ -32,6 +32,7 @@ end
   NOTE: I don't use this since the statusline already has
   so much stuff going on. Feel free to use it!
   credit: https://github.com/nvim-lua/lsp-status.nvim
+  日本語
 --]]
 -- local get_lsp_diagnostic = function()
 --   local result = {}

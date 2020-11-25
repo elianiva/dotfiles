@@ -51,7 +51,6 @@ if ok then
 
     use {
       'hrsh7th/nvim-compe',
-      commit = "8c7a321",
       requires = {
         {'hrsh7th/vim-vsnip'},
         {'hrsh7th/vim-vsnip-integ'}
@@ -66,7 +65,8 @@ if ok then
     use 'norcalli/nvim-colorizer.lua' -- colorize hex/rgb/hsl value
     use {'pangloss/vim-javascript', ft = {'svelte'}}-- javascript highlights
     use 'nvim-treesitter/nvim-treesitter' -- better syntax highlighting
-    use 'nvim-treesitter/playground' -- playground for treesitter
+    -- use 'nvim-treesitter/playground' -- playground for treesitter
+    use {'theHamsta/playground', branch = 'fix-lanugage-tree'}-- playground for treesitter
     use 'leafOfTree/vim-svelte-plugin' -- svelte language support
     use {
       'junegunn/goyo.vim',
@@ -96,6 +96,8 @@ if ok then
     use 'nvim-telescope/telescope-fzy-native.nvim' -- faster sorter
     use 'lewis6991/gitsigns.nvim' -- show git stuff in signcolumn
     use 'rhysd/git-messenger.vim' -- sort of like git blame but in floating window
+    use { 'Olical/aniseed', tag = 'v3.11.0' } -- fennel stuff
+    use 'bakpakin/fennel.vim' -- fennel stuff
   end
 
   return packer.startup(plugins)
