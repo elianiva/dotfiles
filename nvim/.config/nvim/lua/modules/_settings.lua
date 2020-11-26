@@ -46,7 +46,7 @@ local options = {
   foldmethod = "marker", -- foldmethod using marker
   signcolumn = "yes", -- enable sign column all the time, 4 column
   backupcopy = "yes", -- fix weirdness for postcss
-  completeopt = 'menuone,noinsert,noselect,longest', -- better completion
+  completeopt = 'menu,menuone,noinsert,noselect', -- better completion
   inccommand = "split", -- incrementally show result of command
   listchars = "eol:↲,tab:»\\ ", -- set listchars
 

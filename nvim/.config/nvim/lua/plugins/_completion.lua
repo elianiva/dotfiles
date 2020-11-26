@@ -1,14 +1,14 @@
 local remap = vim.api.nvim_set_keymap
 
 vim.g.compe_enabled = true
-vim.g.compe_min_length = 1
+vim.g.compe_min_length = 2
 vim.g.compe_auto_preselect = false
 vim.g.compe_source_timeout = 200
 vim.g.compe_incomplete_delay = 400
 
 -- integrate lexima to compe-nvim
 -- remap('i', '<CR>', "compe#confirm(lexima#expand('<LT>CR>', 'i'))", { noremap = true, expr = true })
-remap('i', '<CR>', "compe#confirm('<CR>')", { noremap = true, expr = true })
+remap('i', '<CR>', 'compe#confirm("<CR>")', { noremap = true, expr = true })
 
 require'compe_nvim_lsp'.attach() -- lsp completion source
 require'compe':register_lua_source('buffer', require'compe_buffer') -- buffer completion source
@@ -17,7 +17,7 @@ require'compe':register_lua_source('buffer', require'compe_buffer') -- buffer co
 vim.api.nvim_command('call compe#source#vim_bridge#register("path", compe_path#source#create())')
 vim.api.nvim_command('call compe#source#vim_bridge#register("vsnip", compe_vsnip#source#create())')
 
--- override default mapping that conflicts with vim-lexima
+-- -- override default mapping that conflicts with vim-lexima
 -- vim.g.lexima_no_default_rules = 1
 -- vim.call('lexima#set_default_rules')
 
