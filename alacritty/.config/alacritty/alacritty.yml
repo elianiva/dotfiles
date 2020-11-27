@@ -18,7 +18,7 @@ window:
   dynamic_padding: true
   startup_mode: Windowed
   title: Alacritty
-  decorations: full
+  decorations: none
 
   class:
     instance: Alacritty
@@ -125,15 +125,18 @@ colors: *gruvbox
 
 background_opacity: 0.96
 
-# selection:
-#   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
-#   save_to_clipboard: false
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: false
 
 cursor:
-  style: Block
+  style:
+    shape: Block
+    blinking: Always
   vi_mode_style: None
   unfocused_hollow: true
   thickness: 0.15
+  blink_interval: 600
 
 live_config_reload: true
 
@@ -165,9 +168,6 @@ key_bindings:
   - { key: V,          mods: Alt,                 action: Paste          }
   - { key: C,          mods: Alt,                 action: Copy           }
 
-  # (Windows, Linux, and BSD only)
-  - { key: Home,     mods: Alt,                     action: ResetFontSize    }
+#   # (Windows, Linux, and BSD only)
   - { key: K,        mods: Alt|Shift,               action: IncreaseFontSize }
   - { key: J,        mods: Alt|Shift,               action: DecreaseFontSize }
-  - { key: Subtract, mods: Control,                 action: DecreaseFontSize }
-  - { key: Minus,    mods: Control,                 action: DecreaseFontSize }

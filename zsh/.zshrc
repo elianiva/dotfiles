@@ -19,7 +19,6 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # case insensitive
 zmodload zsh/complist
 compinit
-# _comp_options+=(globdots)# Include hidden files.
 
 bindkey -v # vi mode
 bindkey "jj" vi-cmd-mode # Use jj instead of <Esc>
@@ -55,8 +54,6 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # use beam shape cursor for each new prompt.
-
-bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 lfcd () {
     tmp="$(mktemp)"

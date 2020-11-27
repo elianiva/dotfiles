@@ -4,10 +4,10 @@
 # xset +fp ~/.local/share/fonts
 # xset fp rehash
 
-light -S 40                                   # set brightness
+light -S 40 # set brightness
 setxkbmap -option caps:none
 xset -b
-xset r rate 300 50 &                            # gotta go fast
+xset r rate 300 50 & # gotta go fast
 
 # japanese input method using fcitx-mozc
 export GTK_IM_MODULE=fcitx
