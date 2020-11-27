@@ -12,12 +12,6 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/goyo.vim"
   },
-  ["lexima.vim"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/lexima.vim"
-  },
   ["packer.nvim"] = {
     loaded = false,
     only_sequence = false,

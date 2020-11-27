@@ -61,10 +61,10 @@ ColorUtil.override_gruvbox = function()
     {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
 
     -- diagnostic nvim
-    {'LspDiagnosticsError', { bg='NONE', fg='#fb4934' }},
-    {'LspDiagnosticsWarning', { bg='NONE', fg='#D79921' }},
-    {'LspDiagnosticsInformation', { bg='NONE', fg='#458588' }},
-    {'LspDiagnosticsHint', { bg='NONE', fg='#689D6A' }},
+    {'LspDiagnosticsDefaultError', { bg='NONE', fg='#fb4934' }},
+    {'LspDiagnosticsDefaultWarning', { bg='NONE', fg='#D79921' }},
+    {'LspDiagnosticsDefaultInformation', { bg='NONE', fg='#458588' }},
+    {'LspDiagnosticsDefaultHint', { bg='NONE', fg='#689D6A' }},
 
     -- ts override
     {'TSKeywordOperator', { bg='NONE', fg='#fb4934' }},

@@ -7,6 +7,7 @@ au BufNewFile,BufRead *.json,.prettierrc,.eslintrc set filetype=jsonc
 au BufRead,BufNewFile *.json set ft=jsonc
 au BufRead,BufNewFile *.svx,*.mdx set ft=markdown
 au BufRead,BufNewFile *.fnl set ft=fennel
+au BufRead,BufNewFile *.svelte set ft=svelte
 
 " Set tabsize for each filetype
 au FileType go setlocal sw=8 ts=8
