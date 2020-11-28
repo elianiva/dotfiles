@@ -23,10 +23,10 @@ require("plugins._emmet")
 require("plugins._indentline")
 -- require("plugins._signify")
 require("plugins._gitsigns")
-require("plugins._telescope")
 require("plugins._completion")
 require("plugins._formatter")
 require("plugins._treesitter")
+require("plugins._telescope")
 -- require("plugins._coc")
 
 -- highlight bg according to hex/rgb/rgba text

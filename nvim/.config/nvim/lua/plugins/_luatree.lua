@@ -5,7 +5,7 @@ vim.g.lua_tree_ignore = {
   '.git', 'node_modules', '__sapper__', '.routify', 'dist', '.cache'
 }
 vim.g.lua_tree_auto_open = 0
-vim.g.lua_tree_auto_close = 1
+vim.g.lua_tree_auto_close = 0
 vim.g.lua_tree_follow = 1
 vim.g.lua_tree_indent_markers = 1
 vim.g.lua_tree_hide_dotfiles = 1

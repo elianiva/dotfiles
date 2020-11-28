@@ -29,7 +29,7 @@ treesitter_config.setup {
   highlight = {
     enable = true,
     disable = {'svelte'},
-    use_languagetree = false,
+    use_languagetree = true,
     custom_captures = {
       ["variable"] = "Identifier",
       ["punctuation.delimiter"] = "Identifier"

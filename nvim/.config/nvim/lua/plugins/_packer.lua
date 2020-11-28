@@ -64,9 +64,9 @@ if ok then
     use 'wakatime/vim-wakatime' -- track usage time using wakatime
     use 'norcalli/nvim-colorizer.lua' -- colorize hex/rgb/hsl value
     use {'pangloss/vim-javascript', ft = {'svelte'}}-- javascript highlights
+    use 'leafOfTree/vim-svelte-plugin' -- svelte language support
     use 'nvim-treesitter/nvim-treesitter' -- better syntax highlighting
     use 'nvim-treesitter/playground' -- playground for treesitter
-    use 'leafOfTree/vim-svelte-plugin' -- svelte language support
     use {
       'junegunn/goyo.vim',
       ft = {'txt', 'markdown'},
