@@ -6,6 +6,12 @@
 (quoted_attribute_value) @string
 (comment) @comment
 
+[
+  (logic_start)
+  (logic_between)
+  (logic_end)
+] @keyword
+
 "=" @operator
 
 [

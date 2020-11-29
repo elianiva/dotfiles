@@ -28,12 +28,12 @@ Statusline.is_truncated = function(_, width)
   return current_width < width
 end
 
---[[
-  NOTE: I don't use this since the statusline already has
-  so much stuff going on. Feel free to use it!
-  credit: https://github.com/nvim-lua/lsp-status.nvim
---]]
--- local get_lsp_diagnostic = function()
+----[[
+--  NOTE: I don't use this since the statusline already has
+--  so much stuff going on. Feel free to use it!
+--  credit: https://github.com/nvim-lua/lsp-status.nvim
+----]]
+-- Statusline.get_lsp_diagnostic = function(self)
 --   local result = {}
 --   local levels = {
 --     errors = 'Error',
@@ -42,25 +42,25 @@ end
 --     hints = 'Hint'
 --   }
 
-  -- for k, level in pairs(levels) do
-  --   result[k] = vim.lsp.util.buf_diagnostics_count(level)
-  -- end
+--   for k, level in pairs(levels) do
+--     result[k] = vim.lsp.diagnostic.get_count(0, level)
+--   end
 
-  -- if is_truncated() then
-  --   return ''
-  -- else
-  --   return string.format(
-  --     "| E:%s W:%s I:%s H:%s ",
-  --     result['errors'] or 0, result['warnings'] or 0,
-  --     result['info'] or 0, result['hints'] or 0
-  --   )
-  -- end
+--   if self:is_truncated(120) then
+--     return ''
+--   else
+--     return string.format(
+--       "| :%s :%s :%s :%s ",
+--       result['errors'] or 0, result['warnings'] or 0,
+--       result['info'] or 0, result['hints'] or 0
+--     )
+--   end
 -- end
 
 Statusline.get_current_mode = function(self)
   local modes = {
-    ['n']  = { 'Normal', 'N' };
-    ['no'] = { 'N·Pending', 'N' };
+    ['n']  = {'Normal', 'N'};
+    ['no'] = {'N·Pending', 'N'} ;
     ['v']  = {'Visual', 'V' };
     ['V']  = {'V·Line', 'V' };
     [''] = {'V·Block', 'V'}; -- this is not ^V, but it's , they're different
@@ -90,7 +90,7 @@ Statusline.get_current_mode = function(self)
 end
 
 Statusline.get_git_status = function(self)
-  -- use fallback because it doesn't set variable on initial `BufEnter`
+  -- use fallback because it doesn't set this variable on initial `BufEnter`
   local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
 
   if self:is_truncated(90) then
@@ -112,8 +112,6 @@ Statusline.get_git_status = function(self)
 end
 
 Statusline.get_filename = function(self)
-  -- local filename = fn.expand('%:p')
-  -- return string.format(' %s ', filename)
   if self:is_truncated(140) then
     return " %f "
   else
@@ -154,7 +152,7 @@ Statusline.set_active = function(self)
     self.colors.active,
     mode, mode_alt, git, git_alt,
     "%=", filename, "%=",
-    filetype_alt, filetype, line_col_alt, line_col,
+    filetype_alt, filetype, line_col_alt, line_col
   })
 end
 

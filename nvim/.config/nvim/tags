@@ -1,0 +1,104 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+0	coc-settings.json	/^    "javascript",$/;"	s	array:eslint.filetypes
+1	coc-settings.json	/^    "javascriptreact",$/;"	s	array:eslint.filetypes
+2	coc-settings.json	/^    "typescript",$/;"	s	array:eslint.filetypes
+3	coc-settings.json	/^    "typescriptreact"$/;"	s	array:eslint.filetypes
+Blur.off	lua/modules/_blur.lua	/^Blur.off = function()$/;"	f
+Blur.on	lua/modules/_blur.lua	/^Blur.on = function()$/;"	f
+ColorUtil.override_eunoia	lua/modules/_appearances.lua	/^ColorUtil.override_eunoia = function()$/;"	f
+ColorUtil.override_gruvbox	lua/modules/_appearances.lua	/^ColorUtil.override_gruvbox = function()$/;"	f
+Compe	after/ftplugin.vim	/^augroup Compe$/;"	a
+Goyo	after/ftplugin.vim	/^augroup Goyo$/;"	a
+Lexima	after/ftplugin.vim	/^augroup Lexima$/;"	a
+M.create_float_window	lua/modules/lsp/_window.lua	/^function M.create_float_window(contents,filetype,border,enter,modifiable,opts)$/;"	f
+M.define_colours	lua/modules/_nord.lua	/^M.define_colours = function()$/;"	f
+M.diagnostic_colours	lua/modules/_nord.lua	/^M.diagnostic_colours = function()$/;"	f
+M.fancy_floating_markdown	lua/modules/lsp/_window.lua	/^function M.fancy_floating_markdown(contents, opts)$/;"	f
+M.general_colours	lua/modules/_nord.lua	/^M.general_colours = function()$/;"	f
+M.get_max_contents_width	lua/modules/lsp/_window.lua	/^function M.get_max_contents_width(contents)$/;"	f
+M.grep_prompt	lua/plugins/_telescope.lua	/^M.grep_prompt = function()$/;"	f
+M.html_colours	lua/modules/_nord.lua	/^M.html_colours = function()$/;"	f
+M.lsp_mappings	lua/modules/lsp/_mappings.lua	/^M.lsp_mappings = function()$/;"	f
+M.make_floating_popup_options	lua/modules/lsp/_window.lua	/^function M.make_floating_popup_options(width, height, opts)$/;"	f
+M.markdown_colours	lua/modules/_nord.lua	/^M.markdown_colours = function()$/;"	f
+M.setup	lua/modules/_nord.lua	/^M.setup = function(self)$/;"	f
+M.syntax_colours	lua/modules/_nord.lua	/^M.syntax_colours = function()$/;"	f
+M.treesitter_colours	lua/modules/_nord.lua	/^M.treesitter_colours = function()$/;"	f
+M:define_colours	lua/modules/_eunoia.lua	/^function M:define_colours()$/;"	f
+M:general_highlights	lua/modules/_eunoia.lua	/^function M:general_highlights()$/;"	f
+M:languages_highlights	lua/modules/_eunoia.lua	/^function M:languages_highlights()$/;"	f
+M:lsp_highlights	lua/modules/_eunoia.lua	/^function M:lsp_highlights()$/;"	f
+M:plugins_highlights	lua/modules/_eunoia.lua	/^function M:plugins_highlights()$/;"	f
+M:setup	lua/modules/_eunoia.lua	/^function M:setup()$/;"	f
+M:treesitter_highlights	lua/modules/_eunoia.lua	/^function M:treesitter_highlights()$/;"	f
+Statusline.active	lua/modules/_statusline.lua	/^Statusline.active = function() return Statusline:set_active() end$/;"	f
+Statusline.explorer	lua/modules/_statusline.lua	/^Statusline.explorer = function() return Statusline:set_explorer() end$/;"	f
+Statusline.get_current_mode	lua/modules/_statusline.lua	/^Statusline.get_current_mode = function(self)$/;"	f
+Statusline.get_filename	lua/modules/_statusline.lua	/^Statusline.get_filename = function(self)$/;"	f
+Statusline.get_filetype	lua/modules/_statusline.lua	/^Statusline.get_filetype = function()$/;"	f
+Statusline.get_git_status	lua/modules/_statusline.lua	/^Statusline.get_git_status = function(self)$/;"	f
+Statusline.get_line_col	lua/modules/_statusline.lua	/^Statusline.get_line_col = function(self)$/;"	f
+Statusline.inactive	lua/modules/_statusline.lua	/^Statusline.inactive = function() return Statusline:set_inactive() end$/;"	f
+Statusline.is_truncated	lua/modules/_statusline.lua	/^Statusline.is_truncated = function(_, width)$/;"	f
+Statusline.set_active	lua/modules/_statusline.lua	/^Statusline.set_active = function(self)$/;"	f
+Statusline.set_explorer	lua/modules/_statusline.lua	/^Statusline.set_explorer = function(self)$/;"	f
+Statusline.set_inactive	lua/modules/_statusline.lua	/^Statusline.set_inactive = function(self)$/;"	f
+Util.check_backspace	lua/modules/_util.lua	/^Util.check_backspace = function()$/;"	f
+Util.check_html_char	lua/modules/_util.lua	/^Util.check_html_char = function()$/;"	f
+Util.convert_color	lua/modules/_util.lua	/^Util.convert_color = function(mode)$/;"	f
+Util.translate	lua/modules/_util.lua	/^Util.translate = function(lang)$/;"	f
+Util.xdg_open	lua/modules/_util.lua	/^Util.xdg_open = function()$/;"	f
+apply_options	lua/modules/_settings.lua	/^local apply_options = function(opts)$/;"	f
+apply_plugins	lua/plugins/_plug.lua	/^local apply_plugins = function()$/;"	f
+apply_syntax_to_region	lua/modules/lsp/_window.lua	/^  local function apply_syntax_to_region(ft, start, finish)$/;"	f
+b:PHP_default_indenting	after/ftplugin.vim	/^let b:PHP_default_indenting = 1$/;"	v
+coc.preferences.colorSupport	coc-settings.json	/^  "coc.preferences.colorSupport": true,$/;"	b
+create_float_border	lua/modules/lsp/_window.lua	/^local function create_float_border(contents,border,opts)$/;"	f
+create_float_contents	lua/modules/lsp/_window.lua	/^local function create_float_contents(contents, filetype,enter,modifiable,opts)$/;"	f
+css.validate	coc-settings.json	/^  "css.validate": false,$/;"	b
+custom_on_attach	lua/modules/lsp/init.lua	/^local custom_on_attach = function()$/;"	f
+custom_on_init	lua/modules/lsp/init.lua	/^local custom_on_init = function()$/;"	f
+diagnostic.errorSign	coc-settings.json	/^  "diagnostic.errorSign": "",$/;"	s
+diagnostic.hintSign	coc-settings.json	/^  "diagnostic.hintSign": "",$/;"	s
+diagnostic.infoSign	coc-settings.json	/^  "diagnostic.infoSign": "",$/;"	s
+diagnostic.level	coc-settings.json	/^  "diagnostic.level": "warning",$/;"	s
+diagnostic.refreshOnInsertMode	coc-settings.json	/^  "diagnostic.refreshOnInsertMode": true,$/;"	b
+diagnostic.warningSign	coc-settings.json	/^  "diagnostic.warningSign": "",$/;"	s
+eslint.filetypes	coc-settings.json	/^  "eslint.filetypes": [$/;"	a
+eslint.nodePath	coc-settings.json	/^  "eslint.nodePath": "~\/.local\/npm\/bin\/eslint",$/;"	s
+eslint.quiet	coc-settings.json	/^  "eslint.quiet": true,$/;"	b
+get_word	lua/modules/_util.lua	/^local get_word = function()$/;"	f
+hl	lua/modules/_appearances.lua	/^local hl = function(group, options)$/;"	f
+lsp.handlers['textDocument/hover']	lua/modules/lsp/_custom_handlers.lua	/^lsp.handlers['textDocument\/hover'] = function(_, method, result)$/;"	f
+luafmt	lua/plugins/_formatter.lua	/^local luafmt = function()$/;"	f
+make_border_option	lua/modules/lsp/_window.lua	/^local function make_border_option(contents,opts)$/;"	f
+on_init	lua/modules/lsp/init.lua	/^  on_init = function() print("Diagnosticls started") end,$/;"	f
+packer_load_aucmds	plugin/packer_compiled.vim	/^augroup packer_load_aucmds$/;"	a
+plugins	lua/plugins/_packer.lua	/^  local plugins = function()$/;"	f
+prettier	lua/plugins/_formatter.lua	/^local prettier = function()$/;"	f
+prettier.arrowParens	coc-settings.json	/^  "prettier.arrowParens": "avoid",$/;"	s
+prettier.bracketSpacing	coc-settings.json	/^  "prettier.bracketSpacing": true,$/;"	b
+prettier.eslintIntegration	coc-settings.json	/^  "prettier.eslintIntegration": true,$/;"	b
+prettier.formatterPriority	coc-settings.json	/^  "prettier.formatterPriority": -1,$/;"	n
+prettier.jsxBracketSameLine	coc-settings.json	/^  "prettier.jsxBracketSameLine": false,$/;"	b
+prettier.trailingComma	coc-settings.json	/^  "prettier.trailingComma": "none",$/;"	s
+prettier.tslintIntegration	coc-settings.json	/^  "prettier.tslintIntegration": true,$/;"	b
+python.pythonPath	coc-settings.json	/^  "python.pythonPath": "\/usr\/bin\/python3",$/;"	s
+result	lua/modules/_util.lua	/^  local ok, result = pcall(function() return vim.trim(job:sync()[1]) end)$/;"	f
+root_dir	lua/modules/lsp/init.lua	/^  root_dir = function() return vim.loop.cwd() end$/;"	f
+rustfmt	lua/plugins/_formatter.lua	/^local rustfmt = function()$/;"	f
+s:load	plugin/packer_compiled.vim	/^function! s:load(names, cause) abort$/;"	f
+svelte.plugin.html.completions.enable	coc-settings.json	/^  "svelte.plugin.html.completions.enable": false,$/;"	b
+svelte.plugin.svelte.format.enable	coc-settings.json	/^  "svelte.plugin.svelte.format.enable": true,$/;"	b
+to_hex	lua/modules/_util.lua	/^local to_hex = function(rgb)$/;"	f
+to_rgb	lua/modules/_util.lua	/^local to_rgb = function(hex)$/;"	f
+tslint.autoFixOnSave	coc-settings.json	/^  "tslint.autoFixOnSave": true,$/;"	b
+tslint.jsEnable	coc-settings.json	/^  "tslint.jsEnable": true,$/;"	b
+tsserver.log	coc-settings.json	/^  "tsserver.log": "verbose",$/;"	s
