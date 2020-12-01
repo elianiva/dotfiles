@@ -13,7 +13,7 @@ au BufRead,BufNewFile *.svelte set ft=svelte
 au FileType go setlocal sw=8 ts=8
 au FileType lua setlocal sw=2 ts=2
 au FileType java setlocal sw=4 ts=4
-au FileType php setlocal sw=4 ts=4
+" au FileType php setlocal sw=4 ts=4
 
 " Enable emmet.vim on these filetypes
 au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall

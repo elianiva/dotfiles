@@ -75,13 +75,13 @@ if ok then
       requires = {
         {'kyazdani42/nvim-web-devicons'}
       }
-    }
+    } -- super fast file tree viewer
     use {
       'akinsho/nvim-bufferline.lua',
       requires = {
         {'kyazdani42/nvim-web-devicons'}
       }
-    } -- bufferline
+    } -- snazzy bufferline
     use 'neovim/nvim-lspconfig' -- builtin lsp config
     use 'mhartington/formatter.nvim' -- formatter, experimenting
     use 'tpope/vim-commentary' -- comment stuff easier
@@ -89,8 +89,6 @@ if ok then
     use 'tpope/vim-surround' -- surround words with symbol
     use {
       'nvim-telescope/telescope.nvim',
-      -- 'Conni2459/telescope.nvim',
-      -- branch = 'vim_buffers_everywhere',
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},

@@ -3,7 +3,6 @@ local fn = vim.fn
 
 local prettier = function()
   if not fn.empty(fn.glob(fn.getcwd() .. '/.prettierrc')) then
-    -- return string.format("prettier -w --config %s/.prettierrc '%s'", fn.getcwd(), file)
     return {
       exe = "prettier",
       args = {
@@ -44,6 +43,7 @@ require'formatter'.setup{
     typescript = {prettier},
     css = {prettier},
     html = {prettier},
+    php = {prettier},
     svelte = {prettier},
     rust = {rustfmt},
     lua = {luafmt}

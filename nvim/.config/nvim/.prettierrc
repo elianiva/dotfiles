@@ -1,11 +1,14 @@
 {
   "semi": false,
   "arrowParens": "avoid",
+  "useTabs": false,
+  "tabWidth": 2,
   "trailingComma": "es5",
   "bracketSpacing": true,
   "svelteSortOrder": "styles-markup-scripts",
   "svelteAllowShorthand": true,
   "svelteBracketNewLine": true,
   "svelteIndentScriptAndStyle": false,
-  "printWidth": 80
+  "printWidth": 80,
+  "phpVersion": "7.4",
 }
