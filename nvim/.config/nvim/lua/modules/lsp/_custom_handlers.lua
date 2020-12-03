@@ -22,3 +22,35 @@ lsp.handlers['textDocument/hover'] = function(_, method, result)
       return bufnr,contents_winid
   end)
 end
+
+lsp.handlers["textDocument/rename"] = function(_err, _method, result)
+    if not result then return end
+    if result.documentChanges then
+        local merged_changes = {}
+        local versions = {}
+        for _, change in ipairs(result.documentChanges) do
+            if change.kind then
+                error("not support")
+            else
+                local edits = merged_changes[change.textDocument.uri] or {}
+                versions[change.textDocument.uri] = change.textDocument.version
+                for _, edit in ipairs(change.edits) do
+                    table.insert(edits, edit)
+                end
+                merged_changes[change.textDocument.uri] = edits
+            end
+        end
+        local new_changes = {}
+        for uri, edits in pairs(merged_changes) do
+            table.insert(new_changes, {
+                edits = edits,
+                textDocument = {
+                    uri = uri,
+                    version = versions[uri],
+                }})
+        end
+        result.documentChanges = new_changes
+    end
+
+    vim.lsp.util.apply_workspace_edit(result)
+  end
