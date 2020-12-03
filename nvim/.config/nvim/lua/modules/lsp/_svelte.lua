@@ -6,7 +6,7 @@ local bin_name = 'svelteserver'
 
 local installer = util.npm_installer {
   server_name = server_name;
-  packages = { "typescript-language-server" };
+  packages = { "svelte-language-server" };
   binaries = { bin_name };
 }
 
