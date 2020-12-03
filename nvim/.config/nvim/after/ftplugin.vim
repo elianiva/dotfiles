@@ -51,6 +51,6 @@ augroup END
 
 augroup Lexima
   au!
-  au BufEnter * let g:lexima_disabled = 0
-  au FileType TelescopePrompt let g:lexima_disabled = 1
+  au BufEnter * let b:lexima_disabled = 0
+  au FileType TelescopePrompt let b:lexima_disabled = 1
 augroup END
