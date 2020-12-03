@@ -51,7 +51,7 @@ function M.get()
     ),
   }
 
-  -- create a 2 second timer to hide the volume adjust
+  -- create a 4 second timer to hide the volume adjust
   -- component whenever the timer is started
   local hide_volume_adjust = gears.timer {
     timeout = 4,
@@ -60,24 +60,21 @@ function M.get()
   }
 
   -- show volume-adjust when "volume_change" signal is emitted
-  awesome.connect_signal("volume_change",
-    function()
-      -- set new volume value
-      awful.spawn.easy_async_with_shell(
-        "pulsemixer --get-volume | awk '{print $1}'",
-        function(stdout) volume_bar.value = tonumber(stdout) end,
-        false
-      )
+  awesome.connect_signal("volume_change", function()
+    -- set new volume value
+    awful.spawn.easy_async_with_shell(
+      "pulsemixer --get-volume | awk '{print $1}'",
+      function(stdout) volume_bar.value = tonumber(stdout) end
+    )
 
-      -- make volume_adjust component visible
-      if volume_adjust.visible then
-        hide_volume_adjust:again()
-      else
-        volume_adjust.visible = true
-        hide_volume_adjust:start()
-      end
+    -- make volume_adjust component visible
+    if volume_adjust.visible then
+      hide_volume_adjust:again()
+    else
+      volume_adjust.visible = true
+      hide_volume_adjust:start()
     end
-  )
+  end)
 
 end
 

@@ -1,11 +1,15 @@
 local gears = require("gears")
 local wibox = require("wibox")
 local awful = require("awful")
-local dpi = require("beautiful.xresources").apply_dpi
+local colorize = require"main.helpers".colorize
+local dpi = require"beautiful.xresources".apply_dpi
+local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/clock/icon.svg"
 
 local M = {}
 
 -- Clock
+M.icon = wibox.widget.imagebox(colorize(icon, theme.widget_main_color))
+
 M.widget = wibox.widget.textclock(
   "<span color='".. theme.foreground .. "'>%a, %I:%M %p</span>"
 )

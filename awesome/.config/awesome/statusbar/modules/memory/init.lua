@@ -1,19 +1,22 @@
 local wibox = require("wibox")
-local lain = require("lain")
-local markup = lain.util.markup
+local awful = require("awful")
 local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/memory/icon.svg"
 local colorize = require("main.helpers").colorize
+local markup = require"main.helpers".markup
 
 local M = {}
 
 -- Memory
 M.icon = wibox.widget.imagebox(colorize(icon, theme.widget_main_color))
 
-M.widget = lain.widget.mem({
-  timeout = 2,
-  settings = function()
-    widget:set_markup(markup(theme.foreground, mem_now.perc .. "%"))
-  end
-}).widget -- call the actual lain widget
+local get_mem_status = [[
+  sh -c "
+    free -h | awk '/^Mem/ { print $3 }' | sed s/i//g
+  "
+]]
+
+M.widget = awful.widget.watch(get_mem_status, 5, function(widget, stdout)
+  widget:set_markup(markup(stdout, {fg = theme.foreground}))
+end)
 
 return M

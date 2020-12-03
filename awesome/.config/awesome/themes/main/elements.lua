@@ -10,7 +10,7 @@ theme.font = "JetBrainsMono Nerd Font 10"
 theme.color_name = "gruvbox"
 theme.nerd_font = "JetBrainsMono Nerd Font 10"
 theme.taglist_font = "M+ 2p Medium 11"
-theme.taglist_fg_empty = theme.black_alt
+theme.taglist_fg_empty = theme.grey
 
 -- background stuff
 theme.bg_normal = theme.black

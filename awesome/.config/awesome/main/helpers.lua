@@ -38,4 +38,13 @@ helpers.colorize = function(icon, color)
   return gears.color.recolor_image(icon, color)
 end
 
+helpers.markup = function(content, opts)
+  local fg = opts.fg or ""
+
+  return string.format(
+    '<span foreground="%s">%s</span>',
+    fg, content
+  )
+end
+
 return helpers

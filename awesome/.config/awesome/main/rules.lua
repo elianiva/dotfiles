@@ -33,7 +33,7 @@ function M.get(clientkeys, clientbuttons)
           "connman-gtk",
           "Connman-gtk",
           "SimpleScreenRecorder",
-          "xdman-Main"
+          "Anki"
         },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client

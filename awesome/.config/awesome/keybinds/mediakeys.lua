@@ -6,19 +6,26 @@ local M = {}
 function M.get()
   local globalkeys = gears.table.join(
     awful.key({}, "XF86AudioLowerVolume", function()
-      awesome.emit_signal("volume_change")
-      awful.spawn("pulsemixer --change-volume -2", false)
+      awful.spawn.easy_async("pulsemixer --change-volume -2", function()
+        -- send signal AFTER the volume has changed
+        awesome.emit_signal("volume_change")
+      end)
     end,
     {description = "lower the volume", group = "media"}),
 
     awful.key({}, "XF86AudioRaiseVolume", function()
-      awesome.emit_signal("volume_change")
-      awful.spawn("pulsemixer --change-volume +2", false)
+      awful.spawn.easy_async("pulsemixer --change-volume +2", function()
+        -- send signal AFTER the volume has changed
+        awesome.emit_signal("volume_change")
+      end)
     end,
     {description = "raise the volume", group = "media"}),
 
     awful.key({}, "XF86AudioMute", function()
-      awful.spawn("pulsemixer --toggle-mute", false)
+      awful.spawn.easy_async("pulsemixer --toggle-mute", function()
+        -- send signal AFTER the volume has changed
+        awesome.emit_signal("volume_change")
+      end)
     end,
     {description = "mute the audio", group = "media"}),
 

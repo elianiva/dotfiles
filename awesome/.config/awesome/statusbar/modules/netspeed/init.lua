@@ -1,36 +1,52 @@
 local wibox = require("wibox")
-local lain = require("lain")
-local markup = lain.util.markup
-local colorize = require("main.helpers").colorize
+local awful = require("awful")
+local markup = require"main.helpers".markup
+local colorize = require"main.helpers".colorize
 
 local up = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/netspeed/up.svg"
 local down = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/netspeed/down.svg"
-local wifi_off = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/netspeed/wifi_off.svg"
+-- local wifi_off = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/netspeed/wifi_off.svg"
 local wifi_on = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/netspeed/wifi_on.svg"
 
 local M = {}
 
 -- Netspeed
 M.up_icon = wibox.widget.imagebox(colorize(up, theme.widget_main_color))
-
 M.down_icon = wibox.widget.imagebox(colorize(down, theme.widget_main_color))
 
-M.wifi_icon = wibox.widget.imagebox()
-M.down_speed = wibox.widget.textbox()
+M.wifi_icon = wibox.widget.imagebox(colorize(wifi_on, theme.widget_main_color))
 
-M.up_speed = lain.widget.net({
-  units = 1024,
-  settings = function()
-    if wifi_state ~= "off" then
-      M.wifi_icon:set_image(colorize(wifi_on, theme.widget_main_color))
-      widget:set_markup(markup(theme.foreground, net_now.sent .. "KB"))
-      M.down_speed:set_markup(markup(theme.foreground, net_now.received .. "KB"))
-    else
-      M.wifi_icon:set_image(colorize(wifi_off, theme.widget_main_color))
-      widget:set_markup("")
-      M.down_speed:set_markup("")
-    end
+local up_old = 0
+local down_old = 0
+
+local get_up = [[
+  sh -c "cat /sys/class/net/[w]*/statistics/tx_bytes"
+]]
+
+local get_down = [[
+  sh -c "cat /sys/class/net/[w]*/statistics/rx_bytes"
+]]
+
+M.up = awful.widget.watch(get_up, 2, function(widget, stdout)
+  local num
+  if up_old == 0 then
+    num = 0
+  else
+    num = math.floor((tonumber(stdout) - up_old) / 1024)
   end
-}).widget -- call the actual lain widget
+  widget:set_markup(markup(tostring(num).."KiB", {fg = theme.foreground}))
+  up_old = tonumber(stdout)
+end)
+
+M.down = awful.widget.watch(get_down, 2, function(widget, stdout)
+  local num
+  if down_old == 0 then
+    num = 0
+  else
+    num = math.floor((tonumber(stdout) - down_old) / 1024)
+  end
+  widget:set_markup(markup(tostring(num).."KiB", {fg = theme.foreground}))
+  down_old = tonumber(stdout)
+end)
 
 return M

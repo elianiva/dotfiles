@@ -15,8 +15,8 @@ local text_wrapper = function(widget, left, right, top, bottom)
 end
 
 local icon_wrapper = function(icon, left, right, top, bottom)
-  left = left or 5
-  right = right or 5
+  left = left or 4
+  right = right or 4
   top = top or 8
   bottom = bottom or 8
 
@@ -81,16 +81,16 @@ awful.screen.connect_for_each_screen(function(s)
     },
     {
       -- text_wrapper(clock, 10, 10, 5, 10), -- Clock
-      text_wrapper(clock.widget, dpi(10), dpi(10), dpi(5), dpi(10)), -- Clock
+      -- text_wrapper(clock.widget, dpi(10), dpi(10), dpi(5), dpi(10)), -- Clock
       layout = wibox.layout.fixed.horizontal
     },
     {
       -- Netstatus
       icon_wrapper(netspeed.wifi_icon),
       icon_wrapper(netspeed.down_icon),
-      text_wrapper(netspeed.down_speed),
+      text_wrapper(netspeed.down),
       icon_wrapper(netspeed.up_icon),
-      text_wrapper(netspeed.up_speed),
+      text_wrapper(netspeed.up),
 
       icon_wrapper(volume.icon),
       text_wrapper(volume.widget), -- Volume
@@ -102,7 +102,9 @@ awful.screen.connect_for_each_screen(function(s)
       text_wrapper(memory.widget), -- Memory
       icon_wrapper(battery.icon),
       text_wrapper(battery.widget, 0, 0), -- Battery
-      text_wrapper(todo, 0, 5, 8, 8), -- Todo
+      icon_wrapper(clock.icon),
+      text_wrapper(clock.widget), -- Clock
+      text_wrapper(todo, 5, 5, 8, 8), -- Todo
 
       margin(systray.widget, dpi(0), dpi(2), dpi(4), dpi(4)),
       -- s.mylayoutbox,
