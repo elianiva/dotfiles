@@ -24,7 +24,8 @@ if ok then
       'leafOfTree/vim-svelte-plugin',
       requires = {
         {'pangloss/vim-javascript', ft = { 'svelte' }},
-      }
+      },
+      opt = false
     }-- svelte language support
     use 'nvim-treesitter/nvim-treesitter' -- better syntax highlighting
     use 'nvim-treesitter/playground' -- playground for treesitter
@@ -65,7 +66,9 @@ if ok then
     use 'mattn/emmet-vim' -- less typing for html code
     use 'tpope/vim-surround' -- surround words with symbol
     use {
-      'nvim-telescope/telescope.nvim',
+      -- 'nvim-telescope/telescope.nvim',
+      'Conni2461/telescope.nvim',
+      branch = 'vim_buffers_everywhere',
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},

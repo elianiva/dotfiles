@@ -52,17 +52,17 @@ ColorUtil.override_gruvbox = function()
     {'FiletypeAlt', { bg = '#3C3836', fg = '#504945' }},
 
     -- luatree
-    {'LuaTreeFolderIcon', { fg = '#D79921' }},
+    {'LuaTreeFolderIcon', { fg = '#d79921' }},
     {'LuaTreeIndentMarker', { fg = '#928374' }},
 
     -- telescope
-    {'TelescopeSelection', { bg='NONE', fg='#D79921', gui='bold' }},
+    {'TelescopeSelection', { bg='NONE', fg='#d79921', gui='bold' }},
     {'TelescopeMatching', { bg='NONE', fg='#fb4934', gui='bold' }},
     {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
 
     -- diagnostic nvim
     {'LspDiagnosticsDefaultError', { bg='NONE', fg='#fb4934' }},
-    {'LspDiagnosticsDefaultWarning', { bg='NONE', fg='#D79921' }},
+    {'LspDiagnosticsDefaultWarning', { bg='NONE', fg='#d79921' }},
     {'LspDiagnosticsDefaultInformation', { bg='NONE', fg='#458588' }},
     {'LspDiagnosticsDefaultHint', { bg='NONE', fg='#689D6A' }},
 
@@ -113,7 +113,7 @@ hl('Comment', { gui = 'italic' })
 vim.cmd('augroup NewColor')
 vim.cmd('au!')
 vim.cmd('au ColorScheme gruvbox call v:lua.ColorUtil.override_gruvbox()')
-vim.cmd('au ColorScheme eunoia call v:lua.ColorUtil.override_eunoia()')
+-- vim.cmd('au ColorScheme eunoia call v:lua.ColorUtil.override_eunoia()')
 vim.cmd('augroup END')
 
 -- disable invert selection for gruvbox

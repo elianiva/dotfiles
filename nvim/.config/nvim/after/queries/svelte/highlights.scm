@@ -7,8 +7,6 @@
 (comment) @comment
 
 [
-  (logic_start)
-  (logic_between)
   (logic_end)
 ] @keyword
 

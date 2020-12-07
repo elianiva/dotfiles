@@ -16,11 +16,6 @@ require("modules._others")
 require("modules._appearances")
 require("modules._util")
 
--- my colourscheme, not using it, idk why it feels claustrophobic to me
--- when I use it for too long.
--- require"modules._eunoia".setup{}
--- ColorUtil.override_eunoia()
-
 -- plugins config
 require("plugins._luatree")
 require("plugins._bufferline")

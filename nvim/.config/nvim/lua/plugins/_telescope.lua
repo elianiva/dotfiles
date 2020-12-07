@@ -4,6 +4,7 @@ local M = {}
 
 require'telescope'.setup{
   defaults = {
+    vim_buffers_everywhere = true,
     borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
     scroll_strategy = 'cycle',
     selection_strategy = 'reset',
