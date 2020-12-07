@@ -1,7 +1,28 @@
-autoload -U colors && colors	# Load colors
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-history-substring-search
+zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
+    zsh-users/zsh-completions
+zinit wait lucid atload'_zsh_autosuggest_start' light-mode for \
+    zsh-users/zsh-autosuggestions
+
+###=========== Start of user config =================###
 eval "$(starship init zsh)"
-setopt autocd		# Automatically cd into typed directory.
-stty stop undef		# Disable ctrl-s to freeze terminal.
+setopt autocd		# automatically cd into typed directory.
+stty stop undef		# disable ctrl-s to freeze terminal.
 
 # History in cache directory:
 HISTSIZE=10000
@@ -10,24 +31,17 @@ HISTFILE=~/.cache/zsh/history
 setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
 
-# Load aliases if exists
+# load aliases if exists
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
 
-# Basic auto/tab complete:
-autoload -U compinit
+# highlights tab completion
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # case insensitive
-zmodload zsh/complist
-compinit
 
 bindkey -v # vi mode
 bindkey "jj" vi-cmd-mode # Use jj instead of <Esc>
 
 # Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 # history substring function
@@ -48,7 +62,6 @@ function zle-keymap-select {
 }
 zle -N zle-keymap-select
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     echo -ne "\e[5 q"
 }
 zle -N zle-line-init
@@ -85,9 +98,5 @@ git-svn() {
     echo "Use: git-svn <repository> <subdir>"
   fi
 }
-
-# Load zsh plugins; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
