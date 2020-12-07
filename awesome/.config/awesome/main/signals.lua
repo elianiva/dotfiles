@@ -11,9 +11,9 @@ M.get = function()
     -- i.e. put it at the end of others instead of setting it master.
     if not awesome.startup then awful.client.setslave(c) end
 
-    -- rounded corners
+    -- -- rounded corners
     -- c.shape = function(cr, w, h)
-    --   gears.shape.rounded_rect(cr, w, h, dpi(8))
+    --   require"gears".shape.rounded_rect(cr, w, h, require"beautiful.xresources".apply_dpi(8))
     -- end
 
     if awesome.startup and not c.size_hints.user_position and

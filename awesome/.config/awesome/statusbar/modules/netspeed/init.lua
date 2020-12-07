@@ -32,7 +32,7 @@ M.up = awful.widget.watch(get_up, 2, function(widget, stdout)
   if up_old == 0 then
     num = 0
   else
-    num = math.floor((tonumber(stdout) - up_old) / 1024)
+    num = math.floor(((tonumber(stdout) - up_old) / 1024) / 2)
   end
   widget:set_markup(markup(tostring(num).."KiB", {fg = theme.foreground}))
   up_old = tonumber(stdout)
@@ -43,7 +43,7 @@ M.down = awful.widget.watch(get_down, 2, function(widget, stdout)
   if down_old == 0 then
     num = 0
   else
-    num = math.floor((tonumber(stdout) - down_old) / 1024)
+    num = math.floor(((tonumber(stdout) - down_old) / 1024) / 2)
   end
   widget:set_markup(markup(tostring(num).."KiB", {fg = theme.foreground}))
   down_old = tonumber(stdout)

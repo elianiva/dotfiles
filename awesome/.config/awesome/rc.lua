@@ -30,7 +30,6 @@ main.signals()
 main.titlebar()
 main.volume()
 
--- Custom Local Library: Keys and Mouse Binding
 local keybinds = {
   clientbuttons = require("keybinds.clientbuttons"),
   globalkeys = require("keybinds.globalkeys"),
@@ -40,7 +39,8 @@ local keybinds = {
 }
 
 RC.layouts = require("main.layouts").layouts
-RC.tags = require("main.tags").get()
+RC.tags = require("main.tags")
+
 RC.launcher = awful.widget.launcher({
   image = theme.awesome_icon,
   menu = RC.mainmenu
@@ -48,8 +48,8 @@ RC.launcher = awful.widget.launcher({
 
 menubar.utils.terminal = RC.vars.terminal
 
-RC.globalkeys = keybinds.bindtotags(keybinds.globalkeys())
-RC.mediakeys = keybinds.mediakeys()
+RC.globalkeys = keybinds.bindtotags(keybinds.globalkeys)
+RC.mediakeys = keybinds.mediakeys
 
 -- Set root
 -- root.buttons(keybinds.globalbuttons())

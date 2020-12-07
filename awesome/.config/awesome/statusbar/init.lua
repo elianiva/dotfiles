@@ -80,12 +80,11 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal
     },
     {
-      -- text_wrapper(clock, 10, 10, 5, 10), -- Clock
-      -- text_wrapper(clock.widget, dpi(10), dpi(10), dpi(5), dpi(10)), -- Clock
+      text_wrapper(clock.widget),
+
       layout = wibox.layout.fixed.horizontal
     },
     {
-      -- Netstatus
       icon_wrapper(netspeed.wifi_icon),
       icon_wrapper(netspeed.down_icon),
       text_wrapper(netspeed.down),
@@ -93,21 +92,23 @@ awful.screen.connect_for_each_screen(function(s)
       text_wrapper(netspeed.up),
 
       icon_wrapper(volume.icon),
-      text_wrapper(volume.widget), -- Volume
-      icon_wrapper(temp.icon),
-      text_wrapper(temp.widget), -- Temperature
-      icon_wrapper(cpu.icon),
-      text_wrapper(cpu.widget), -- CPU
-      icon_wrapper(memory.icon),
-      text_wrapper(memory.widget), -- Memory
-      icon_wrapper(battery.icon),
-      text_wrapper(battery.widget, 0, 0), -- Battery
-      icon_wrapper(clock.icon),
-      text_wrapper(clock.widget), -- Clock
-      text_wrapper(todo, 5, 5, 8, 8), -- Todo
+      text_wrapper(volume.widget),
 
-      margin(systray.widget, dpi(0), dpi(2), dpi(4), dpi(4)),
-      -- s.mylayoutbox,
+      icon_wrapper(temp.icon),
+      text_wrapper(temp.widget),
+
+      icon_wrapper(cpu.icon),
+      text_wrapper(cpu.widget),
+
+      icon_wrapper(memory.icon),
+      text_wrapper(memory.widget),
+
+      icon_wrapper(battery.icon),
+      text_wrapper(battery.widget, 0, 0),
+
+      text_wrapper(todo, 5, 5, 8, 8),
+
+      margin(systray.widget, 0, 2, 4, 4),
       layout = wibox.layout.fixed.horizontal
     }
   }
