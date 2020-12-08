@@ -34,7 +34,7 @@ local M = gears.table.join(
   end,
   {description = "view next", group = "tag"}),
 
-  awful.key({ modkey, }, "Escape", function()
+  awful.key({ modkey, }, "Tab", function()
     awful.tag.history.restore()
   end,
   {description = "go back", group = "tag"}),

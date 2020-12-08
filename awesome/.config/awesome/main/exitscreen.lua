@@ -1,16 +1,16 @@
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
+local dpi = require("beautiful.xresources").apply_dpi
+local rrect = require"main.helpers".rrect
 local spawn = awful.spawn
 
 -- Appearance
 local icon_font = "JetBrainsMono Nerd Font 30"
-local poweroff_text_icon = " "
-local reboot_text_icon = " "
+local poweroff_text_icon = " "
+local reboot_text_icon = " "
 local suspend_text_icon = " "
-local exit_text_icon = " "
+local exit_text_icon = " "
 local exitscreen_bg = theme.background .. "dd"
 
 local button_bg = "#1d2021"
@@ -21,12 +21,6 @@ local poweroff_command = function() spawn.with_shell("systemctl poweroff") end
 local reboot_command = function() spawn.with_shell("systemctl reboot") end
 local suspend_command = function() spawn.with_shell("systemctl suspend") end
 local exit_command = function() awesome.quit() end
-
-local rrect = function(radius)
-  return function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, radius)
-  end
-end
 
 local colorize_text = function(txt, fg)
   return "<span foreground='" .. fg .. "'>" .. txt .. "</span>"
@@ -47,7 +41,7 @@ local add_hover_cursor = function(widget, hover_cursor)
 end
 
 -- Helper function that generates the clickable buttons
-local create_button = function(symbol, hover_color, text, command)
+local create_button = function(symbol, hover_color, command)
   local icon = wibox.widget{
     forced_height = button_size,
     forced_width = button_size,
@@ -89,13 +83,10 @@ local create_button = function(symbol, hover_color, text, command)
 end
 
 -- Create the buttons
-local poweroff = create_button(poweroff_text_icon, theme.red, "Poweroff",
-  poweroff_command)
-local reboot = create_button(reboot_text_icon, theme.green, "Reboot",
-  reboot_command)
-local suspend = create_button(suspend_text_icon, theme.yellow, "Suspend",
-  suspend_command)
-local exit = create_button(exit_text_icon, theme.red, "Exit", exit_command)
+local poweroff = create_button(poweroff_text_icon, theme.red, poweroff_command)
+local reboot = create_button(reboot_text_icon, theme.green, reboot_command)
+local suspend = create_button(suspend_text_icon, theme.yellow, suspend_command)
+local exit = create_button(exit_text_icon, theme.red, exit_command)
 
 -- Create the exit screen wibox
 local exit_screen = wibox({visible = false, ontop = true, type = "dock"})
@@ -134,12 +125,14 @@ local exit_screen_show = function()
   exit_screen.visible = true
 end
 
-exit_screen:buttons(gears.table.join( -- Left click - Hide exit_screen
-  awful.button({}, 1, function() exit_screen_hide() end),
-  awful.button({}, 2, function() exit_screen_hide() end),
-  awful.button({}, 3, function() exit_screen_hide() end)))
+exit_screen:buttons(
+  gears.table.join(
+    awful.button({}, 1, function() exit_screen_hide() end),
+    awful.button({}, 2, function() exit_screen_hide() end),
+    awful.button({}, 3, function() exit_screen_hide() end)
+  )
+)
 
--- Item placement
 exit_screen:setup{
   nil,
   {

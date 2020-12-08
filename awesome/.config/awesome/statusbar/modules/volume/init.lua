@@ -2,6 +2,7 @@ local wibox = require("wibox")
 local awful = require("awful")
 local colorize = require"main.helpers".colorize
 local markup = require"main.helpers".markup
+local gears = require("gears")
 
 local HOME = os.getenv("HOME")
 
@@ -45,6 +46,21 @@ end
 M.widget = awful.widget.watch(get_vol_status, 120, function(widget, stdout)
   set_volume(widget, stdout)
 end)
+
+M.widget:buttons(gears.table.join(
+  awful.button({}, 4, function()
+    awful.spawn.easy_async("pulsemixer --change-volume +2", function()
+      -- send signal AFTER the volume has changed
+      awesome.emit_signal("volume_change")
+    end)
+  end),
+  awful.button({}, 5, function()
+    awful.spawn.easy_async("pulsemixer --change-volume -2", function()
+      -- send signal AFTER the volume has changed
+      awesome.emit_signal("volume_change")
+    end)
+  end)
+))
 
 awesome.connect_signal("volume_change", function()
   awful.spawn.easy_async_with_shell(get_vol_status, function(stdout)

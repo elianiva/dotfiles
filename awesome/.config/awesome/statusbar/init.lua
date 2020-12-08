@@ -108,7 +108,7 @@ awful.screen.connect_for_each_screen(function(s)
 
       text_wrapper(todo, 5, 5, 8, 8),
 
-      margin(systray.widget, 0, 2, 4, 4),
+      margin(systray.widget, dpi(0), dpi(2), dpi(4), dpi(4)),
       layout = wibox.layout.fixed.horizontal
     }
   }

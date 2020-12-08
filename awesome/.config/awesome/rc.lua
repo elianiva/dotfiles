@@ -5,6 +5,7 @@ local gears = require("gears")
 local awful = require("awful")
 local beautiful = require("beautiful")
 local menubar = require("menubar")
+local wibox = require("wibox")
 
 require("awful.autofocus") -- autofocus window
 require("main.error-handling") -- error handling
@@ -21,9 +22,9 @@ ctrlkey = RC.vars.ctrlkey
 
 local main = {
   rules = require("main.rules"), -- define rules
-  signals = require("main.signals"), -- define rules
-  titlebar = require("main.titlebar"), -- dual border
-  volume = require("main.volume-widget") -- Volume widget
+  signals = require("main.signals"), -- define signals
+  titlebar = require("main.titlebar"), -- titlebar
+  volume = require("main.volume-widget") -- volume widget
 }
 
 main.signals()

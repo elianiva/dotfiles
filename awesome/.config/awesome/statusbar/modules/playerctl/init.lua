@@ -1,4 +1,6 @@
 local wibox = require("wibox")
+local gears = require("gears")
+local awful = require("awful")
 local markup = require"main.helpers".markup
 local colorize = require"main.helpers".colorize
 local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/playerctl/icon.svg"
@@ -24,9 +26,11 @@ end
 
 player.on_metadata = update_metadata
 
-M.widget:connect_signal("button::press", function()
-  player:play_pause()
-end)
+M.widget:buttons(gears.table.join(
+  awful.button({}, 1, function()
+    player:play_pause()
+  end)
+))
 
 update_metadata()
 

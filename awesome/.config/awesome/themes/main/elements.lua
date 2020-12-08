@@ -1,9 +1,17 @@
 local naughty = require("naughty")
+local awful = require("awful")
 local theme_assets = require("beautiful.theme_assets")
 local dpi = require"beautiful.xresources".apply_dpi
 local gears = require("gears")
+local theme_path = os.getenv("HOME") .. "/.config/awesome/themes/main/"
+local rrect = require"main.helpers".rrect
 
-local themes_path = require("gears.filesystem").get_themes_dir()
+-- wallpaper and icon
+theme.wallpaper = theme_path .. "img/ryuko-spring.png"
+theme.awesome_icon = theme_path .. "icons/killlakill.png"
+theme.icon_theme = "Numix"
+-- theme.wallpaper     = theme_path .. "img/babymetal.jpg"
+-- theme.awesome_icon  = theme_path .. "icons/babymetal.png"
 
 -- theme.font  = "Noto Sans 11"
 theme.font = "JetBrainsMono Nerd Font 10"
@@ -52,7 +60,6 @@ theme.widget_black = theme.black
 theme.widget_transparent = "#00000000"
 
 -- titlebar
--- theme.titlebar_size = dpi(2)
 theme.titlebar_size = dpi(22)
 theme.titlebar_bg_focus = theme.black
 theme.titlebar_bg_normal = theme.black
@@ -63,14 +70,8 @@ theme.titlebar_fg_normal = theme.white
 theme.notification_font = "SF UI Medium 11"
 theme.notification_bg = theme.black
 theme.notification_fg = theme.white
-theme.notification_border_color = theme.blue
+theme.notification_border_color = theme.color_name == "gruvbox" and theme.yellow or theme.blue
 theme.notification_border_width = dpi(1)
-
-function rrect(radius)
-  return function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, radius)
-  end
-end
 
 -- edge snap
 theme.snap_bg = theme.white
@@ -86,25 +87,20 @@ theme.hotkeys_group_margin = dpi(10)
 
 naughty.config.padding = dpi(10)
 naughty.config.icon_dirs = {
-  "/usr/share/icons/Numix/32/actions/", "/usr/share/icons/Numix/32/animations/",
-  "/usr/share/icons/Numix/32/apps/", "/usr/share/icons/Numix/32/categories/",
-  "/usr/share/icons/Numix/32/devices/", "/usr/share/icons/Numix/32/emblems/",
-  "/usr/share/icons/Numix/32/emotes/", "/usr/share/icons/Numix/32/mimetypes/",
-  "/usr/share/icons/Numix/32/places/", "/usr/share/icons/Numix/32/status/"
+  "/usr/share/icons/Numix/32/apps/", "/usr/share/pixmaps/",
 }
 naughty.config.icon_formats = {"png", "svg"}
+naughty.config.defaults.icon_size = dpi(100)
 naughty.config.defaults.margin = dpi(10)
 naughty.config.defaults.border_width = theme.notification_border_width
-naughty.config.defaults.icon_size = dpi(100)
 naughty.config.defaults.title = "System Notification"
 
--- Variables set for theming the menu:
--- menu_[bg|fg]_[normal|focus]
--- menu_[border_color|border_width]
-theme.menu_submenu_icon = themes_path .. "default/submenu.png"
+-- submenu
+theme.menu_submenu_icon = theme_path .. "icons/submenu.svg"
 theme.menu_height = dpi(24)
 theme.menu_width = dpi(180)
 
+-- window snap hint
 theme.tooltip_bg = "#282828"
 theme.tooltip_fg = "#ebdbb2"
 theme.tooltip_border_color = "#ebdbb2"

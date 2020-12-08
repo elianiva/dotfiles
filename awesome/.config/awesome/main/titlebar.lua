@@ -54,16 +54,18 @@ function M.get()
       )
 
       local close = create_title_button(c, theme.red, theme.grey)
-      close:connect_signal("button::press", function() c:kill() end)
+      close:connect_signal("button::press", function()
+        c:kill()
+      end)
 
       local floating = create_title_button(c, theme.yellow, theme.grey)
       floating:connect_signal("button::press", function()
-        c.floating = not c.floating
+        c.ontop = not c.ontop
       end)
 
       local fullscreen = create_title_button(c, theme.green, theme.grey)
       fullscreen:connect_signal("button::press", function()
-        -- do nothing, this is for decoration
+        c.floating = not c.floating
       end)
 
       local window_title = { -- client name
