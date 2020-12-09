@@ -1,8 +1,5 @@
-local naughty = require("naughty")
-local awful = require("awful")
 local theme_assets = require("beautiful.theme_assets")
 local dpi = require"beautiful.xresources".apply_dpi
-local gears = require("gears")
 local theme_path = os.getenv("HOME") .. "/.config/awesome/themes/main/"
 local rrect = require"main.helpers".rrect
 
@@ -67,11 +64,14 @@ theme.titlebar_fg_focus = theme.white
 theme.titlebar_fg_normal = theme.white
 
 -- notification
-theme.notification_font = "SF UI Medium 11"
+theme.notification_font = "JetBrainsMono Nerd Font 11"
 theme.notification_bg = theme.black
 theme.notification_fg = theme.white
-theme.notification_border_color = theme.color_name == "gruvbox" and theme.yellow or theme.blue
+theme.notification_border_color = theme.grey_alt
 theme.notification_border_width = dpi(1)
+theme.notification_max_width = dpi(600)
+theme.notification_icon_size = dpi(100)
+theme.notification_margin = dpi(10)
 
 -- edge snap
 theme.snap_bg = theme.white
@@ -84,16 +84,6 @@ theme.hotkeys_modifiers_fg = theme.yellow
 theme.hotkeys_border_width = dpi(4)
 theme.hotkeys_border_color = theme.black
 theme.hotkeys_group_margin = dpi(10)
-
-naughty.config.padding = dpi(10)
-naughty.config.icon_dirs = {
-  "/usr/share/icons/Numix/32/apps/", "/usr/share/pixmaps/",
-}
-naughty.config.icon_formats = {"png", "svg"}
-naughty.config.defaults.icon_size = dpi(100)
-naughty.config.defaults.margin = dpi(10)
-naughty.config.defaults.border_width = theme.notification_border_width
-naughty.config.defaults.title = "System Notification"
 
 -- submenu
 theme.menu_submenu_icon = theme_path .. "icons/submenu.svg"

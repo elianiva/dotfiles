@@ -25,7 +25,7 @@ M.month_calendar = awful.widget.calendar_popup.month {
   font = theme.font,
   long_weekdays = true,
   margin = dpi(8),
-  style_month = {border_width = 0, shape = cal_shape, padding = 25},
+  style_month = {border_width = 0, shape = cal_shape, padding = dpi(25)},
   style_header = {border_width = 0, bg_color = theme.black},
   style_weekday = {border_width = 0, bg_color = theme.black},
   style_normal = {border_width = 0, bg_color = theme.black, fg_color = theme.grey},
