@@ -7,7 +7,6 @@ vim.cmd([[cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')
 vim.cmd("cd %:p:h")
 
 -- load plugin manager first
--- require("plugins._plug")
 require("plugins._packer")
 
 -- basic settings
@@ -21,13 +20,11 @@ require("plugins._luatree")
 require("plugins._bufferline")
 require("plugins._emmet")
 require("plugins._indentline")
--- require("plugins._signify")
 require("plugins._gitsigns")
 require("plugins._completion")
 require("plugins._formatter")
 require("plugins._treesitter")
 require("plugins._telescope")
--- require("plugins._coc")
 
 -- highlight bg according to hex/rgb/rgba text
 require"colorizer".setup{}

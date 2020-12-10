@@ -30,9 +30,6 @@ let b:PHP_default_indenting = 1
 " go to insert mode on nvim terminal
 au BufEnter term://* startinsert
 
-" Treat PHP file as php and html
-" au FileType php set filetype=php.html
-
 " set json comment highlighting
 au FileType json syntax match Comment +\/\/.\+$+
 

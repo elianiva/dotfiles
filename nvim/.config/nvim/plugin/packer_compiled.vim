@@ -9,11 +9,71 @@ endif
 
 lua << END
 local plugins = {
+  ["emmet-vim"] = {
+    commands = { "EmmetInstall" },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/emmet-vim"
+  },
+  ["formatter.nvim"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/formatter.nvim"
+  },
+  ["git-messenger.vim"] = {
+    commands = { "GitMessenger" },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/git-messenger.vim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
+  },
   ["goyo.vim"] = {
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/goyo.vim"
+  },
+  ["jsonc.vim"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/jsonc.vim"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
+  },
+  ["nvim-tree.lua"] = {
+    after = { "nvim-web-devicons" },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
+  },
+  ["nvim-treesitter"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    load_after = {
+      ["nvim-tree.lua"] = true
+    },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = false,
@@ -21,11 +81,27 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
+  playground = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/playground"
+  },
   ["vim-javascript"] = {
+    load_after = {
+      ["vim-svelte-plugin"] = true
+    },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-javascript"
+  },
+  ["vim-svelte-plugin"] = {
+    after = { "vim-javascript" },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-svelte-plugin"
   },
   ["vim-table-mode"] = {
     loaded = false,
@@ -166,14 +242,23 @@ endfunction
 
 
 " Command lazy-loads
+command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
+  au FileType lua ++once call s:load(['formatter.nvim'], { "ft": "lua" })
+  au FileType html ++once call s:load(['formatter.nvim'], { "ft": "html" })
+  au FileType typescript ++once call s:load(['formatter.nvim'], { "ft": "typescript" })
+  au FileType svelte ++once call s:load(['formatter.nvim', 'vim-javascript', 'vim-svelte-plugin'], { "ft": "svelte" })
+  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
+  au FileType rust ++once call s:load(['formatter.nvim'], { "ft": "rust" })
+  au FileType javascript ++once call s:load(['formatter.nvim'], { "ft": "javascript" })
   au FileType txt ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "txt" })
-  au FileType svelte ++once call s:load(['vim-javascript'], { "ft": "svelte" })
+  au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
+  au FileType css ++once call s:load(['formatter.nvim'], { "ft": "css" })
   " Event lazy-loads
 augroup END

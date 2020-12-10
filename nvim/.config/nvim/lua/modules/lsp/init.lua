@@ -1,3 +1,5 @@
+vim.cmd[[packadd nvim-lspconfig]]
+
 local nvim_lsp = require('lspconfig')
 local mappings = require('modules.lsp._mappings')
 
@@ -5,8 +7,12 @@ require('modules.lsp._svelte') -- svelteserver config
 require('modules.lsp._custom_handlers') -- override hover callback
 require('modules.lsp._diagnostic') -- diagnostic stuff
 
-local custom_on_attach = function()
-  mappings.lsp_mappings() -- lsp related mappings
+local custom_on_attach = function(client)
+  mappings.lsp_mappings()
+
+  if client.config.flags then
+    client.config.flags.allow_incremental_sync = true
+  end
 end
 
 local custom_on_init = function()
@@ -42,8 +48,12 @@ nvim_lsp.sumneko_lua.setup{
     Lua = {
       runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
       completion = { keywordSnippet = "Disable", },
-      diagnostics = { enable = true, globals = {
-        "vim", "describe", "it", "before_each", "after_each" },
+      diagnostics = {
+        enable = true,
+        globals = {
+          "vim", "describe", "it", "before_each", "after_each",
+          "awesome", "theme"
+        },
       },
     }
   }
@@ -52,6 +62,11 @@ nvim_lsp.sumneko_lua.setup{
 nvim_lsp.rust_analyzer.setup{
   on_attach = custom_on_attach,
   on_init = custom_on_init,
+}
+
+nvim_lsp.clangd.setup{
+  on_attach = custom_on_attach,
+  on_init = custom_on_init
 }
 
 -- temporarily disable this stuff, my laptop couldn't handle multiple lsp sadly

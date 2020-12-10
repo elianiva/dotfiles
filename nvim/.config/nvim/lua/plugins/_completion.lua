@@ -17,8 +17,10 @@ require'compe'.setup {
   };
 }
 
-vim.g.lexima_no_default_rules = 1
-vim.fn['lexima#set_default_rules']()
+-- needs to be here, otherwise `check_html_char` wouldn't work
+vim.g.no_default_rules = 1
+vim.g.lexima_accept_pum_with_enter = 1
+vim.fn["lexima#set_default_rules"]()
 
 -- check prev character, depending on previous char
 -- it will do special stuff or just `<CR>`

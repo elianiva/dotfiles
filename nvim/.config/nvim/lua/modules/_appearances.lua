@@ -121,6 +121,7 @@ vim.g.gruvbox_invert_selection = false
 vim.cmd('colorscheme gruvbox')
 
 -- needs to be loaded after setting colourscheme
+vim.cmd[[packadd nvim-web-devicons]]
 require'nvim-web-devicons'.setup {
   override = {
     svg = {

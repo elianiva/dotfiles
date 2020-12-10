@@ -5,9 +5,6 @@ vim.g.node_host_prog = os.getenv("HOME") .. '/.local/npm/bin/neovim-node-host'
 -- svelte
 vim.g.vim_svelte_plugin_has_init_indent = 0
 
--- lexima
-vim.g.lexima_accept_pum_with_enter = 1
-
 -- disable git messenger default mappings
 vim.g.git_messenger_no_default_mappings = true
 

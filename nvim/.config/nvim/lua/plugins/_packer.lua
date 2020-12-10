@@ -17,18 +17,24 @@ if ok then
 
     use 'gruvbox-community/gruvbox' -- nice colorscheme
     use 'cohama/lexima.vim' -- autopairs brackets, braces etc
-    use 'neoclide/jsonc.vim'-- jsonc highlighting
+    use 'tpope/vim-commentary' -- comment stuff easier
+    use {
+      'neoclide/jsonc.vim',
+      ft = {'jsonc'},
+      opt = true
+    } -- jsonc highlighting
     use 'wakatime/vim-wakatime' -- track usage time using wakatime
     use 'norcalli/nvim-colorizer.lua' -- colorize hex/rgb/hsl value
     use {
       'leafOfTree/vim-svelte-plugin',
+      ft = { 'svelte' },
       requires = {
         {'pangloss/vim-javascript', ft = { 'svelte' }},
       },
-      opt = false
-    }-- svelte language support
-    use 'nvim-treesitter/nvim-treesitter' -- better syntax highlighting
-    use 'nvim-treesitter/playground' -- playground for treesitter
+      opt = true
+    } -- svelte language support
+    use {'nvim-treesitter/nvim-treesitter', opt = true } -- better syntax highlighting
+    use { 'nvim-treesitter/playground', opt = true } -- playground for treesitter
     use {
       'hrsh7th/nvim-compe',
       requires = {
@@ -50,7 +56,8 @@ if ok then
       'kyazdani42/nvim-tree.lua',
       requires = {
         {'kyazdani42/nvim-web-devicons'}
-      }
+      },
+      opt = true
     } -- super fast file tree viewer
     use {
       'akinsho/nvim-bufferline.lua',
@@ -60,23 +67,32 @@ if ok then
         {'kyazdani42/nvim-web-devicons'}
       }
     } -- snazzy bufferline
-    use 'neovim/nvim-lspconfig' -- builtin lsp config
-    use 'mhartington/formatter.nvim' -- formatter, experimenting
-    use 'tpope/vim-commentary' -- comment stuff easier
-    use 'mattn/emmet-vim' -- less typing for html code
-    use 'tpope/vim-surround' -- surround words with symbol
+    use {'neovim/nvim-lspconfig', opt = true} -- builtin lsp config
     use {
-      -- 'nvim-telescope/telescope.nvim',
-      'Conni2461/telescope.nvim',
-      branch = 'vim_buffers_everywhere',
+      'mhartington/formatter.nvim',
+      ft = {'lua', 'rust', 'javascript', 'typescript', 'html', 'css', 'svelte'},
+      opt = true
+    } -- formatter, experimenting
+    use {
+      'mattn/emmet-vim',
+      cmd = 'EmmetInstall',
+      opt = true
+    } -- less typing for html code
+    use {
+      'nvim-telescope/telescope.nvim',
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},
       }
     } -- extensible fuzzy finder
     use 'nvim-telescope/telescope-fzy-native.nvim' -- faster sorter for telescope
-    use 'lewis6991/gitsigns.nvim' -- show git stuff in signcolumn
-    use 'rhysd/git-messenger.vim' -- sort of like git blame but in floating window
+    use {'lewis6991/gitsigns.nvim', opt = true} -- show git stuff in signcolumn
+    use {
+      'rhysd/git-messenger.vim',
+      cmd = 'GitMessenger',
+      opt = true
+    } -- sort of like git blame but in floating window
+    use 'tpope/vim-surround' -- surround words with symbol
   end
 
   return packer.startup(plugins)

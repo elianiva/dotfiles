@@ -1,11 +1,12 @@
-local telescope_actions = require('telescope.actions')
+local actions = require('telescope.actions')
 
 local M = {}
 
 require'telescope'.setup{
   defaults = {
-    vim_buffers_everywhere = true,
-    borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
     scroll_strategy = 'cycle',
     selection_strategy = 'reset',
     layout_strategy = 'flex',
@@ -23,31 +24,31 @@ require'telescope'.setup{
     },
     default_mappings = {
       i = {
-        ['<C-j>'] = telescope_actions.move_selection_next,
-        ['<C-k>'] = telescope_actions.move_selection_previous,
-        ['<CR>'] = telescope_actions.goto_file_selection_edit,
+        ['<C-j>'] = actions.move_selection_next,
+        ['<C-k>'] = actions.move_selection_previous,
+        ['<CR>'] = actions.goto_file_selection_edit,
 
-        ['<C-v>'] = telescope_actions.goto_file_selection_vsplit,
-        ['<C-x>'] = telescope_actions.goto_file_selection_split,
-        ['<C-t>'] = telescope_actions.goto_file_selection_tabedit,
-        ['<C-c>'] = telescope_actions.close,
-        ['<Esc>'] = telescope_actions.close,
+        ['<C-v>'] = actions.goto_file_selection_vsplit,
+        ['<C-x>'] = actions.goto_file_selection_split,
+        ['<C-t>'] = actions.goto_file_selection_tabedit,
+        ['<C-c>'] = actions.close,
+        ['<Esc>'] = actions.close,
 
-        ['<C-u>'] = telescope_actions.preview_scrolling_up,
-        ['<C-d>'] = telescope_actions.preview_scrolling_down
+        ['<C-u>'] = actions.preview_scrolling_up,
+        ['<C-d>'] = actions.preview_scrolling_down
       },
       n = {
-        ['<CR>'] = telescope_actions.goto_file_selection_edit,
-        ['<C-v>'] = telescope_actions.goto_file_selection_vsplit,
-        ['<C-x>'] = telescope_actions.goto_file_selection_split,
-        ['<C-t>'] = telescope_actions.goto_file_selection_tabedit,
-        ['<Esc>'] = telescope_actions.close,
+        ['<CR>'] = actions.goto_file_selection_edit,
+        ['<C-v>'] = actions.goto_file_selection_vsplit,
+        ['<C-x>'] = actions.goto_file_selection_split,
+        ['<C-t>'] = actions.goto_file_selection_tabedit,
+        ['<Esc>'] = actions.close,
 
-        ["j"] = telescope_actions.move_selection_next,
-        ["k"] = telescope_actions.move_selection_previous,
+        ["j"] = actions.move_selection_next,
+        ["k"] = actions.move_selection_previous,
 
-        ['<C-u>'] = telescope_actions.preview_scrolling_up,
-        ['<C-d>'] = telescope_actions.preview_scrolling_down
+        ['<C-u>'] = actions.preview_scrolling_up,
+        ['<C-d>'] = actions.preview_scrolling_down
       }
     }
   }

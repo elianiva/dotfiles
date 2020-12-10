@@ -1,15 +1,9 @@
-local treesitter_config = require("nvim-treesitter.configs")
-local treesitter_parser = require"nvim-treesitter.parsers".get_parser_configs()
+vim.cmd[[packadd nvim-treesitter]]
+vim.cmd[[packadd playground]]
 
--- treesitter_parser.svelte = {
---   install_info = {
---     url = "~/repos/tree-sitter-svelte",
---     files = {"src/parser.c", "src/scanner.cc"}
---   },
---   filetype = "svelte",
--- }
+local ts_config = require("nvim-treesitter.configs")
 
-treesitter_config.setup {
+ts_config.setup {
   ensure_installed = {
     "typescript",
     "javascript",
@@ -19,6 +13,7 @@ treesitter_config.setup {
     "php",
     "rust",
     "tsx",
+    "cpp",
     "python",
     "lua",
     "yaml",
@@ -26,7 +21,7 @@ treesitter_config.setup {
 
   highlight = {
     enable = true,
-    disable = {'svelte'},
+    disable = { 'svelte' },
     use_languagetree = true,
   },
 

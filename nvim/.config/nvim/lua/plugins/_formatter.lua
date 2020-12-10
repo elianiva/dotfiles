@@ -1,3 +1,5 @@
+vim.cmd[[packadd formatter.nvim]]
+
 local remap = vim.api.nvim_set_keymap
 local fn = vim.fn
 

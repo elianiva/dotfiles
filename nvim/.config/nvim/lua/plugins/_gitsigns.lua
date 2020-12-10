@@ -1,3 +1,5 @@
+vim.cmd[[packadd gitsigns.nvim]]
+
 require'gitsigns'.setup {
   signs = {
     add          = {hl = 'SignifySignAdd'   , text = '┃'},
