@@ -1,6 +1,6 @@
 local awful = require("awful")
 local gears = require("gears")
-local beautiful = require("beautiful")
+local wibox = require("wibox")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
@@ -9,7 +9,7 @@ local helpers = {}
 -- Resize client or factor
 local floating_resize_amount = dpi(20)
 local tiling_resize_factor = 0.05
----------------
+
 helpers.resize_dwim = function(c, direction)
   if c and c.floating then
     if direction == "up" then
@@ -53,5 +53,28 @@ helpers.rrect = function(radius)
   end
 end
 
+helpers.module_wrapper = function(opts)
+  local left, right, top, bottom
+
+  if opts.type == "icon" then
+    left = opts.left or 4
+    right = opts.right or 4
+    top = opts.top or 8
+    bottom = opts.bottom or 8
+  else
+    if opts.type == "module" then
+      left = opts.left or 0
+      right = opts.right or 6
+      top = opts.top or 4
+      bottom = opts.bottom or 4
+    else
+      return
+    end
+  end
+
+  return wibox.container.margin(
+    opts.widget, dpi(left), dpi(right), dpi(top), dpi(bottom)
+  )
+end
 
 return helpers

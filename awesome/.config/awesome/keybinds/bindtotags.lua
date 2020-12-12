@@ -4,6 +4,8 @@ local awful = require("awful")
 
 local M = {}
 
+local modkey = RC.vars.modkey
+
 function M.get(globalkeys)
   -- Bind all key numbers to tags.
   -- Be careful: we use keycodes to make it work on any keyboard layout.

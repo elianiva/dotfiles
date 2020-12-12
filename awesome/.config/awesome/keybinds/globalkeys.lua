@@ -10,6 +10,8 @@ local shot = RC.vars.shot
 local emoji_picker = RC.vars.emoji_picker
 local clipmenu = RC.vars.clipmenu
 local terminal = RC.vars.terminal
+local modkey = RC.vars.modkey
+local ctrlkey = RC.vars.ctrlkey
 
 local M = gears.table.join(
   awful.key({ modkey }, "s", function()
@@ -24,7 +26,7 @@ local M = gears.table.join(
   {description = "toggle tray visibility", group = "awesome"}),
 
   -- Tag browsing
-  awful.key({ modkey, }, "Left", function()
+  awful.key({ modkey }, "Left", function()
     awful.tag.viewprev()
   end,
   {description = "view previous", group = "tag"}),
@@ -34,27 +36,27 @@ local M = gears.table.join(
   end,
   {description = "view next", group = "tag"}),
 
-  awful.key({ modkey, }, "Tab", function()
+  awful.key({ modkey }, "Tab", function()
     awful.tag.history.restore()
   end,
   {description = "go back", group = "tag"}),
 
-  awful.key({ modkey, }, "h", function()
+  awful.key({ modkey }, "h", function()
     awful.client.focus.bydirection("left")
   end,
   {description = "focus to left window ", group = "layout"}),
 
-  awful.key({ modkey, }, "j", function()
+  awful.key({ modkey }, "j", function()
     awful.client.focus.bydirection("down")
   end,
   {description = "focus to window below ", group = "client"}),
 
-  awful.key({ modkey, }, "k", function()
+  awful.key({ modkey }, "k", function()
     awful.client.focus.bydirection("up")
   end,
   {description = "focus to window above", group = "client"}),
 
-  awful.key({ modkey, }, "l", function()
+  awful.key({ modkey }, "l", function()
     awful.client.focus.bydirection("right")
   end,
   {description = "focus to right window", group = "layout"}),
@@ -80,18 +82,18 @@ local M = gears.table.join(
   end,
   {description = "swap with left", group = "layout"}),
 
-  awful.key({ modkey, }, "u", function()
+  awful.key({ modkey }, "u", function()
     awful.client.urgent.jumpto()
   end,
   {description = "jump to urgent client", group = "client"}),
 
   -- Standard program
-  awful.key({ modkey, }, "Return", function()
+  awful.key({ modkey }, "Return", function()
     awful.spawn(terminal)
   end,
   {description = "open a terminal", group = "launcher"}),
 
-  awful.key({ modkey, }, "d", function()
+  awful.key({ modkey }, "d", function()
     awful.spawn.with_shell(launcher .. "drun " .. theme.color_name)
   end,
   {description = "open app launcher", group = "launcher"}),
@@ -106,12 +108,12 @@ local M = gears.table.join(
   end,
   {description = "show exit screen", group = "awesome"}),
 
-  awful.key({ modkey, }, "e", function()
+  awful.key({ modkey }, "e", function()
     awful.spawn(emoji_picker)
   end,
   {description = "pick an emoji", group = "launcher"}),
 
-  awful.key({ modkey, }, "c", function()
+  awful.key({ modkey }, "c", function()
     awful.spawn(clipmenu)
   end,
   {description = "launch clipmenu", group = "launcher"}),
@@ -126,7 +128,7 @@ local M = gears.table.join(
   end,
   {description = "quit awesome", group = "awesome"}),
 
-  awful.key({ modkey, }, "t", function()
+  awful.key({ modkey }, "t", function()
     awful.layout.set(awful.layout.suit.tile)
   end,
   {description = "set to tiling mode", group = "layout"}),

@@ -5,7 +5,7 @@ local menu = require("main.menu")
 local M = {}
 
 M.widget = awful.widget.launcher({
-  image = beautiful.awesome_icon,
+  image = beautiful.menu_icon,
   menu = menu.menu_items
 })
 

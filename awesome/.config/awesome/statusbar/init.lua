@@ -3,29 +3,10 @@ local wibox = require("wibox")
 local awful = require("awful")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
-local margin = wibox.container.margin
-
-local text_wrapper = function(widget, left, right, top, bottom)
-  left = left or 0
-  right = right or 6
-  top = top or 4
-  bottom = bottom or 4
-
-  return margin(widget, dpi(left), dpi(right), dpi(top), dpi(bottom))
-end
-
-local icon_wrapper = function(icon, left, right, top, bottom)
-  left = left or 4
-  right = right or 4
-  top = top or 8
-  bottom = bottom or 8
-
-  return margin(icon, dpi(left), dpi(right), dpi(top), dpi(bottom))
-end
+local module_wrapper = require"main.helpers".module_wrapper
 
 -- Modules
 local systray = require("statusbar.modules.systray")
-
 local launcher = require("statusbar.modules.launcher")
 local clock = require("statusbar.modules.clock")
 local battery = require("statusbar.modules.battery")
@@ -71,44 +52,79 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     expand = "none",
     {
-      text_wrapper(launcher.widget, dpi(5), dpi(5), dpi(0), dpi(0)),
+      module_wrapper({
+        type = "module",
+        widget = launcher.widget,
+        left = dpi(5),
+        right = dpi(5),
+        top = dpi(0),
+        bottom = dpi(0)
+      }),
       s.taglist,
 
-      icon_wrapper(playerctl.icon),
-      text_wrapper(playerctl.widget, dpi(0), dpi(12), dpi(0), dpi(0)),
+      module_wrapper({ type = "icon", widget = playerctl.icon }),
+
+      module_wrapper({
+        type = "module",
+        widget = playerctl.widget,
+        left = dpi(0),
+        right = dpi(12),
+        top = dpi(0),
+        bottom = dpi(0)
+      }),
 
       layout = wibox.layout.fixed.horizontal
     },
     {
-      text_wrapper(clock.widget),
+      module_wrapper({ type = "module", widget = clock.widget }),
 
       layout = wibox.layout.fixed.horizontal
     },
     {
-      icon_wrapper(netspeed.wifi_icon),
-      icon_wrapper(netspeed.down_icon),
-      text_wrapper(netspeed.down),
-      icon_wrapper(netspeed.up_icon),
-      text_wrapper(netspeed.up),
+      module_wrapper({ type = "icon", widget = netspeed.wifi_icon }),
+      module_wrapper({ type = "icon", widget = netspeed.down_icon }),
+      module_wrapper({ type = "module", widget = netspeed.down }),
+      module_wrapper({ type = "icon", widget = netspeed.up_icon }),
+      module_wrapper({ type = "module", widget = netspeed.up }),
 
-      icon_wrapper(volume.icon),
-      text_wrapper(volume.widget),
+      module_wrapper({ type = "icon", widget = volume.icon }),
+      module_wrapper({ type = "module", widget = volume.widget }),
 
-      icon_wrapper(temp.icon),
-      text_wrapper(temp.widget),
+      module_wrapper({ type = "icon", widget = temp.icon }),
+      module_wrapper({ type = "module", widget = temp.widget }),
 
-      icon_wrapper(cpu.icon),
-      text_wrapper(cpu.widget),
+      module_wrapper({ type = "icon", widget = cpu.icon }),
+      module_wrapper({ type = "module", widget = cpu.widget }),
 
-      icon_wrapper(memory.icon),
-      text_wrapper(memory.widget),
+      module_wrapper({ type = "icon", widget = memory.icon }),
+      module_wrapper({ type = "module", widget = memory.widget }),
 
-      icon_wrapper(battery.icon),
-      text_wrapper(battery.widget, 0, 0),
+      module_wrapper({ type = "icon", widget = battery.icon }),
+      module_wrapper({
+        type = "module",
+        widget = battery.widget,
+        top = 0,
+        bottom = 0,
+        right = 0,
+      }),
 
-      text_wrapper(todo, 5, 5, 8, 8),
+      module_wrapper({
+        type = "module",
+        widget = todo,
+        left = 5,
+        right = 5,
+        top = 8,
+        bottom = 8,
+      }),
 
-      margin(systray.widget, dpi(0), dpi(2), dpi(4), dpi(4)),
+      module_wrapper({
+        type = "module",
+        widget = systray.widget,
+        left = 0,
+        right = 2,
+        top = 4,
+        bottom = 4,
+      }),
       layout = wibox.layout.fixed.horizontal
     }
   }

@@ -18,7 +18,7 @@ M.icon = wibox.widget.imagebox(colorize(volume_low, theme.widget_main_color))
 
 local get_vol_status = [[
   sh -c "
-   pacmd list-sinks | awk '/\\* index: /{nr[NR+7];nr[NR+11]}; NR in nr'
+    pacmd list-sinks | awk '/\\* index: /{nr[NR+7];nr[NR+11]}; NR in nr'
   "
 ]]
 

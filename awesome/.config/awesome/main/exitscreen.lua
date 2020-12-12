@@ -3,6 +3,7 @@ local gears = require("gears")
 local wibox = require("wibox")
 local dpi = require("beautiful.xresources").apply_dpi
 local rrect = require"main.helpers".rrect
+local markup = require"main.helpers".markup
 local spawn = awful.spawn
 
 -- Appearance
@@ -13,7 +14,7 @@ local suspend_text_icon = " "
 local exit_text_icon = " "
 local exitscreen_bg = theme.background .. "dd"
 
-local button_bg = "#1d2021"
+local button_bg = theme.black
 local button_size = dpi(120)
 
 -- Commands
@@ -21,10 +22,6 @@ local poweroff_command = function() spawn.with_shell("systemctl poweroff") end
 local reboot_command = function() spawn.with_shell("systemctl reboot") end
 local suspend_command = function() spawn.with_shell("systemctl suspend") end
 local exit_command = function() awesome.quit() end
-
-local colorize_text = function(txt, fg)
-  return "<span foreground='" .. fg .. "'>" .. txt .. "</span>"
-end
 
 local add_hover_cursor = function(widget, hover_cursor)
   local original_cursor = "left_ptr"
@@ -64,15 +61,17 @@ local create_button = function(symbol, hover_color, command)
   }
 
   -- Bind left click to run the command
-  button:buttons(gears.table.join(awful.button({}, 1, function() command() end)))
+  button:buttons(gears.table.join(
+    awful.button({}, 1, function() command() end))
+  )
 
   -- Change color on hover
   button:connect_signal("mouse::enter", function()
-    icon.markup = colorize_text(icon.text, hover_color)
+    icon.markup = markup(icon.text, { fg = hover_color })
     button.border_color = hover_color
   end)
   button:connect_signal("mouse::leave", function()
-    icon.markup = colorize_text(icon.text, theme.foreground)
+    icon.markup = markup(icon.text, { fg = theme.foreground})
     button.border_color = button_bg
   end)
 

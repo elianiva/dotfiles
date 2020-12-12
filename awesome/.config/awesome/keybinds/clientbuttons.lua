@@ -2,25 +2,22 @@
 local gears = require("gears")
 local awful = require("awful")
 
-local M = {}
+local modkey = RC.vars.modkey
 
-function M.get()
-  local clientbuttons = gears.table.join(
-    awful.button({ }, 1, function (c)
-      c:emit_signal("request::activate", "mouse_click", {raise = true})
-    end),
+local clientbuttons = gears.table.join(
+  awful.button({}, 1, function (c)
+    c:emit_signal("request::activate", "mouse_click", {raise = true})
+  end),
 
-    awful.button({ modkey }, 1, function (c)
-      c:emit_signal("request::activate", "mouse_click", {raise = true})
-      awful.mouse.client.move(c)
-    end),
+  awful.button({ modkey }, 1, function (c)
+    c:emit_signal("request::activate", "mouse_click", {raise = true})
+    awful.mouse.client.move(c)
+  end),
 
-    awful.button({ modkey }, 3, function (c)
-      c:emit_signal("request::activate", "mouse_click", {raise = true})
-      awful.mouse.client.resize(c, "bottom_right")
-    end)
-  )
-  return clientbuttons
-end
+  awful.button({ modkey }, 3, function (c)
+    c:emit_signal("request::activate", "mouse_click", {raise = true})
+    awful.mouse.client.resize(c, "bottom_right")
+  end)
+)
 
-return setmetatable({}, { __call = function(_, ...) return M.get(...) end })
+return clientbuttons

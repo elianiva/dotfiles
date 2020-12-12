@@ -14,6 +14,7 @@ local volume_up = os.getenv("HOME") .. "/.config/awesome/main/volume-widget/volu
 local M = {}
 
 function M.get()
+
   -- create the volume_adjust component
   local volume_adjust = wibox({
     screen = awful.screen.focused(),
@@ -21,7 +22,7 @@ function M.get()
     y = (screen.geometry.height / 2) - (offsety / 2),
     width = dpi(48),
     height = offsety,
-    shape = gears.shape.rounded_rect,
+    shape = gears.shape.rect,
     visible = false,
     ontop = true
   })
@@ -53,7 +54,7 @@ function M.get()
 
   -- create a 4 second timer to hide the volume adjust
   -- component whenever the timer is started
-  local hide_volume_adjust = gears.timer {
+  local volume_timer = gears.timer {
     timeout = 4,
     autostart = true,
     callback = function() volume_adjust.visible = false end
@@ -69,13 +70,12 @@ function M.get()
 
     -- make volume_adjust component visible
     if volume_adjust.visible then
-      hide_volume_adjust:again()
+      volume_timer:again()
     else
       volume_adjust.visible = true
-      hide_volume_adjust:start()
+      volume_timer:start()
     end
   end)
-
 end
 
 return setmetatable({}, { __call = function(_, ...) return M.get(...) end })

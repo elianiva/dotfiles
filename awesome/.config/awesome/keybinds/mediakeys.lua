@@ -42,12 +42,12 @@ local M = gears.table.join(
   {description = "toggle the audio", group = "media"}),
 
   -- Brightness
-  awful.key( { }, "XF86MonBrightnessDown", function()
+  awful.key({}, "XF86MonBrightnessDown", function()
     awful.spawn.with_shell("light -U 10")
   end,
   {description = "decrease brightness", group = "brightness"}),
 
-  awful.key( { }, "XF86MonBrightnessUp", function()
+  awful.key({}, "XF86MonBrightnessUp", function()
     awful.spawn.with_shell("light -A 10")
   end,
   {description = "increase brightness", group = "brightness"})

@@ -70,7 +70,7 @@ function M.get()
 
       local window_title = { -- client name
         align  = 'center',
-        font   = theme.font,
+        font   = theme.titlebar_font,
         widget = awful.titlebar.widget.titlewidget(c)
       }
 

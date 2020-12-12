@@ -12,18 +12,14 @@ require("main.error-handling") -- error handling
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/main/theme.lua")
 
-RC = {} -- global namespace, on top before require any modules
+RC = {} -- global namespace
 RC.vars = require("main.variables") -- user defined variables
-
-modkey = RC.vars.modkey
-altkey = RC.vars.altkey
-ctrlkey = RC.vars.ctrlkey
 
 local main = {
   rules = require("main.rules"), -- define rules
   signals = require("main.signals"), -- define signals
   titlebar = require("main.titlebar"), -- titlebar
-  volume = require("main.volume-widget") -- volume widget
+  volume = require("main.volume-widget"), -- volume widget
 }
 
 main.signals()
@@ -35,16 +31,11 @@ local keybinds = {
   globalkeys = require("keybinds.globalkeys"),
   bindtotags = require("keybinds.bindtotags"),
   clientkeys = require("keybinds.clientkeys"),
-  mediakeys = require("keybinds.mediakeys")
+  mediakeys = require("keybinds.mediakeys"),
 }
 
-RC.layouts = require("main.layouts").layouts
+RC.layouts = require("main.layouts")
 RC.tags = require("main.tags")
-
-RC.launcher = awful.widget.launcher({
-  image = theme.awesome_icon,
-  menu = RC.mainmenu
-})
 
 menubar.utils.terminal = RC.vars.terminal
 
@@ -56,7 +47,7 @@ RC.mediakeys = keybinds.mediakeys
 root.keys(gears.table.join(RC.globalkeys, RC.mediakeys))
 
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = main.rules(keybinds.clientkeys(), keybinds.clientbuttons())
+awful.rules.rules = main.rules(keybinds.clientkeys, keybinds.clientbuttons)
 
 require("statusbar") -- Load statusbar
 require("main.autostart") -- Autostart

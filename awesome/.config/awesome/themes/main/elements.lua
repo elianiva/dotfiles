@@ -4,18 +4,18 @@ local theme_path = os.getenv("HOME") .. "/.config/awesome/themes/main/"
 local rrect = require"main.helpers".rrect
 
 -- wallpaper and icon
-theme.wallpaper = theme_path .. "img/ryuko-spring.png"
-theme.awesome_icon = theme_path .. "icons/killlakill.png"
 theme.icon_theme = "Numix"
+theme.wallpaper = theme_path .. "img/ryuko-spring.png"
+theme.menu_icon = theme_path .. "icons/killlakill.png"
 -- theme.wallpaper     = theme_path .. "img/babymetal.jpg"
--- theme.awesome_icon  = theme_path .. "icons/babymetal.png"
+-- theme.menu_icon  = theme_path .. "icons/babymetal.png"
 
--- theme.font  = "Noto Sans 11"
-theme.font = "JetBrainsMono Nerd Font 10"
-theme.color_name = "gruvbox"
+-- theme.font = "JetBrainsMono Nerd Font 10"
+theme.font = "Inter 10"
 theme.nerd_font = "JetBrainsMono Nerd Font 10"
+theme.titlebar_font = "Inter 11"
 theme.taglist_font = "M+ 2p Medium 11"
-theme.taglist_fg_empty = theme.grey
+theme.color_name = "gruvbox"
 
 -- background stuff
 theme.bg_normal = theme.black
@@ -64,7 +64,7 @@ theme.titlebar_fg_focus = theme.white
 theme.titlebar_fg_normal = theme.white
 
 -- notification
-theme.notification_font = "JetBrainsMono Nerd Font 11"
+theme.notification_font = theme.font
 theme.notification_bg = theme.black
 theme.notification_fg = theme.white
 theme.notification_border_color = theme.grey_alt
