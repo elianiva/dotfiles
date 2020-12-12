@@ -37,8 +37,26 @@ nvim_lsp.cssls.setup{
 }
 
 nvim_lsp.svelte.setup{
-  on_attach = custom_on_attach,
-  on_init = custom_on_init
+  on_attach = function(client)
+    mappings.lsp_mappings()
+
+    if client.config.flags then
+      client.config.flags.allow_incremental_sync = true
+    end
+    client.server_capabilities.completionProvider.triggerCharacters = {
+      ".", '"', "'", "`", "/", "@", "*",
+      "#", "$", "+", "^", "(", "[", "-", ":"
+    }
+  end,
+  on_init = custom_on_init,
+  settings = {
+    html = {
+      completion = {
+        enable = true,
+        emmet = false
+      },
+    },
+  },
 }
 
 nvim_lsp.sumneko_lua.setup{
@@ -47,12 +65,12 @@ nvim_lsp.sumneko_lua.setup{
   settings = {
     Lua = {
       runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
-      completion = { keywordSnippet = "Disable", },
+      completion = { keywordSnippet = "Disable" },
       diagnostics = {
         enable = true,
         globals = {
           "vim", "describe", "it", "before_each", "after_each",
-          "awesome", "theme"
+          "awesome", "theme", "client"
         },
       },
     }

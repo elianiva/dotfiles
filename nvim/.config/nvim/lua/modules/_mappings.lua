@@ -27,8 +27,8 @@ remap('n', '<Up>', '<CMD>resize +2<CR>', { noremap = true })
 remap('n', '<Down>', '<CMD>resize -2<CR>', { noremap = true })
 
 -- buffer movements
--- remap('', '<A-w>', '<CMD>bd<CR>', { noremap = true })
-remap('', '<A-j>', '<CMD>bd<CR>', { noremap = true })
+remap('', '<A-j>', '<CMD>Sayonara!<CR>', { noremap = true })
+remap('', '<A-k>', '<CMD>Sayonara<CR>', { noremap = true })
 remap('', '<A-h>', '<CMD>bp<CR>', { noremap = true })
 remap('', '<A-l>', '<CMD>bn<CR>', { noremap = true })
 

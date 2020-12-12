@@ -29,7 +29,7 @@ if ok then
       'leafOfTree/vim-svelte-plugin',
       ft = { 'svelte' },
       requires = {
-        {'pangloss/vim-javascript', ft = { 'svelte' }},
+        {'pangloss/vim-javascript', ft = { 'svelte' }, opt = true},
       },
       opt = true
     } -- svelte language support
@@ -93,6 +93,13 @@ if ok then
       opt = true
     } -- sort of like git blame but in floating window
     use 'tpope/vim-surround' -- surround words with symbol
+    use {
+      'mhinz/vim-sayonara',
+      cmd = 'Sayonara',
+      opt = true
+    }
+    use 'ElPiloto/sidekick.nvim'
+    -- better window and buffer management
   end
 
   return packer.startup(plugins)

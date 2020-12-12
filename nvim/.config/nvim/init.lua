@@ -17,6 +17,7 @@ require("modules._util")
 
 -- plugins config
 require("plugins._luatree")
+require("plugins._sidekick")
 require("plugins._bufferline")
 require("plugins._emmet")
 require("plugins._indentline")

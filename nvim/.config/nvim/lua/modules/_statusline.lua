@@ -113,7 +113,7 @@ end
 
 Statusline.get_filename = function(self)
   if self:is_truncated(140) then
-    if self:is_truncated(80) then
+    if self:is_truncated(90) then
       return " %t "
     end
 

@@ -96,6 +96,13 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-javascript"
   },
+  ["vim-sayonara"] = {
+    commands = { "Sayonara" },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
+  },
   ["vim-svelte-plugin"] = {
     after = { "vim-javascript" },
     loaded = false,
@@ -242,8 +249,9 @@ endfunction
 
 
 " Command lazy-loads
-command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 

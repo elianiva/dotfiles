@@ -23,6 +23,7 @@ lsp.handlers['textDocument/hover'] = function(_, method, result)
   end)
 end
 
+-- workaround for rust-analyzers
 lsp.handlers["textDocument/rename"] = function(_err, _method, result)
     if not result then return end
     if result.documentChanges then
