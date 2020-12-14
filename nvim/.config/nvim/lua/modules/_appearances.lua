@@ -1,4 +1,3 @@
-local vim = vim
 local hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
   local fg = options.fg == nil and '' or 'guifg=' .. options.fg

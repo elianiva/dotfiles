@@ -1,7 +1,10 @@
-vim.cmd([[cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))]])
-vim.cmd([[cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))]])
-vim.cmd([[cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))]])
-vim.cmd([[cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))]])
+-- prevent typo when pressing `wq` or `q`
+vim.cmd[[
+  cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+  cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
+  cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
+  cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
+]]
 
 -- change cwd to current directory
 vim.cmd("cd %:p:h")
@@ -17,7 +20,6 @@ require("modules._util")
 
 -- plugins config
 require("plugins._luatree")
-require("plugins._sidekick")
 require("plugins._bufferline")
 require("plugins._emmet")
 require("plugins._indentline")

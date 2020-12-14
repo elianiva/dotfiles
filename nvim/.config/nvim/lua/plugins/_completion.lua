@@ -1,5 +1,6 @@
+vim.cmd[[packadd nvim-compe]]
+
 local remap = vim.api.nvim_set_keymap
-local cmd = vim.api.nvim_command
 
 require'compe'.setup {
   enabled = true;

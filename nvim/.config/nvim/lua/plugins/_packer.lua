@@ -8,6 +8,9 @@ if ok then
   packer.init({
     git = {
       clone_timeout = 300 -- 5 minutes, I have horrible internet
+    },
+    display = {
+      open_cmd = '80vnew [packer]',
     }
   })
 
@@ -15,32 +18,33 @@ if ok then
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    use 'gruvbox-community/gruvbox' -- nice colorscheme
-    use 'cohama/lexima.vim' -- autopairs brackets, braces etc
-    use 'tpope/vim-commentary' -- comment stuff easier
+    use {'gruvbox-community/gruvbox', opt = false} -- nice colorscheme
+    use {'cohama/lexima.vim', opt = false} -- autopairs brackets, braces etc
+    use {'tomtom/tcomment_vim', opt = false} -- comment stuff easier
     use {
       'neoclide/jsonc.vim',
       ft = {'jsonc'},
       opt = true
     } -- jsonc highlighting
-    use 'wakatime/vim-wakatime' -- track usage time using wakatime
-    use 'norcalli/nvim-colorizer.lua' -- colorize hex/rgb/hsl value
+    use {'wakatime/vim-wakatime', opt = false} -- track usage time using wakatime
+    use {'norcalli/nvim-colorizer.lua', opt = false} -- colorize hex/rgb/hsl value
     use {
       'leafOfTree/vim-svelte-plugin',
       ft = { 'svelte' },
+      opt = true,
       requires = {
         {'pangloss/vim-javascript', ft = { 'svelte' }, opt = true},
       },
-      opt = true
     } -- svelte language support
     use {'nvim-treesitter/nvim-treesitter', opt = true } -- better syntax highlighting
     use { 'nvim-treesitter/playground', opt = true } -- playground for treesitter
     use {
       'hrsh7th/nvim-compe',
+      opt = true,
       requires = {
         {'hrsh7th/vim-vsnip'}, -- integration with vim-vsnip
         {'hrsh7th/vim-vsnip-integ'} -- integration with vim-vsnip
-      }
+      },
     } -- completion framework
     use {
       'junegunn/goyo.vim',
@@ -54,17 +58,18 @@ if ok then
     } -- table alignment
     use {
       'kyazdani42/nvim-tree.lua',
+      opt = true,
       requires = {
-        {'kyazdani42/nvim-web-devicons'}
+        {'kyazdani42/nvim-web-devicons', opt = true}
       },
-      opt = true
     } -- super fast file tree viewer
     use {
       'akinsho/nvim-bufferline.lua',
-      commit = "7b9223ff",
-      lock = true,
+      -- commit = "7b9223ff",
+      -- lock = true,
+      opt = true,
       requires = {
-        {'kyazdani42/nvim-web-devicons'}
+        {'kyazdani42/nvim-web-devicons', opt = true}
       }
     } -- snazzy bufferline
     use {'neovim/nvim-lspconfig', opt = true} -- builtin lsp config
@@ -83,23 +88,28 @@ if ok then
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},
-      }
+      },
     } -- extensible fuzzy finder
-    use 'nvim-telescope/telescope-fzy-native.nvim' -- faster sorter for telescope
+    use {
+      'nvim-telescope/telescope-fzy-native.nvim',
+      opt = true,
+      requires = {
+        {'nvim-telescope/telescope.nvim'}
+      }
+    } -- faster sorter algo for telescope
     use {'lewis6991/gitsigns.nvim', opt = true} -- show git stuff in signcolumn
     use {
       'rhysd/git-messenger.vim',
       cmd = 'GitMessenger',
       opt = true
     } -- sort of like git blame but in floating window
-    use 'tpope/vim-surround' -- surround words with symbol
+    use { 'machakann/vim-sandwich', opt = false } -- surround words with symbol
     use {
       'mhinz/vim-sayonara',
       cmd = 'Sayonara',
       opt = true
-    }
-    use 'ElPiloto/sidekick.nvim'
-    -- better window and buffer management
+    } -- better window and buffer management
+    use { 'brooth/far.vim', opt = false } -- project wide search and replace
   end
 
   return packer.startup(plugins)
