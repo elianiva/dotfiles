@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# add bitmap fonts
-# xset +fp ~/.local/share/fonts
-# xset fp rehash
-
 light -S 40 # set brightness
 setxkbmap -option caps:none # unmap useless capslock
 xset -b # remove annoying bell

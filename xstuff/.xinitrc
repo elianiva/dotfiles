@@ -1,3 +1,4 @@
+#!/bin/sh
 export EDITOR="nvim"
 export DOTS="/home/elianiva/repos/dotfiles"
 export TERMINAL="alacritty"
@@ -176,3 +177,16 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
+
+light -S 40 # set brightness
+setxkbmap -option caps:none # unmap useless capslock
+xset -b # remove annoying bell
+xset r rate 300 50 # gotta go fast
+
+# japanese input method using fcitx-mozc
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+fcitx &
+
+exec $1
