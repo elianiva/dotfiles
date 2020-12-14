@@ -38,8 +38,8 @@ ColorUtil.override_gruvbox = function()
     {'mkdLineBreak', { bg='NONE' }},
 
     -- statusline colours
-    {'Active', { bg = 'blue', fg = '#EBDBB2' }},
-    {'Inactive', { bg = '#3C3836', fg = '#928374' }},
+    {'StatusLine', { fg = '#3C3836', bg = '#EBDBB2' }},
+    {'StatusLineNC', { fg = '#3C3836', bg = '#928374' }},
     {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
     {'LineCol', { bg = '#928374', fg = '#1D2021', gui="bold" }},
     {'Git', { bg = '#504945', fg = '#EBDBB2' }},

@@ -2,13 +2,15 @@ vim.cmd[[packadd nvim-treesitter]]
 vim.cmd[[packadd playground]]
 
 local ts_config = require("nvim-treesitter.configs")
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+
+parser_config.html.used_by = {"html", "svelte"}
 
 ts_config.setup {
   ensure_installed = {
     "typescript",
     "javascript",
     "jsdoc",
-    "fennel",
     "html",
     "php",
     "rust",
