@@ -1,5 +1,0 @@
-#!/bin/bash
-
-sed "s/$(cat ~/notes/todo.md | dmenu -p "Mark Todo as Complete" -i -l 10)/something/i"
-
-echo $var

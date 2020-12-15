@@ -97,3 +97,6 @@ git-svn() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fnm
+eval "`fnm env`"

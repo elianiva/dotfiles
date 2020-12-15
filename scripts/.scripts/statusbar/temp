@@ -1,3 +1,0 @@
-#!/bin/dash
-
-printf "^c#e79921^ ^d^%s" "$(sensors | awk '/^Core 0:/{print $3}')"
