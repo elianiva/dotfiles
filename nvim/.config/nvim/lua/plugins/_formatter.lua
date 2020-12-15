@@ -30,6 +30,10 @@ local rustfmt = function()
   return {exe = "rustfmt", args = {"--emit=stdout"}, stdin = true}
 end
 
+local gofmt = function()
+  return {exe = "gofmt", stdin = true}
+end
+
 local luafmt = function()
   return {
     exe = "lua-format",
@@ -48,7 +52,8 @@ require'formatter'.setup{
     php = {prettier},
     svelte = {prettier},
     rust = {rustfmt},
-    lua = {luafmt}
+    lua = {luafmt},
+    go = {gofmt}
   }
 }
 

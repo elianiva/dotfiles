@@ -14,7 +14,6 @@ end
 
 local options = {
 
-
   -- Boolean value
   autoindent = true, -- enable autoindent
   backup = false, -- disable backup
@@ -39,6 +38,7 @@ local options = {
   termguicolors = true, -- truecolours for better experience
   wrap = false, -- dont wrap lines
   writebackup = false, -- disable backup
+
   -- String value
   backupcopy = "yes", -- fix weirdness for postcss
   completeopt = 'menu,menuone,noinsert,noselect', -- better completion

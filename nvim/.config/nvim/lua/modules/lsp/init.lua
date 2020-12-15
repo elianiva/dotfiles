@@ -36,6 +36,31 @@ nvim_lsp.cssls.setup{
   on_init = custom_on_init
 }
 
+nvim_lsp.rust_analyzer.setup{
+  on_attach = custom_on_attach,
+  on_init = custom_on_init,
+}
+
+nvim_lsp.clangd.setup{
+  on_attach = custom_on_attach,
+  on_init = custom_on_init
+}
+
+nvim_lsp.gopls.setup{
+  on_attach = custom_on_attach,
+  on_init = custom_on_init,
+  root_dir = function() return vim.loop.cwd() end,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      usePlaceholders = true,
+    },
+  }
+}
+
 nvim_lsp.svelte.setup{
   on_attach = function(client)
     mappings.lsp_mappings()
@@ -50,12 +75,16 @@ nvim_lsp.svelte.setup{
   end,
   on_init = custom_on_init,
   settings = {
-    html = {
-      completion = {
-        enable = true,
-        emmet = false
-      },
-    },
+    svelte =  {
+      plugin = {
+        html = {
+          completions = {
+            enable = true,
+            emmet = false
+          },
+        },
+      }
+    }
   },
 }
 
@@ -75,16 +104,6 @@ nvim_lsp.sumneko_lua.setup{
       },
     }
   }
-}
-
-nvim_lsp.rust_analyzer.setup{
-  on_attach = custom_on_attach,
-  on_init = custom_on_init,
-}
-
-nvim_lsp.clangd.setup{
-  on_attach = custom_on_attach,
-  on_init = custom_on_init
 }
 
 -- temporarily disable this stuff, my laptop couldn't handle multiple lsp sadly

@@ -19,6 +19,7 @@ ts_config.setup {
     "python",
     "lua",
     "yaml",
+    "go",
   },
 
   highlight = {
