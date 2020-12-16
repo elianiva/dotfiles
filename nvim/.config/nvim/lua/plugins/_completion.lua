@@ -6,7 +6,7 @@ require'compe'.setup {
   enabled = true;
   debug = false;
   min_length = 2;
-  auto_preselect = false;
+  preselect = "disable";
   source_timeout = 200;
   incomplete_delay = 400;
   allow_prefix_unmatch = false;

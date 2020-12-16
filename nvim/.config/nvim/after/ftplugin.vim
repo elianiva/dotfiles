@@ -10,7 +10,7 @@ au BufRead,BufNewFile *.fnl set ft=fennel
 au BufRead,BufNewFile *.svelte set ft=svelte
 
 " Set tabsize for each filetype
-au FileType go setlocal sw=4 ts=4 sts=4
+au FileType go setlocal sw=4 ts=4 sts=4 noexpandtab
 au FileType lua setlocal sw=2 ts=2 sts=2
 au FileType java setlocal sw=4 ts=4 sts=4
 " au FileType php setlocal sw=4 ts=4

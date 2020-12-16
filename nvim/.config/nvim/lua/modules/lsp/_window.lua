@@ -139,7 +139,7 @@ local function create_float_contents(contents, filetype,enter,modifiable,opts)
   -- wrap text inside hover window
   api.nvim_win_set_option(contents_winid, 'wrap', true)
   if filetype == 'markdown' then
-    api.nvim_win_set_option(contents_winid, 'conceallevel', 2)
+    api.nvim_win_set_option(contents_winid, 'conceallevel', 3)
   end
   api.nvim_win_set_option(contents_winid,"winhl","Normal:LspFloatNormal")
   return contents_bufnr, contents_winid
