@@ -54,7 +54,7 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
   },
   ["nvim-compe"] = {
-    after = { "vim-vsnip-integ", "vim-vsnip" },
+    after = { "vim-vsnip", "vim-vsnip-integ" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -295,15 +295,15 @@ command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-v
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
-  au FileType svelte ++once call s:load(['vim-svelte-plugin', 'vim-javascript', 'formatter.nvim'], { "ft": "svelte" })
   au FileType lua ++once call s:load(['formatter.nvim'], { "ft": "lua" })
   au FileType rust ++once call s:load(['formatter.nvim'], { "ft": "rust" })
   au FileType javascript ++once call s:load(['formatter.nvim'], { "ft": "javascript" })
   au FileType typescript ++once call s:load(['formatter.nvim'], { "ft": "typescript" })
   au FileType html ++once call s:load(['formatter.nvim'], { "ft": "html" })
   au FileType css ++once call s:load(['formatter.nvim'], { "ft": "css" })
-  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
   au FileType txt ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "txt" })
+  au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
+  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
+  au FileType svelte ++once call s:load(['vim-svelte-plugin', 'formatter.nvim', 'vim-javascript'], { "ft": "svelte" })
   " Event lazy-loads
 augroup END

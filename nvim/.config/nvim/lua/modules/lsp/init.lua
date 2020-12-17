@@ -50,15 +50,6 @@ nvim_lsp.gopls.setup{
   on_attach = custom_on_attach,
   on_init = custom_on_init,
   root_dir = function() return vim.loop.cwd() end,
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      usePlaceholders = true,
-    },
-  }
 }
 
 nvim_lsp.svelte.setup{

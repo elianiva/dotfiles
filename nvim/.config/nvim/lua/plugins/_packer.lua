@@ -110,6 +110,7 @@ if ok then
       opt = true
     } -- better window and buffer management
     use { 'brooth/far.vim', opt = false } -- project wide search and replace
+    use { 'tpope/vim-fugitive', opt = false } -- git helpers inside neovim
   end
 
   return packer.startup(plugins)

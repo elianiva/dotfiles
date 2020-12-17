@@ -16,8 +16,6 @@ ColorUtil.override_gruvbox = function()
     -- normal stuff
     {'Normal', { bg = 'NONE' }},
     {'Comment', { gui = 'italic' }},
-    {'Identifier', { fg = '#EBDBB2' }},
-    {'TSProperty', { fg = '#83a589' }},
     {'SignColumn', { bg = 'NONE' }},
     {'ColorColumn', { bg = '#3C3836' }},
     {'EndOfBuffer', { bg = 'NONE', fg = '#282828' }},
