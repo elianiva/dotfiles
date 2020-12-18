@@ -30,14 +30,14 @@ if ok then
     use {'norcalli/nvim-colorizer.lua', opt = false} -- colorize hex/rgb/hsl value
     use {
       'leafOfTree/vim-svelte-plugin',
-      ft = { 'svelte' },
+      ft = { 'any' },
       opt = true,
       requires = {
-        {'pangloss/vim-javascript', ft = { 'svelte' }, opt = true},
+        {'pangloss/vim-javascript', ft = { 'any' }, opt = true},
       },
     } -- svelte language support
-    use {'nvim-treesitter/nvim-treesitter', opt = true } -- better syntax highlighting
-    use { 'nvim-treesitter/playground', opt = true } -- playground for treesitter
+    use {'nvim-treesitter/nvim-treesitter', opt = true} -- better syntax highlighting
+    use {'nvim-treesitter/playground', opt = true} -- playground for treesitter
     use {
       'hrsh7th/nvim-compe',
       opt = true,

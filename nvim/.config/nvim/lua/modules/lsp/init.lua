@@ -65,6 +65,7 @@ nvim_lsp.svelte.setup{
     }
   end,
   on_init = custom_on_init,
+  filetypes = { 'html', 'svelte' },
   settings = {
     svelte =  {
       plugin = {

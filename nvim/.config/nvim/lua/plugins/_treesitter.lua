@@ -24,7 +24,7 @@ ts_config.setup {
 
   highlight = {
     enable = true,
-    disable = { 'svelte' },
+    -- disable = { 'svelte' },
     use_languagetree = true,
   },
 

@@ -24,7 +24,7 @@ lsp.handlers['textDocument/hover'] = function(_, method, result)
 end
 
 -- workaround for rust-analyzers
-lsp.handlers["textDocument/rename"] = function(_err, _method, result)
+lsp.handlers["textDocument/rename"] = function(_, _, result)
     if not result then return end
     if result.documentChanges then
         local merged_changes = {}

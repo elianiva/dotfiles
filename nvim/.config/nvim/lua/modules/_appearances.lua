@@ -21,9 +21,9 @@ ColorUtil.override_gruvbox = function()
     {'EndOfBuffer', { bg = 'NONE', fg = '#282828' }},
     {'IncSearch', { bg = '#928374' }},
 
-    {'SignifySignAdd', { fg = '#458588', bg = 'NONE' }},
-    {'SignifySignChange', { fg = '#D79921', bg = 'NONE' }},
-    {'SignifySignDelete', { fg = '#fb4934', bg = 'NONE' }},
+    {'SignAdd', { fg = '#458588', bg = 'NONE' }},
+    {'SignChange', { fg = '#D79921', bg = 'NONE' }},
+    {'SignDelete', { fg = '#fb4934', bg = 'NONE' }},
     {'GitGutterChange', { fg = '#D79921' }},
     {'GitGutterDelete', { fg = '#fb4934' }},
 

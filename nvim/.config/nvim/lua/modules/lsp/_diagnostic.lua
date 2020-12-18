@@ -21,7 +21,7 @@ vim.lsp.diagnostic.get_virtual_text_chunks_for_line = function(bufnr, line, line
   local get_highlight = vim.lsp.diagnostic._get_severity_highlight_name
 
   -- Create a little more space between virtual text and contents
-  local virt_texts = {{string.rep(" ", 4 - line_length)}}
+  local virt_texts = {{string.rep(" ", 10 - line_length)}}
 
   for i = 1, #line_diagnostics - 1 do
     table.insert(virt_texts, {"»", get_highlight(line_diagnostics[i].severity)})
