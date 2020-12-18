@@ -21,9 +21,26 @@ end
 
 nvim_lsp.tsserver.setup{
   filetypes = { 'javascript', 'typescript', 'typescriptreact' },
-  on_attach = custom_on_attach,
+  on_attach = function(client)
+    mappings.lsp_mappings()
+
+    if client.config.flags then
+      client.config.flags.allow_incremental_sync = true
+    end
+
+    client.resolved_capabilities.document_formatting = false
+  end,
   on_init = custom_on_init,
-  root_dir = function() return vim.loop.cwd() end
+  handlers = {
+    ["textDocument/publishDiagnostics"] = function() return end
+  },
+  root_dir = function() return vim.loop.cwd() end,
+  settings = {
+    javascript = {
+      suggest = { enable = false },
+      validate = { enable = false }
+    }
+  }
 }
 
 nvim_lsp.html.setup{
@@ -52,6 +69,40 @@ nvim_lsp.gopls.setup{
   root_dir = function() return vim.loop.cwd() end,
 }
 
+local eslint = {
+  lintCommand = "eslint -f unix --stdin",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"}
+}
+
+local get_prettier = function()
+  if not vim.fn.empty(vim.fn.glob(vim.loop.cwd() .. '/.prettierrc')) then
+    return "prettier --config ./.prettierrc"
+  else
+    return "prettier --config ~/.config/nvim/.prettierrc"
+  end
+end
+
+local prettier = {
+  formatCommand = get_prettier()
+}
+
+nvim_lsp.efm.setup{
+  cmd = {"efm-langserver"},
+  on_attach = function(client)
+    client.resolved_capabilities.rename = false
+    client.resolved_capabilities.hover = false
+  end,
+  on_init = custom_on_init,
+  settings = {
+    rootMarkers = {vim.loop.cwd()},
+    languages = {
+      javascript = { eslint, prettier }
+    }
+  }
+}
+
 nvim_lsp.svelte.setup{
   on_attach = function(client)
     mappings.lsp_mappings()
@@ -65,7 +116,7 @@ nvim_lsp.svelte.setup{
     }
   end,
   on_init = custom_on_init,
-  filetypes = { 'html', 'svelte' },
+  filetypes = { 'svelte' },
   settings = {
     svelte =  {
       plugin = {
