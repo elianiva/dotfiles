@@ -31,9 +31,6 @@ nvim_lsp.tsserver.setup{
     client.resolved_capabilities.document_formatting = false
   end,
   on_init = custom_on_init,
-  handlers = {
-    ["textDocument/publishDiagnostics"] = function() return end
-  },
   root_dir = function() return vim.loop.cwd() end,
   settings = {
     javascript = {
@@ -70,22 +67,37 @@ nvim_lsp.gopls.setup{
 }
 
 local eslint = {
-  lintCommand = "eslint -f unix --stdin",
+  lintCommand = "./node_modules/.bin/eslint -f unix --stdin --stdin-filename ${INPUT}",
   lintIgnoreExitCode = true,
   lintStdin = true,
-  lintFormats = {"%f:%l:%c: %m"}
+  lintFormats = {"%f:%l:%c: %m"},
+  rootMarkers = {
+    "package.json",
+    ".eslintrc.js",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
+  }
 }
 
-local get_prettier = function()
-  if not vim.fn.empty(vim.fn.glob(vim.loop.cwd() .. '/.prettierrc')) then
-    return "prettier --config ./.prettierrc"
-  else
-    return "prettier --config ~/.config/nvim/.prettierrc"
-  end
-end
-
 local prettier = {
-  formatCommand = get_prettier()
+  formatCommand = (
+    function()
+      if not vim.fn.empty(vim.fn.glob(vim.loop.cwd() .. '/.prettierrc')) then
+        return "prettier --config ./.prettierrc"
+      else
+        return "prettier --config ~/.config/nvim/.prettierrc"
+      end
+    end
+  )()
+}
+
+local gofmt= {
+  formatCommand = "gofmt"
+}
+
+local rustfmt = {
+  formatCommand = "rustfmt --emit=stdout"
 }
 
 nvim_lsp.efm.setup{
@@ -95,10 +107,19 @@ nvim_lsp.efm.setup{
     client.resolved_capabilities.hover = false
   end,
   on_init = custom_on_init,
+  init_options = { documentFormatting = true },
   settings = {
     rootMarkers = {vim.loop.cwd()},
     languages = {
-      javascript = { eslint, prettier }
+      javascript = { eslint, prettier },
+      typescript = { eslint, prettier },
+      typescriptreact = { eslint, prettier },
+      svelte = { eslint, prettier },
+      html = { prettier },
+      css = { prettier },
+      jsonc = { prettier },
+      go = { gofmt },
+      rust = { rustfmt },
     }
   }
 }
@@ -148,47 +169,3 @@ nvim_lsp.sumneko_lua.setup{
     }
   }
 }
-
--- temporarily disable this stuff, my laptop couldn't handle multiple lsp sadly
-if false then
-nvim_lsp.diagnosticls.setup{
-  filetypes = { 'javascript', 'typescript', 'typescriptreact', 'svelte' },
-  on_attach = custom_on_attach,
-  on_init = function() print("Diagnosticls started") end,
-  init_options = {
-    filetypes = {
-      javascript = "eslint",
-      svelte = "eslint",
-      typescriptreact = "eslint",
-    },
-    linters = {
-      eslint = {
-        sourceName = "eslint",
-        command = "./node_modules/.bin/eslint",
-        rootPatterns = { ".git" },
-        debounce = 100,
-        args = {
-          "--stdin",
-          "--stdin-filename",
-          "%filepath",
-          "--format",
-          "json",
-        },
-        parseJson = {
-          errorsRoot = "[0].messages",
-          line = "line",
-          column = "column",
-          endLine = "endLine",
-          endColumn = "endColumn",
-          message = "${message} [${ruleId}]",
-          security = "severity",
-        };
-        securities = {
-          [2] = "error",
-          [1] = "warning"
-        }
-      }
-    }
-  }
-}
-end

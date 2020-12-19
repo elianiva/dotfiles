@@ -4,7 +4,14 @@ vim.cmd[[packadd playground]]
 local ts_config = require("nvim-treesitter.configs")
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
-parser_config.html.used_by = {"html", "svelte"}
+parser_config.svelte = {
+  install_info = {
+    url = "~/repos/tree-sitter-html", -- local path or git repo
+    files = {"src/parser.c", "src/scanner.cc"}
+  },
+  filetype = "svelte",
+  used_by = {"svelte"}
+}
 
 ts_config.setup {
   ensure_installed = {
@@ -12,6 +19,7 @@ ts_config.setup {
     "javascript",
     "jsdoc",
     "html",
+    "css",
     "php",
     "rust",
     "tsx",

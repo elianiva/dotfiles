@@ -74,11 +74,6 @@ if ok then
     } -- snazzy bufferline
     use {'neovim/nvim-lspconfig', opt = true} -- builtin lsp config
     use {
-      'mhartington/formatter.nvim',
-      ft = {'lua', 'rust', 'javascript', 'typescript', 'html', 'css', 'svelte'},
-      opt = true
-    } -- formatter, experimenting
-    use {
       'mattn/emmet-vim',
       cmd = 'EmmetInstall',
       opt = true
