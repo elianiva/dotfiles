@@ -27,6 +27,7 @@ ts_config.setup {
     "python",
     "lua",
     "yaml",
+    "toml",
     "go",
   },
 

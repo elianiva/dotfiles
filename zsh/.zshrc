@@ -20,6 +20,10 @@ zinit wait lucid atload'_zsh_autosuggest_start' light-mode for \
     zsh-users/zsh-autosuggestions
 
 ###=========== Start of user config =================###
+function set_win_title(){
+    print -Pn "\e]0;%~\a"
+}
+precmd_functions+=(set_win_title)
 eval "$(starship init zsh)"
 setopt autocd		# automatically cd into typed directory.
 stty stop undef		# disable ctrl-s to freeze terminal.
