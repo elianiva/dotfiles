@@ -1,0 +1,9 @@
+{
+  "todo": {
+    "prefix": ["todo"],
+    "body": [
+      "TODO(elianiva): $0"
+    ],
+    "description": "Todo reminder"
+  }
+}

@@ -2,6 +2,7 @@ vim.cmd[[packadd nvim-lspconfig]]
 
 local nvim_lsp = require('lspconfig')
 local mappings = require('modules.lsp._mappings')
+local is_cfg_present = require('modules._util').is_cfg_present
 
 require('modules.lsp._svelte') -- svelteserver config
 require('modules.lsp._custom_handlers') -- override hover callback
@@ -13,10 +14,31 @@ local custom_on_attach = function(client)
   if client.config.flags then
     client.config.flags.allow_incremental_sync = true
   end
+
+  client.resolved_capabilities.document_formatting = false
 end
 
 local custom_on_init = function()
   print('Language Server Protocol started!')
+end
+
+-- use eslint if the eslint config file present
+local is_using_eslint = function(_, _, result, client_id)
+  if is_cfg_present("/.eslintrc.json") or is_cfg_present("/.eslintrc.js") then
+    return
+  end
+
+  -- TODO(elianiva): find a better solution using `vim.lsp.with`, this seems
+  --                 like a hacky way of doing it
+  return vim.lsp.diagnostic.on_publish_diagnostics(_, _, result, client_id, _, {
+    underline = true,
+    virtual_text = {
+      prefix = "»",
+      spacing = 4,
+    },
+    signs = true,
+    update_in_insert = false,
+  })
 end
 
 nvim_lsp.tsserver.setup{
@@ -27,9 +49,10 @@ nvim_lsp.tsserver.setup{
     if client.config.flags then
       client.config.flags.allow_incremental_sync = true
     end
-
-    client.resolved_capabilities.document_formatting = false
   end,
+  handlers = {
+    ['textDocument/publishDiagnostics'] = is_using_eslint
+  },
   on_init = custom_on_init,
   root_dir = function() return vim.loop.cwd() end,
   settings = {
@@ -83,7 +106,7 @@ local eslint = {
 local prettier = {
   formatCommand = (
     function()
-      if not vim.fn.empty(vim.fn.glob(vim.loop.cwd() .. '/.prettierrc')) then
+      if is_cfg_present("/.prettierrc") then
         return "prettier --config ./.prettierrc"
       else
         return "prettier --config ~/.config/nvim/.prettierrc"
@@ -100,6 +123,7 @@ local rustfmt = {
   formatCommand = "rustfmt --emit=stdout"
 }
 
+-- TODO(elianiva): find a way to fix wrong formatting
 nvim_lsp.efm.setup{
   cmd = {"efm-langserver"},
   on_attach = function(client)
@@ -115,11 +139,11 @@ nvim_lsp.efm.setup{
       typescript = { eslint, prettier },
       typescriptreact = { eslint, prettier },
       svelte = { eslint, prettier },
-      html = { prettier },
-      css = { prettier },
-      jsonc = { prettier },
-      go = { gofmt },
-      rust = { rustfmt },
+      -- html = { prettier },
+      -- css = { prettier },
+      -- jsonc = { prettier },
+      -- go = { gofmt },
+      -- rust = { rustfmt },
     }
   }
 }
@@ -136,6 +160,9 @@ nvim_lsp.svelte.setup{
       "#", "$", "+", "^", "(", "[", "-", ":"
     }
   end,
+  handlers = {
+    ['textDocument/publishDiagnostics'] = is_using_eslint
+  },
   on_init = custom_on_init,
   filetypes = { 'svelte' },
   settings = {

@@ -10,6 +10,7 @@ require'telescope'.setup{
     scroll_strategy = 'cycle',
     selection_strategy = 'reset',
     layout_strategy = 'flex',
+    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
     layout_defaults = {
       horizontal = {
         width_padding = 0.1,

@@ -21,6 +21,7 @@ if ok then
     use {'gruvbox-community/gruvbox', opt = false} -- nice colorscheme
     use {'cohama/lexima.vim', opt = false} -- autopairs brackets, braces etc
     use {'tomtom/tcomment_vim', opt = false} -- comment stuff easier
+    use {'mhartington/formatter.nvim', opt = true, cmd = "Format"} -- comment stuff easier
     use {
       'neoclide/jsonc.vim',
       ft = {'jsonc'},
@@ -30,11 +31,8 @@ if ok then
     use {'norcalli/nvim-colorizer.lua', opt = false} -- colorize hex/rgb/hsl value
     use {
       'leafOfTree/vim-svelte-plugin',
-      ft = { 'any' },
+      ft = { 'svelte' },
       opt = true,
-      requires = {
-        {'pangloss/vim-javascript', ft = { 'any' }, opt = true},
-      },
     } -- svelte language support
     use {'nvim-treesitter/nvim-treesitter', opt = true} -- better syntax highlighting
     use {'nvim-treesitter/playground', opt = true} -- playground for treesitter
@@ -72,7 +70,7 @@ if ok then
         {'kyazdani42/nvim-web-devicons', opt = true}
       }
     } -- snazzy bufferline
-    use {'neovim/nvim-lspconfig', opt = true} -- builtin lsp config
+    use {'neovim/nvim-lspconfig', opt = false} -- builtin lsp config
     use {
       'mattn/emmet-vim',
       cmd = 'EmmetInstall',
@@ -106,6 +104,7 @@ if ok then
     } -- better window and buffer management
     use { 'brooth/far.vim', opt = false } -- project wide search and replace
     use { 'tpope/vim-fugitive', opt = false } -- git helpers inside neovim
+    use 'high-moctane/gaming.vim'
   end
 
   return packer.startup(plugins)

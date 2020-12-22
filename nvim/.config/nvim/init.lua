@@ -25,7 +25,7 @@ require("plugins._emmet")
 require("plugins._indentline")
 require("plugins._gitsigns")
 require("plugins._completion")
--- require("plugins._formatter")
+require("plugins._formatter")
 require("plugins._treesitter")
 require("plugins._telescope")
 

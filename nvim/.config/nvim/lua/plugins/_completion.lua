@@ -1,4 +1,6 @@
 vim.cmd[[packadd nvim-compe]]
+vim.cmd[[packadd vim-vsnip]]
+vim.cmd[[packadd vim-vsnip-integ]]
 
 local remap = vim.api.nvim_set_keymap
 
@@ -17,6 +19,8 @@ require'compe'.setup {
     nvim_lsp = true;
   };
 }
+
+vim.g.vsnip_snippet_dir = vim.fn.stdpath("config").."/snippets"
 
 -- needs to be here, otherwise `check_html_char` wouldn't work
 vim.g.no_default_rules = 1

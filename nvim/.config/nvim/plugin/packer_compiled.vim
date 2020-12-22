@@ -17,6 +17,7 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/emmet-vim"
   },
   ["formatter.nvim"] = {
+    commands = { "Format" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -54,17 +55,11 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
   },
   ["nvim-compe"] = {
-    after = { "vim-vsnip", "vim-vsnip-integ" },
+    after = { "vim-vsnip-integ", "vim-vsnip" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe"
-  },
-  ["nvim-lspconfig"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     after = { "nvim-web-devicons" },
@@ -106,15 +101,6 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/telescope-fzy-native.nvim"
   },
-  ["vim-javascript"] = {
-    load_after = {
-      ["vim-svelte-plugin"] = true
-    },
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-javascript"
-  },
   ["vim-sayonara"] = {
     commands = { "Sayonara" },
     loaded = false,
@@ -123,7 +109,6 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
   },
   ["vim-svelte-plugin"] = {
-    after = { "vim-javascript" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -287,6 +272,7 @@ endfunction
 
 " Command lazy-loads
 command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
@@ -295,16 +281,9 @@ command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-mes
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType html ++once call s:load(['formatter.nvim'], { "ft": "html" })
-  au FileType css ++once call s:load(['formatter.nvim'], { "ft": "css" })
   au FileType txt ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "txt" })
   au FileType markdown ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "markdown" })
   au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
-  au FileType any ++once call s:load(['vim-javascript', 'vim-svelte-plugin'], { "ft": "any" })
-  au FileType lua ++once call s:load(['formatter.nvim'], { "ft": "lua" })
-  au FileType rust ++once call s:load(['formatter.nvim'], { "ft": "rust" })
-  au FileType javascript ++once call s:load(['formatter.nvim'], { "ft": "javascript" })
-  au FileType typescript ++once call s:load(['formatter.nvim'], { "ft": "typescript" })
-  au FileType svelte ++once call s:load(['formatter.nvim'], { "ft": "svelte" })
+  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
   " Event lazy-loads
 augroup END
