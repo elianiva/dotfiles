@@ -1,12 +1,11 @@
+local lsp = vim.lsp
+local window = require('modules.lsp._window')
+
 --[[
   taken from https://github.com/glepnir/nvim
   modified a bit
   big thanks to @glepnir
 --]]
-
-local lsp = vim.lsp
-local window = require('modules.lsp._window')
-
 lsp.handlers['textDocument/hover'] = function(_, method, result)
   lsp.util.focusable_float(method, function()
       if not (result and result.contents) then return end
@@ -56,18 +55,3 @@ end
 --
 --   vim.lsp.util.apply_workspace_edit(result)
 -- end
-
-vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
-  if err ~= nil or result == nil then
-    return
-  end
-
-  -- if not vim.api.nvim_buf_get_option(bufnr, "modified") then
-  local view = vim.fn.winsaveview()
-  vim.lsp.util.apply_text_edits(result, bufnr)
-  vim.fn.winrestview(view)
-  if bufnr == vim.api.nvim_get_current_buf() then
-    vim.api.nvim_command("noautocmd :update")
-  end
-  -- end
-end

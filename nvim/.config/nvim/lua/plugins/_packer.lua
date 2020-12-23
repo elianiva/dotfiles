@@ -63,8 +63,6 @@ if ok then
     } -- super fast file tree viewer
     use {
       'akinsho/nvim-bufferline.lua',
-      -- commit = "7b9223ff",
-      -- lock = true,
       opt = true,
       requires = {
         {'kyazdani42/nvim-web-devicons', opt = true}
@@ -104,7 +102,6 @@ if ok then
     } -- better window and buffer management
     use { 'brooth/far.vim', opt = false } -- project wide search and replace
     use { 'tpope/vim-fugitive', opt = false } -- git helpers inside neovim
-    use 'high-moctane/gaming.vim'
   end
 
   return packer.startup(plugins)

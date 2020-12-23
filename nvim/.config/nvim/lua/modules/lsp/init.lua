@@ -132,8 +132,9 @@ nvim_lsp.efm.setup{
   end,
   on_init = custom_on_init,
   init_options = { documentFormatting = true },
+  filetypes = {"javascript", "typescript", "typescriptreact", "svelte"},
   settings = {
-    rootMarkers = {vim.loop.cwd()},
+    rootMarkers = {".git", "package.json"},
     languages = {
       javascript = { eslint, prettier },
       typescript = { eslint, prettier },

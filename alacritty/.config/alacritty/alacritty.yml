@@ -26,27 +26,22 @@ window:
 
 font:
   normal:
-    # family: Iosevka Curly Slab
     family: JetBrainsMono Nerd Font
     style: Medium
 
   bold:
-    # family: Iosevka Curly Slab
     family: JetBrainsMono Nerd Font
     style: Bold
 
   italic:
-    # family: Iosevka Curly Slab
     family: JetBrainsMono Nerd Font
     style: Italic
 
   bold_italic:
-    # family: Iosevka Curly Slab
     family: JetBrainsMono Nerd Font
     style: Bold Italic
 
   size: 7.5
-  # size: 8
 
   offset:
     x: 0
@@ -141,10 +136,10 @@ cursor:
 live_config_reload: true
 
 # shell:
-#   program: /bin/bash
+#   program: /usr/bin/zsh
 #   args:
 #     - --login
-
+#
 working_directory: None
 alt_send_esc: true
 
@@ -157,7 +152,7 @@ mouse:
   url:
     launcher:
       program: xdg-open
-    #  args: []
+      args: []
     modifiers: None
 
 key_bindings:
