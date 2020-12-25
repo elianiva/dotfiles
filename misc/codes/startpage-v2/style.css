@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-image: linear-gradient(to top, #1f2940, #384665);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+  padding: 2rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.word {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.word__text {
+  color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 3rem;
+}
+
+.word__en,
+.word__kana,
+.word__jp {
+  color: #f23c4a;
+}
+
+.word__info {
+  display: block;
+  color: #82aaff;
+  outline: none;
+}
+
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 3rem 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.container__search {
+  grid-column: 2/4;
+  border: 0.25rem #1b1f28 solid;
+  background-color: rgba(31, 41, 64, 0.8);
+  backdrop-filter: blur(2rem);
+  color: #ffffff;
+  padding: 0.5rem;
+  font-size: 1.125rem;
+  outline: none;
+}
+
+.container__child {
+  padding: 2rem;
+  border: 0.25rem #1b1f28 solid;
+  background-color: rgba(31, 41, 64, 0.9);
+  backdrop-filter: blur(0.75rem);
+  grid-row: 2/3;
+}
+
+.child__title {
+  text-align: center;
+  display: block;
+  color: #f23c4a;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: "M PLUS Rounded 1c";
+  text-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+.child__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.link {
+  color: #a6accd;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.link:hover {
+  color: #ffffff;
+}
+
+.char-img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30rem;
+  height: 30rem;
+  filter: drop-shadow(0 -1rem 1rem rgb(27, 31, 40, 0.25));
+  z-index: -1;
+  background-image: url("./ryuko.webp");
+  background-size: cover;
+}

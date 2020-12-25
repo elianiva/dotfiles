@@ -19,9 +19,9 @@ background_color        #f2f2f2
 
 input_panel_x           50%
 input_panel_y           50%
-input_name_x            200
+input_name_x            180
 input_name_y            78
-input_pass_x            200
+input_pass_x            180
 input_pass_y            145
 input_font              Sans:size=14:dpi=75
 input_color             #f2f2f2
