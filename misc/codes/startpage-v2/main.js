@@ -67,14 +67,27 @@ INPUT.addEventListener("keydown", e => {
   }
 })
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const JP = document.querySelector(".word__jp")
-  const KANA = document.querySelector(".word__kana")
-  const EN = document.querySelector(".word__en")
-  const WORD = document.querySelector(".word__text")
-  const INFO = document.querySelector(".word__info")
-  WORD.style.opacity = 0
+const JP = document.querySelector(".word__jp")
+const KANA = document.querySelector(".word__kana")
+const EN = document.querySelector(".word__en")
+const WORD = document.querySelector(".word__text")
+const INFO = document.querySelector(".word__info")
+WORD.style.opacity = 0
 
+const setFromLocalStorage = () => {
+  // try to set from `localStorage` first
+  const result = JSON.parse(localStorage.getItem("result"))
+  JP.textContent = result.kanji
+  KANA.textContent = result.kana
+  EN.textContent = result.en
+
+  INFO.href = `https://jisho.org/search/${result.kanji}`
+  WORD.style.opacity = 1
+}
+
+setFromLocalStorage()
+
+document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch(
       "https://random-jp-api.herokuapp.com/api/rand?level=n5"
@@ -88,15 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     INFO.href = `https://jisho.org/search/${result.kanji}`
   } catch (err) {
-    // fallback to localStorage if it fails to fetch
-    const result = JSON.parse(localStorage.getItem("result"))
-    JP.textContent = result.kanji
-    KANA.textContent = result.kana
-    EN.textContent = result.en
-
-    INFO.href = `https://jisho.org/search/${result.kanji}`
+    setFromLocalStorage()
     console.error(err)
   }
-
-  WORD.style.opacity = 1
 })
