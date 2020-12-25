@@ -76,6 +76,7 @@ if ok then
     } -- less typing for html code
     use {
       'nvim-telescope/telescope.nvim',
+      branch = 'quickfix',
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},

@@ -36,7 +36,7 @@ local rustfmt = function()
 end
 
 local gofmt = function()
-  return {exe = "gofmt", stdin = true}
+  return {exe = "gofumpt", stdin = true}
 end
 
 local luafmt = function()

@@ -36,7 +36,8 @@ require'telescope'.setup{
         ['<Esc>'] = actions.close,
 
         ['<C-u>'] = actions.preview_scrolling_up,
-        ['<C-d>'] = actions.preview_scrolling_down
+        ['<C-d>'] = actions.preview_scrolling_down,
+        ['<C-q>'] = actions.send_to_qflist
       },
       n = {
         ['<CR>'] = actions.goto_file_selection_edit,
@@ -49,7 +50,8 @@ require'telescope'.setup{
         ["k"] = actions.move_selection_previous,
 
         ['<C-u>'] = actions.preview_scrolling_up,
-        ['<C-d>'] = actions.preview_scrolling_down
+        ['<C-d>'] = actions.preview_scrolling_down,
+        ['<C-q>'] = actions.send_to_qflist
       }
     }
   }
