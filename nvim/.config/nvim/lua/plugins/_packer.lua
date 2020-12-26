@@ -21,7 +21,13 @@ if ok then
     use {'gruvbox-community/gruvbox', opt = false} -- nice colorscheme
     use {'cohama/lexima.vim', opt = false} -- autopairs brackets, braces etc
     use {'tomtom/tcomment_vim', opt = false} -- comment stuff easier
-    use {'mhartington/formatter.nvim', opt = true, cmd = "Format"} -- comment stuff easier
+    use {'brooth/far.vim', opt = false} -- project wide search and replace
+    use {'tpope/vim-fugitive', opt = false} -- git helpers inside neovim
+    use {
+      'mhartington/formatter.nvim',
+      opt = true,
+      cmd = "Format"
+    } -- comment stuff easier
     use {
       'neoclide/jsonc.vim',
       ft = {'jsonc'},
@@ -55,7 +61,7 @@ if ok then
       opt = true,
     } -- table alignment
     use {
-      'kyazdani42/nvim-tree.lua',
+      'kyazdani38/nvim-tree.lua',
       opt = true,
       requires = {
         {'kyazdani42/nvim-web-devicons', opt = true}
@@ -101,8 +107,6 @@ if ok then
       cmd = 'Sayonara',
       opt = true
     } -- better window and buffer management
-    use { 'brooth/far.vim', opt = false } -- project wide search and replace
-    use { 'tpope/vim-fugitive', opt = false } -- git helpers inside neovim
   end
 
   return packer.startup(plugins)

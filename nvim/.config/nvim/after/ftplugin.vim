@@ -28,7 +28,7 @@ au BufWritePre * %s/\s\+$//e
 let b:PHP_default_indenting = 1
 
 " go to insert mode on nvim terminal
-au BufEnter term://* startinsert
+au BufEnter,WinEnter term://* startinsert
 
 " set json comment highlighting
 au FileType json syntax match Comment +\/\/.\+$+
