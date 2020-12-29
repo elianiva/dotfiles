@@ -49,8 +49,8 @@ ColorUtil.override_gruvbox = function()
     {'FiletypeAlt', { bg = '#3C3836', fg = '#504945' }},
 
     -- luatree
-    {'LuaTreeFolderIcon', { fg = '#d79921' }},
-    {'LuaTreeIndentMarker', { fg = '#928374' }},
+    {'NvimTreeFolderIcon', { fg = '#d79921' }},
+    {'NvimTreeIndentMarker', { fg = '#928374' }},
 
     -- telescope
     {'TelescopeSelection', { bg='NONE', fg='#d79921', gui='bold' }},

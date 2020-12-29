@@ -29,6 +29,8 @@ ts_config.setup {
     "yaml",
     "toml",
     "go",
+    "clojure",
+    "fennel",
   },
 
   highlight = {
