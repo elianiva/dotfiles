@@ -42,6 +42,7 @@ if ok then
     } -- svelte language support
     use {'nvim-treesitter/nvim-treesitter', opt = true} -- better syntax highlighting
     use {'nvim-treesitter/playground', opt = true} -- playground for treesitter
+    use {'nvim-treesitter/nvim-treesitter-textobjects', opt = true} -- playground for treesitter
     use {
       'hrsh7th/nvim-compe',
       opt = true,
@@ -80,9 +81,9 @@ if ok then
       cmd = 'EmmetInstall',
       opt = true
     } -- less typing for html code
+    use {'nvim-telescope/telescope-cheat.nvim', branch = 'dev', opt = false}
     use {
       'nvim-telescope/telescope.nvim',
-      branch = 'quickfix',
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},

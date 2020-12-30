@@ -4,7 +4,6 @@ local nvim_lsp = require('lspconfig')
 local mappings = require('modules.lsp._mappings')
 local is_cfg_present = require('modules._util').is_cfg_present
 
-require('modules.lsp._svelte') -- svelteserver config
 require('modules.lsp._custom_handlers') -- override hover callback
 require('modules.lsp._diagnostic') -- diagnostic stuff
 
@@ -45,7 +44,6 @@ nvim_lsp.tsserver.setup{
   filetypes = { 'javascript', 'typescript', 'typescriptreact' },
   on_attach = function(client)
     mappings.lsp_mappings()
-
     if client.config.flags then
       client.config.flags.allow_incremental_sync = true
     end
@@ -55,12 +53,6 @@ nvim_lsp.tsserver.setup{
   },
   on_init = custom_on_init,
   root_dir = function() return vim.loop.cwd() end,
-  settings = {
-    javascript = {
-      suggest = { enable = false },
-      validate = { enable = false }
-    }
-  }
 }
 
 nvim_lsp.html.setup{

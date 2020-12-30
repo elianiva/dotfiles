@@ -60,6 +60,7 @@ require'telescope'.setup{
 -- depends on `nvim-telescope/telescope-fzy-native.nvim`
 vim.cmd[[packadd telescope-fzy-native.nvim]]
 require('telescope').load_extension('fzy_native') -- superfast sorter
+require('telescope').load_extension('cheat')
 
 M.grep_prompt = function()
   require'telescope.builtin'.grep_string{

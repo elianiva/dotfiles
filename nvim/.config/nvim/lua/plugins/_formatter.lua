@@ -52,6 +52,7 @@ require'formatter'.setup{
   filetype = {
     javascript = {prettier},
     typescript = {prettier},
+    typescriptreact = {prettier},
     svelte = {prettier},
     css = {prettier},
     jsonc = {prettier},

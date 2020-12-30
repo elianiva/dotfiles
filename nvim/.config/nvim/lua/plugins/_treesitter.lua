@@ -1,4 +1,5 @@
 vim.cmd[[packadd nvim-treesitter]]
+vim.cmd[[packadd nvim-treesitter-textobjects]]
 vim.cmd[[packadd playground]]
 
 local ts_config = require("nvim-treesitter.configs")
@@ -35,11 +36,30 @@ ts_config.setup {
 
   highlight = {
     enable = true,
-    -- disable = { 'svelte' },
     use_languagetree = true,
   },
 
   indent = {
     enable = true
+  },
+
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      peek_definition_code = {
+        ["df"] = "@function.outer",
+        ["dF"] = "@class.outer",
+      },
+    },
   },
 }
