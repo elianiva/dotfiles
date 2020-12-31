@@ -46,7 +46,11 @@ remap(
 -- cycle tab or insert tab depending on prev char
 remap(
   'i', '<Tab>',
-  'pumvisible() ? "<C-n>" : v:lua.Util.check_backspace() ? "<Tab>" : compe#confirm(lexima#expand("<LT>CR>", "i"))',
+  table.concat{
+    'pumvisible() ? "<C-n>" : v:lua.Util.check_backspace()',
+    '? "<Tab>" : compe#confirm(lexima#expand("<LT>CR>", "i"))',
+  },
   { silent = true, noremap = true, expr = true }
 )
 remap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
+remap('i', '<C-x>', 'compe#complete()', { noremap = true, expr = true, silent = true })

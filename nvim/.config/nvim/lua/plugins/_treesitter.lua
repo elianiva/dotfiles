@@ -56,10 +56,6 @@ ts_config.setup {
     },
     lsp_interop = {
       enable = true,
-      peek_definition_code = {
-        ["df"] = "@function.outer",
-        ["dF"] = "@class.outer",
-      },
     },
   },
 }

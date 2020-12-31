@@ -27,17 +27,7 @@ local is_using_eslint = function(_, _, result, client_id)
     return
   end
 
-  -- TODO(elianiva): find a better solution using `vim.lsp.with`, this seems
-  --                 like a hacky way of doing it
-  return vim.lsp.diagnostic.on_publish_diagnostics(_, _, result, client_id, _, {
-    underline = true,
-    virtual_text = {
-      prefix = "»",
-      spacing = 4,
-    },
-    signs = true,
-    update_in_insert = false,
-  })
+  return vim.lsp.handlers["textDocument/publishDiagnostics"](_, _, result, client_id)
 end
 
 nvim_lsp.tsserver.setup{

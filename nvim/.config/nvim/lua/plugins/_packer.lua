@@ -81,9 +81,9 @@ if ok then
       cmd = 'EmmetInstall',
       opt = true
     } -- less typing for html code
-    use {'nvim-telescope/telescope-cheat.nvim', branch = 'dev', opt = false}
     use {
       'nvim-telescope/telescope.nvim',
+      branch = 'quickfix',
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},
