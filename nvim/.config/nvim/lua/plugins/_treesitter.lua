@@ -30,8 +30,7 @@ ts_config.setup {
     "yaml",
     "toml",
     "go",
-    "clojure",
-    "fennel",
+    "query",
   },
 
   highlight = {
@@ -40,7 +39,7 @@ ts_config.setup {
   },
 
   indent = {
-    enable = true
+    enable = true,
   },
 
   textobjects = {
@@ -57,5 +56,11 @@ ts_config.setup {
     lsp_interop = {
       enable = true,
     },
+  },
+
+  query_linter = {
+    enable = true,
+    use_virtual_text = true,
+    lint_events = {"BufWrite", "CursorHold"},
   },
 }

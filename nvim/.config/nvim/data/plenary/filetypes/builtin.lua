@@ -1,5 +1,6 @@
 return {
   extension = {
-    ['svelte'] = 'svelte'
+    ['svelte'] = 'svelte',
+    ['tsx'] = 'tsx'
   }
 }
