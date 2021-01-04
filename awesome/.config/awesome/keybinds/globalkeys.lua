@@ -133,7 +133,7 @@ local M = gears.table.join(
   end,
   {description = "set to tiling mode", group = "layout"}),
 
-  awful.key({ ctrlkey }, "space", function()
+  awful.key({ modkey }, "space", function()
     naughty.destroy_all_notifications()
   end,
   {description = "dismiss notification", group = "notifications"}),

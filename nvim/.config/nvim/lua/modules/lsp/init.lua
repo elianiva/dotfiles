@@ -106,6 +106,7 @@ local rustfmt = {
 }
 
 -- TODO(elianiva): find a way to fix wrong formatting
+if false then
 nvim_lsp.efm.setup{
   cmd = {"efm-langserver"},
   on_attach = function(client)
@@ -130,6 +131,7 @@ nvim_lsp.efm.setup{
     }
   }
 }
+end
 
 nvim_lsp.svelte.setup{
   on_attach = function(client)
@@ -162,7 +164,13 @@ nvim_lsp.svelte.setup{
   },
 }
 
+local sumneko_root = os.getenv("HOME") .. "/repos/lua-language-server"
 nvim_lsp.sumneko_lua.setup{
+  cmd = {
+    sumneko_root
+    .. "/bin/Linux/lua-language-server", "-E",
+    sumneko_root .. "/main.lua"
+  },
   on_attach = custom_on_attach,
   on_init = custom_on_init,
   settings = {

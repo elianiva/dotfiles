@@ -83,6 +83,7 @@ function M.get(clientkeys, clientbuttons)
       rule_any = {
         class = {
           "Chromium",
+          "firefoxdeveloperedition",
         },
       },
       properties = {

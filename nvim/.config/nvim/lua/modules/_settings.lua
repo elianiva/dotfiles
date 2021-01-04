@@ -62,7 +62,7 @@ local options = {
   sidescrolloff = 15, -- make scrolling better
   synmaxcol = 300, -- set limit for syntax highlighting in a single line
   tabstop = 2, -- tabsize
-  timeoutlen = 500, -- faster timeout wait time
+  timeoutlen = 400, -- faster timeout wait time
   updatetime = 100, -- set faster update time
 }
 

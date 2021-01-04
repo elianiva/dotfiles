@@ -13,4 +13,4 @@
  ">"
  "</"
  "/>"
- ] @tag.delimiter
+] @tag.delimiter

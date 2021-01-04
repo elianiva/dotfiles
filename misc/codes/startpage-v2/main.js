@@ -90,7 +90,7 @@ setFromLocalStorage()
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch(
-      "https://random-jp-api.herokuapp.com/api/rand?level=n5"
+      "https://random-jp-api.herokuapp.com/api/rand?level=n4"
     )
     const { data: result } = await res.json()
     localStorage.setItem("result", JSON.stringify(result))

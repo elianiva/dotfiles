@@ -120,11 +120,14 @@ Statusline.get_filename = function(self)
 end
 
 Statusline.get_filetype = function()
+  local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
+  local icon = require'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
+
   local filetype = vim.bo.filetype
   if filetype == '' then
     return ''
   else
-    return string.format(' %s ', filetype):lower()
+    return string.format(' %s %s ', icon, filetype):lower()
   end
 end
 

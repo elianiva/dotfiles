@@ -100,6 +100,10 @@ git-svn() {
   fi
 }
 
+run_rs() {
+  rustc $1; ./$(echo "$1" | sed -e "s/\.rs$//")
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fnm

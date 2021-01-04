@@ -156,13 +156,13 @@ mouse:
     modifiers: None
 
 key_bindings:
+  # not sure about this thing
+  - { key: Space,      mods: Control,             chars: "\xa0" }
   - { key: K,          mods: Alt,     mode: ~Alt, action: ScrollLineUp,  }
   - { key: J,          mods: Alt,     mode: ~Alt, action: ScrollLineDown }
   - { key: U,          mods: Alt,     mode: ~Alt, action: ScrollPageUp   }
   - { key: D,          mods: Alt,     mode: ~Alt, action: ScrollPageDown }
   - { key: V,          mods: Alt,                 action: Paste          }
   - { key: C,          mods: Alt,                 action: Copy           }
-
-#   # (Windows, Linux, and BSD only)
-  - { key: K,        mods: Alt|Shift,               action: IncreaseFontSize }
-  - { key: J,        mods: Alt|Shift,               action: DecreaseFontSize }
+  - { key: K,          mods: Alt|Shift,           action: IncreaseFontSize }
+  - { key: J,          mods: Alt|Shift,           action: DecreaseFontSize }

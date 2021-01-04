@@ -40,9 +40,9 @@ if ok then
       ft = { 'svelte' },
       opt = true,
     } -- svelte language support
-    use {'nvim-treesitter/nvim-treesitter', opt = true} -- better syntax highlighting
-    use {'nvim-treesitter/playground', opt = true} -- playground for treesitter
-    use {'nvim-treesitter/nvim-treesitter-textobjects', opt = true} -- playground for treesitter
+    use { 'nvim-treesitter/nvim-treesitter', opt = true } -- better syntax highlighting
+    use { 'nvim-treesitter/playground', opt = true } -- playground for treesitter
+    use { 'nvim-treesitter/nvim-treesitter-textobjects', opt = true } -- playground for treesitter
     use {
       'hrsh7th/nvim-compe',
       opt = true,
@@ -62,7 +62,7 @@ if ok then
       opt = true,
     } -- table alignment
     use {
-      'kyazdani38/nvim-tree.lua',
+      'kyazdani42/nvim-tree.lua',
       opt = true,
       requires = {
         {'kyazdani42/nvim-web-devicons', opt = true}
@@ -83,7 +83,6 @@ if ok then
     } -- less typing for html code
     use {
       'nvim-telescope/telescope.nvim',
-      branch = 'quickfix',
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},
@@ -102,12 +101,13 @@ if ok then
       cmd = 'GitMessenger',
       opt = true
     } -- sort of like git blame but in floating window
-    use { 'machakann/vim-sandwich', opt = false } -- surround words with symbol
+    use {'machakann/vim-sandwich', opt = false} -- surround words with symbol
     use {
       'mhinz/vim-sayonara',
       cmd = 'Sayonara',
       opt = true
     } -- better window and buffer management
+    use {'~/repos/vimage.nvim', opt = false} -- git helpers inside neovim
   end
 
   return packer.startup(plugins)

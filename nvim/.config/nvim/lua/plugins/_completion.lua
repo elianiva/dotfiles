@@ -52,5 +52,6 @@ remap(
   },
   { silent = true, noremap = true, expr = true }
 )
+
 remap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
-remap('i', '<C-x>', 'compe#complete()', { noremap = true, expr = true, silent = true })
+remap('i', '<C-Space>', 'compe#complete()', { noremap = true, expr = true, silent = true })

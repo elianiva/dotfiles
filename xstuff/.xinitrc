@@ -144,11 +144,11 @@ ex=:\
 *.qt=辶:\
 *.nuv=辶:\
 *.wmv=辶:\
+*.flc=辶:\
+*.avi=辶:\
 *.asf=:\
 *.rm=:\
 *.rmvb=:\
-*.flc=辶:\
-*.avi=辶:\
 *.fli=:\
 *.flv=:\
 *.gl=:\
@@ -181,14 +181,9 @@ ex=:\
 "
 
 light -S 40 # set brightness
-setxkbmap -option caps:none # unmap useless capslock
+setxkbmap -option caps:none # remove annoying capslock
 xset -b # remove annoying bell
 xset r rate 300 50 # gotta go fast
-
-# japanese input method using fcitx-mozc
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-fcitx &
+fcitx & # japanese input method using fcitx-mozc
 
 exec dbus-launch $1

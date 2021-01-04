@@ -9,9 +9,11 @@ local M = {}
 function M.get()
   local function create_title_button(c, color_focus, color_unfocus)
     local tb_color = wibox.widget {
-      bg = color_focus,
-      widget = wibox.container.background,
+      bg = theme.black,
       shape = gears.shape.circle,
+      shape_border_width = dpi(5),
+      shape_border_color = color_focus,
+      widget = wibox.container.background,
     }
 
     local tb = wibox.widget {
@@ -24,9 +26,9 @@ function M.get()
 
     local function update()
       if client.focus == c then
-        tb_color.bg = color_focus
+        tb_color.shape_border_color = color_focus
       else
-        tb_color.bg = color_unfocus
+        tb_color.shape_border_color = color_unfocus
       end
     end
 
