@@ -18,7 +18,7 @@ if ok then
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    use {'gruvbox-community/gruvbox', opt = false} -- nice colorscheme
+    use {'lifepillar/vim-gruvbox8', opt = false} -- nice colorscheme
     use {'cohama/lexima.vim', opt = false} -- autopairs brackets, braces etc
     use {'tomtom/tcomment_vim', opt = false} -- comment stuff easier
     use {'brooth/far.vim', opt = false} -- project wide search and replace

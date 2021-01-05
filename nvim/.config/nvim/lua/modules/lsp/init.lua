@@ -13,8 +13,6 @@ local custom_on_attach = function(client)
   if client.config.flags then
     client.config.flags.allow_incremental_sync = true
   end
-
-  client.resolved_capabilities.document_formatting = false
 end
 
 local custom_on_init = function()

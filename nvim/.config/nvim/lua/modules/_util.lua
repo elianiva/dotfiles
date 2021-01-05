@@ -30,8 +30,18 @@ Util.xdg_open = function()
 end
 
 local to_rgb = function(hex)
-  local _, red, green, blue = hex:match('(.)(..)(..)(..)')
+  local red, green, blue, alpha
 
+  if #hex == 9 then
+    _, red, green, blue, alpha = hex:match('(.)(..)(..)(..)(..)')
+    return string.format(
+      'rgba(%s, %s, %s, %s)',
+      tonumber("0x" .. red), tonumber("0x" .. green),
+      tonumber("0x" .. blue), tonumber("0x" .. alpha)
+    )
+  end
+
+  _, red, green, blue = hex:match('(.)(..)(..)(..)')
   return string.format(
     'rgb(%s, %s, %s)',
     tonumber("0x" .. red), tonumber("0x" .. green), tonumber("0x" .. blue)
@@ -39,7 +49,13 @@ local to_rgb = function(hex)
 end
 
 local to_hex = function(rgb)
-  local red, green, blue = rgb:match("%((%d+),%s(%d+),%s(%d+)")
+  local red, green, blue, alpha
+  if #rgb >= 16 then
+    red, green, blue, alpha = rgb:match("%((%d+),%s(%d+),%s(%d+),%s(%d+)")
+    return string.format('#%x%x%x%x', red, green, blue, alpha)
+  end
+
+  red, green, blue = rgb:match("%((%d+),%s(%d+),%s(%d+)")
   return string.format('#%x%x%x', red, green, blue)
 end
 

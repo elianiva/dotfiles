@@ -20,6 +20,8 @@ ColorUtil.override_gruvbox = function()
     {'ColorColumn', { bg = '#3C3836' }},
     {'EndOfBuffer', { bg = 'NONE', fg = '#282828' }},
     {'IncSearch', { bg = '#928374' }},
+    {'String', { gui = 'NONE' }},
+    {'Special', { gui = 'NONE' }},
 
     {'SignAdd', { fg = '#458588', bg = 'NONE' }},
     {'SignChange', { fg = '#D79921', bg = 'NONE' }},
@@ -110,13 +112,13 @@ hl('Comment', { gui = 'italic' })
 -- automatically override colourscheme
 vim.cmd('augroup NewColor')
 vim.cmd('au!')
-vim.cmd('au ColorScheme gruvbox call v:lua.ColorUtil.override_gruvbox()')
+vim.cmd('au ColorScheme gruvbox8 call v:lua.ColorUtil.override_gruvbox()')
 -- vim.cmd('au ColorScheme eunoia call v:lua.ColorUtil.override_eunoia()')
 vim.cmd('augroup END')
 
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false
-vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme gruvbox8')
 
 -- needs to be loaded after setting colourscheme
 vim.cmd[[packadd nvim-web-devicons]]
