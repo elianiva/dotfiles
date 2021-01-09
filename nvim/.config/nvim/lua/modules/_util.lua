@@ -94,13 +94,37 @@ Util.translate = function(lang)
 
   local ok, result = pcall(function() return vim.trim(job:sync()[1]) end)
 
-  if ok then print(result) end
+  if ok then
+    vim.lsp.handlers["textDocument/hover"](nil, "textDocument/hover", {
+      contents = { result }
+    })
+  end
 end
+vim.cmd('command! -range -nargs=1 Translate call v:lua.Util.translate(<f-args>)')
 
 Util.is_cfg_present = function(cfg_name)
   -- this returns 1 if it's not present and 0 if it's present
   -- we need to compare it with 1 because both 0 and 1 is `true` in lua
   return vim.fn.empty(vim.fn.glob(vim.loop.cwd()..cfg_name)) ~= 1
+end
+
+Util.set_hl = function(group, options)
+  local bg = options.bg == nil and '' or 'guibg=' .. options.bg
+  local fg = options.fg == nil and '' or 'guifg=' .. options.fg
+  local gui = options.gui == nil and '' or 'gui=' .. options.gui
+  local link = options.link or false
+  local target = options.target
+
+  if not link then
+    vim.cmd(string.format(
+      'hi %s %s %s %s',
+      group, bg, fg, gui
+    ))
+  else
+    vim.cmd(string.format(
+      'hi! link', group, target
+    ))
+  end
 end
 
 return Util

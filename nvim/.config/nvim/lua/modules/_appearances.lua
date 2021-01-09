@@ -1,13 +1,4 @@
-local hl = function(group, options)
-  local bg = options.bg == nil and '' or 'guibg=' .. options.bg
-  local fg = options.fg == nil and '' or 'guifg=' .. options.fg
-  local gui = options.gui == nil and '' or 'gui=' .. options.gui
-
-  vim.cmd(string.format(
-    'hi %s %s %s %s',
-    group, bg, fg, gui
-  ))
-end
+local set_hl = require"modules._util".set_hl
 
 ColorUtil = {}
 
@@ -23,11 +14,10 @@ ColorUtil.override_gruvbox = function()
     {'String', { gui = 'NONE' }},
     {'Special', { gui = 'NONE' }},
 
-    {'SignAdd', { fg = '#458588', bg = 'NONE' }},
-    {'SignChange', { fg = '#D79921', bg = 'NONE' }},
-    {'SignDelete', { fg = '#fb4934', bg = 'NONE' }},
-    {'GitGutterChange', { fg = '#D79921' }},
-    {'GitGutterDelete', { fg = '#fb4934' }},
+    -- git stuff
+    {'DiffAdd', { fg = '#458588', bg = 'NONE', gui = "NONE" }},
+    {'DiffChange', { fg = '#D79921', bg = 'NONE', gui = "NONE" }},
+    {'DiffDelete', { fg = '#fb4934', bg = 'NONE', gui = "NONE" }},
 
     -- misc
     {'htmlLink', { gui = 'NONE', fg = '#ebdbb2' }},
@@ -71,7 +61,7 @@ ColorUtil.override_gruvbox = function()
   }
 
   for _, highlight in pairs(highlights) do
-    hl(highlight[1], highlight[2])
+    set_hl(highlight[1], highlight[2])
   end
 end
 
@@ -102,12 +92,12 @@ ColorUtil.override_eunoia = function()
   }
 
   for _, highlight in pairs(highlights) do
-    hl(highlight[1], highlight[2])
+    set_hl(highlight[1], highlight[2])
   end
 end
 
 -- italicize comments
-hl('Comment', { gui = 'italic' })
+set_hl('Comment', { gui = 'italic' })
 
 -- automatically override colourscheme
 vim.cmd('augroup NewColor')

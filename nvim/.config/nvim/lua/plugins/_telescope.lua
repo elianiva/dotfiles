@@ -37,7 +37,9 @@ require'telescope'.setup{
 
         ['<C-u>'] = actions.preview_scrolling_up,
         ['<C-d>'] = actions.preview_scrolling_down,
-        ['<C-q>'] = actions.send_to_qflist
+        ['<C-q>'] = actions.send_to_qflist,
+        ['<Tab>'] = actions.toggle_selection,
+        ["<C-w>l"] = actions.preview_switch_window_right,
       },
       n = {
         ['<CR>'] = actions.goto_file_selection_edit,
@@ -51,7 +53,9 @@ require'telescope'.setup{
 
         ['<C-u>'] = actions.preview_scrolling_up,
         ['<C-d>'] = actions.preview_scrolling_down,
-        ['<C-q>'] = actions.send_to_qflist
+        ['<C-q>'] = actions.send_to_qflist,
+        ['<Tab>'] = actions.toggle_selection,
+        ["<C-w>l"] = actions.preview_switch_window_right,
       }
     }
   }

@@ -1,10 +1,10 @@
 " Set formatoptions
 au FileType * setlocal formatoptions-=cro
+au FileType * setlocal indentexpr=nvim_treesitter#indent()
 
 " Set filetypes
 au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
-au BufNewFile,BufRead *.json,.prettierrc,.eslintrc set filetype=jsonc
-au BufRead,BufNewFile *.json set ft=jsonc
+au BufNewFile,BufRead .prettierrc,.eslintrc set filetype=json
 au BufRead,BufNewFile *.svx,*.mdx set ft=markdown
 au BufRead,BufNewFile *.fnl set ft=fennel
 au BufRead,BufNewFile *.svelte set ft=svelte

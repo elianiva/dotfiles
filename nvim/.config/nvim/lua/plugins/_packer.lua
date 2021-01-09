@@ -19,7 +19,7 @@ if ok then
     use {'wbthomason/packer.nvim', opt = true}
 
     use {'lifepillar/vim-gruvbox8', opt = false} -- nice colorscheme
-    use {'cohama/lexima.vim', opt = false} -- autopairs brackets, braces etc
+    use {'cohama/lexima.vim', opt = true} -- autopairs brackets, braces etc
     use {'tomtom/tcomment_vim', opt = false} -- comment stuff easier
     use {'brooth/far.vim', opt = false} -- project wide search and replace
     use {'tpope/vim-fugitive', opt = false} -- git helpers inside neovim
@@ -40,7 +40,7 @@ if ok then
       ft = { 'svelte' },
       opt = true,
     } -- svelte language support
-    use { 'nvim-treesitter/nvim-treesitter', opt = true } -- better syntax highlighting
+    use { '~/repos/nvim-treesitter', opt = true } -- better syntax highlighting
     use { 'nvim-treesitter/playground', opt = true } -- playground for treesitter
     use { 'nvim-treesitter/nvim-treesitter-textobjects', opt = true } -- playground for treesitter
     use {
@@ -82,7 +82,7 @@ if ok then
       opt = true
     } -- less typing for html code
     use {
-      'nvim-telescope/telescope.nvim',
+      '~/repos/telescope.nvim',
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},

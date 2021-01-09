@@ -1,3 +1,4 @@
+vim.cmd[[packadd lexima.vim]]
 vim.cmd[[packadd nvim-compe]]
 vim.cmd[[packadd vim-vsnip]]
 vim.cmd[[packadd vim-vsnip-integ]]

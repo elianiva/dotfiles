@@ -43,6 +43,13 @@ nvim_lsp.tsserver.setup{
   root_dir = function() return vim.loop.cwd() end,
 }
 
+nvim_lsp.jdtls.setup{
+  cmd = {'jdtls'},
+  on_attach = custom_on_attach,
+  on_init = custom_on_init,
+  root_dir = function() return vim.loop.cwd() end,
+}
+
 nvim_lsp.html.setup{
   on_attach = custom_on_attach,
   on_init = custom_on_init
