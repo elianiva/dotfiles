@@ -47,7 +47,7 @@ function M.media_files(opts)
     return true
   end
   opts.shorten_path = true
-  local filetype ={"png", "jpg", "mp4", "webm", "pdf" }
+  local filetype ={"png", "jpg", "mp4", "webm", "pdf", "webp" }
   local find_command={
     'find',
     '.',

@@ -18,40 +18,6 @@ lsp.handlers['textDocument/hover'] = function(_, method, result)
       local bufnr, contents_winid, _, border_winid = window.fancy_floating_markdown(markdown_lines, opts)
       lsp.util.close_preview_autocmd({"CursorMoved", "BufHidden", "InsertCharPre"}, contents_winid)
       lsp.util.close_preview_autocmd({"CursorMoved", "BufHidden", "InsertCharPre"}, border_winid)
-      return bufnr,contents_winid
+      return bufnr, contents_winid
   end)
 end
-
--- workaround for rust-analyzers
--- lsp.handlers["textDocument/rename"] = function(_, _, result)
---   if not result then return end
---   if result.documentChanges then
---     local merged_changes = {}
---     local versions = {}
---     for _, change in ipairs(result.documentChanges) do
---       if change.kind then
---         error("not supported")
---       else
---         local edits = merged_changes[change.textDocument.uri] or {}
---         versions[change.textDocument.uri] = change.textDocument.version
---
---         for _, edit in ipairs(change.edits) do table.insert(edits, edit) end
---
---         merged_changes[change.textDocument.uri] = edits
---       end
---     end
---     local new_changes = {}
---     for uri, edits in pairs(merged_changes) do
---       table.insert(new_changes, {
---         edits = edits,
---         textDocument = {
---           uri = uri,
---           version = versions[uri],
---         }
---       })
---     end
---     result.documentChanges = new_changes
---   end
---
---   vim.lsp.util.apply_workspace_edit(result)
--- end

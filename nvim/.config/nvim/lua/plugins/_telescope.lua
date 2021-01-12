@@ -72,4 +72,10 @@ M.grep_prompt = function()
   }
 end
 
+M.files = function()
+  require'telescope.builtin'.find_files{
+    file_ignore_patterns = {"%.png", "%.jpg", "%.webp"},
+  }
+end
+
 return M

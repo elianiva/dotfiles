@@ -5,9 +5,11 @@ au FileType * setlocal indentexpr=nvim_treesitter#indent()
 " Set filetypes
 au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
 au BufNewFile,BufRead .prettierrc,.eslintrc set filetype=json
+au BufNewFile,BufRead tsconfig.json set filetype=jsonc
 au BufRead,BufNewFile *.svx,*.mdx set ft=markdown
 au BufRead,BufNewFile *.fnl set ft=fennel
 au BufRead,BufNewFile *.svelte set ft=svelte
+au BufRead,BufNewFile *.v set ft=vlang
 
 " Set tabsize for each filetype
 au FileType go setlocal sw=4 ts=4 sts=4 noexpandtab

@@ -48,11 +48,11 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/jsonc.vim"
   },
-  ["lexima.vim"] = {
+  ["nvim-autopairs"] = {
     loaded = false,
     only_sequence = false,
     only_setup = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/lexima.vim"
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
   ["nvim-bufferline.lua"] = {
     loaded = false,
@@ -61,7 +61,7 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
   },
   ["nvim-compe"] = {
-    after = { "vim-vsnip-integ", "vim-vsnip" },
+    after = { "vim-vsnip", "vim-vsnip-integ" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -258,9 +258,10 @@ _packer_load = function(names, cause)
       vim.fn.feedkeys(prefix, 'n')
     end
 
-    -- NOTE: I'm not sure if the below substitution is correct; it might correspond to the literal
-    -- characters \<Plug> rather than the special <Plug> key.
-    vim.fn.feedkeys(string.gsub(string.gsub(cause.keys, '^<Plug>', '\\<Plug>') .. extra, '<[cC][rR]>', '\r'))
+    local formatted_plug_key = string.format('%c%c%c', 0x80, 253, 83)
+    local keys = string.gsub(cause.keys, '^<Plug>', formatted_plug_key) .. extra
+    local escaped_keys = string.gsub(keys, '<[cC][rR]>', '\r')
+    vim.fn.feedkeys(escaped_keys)
   elseif cause.event then
     vim.cmd(fmt('doautocmd <nomodeline> %s', cause.event))
   elseif cause.ft then
@@ -283,10 +284,10 @@ endfunction
 
 
 " Command lazy-loads
-command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 
@@ -294,8 +295,9 @@ augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
   au FileType markdown ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "markdown" })
-  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
   au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
-  au FileType txt ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "txt" })
+  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
+  au FileType text ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "text" })
   " Event lazy-loads
+  " Function lazy-loads
 augroup END

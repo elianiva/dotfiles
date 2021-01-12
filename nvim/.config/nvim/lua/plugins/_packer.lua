@@ -19,7 +19,8 @@ if ok then
     use {'wbthomason/packer.nvim', opt = true}
 
     use {'lifepillar/vim-gruvbox8', opt = false} -- nice colorscheme
-    use {'cohama/lexima.vim', opt = true} -- autopairs brackets, braces etc
+    -- use {'cohama/lexima.vim', opt = true} -- autopairs brackets, braces etc
+    use {'windwp/nvim-autopairs', opt = true} -- autopairs brackets, braces etc
     use {'tomtom/tcomment_vim', opt = false} -- comment stuff easier
     use {'brooth/far.vim', opt = false} -- project wide search and replace
     use {'tpope/vim-fugitive', opt = false} -- git helpers inside neovim
@@ -53,12 +54,12 @@ if ok then
     } -- completion framework
     use {
       'junegunn/goyo.vim',
-      ft = {'txt', 'markdown'},
+      ft = {'text', 'markdown'},
       opt = true
     } -- no distraction mode a.k.a zen mode
     use {
       'dhruvasagar/vim-table-mode',
-      ft = {'txt', 'markdown'},
+      ft = {'text', 'markdown'},
       opt = true,
     } -- table alignment
     use {
@@ -107,7 +108,6 @@ if ok then
       cmd = 'Sayonara',
       opt = true
     } -- better window and buffer management
-    use {'~/repos/vimage.nvim', opt = false} -- git helpers inside neovim
   end
 
   return packer.startup(plugins)

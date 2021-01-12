@@ -56,6 +56,7 @@ require'formatter'.setup{
     svelte = {prettier},
     css = {prettier},
     jsonc = {prettier},
+    json = {prettier},
     html = {prettier},
     php = {prettier},
     rust = {rustfmt},
@@ -64,4 +65,4 @@ require'formatter'.setup{
   }
 }
 
-remap('n', 'gf', '<CMD>Format<CR>', {silent = true, noremap = true})
+remap('n', '<Leader>f', '<CMD>Format<CR>', {silent = true, noremap = true})
