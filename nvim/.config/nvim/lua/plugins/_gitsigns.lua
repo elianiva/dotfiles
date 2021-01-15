@@ -2,11 +2,11 @@ vim.cmd[[packadd gitsigns.nvim]]
 
 require'gitsigns'.setup {
   signs = {
-    add          = {hl = 'DiffAdd'   , text = '┃'},
-    change       = {hl = 'DiffChange', text = '┃'},
-    delete       = {hl = 'DiffDelete', text = '┃'},
-    topdelete    = {hl = 'DiffDelete', text = '┃'},
-    changedelete = {hl = 'DiffChange', text = '┃'},
+    add          = {hl = 'SignAdd'   , text = '┃'},
+    change       = {hl = 'SignChange', text = '┃'},
+    delete       = {hl = 'SignDelete', text = '┃'},
+    topdelete    = {hl = 'SignDelete', text = '┃'},
+    changedelete = {hl = 'SignChange', text = '┃'},
   },
   sign_priority = 5,
 }

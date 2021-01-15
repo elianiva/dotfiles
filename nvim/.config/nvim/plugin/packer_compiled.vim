@@ -61,7 +61,7 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
   },
   ["nvim-compe"] = {
-    after = { "vim-vsnip", "vim-vsnip-integ" },
+    after = { "vim-vsnip-integ", "vim-vsnip" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -285,8 +285,8 @@ endfunction
 
 " Command lazy-loads
 command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
@@ -294,10 +294,10 @@ command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-v
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType markdown ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "markdown" })
-  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
+  au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
   au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
-  au FileType text ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "text" })
+  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
+  au FileType text ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "text" })
   " Event lazy-loads
   " Function lazy-loads
 augroup END

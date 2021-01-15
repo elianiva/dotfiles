@@ -15,9 +15,9 @@ ColorUtil.override_gruvbox = function()
     {'Special', { gui = 'NONE' }},
 
     -- git stuff
-    {'DiffAdd', { fg = '#458588', bg = 'NONE', gui = "NONE" }},
-    {'DiffChange', { fg = '#D79921', bg = 'NONE', gui = "NONE" }},
-    {'DiffDelete', { fg = '#fb4934', bg = 'NONE', gui = "NONE" }},
+    {'SignAdd', { fg = '#458588', bg = 'NONE' }},
+    {'SignChange', { fg = '#D79921', bg = 'NONE' }},
+    {'SignDelete', { fg = '#fb4934', bg = 'NONE' }},
 
     -- misc
     {'htmlLink', { gui = 'NONE', fg = '#ebdbb2' }},

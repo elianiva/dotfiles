@@ -33,7 +33,22 @@ require'compe'.setup {
 local npairs = require('nvim-autopairs')
 
 npairs.setup{
-  break_line_filetype = {'javascript' , 'typescript' , 'typescriptreact' , 'go', 'lua'}
+  break_line_filetype = {
+    'javascript' , 'typescript' , 'typescriptreact',
+    'svelte', 'go', 'lua', 'java',
+  },
+  pairs_map = {
+    ["'"] = "'",
+    ['"'] = '"',
+    ['('] = ')',
+    ['['] = ']',
+    ['{'] = '}',
+    ['`'] = '`',
+  },
+  disable_filetype = { "TelescopePrompt" },
+  html_break_line_filetype = {
+    'html' , 'vue' , 'typescriptreact' , 'svelte' , 'javascriptreact'
+  }
 }
 
 Util.trigger_completion = function()
