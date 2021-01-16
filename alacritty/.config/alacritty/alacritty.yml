@@ -64,7 +64,7 @@ schemes:
       text: '#000000'
       cursor: '#FFFAEE'
 
-    # Normal colors
+      # Normal colors
     normal:
       black:   '#282828'
       red:     '#cc241d'
@@ -75,7 +75,7 @@ schemes:
       cyan:    '#689d6a'
       white:   '#a89984'
 
-    # Bright colors
+      # Bright colors
     bright:
       black:   '#928374'
       red:     '#fb4934'
@@ -156,8 +156,6 @@ mouse:
     modifiers: None
 
 key_bindings:
-  # not sure about this thing
-  - { key: Space,      mods: Control,             chars: "\xa0" }
   - { key: K,          mods: Alt,     mode: ~Alt, action: ScrollLineUp,  }
   - { key: J,          mods: Alt,     mode: ~Alt, action: ScrollLineDown }
   - { key: U,          mods: Alt,     mode: ~Alt, action: ScrollPageUp   }

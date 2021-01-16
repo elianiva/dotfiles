@@ -49,7 +49,7 @@ theme.tasklist_fg_focus = theme.yellow
 
 -- widget
 theme.widget_main_color = theme.color_name == "gruvbox" and theme.yellow or
-                            theme.blue
+theme.blue
 theme.widget_red = theme.red
 theme.widget_yelow = theme.yellow
 theme.widget_green = theme.green
@@ -110,6 +110,6 @@ theme.taglist_spacing = dpi(2)
 
 local taglist_square_size = dpi(5)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-                              taglist_square_size, theme.fg_normal)
+  taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-                                taglist_square_size, theme.fg_normal)
+  taglist_square_size, theme.fg_normal)

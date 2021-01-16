@@ -34,8 +34,8 @@ local npairs = require('nvim-autopairs')
 
 npairs.setup{
   break_line_filetype = {
-    'javascript' , 'typescript' , 'typescriptreact',
-    'svelte', 'go', 'lua', 'java',
+    'javascript' , 'typescript', 'typescriptreact',
+    'svelte', 'go', 'lua', 'java', 'rust'
   },
   pairs_map = {
     ["'"] = "'",

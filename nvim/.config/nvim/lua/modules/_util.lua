@@ -2,6 +2,8 @@ local Job = require("plenary.job")
 
 Util = {}
 
+P = function(x) print(vim.inspect(x)) end
+
 Util.check_backspace = function()
   local col = vim.fn.col('.') - 1
   if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
