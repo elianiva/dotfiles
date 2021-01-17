@@ -103,11 +103,12 @@ end
 set_hl('Comment', { gui = 'italic' })
 
 -- automatically override colourscheme
-vim.cmd('augroup NewColor')
-vim.cmd('au!')
-vim.cmd('au ColorScheme gruvbox8 call v:lua.ColorUtil.override_gruvbox()')
--- vim.cmd('au ColorScheme eunoia call v:lua.ColorUtil.override_eunoia()')
-vim.cmd('augroup END')
+vim.api.nvim_exec([[
+  augroup NewColor
+  au!
+  au ColorScheme gruvbox8 call v:lua.ColorUtil.override_gruvbox()
+  augroup END
+]], true)
 
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false

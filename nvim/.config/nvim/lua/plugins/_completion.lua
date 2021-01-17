@@ -2,7 +2,6 @@ vim.cmd[[packadd nvim-compe]]
 vim.cmd[[packadd nvim-autopairs]]
 vim.cmd[[packadd vim-vsnip]]
 vim.cmd[[packadd vim-vsnip-integ]]
--- vim.cmd[[packadd lexima.vim]]
 
 local remap = vim.api.nvim_set_keymap
 
@@ -25,17 +24,12 @@ require'compe'.setup {
   };
 }
 
--- -- needs to be here, otherwise `check_html_char` wouldn't work
--- vim.g.no_default_rules = 1
--- vim.g.lexima_accept_pum_with_enter = 1
--- vim.fn["lexima#set_default_rules"]()
-
 local npairs = require('nvim-autopairs')
 
 npairs.setup{
   break_line_filetype = {
     'javascript' , 'typescript', 'typescriptreact',
-    'svelte', 'go', 'lua', 'java', 'rust'
+    'svelte', 'go', 'lua', 'java', 'rust', 'json', 'jsonc'
   },
   pairs_map = {
     ["'"] = "'",
@@ -71,28 +65,11 @@ end
 
 remap('i', '<CR>', 'v:lua.Util.trigger_completion()', { expr = true, silent = true })
 
--- -- check prev character, depending on previous char
--- -- it will do special stuff or just `<CR>`
--- -- i.e: accept completion item, indent html, autoindent braces/etc, just enter
--- remap(
---   'i', '<CR>',
---   table.concat{
---     'pumvisible()',
---     '? complete_info()["selected"] != "-1"',
---     '? compe#confirm(lexima#expand("<LT>CR>", "i"))',
---     ': "<C-g>u".lexima#expand("<LT>CR>", "i")',
---     ': v:lua.Util.check_html_char() ? lexima#expand("<LT>CR>", "i")."<ESC>O"',
---     ': lexima#expand("<LT>CR>", "i")'
---   },
---   { silent = true, expr = true }
--- )
-
 -- cycle tab or insert tab depending on prev char
 remap(
   'i', '<Tab>',
   table.concat{
     'pumvisible() ? "<C-n>" : v:lua.Util.check_backspace()',
-    -- '? "<Tab>" : compe#confirm(lexima#expand("<LT>CR>", "i"))',
     '? "<Tab>" : compe#confirm()',
   },
   { silent = true, noremap = true, expr = true }
