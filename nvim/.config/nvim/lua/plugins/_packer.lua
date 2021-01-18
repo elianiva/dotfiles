@@ -87,15 +87,10 @@ if ok then
       requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},
+        {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast finder
+        {'~/repos/telescope-media-files.nvim'}, -- media preview
       },
     } -- extensible fuzzy finder
-    use {
-      'nvim-telescope/telescope-fzy-native.nvim',
-      opt = true,
-      requires = {
-        {'nvim-telescope/telescope.nvim'}
-      }
-    } -- faster sorter algo for telescope
     use {'lewis6991/gitsigns.nvim', opt = true} -- show git stuff in signcolumn
     use {
       'rhysd/git-messenger.vim',
@@ -103,6 +98,7 @@ if ok then
       opt = true
     } -- sort of like git blame but in floating window
     use {'machakann/vim-sandwich', opt = false} -- surround words with symbol
+    use {'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end}
     use {
       'mhinz/vim-sayonara',
       cmd = 'Sayonara',

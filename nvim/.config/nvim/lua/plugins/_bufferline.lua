@@ -4,6 +4,7 @@ require'bufferline'.setup{
   options = {
     view = "default",
     numbers = "none",
-    separator_style = {'', ''}
+    separator_style = {'', ''},
+    diagnostics = "nvim_lsp",
   }
 }

@@ -31,6 +31,7 @@ require("plugins._completion")
 require("plugins._formatter")
 require("plugins._treesitter")
 require("plugins._telescope")
+require("plugins._firenvim")
 
 -- highlight bg according to hex/rgb/rgba text
 require"colorizer".setup{}

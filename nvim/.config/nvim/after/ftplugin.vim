@@ -10,6 +10,9 @@ au BufRead,BufNewFile *.fnl set ft=fennel
 au BufRead,BufNewFile *.svelte set ft=svelte
 au BufRead,BufNewFile * setlocal indentexpr=nvim_treesitter#indent()
 
+" Set github text field to markdown
+au BufEnter github.com_*.txt set filetype=markdown
+
 " Set tabsize for each filetype
 au FileType go setlocal sw=4 ts=4 sts=4 noexpandtab
 au FileType lua setlocal sw=2 ts=2 sts=2

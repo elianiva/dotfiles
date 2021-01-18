@@ -56,6 +56,9 @@ remap("n", "<Leader>g", "<CMD>Goyo<CR>", { noremap = true })
 -- run luafile on current file
 remap("n", "<Leader>r", "<CMD>luafile %<CR>", { noremap = true })
 
+-- run node on current file
+remap("n", "<Leader>n", "<CMD>!node %<CR>", { noremap = true })
+
 -- toggle colorizer
 remap("n", "<Leader>c", "<CMD>ColorizerToggle<CR>", { noremap = true })
 

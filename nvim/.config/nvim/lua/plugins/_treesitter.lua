@@ -14,6 +14,15 @@ parser_config.svelte = {
   used_by = {"svelte"}
 }
 
+parser_config.markdown = {
+  install_info = {
+    url = "~/repos/tree-sitter-markdown", -- local path or git repo
+    files = {"src/parser.c", "src/scanner.cc"}
+  },
+  filetype = "markdown",
+  used_by = {"markdown"}
+}
+
 ts_config.setup {
   ensure_installed = "maintained",
 

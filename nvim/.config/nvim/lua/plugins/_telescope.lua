@@ -57,13 +57,20 @@ require'telescope'.setup{
         ['<Tab>'] = actions.toggle_selection,
         ["<C-w>l"] = actions.preview_switch_window_right,
       }
+    },
+  },
+  extensions = {
+    media_files = {
+      filetypes = {"png", "webp", "jpg", "jpeg", "pdf", "mkv"},
+      find_cmd = "rg"
     }
-  }
+  },
 }
 
 -- depends on `nvim-telescope/telescope-fzy-native.nvim`
 vim.cmd[[packadd telescope-fzy-native.nvim]]
 require('telescope').load_extension('fzy_native') -- superfast sorter
+require('telescope').load_extension('media_files') -- media preview
 
 M.grep_prompt = function()
   require'telescope.builtin'.grep_string{
