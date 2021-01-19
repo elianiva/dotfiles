@@ -90,18 +90,6 @@ local eslint = {
   }
 }
 
-local prettier = {
-  formatCommand = (
-    function()
-      if is_cfg_present("/.prettierrc") then
-        return "prettier --config ./.prettierrc"
-      else
-        return "prettier --config ~/.config/nvim/.prettierrc"
-      end
-    end
-  )()
-}
-
 local gofmt= {
   formatCommand = "gofmt"
 }
@@ -111,28 +99,22 @@ local rustfmt = {
 }
 
 -- TODO(elianiva): find a way to fix wrong formatting
-if false then
+if true then
 nvim_lsp.efm.setup{
-  cmd = {"efm-langserver"},
+  cmd = { "efm-langserver" },
   on_attach = function(client)
     client.resolved_capabilities.rename = false
     client.resolved_capabilities.hover = false
   end,
   on_init = custom_on_init,
-  init_options = { documentFormatting = true },
   filetypes = {"javascript", "typescript", "typescriptreact", "svelte"},
   settings = {
     rootMarkers = {".git", "package.json"},
     languages = {
-      javascript = { eslint, prettier },
-      typescript = { eslint, prettier },
-      typescriptreact = { eslint, prettier },
-      svelte = { eslint, prettier },
-      -- html = { prettier },
-      -- css = { prettier },
-      -- jsonc = { prettier },
-      -- go = { gofmt },
-      -- rust = { rustfmt },
+      javascript = { eslint },
+      typescript = { eslint },
+      typescriptreact = { eslint },
+      svelte = { eslint },
     }
   }
 }

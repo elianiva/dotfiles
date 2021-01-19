@@ -4,32 +4,26 @@ Util = {}
 
 P = function(x) print(vim.inspect(x)) end
 
-Util.check_char = function(pattern, check_surrounding)
+Util.check_backspace = function()
   local curr_col = vim.fn.col('.')
   local is_first_col = vim.fn.col('.') - 1 == 0
   local prev_char = vim.fn.getline('.'):sub(curr_col - 1, curr_col - 1)
-  local next_char = vim.fn.getline('.'):sub(curr_col + 1, curr_col + 1)
 
-  if is_first_col or prev_char:match(pattern) then
-
-    if check_surrounding and next_char:match(pattern) then
-      return true
-    else
-      return false
-    end
-
+  if is_first_col or prev_char:match("%s") then
     return true
   else
     return false
   end
 end
 
-Util.check_html_char = function()
-  local prev_col, next_col = vim.fn.col('.') - 1, vim.fn.col('.')
-  local prev_char = vim.fn.getline('.'):sub(prev_col, prev_col)
-  local next_char = vim.fn.getline('.'):sub(next_col, next_col)
+Util.check_surroundings = function()
+  local col = vim.fn.col('.')
+  local line = vim.fn.getline('.')
+  local prev_char = line:sub(col - 1, col - 1)
+  local next_char = line:sub(col, col)
+  local pattern = '[%{|%}|%[|%]]'
 
-  if prev_char:match('>') and next_char:match('<') then
+  if prev_char:match(pattern) and next_char:match(pattern) then
     return true
   else
     return false

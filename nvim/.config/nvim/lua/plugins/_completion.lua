@@ -47,7 +47,7 @@ remap('i', '<CR>', 'v:lua.Util.trigger_completion()', { expr = true, silent = tr
 remap(
   'i', '<Tab>',
   table.concat{
-    'pumvisible() ? "<C-n>" : v:lua.Util.check_char("%s", v:false)',
+    'pumvisible() ? "<C-n>" : v:lua.Util.check_backspace()',
     '? "<Tab>" : compe#confirm()',
   },
   { silent = true, noremap = true, expr = true }

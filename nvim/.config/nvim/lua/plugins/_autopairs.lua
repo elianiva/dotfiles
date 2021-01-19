@@ -5,7 +5,8 @@ local remap = vim.api.nvim_set_keymap
 npairs.setup{
   break_line_filetype = {
     'javascript' , 'typescript', 'typescriptreact',
-    'svelte', 'go', 'lua', 'java', 'rust', 'json', 'jsonc'
+    'svelte', 'go', 'lua', 'java', 'rust', 'json', 'jsonc',
+    'css',
   },
   pairs_map = {
     ["'"] = "'",
@@ -22,7 +23,7 @@ npairs.setup{
 }
 
 Util.insert_space = function()
-  local is_char_present = Util.check_char("[%{|%}|%[|%]]", true)
+  local is_char_present = Util.check_surroundings()
 
   if is_char_present then
     return vim.api.nvim_replace_termcodes("  <Left>", true, false, true)
