@@ -4,9 +4,20 @@ Util = {}
 
 P = function(x) print(vim.inspect(x)) end
 
-Util.check_backspace = function()
-  local col = vim.fn.col('.') - 1
-  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+Util.check_char = function(pattern, check_surrounding)
+  local curr_col = vim.fn.col('.')
+  local is_first_col = vim.fn.col('.') - 1 == 0
+  local prev_char = vim.fn.getline('.'):sub(curr_col - 1, curr_col - 1)
+  local next_char = vim.fn.getline('.'):sub(curr_col + 1, curr_col + 1)
+
+  if is_first_col or prev_char:match(pattern) then
+
+    if check_surrounding and next_char:match(pattern) then
+      return true
+    else
+      return false
+    end
+
     return true
   else
     return false

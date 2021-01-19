@@ -58,9 +58,13 @@ remap("n", "<Leader>r", "<CMD>luafile %<CR>", { noremap = true })
 
 -- run node on current file
 remap("n", "<Leader>n", "<CMD>!node %<CR>", { noremap = true })
+remap("n", "<Leader>tn", "<CMD>!NO_COLOR=true deno run %<CR>", { noremap = true })
 
 -- toggle colorizer
 remap("n", "<Leader>c", "<CMD>ColorizerToggle<CR>", { noremap = true })
+
+-- open vertical scratch buffer
+remap("n", "<Leader>v", "<CMD>vnew | setlocal buftype=nofile | setlocal bufhidden=hide<CR>", { noremap = true })
 
 -- better indenting experience
 remap('v', '<', '<gv', { noremap = true })

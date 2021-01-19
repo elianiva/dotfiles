@@ -1,5 +1,4 @@
 vim.cmd[[packadd nvim-compe]]
-vim.cmd[[packadd nvim-autopairs]]
 vim.cmd[[packadd vim-vsnip]]
 vim.cmd[[packadd vim-vsnip-integ]]
 
@@ -25,26 +24,6 @@ require'compe'.setup {
 }
 
 local npairs = require('nvim-autopairs')
-
-npairs.setup{
-  break_line_filetype = {
-    'javascript' , 'typescript', 'typescriptreact',
-    'svelte', 'go', 'lua', 'java', 'rust', 'json', 'jsonc'
-  },
-  pairs_map = {
-    ["'"] = "'",
-    ['"'] = '"',
-    ['('] = ')',
-    ['['] = ']',
-    ['{'] = '}',
-    ['`'] = '`',
-  },
-  disable_filetype = { "TelescopePrompt" },
-  html_break_line_filetype = {
-    'html' , 'vue' , 'typescriptreact' , 'svelte' , 'javascriptreact'
-  }
-}
-
 Util.trigger_completion = function()
   if vim.fn.pumvisible() ~= 0  then
 
@@ -57,10 +36,9 @@ Util.trigger_completion = function()
     vim.fn["compe#confirm"]()
 
     return npairs.esc("<c-n><c-y>")
-  else
-    return npairs.check_break_line_char()
   end
-  return npairs.esc("<cr>")
+
+  return npairs.check_break_line_char()
 end
 
 remap('i', '<CR>', 'v:lua.Util.trigger_completion()', { expr = true, silent = true })
@@ -69,7 +47,7 @@ remap('i', '<CR>', 'v:lua.Util.trigger_completion()', { expr = true, silent = tr
 remap(
   'i', '<Tab>',
   table.concat{
-    'pumvisible() ? "<C-n>" : v:lua.Util.check_backspace()',
+    'pumvisible() ? "<C-n>" : v:lua.Util.check_char("%s", v:false)',
     '? "<Tab>" : compe#confirm()',
   },
   { silent = true, noremap = true, expr = true }

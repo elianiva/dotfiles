@@ -54,6 +54,10 @@ ColorUtil.override_gruvbox = function()
     {'LspDiagnosticsDefaultWarning', { bg='NONE', fg='#d79921' }},
     {'LspDiagnosticsDefaultInformation', { bg='NONE', fg='#458588' }},
     {'LspDiagnosticsDefaultHint', { bg='NONE', fg='#689D6A' }},
+    {'LspDiagnosticsUnderlineError', { gui='underline' }},
+    {'LspDiagnosticsUnderlineWarning', { gui='underline' }},
+    {'LspDiagnosticsUnderlineInformation', { gui='underline' }},
+    {'LspDiagnosticsUnderlineHint', { gui='underline' }},
 
     -- ts override
     {'TSKeywordOperator', { bg='NONE', fg='#fb4934' }},
