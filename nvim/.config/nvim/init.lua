@@ -22,7 +22,7 @@ require("modules._appearances")
 require("modules._util")
 
 -- plugins config
-require("plugins._luatree")
+require("plugins._nvimtree")
 require("plugins._bufferline")
 require("plugins._emmet")
 require("plugins._indentline")

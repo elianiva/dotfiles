@@ -7,7 +7,7 @@ remap('i', 'Jj', '<Esc><Esc>', { noremap = true })
 remap('i', 'jJ', '<Esc><Esc>', { noremap = true })
 remap('i', 'JJ', '<Esc><Esc>', { noremap = true })
 
--- toggle luatree
+-- toggle nvimtree
 remap('n', '<C-n>', '<CMD>NvimTreeToggle<CR>', { noremap = true })
 
 -- toggle telescope.nvim

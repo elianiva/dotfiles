@@ -3,11 +3,7 @@ local npairs = require('nvim-autopairs')
 local remap = vim.api.nvim_set_keymap
 
 npairs.setup{
-  break_line_filetype = {
-    'javascript' , 'typescript', 'typescriptreact',
-    'svelte', 'go', 'lua', 'java', 'rust', 'json', 'jsonc',
-    'css',
-  },
+  break_line_filetype = nil, -- enable this rule for all filetypes
   pairs_map = {
     ["'"] = "'",
     ['"'] = '"',

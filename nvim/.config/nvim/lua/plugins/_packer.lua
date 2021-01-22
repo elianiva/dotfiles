@@ -4,7 +4,6 @@ local ok, packer = pcall(require, "packer")
 
 if ok then
   local use = packer.use
-
   packer.init({
     git = {
       clone_timeout = 300 -- 5 minutes, I have horrible internet
@@ -19,7 +18,6 @@ if ok then
     use {'wbthomason/packer.nvim', opt = true}
 
     use {'lifepillar/vim-gruvbox8', opt = false} -- nice colorscheme
-    -- use {'cohama/lexima.vim', opt = true} -- autopairs brackets, braces etc
     use {'windwp/nvim-autopairs', opt = true} -- autopairs brackets, braces etc
     use {'tomtom/tcomment_vim', opt = false} -- comment stuff easier
     use {'brooth/far.vim', opt = false} -- project wide search and replace
@@ -41,9 +39,14 @@ if ok then
       ft = { 'svelte' },
       opt = true,
     } -- svelte language support
-    use { '~/repos/nvim-treesitter', opt = true } -- better syntax highlighting
-    use { 'nvim-treesitter/playground', opt = true } -- playground for treesitter
-    use { 'nvim-treesitter/nvim-treesitter-textobjects', opt = true } -- playground for treesitter
+    use {
+      '~/repos/nvim-treesitter',
+      requires = {
+        {'nvim-treesitter/playground'}, -- playground for treesitter
+        {'nvim-treesitter/nvim-treesitter-textobjects'}, -- "smart" textobjects
+      },
+      opt = true
+    } -- mostly for better syntax highlighting, but it has more stuff
     use {
       'hrsh7th/nvim-compe',
       opt = true,
@@ -88,7 +91,7 @@ if ok then
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},
         {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast finder
-        {'~/repos/telescope-media-files.nvim'}, -- media preview
+        {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
       },
     } -- extensible fuzzy finder
     use {'lewis6991/gitsigns.nvim', opt = true} -- show git stuff in signcolumn
@@ -106,5 +109,5 @@ if ok then
     } -- better window and buffer management
   end
 
-  return packer.startup(plugins)
+  packer.startup(plugins)
 end

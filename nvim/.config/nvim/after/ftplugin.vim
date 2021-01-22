@@ -8,7 +8,6 @@ au BufNewFile,BufRead tsconfig.json set filetype=jsonc
 au BufRead,BufNewFile *.svx,*.mdx set ft=markdown
 au BufRead,BufNewFile *.fnl set ft=fennel
 au BufRead,BufNewFile *.svelte set ft=svelte
-au BufRead,BufNewFile * setlocal indentexpr=nvim_treesitter#indent()
 
 " Set github text field to markdown
 au BufEnter github.com_*.txt set filetype=markdown

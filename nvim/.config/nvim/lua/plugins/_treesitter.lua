@@ -14,15 +14,6 @@ parser_config.svelte = {
   used_by = {"svelte"}
 }
 
-parser_config.markdown = {
-  install_info = {
-    url = "~/repos/tree-sitter-markdown", -- local path or git repo
-    files = {"src/parser.c", "src/scanner.cc"}
-  },
-  filetype = "markdown",
-  used_by = {"markdown"}
-}
-
 ts_config.setup {
   ensure_installed = "maintained",
 
@@ -39,11 +30,21 @@ ts_config.setup {
     select = {
       enable = true,
       keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["ab"] = "@block.outer",
+        ["ib"] = "@block.inner",
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>a"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>A"] = "@parameter.inner",
       },
     },
     lsp_interop = {

@@ -16,7 +16,7 @@ vim.g.nvim_tree_root_folder_modifier = ':~'
 vim.g.nvim_tree_tab_open = 0
 vim.g.nvim_tree_show_icons = {git = 0, folders = 1, files = 1}
 
--- Mappings for luatree
+-- Mappings for nvimtree
 vim.g.nvim_tree_bindings = {
   edit = {'<CR>', 'o'},
   edit_vsplit = '<C-v>',
@@ -26,7 +26,7 @@ vim.g.nvim_tree_bindings = {
   toggle_dotfiles = 'H',
   refresh = 'R',
   preview = '<Tab>',
-  cd = 'cd',
+  cd = '<Leader>d',
   create = 'a',
   remove = 'd',
   rename = 'r',

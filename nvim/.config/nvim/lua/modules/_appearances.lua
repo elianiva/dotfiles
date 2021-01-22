@@ -40,7 +40,7 @@ ColorUtil.override_gruvbox = function()
     {'LineColAlt', { bg = '#504945', fg = '#928374' }},
     {'FiletypeAlt', { bg = '#3C3836', fg = '#504945' }},
 
-    -- luatree
+    -- nvimtree
     {'NvimTreeFolderIcon', { fg = '#d79921' }},
     {'NvimTreeIndentMarker', { fg = '#928374' }},
 
@@ -65,37 +65,6 @@ ColorUtil.override_gruvbox = function()
 
     -- lang override
     {'markdownCode', { bg='NONE', fg='#fe8019' }},
-  }
-
-  for _, highlight in pairs(highlights) do
-    set_hl(highlight[1], highlight[2])
-  end
-end
-
-ColorUtil.override_eunoia = function()
-  local highlights = {
-    -- Disable background
-    {'Normal', { bg = 'NONE'}},
-
-    -- statusline colours
-    {'Active', { bg = '#211D35', fg = '#ECEBE6' }},
-    {'Inactive', { bg = '#2C2941', fg = '#4B5573' }},
-    {'Mode', { bg = '#6391F4', fg = '#211D35', gui="bold" }},
-    {'LineCol', { bg = '#E64557', fg = '#211D35', gui="bold" }},
-    {'Git', { bg = '#2C2941', fg = '#ECEBE6' }},
-    {'Filetype', { bg = '#2C2941', fg = '#ECEBE6' }},
-    {'Filename', { bg = '#2C2941', fg = '#ECEBE6' }},
-
-    {'ModeAlt', { bg = '#2C2941', fg = '#6391F4' }},
-    {'GitAlt', { bg = '#211D35', fg = '#2C2941' }},
-    {'LineColAlt', { bg = '#2C2941', fg = '#E64557' }},
-    {'FiletypeAlt', { bg = '#211D35', fg = '#2C2941' }},
-
-    -- telescope
-    {'TelescopeSelection', { bg='#2C2941', fg='#dedbd6' }},
-    {'TelescopeMatching', { bg='NONE', fg='#FF496F' }},
-    {'TelescopeBorder', { bg='#151326', fg='#4D5980' }},
-    {'TelescopeNormal', { bg='#151326' }},
   }
 
   for _, highlight in pairs(highlights) do

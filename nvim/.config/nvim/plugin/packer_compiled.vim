@@ -9,6 +9,16 @@ endif
 try
 
 lua << END
+  local package_path_str = "/home/elianiva/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/elianiva/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/elianiva/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/elianiva/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+  local install_cpath_pattern = "/home/elianiva/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+  if not string.find(package.path, package_path_str, 1, true) then
+    package.path = package.path .. ';' .. package_path_str
+  end
+
+  if not string.find(package.cpath, install_cpath_pattern, 1, true) then
+    package.cpath = package.cpath .. ';' .. install_cpath_pattern
+  end
+
 local plugins = {
   ["emmet-vim"] = {
     commands = { "EmmetInstall" },
@@ -62,7 +72,7 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
   },
   ["nvim-compe"] = {
-    after = { "vim-vsnip-integ", "vim-vsnip" },
+    after = { "vim-vsnip", "vim-vsnip-integ" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -76,12 +86,16 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
+    after = { "playground", "nvim-treesitter-textobjects" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -103,6 +117,9 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   playground = {
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -286,20 +303,20 @@ endfunction
 
 
 " Command lazy-loads
-command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
-  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
   au FileType text ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "text" })
   au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
+  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
+  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
   " Event lazy-loads
   " Function lazy-loads
 augroup END
