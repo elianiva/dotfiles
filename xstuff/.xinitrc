@@ -4,7 +4,9 @@ export DOTS="/home/elianiva/repos/dotfiles"
 export TERMINAL="alacritty"
 export CC="gcc"
 export CM_LAUNCHER="rofi"
+export CM_SELECTIONS="clipboard"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --ignore-file ".gitignore"'
+export SKIM_DEFAULT_COMMAND='rg --files --no-ignore --ignore-file ".gitignore"'
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
@@ -181,7 +183,7 @@ ex=:\
 "
 
 light -S 40 # set brightness
-setxkbmap -option caps:none # remove annoying capslock
+setxkbmap -option caps:none
 xset -b # remove annoying bell
 xset r rate 300 50 # gotta go fast
 fcitx & # japanese input method using fcitx-mozc

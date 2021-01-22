@@ -24,3 +24,5 @@ file-modified-label = modified:
 
 [interactive]
   diffFilter = delta --color-only
+[init]
+	defaultBranch = master

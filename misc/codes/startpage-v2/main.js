@@ -46,24 +46,24 @@ INPUT.addEventListener("keydown", e => {
     }
 
     if (value.toLowerCase().match(cmd.OPEN))
-      window.location.href = `https://${value.replace(cmd.OPEN, "")}`
+    window.location.href = `https://${value.replace(cmd.OPEN, "")}`
 
     if (value.toLowerCase().match(cmd.FACEBOOK))
-      window.location.href = "https://facebook.com"
+    window.location.href = "https://facebook.com"
     if (value.toLowerCase().match(cmd.GITHUB))
-      window.location.href = "https://github.com"
+    window.location.href = "https://github.com"
     if (value.toLowerCase().match(cmd.GMAIL))
-      window.location.href = "https://mail.google.com"
+    window.location.href = "https://mail.google.com"
     if (value.toLowerCase().match(cmd.YOUTUBE))
-      window.location.href = "https://youtube.com"
+    window.location.href = "https://youtube.com"
     if (value.toLowerCase().match(cmd.WA))
-      window.location.href = "https://web.whatsapp.com"
+    window.location.href = "https://web.whatsapp.com"
     if (value.toLowerCase().match(cmd.ANKI))
-      window.location.href = "https://ankiweb.net"
+    window.location.href = "https://ankiweb.net"
     if (value.toLowerCase().match(cmd.TRELLO))
-      window.location.href = "https://trello.com"
+    window.location.href = "https://trello.com"
     if (value.toLowerCase().match(cmd.TWITTER))
-      window.location.href = "https://twitter.com"
+    window.location.href = "https://twitter.com"
   }
 })
 
@@ -90,7 +90,7 @@ setFromLocalStorage()
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch(
-      "https://random-jp-api.herokuapp.com/api/rand?level=n4"
+      "https://random-jp-api.vercel.app/api/rand?level=n4"
     )
     const { data: result } = await res.json()
     localStorage.setItem("result", JSON.stringify(result))
