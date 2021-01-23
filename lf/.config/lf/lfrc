@@ -5,7 +5,7 @@ set previewer ~/.config/lf/preview
 set preview true
 set previewer ~/.config/lf/preview
 set ratios 1:2:3
-set color256 true
+# set color256 true
 set ignorecase true
 set icons
 
@@ -72,6 +72,10 @@ cmd unarchive ${{
   extract "$f"
 }}
 
+cmd unexecute ${{
+  chmod -x "$f"
+}}
+
 # Bindings
 # Remove some defaults
 map m
@@ -88,7 +92,7 @@ map y
 
 # File Openers
 map ee $$EDITOR "$f"
-map u $view "$f"
+# map u $view "$f"
 
 # Archive Mappings
 map r1 unarchive

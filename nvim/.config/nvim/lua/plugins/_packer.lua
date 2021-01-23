@@ -85,6 +85,7 @@ if ok then
       cmd = 'EmmetInstall',
       opt = true
     } -- less typing for html code
+    use {'tami5/sql.nvim'}
     use {
       '~/repos/telescope.nvim',
       requires = {
@@ -92,6 +93,7 @@ if ok then
         {'nvim-lua/plenary.nvim'},
         {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast finder
         {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
+        {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
       },
     } -- extensible fuzzy finder
     use {'lewis6991/gitsigns.nvim', opt = true} -- show git stuff in signcolumn
@@ -107,6 +109,7 @@ if ok then
       cmd = 'Sayonara',
       opt = true
     } -- better window and buffer management
+    use {'RRethy/vim-illuminate'}
   end
 
   packer.startup(plugins)

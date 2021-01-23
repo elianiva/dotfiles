@@ -71,6 +71,7 @@ require'telescope'.setup{
 vim.cmd[[packadd telescope-fzy-native.nvim]]
 require('telescope').load_extension('fzy_native') -- superfast sorter
 require('telescope').load_extension('media_files') -- media preview
+require('telescope').load_extension('frecency') -- frecency
 
 M.grep_prompt = function()
   require'telescope.builtin'.grep_string{

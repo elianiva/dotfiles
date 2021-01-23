@@ -13,6 +13,7 @@ ColorUtil.override_gruvbox = function()
     {'IncSearch', { bg = '#928374' }},
     {'String', { gui = 'NONE' }},
     {'Special', { gui = 'NONE' }},
+    {'illuminatedWord', { gui = 'underline' }},
 
     -- git stuff
     {'SignAdd', { fg = '#458588', bg = 'NONE' }},
