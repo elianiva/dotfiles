@@ -109,7 +109,8 @@ if ok then
       cmd = 'Sayonara',
       opt = true
     } -- better window and buffer management
-    use {'RRethy/vim-illuminate'}
+    -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
+    use {'AndrewRadev/splitjoin.vim', opt = false}
   end
 
   packer.startup(plugins)

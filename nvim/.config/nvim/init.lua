@@ -25,7 +25,6 @@ require("modules._util")
 require("plugins._nvimtree")
 require("plugins._bufferline")
 require("plugins._emmet")
-require("plugins._indentline")
 require("plugins._gitsigns")
 require("plugins._autopairs")
 require("plugins._completion")
@@ -35,12 +34,17 @@ require("plugins._telescope")
 require("plugins._firenvim")
 
 -- highlight bg according to hex/rgb/rgba text
-require"colorizer".setup{}
+require"colorizer".setup{
+  ["*"] = {
+    css = true,
+    css_fn = true,
+    mode = 'background',
+  }
+}
 
 -- load modules
 require("modules._mappings")
 require("modules._statusline")
--- require("modules.blur")
 
 -- lsp stuff
 require("modules.lsp")

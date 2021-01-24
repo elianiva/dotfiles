@@ -13,6 +13,16 @@ ColorUtil.override_gruvbox = function()
     {'IncSearch', { bg = '#928374' }},
     {'String', { gui = 'NONE' }},
     {'Special', { gui = 'NONE' }},
+
+    -- tabline stuff
+    {'Tabline', { bg = 'NONE' }},
+    {'TablineSuccess', { bg = 'NONE', fg = '#b8bb26', gui = 'bold' }},
+    {'TablineError', { bg='NONE', fg='#fb4934' }},
+    {'TablineWarning', { bg='NONE', fg='#d79921' }},
+    {'TablineInformation', { bg='NONE', fg='#458588' }},
+    {'TablineHint', { bg='NONE', fg='#689D6A' }},
+
+    -- vim-illuminate
     {'illuminatedWord', { gui = 'underline' }},
 
     -- git stuff

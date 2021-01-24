@@ -6,7 +6,6 @@ au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
 au BufNewFile,BufRead .prettierrc,.eslintrc set filetype=json
 au BufNewFile,BufRead tsconfig.json set filetype=jsonc
 au BufRead,BufNewFile *.svx,*.mdx set ft=markdown
-au BufRead,BufNewFile *.fnl set ft=fennel
 au BufRead,BufNewFile *.svelte set ft=svelte
 
 " Set github text field to markdown
@@ -47,12 +46,6 @@ augroup Compe
   au!
   au BufEnter * let g:compe_enabled = v:true
   au FileType TelescopePrompt let g:compe_enabled = v:false
-augroup END
-
-augroup Lexima
-  au!
-  au BufEnter * let b:lexima_disabled = 0
-  au FileType TelescopePrompt let b:lexima_disabled = 1
 augroup END
 
 augroup HideCursor
