@@ -23,22 +23,44 @@ require'compe'.setup {
   };
 }
 
-local npairs = require('nvim-autopairs')
+-- local npairs = require('nvim-autopairs')
+-- Util.trigger_completion = function()
+--   if vim.fn.pumvisible() ~= 0  then
+--
+--     if vim.fn.complete_info()["selected"] ~= -1 then
+--       vim.fn["compe#confirm"]()
+--       return npairs.esc("<c-y>")
+--     end
+--
+--     vim.fn.nvim_select_popupmenu_item(0 , false , false ,{})
+--     vim.fn["compe#confirm"]()
+--
+--     return npairs.esc("<c-n><c-y>")
+--   end
+--
+--   return npairs.check_break_line_char()
+-- end
+
+
 Util.trigger_completion = function()
+  local esc = function(cmd)
+    return vim.api.nvim_replace_termcodes(cmd, true, false, true)
+  end
+
   if vim.fn.pumvisible() ~= 0  then
 
     if vim.fn.complete_info()["selected"] ~= -1 then
       vim.fn["compe#confirm"]()
-      return npairs.esc("<c-y>")
+      return esc("<c-y>")
     end
 
     vim.fn.nvim_select_popupmenu_item(0 , false , false ,{})
     vim.fn["compe#confirm"]()
 
-    return npairs.esc("<c-n><c-y>")
+    return esc("<c-n><c-y>")
   end
 
-  return npairs.check_break_line_char()
+  return esc("<cr>")
 end
 
 remap('i', '<CR>', 'v:lua.Util.trigger_completion()', { expr = true, silent = true })

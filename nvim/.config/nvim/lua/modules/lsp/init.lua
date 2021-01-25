@@ -1,11 +1,17 @@
 vim.cmd[[packadd nvim-lspconfig]]
+vim.cmd[[packadd lspsaga.nvim]]
 
-local nvim_lsp = require('lspconfig')
-local mappings = require('modules.lsp._mappings')
-local is_cfg_present = require('modules._util').is_cfg_present
+local nvim_lsp = require("lspconfig")
+local mappings = require("modules.lsp._mappings")
+local is_cfg_present = require("modules._util").is_cfg_present
 
-require('modules.lsp._custom_handlers') -- override hover callback
-require('modules.lsp._diagnostic') -- diagnostic stuff
+-- require("modules.lsp._custom_handlers") -- override hover callback
+
+require"lspsaga".init_lsp_saga({
+  max_hover_width = 80,
+  border_style = 1
+}) -- initialise lspsaga UI
+require("modules.lsp._diagnostic") -- diagnostic stuff
 
 local custom_on_attach = function(client)
   mappings.lsp_mappings()
@@ -16,7 +22,7 @@ local custom_on_attach = function(client)
 end
 
 local custom_on_init = function()
-  print('Language Server Protocol started!')
+  print("Language Server Protocol started!")
 end
 
 -- use eslint if the eslint config file present
@@ -28,8 +34,12 @@ local is_using_eslint = function(_, _, result, client_id)
   return vim.lsp.handlers["textDocument/publishDiagnostics"](_, _, result, client_id)
 end
 
+nvim_lsp.bashls.setup{
+  on_attach = custom_on_attach
+}
+
 nvim_lsp.tsserver.setup{
-  filetypes = { 'javascript', 'typescript', 'typescriptreact' },
+  filetypes = { "javascript", "typescript", "typescriptreact" },
   on_attach = function(client)
     mappings.lsp_mappings()
     if client.config.flags then
@@ -37,14 +47,30 @@ nvim_lsp.tsserver.setup{
     end
   end,
   handlers = {
-    ['textDocument/publishDiagnostics'] = is_using_eslint
+    ["textDocument/publishDiagnostics"] = is_using_eslint
   },
   on_init = custom_on_init,
   root_dir = function() return vim.loop.cwd() end,
 }
 
+-- -- testing this
+-- nvim_lsp.denols.setup{
+--   filetypes = { "javascript", "typescript", "typescriptreact" },
+--   on_attach = function(client)
+--     mappings.lsp_mappings()
+--     if client.config.flags then
+--       client.config.flags.allow_incremental_sync = true
+--     end
+--   end,
+--   handlers = {
+--     ["textDocument/publishDiagnostics"] = is_using_eslint
+--   },
+--   on_init = custom_on_init,
+--   root_dir = function() return vim.loop.cwd() end,
+-- }
+
 nvim_lsp.jdtls.setup{
-  cmd = {'jdtls'},
+  cmd = {"jdtls"},
   on_attach = custom_on_attach,
   on_init = custom_on_init,
   root_dir = function() return vim.loop.cwd() end,
@@ -90,14 +116,6 @@ local eslint = {
   }
 }
 
-local gofmt= {
-  formatCommand = "gofmt"
-}
-
-local rustfmt = {
-  formatCommand = "rustfmt --emit=stdout"
-}
-
 -- TODO(elianiva): find a way to fix wrong formatting
 if true then
 nvim_lsp.efm.setup{
@@ -133,10 +151,10 @@ nvim_lsp.svelte.setup{
     }
   end,
   handlers = {
-    ['textDocument/publishDiagnostics'] = is_using_eslint
+    ["textDocument/publishDiagnostics"] = is_using_eslint
   },
   on_init = custom_on_init,
-  filetypes = { 'svelte' },
+  filetypes = { "svelte" },
   settings = {
     svelte =  {
       plugin = {
@@ -162,7 +180,7 @@ nvim_lsp.sumneko_lua.setup{
   on_init = custom_on_init,
   settings = {
     Lua = {
-      runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
+      runtime = { version = "LuaJIT", path = vim.split(package.path, ";"), },
       completion = { keywordSnippet = "Disable" },
       diagnostics = {
         enable = true,

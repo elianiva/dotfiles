@@ -59,6 +59,12 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/jsonc.vim"
   },
+  ["lspsaga.nvim"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = false,
     only_sequence = false,
@@ -78,6 +84,12 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe"
   },
+  ["nvim-lspconfig"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
+  },
   ["nvim-tree.lua"] = {
     after = { "nvim-web-devicons" },
     loaded = false,
@@ -86,7 +98,7 @@ local plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-treesitter-textobjects", "playground" },
+    after = { "playground", "nvim-treesitter-textobjects" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -303,20 +315,20 @@ endfunction
 
 
 " Command lazy-loads
-command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
-  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
-  au FileType text ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "text" })
   au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
+  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
+  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
+  au FileType text ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "text" })
   " Event lazy-loads
   " Function lazy-loads
 augroup END

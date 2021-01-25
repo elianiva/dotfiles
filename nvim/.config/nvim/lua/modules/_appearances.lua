@@ -30,6 +30,13 @@ ColorUtil.override_gruvbox = function()
     {'SignChange', { fg = '#D79921', bg = 'NONE' }},
     {'SignDelete', { fg = '#fb4934', bg = 'NONE' }},
 
+    -- octo.nvim stuff
+    {'OctoNvimIssueOpen', { fg = '#b8bb26' }},
+    {'OctoNvimIssueClosed', { fg = '#fb4934' }},
+    {'OctoNvimDirty', { fg = '#fb4934' }},
+    {'OctoNvimBubbleGreen', { fg = '#b8bb26' }},
+    {'OctoNvimBubbleRed', { fg = '#fb4934' }},
+
     -- misc
     {'htmlLink', { gui = 'NONE', fg = '#ebdbb2' }},
     {'jsonNoQuotesError', { fg = '#fb4934' }},

@@ -15,6 +15,7 @@ if ok then
 
   local plugins = function()
     -- Packer can manage itself as an optional plugin
+    use {'tweekmonster/startuptime.vim', opt = false}
     use {'wbthomason/packer.nvim', opt = true}
 
     use {'lifepillar/vim-gruvbox8', opt = false} -- nice colorscheme
@@ -79,7 +80,8 @@ if ok then
         {'kyazdani42/nvim-web-devicons', opt = true}
       }
     } -- snazzy bufferline
-    use {'neovim/nvim-lspconfig', opt = false} -- builtin lsp config
+    use {'neovim/nvim-lspconfig', opt = true} -- builtin lsp config
+    use {'glepnir/lspsaga.nvim', opt = true} -- better UI for builtin LSP
     use {
       'mattn/emmet-vim',
       cmd = 'EmmetInstall',
@@ -111,6 +113,7 @@ if ok then
     } -- better window and buffer management
     -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
     use {'AndrewRadev/splitjoin.vim', opt = false}
+    use {'pwntester/octo.nvim', opt = false}
   end
 
   packer.startup(plugins)
