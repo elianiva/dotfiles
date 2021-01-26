@@ -66,24 +66,47 @@ local to_hex = function(rgb)
   return string.format('#%x%x%x', red, green, blue)
 end
 
-local get_word = function()
-  local first_line_num, last_line_num = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
+Util.get_word = function()
+  local first_line, last_line = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
   local first_col, last_col = vim.fn.getpos("'<")[3], vim.fn.getpos("'>")[3]
-  local current_word = vim.fn.getline(first_line_num, last_line_num)[1]:sub(first_col, last_col)
+  local current_word = vim.fn.getline(first_line, last_line)[1]:sub(first_col, last_col)
 
   return current_word
 end
 
+Util.get_lines = function()
+  local first_line, last_line = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
+  local lines = vim.fn.getline(first_line, last_line)
+
+  return lines
+end
+
+Util.get_visual = function()
+  local first_line, last_line = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
+  local first_col, last_col = vim.fn.getpos("'<")[3], vim.fn.getpos("'>")[3]
+  local lines = vim.fn.getline(first_line, last_line)
+
+  if #lines == 0 then
+    return ""
+  end
+
+  lines[#lines] = lines[#lines]:sub(0, last_col - 2)
+  lines[1] = lines[1]:sub(first_col - 1, -1)
+
+  return lines
+end
+
+-- TODO: convert this using extmarks
 Util.convert_color = function(mode)
   local result
 
   if mode == 'rgb' then
-    result = to_rgb(get_word())
+    result = to_rgb(Util.get_word())
   else
-    result = to_hex(get_word())
+    result = to_hex(Util.get_word())
   end
 
-  vim.api.nvim_command(string.format('s/%s/%s', get_word(), result))
+  vim.api.nvim_command(string.format('s/%s/%s', Util.get_word(), result))
 end
 
 vim.api.nvim_exec([[
@@ -93,7 +116,7 @@ vim.api.nvim_exec([[
 
 -- translate selected word, useful for when I do jp assignments
 Util.translate = function(lang)
-  local word = get_word()
+  local word = Util.get_word()
   local job = Job:new({
     command = "trans",
     args = {"-b", ":" .. (lang or "en"), word}

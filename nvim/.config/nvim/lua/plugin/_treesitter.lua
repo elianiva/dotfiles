@@ -3,7 +3,7 @@ vim.cmd[[packadd nvim-treesitter-textobjects]]
 vim.cmd[[packadd playground]]
 
 local ts_config = require("nvim-treesitter.configs")
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+local parser_config = require"nvim-treesitter.parsers".get_parser_configs()
 
 parser_config.svelte = {
   install_info = {
@@ -19,7 +19,6 @@ ts_config.setup {
 
   highlight = {
     enable = true,
-    use_languagetree = true,
   },
 
   indent = {

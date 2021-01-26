@@ -1,5 +1,5 @@
 --[[
-  taken from https://github.com/glepnir/nvim
+  taken from https://github.com/glepnir/lspsaga.nvim
   modified a bit
   big thanks to @glepnir
 --]]

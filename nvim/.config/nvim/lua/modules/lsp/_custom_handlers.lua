@@ -2,7 +2,7 @@ local lsp = vim.lsp
 local window = require('modules.lsp._window')
 
 --[[
-  taken from https://github.com/glepnir/nvim
+  taken from https://github.com/glepnir/lspsaga.nvim
   modified a bit
   big thanks to @glepnir
 --]]

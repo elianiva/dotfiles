@@ -34,8 +34,9 @@ ColorUtil.override_gruvbox = function()
     {'OctoNvimIssueOpen', { fg = '#b8bb26' }},
     {'OctoNvimIssueClosed', { fg = '#fb4934' }},
     {'OctoNvimDirty', { fg = '#fb4934' }},
-    {'OctoNvimBubbleGreen', { fg = '#b8bb26' }},
-    {'OctoNvimBubbleRed', { fg = '#fb4934' }},
+    {'OctoNvimPullAdditions', { fg = '#b8bb26' }},
+    {'OctoNvimPullDeletions', { fg = '#fb4934' }},
+    {'OctoNvimPullModifications', { fg = '#d79921' }},
 
     -- misc
     {'htmlLink', { gui = 'NONE', fg = '#ebdbb2' }},

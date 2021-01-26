@@ -9,7 +9,7 @@
  (to)
  (from)
  (important)
- ] @keyword
+] @keyword
 
 (comment) @comment
 
@@ -23,7 +23,7 @@
 [
  (nesting_selector)
  (universal_selector)
- ] @type
+] @type
 
 (function_name) @function
 
@@ -44,7 +44,7 @@
  "or"
  "not"
  "only"
- ] @operator
+] @operator
 
 
 (attribute_selector (plain_value) @string)
@@ -56,13 +56,13 @@
  (property_name)
  (feature_name)
  (attribute_name)
- ] @property
+] @property
 
 
 ((property_name) @type
-                 (#match? @type "^--"))
+  (#match? @type "^--"))
 ((plain_value) @type
-               (#match? @type "^--"))
+  (#match? @type "^--"))
 
 [
  (string_value)
@@ -70,12 +70,12 @@
  (identifier)
  (plain_value)
  (unit)
- ] @string
+] @string
 
 [
  (integer_value)
  (float_value)
- ] @number
+] @number
 
 [
  ","
@@ -83,13 +83,13 @@
  ":"
  "::"
  ";"
- ] @punctuation.delimiter
+] @punctuation.delimiter
 
 [
  "{"
  ")"
  "("
  "}"
- ] @punctuation.bracket
+] @punctuation.bracket
 
 (ERROR) @error

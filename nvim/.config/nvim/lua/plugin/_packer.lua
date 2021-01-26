@@ -114,6 +114,7 @@ if ok then
     -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
     use {'AndrewRadev/splitjoin.vim', opt = false}
     use {'pwntester/octo.nvim', opt = false}
+    use {'tjdevries/astronauta.nvim', opt = false}
   end
 
   packer.startup(plugins)

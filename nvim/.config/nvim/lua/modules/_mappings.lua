@@ -1,77 +1,78 @@
-local remap = vim.api.nvim_set_keymap
+local k = require"astronauta.keymap"
+
+local noremap =  k.noremap
+local nnoremap = k.nnoremap
+local inoremap = k.inoremap
+local vnoremap = k.vnoremap
 
 -- use jj instead of Esc
 -- 4 mappings to prevent typos :p
-remap('i', 'jj', '<Esc><Esc>', { noremap = true })
-remap('i', 'Jj', '<Esc><Esc>', { noremap = true })
-remap('i', 'jJ', '<Esc><Esc>', { noremap = true })
-remap('i', 'JJ', '<Esc><Esc>', { noremap = true })
+inoremap{"jj", "<Esc><Esc>"}
+inoremap{"Jj", "<Esc><Esc>"}
+inoremap{"jJ", "<Esc><Esc>"}
+inoremap{"JJ", "<Esc><Esc>"}
 
 -- toggle nvimtree
-remap('n', '<C-n>', '<CMD>NvimTreeToggle<CR>', { noremap = true })
+nnoremap{"<C-n>", "<CMD>NvimTreeToggle<CR>"}
 
 -- toggle telescope.nvim
-remap('n', '<C-p>', '<CMD>lua require"plugins._telescope".files()<CR>', { noremap = true, silent = true })
-remap('n', '<C-f>', '<CMD>lua require"plugins._telescope".grep_prompt()<CR>', { noremap = true, silent = true })
+nnoremap{"<C-p>", require"plugin._telescope".files, { silent = true }}
+nnoremap{"<C-f>", require"plugin._telescope".grep_prompt, { silent = true }}
 
 -- better movement between windows
-remap('n', '<C-h>', '<C-w><C-h>', { noremap = true })
-remap('n', '<C-j>', '<C-w><C-j>', { noremap = true })
-remap('n', '<C-k>', '<C-w><C-k>', { noremap = true })
-remap('n', '<C-l>', '<C-w><C-l>', { noremap = true })
+nnoremap{"<C-h>", "<C-w><C-h>"}
+nnoremap{"<C-j>", "<C-w><C-j>"}
+nnoremap{"<C-k>", "<C-w><C-k>"}
+nnoremap{"<C-l>", "<C-w><C-l>"}
 
 -- resize buffer easier
-remap('n', '<Left>', '<CMD>vertical resize +2<CR>', { noremap = true })
-remap('n', '<Right>', '<CMD>vertical resize -2<CR>', { noremap = true })
-remap('n', '<Up>', '<CMD>resize +2<CR>', { noremap = true })
-remap('n', '<Down>', '<CMD>resize -2<CR>', { noremap = true })
+nnoremap{"<Left>", "<CMD>vertical resize +2<CR>"}
+nnoremap{"<Right>", "<CMD>vertical resize -2<CR>"}
+nnoremap{"<Up>", "<CMD>resize +2<CR>"}
+nnoremap{"<Down>", "<CMD>resize -2<CR>"}
 
 -- buffer movements
-remap('', '<A-j>', '<CMD>Sayonara!<CR>', { noremap = true })
-remap('', '<A-k>', '<CMD>Sayonara<CR>', { noremap = true })
-remap('', '<A-h>', '<CMD>bp<CR>', { noremap = true })
-remap('', '<A-l>', '<CMD>bn<CR>', { noremap = true })
+noremap{"<A-j>", "<CMD>Sayonara!<CR>"}
+noremap{"<A-k>", "<CMD>Sayonara<CR>"}
+noremap{"<A-h>", "<CMD>bp<CR>"}
+noremap{"<A-l>", "<CMD>bn<CR>"}
 
 -- move vertically by visual line on wrapped lines
-remap('n', 'j', 'gj', { noremap = true })
-remap('n', 'k', 'gk', { noremap = true })
+nnoremap{"j", "gj"}
+nnoremap{"k", "gk"}
 
 -- move vertically by visual line on wrapped lines
-remap('n', 'j', 'gj', { noremap = true })
-remap('n', 'k', 'gk', { noremap = true })
+nnoremap{"j", "gj"}
+nnoremap{"k", "gk"}
 
 -- better yank behaviour
-remap('n', 'Y', 'y$', { noremap = true })
+nnoremap{"Y", "y$"}
 
 -- remove annoying exmode
-remap('n', 'Q', '<Nop>', { noremap = true })
-remap('n', 'q:', '<Nop>', { noremap = true })
+nnoremap{"Q", "<Nop>"}
+nnoremap{"q:", "<Nop>"}
 
 -- copy to system clipboard
-remap('v', '<A-y>', '"+y', { noremap = true })
+vnoremap{"<A-y>", '"+y'}
 
 -- no distraction mode for writing
-remap("n", "<Leader>g", "<CMD>Goyo<CR>", { noremap = true })
+nnoremap{"<Leader>g", "<CMD>Goyo<CR>"}
 
 -- run luafile on current file
-remap("n", "<Leader>r", "<CMD>luafile %<CR>", { noremap = true })
+nnoremap{"<Leader>r", "<CMD>luafile %<CR>"}
 
 -- run node on current file
-remap("n", "<Leader>n", "<CMD>!node %<CR>", { noremap = true })
-remap("n", "<Leader>tn", "<CMD>!NO_COLOR=true deno run %<CR>", { noremap = true })
+nnoremap{"<Leader>n", "<CMD>!node %<CR>"}
+nnoremap{"<Leader>tn", "<CMD>!NO_COLOR=true deno run %<CR>"}
 
 -- toggle colorizer
-remap("n", "<Leader>c", "<CMD>ColorizerToggle<CR>", { noremap = true })
+nnoremap{"<Leader>c", "<CMD>ColorizerToggle<CR>"}
 
 -- open vertical scratch buffer
-remap("n", "<Leader>v", "<CMD>vnew | setlocal buftype=nofile | setlocal bufhidden=hide<CR>", { noremap = true })
+nnoremap{"<Leader>v", "<CMD>vnew { setlocal buftype=nofile { setlocal bufhidden=hide<CR>"}
 
 -- better indenting experience
-remap('v', '<', '<gv', { noremap = true })
-remap('v', '>', '>gv', { noremap = true })
+vnoremap{"<", "<gv"}
+vnoremap{">", ">gv"}
 
-vim.cmd('command! -nargs=0 PreviewFile lua require"modules._util".xdg_open()') -- alternative way
-remap(
-  'n', 'gx', 'call v:lua.Util.xdg_open()<CR>',
-  { noremap = true, silent = true }
-)
+nnoremap{"gx", Util.xdg_open, { silent = true }}

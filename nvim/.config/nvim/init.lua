@@ -12,37 +12,11 @@ vim.cmd[[
 -- change cwd to current directory
 vim.cmd("cd %:p:h")
 
--- load plugin manager first
-require("plugins._packer")
-
--- basic settings
+-- load modules
 require("modules._settings")
-require("modules._others")
 require("modules._appearances")
 require("modules._util")
-
--- plugins config
-require("plugins._nvimtree")
-require("plugins._bufferline")
-require("plugins._emmet")
-require("plugins._gitsigns")
-require("plugins._autopairs")
-require("plugins._completion")
-require("plugins._formatter")
-require("plugins._treesitter")
-require("plugins._telescope")
-require("plugins._firenvim")
-
--- highlight bg according to hex/rgb/rgba text
-require"colorizer".setup{
-  ["*"] = {
-    css = true,
-    css_fn = true,
-    mode = 'background',
-  }
-}
-
--- load modules
+require("modules._others")
 require("modules._mappings")
 require("modules._statusline")
 

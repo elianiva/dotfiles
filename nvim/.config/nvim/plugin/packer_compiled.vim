@@ -19,13 +19,31 @@ lua << END
     package.cpath = package.cpath .. ';' .. install_cpath_pattern
   end
 
-local plugins = {
+_G.packer_plugins = {
+  ["astronauta.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/astronauta.nvim"
+  },
   ["emmet-vim"] = {
     commands = { "EmmetInstall" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/emmet-vim"
+  },
+  ["far.vim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/far.vim"
+  },
+  firenvim = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/firenvim"
   },
   ["formatter.nvim"] = {
     commands = { "Format" },
@@ -77,6 +95,12 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
   },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
   ["nvim-compe"] = {
     after = { "vim-vsnip", "vim-vsnip-integ" },
     loaded = false,
@@ -122,6 +146,12 @@ local plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
   },
+  ["octo.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/octo.nvim"
+  },
   ["packer.nvim"] = {
     loaded = false,
     only_sequence = false,
@@ -136,6 +166,84 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/playground"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  ["popup.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["splitjoin.vim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/splitjoin.vim"
+  },
+  ["sql.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/sql.nvim"
+  },
+  ["startuptime.vim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/startuptime.vim"
+  },
+  tcomment_vim = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/tcomment_vim"
+  },
+  ["telescope-frecency.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/telescope-frecency.nvim"
+  },
+  ["telescope-fzy-native.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
+  },
+  ["telescope-media-files.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+  },
+  ["vim-gruvbox8"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-gruvbox8"
+  },
+  ["vim-sandwich"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-sandwich"
   },
   ["vim-sayonara"] = {
     commands = { "Sayonara" },
@@ -173,12 +281,18 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-vsnip-integ"
+  },
+  ["vim-wakatime"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-wakatime"
   }
 }
 
 local function handle_bufread(names)
   for _, name in ipairs(names) do
-    local path = plugins[name].path
+    local path = packer_plugins[name].path
     for _, dir in ipairs({ 'ftdetect', 'ftplugin', 'after/ftdetect', 'after/ftplugin' }) do
       if #vim.fn.finddir(dir, path) > 0 then
         vim.cmd('doautocmd BufRead')
@@ -190,7 +304,7 @@ end
 
 local packer_load = nil
 local function handle_after(name, before)
-  local plugin = plugins[name]
+  local plugin = packer_plugins[name]
   plugin.load_after[before] = nil
   if next(plugin.load_after) == nil then
     packer_load({name}, {})
@@ -200,7 +314,7 @@ end
 packer_load = function(names, cause)
   local some_unloaded = false
   for _, name in ipairs(names) do
-    if not plugins[name].loaded then
+    if not packer_plugins[name].loaded then
       some_unloaded = true
       break
     end
@@ -212,14 +326,14 @@ packer_load = function(names, cause)
   local del_cmds = {}
   local del_maps = {}
   for _, name in ipairs(names) do
-    if plugins[name].commands then
-      for _, cmd in ipairs(plugins[name].commands) do
+    if packer_plugins[name].commands then
+      for _, cmd in ipairs(packer_plugins[name].commands) do
         del_cmds[cmd] = true
       end
     end
 
-    if plugins[name].keys then
-      for _, key in ipairs(plugins[name].keys) do
+    if packer_plugins[name].keys then
+      for _, key in ipairs(packer_plugins[name].keys) do
         del_maps[key] = true
       end
     end
@@ -234,22 +348,22 @@ packer_load = function(names, cause)
   end
 
   for _, name in ipairs(names) do
-    if not plugins[name].loaded then
+    if not packer_plugins[name].loaded then
       vim.cmd('packadd ' .. name)
-      if plugins[name].config then
-        for _i, config_line in ipairs(plugins[name].config) do
+      if packer_plugins[name].config then
+        for _i, config_line in ipairs(packer_plugins[name].config) do
           loadstring(config_line)()
         end
       end
 
-      if plugins[name].after then
-        for _, after_name in ipairs(plugins[name].after) do
+      if packer_plugins[name].after then
+        for _, after_name in ipairs(packer_plugins[name].after) do
           handle_after(after_name, name)
           vim.cmd('redraw')
         end
       end
 
-      plugins[name].loaded = true
+      packer_plugins[name].loaded = true
     end
   end
 
@@ -315,20 +429,20 @@ endfunction
 
 
 " Command lazy-loads
-command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
-  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
   au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
-  au FileType text ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "text" })
+  au FileType markdown ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "markdown" })
+  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
+  au FileType text ++once call s:load(['vim-table-mode', 'goyo.vim'], { "ft": "text" })
   " Event lazy-loads
   " Function lazy-loads
 augroup END

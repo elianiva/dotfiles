@@ -10,3 +10,13 @@ vim.g.git_messenger_no_default_mappings = true
 
 -- highlight yanked text for 250ms
 vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{ timeout = 250 }")
+
+-- highlight bg according to hex/rgb/rgba text
+require"colorizer".setup{
+  ["*"] = {
+    css = true,
+    css_fn = true,
+    mode = 'background',
+  }
+}
+
