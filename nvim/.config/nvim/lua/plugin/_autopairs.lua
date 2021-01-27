@@ -16,7 +16,7 @@ npairs.setup{
   html_break_line_filetype = {
     'html' , 'vue' , 'typescriptreact' , 'svelte' , 'javascriptreact'
   },
-  ignore_operator = true
+  ignored_next_char = "[%w%.%+%-%=%/%,]"
 }
 
 Util.insert_space = function()

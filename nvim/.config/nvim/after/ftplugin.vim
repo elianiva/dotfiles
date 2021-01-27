@@ -18,7 +18,7 @@ au FileType java setlocal sw=4 ts=4 sts=4
 au FileType php setlocal sw=4 ts=4
 
 " Enable emmet.vim on these filetypes
-au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
+" au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
 
 " Remove conceal in markdown
 au FileType markdown setlocal conceallevel=0

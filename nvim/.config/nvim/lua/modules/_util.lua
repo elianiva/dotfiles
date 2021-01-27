@@ -74,6 +74,7 @@ Util.get_word = function()
   return current_word
 end
 
+-- don't actually use this but I thought this might come in handy who knows ;)
 Util.get_lines = function()
   local first_line, last_line = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
   local lines = vim.fn.getline(first_line, last_line)
@@ -81,6 +82,7 @@ Util.get_lines = function()
   return lines
 end
 
+-- don't actually use this but I thought this might come in handy who knows ;)
 Util.get_visual = function()
   local first_line, last_line = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
   local first_col, last_col = vim.fn.getpos("'<")[3], vim.fn.getpos("'>")[3]
@@ -96,7 +98,7 @@ Util.get_visual = function()
   return lines
 end
 
--- TODO: convert this using extmarks
+-- TODO: convert this using extmarks API
 Util.convert_color = function(mode)
   local result
 
@@ -146,6 +148,7 @@ Util.is_cfg_present = function(cfg_name)
   return vim.fn.empty(vim.fn.glob(vim.loop.cwd()..cfg_name)) ~= 1
 end
 
+-- helper for defining highlight groups
 Util.set_hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
   local fg = options.fg == nil and '' or 'guifg=' .. options.fg

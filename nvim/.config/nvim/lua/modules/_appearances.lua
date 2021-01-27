@@ -30,6 +30,9 @@ ColorUtil.override_gruvbox = function()
     {'SignChange', { fg = '#D79921', bg = 'NONE' }},
     {'SignDelete', { fg = '#fb4934', bg = 'NONE' }},
 
+    -- lsp saga stuff
+    {'TargetWord', { fg = '#d79921', bg = 'NONE', gui = 'bold' }},
+
     -- octo.nvim stuff
     {'OctoNvimIssueOpen', { fg = '#b8bb26' }},
     {'OctoNvimIssueClosed', { fg = '#fb4934' }},
