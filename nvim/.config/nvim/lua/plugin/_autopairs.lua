@@ -15,7 +15,8 @@ npairs.setup{
   disable_filetype = { "TelescopePrompt" },
   html_break_line_filetype = {
     'html' , 'vue' , 'typescriptreact' , 'svelte' , 'javascriptreact'
-  }
+  },
+  ignore_operator = true
 }
 
 Util.insert_space = function()

@@ -15,7 +15,6 @@ if ok then
 
   local plugins = function()
     -- Packer can manage itself as an optional plugin
-    use {'tweekmonster/startuptime.vim', opt = false}
     use {'wbthomason/packer.nvim', opt = true}
 
     use {'lifepillar/vim-gruvbox8', opt = false} -- nice colorscheme

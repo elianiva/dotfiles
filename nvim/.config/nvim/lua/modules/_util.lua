@@ -112,7 +112,7 @@ end
 vim.api.nvim_exec([[
   command! -nargs=? -range=% ToRgb call v:lua.Util.convert_color('rgb')
   command! -nargs=? -range=% ToHex call v:lua.Util.convert_color('hex')
-]], true)
+]], false)
 
 -- translate selected word, useful for when I do jp assignments
 Util.translate = function(lang)
@@ -126,7 +126,15 @@ Util.translate = function(lang)
 
   if ok then
     vim.lsp.handlers["textDocument/hover"](nil, "textDocument/hover", {
-      contents = { result }
+      contents = {
+        {
+          language = "txt",
+          -- TODO(elianiva): support this for other language, though I don't
+          -- think I would use this outside of English and Japanese
+          value = lang == "en" and "Japanese ⟶  English" or "English ⟶  Japanese"
+        },
+        result
+      }
     })
   end
 end

@@ -184,4 +184,4 @@ vim.api.nvim_exec([[
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
   au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.explorer()
   augroup END
-]], true)
+]], false)

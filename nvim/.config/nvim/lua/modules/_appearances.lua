@@ -100,7 +100,7 @@ vim.api.nvim_exec([[
   au!
   au ColorScheme gruvbox8 call v:lua.ColorUtil.override_gruvbox()
   augroup END
-]], true)
+]], false)
 
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false
@@ -115,6 +115,6 @@ require'nvim-web-devicons'.setup {
       color = '#ebdbb2',
       name = 'Svg'
     }
-  };
+  },
   default = true
 }

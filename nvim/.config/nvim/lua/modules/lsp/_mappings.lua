@@ -28,13 +28,18 @@ snoremap{
 }
 
 M.lsp_mappings = function()
-  nnoremap{'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { silent = true }}
-  nnoremap{'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', { silent = true }}
-  nnoremap{'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { silent = true }}
-  inoremap{'<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { silent = true }}
-  nnoremap{'gD', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', { silent = true }}
-  nnoremap{'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', { silent = true }}
-  nnoremap{'gR', '<cmd>lua vim.lsp.buf.rename()<CR>', { silent = true }}
+  inoremap{'<C-s>', vim.lsp.buf.signature_help, { silent = true }}
+  nnoremap{'K', vim.lsp.buf.hover, { silent = true }}
+  nnoremap{'ga', vim.lsp.buf.code_action, { silent = true }}
+  nnoremap{'gd', vim.lsp.buf.definition, { silent = true }}
+  nnoremap{'gD', vim.lsp.diagnostic.show_line_diagnostics, { silent = true }}
+  nnoremap{'gr', require"telescope.builtin".lsp_references, { silent = true }}
+  nnoremap{'gR', vim.lsp.buf.rename, { silent = true }}
+
+  -- lspsaga stuff
+  -- nnoremap{'ga', require"lspsaga.codeaction".code_action, { silent = true }}
+  nnoremap{'<leader>gd', require"lspsaga.provider".preview_definition, { silent = true }}
+  nnoremap{'gh', require"lspsaga.provider".lsp_finder, { silent = true }}
 end
 
 return M

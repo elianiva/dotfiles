@@ -5,12 +5,12 @@ local nvim_lsp = require("lspconfig")
 local mappings = require("modules.lsp._mappings")
 local is_cfg_present = require("modules._util").is_cfg_present
 
-require("modules.lsp._custom_handlers") -- override hover callback
+-- require("modules.lsp._custom_handlers") -- override hover callback
 
--- require"lspsaga".init_lsp_saga({
---   max_hover_width = 80,
---   border_style = 1
--- }) -- initialise lspsaga UI
+require"lspsaga".init_lsp_saga({
+  max_hover_width = 80,
+  border_style = 1
+}) -- initialise lspsaga UI
 
 require("modules.lsp._diagnostic") -- diagnostic stuff
 
