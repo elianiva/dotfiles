@@ -27,17 +27,17 @@ local M = gears.table.join(
   {description = "mute the audio", group = "media"}),
 
   awful.key({}, "XF86AudioPlay", function()
-    awful.spawn.with_shell("playerctl --player=%any,chromium play-pause")
+    awful.spawn.with_shell("playerctl --player=%any,chrome,chromium play-pause")
   end,
   {description = "toggle the audio", group = "media"}),
 
   awful.key({}, "XF86AudioNext", function()
-    awful.spawn.with_shell("playerctl --player=%any,chromium next")
+    awful.spawn.with_shell("playerctl --player=%any,chrome,chromium next")
   end,
   {description = "toggle the audio", group = "media"}),
 
   awful.key({}, "XF86AudioPrev", function()
-    awful.spawn.with_shell("playerctl --player=%any,chromium previous")
+    awful.spawn.with_shell("playerctl --player=%any,chrome,chromium previous")
   end,
   {description = "toggle the audio", group = "media"}),
 
