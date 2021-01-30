@@ -15,13 +15,14 @@ au BufEnter github.com_*.txt set filetype=markdown
 au FileType go setlocal sw=4 ts=4 sts=4 noexpandtab
 au FileType lua setlocal sw=2 ts=2 sts=2
 au FileType java setlocal sw=4 ts=4 sts=4
+au FileType c,cpp setlocal sw=4 ts=4 sts=4
 au FileType php setlocal sw=4 ts=4
 
 " Enable emmet.vim on these filetypes
-" au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
+au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
 
 " Remove conceal in markdown
-au FileType markdown setlocal conceallevel=0
+au FileType markdown setlocal conceallevel=0 spell
 
 " Remove trailing whitespace on save
 au BufWritePre * %s/\s\+$//e

@@ -11,6 +11,7 @@ vim.cmd[[
 
 -- change cwd to current directory
 vim.cmd("cd %:p:h")
+require("plugins._packer")
 
 -- load modules
 require("modules._settings")
@@ -19,6 +20,17 @@ require("modules._util")
 require("modules._others")
 require("modules._mappings")
 require("modules._statusline")
+
+require("plugins._autopairs")
+require("plugins._bufferline")
+require("plugins._compe")
+require("plugins._emmet")
+require("plugins._firenvim")
+require("plugins._formatter")
+require("plugins._gitsigns")
+require("plugins._nvimtree")
+require("plugins._telescope")
+require("plugins._treesitter")
 
 -- lsp stuff
 require("modules.lsp")

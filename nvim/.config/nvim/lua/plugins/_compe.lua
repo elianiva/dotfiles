@@ -1,6 +1,4 @@
 vim.cmd[[packadd nvim-compe]]
-vim.cmd[[packadd vim-vsnip]]
-vim.cmd[[packadd vim-vsnip-integ]]
 
 local remap = vim.api.nvim_set_keymap
 
@@ -10,11 +8,13 @@ require'compe'.setup {
   enabled = true;
   debug = false;
   min_length = 2;
-  preselect = "disable";
+  -- preselect = "disable";
+  preselect = true;
   source_timeout = 200;
   incomplete_delay = 400;
   allow_prefix_unmatch = false;
   source = {
+    spell = true;
     path = true;
     buffer = true;
     vsnip = true;
@@ -28,14 +28,14 @@ Util.trigger_completion = function()
   if vim.fn.pumvisible() ~= 0  then
 
     if vim.fn.complete_info()["selected"] ~= -1 then
-      vim.fn["compe#confirm"]()
-      return npairs.esc("<c-y>")
+      return vim.fn["compe#confirm"]()
+      -- return npairs.esc("<c-y>")
     end
 
     vim.fn.nvim_select_popupmenu_item(0 , false , false ,{})
-    vim.fn["compe#confirm"]()
+    return vim.fn["compe#confirm"]()
 
-    return npairs.esc("<c-n><c-y>")
+    -- return npairs.esc("<c-n><c-y>")
   end
 
   return npairs.check_break_line_char()

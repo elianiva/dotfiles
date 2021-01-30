@@ -16,8 +16,8 @@ inoremap{"JJ", "<Esc><Esc>"}
 nnoremap{"<C-n>", "<CMD>NvimTreeToggle<CR>"}
 
 -- toggle telescope.nvim
-nnoremap{"<C-p>", require"plugin._telescope".files, { silent = true }}
-nnoremap{"<C-f>", require"plugin._telescope".grep_prompt, { silent = true }}
+nnoremap{"<C-p>", require"plugins._telescope".files, { silent = true }}
+nnoremap{"<C-f>", require"plugins._telescope".grep_prompt, { silent = true }}
 
 -- better movement between windows
 nnoremap{"<C-h>", "<C-w><C-h>"}
@@ -69,7 +69,10 @@ nnoremap{"<Leader>tn", "<CMD>!NO_COLOR=true deno run %<CR>"}
 nnoremap{"<Leader>c", "<CMD>ColorizerToggle<CR>"}
 
 -- open vertical scratch buffer
-nnoremap{"<Leader>v", "<CMD>vnew { setlocal buftype=nofile { setlocal bufhidden=hide<CR>"}
+nnoremap{"<Leader>v", "<CMD>vnew | setlocal buftype=nofile | setlocal bufhidden=hide<CR>"}
+
+-- cd to currently opened file
+nnoremap{"<Leader>cd", "<CMD>cd %:p:h<CR>"}
 
 -- better indenting experience
 vnoremap{"<", "<gv"}

@@ -48,13 +48,17 @@ if ok then
       opt = true
     } -- mostly for better syntax highlighting, but it has more stuff
     use {
-      'hrsh7th/nvim-compe',
+      '~/repos/nvim-compe',
       opt = true,
       requires = {
         {'hrsh7th/vim-vsnip'}, -- integration with vim-vsnip
-        {'hrsh7th/vim-vsnip-integ'} -- integration with vim-vsnip
+        -- {'hrsh7th/vim-vsnip-integ'} -- integration with vim-vsnip
       },
     } -- completion framework
+    use {
+      'norcalli/snippets.nvim',
+      opt = true,
+    } -- snippets
     use {
       'junegunn/goyo.vim',
       ft = {'text', 'markdown'},

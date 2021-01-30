@@ -47,6 +47,7 @@ ColorUtil.override_gruvbox = function()
     {'jsonMissingCommaError', { fg = '#fb4934' }},
     {'IncSearch', { bg='#282828', fg='#928374' }},
     {'mkdLineBreak', { bg='NONE' }},
+    {'StrikeThrough', { gui='strikethrough' }},
 
     -- statusline colours
     {'StatusLine', { fg = '#3C3836', bg = '#EBDBB2' }},

@@ -98,6 +98,17 @@ Util.get_visual = function()
   return lines
 end
 
+Util.strike_through = function()
+  local first_line, _ = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
+  local first_col, last_col = vim.fn.getpos("'<")[3], vim.fn.getpos("'>")[3]
+
+  local strike_ns = vim.api.nvim_create_namespace("striked_text")
+
+  vim.api.nvim_buf_add_highlight(
+    0, strike_ns, "StrikeThrough", first_line - 1, first_col - 1, last_col
+  )
+end
+
 -- TODO: convert this using extmarks API
 Util.convert_color = function(mode)
   local result
@@ -118,7 +129,7 @@ vim.api.nvim_exec([[
 
 -- translate selected word, useful for when I do jp assignments
 Util.translate = function(lang)
-  local word = Util.get_word()
+  local word = Util.get_visual()
   local job = Job:new({
     command = "trans",
     args = {"-b", ":" .. (lang or "en"), word}

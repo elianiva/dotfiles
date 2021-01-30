@@ -63,6 +63,17 @@ require'telescope'.setup{
     media_files = {
       filetypes = {"png", "webp", "jpg", "jpeg", "pdf", "mkv"},
       find_cmd = "rg"
+    },
+    frecency = {
+      show_scores = false,
+      show_unindexed = true,
+      ignore_patterns = {"*.git/*", "*/tmp/*"},
+       workspaces = {
+        ["nvim"] = "/home/elianiva/.config/nvim",
+        ["awesome"] = "/home/elianiva/.config/awesome",
+        ["alacritty"] = "/home/elianiva/.config/alacritty",
+        ["scratch"] = "/home/elianiva/codes/scratch",
+      }
     }
   },
 }

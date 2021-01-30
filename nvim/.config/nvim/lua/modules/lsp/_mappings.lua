@@ -1,31 +1,8 @@
 local k = require"astronauta.keymap"
 local nnoremap = k.nnoremap
 local inoremap = k.inoremap
-local snoremap = k.inoremap
 
 local M = {}
-
--- vim-vsnip stuff
-inoremap{
-  '<C-j>',
-  'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<C-j>"',
-  { silent = true, expr = true },
-}
-snoremap{
-  '<C-j>',
-  'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<C-j>"',
-  { silent = true, expr = true },
-}
-inoremap{
-  '<C-k>',
-  'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<C-k>"',
-  { silent = true, expr = true },
-}
-snoremap{
-  '<C-k>',
-  'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<C-k>"',
-  { silent = true, expr = true },
-}
 
 M.lsp_mappings = function()
   inoremap{'<C-s>', vim.lsp.buf.signature_help, { silent = true }}
