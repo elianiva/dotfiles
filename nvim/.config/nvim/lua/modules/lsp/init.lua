@@ -7,12 +7,11 @@ local is_cfg_present = require("modules._util").is_cfg_present
 
 -- require("modules.lsp._custom_handlers") -- override hover callback
 
-require"lspsaga".init_lsp_saga({
-  max_hover_width = 80,
-  border_style = 1
-}) -- initialise lspsaga UI
-
 require("modules.lsp._diagnostic") -- diagnostic stuff
+
+require"lspsaga".init_lsp_saga({
+  border_style = 1,
+}) -- initialise lspsaga UI
 
 local custom_on_attach = function(client)
   mappings.lsp_mappings()
@@ -20,10 +19,18 @@ local custom_on_attach = function(client)
   if client.config.flags then
     client.config.flags.allow_incremental_sync = true
   end
+
 end
 
 local custom_on_init = function()
   print("Language Server Protocol started!")
+end
+
+local custom_capabilities = function()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true;
+
+  return capabilities
 end
 
 -- use eslint if the eslint config file present
@@ -79,17 +86,20 @@ nvim_lsp.jdtls.setup{
 
 nvim_lsp.html.setup{
   on_attach = custom_on_attach,
-  on_init = custom_on_init
+  on_init = custom_on_init,
+  capabilities = custom_capabilities()
 }
 
 nvim_lsp.cssls.setup{
   on_attach = custom_on_attach,
-  on_init = custom_on_init
+  on_init = custom_on_init,
+  capabilities = custom_capabilities()
 }
 
 nvim_lsp.rust_analyzer.setup{
   on_attach = custom_on_attach,
   on_init = custom_on_init,
+  capabilities = custom_capabilities()
 }
 
 nvim_lsp.clangd.setup{
@@ -155,6 +165,7 @@ nvim_lsp.svelte.setup{
     ["textDocument/publishDiagnostics"] = is_using_eslint
   },
   on_init = custom_on_init,
+  capabilities = custom_capabilities(),
   filetypes = { "svelte" },
   settings = {
     svelte =  {

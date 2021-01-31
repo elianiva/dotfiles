@@ -4,18 +4,22 @@ local inoremap = k.inoremap
 
 local M = {}
 
-M.lsp_mappings = function()
-  inoremap{'<C-s>', vim.lsp.buf.signature_help, { silent = true }}
-  nnoremap{'K', vim.lsp.buf.hover, { silent = true }}
-  nnoremap{'ga', vim.lsp.buf.code_action, { silent = true }}
-  nnoremap{'gd', vim.lsp.buf.definition, { silent = true }}
-  nnoremap{'gD', vim.lsp.diagnostic.show_line_diagnostics, { silent = true }}
-  nnoremap{'gr', require"telescope.builtin".lsp_references, { silent = true }}
-  nnoremap{'gR', vim.lsp.buf.rename, { silent = true }}
+-- local provider = require"lspsaga.provider"
+local hover = require"lspsaga.hover"
+local codeaction = require"lspsaga.codeaction"
+local sig_help = require"lspsaga.signaturehelp"
+local rename = require"lspsaga.rename"
+local dianostic = require"lspsaga.diagnostic"
 
-  -- lspsaga stuff
-  -- nnoremap{'ga', require"lspsaga.codeaction".code_action, { silent = true }}
-  nnoremap{'<leader>gd', require"lspsaga.provider".preview_definition, { silent = true }}
+M.lsp_mappings = function()
+  inoremap{'<C-s>', sig_help.signature_help, { silent = true }}
+  nnoremap{'K', hover.render_hover_doc, { silent = true }}
+  nnoremap{'ga', codeaction.code_action, { silent = true }}
+  nnoremap{'gd', require"lspsaga.provider".preview_definition, { silent = true }}
+  nnoremap{'<leader>gd', vim.lsp.buf.definition, { silent = true }}
+  nnoremap{'gD', dianostic.show_line_diagnostics, { silent = true }}
+  nnoremap{'gr', require"telescope.builtin".lsp_references, { silent = true }}
+  nnoremap{'gR', rename.rename, { silent = true }}
   nnoremap{'gh', require"lspsaga.provider".lsp_finder, { silent = true }}
 end
 

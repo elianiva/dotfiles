@@ -1,6 +1,6 @@
 {
   "error check": {
-    "prefix": ["errc"],
+    "prefix": ["iferr"],
     "body": [
       "if err != nil {",
       "\tlog.Fatal(err)",

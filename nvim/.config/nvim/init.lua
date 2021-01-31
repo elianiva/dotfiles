@@ -29,6 +29,7 @@ require("plugins._firenvim")
 require("plugins._formatter")
 require("plugins._gitsigns")
 require("plugins._nvimtree")
+require("plugins._snippets")
 require("plugins._telescope")
 require("plugins._treesitter")
 

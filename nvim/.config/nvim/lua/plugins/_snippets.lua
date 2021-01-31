@@ -1,5 +1,4 @@
 vim.cmd[[packadd vim-vsnip]]
-vim.cmd[[packadd snippets.nvim]]
 
 local remap = vim.api.nvim_set_keymap
 

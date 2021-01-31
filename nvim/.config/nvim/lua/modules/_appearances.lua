@@ -45,8 +45,9 @@ ColorUtil.override_gruvbox = function()
     {'htmlLink', { gui = 'NONE', fg = '#ebdbb2' }},
     {'jsonNoQuotesError', { fg = '#fb4934' }},
     {'jsonMissingCommaError', { fg = '#fb4934' }},
-    {'IncSearch', { bg='#282828', fg='#928374' }},
-    {'mkdLineBreak', { bg='NONE' }},
+    {'IncSearch', { bg ='#282828', fg = '#928374' }},
+    {'mkdLineBreak', { bg = 'NONE' }},
+    {'mkdLink', { fg = '#458588', gui = 'underline' }},
     {'StrikeThrough', { gui='strikethrough' }},
 
     -- statusline colours

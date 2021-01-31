@@ -5,22 +5,23 @@ local remap = vim.api.nvim_set_keymap
 vim.g.vsnip_snippet_dir = vim.fn.stdpath("config").."/snippets"
 
 require'compe'.setup {
-  enabled = true;
-  debug = false;
-  min_length = 2;
+  enabled = true,
+  debug = false,
+  min_length = 2,
   -- preselect = "disable";
-  preselect = true;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  allow_prefix_unmatch = false;
+  preselect = true,
+  source_timeout = 200,
+  incomplete_delay = 400,
+  allow_prefix_unmatch = false,
   source = {
-    spell = true;
-    path = true;
-    buffer = true;
-    vsnip = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-  };
+    spell = true,
+    path = true,
+    buffer = true,
+    vsnip = true,
+    tags = true,
+    nvim_lsp = true,
+    nvim_lua = true,
+  },
 }
 
 local npairs = require('nvim-autopairs')
@@ -29,13 +30,10 @@ Util.trigger_completion = function()
 
     if vim.fn.complete_info()["selected"] ~= -1 then
       return vim.fn["compe#confirm"]()
-      -- return npairs.esc("<c-y>")
     end
 
     vim.fn.nvim_select_popupmenu_item(0 , false , false ,{})
     return vim.fn["compe#confirm"]()
-
-    -- return npairs.esc("<c-n><c-y>")
   end
 
   return npairs.check_break_line_char()

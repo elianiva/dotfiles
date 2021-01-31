@@ -56,14 +56,15 @@ if ok then
       },
     } -- completion framework
     use {
-      'norcalli/snippets.nvim',
-      opt = true,
-    } -- snippets
-    use {
       'junegunn/goyo.vim',
       ft = {'text', 'markdown'},
       opt = true
     } -- no distraction mode a.k.a zen mode
+    use {
+      'plasticboy/vim-markdown',
+      ft = {'markdown'},
+      opt = true,
+    }
     use {
       'dhruvasagar/vim-table-mode',
       ft = {'text', 'markdown'},
@@ -95,7 +96,7 @@ if ok then
       '~/repos/telescope.nvim',
       requires = {
         {'nvim-lua/popup.nvim'},
-        {'nvim-lua/plenary.nvim'},
+        {'~/repos/plenary.nvim'},
         {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast finder
         {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
         {'nvim-telescope/telescope-frecency.nvim'}, -- media preview

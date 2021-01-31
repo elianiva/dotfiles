@@ -21,8 +21,8 @@ au FileType php setlocal sw=4 ts=4
 " Enable emmet.vim on these filetypes
 au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
 
-" Remove conceal in markdown
-au FileType markdown setlocal conceallevel=0 spell
+" enable spelling in markdown
+au FileType markdown setlocal conceallevel=3 concealcursor=nc spell
 
 " Remove trailing whitespace on save
 au BufWritePre * %s/\s\+$//e

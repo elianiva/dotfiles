@@ -109,7 +109,6 @@ Util.strike_through = function()
   )
 end
 
--- TODO: convert this using extmarks API
 Util.convert_color = function(mode)
   local result
 
