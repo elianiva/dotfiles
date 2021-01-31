@@ -17,6 +17,8 @@ else
 	archive="$(readlink -f "$(echo "$*" | cut -d' ' -f2)")"
 fi
 
+case
+
 [ "$archive" = "" ] && printf "Give archive to extract as argument.\\n" && exit
 
 if [ -f "$archive" ] ; then

@@ -72,7 +72,7 @@ nnoremap{"<Leader>c", "<CMD>ColorizerToggle<CR>"}
 nnoremap{"<Leader>v", "<CMD>vnew | setlocal buftype=nofile | setlocal bufhidden=hide<CR>"}
 
 -- cd to currently opened file
-nnoremap{"<Leader>cd", "<CMD>cd %:p:h<CR>"}
+nnoremap{"<Leader>d", "<CMD>cd %:p:h<CR>"}
 
 -- better indenting experience
 vnoremap{"<", "<gv"}

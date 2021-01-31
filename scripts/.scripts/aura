@@ -1,0 +1,316 @@
+#!/usr/bin/env bash
+
+####################################################
+#                          #
+#             Aura Fetch v0.4.1              #
+#                          #
+#  An easily editable, super minimal info script   #
+#  https://gitlab.com/LionessAlana/aurafetch       #
+#                          #
+####################################################
+
+# Get terminal colors
+  c="\e[0m"
+  for (( i=0; i<=7; i++ )); do
+    printf -v "c$[i]" "%b" "\e[3${i}m"
+  done
+
+usage() {
+  echo
+  echo "Configuring Aura at Runtime"
+  echo
+  echo "Output: aura -n '<module> <module>...'"
+  echo "Modules:  user, os, kernel, wm, shell, packages, colors"
+  echo
+  echo "Example:  aura -n 'user shell colors'"
+  echo "This will exclude the user, shell and colors modules from the output."
+  echo
+  echo "Colors: aura -c '<title_color> <info_color>'"
+  echo "Codes:  c0, c1, c2, c3, c4, c5, c6, c7"
+  echo
+  echo "Example:  aura -c 'c3 c1'"
+  echo "This will display the title in color3 and the info in color1."
+  echo
+  exit
+}
+
+# Get command line args
+nargs=''
+while getopts ":n:c:h" opts; do
+  case "${opts}" in
+    n)
+      nargs=${OPTARG}
+      ;;
+    c)
+      cargs=${OPTARG}
+      ;;
+    h)
+      usage
+  esac
+done
+
+# Main function
+# Determines the order of the info printed
+get_info() {
+  printf "\n"
+
+  modules="user os kernel wm shell package term colors"
+
+  for mod in ${modules}; do
+    if [[ ! $nargs =~ ${mod} ]]; then
+      [[ $mod =~ "colors" ]] && printf "\n"
+      eval "get_$mod"
+    fi
+  done
+
+  printf "\n"
+}
+
+# Output
+# Subsequent functions call this to format and output info
+# Expects two args (e.g. output $title $os)
+output() {
+  if [[ ! $cargs ]]; then
+    co="\e[0m"
+    ct="\e[32;1m"
+  else
+    co="\e[0m"
+    ct="\e[32;1m"
+
+    # Match and split out the args, then assign colors
+    patt="(c[0-7]) (c[0-7])"
+    if [[ $cargs =~ $patt ]]; then
+      ct=${BASH_REMATCH[1]}
+      co=${BASH_REMATCH[2]}
+
+      case $ct in
+        c0)
+          ct=$c0
+          ;;
+        c1)
+          ct=$c1
+          ;;
+        c2)
+          ct=$c2
+          ;;
+        c3)
+          ct=$c3
+          ;;
+        c4)
+          ct=$c4
+          ;;
+        c5)
+          ct=$c5
+          ;;
+        c6)
+          ct=$c6
+          ;;
+        c7)
+          ct=$c7
+          ;;
+      esac
+
+      case $co in
+        c0)
+          co=$c0
+          ;;
+        c1)
+          co=$c1
+          ;;
+        c2)
+          co=$c2
+          ;;
+        c3)
+          co=$c3
+          ;;
+        c4)
+          co=$c4
+          ;;
+        c5)
+          co=$c5
+          ;;
+        c6)
+          co=$c6
+          ;;
+        c7)
+          co=$c7
+          ;;
+      esac
+
+    else
+      usage
+    fi
+  fi
+
+  title=$1
+  info=$2
+
+  printf "${ct}%-8.8s${co}" "${title}:"
+    printf "%12.30s"         "${info,,}"
+    printf "${c}\n"
+}
+
+# USER
+get_user() {
+  title="user"
+
+  output $title $USER
+}
+
+# OS
+get_os() {
+  title="os"
+  os=$(uname -o)
+  host=$(uname -n)
+
+  # Change the "os" declaration above if needed
+  case $os in
+    "GNU/Linux") # check for generic pitfall
+      if [ -f '/etc/lsb-release' ]; then
+        os=$(grep 'DISTRIB_ID=\(\w\+\)' /etc/lsb-release)
+        os=${os/*=}
+      else
+        os=$(grep '^NAME=\"\(\w\+\)\"' /etc/os-release)
+        os=$(echo $os | cut -f 2 -d "\"")
+      fi
+      os=${os,,}
+    ;;
+
+    *) # catch others
+    ;;
+  esac
+
+  output $title $os
+}
+
+# KERNEL
+# Super simple - fetch kernel info, split after dash
+get_kernel() {
+  title="kern"
+  kernel=$(uname -r)
+  kernel=${kernel/\-*}
+
+  output $title $kernel
+}
+
+# WM
+# Adapted from neofetch wm function.
+get_wm() {
+  title="wm"
+
+  id=$(xprop -root -notype _NET_SUPPORTING_WM_CHECK 2>/dev/null)
+  id=${id##* }
+  wm="$(xprop -id "$id" -notype -len 100 -f _NET_WM_NAME 8t 2>/dev/null)"
+
+  # Split name from inside double quotes
+  wm="${wm/*\ \"}"
+  wm="${wm/\"*}"
+
+  # Check for i3-gaps
+  if [[ $wm == "i3" ]]; then
+    if [[ $(which pacman 2> /dev/null ) ]]; then
+      if [[ $(pacman -Qs i3-gaps) ]]; then
+        wm="i3-gaps"
+      fi
+    elif [[ -a /etc/debian_version ]]; then
+      if [[ $(dpkg -l i3-gaps &>/dev/null) ]]; then
+        wm="i3-gaps"
+      fi
+    elif [[ $(which xbps-query 2> /dev/null ) ]]; then
+      if [[ $( xbps-query -l | grep i3-gaps) ]]; then
+        wm="i3-gaps"
+      fi
+    fi
+  fi
+
+  # Sourced from Neofetch
+  # Window Maker does not set _NET_WM_NAME
+   [[ "$wm" =~ "WINDOWMAKER" ]] && wm="wmaker"
+    # Fallback for non-EWMH window managers
+   [[ -z "$wm" ]] && \
+      wm="$(ps -e | grep -m 1 -o -F \
+                         -e "catwm" \
+                         -e "dwm" \
+                         -e "2bwm" \
+                         -e "monsterwm" \
+                         -e "tinywm")"
+
+
+  output $title $wm
+}
+
+# SHELL
+get_shell() {
+  title="sh"
+
+  shell=$(ps -p $PPID | awk 'NR == 2{ print $NF }' )
+
+  output $title $shell
+
+}
+
+# PACKAGES
+# Get the number of packages from package manager
+# Edit this if you use a different package manager
+# "wc -l" counts the number of lines
+# Note: it is theoretically possible to have
+#       multiple pacakge managers
+get_package() {
+  title="pkgs"
+  pkgs=0
+  [[ -x "$(command -v pacman)" ]] && pkgs=$(($pkgs+$(pacman -Qq | wc -l)))
+  [[ -x "$(command -v dpkg)" ]]   && pkgs=$(($pkgs+$(dpkg -l | grep -c ^i)))
+  [[ -x "$(command -v rpm)" ]]    && pkgs=$(($pkgs+$(rpm -qa | wc -l)))
+  [[ -x "$(command -v xbps-query)" ]]  && pkgs=$(($pkgs+$(xbps-query -l | wc -l)))
+
+  output $title $pkgs
+}
+
+# TERMINAL
+# Get the name of the process that is the parent of the session leader
+get_term() {
+  title="term"
+
+  # Backup
+  term=$TERM
+
+  # Fetch terminal name
+  # term=$(ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))")
+  term=$(xprop -id $WINDOWID WM_CLASS | cut -d" " -f 4 | cut -d "\"" -f 2)
+  # Format the output
+  if [[ $term == "x-terminal-emulator" ]]; then
+    term="xterm"
+  fi
+
+  pattern="([a-z]+-[a-z]+)-.+"
+  if [[ $term =~ $pattern ]]; then
+    term=${BASH_REMATCH[1]}
+  else
+    term=${term/-*}
+  fi
+
+
+  output $title $term
+}
+
+# COLORS
+# Prints the terminal colors
+get_colors() {
+
+  # Resets foreground
+  fg=$'\e[0m'
+
+  printf "   "
+  # Iterate over the terminal colors
+  for ((i=1; i<=7; i++)); do
+    if (( i % 2 == 1 )); then
+      printf "%b%s%b" "\e[3${i}m" "▲ " "$fg"
+    else
+      printf "%b%s%b" "\e[3${i}m" "▼ " "$fg"
+    fi
+  done
+  printf "\n"
+}
+
+# Main function call
+get_info

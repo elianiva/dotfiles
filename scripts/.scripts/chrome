@@ -1,3 +1,4 @@
 #!/bin/dash
 
-chromium %U --force-dark-mode
+# chromium %U --force-dark-mode
+google-chrome-unstable %U --force-dark-mode
