@@ -35,11 +35,6 @@ if ok then
     use {'wakatime/vim-wakatime', opt = false} -- track usage time using wakatime
     use {'norcalli/nvim-colorizer.lua', opt = false} -- colorize hex/rgb/hsl value
     use {
-      'leafOfTree/vim-svelte-plugin',
-      ft = { 'svelte' },
-      opt = true,
-    } -- svelte language support
-    use {
       '~/repos/nvim-treesitter',
       requires = {
         {'nvim-treesitter/playground'}, -- playground for treesitter
@@ -52,7 +47,6 @@ if ok then
       opt = true,
       requires = {
         {'hrsh7th/vim-vsnip'}, -- integration with vim-vsnip
-        -- {'hrsh7th/vim-vsnip-integ'} -- integration with vim-vsnip
       },
     } -- completion framework
     use {
@@ -60,11 +54,6 @@ if ok then
       ft = {'text', 'markdown'},
       opt = true
     } -- no distraction mode a.k.a zen mode
-    use {
-      'plasticboy/vim-markdown',
-      ft = {'markdown'},
-      opt = true,
-    }
     use {
       'dhruvasagar/vim-table-mode',
       ft = {'text', 'markdown'},

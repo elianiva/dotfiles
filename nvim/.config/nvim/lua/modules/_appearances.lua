@@ -50,6 +50,7 @@ ColorUtil.override_gruvbox = function()
     {'mkdLineBreak', { bg = 'NONE' }},
     {'mkdLink', { fg = '#458588', gui = 'underline' }},
     {'StrikeThrough', { gui='strikethrough' }},
+    {'markdownCode', { bg='NONE', fg='#fe8019' }},
 
     -- statusline colours
     {'StatusLine', { fg = '#3C3836', bg = '#EBDBB2' }},
@@ -87,9 +88,6 @@ ColorUtil.override_gruvbox = function()
     -- ts override
     {'TSKeywordOperator', { bg='NONE', fg='#fb4934' }},
     {'TSOperator', { bg='NONE', fg='#fe8019' }},
-
-    -- lang override
-    {'markdownCode', { bg='NONE', fg='#fe8019' }},
   }
 
   for _, highlight in pairs(highlights) do

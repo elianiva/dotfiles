@@ -41,7 +41,7 @@ local options = {
 
   -- String value
   backupcopy = "yes", -- fix weirdness for postcss
-  completeopt = 'menu,menuone,noinsert,noselect', -- better completion
+  completeopt = 'menu,menuone,noselect', -- better completion
   encoding = "UTF-8", -- set encoding
   fillchars = "vert:│,eob:\\ ", -- make vertical split sign better
   foldmethod = "marker", -- foldmethod using marker

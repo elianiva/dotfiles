@@ -2,7 +2,7 @@ local Job = require("plenary.job")
 
 Util = {}
 
-P = function(...) return print(vim.inspect({...})) end
+P = function(stuff) return print(vim.inspect(stuff)) end
 
 Util.check_backspace = function()
   local curr_col = vim.fn.col('.')

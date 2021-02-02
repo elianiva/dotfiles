@@ -7,7 +7,7 @@ local parser_config = require"nvim-treesitter.parsers".get_parser_configs()
 
 parser_config.svelte = {
   install_info = {
-    url = "~/repos/tree-sitter-html", -- local path or git repo
+    url = "~/repos/tree-sitter-svelte", -- local path or git repo
     files = {"src/parser.c", "src/scanner.cc"}
   },
   filetype = "svelte",

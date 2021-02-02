@@ -56,7 +56,7 @@ nnoremap{"q:", "<Nop>"}
 vnoremap{"<A-y>", '"+y'}
 
 -- no distraction mode for writing
-nnoremap{"<Leader>gy", "<CMD>Goyo<CR>"}
+nnoremap{"<Leader>gg", "<CMD>Goyo<CR>"}
 
 -- run luafile on current file
 nnoremap{"<Leader>r", "<CMD>luafile %<CR>"}

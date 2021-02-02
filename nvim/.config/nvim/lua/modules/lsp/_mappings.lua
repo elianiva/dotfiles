@@ -21,6 +21,21 @@ M.lsp_mappings = function()
   nnoremap{'gr', require"telescope.builtin".lsp_references, { silent = true }}
   nnoremap{'gR', rename.rename, { silent = true }}
   nnoremap{'gh', require"lspsaga.provider".lsp_finder, { silent = true }}
+
+  nnoremap{
+    '<C-y>',
+    function()
+      return hover.has_saga_hover() and hover.scroll_in_hover(-1)
+    end,
+    { silent = true },
+  }
+  nnoremap{
+    '<C-e>',
+    function()
+      return hover.has_saga_hover() and hover.scroll_in_hover(1)
+    end,
+    { silent = true },
+  }
 end
 
 return M

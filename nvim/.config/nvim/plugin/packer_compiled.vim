@@ -233,12 +233,6 @@ _G.packer_plugins = {
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-gruvbox8"
   },
-  ["vim-markdown"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-markdown"
-  },
   ["vim-sandwich"] = {
     loaded = true,
     only_sequence = true,
@@ -251,12 +245,6 @@ _G.packer_plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
-  },
-  ["vim-svelte-plugin"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-svelte-plugin"
   },
   ["vim-table-mode"] = {
     loaded = false,
@@ -420,20 +408,19 @@ endfunction
 
 
 " Command lazy-loads
-command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file GitMessenger call s:load(['git-messenger.vim'], { "cmd": "GitMessenger", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file EmmetInstall call s:load(['emmet-vim'], { "cmd": "EmmetInstall", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Format call s:load(['formatter.nvim'], { "cmd": "Format", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
-  au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode', 'vim-markdown'], { "ft": "markdown" })
   au FileType text ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "text" })
-  au FileType svelte ++once call s:load(['vim-svelte-plugin'], { "ft": "svelte" })
+  au FileType markdown ++once call s:load(['goyo.vim', 'vim-table-mode'], { "ft": "markdown" })
+  au FileType jsonc ++once call s:load(['jsonc.vim'], { "ft": "jsonc" })
   " Event lazy-loads
   " Function lazy-loads
 augroup END

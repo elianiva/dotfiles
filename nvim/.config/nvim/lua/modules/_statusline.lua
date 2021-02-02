@@ -29,6 +29,7 @@ Statusline.colors = {
 Statusline.is_truncated = function(_, width)
   local current_window = fn.winnr()
   local current_width = fn.winwidth(current_window)
+
   return current_width < width
 end
 

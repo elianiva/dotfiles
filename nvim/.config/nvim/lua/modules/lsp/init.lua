@@ -5,8 +5,6 @@ local nvim_lsp = require("lspconfig")
 local mappings = require("modules.lsp._mappings")
 local is_cfg_present = require("modules._util").is_cfg_present
 
--- require("modules.lsp._custom_handlers") -- override hover callback
-
 require("modules.lsp._diagnostic") -- diagnostic stuff
 
 require"lspsaga".init_lsp_saga({
@@ -58,7 +56,7 @@ nvim_lsp.tsserver.setup{
     ["textDocument/publishDiagnostics"] = is_using_eslint
   },
   on_init = custom_on_init,
-  root_dir = function() return vim.loop.cwd() end,
+  root_dir = vim.loop.cwd,
 }
 
 -- -- testing this
@@ -74,14 +72,14 @@ nvim_lsp.tsserver.setup{
 --     ["textDocument/publishDiagnostics"] = is_using_eslint
 --   },
 --   on_init = custom_on_init,
---   root_dir = function() return vim.loop.cwd() end,
+--   root_dir = vim.loop.cwd,
 -- }
 
 nvim_lsp.jdtls.setup{
   cmd = {"jdtls"},
   on_attach = custom_on_attach,
   on_init = custom_on_init,
-  root_dir = function() return vim.loop.cwd() end,
+  root_dir = vim.loop.cwd,
 }
 
 nvim_lsp.html.setup{
@@ -110,7 +108,7 @@ nvim_lsp.clangd.setup{
 nvim_lsp.gopls.setup{
   on_attach = custom_on_attach,
   on_init = custom_on_init,
-  root_dir = function() return vim.loop.cwd() end,
+  root_dir = vim.loop.cwd,
 }
 
 local eslint = {
@@ -193,12 +191,11 @@ nvim_lsp.sumneko_lua.setup{
   settings = {
     Lua = {
       runtime = { version = "LuaJIT", path = vim.split(package.path, ";"), },
-      completion = { keywordSnippet = "Disable" },
       diagnostics = {
         enable = true,
         globals = {
           "vim", "describe", "it", "before_each", "after_each",
-          "awesome", "theme", "client"
+          "awesome", "theme", "client", "P"
         },
       },
     }
