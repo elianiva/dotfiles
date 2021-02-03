@@ -47,6 +47,7 @@ if ok then
       opt = true,
       requires = {
         {'hrsh7th/vim-vsnip'}, -- integration with vim-vsnip
+        {'norcalli/snippets.nvim'}, -- snippets
       },
     } -- completion framework
     use {

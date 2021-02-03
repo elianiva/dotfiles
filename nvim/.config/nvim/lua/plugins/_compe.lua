@@ -1,8 +1,5 @@
 vim.cmd[[packadd nvim-compe]]
 
-local k = require"astronauta.keymap"
-local inoremap = k.inoremap
-
 local remap = vim.api.nvim_set_keymap
 
 vim.g.vsnip_snippet_dir = vim.fn.stdpath("config").."/snippets"
@@ -15,6 +12,7 @@ require'compe'.setup {
   source_timeout = 200,
   incomplete_delay = 400,
   allow_prefix_unmatch = false,
+
   source = {
     spell = true,
     path = true,
@@ -75,4 +73,4 @@ remap('i', '<C-Space>', 'compe#complete()', { noremap = true, expr = true, silen
 --   return f('<S-Tab>')
 -- end, { silent = true }}
 --
--- inoremap{'<C-Space>', function() return f(vim.fn["compe#complete"]()) end, { silent = true }}
+-- inoremap{'<C-Space>', require"compe"._complete, { silent = true }}

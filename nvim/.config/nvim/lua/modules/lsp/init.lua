@@ -79,7 +79,15 @@ nvim_lsp.jdtls.setup{
   cmd = {"jdtls"},
   on_attach = custom_on_attach,
   on_init = custom_on_init,
-  root_dir = vim.loop.cwd,
+  settings = {
+    java = {
+      errors = {
+        incompleteClasspath = {
+          severity = "ignore"
+        }
+      }
+    }
+  }
 }
 
 nvim_lsp.html.setup{

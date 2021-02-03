@@ -17,7 +17,7 @@ npairs.setup{
     'html' , 'vue' , 'typescriptreact' , 'svelte' , 'javascriptreact'
   },
   -- ignore alphanumeric, operators, quote, curly brace, and square bracket
-  ignored_next_char = "[%w%.%+%-%=%/%,\"'{}%[%]]"
+  ignored_next_char = "[%w%.%+%-%=%/%,\"'{%[]"
 }
 
 Util.insert_space = function()
