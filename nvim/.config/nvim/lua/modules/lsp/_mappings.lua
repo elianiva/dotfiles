@@ -25,14 +25,14 @@ M.lsp_mappings = function()
   nnoremap{
     '<C-y>',
     function()
-      return hover.has_saga_hover() and hover.scroll_in_hover(-1)
+      return hover.smart_scroll_hover(1)
     end,
     { silent = true },
   }
   nnoremap{
     '<C-e>',
     function()
-      return hover.has_saga_hover() and hover.scroll_in_hover(1)
+      return hover.smart_scroll_hover(-1)
     end,
     { silent = true },
   }

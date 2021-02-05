@@ -14,19 +14,10 @@ parser_config.svelte = {
   used_by = {"svelte"}
 }
 
-parser_config.javascript = {
-  install_info = {
-    url = "~/repos/tree-sitter-js-svelte", -- fork of js parser with svelte stuff
-    files = {"src/parser.c", "src/scanner.c"}
-  },
-  filetype = {"javascript", "javascriptreact"},
-  used_by = {"js", "jsx"}
-}
-
 ts_config.setup {
   ensure_installed = {
     "javascript", "typescript", "tsx", "jsdoc",
-    "html", "css", "lua", "c", "rust", "go", "java"
+    "html", "css", "lua", "c", "rust", "go", "java", "query"
   },
 
   highlight = {

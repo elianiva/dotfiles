@@ -6,9 +6,7 @@
 (comment) @comment
 
 [
-  (if_tag)
-  (else_tag)
-  (each_tag)
+  (special_block_keyword)
 ] @keyword
 
 [
@@ -16,14 +14,13 @@
  "}"
 ] @punctuation.bracket
 
-"=" @operator
 
 [
  "<"
  ">"
  "</"
  "/>"
- "{#"
- "{:"
- "{/"
+  "#"
+  ":"
+  "/"
 ] @tag.delimiter

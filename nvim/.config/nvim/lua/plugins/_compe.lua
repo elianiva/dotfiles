@@ -20,6 +20,7 @@ require'compe'.setup {
     buffer = true,
     vsnip = true,
     tags = true,
+    -- treesitter = true,
     nvim_lsp = true,
     nvim_lua = true,
   },
