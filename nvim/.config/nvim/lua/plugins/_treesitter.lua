@@ -16,8 +16,9 @@ parser_config.svelte = {
 
 ts_config.setup {
   ensure_installed = {
-    "javascript", "typescript", "tsx", "jsdoc",
-    "html", "css", "lua", "c", "rust", "go", "java", "query"
+    "javascript", "typescript", "tsx", "jsdoc", "cpp", "json",
+    "html", "css", "lua", "c", "rust", "go", "java", "query",
+    "python", "rst"
   },
 
   highlight = {

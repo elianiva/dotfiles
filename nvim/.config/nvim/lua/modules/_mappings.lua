@@ -18,6 +18,15 @@ nnoremap{"<C-n>", "<CMD>NvimTreeToggle<CR>"}
 -- toggle telescope.nvim
 nnoremap{"<C-p>", require"plugins._telescope".files, { silent = true }}
 nnoremap{"<C-f>", require"plugins._telescope".grep_prompt, { silent = true }}
+nnoremap{
+  "<Leader>tb",
+  function()
+    return require"telescope.builtin".current_buffer_fuzzy_find(
+      require('telescope.themes').get_dropdown({})
+    )
+  end,
+  { silent = true },
+}
 
 -- better movement between windows
 nnoremap{"<C-h>", "<C-w><C-h>"}

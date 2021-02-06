@@ -22,8 +22,7 @@ if ok then
     use {'tomtom/tcomment_vim', opt = false} -- comment stuff easier
     use {'brooth/far.vim', opt = false} -- project wide search and replace
     use {'tpope/vim-fugitive', opt = false} -- git helpers inside neovim
-    use {
-      'mhartington/formatter.nvim',
+    use { 'mhartington/formatter.nvim',
       opt = true,
       cmd = "Format"
     } -- comment stuff easier
@@ -60,20 +59,9 @@ if ok then
       ft = {'text', 'markdown'},
       opt = true,
     } -- table alignment
-    use {
-      'kyazdani42/nvim-tree.lua',
-      opt = true,
-      requires = {
-        {'kyazdani42/nvim-web-devicons', opt = true}
-      },
-    } -- super fast file tree viewer
-    use {
-      'akinsho/nvim-bufferline.lua',
-      opt = true,
-      requires = {
-        {'kyazdani42/nvim-web-devicons', opt = true}
-      }
-    } -- snazzy bufferline
+    use {'kyazdani42/nvim-web-devicons', opt = true} -- fancy icons
+    use {'kyazdani42/nvim-tree.lua', opt = true} -- super fast file tree viewer
+    use {'akinsho/nvim-bufferline.lua', opt = true} -- snazzy bufferline
     use {'neovim/nvim-lspconfig', opt = true} -- builtin lsp config
     use {'glepnir/lspsaga.nvim', opt = true} -- better UI for builtin LSP
     use {
@@ -81,13 +69,13 @@ if ok then
       cmd = 'EmmetInstall',
       opt = true
     } -- less typing for html code
-    use {'tami5/sql.nvim'}
+    use {'tami5/sql.nvim', opt = false} -- sql bindings in LuaJIT
     use {
       '~/repos/telescope.nvim',
       requires = {
         {'nvim-lua/popup.nvim'},
         {'~/repos/plenary.nvim'},
-        {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast finder
+        {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast sorter
         {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
         {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
       },

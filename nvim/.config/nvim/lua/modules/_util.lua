@@ -128,27 +128,14 @@ vim.api.nvim_exec([[
 
 -- translate selected word, useful for when I do jp assignments
 Util.translate = function(lang)
-  local word = Util.get_visual()
+  local word = Util.get_word()
   local job = Job:new({
     command = "trans",
     args = {"-b", ":" .. (lang or "en"), word}
   })
 
   local ok, result = pcall(function() return vim.trim(job:sync()[1]) end)
-
-  if ok then
-    vim.lsp.handlers["textDocument/hover"](nil, "textDocument/hover", {
-      contents = {
-        {
-          language = "txt",
-          -- TODO(elianiva): support this for other language, though I don't
-          -- think I would use this outside of English and Japanese
-          value = lang == "en" and "Japanese ⟶  English" or "English ⟶  Japanese"
-        },
-        result
-      }
-    })
-  end
+  if ok then print(result) end
 end
 vim.cmd('command! -range -nargs=1 Translate call v:lua.Util.translate(<f-args>)')
 
