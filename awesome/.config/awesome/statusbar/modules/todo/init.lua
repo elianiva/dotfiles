@@ -1,9 +1,6 @@
 -------------------------------------------------
--- ToDo Widget for Awesome Window Manager
--- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/todo-widget
--- @author Pavel Makhov
--- @copyright 2020 Pavel Makhov
+-- with some modifications
 -------------------------------------------------
 local json = require("main.json")
 local awful = require("awful")
@@ -111,8 +108,7 @@ add_button:connect_signal("mouse::enter",
 add_button:connect_signal("mouse::leave",
   function(c) c:set_bg(theme.bg_normal) end)
 
-local function worker(args)
-
+local worker = function(args)
   local args = args or {}
 
   local icon = colorize(WIDGET_DIR .. '/checkbox.svg', theme.widget_main_color)
@@ -245,7 +241,8 @@ local function worker(args)
       else
         popup:move_next_to(mouse.current_widget_geometry)
       end
-    end)))
+    end))
+  )
 
   spawn.easy_async(GET_TODO_ITEMS, function(stdout) update_widget(stdout) end)
 
@@ -258,5 +255,6 @@ if not gfs.file_readable(STORAGE) then
     STORAGE, STORAGE))
 end
 
-return setmetatable(todo_widget,
-  {__call = function(_, ...) return worker(...) end})
+return setmetatable(todo_widget, {
+  __call = function(_, ...) return worker(...) end}
+)

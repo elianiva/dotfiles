@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [ ! -z "${2}" ]; then
+  echo "Expected only one argument"
+  exit 1
+elif [ -z "${1}" ]; then
+  echo "No file path provided"
+  exit 1
+elif [ "$EUID" -eq 0 ]; then
+  echo "Cannot be run as root"
+  exit 1
+fi
+
+set -Eeuo pipefail
+
+destfile_pfx="$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32)" || true
+
+while [ -d "/tmp/doasedit/$destfile_pfx" ]; do
+  destfile_pfx="$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32)"
+done
+
+tempdir="/tmp/doasedit/$destfile_pfx"
+
+mkdir -p $tempdir
+trap "rm -rf $tempdir" EXIT
+srcfile="$(doas realpath $1)"
+
+if doas [ -f "$srcfile" ]; then
+  doas cp $srcfile $tempdir/edit
+  doas chown -R $USER:$USER $tempdir/edit
+  doas cp $srcfile $tempdir/file
+else
+  # create file with "regular" system permissions (root:root 644)
+  touch $tempdir/file
+  doas chown root:root $tempdir/file
+fi
+
+$EDITOR $tempdir/edit
+
+cat $tempdir/edit | doas tee $tempdir/file 1>/dev/null
+
+if cmp -s "$tempdir/file" "$srcfile"; then
+  echo "Skipping write; no changes."
+  exit 0
+else
+  doas mv -f $tempdir/file $srcfile
+  exit 0
+fi

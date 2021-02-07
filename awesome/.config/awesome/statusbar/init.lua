@@ -19,7 +19,7 @@ local taglist = require("statusbar.modules.taglist")
 local playerctl = require("statusbar.modules.playerctl")
 local todo = require("statusbar.modules.todo")
 
-local function set_wallpaper(s)
+local set_wallpaper = function(s)
   -- Wallpaper
   if beautiful.wallpaper then
     local wallpaper = beautiful.wallpaper

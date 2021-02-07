@@ -7,7 +7,7 @@ local margin = wibox.container.margin
 local M = {}
 
 function M.get()
-  local function create_title_button(c, color_focus, color_unfocus)
+  local create_title_button = function(c, color_focus, color_unfocus)
     local tb_color = wibox.widget {
       bg = theme.black,
       shape = gears.shape.circle,
@@ -24,7 +24,7 @@ function M.get()
       layout = wibox.container.constraint
     }
 
-    local function update()
+    local update = function()
       if client.focus == c then
         tb_color.shape_border_color = color_focus
       else

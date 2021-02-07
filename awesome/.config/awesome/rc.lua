@@ -43,7 +43,6 @@ RC.globalkeys = keybinds.bindtotags(keybinds.globalkeys)
 RC.mediakeys = keybinds.mediakeys
 
 -- Set root
--- root.buttons(keybinds.globalbuttons())
 root.keys(gears.table.join(RC.globalkeys, RC.mediakeys))
 
 -- Rules to apply to new clients (through the "manage" signal).
