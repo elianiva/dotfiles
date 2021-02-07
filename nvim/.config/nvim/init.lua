@@ -32,6 +32,7 @@ require("plugins._nvimtree")
 require("plugins._snippets")
 require("plugins._telescope")
 require("plugins._treesitter")
+require("plugins._kommentary")
 
 -- lsp stuff
 require("modules.lsp")

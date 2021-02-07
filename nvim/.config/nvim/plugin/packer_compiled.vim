@@ -70,6 +70,10 @@ _G.packer_plugins = {
     loaded = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/jsonc.vim"
   },
+  kommentary = {
+    loaded = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/kommentary"
+  },
   ["lspsaga.nvim"] = {
     loaded = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
@@ -100,7 +104,7 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-treesitter-textobjects", "playground" },
+    after = { "playground", "nvim-treesitter-textobjects" },
     loaded = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
@@ -152,10 +156,6 @@ _G.packer_plugins = {
   ["sql.nvim"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/sql.nvim"
-  },
-  tcomment_vim = {
-    loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/tcomment_vim"
   },
   ["telescope-frecency.nvim"] = {
     loaded = true,

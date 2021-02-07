@@ -1,7 +1,6 @@
 vim.cmd[[packadd formatter.nvim]]
 
 local remap = vim.api.nvim_set_keymap
-local fn = vim.fn
 local is_cfg_present = require('modules._util').is_cfg_present
 
 local prettier = function()
