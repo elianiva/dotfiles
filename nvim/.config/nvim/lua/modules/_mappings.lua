@@ -15,6 +15,9 @@ inoremap{"JJ", "<Esc><Esc>"}
 -- toggle nvimtree
 nnoremap{"<C-n>", "<CMD>NvimTreeToggle<CR>"}
 
+-- hippity hoppity your word is not my property
+nnoremap{"f", require"hop".jump_words}
+
 -- toggle telescope.nvim
 nnoremap{"<C-p>", require"plugins._telescope".files, { silent = true }}
 nnoremap{"<C-f>", require"plugins._telescope".grep_prompt, { silent = true }}
@@ -23,6 +26,15 @@ nnoremap{
   function()
     return require"telescope.builtin".current_buffer_fuzzy_find(
       require('telescope.themes').get_dropdown({})
+    )
+  end,
+  { silent = true },
+}
+nnoremap{
+  "<Leader>tf",
+  function()
+    return require"telescope".extensions.frecency.frecency(
+      require('telescope.themes').get_dropdown({previewer = false})
     )
   end,
   { silent = true },

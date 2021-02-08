@@ -26,6 +26,10 @@ require'compe'.setup {
   },
 }
 
+require"compe.pattern".set_filetype_config('javascript', {
+  keyword_pattern = [[\%(@\w*\|\h\w*\)]];
+})
+
 local npairs = require('nvim-autopairs')
 Util.trigger_completion = function()
   if vim.fn.pumvisible() ~= 0  then

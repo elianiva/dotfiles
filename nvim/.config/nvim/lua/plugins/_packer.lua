@@ -97,6 +97,7 @@ if ok then
     use {'AndrewRadev/splitjoin.vim', opt = false}
     use {'pwntester/octo.nvim', opt = false}
     use {'tjdevries/astronauta.nvim', opt = false}
+    use {'phaazon/hop.nvim', opt = false}
   end
 
   packer.startup(plugins)
