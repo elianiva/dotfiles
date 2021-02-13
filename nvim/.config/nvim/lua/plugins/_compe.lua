@@ -14,13 +14,10 @@ require'compe'.setup {
   allow_prefix_unmatch = false,
 
   source = {
-    spell = true,
     path = true,
     calc = true,
     buffer = true,
     vsnip = true,
-    tags = true,
-    -- treesitter = true,
     nvim_lsp = true,
     nvim_lua = true,
   },
@@ -57,7 +54,6 @@ remap(
 
 remap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
 remap('i', '<C-Space>', 'compe#complete()', { noremap = true, expr = true, silent = true })
-remap('i', '<Leader>1', 'compe#reduce()', { noremap = true, expr = true, silent = true })
 
 -- TODO(elianiva): REVISIT THIS LATER
 -- inoremap{'<CR>', function() return Util.trigger_completion() end, { silent = true }}

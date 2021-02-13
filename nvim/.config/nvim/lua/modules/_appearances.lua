@@ -33,6 +33,10 @@ ColorUtil.override_gruvbox = function()
     -- lsp saga stuff
     {'TargetWord', { fg = '#d79921', bg = 'NONE', gui = 'bold' }},
     {'LspSagaFinderSelection', { fg = '#d79921', bg = '#3C3836', gui = 'bold' }},
+    -- {'DiagnosticError', { fg = '#fb4934', gui = 'bold' }},
+    -- {'DiagnosticWarning', { fg = '#d79921', gui = 'bold' }},
+    -- {'DiagnosticInformation', { fg = '#458588', gui = 'bold' }},
+    -- {'DiagnosticHint', { fg = '#458588', gui = 'bold' }},
 
     -- octo.nvim stuff
     {'OctoNvimIssueOpen', { fg = '#b8bb26' }},

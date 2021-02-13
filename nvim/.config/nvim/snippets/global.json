@@ -6,14 +6,6 @@
     ],
     "description": "TODO reminder"
   },
-  "compl": {
-    "prefix": ["compl"],
-    "body": [
-      "This is a ${1:Single} Line",
-      "\t\t${2:Something}\t:)"
-    ],
-    "description": "Complex"
-  },
   "fixme": {
     "prefix": ["fixme"],
     "body": [

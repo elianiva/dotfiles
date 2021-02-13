@@ -1,5 +1,5 @@
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = "\\"
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- prevent typo when pressing `wq` or `q`
 vim.cmd[[

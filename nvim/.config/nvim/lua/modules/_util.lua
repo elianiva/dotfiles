@@ -165,4 +165,63 @@ Util.set_hl = function(group, options)
   end
 end
 
+Util.spinner = function(mode)
+  local anim_frames = {
+    "   ",
+    "▪  ",
+    "▪▪ ",
+    "▪▪▪",
+    "▬▪▪",
+    "▬▬▪",
+    "▬▬▬",
+    "▪▬▬",
+    "▪▪▬",
+    "▪▪▪",
+    " ▪▪",
+    "  ▪",
+    "   ",
+  }
+
+  local current_frame = 0
+  local results_updated = function()
+    current_frame = current_frame >= #anim_frames and 1 or current_frame + 1
+    print(anim_frames[current_frame])
+  end
+
+  local timer = vim.fn.timer_start(80, results_updated, {['repeat'] = 100})
+
+  return timer
+end
+
+Util.parse = function()
+  local ts_utils = require('nvim-treesitter.ts_utils')
+  local parser = vim.treesitter.get_parser(0, "html")
+  local ts_tree = parser:parse()[1]
+  local query = vim.treesitter.parse_query("html", [[
+(_
+  (element
+    (start_tag
+      (attribute
+        (quoted_attribute_value (attribute_value) @class
+        (#eq? @class "question-hyperlink")))
+    )
+  )
+  (element
+    (start_tag
+      (attribute
+        (attribute_name) @title_tag
+        (#eq? @title_tag "title"))
+    )
+  )
+) @result ]])
+
+  for pattern, match, metadata in query:iter_matches(ts_tree:root(), 0, 0, -1) do
+    for id, node in pairs(match) do
+      local name = query.captures[id]
+      -- `node` was captured by the `name` capture in the match
+      P(ts_utils.get_node_text(node))
+    end
+  end
+end
+
 return Util

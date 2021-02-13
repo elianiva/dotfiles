@@ -137,13 +137,13 @@ Statusline.explorer = function() return Statusline:set_explorer() end
 -- set statusline
 -- TODO: replace this once we can define autocmd using lua
 vim.api.nvim_exec([[
-augroup Statusline
-au!
-au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.explorer()
-augroup END
-  ]], false)
+  augroup Statusline
+  au!
+  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
+  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
+  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.explorer()
+  augroup END
+]], false)
 
 ----[[
 --  NOTE: I don't use this since the statusline already has
