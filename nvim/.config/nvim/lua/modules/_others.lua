@@ -12,6 +12,7 @@ vim.g.git_messenger_no_default_mappings = true
 vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank{ timeout = 250 }")
 
 -- highlight bg according to hex/rgb/rgba text
+vim.cmd[[packadd nvim-colorizer.lua]]
 require"colorizer".setup{
   ["*"] = {
     css = true,

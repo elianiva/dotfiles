@@ -1,13 +1,14 @@
 local Job = require("plenary.job")
+local fn = vim.fn
 
 Util = {}
 
 P = function(stuff) return print(vim.inspect(stuff)) end
 
 Util.check_backspace = function()
-  local curr_col = vim.fn.col('.')
-  local is_first_col = vim.fn.col('.') - 1 == 0
-  local prev_char = vim.fn.getline('.'):sub(curr_col - 1, curr_col - 1)
+  local curr_col = fn.col('.')
+  local is_first_col = fn.col('.') - 1 == 0
+  local prev_char = fn.getline('.'):sub(curr_col - 1, curr_col - 1)
 
   if is_first_col or prev_char:match("%s") then
     return true
@@ -17,8 +18,8 @@ Util.check_backspace = function()
 end
 
 Util.check_surroundings = function()
-  local col = vim.fn.col('.')
-  local line = vim.fn.getline('.')
+  local col = fn.col('.')
+  local line = fn.getline('.')
   local prev_char = line:sub(col - 1, col - 1)
   local next_char = line:sub(col, col)
   local pattern = '[%{|%}|%[|%]]'
@@ -32,7 +33,7 @@ end
 
 -- preview file using xdg_open
 Util.xdg_open = function()
-  local filename = vim.fn.expand("<cfile>")
+  local filename = fn.expand("<cfile>")
   vim.loop.spawn("xdg-open", {args = {filename}})
 end
 
@@ -67,30 +68,28 @@ local to_hex = function(rgb)
 end
 
 Util.get_word = function()
-  local first_line, last_line = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
-  local first_col, last_col = vim.fn.getpos("'<")[3], vim.fn.getpos("'>")[3]
-  local current_word = vim.fn.getline(first_line, last_line)[1]:sub(first_col, last_col)
+  local first_line, last_line = fn.getpos("'<")[2], fn.getpos("'>")[2]
+  local first_col, last_col = fn.getpos("'<")[3], fn.getpos("'>")[3]
+  local current_word = fn.getline(first_line, last_line)[1]:sub(first_col, last_col)
 
   return current_word
 end
 
 -- don't actually use this but I thought this might come in handy who knows ;)
 Util.get_lines = function()
-  local first_line, last_line = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
-  local lines = vim.fn.getline(first_line, last_line)
+  local first_line, last_line = fn.getpos("'<")[2], fn.getpos("'>")[2]
+  local lines = fn.getline(first_line, last_line)
 
   return lines
 end
 
 -- don't actually use this but I thought this might come in handy who knows ;)
 Util.get_visual = function()
-  local first_line, last_line = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
-  local first_col, last_col = vim.fn.getpos("'<")[3], vim.fn.getpos("'>")[3]
-  local lines = vim.fn.getline(first_line, last_line)
+  local first_line, last_line = fn.getpos("'<")[2], fn.getpos("'>")[2]
+  local first_col, last_col = fn.getpos("'<")[3], fn.getpos("'>")[3]
+  local lines = fn.getline(first_line, last_line)
 
-  if #lines == 0 then
-    return ""
-  end
+  if #lines == 0 then return "" end
 
   lines[#lines] = lines[#lines]:sub(0, last_col - 2)
   lines[1] = lines[1]:sub(first_col - 1, -1)
@@ -98,9 +97,10 @@ Util.get_visual = function()
   return lines
 end
 
+-- just for fun :p
 Util.strike_through = function()
-  local first_line, _ = vim.fn.getpos("'<")[2], vim.fn.getpos("'>")[2]
-  local first_col, last_col = vim.fn.getpos("'<")[3], vim.fn.getpos("'>")[3]
+  local first_line, _ = fn.getpos("'<")[2], fn.getpos("'>")[2]
+  local first_col, last_col = fn.getpos("'<")[3], fn.getpos("'>")[3]
 
   local strike_ns = vim.api.nvim_create_namespace("striked_text")
 
@@ -114,8 +114,10 @@ Util.convert_color = function(mode)
 
   if mode == 'rgb' then
     result = to_rgb(Util.get_word())
-  else
+  elseif mode == 'hex' then
     result = to_hex(Util.get_word())
+  else
+    return print("Not Supported!")
   end
 
   vim.api.nvim_command(string.format('s/%s/%s', Util.get_word(), result))
@@ -142,7 +144,7 @@ vim.cmd('command! -range -nargs=1 Translate call v:lua.Util.translate(<f-args>)'
 Util.is_cfg_present = function(cfg_name)
   -- this returns 1 if it's not present and 0 if it's present
   -- we need to compare it with 1 because both 0 and 1 is `true` in lua
-  return vim.fn.empty(vim.fn.glob(vim.loop.cwd()..cfg_name)) ~= 1
+  return fn.empty(fn.glob(vim.loop.cwd()..cfg_name)) ~= 1
 end
 
 -- helper for defining highlight groups
@@ -154,18 +156,14 @@ Util.set_hl = function(group, options)
   local target = options.target
 
   if not link then
-    vim.cmd(string.format(
-      'hi %s %s %s %s',
-      group, bg, fg, gui
-    ))
+    vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
   else
-    vim.cmd(string.format(
-      'hi! link', group, target
-    ))
+    vim.cmd(string.format('hi! link', group, target))
   end
 end
 
-Util.spinner = function(mode)
+-- might be useful
+Util.spinner = function()
   local anim_frames = {
     "   ",
     "▪  ",
@@ -188,11 +186,12 @@ Util.spinner = function(mode)
     print(anim_frames[current_frame])
   end
 
-  local timer = vim.fn.timer_start(80, results_updated, {['repeat'] = 100})
+  local timer = fn.timer_start(80, results_updated, {['repeat'] = 100})
 
   return timer
 end
 
+-- playing around with TS
 Util.parse = function()
   local ts_utils = require('nvim-treesitter.ts_utils')
   local parser = vim.treesitter.get_parser(0, "html")

@@ -1,7 +1,7 @@
 vim.cmd[[packadd formatter.nvim]]
 
 local remap = vim.api.nvim_set_keymap
-local is_cfg_present = require('modules._util').is_cfg_present
+local is_cfg_present = require'modules._util'.is_cfg_present
 
 local prettier = function()
   if is_cfg_present("/.prettierrc") then
@@ -15,19 +15,18 @@ local prettier = function()
       },
       stdin = true
     }
-  else
-    -- fallback to global config
-    return {
-      exe = "prettier",
-      args = {
-        string.format(
-          "--stdin-filepath '%s' --config '%s'",
-          vim.api.nvim_buf_get_name(0), vim.fn.stdpath("config").."/.prettierrc"
-        )
-      },
-      stdin = true
-    }
   end
+  -- fallback to global config
+  return {
+    exe = "prettier",
+    args = {
+      string.format(
+        "--stdin-filepath '%s' --config '%s'",
+        vim.api.nvim_buf_get_name(0), vim.fn.stdpath("config").."/.prettierrc"
+      )
+    },
+    stdin = true
+  }
 end
 
 local rustfmt = function()
@@ -36,14 +35,6 @@ end
 
 local gofmt = function()
   return {exe = "gofumpt", stdin = true}
-end
-
-local luafmt = function()
-  return {
-    exe = "lua-format",
-    args = {"-i", "--config", "~/.config/nvim/.luafmt"},
-    stdin = true
-  }
 end
 
 require'formatter'.setup{
@@ -59,7 +50,6 @@ require'formatter'.setup{
     html = {prettier},
     php = {prettier},
     rust = {rustfmt},
-    lua = {luafmt},
     go = {gofmt}
   }
 }

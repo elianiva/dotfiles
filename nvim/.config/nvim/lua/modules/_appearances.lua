@@ -17,10 +17,10 @@ ColorUtil.override_gruvbox = function()
     -- tabline stuff
     {'Tabline', { bg = 'NONE' }},
     {'TablineSuccess', { bg = 'NONE', fg = '#b8bb26', gui = 'bold' }},
-    {'TablineError', { bg='NONE', fg='#fb4934' }},
-    {'TablineWarning', { bg='NONE', fg='#d79921' }},
-    {'TablineInformation', { bg='NONE', fg='#458588' }},
-    {'TablineHint', { bg='NONE', fg='#689D6A' }},
+    {'TablineError', { bg = 'NONE', fg = '#fb4934' }},
+    {'TablineWarning', { bg = 'NONE', fg = '#d79921' }},
+    {'TablineInformation', { bg = 'NONE', fg = '#458588' }},
+    {'TablineHint', { bg = 'NONE', fg = '#689D6A' }},
 
     -- vim-illuminate
     {'illuminatedWord', { gui = 'underline' }},
@@ -33,10 +33,10 @@ ColorUtil.override_gruvbox = function()
     -- lsp saga stuff
     {'TargetWord', { fg = '#d79921', bg = 'NONE', gui = 'bold' }},
     {'LspSagaFinderSelection', { fg = '#d79921', bg = '#3C3836', gui = 'bold' }},
-    -- {'DiagnosticError', { fg = '#fb4934', gui = 'bold' }},
-    -- {'DiagnosticWarning', { fg = '#d79921', gui = 'bold' }},
-    -- {'DiagnosticInformation', { fg = '#458588', gui = 'bold' }},
-    -- {'DiagnosticHint', { fg = '#458588', gui = 'bold' }},
+    {'LspDiagErrorBorder', { fg = '#fb4934', gui = 'bold' }},
+    {'LspDiagWarnBorder', { fg = '#d79921', gui = 'bold' }},
+    {'LspDiagInfoBorder', { fg = '#458588', gui = 'bold' }},
+    {'LspDiagHintBorder', { fg = '#458588', gui = 'bold' }},
 
     -- octo.nvim stuff
     {'OctoNvimIssueOpen', { fg = '#b8bb26' }},
@@ -75,23 +75,23 @@ ColorUtil.override_gruvbox = function()
     {'NvimTreeIndentMarker', { fg = '#928374' }},
 
     -- telescope
-    {'TelescopeSelection', { bg='NONE', fg='#d79921', gui='bold' }},
-    {'TelescopeMatching', { bg='NONE', fg='#fb4934', gui='bold' }},
-    {'TelescopeBorder', { bg='NONE', fg='#928374', gui='bold' }},
+    {'TelescopeSelection', { bg = 'NONE', fg = '#d79921', gui = 'bold' }},
+    {'TelescopeMatching', { bg = 'NONE', fg = '#fb4934', gui = 'bold' }},
+    {'TelescopeBorder', { bg = 'NONE', fg = '#928374', gui = 'bold' }},
 
     -- diagnostic nvim
-    {'LspDiagnosticsDefaultError', { bg='NONE', fg='#fb4934' }},
-    {'LspDiagnosticsDefaultWarning', { bg='NONE', fg='#d79921' }},
-    {'LspDiagnosticsDefaultInformation', { bg='NONE', fg='#458588' }},
-    {'LspDiagnosticsDefaultHint', { bg='NONE', fg='#689D6A' }},
-    {'LspDiagnosticsUnderlineError', { gui='underline' }},
-    {'LspDiagnosticsUnderlineWarning', { gui='underline' }},
-    {'LspDiagnosticsUnderlineInformation', { gui='underline' }},
-    {'LspDiagnosticsUnderlineHint', { gui='underline' }},
+    {'LspDiagnosticsDefaultError', { bg = 'NONE', fg = '#fb4934' }},
+    {'LspDiagnosticsDefaultWarning', { bg = 'NONE', fg = '#d79921' }},
+    {'LspDiagnosticsDefaultInformation', { bg = 'NONE', fg = '#458588' }},
+    {'LspDiagnosticsDefaultHint', { bg = 'NONE', fg = '#689D6A' }},
+    {'LspDiagnosticsUnderlineError', { gui = 'underline' }},
+    {'LspDiagnosticsUnderlineWarning', { gui = 'underline' }},
+    {'LspDiagnosticsUnderlineInformation', { gui = 'underline' }},
+    {'LspDiagnosticsUnderlineHint', { gui = 'underline' }},
 
     -- ts override
-    {'TSKeywordOperator', { bg='NONE', fg='#fb4934' }},
-    {'TSOperator', { bg='NONE', fg='#fe8019' }},
+    {'TSKeywordOperator', { bg = 'NONE', fg = '#fb4934' }},
+    {'TSOperator', { bg = 'NONE', fg = '#fe8019' }},
   }
 
   for _, highlight in pairs(highlights) do

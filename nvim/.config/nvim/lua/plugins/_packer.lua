@@ -14,8 +14,7 @@ if ok then
   })
 
   local plugins = function()
-    -- Packer can manage itself as an optional plugin
-    use {'wbthomason/packer.nvim', opt = true}
+    use {'wbthomason/packer.nvim', opt = true} -- plugin manager
 
     use {'lifepillar/vim-gruvbox8', opt = false} -- nice colorscheme
     use {'windwp/nvim-autopairs', opt = true} -- autopairs brackets, braces etc
@@ -25,14 +24,14 @@ if ok then
     use { 'mhartington/formatter.nvim',
       opt = true,
       cmd = "Format"
-    } -- comment stuff easier
+    } -- helper for fast formatting
     use {
       'neoclide/jsonc.vim',
       ft = {'jsonc'},
       opt = true
     } -- jsonc highlighting
     use {'wakatime/vim-wakatime', opt = false} -- track usage time using wakatime
-    use {'norcalli/nvim-colorizer.lua', opt = false} -- colorize hex/rgb/hsl value
+    use {'norcalli/nvim-colorizer.lua', opt = true} -- colorize hex/rgb/hsl value
     use {
       '~/repos/nvim-treesitter',
       requires = {
@@ -71,9 +70,10 @@ if ok then
     use {'tami5/sql.nvim', opt = false} -- sql bindings in LuaJIT
     use {
       '~/repos/telescope.nvim',
+      opt = false,
       requires = {
         {'nvim-lua/popup.nvim'},
-        {'~/repos/plenary.nvim'},
+        {'~/repos/plenary.nvim'}, -- more stdlib
         {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast sorter
         {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
         {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
@@ -94,9 +94,9 @@ if ok then
     } -- better window and buffer management
     -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
     use {'AndrewRadev/splitjoin.vim', opt = false}
-    use {'pwntester/octo.nvim', opt = false}
-    use {'tjdevries/astronauta.nvim', opt = false}
-    use {'phaazon/hop.nvim', opt = false}
+    use {'pwntester/octo.nvim', opt = false} -- TUI github client
+    use {'tjdevries/astronauta.nvim', opt = false} -- temporary stuff before it got merged upstream
+    use {'phaazon/hop.nvim', opt = false} -- easymotion but better
   end
 
   packer.startup(plugins)

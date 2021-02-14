@@ -1,19 +1,19 @@
 local fn = vim.fn
 
-Statusline = {}
+local M = {}
 
 -- possible values are 'arrow' | 'rounded' | 'blank'
 local active_sep = 'blank'
 
 -- change them if you want to different separator
-Statusline.separators = {
+M.separators = {
   arrow = { '', '' },
   rounded = { '', '' },
   blank = { '', '' },
 }
 
 -- highlight groups
-Statusline.colors = {
+M.colors = {
   active        = '%#StatusLine#',
   inactive      = '%#StatuslineNC#',
   mode          = '%#Mode#',
@@ -26,14 +26,14 @@ Statusline.colors = {
   line_col_alt  = '%#LineColAlt#',
 }
 
-Statusline.is_truncated = function(_, width)
+M.is_truncated = function(_, width)
   local current_window = fn.winnr()
   local current_width = fn.winwidth(current_window)
 
   return current_width < width
 end
 
-Statusline.get_current_mode = function(self)
+M.get_current_mode = function(self)
   local modes = {
     ['n']  = {'Normal', 'N'};
     ['no'] = {'N·Pending', 'N'} ;
@@ -64,7 +64,7 @@ Statusline.get_current_mode = function(self)
   return string.format(' %s ', modes[current_mode][1]):upper()
 end
 
-Statusline.get_git_status = function(self)
+M.get_git_status = function(self)
   -- use fallback because it doesn't set this variable on initial `BufEnter`
   local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
   local is_head_empty = signs.head ~= ''
@@ -78,12 +78,12 @@ Statusline.get_git_status = function(self)
     or ''
 end
 
-Statusline.get_filename = function(self)
+M.get_filename = function(self)
   if self:is_truncated(140) then return " %<%f " end
   return " %<%F "
 end
 
-Statusline.get_filetype = function()
+M.get_filetype = function()
   local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
   local icon = require'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
 
@@ -93,13 +93,13 @@ Statusline.get_filetype = function()
   return string.format(' %s %s ', icon, filetype):lower()
 end
 
-Statusline.get_line_col = function(self)
+M.get_line_col = function(self)
   if self:is_truncated(60) then return ' %l:%c ' end
   return ' Ln %l, Col %c '
 end
 
 
-Statusline.set_active = function(self)
+M.set_active = function(self)
   local colors = self.colors
 
   local mode = colors.mode .. self:get_current_mode()
@@ -119,29 +119,33 @@ Statusline.set_active = function(self)
   })
 end
 
-Statusline.set_inactive = function(self)
+M.set_inactive = function(self)
   return self.colors.inactive .. '%= %F %='
 end
 
-Statusline.set_explorer = function(self)
+M.set_explorer = function(self)
   local title = self.colors.mode .. '   '
   local title_alt = self.colors.mode_alt .. self.separators[active_sep][2]
 
   return table.concat({ self.colors.active, title, title_alt })
 end
 
-Statusline.active = function() return Statusline:set_active() end
-Statusline.inactive = function() return Statusline:set_inactive() end
-Statusline.explorer = function() return Statusline:set_explorer() end
+Statusline = setmetatable(M, {
+  __call = function(statusline, mode)
+    if mode == "active" then return statusline:set_active() end
+    if mode == "inactive" then return statusline:set_inactive() end
+    if mode == "explorer" then return statusline:set_explorer() end
+  end
+})
 
 -- set statusline
 -- TODO: replace this once we can define autocmd using lua
 vim.api.nvim_exec([[
   augroup Statusline
   au!
-  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.explorer()
+  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
+  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
+  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline('explorer')
   augroup END
 ]], false)
 

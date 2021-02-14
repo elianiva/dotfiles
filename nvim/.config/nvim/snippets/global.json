@@ -5,12 +5,5 @@
       "TODO(${1:Name}): ${0:Summary}"
     ],
     "description": "TODO reminder"
-  },
-  "fixme": {
-    "prefix": ["fixme"],
-    "body": [
-      "FIXME(elianiva): ${0:Summary}"
-    ],
-    "description": "FIXME reminder"
   }
 }
