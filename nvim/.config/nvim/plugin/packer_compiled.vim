@@ -39,6 +39,7 @@ _G.packer_plugins = {
   ["emmet-vim"] = {
     commands = { "EmmetInstall" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/emmet-vim"
   },
   ["far.vim"] = {
@@ -52,19 +53,23 @@ _G.packer_plugins = {
   ["formatter.nvim"] = {
     commands = { "Format" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/formatter.nvim"
   },
   ["git-messenger.vim"] = {
     commands = { "GitMessenger" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/git-messenger.vim"
   },
   ["gitsigns.nvim"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
   ["goyo.vim"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/goyo.vim"
   },
   ["hop.nvim"] = {
@@ -73,44 +78,59 @@ _G.packer_plugins = {
   },
   ["jsonc.vim"] = {
     loaded = false,
+    needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/jsonc.vim"
   },
   kommentary = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/kommentary"
   },
   ["lspsaga.nvim"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
+  },
+  neogit = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/neogit"
   },
   ["nvim-autopairs"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
   ["nvim-bufferline.lua"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
   },
   ["nvim-colorizer.lua"] = {
-    loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
     after = { "vim-vsnip" },
+    after_files = { "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe"
   },
   ["nvim-lspconfig"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-treesitter-textobjects", "playground" },
+    after = { "playground", "nvim-treesitter-textobjects" },
     loaded = false,
+    needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
@@ -118,10 +138,12 @@ _G.packer_plugins = {
       ["nvim-treesitter"] = true
     },
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects"
   },
   ["nvim-web-devicons"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
   },
   ["octo.nvim"] = {
@@ -130,6 +152,7 @@ _G.packer_plugins = {
   },
   ["packer.nvim"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   playground = {
@@ -137,6 +160,7 @@ _G.packer_plugins = {
       ["nvim-treesitter"] = true
     },
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/playground"
   },
   ["plenary.nvim"] = {
@@ -186,10 +210,12 @@ _G.packer_plugins = {
   ["vim-sayonara"] = {
     commands = { "Sayonara" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
   },
   ["vim-table-mode"] = {
     loaded = false,
+    needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-table-mode"
   },
   ["vim-vsnip"] = {
@@ -197,6 +223,7 @@ _G.packer_plugins = {
       ["nvim-compe"] = true
     },
     loaded = false,
+    needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   },
   ["vim-wakatime"] = {
@@ -207,17 +234,20 @@ _G.packer_plugins = {
 
 
 -- Command lazy-loads
-vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file EmmetInstall lua require("packer.load")({'emmet-vim'}, { cmd = "EmmetInstall", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Format lua require("packer.load")({'formatter.nvim'}, { cmd = "Format", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file GitMessenger lua require("packer.load")({'git-messenger.vim'}, { cmd = "GitMessenger", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Format lua require("packer.load")({'formatter.nvim'}, { cmd = "Format", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
-vim.cmd [[au FileType text ++once lua require("packer.load")({'goyo.vim', 'vim-table-mode'}, { ft = "text" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'goyo.vim', 'vim-table-mode'}, { ft = "markdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType jsonc ++once lua require("packer.load")({'jsonc.vim'}, { ft = "jsonc" }, _G.packer_plugins)]]
+vim.cmd [[au FileType text ++once lua require("packer.load")({'goyo.vim', 'vim-table-mode'}, { ft = "text" }, _G.packer_plugins)]]
+vim.cmd("augroup END")
+vim.cmd [[augroup filetypedetect]]
+vim.cmd [[source /home/elianiva/.local/share/nvim/site/pack/packer/opt/jsonc.vim/ftdetect/jsonc.vim]]
 vim.cmd("augroup END")
 END
 

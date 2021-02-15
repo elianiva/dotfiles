@@ -13,6 +13,7 @@ ColorUtil.override_gruvbox = function()
     {'IncSearch', { bg = '#928374' }},
     {'String', { gui = 'NONE' }},
     {'Special', { gui = 'NONE' }},
+    {'Folded', { gui = 'NONE' }},
 
     -- tabline stuff
     {'Tabline', { bg = 'NONE' }},
@@ -64,7 +65,6 @@ ColorUtil.override_gruvbox = function()
     {'Git', { bg = '#504945', fg = '#EBDBB2' }},
     {'Filetype', { bg = '#504945', fg = '#EBDBB2' }},
     {'Filename', { bg = '#504945', fg = '#EBDBB2' }},
-
     {'ModeAlt', { bg = '#504945', fg = '#928374' }},
     {'GitAlt', { bg = '#3C3836', fg = '#504945' }},
     {'LineColAlt', { bg = '#504945', fg = '#928374' }},
@@ -94,7 +94,7 @@ ColorUtil.override_gruvbox = function()
     {'TSOperator', { bg = 'NONE', fg = '#fe8019' }},
   }
 
-  for _, highlight in pairs(highlights) do
+  for _, highlight in ipairs(highlights) do
     set_hl(highlight[1], highlight[2])
   end
 end

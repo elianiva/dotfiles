@@ -97,6 +97,7 @@ if ok then
     use {'pwntester/octo.nvim', opt = false} -- TUI github client
     use {'tjdevries/astronauta.nvim', opt = false} -- temporary stuff before it got merged upstream
     use {'phaazon/hop.nvim', opt = false} -- easymotion but better
+    use {'TimUntersberger/neogit', opt = false} -- magit clone
   end
 
   packer.startup(plugins)

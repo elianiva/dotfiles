@@ -39,6 +39,20 @@ local is_using_eslint = function(_, _, result, client_id)
   return vim.lsp.handlers["textDocument/publishDiagnostics"](_, _, result, client_id)
 end
 
+local eslint = {
+  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+  rootMarkers = {
+    "package.json",
+    ".eslintrc.js",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
+  }
+}
+
 local sumneko_root = os.getenv("HOME") .. "/repos/lua-language-server"
 local servers = {
   tsserver = {
@@ -62,24 +76,24 @@ local servers = {
   gopls = {
     root_dir = vim.loop.cwd
   },
-  -- efm = {
-  --   cmd = { "efm-langserver" },
-  --   on_attach = function(client)
-  --     client.resolved_capabilities.rename = false
-  --     client.resolved_capabilities.hover = false
-  --   end,
-  --   on_init = custom_on_init,
-  --   filetypes = {"javascript", "typescript", "typescriptreact", "svelte"},
-  --   settings = {
-  --     rootMarkers = {".git", "package.json"},
-  --     languages = {
-  --       javascript = { eslint },
-  --       typescript = { eslint },
-  --       typescriptreact = { eslint },
-  --       svelte = { eslint },
-  --     }
-  --   }
-  -- },
+  efm = {
+    cmd = { "efm-langserver" },
+    on_attach = function(client)
+      client.resolved_capabilities.rename = false
+      client.resolved_capabilities.hover = false
+    end,
+    on_init = custom_on_init,
+    filetypes = {"javascript", "typescript", "typescriptreact", "svelte"},
+    settings = {
+      rootMarkers = {".git", "package.json"},
+      languages = {
+        javascript = { eslint },
+        typescript = { eslint },
+        typescriptreact = { eslint },
+        svelte = { eslint },
+      }
+    }
+  },
   svelte = {
     on_attach = function(client)
       mappings.lsp_mappings()
@@ -101,6 +115,18 @@ local servers = {
       svelte =  {
         plugin = {
           html = {
+            completions = {
+              enable = true,
+              emmet = false
+            },
+          },
+          svelte = {
+            completions = {
+              enable = true,
+              emmet = false
+            },
+          },
+          css = {
             completions = {
               enable = true,
               emmet = false

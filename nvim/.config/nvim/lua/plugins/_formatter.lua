@@ -16,6 +16,7 @@ local prettier = function()
       stdin = true
     }
   end
+
   -- fallback to global config
   return {
     exe = "prettier",

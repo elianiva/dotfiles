@@ -1,4 +1,5 @@
 local fn = vim.fn
+local api = vim.api
 
 local M = {}
 
@@ -27,27 +28,26 @@ M.colors = {
 }
 
 M.is_truncated = function(_, width)
-  local current_window = fn.winnr()
-  local current_width = fn.winwidth(current_window)
-
+  local current_width = api.nvim_win_get_width(0)
   return current_width < width
 end
 
 M.get_current_mode = function(self)
   local modes = {
     ['n']  = {'Normal', 'N'};
-    ['no'] = {'N·Pending', 'N'} ;
+    ['no'] = {'N·Pending', 'N·P'} ;
     ['v']  = {'Visual', 'V' };
-    ['V']  = {'V·Line', 'V' };
-    [''] = {'V·Block', 'V'}; -- this is not ^V, but it's , they're different
+    ['V']  = {'V·Line', 'V·L' };
+    [''] = {'V·Block', 'V·B'}; -- this is not ^V, but it's , they're different
     ['s']  = {'Select', 'S'};
-    ['S']  = {'S·Line', 'S'};
-    [''] = {'S·Block', 'S'}; -- same with this one, it's not ^S but it's 
+    ['S']  = {'S·Line', 'S·L'};
+    [''] = {'S·Block', 'S·B'}; -- same with this one, it's not ^S but it's 
     ['i']  = {'Insert', 'I'};
+    ['ic'] = {'Insert', 'I'};
     ['R']  = {'Replace', 'R'};
-    ['Rv'] = {'V·Replace', 'V'};
+    ['Rv'] = {'V·Replace', 'V·R'};
     ['c']  = {'Command', 'C'};
-    ['cv'] = {'Vim Ex ', 'V'};
+    ['cv'] = {'Vim·Ex ', 'V·E'};
     ['ce'] = {'Ex ', 'E'};
     ['r']  = {'Prompt ', 'P'};
     ['rm'] = {'More ', 'M'};
@@ -56,7 +56,7 @@ M.get_current_mode = function(self)
     ['t']  = {'Terminal ', 'T'};
   }
 
-  local current_mode = fn.mode()
+  local current_mode = api.nvim_get_mode().mode
 
   if self:is_truncated(80) then
     return string.format(' %s ', modes[current_mode][2]):upper()
@@ -65,7 +65,7 @@ M.get_current_mode = function(self)
 end
 
 M.get_git_status = function(self)
-  -- use fallback because it doesn't set this variable on initial `BufEnter`
+  -- use fallback because it doesn't set this variable on the initial `BufEnter`
   local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
   local is_head_empty = signs.head ~= ''
 
@@ -74,7 +74,10 @@ M.get_git_status = function(self)
   end
 
   return is_head_empty
-    and string.format(' +%s ~%s -%s |  %s ', signs.added, signs.changed, signs.removed, signs.head)
+    and string.format(
+      ' +%s ~%s -%s |  %s ',
+      signs.added, signs.changed, signs.removed, signs.head
+    )
     or ''
 end
 
@@ -86,10 +89,9 @@ end
 M.get_filetype = function()
   local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
   local icon = require'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
-
   local filetype = vim.bo.filetype
-  if filetype == '' then return '' end
 
+  if filetype == '' then return '' end
   return string.format(' %s %s ', icon, filetype):lower()
 end
 
