@@ -39,6 +39,10 @@ nnoremap{
   end,
   { silent = true },
 }
+nnoremap{
+  "<Leader>tm",require"telescope".extensions.media_files.media_files,
+  { silent = true },
+}
 
 -- better movement between windows
 nnoremap{"<C-h>", "<C-w><C-h>"}

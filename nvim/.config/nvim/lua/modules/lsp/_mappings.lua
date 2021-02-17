@@ -16,6 +16,7 @@ M.lsp_mappings = function()
   inoremap{'<C-s>', sig_help.signature_help, { silent = true }}
   nnoremap{'K', hover.render_hover_doc, { silent = true }}
   nnoremap{'ga', codeaction.code_action, { silent = true }}
+  -- nnoremap{'ga', vim.lsp.buf.code_action, { silent = true }}
   nnoremap{'gd', provider.preview_definition, { silent = true }}
   nnoremap{'<leader>gd', vim.lsp.buf.definition, { silent = true }}
   nnoremap{'gD', diagnostic.show_line_diagnostics, { silent = true }}

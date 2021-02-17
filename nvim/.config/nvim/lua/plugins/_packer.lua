@@ -74,9 +74,10 @@ if ok then
       requires = {
         {'nvim-lua/popup.nvim'},
         {'~/repos/plenary.nvim'}, -- more stdlib
-        {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast sorter
+        {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast search algo
         {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
         {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
+        {'nvim-telescope/telescope-cheat.nvim'}, -- im cheating
       },
     } -- extensible fuzzy finder
     use {'lewis6991/gitsigns.nvim', opt = true} -- show git stuff in signcolumn

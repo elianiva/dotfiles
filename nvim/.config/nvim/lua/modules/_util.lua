@@ -1,7 +1,7 @@
 local Job = require("plenary.job")
 local fn = vim.fn
 
-Util = {}
+_G.Util = {}
 
 P = function(stuff) return print(vim.inspect(stuff)) end
 

@@ -69,8 +69,12 @@ local servers = {
     on_init = custom_on_init,
     root_dir = vim.loop.cwd,
   },
+  -- denols = {},
   html = {},
   cssls = {},
+  jdtls = {
+    cmd = {"jdtls"}
+  },
   rust_analyzer = {},
   clangd = {},
   gopls = {
