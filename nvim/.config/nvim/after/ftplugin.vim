@@ -27,9 +27,6 @@ au FileType markdown setlocal conceallevel=3 concealcursor=nc spell
 " Remove trailing whitespace on save
 au BufWritePre * %s/\s\+$//e
 
-" Set PHP indentation
-let b:PHP_default_indenting = 1
-
 " automatically go to insert mode on terminal buffer
 autocmd TermOpen * startinsert
 

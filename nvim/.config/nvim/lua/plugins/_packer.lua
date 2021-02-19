@@ -69,15 +69,16 @@ if ok then
     } -- less typing for html code
     use {'tami5/sql.nvim', opt = false} -- sql bindings in LuaJIT
     use {
-      '~/repos/telescope.nvim',
+      'Conni2461/telescope.nvim',
       opt = false,
+      branch = "file_browser",
       requires = {
         {'nvim-lua/popup.nvim'},
         {'~/repos/plenary.nvim'}, -- more stdlib
         {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast search algo
         {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
         {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
-        {'nvim-telescope/telescope-cheat.nvim'}, -- im cheating
+        {'~/repos/telescope-arecibo.nvim', rocks = {"openssl", "lua-http-parser"}}
       },
     } -- extensible fuzzy finder
     use {'lewis6991/gitsigns.nvim', opt = true} -- show git stuff in signcolumn
@@ -99,6 +100,7 @@ if ok then
     use {'tjdevries/astronauta.nvim', opt = false} -- temporary stuff before it got merged upstream
     use {'phaazon/hop.nvim', opt = false} -- easymotion but better
     use {'TimUntersberger/neogit', opt = false} -- magit clone
+    use {'captbaritone/better-indent-support-for-php-with-html', opt = false} -- hhhhhhhh
   end
 
   packer.startup(plugins)

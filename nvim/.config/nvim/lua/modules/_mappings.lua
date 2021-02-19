@@ -43,6 +43,10 @@ nnoremap{
   "<Leader>tm",require"telescope".extensions.media_files.media_files,
   { silent = true },
 }
+nnoremap{
+  "<Leader>ta",require"plugins._telescope".arecibo,
+  { silent = true },
+}
 
 -- better movement between windows
 nnoremap{"<C-h>", "<C-w><C-h>"}

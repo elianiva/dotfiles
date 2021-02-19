@@ -36,6 +36,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/astronauta.nvim"
   },
+  ["better-indent-support-for-php-with-html"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/better-indent-support-for-php-with-html"
+  },
   ["emmet-vim"] = {
     commands = { "EmmetInstall" },
     loaded = false,
@@ -128,7 +132,7 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-treesitter-textobjects", "playground" },
+    after = { "playground", "nvim-treesitter-textobjects" },
     loaded = false,
     needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
@@ -179,9 +183,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/sql.nvim"
   },
-  ["telescope-cheat.nvim"] = {
+  ["telescope-arecibo.nvim"] = {
     loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/telescope-cheat.nvim"
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/telescope-arecibo.nvim"
   },
   ["telescope-frecency.nvim"] = {
     loaded = true,
@@ -238,17 +242,17 @@ _G.packer_plugins = {
 
 
 -- Command lazy-loads
-vim.cmd [[command! -nargs=* -range -bang -complete=file Format lua require("packer.load")({'formatter.nvim'}, { cmd = "Format", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file GitMessenger lua require("packer.load")({'git-messenger.vim'}, { cmd = "GitMessenger", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file EmmetInstall lua require("packer.load")({'emmet-vim'}, { cmd = "EmmetInstall", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Format lua require("packer.load")({'formatter.nvim'}, { cmd = "Format", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file GitMessenger lua require("packer.load")({'git-messenger.vim'}, { cmd = "GitMessenger", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
-vim.cmd [[au FileType text ++once lua require("packer.load")({'goyo.vim', 'vim-table-mode'}, { ft = "text" }, _G.packer_plugins)]]
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'goyo.vim', 'vim-table-mode'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType text ++once lua require("packer.load")({'vim-table-mode', 'goyo.vim'}, { ft = "text" }, _G.packer_plugins)]]
 vim.cmd [[au FileType jsonc ++once lua require("packer.load")({'jsonc.vim'}, { ft = "jsonc" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-table-mode', 'goyo.vim'}, { ft = "markdown" }, _G.packer_plugins)]]
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
 vim.cmd [[source /home/elianiva/.local/share/nvim/site/pack/packer/opt/jsonc.vim/ftdetect/jsonc.vim]]

@@ -72,6 +72,7 @@ local servers = {
   -- denols = {},
   html = {},
   cssls = {},
+  intelephense = {},
   jdtls = {
     cmd = {"jdtls"}
   },
