@@ -1,37 +1,27 @@
 local wibox = require("wibox")
 local gears = require("gears")
 local awful = require("awful")
-local markup = require"main.helpers".markup
 local colorize = require"main.helpers".colorize
 local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/playerctl/icon.svg"
-
-local Playerctl = require"lgi".Playerctl
-local player = Playerctl.Player{}
 
 local M = {}
 
 M.icon = wibox.widget.imagebox(colorize(icon, theme.widget_main_color))
 M.widget = wibox.widget.textbox()
 
-local update_metadata = function()
-  if player:get_title() then
-    M.widget:set_markup(
-      markup(player:get_artist().." – "..player:get_title(),
-      { fg = theme.foreground })
-    )
-  else
-    M.widget:set_text('')
-  end
-end
-
-player.on_metadata = update_metadata
+awful.spawn.with_line_callback(
+  "playerctl --player=%any,chrome,chromium --follow metadata --format '{{artist}} - {{title}}'",
+  {
+    stdout = function (line)
+      M.widget:set_markup(line, { fg = theme.foreground })
+    end
+  }
+)
 
 M.widget:buttons(gears.table.join(
   awful.button({}, 1, function()
-    player:play_pause()
+    awful.spawn.easy_async("playerctl --player=%any,chrome,chromium play-pause")
   end)
 ))
-
-update_metadata()
 
 return M

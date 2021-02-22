@@ -16,17 +16,16 @@ local M = {}
 -- Volume
 M.icon = wibox.widget.imagebox(colorize(volume_low, theme.widget_main_color))
 
-local get_vol_status = [[
-  sh -c "
-    pacmd list-sinks | awk '/\\* index: /{nr[NR+7];nr[NR+11]}; NR in nr'
-  "
-]]
+local get_volume = "pulsemixer --get-volume"
 
-local set_volume = function(widget, stdout)
-  local volume = tonumber(stdout:match('(%d+)%% /'))
-  local muted = stdout:match('muted:(%s+)[yes]')
+local volume = 0
+local is_muted = false
 
-  if muted then
+local set_volume = function(widget, vol, muted)
+  volume = tonumber(vol) or 0
+  is_muted = tonumber(muted) == 1
+
+  if is_muted then
     M.icon:set_image(colorize(volume_off, theme.foreground))
     widget:set_markup(markup("muted", {fg = theme.foreground}))
   else
@@ -43,8 +42,12 @@ local set_volume = function(widget, stdout)
   end
 end
 
-M.widget = awful.widget.watch(get_vol_status, 120, function(widget, stdout)
-  set_volume(widget, stdout)
+M.widget = awful.widget.watch(get_volume, 120, function(widget, vol)
+  awful.spawn.easy_async(
+    "pulsemixer --get-mute", function(muted)
+      set_volume(widget, vol:gmatch("%d%d")(), muted)
+    end
+  )
 end)
 
 M.widget:buttons(gears.table.join(
@@ -63,8 +66,12 @@ M.widget:buttons(gears.table.join(
 ))
 
 awesome.connect_signal("volume_change", function()
-  awful.spawn.easy_async_with_shell(get_vol_status, function(stdout)
-    set_volume(M.widget, stdout)
+  awful.spawn.easy_async(get_volume, function(vol)
+    awful.spawn.easy_async(
+      "pulsemixer --get-mute", function(muted)
+        set_volume(M.widget, vol:gmatch("%d%d")(), muted)
+      end
+    )
   end)
 end)
 

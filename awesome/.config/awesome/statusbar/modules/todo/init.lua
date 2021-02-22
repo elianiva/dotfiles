@@ -18,17 +18,25 @@ local STORAGE = HOME_DIR .. '/notes/todos.json'
 
 local GET_TODO_ITEMS = 'bash -c "cat ' .. STORAGE .. '"'
 
-local rows = {layout = wibox.layout.fixed.vertical}
+local rows = {
+  layout = wibox.layout.fixed.vertical
+}
 local todo_widget = {}
 
 todo_widget.widget = wibox.widget{
   {
-    {id = "icon", widget = wibox.widget.imagebox},
+    {
+      id = "icon",
+      widget = wibox.widget.imagebox
+    },
     id = "margin",
     right = dpi(4),
     layout = wibox.container.margin
   },
-  {id = "txt", widget = wibox.widget.textbox},
+  {
+    id = "txt",
+    widget = wibox.widget.textbox
+  },
   layout = wibox.layout.fixed.horizontal,
   set_text = function(self, new_value) self.txt.text = new_value end,
   set_icon = function(self, new_value) self.margin.icon.image = new_value end
@@ -71,12 +79,14 @@ local add_button = wibox.widget{
   widget = wibox.container.background
 }
 
-add_button:connect_signal("button::press", function(c)
-  local pr = awful.widget.prompt()
+add_button:connect_signal("button::press", function()
+  local prompt = awful.widget.prompt()
 
   table.insert(rows, wibox.widget{
     {
-      {pr.widget, spacing = 8, layout = wibox.layout.align.horizontal},
+      {
+        prompt.widget, spacing = 8, layout = wibox.layout.align.horizontal
+      },
       margins = 8,
       layout = wibox.container.margin
     },
@@ -87,7 +97,7 @@ add_button:connect_signal("button::press", function(c)
     prompt = "<b>New item</b>: ",
     bg = beautiful.bg_normal,
     bg_cursor = theme.white,
-    textbox = pr.widget,
+    textbox = prompt.widget,
     exe_callback = function(input_text)
       if not input_text or #input_text == 0 then return end
       spawn.easy_async(GET_TODO_ITEMS, function(stdout)
@@ -108,9 +118,7 @@ add_button:connect_signal("mouse::enter",
 add_button:connect_signal("mouse::leave",
   function(c) c:set_bg(theme.bg_normal) end)
 
-local worker = function(args)
-  local args = args or {}
-
+local worker = function()
   local icon = colorize(WIDGET_DIR .. '/checkbox.svg', theme.widget_main_color)
 
   todo_widget.widget:set_icon(icon)
@@ -124,7 +132,9 @@ local worker = function(args)
 
     local first_row = wibox.widget{
       {
-        {widget = wibox.widget.textbox},
+        {
+          widget = wibox.widget.textbox
+        },
         {
           markup = '<span size="large" font_weight="bold" color="#ebdbb2">Todo</span>',
           align = 'center',
@@ -161,14 +171,14 @@ local worker = function(args)
         result.todo_items[i] = todo_item
         spawn.easy_async_with_shell(
           "echo '" .. json.encode(result) .. "' > " .. STORAGE,
-          function() todo_widget:update_counter(result.todo_items) end)
+          function() todo_widget:update_counter(result.todo_items) end
+        )
       end)
 
       local trash_button = wibox.widget{
         {
           {
-            image = colorize(WIDGET_DIR .. '/window-close-symbolic.svg',
-              theme.white),
+            image = colorize(WIDGET_DIR .. '/window-close-symbolic.svg', theme.white),
             resize = false,
             widget = wibox.widget.imagebox
           },
@@ -182,19 +192,24 @@ local worker = function(args)
         widget = wibox.container.background
       }
 
-      trash_button:connect_signal("button::press", function(c)
+      trash_button:connect_signal("button::press", function()
         table.remove(result.todo_items, i)
         spawn.easy_async_with_shell(
           "printf '" .. json.encode(result) .. "' > " .. STORAGE, function()
-            spawn.easy_async(GET_TODO_ITEMS,
-              function(stdout) update_widget(stdout) end)
+            spawn.easy_async(GET_TODO_ITEMS, function(stdout)
+              update_widget(stdout)
+            end)
           end)
       end)
 
       local row = wibox.widget{
         {
           {
-            {checkbox, valign = 'center', layout = wibox.container.place},
+            {
+              checkbox,
+              valign = 'center',
+              layout = wibox.container.place
+            },
             {
               {
                 text = todo_item.todo_item,
@@ -210,7 +225,11 @@ local worker = function(args)
                 valign = 'center',
                 layout = wibox.container.place
               },
-              {trash_button, valign = 'center', layout = wibox.container.place},
+              {
+                trash_button,
+                valign = 'center',
+                layout = wibox.container.place
+              },
               spacing = 8,
               layout = wibox.layout.align.horizontal
             },
@@ -252,9 +271,8 @@ end
 if not gfs.file_readable(STORAGE) then
   spawn.easy_async(string.format(
     [[bash -c "dirname %s | xargs mkdir -p && echo '{\"todo_items\":{}}' > %s"]],
-    STORAGE, STORAGE))
+    STORAGE, STORAGE)
+  )
 end
 
-return setmetatable(todo_widget, {
-  __call = function(_, ...) return worker(...) end}
-)
+return setmetatable(todo_widget, { __call = function() return worker() end})

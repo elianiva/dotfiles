@@ -5,7 +5,8 @@ local rrect = require"main.helpers".rrect
 
 -- wallpaper and icon
 theme.icon_theme = "Numix"
-theme.wallpaper = theme_path .. "img/ryuko-spring.png"
+-- theme.wallpaper = theme_path .. "img/ryuko-spring.png"
+theme.wallpaper = theme_path .. "img/knowname1.png"
 theme.menu_icon = theme_path .. "icons/killlakill.png"
 -- theme.wallpaper     = theme_path .. "img/babymetal.jpg"
 -- theme.menu_icon  = theme_path .. "icons/babymetal.png"

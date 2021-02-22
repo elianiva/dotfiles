@@ -11,7 +11,6 @@ local emoji_picker = RC.vars.emoji_picker
 local clipmenu = RC.vars.clipmenu
 local terminal = RC.vars.terminal
 local modkey = RC.vars.modkey
-local ctrlkey = RC.vars.ctrlkey
 
 local M = gears.table.join(
   awful.key({ modkey }, "s", function()
