@@ -34,7 +34,9 @@ end
 -- preview file using xdg_open
 Util.xdg_open = function()
   local filename = fn.expand("<cfile>")
-  vim.loop.spawn("xdg-open", {args = {filename}})
+  vim.loop.spawn("xdg-open", {args = {filename}}, vim.schedule_wrap(function (code)
+    print(code)
+  end))
 end
 
 local to_rgb = function(hex)
@@ -189,65 +191,6 @@ Util.spinner = function()
   local timer = fn.timer_start(80, results_updated, {['repeat'] = 100})
 
   return timer
-end
-
--- playing around with TS
-Util.parse = function()
-  local ts_utils = require('nvim-treesitter.ts_utils')
-  local parser = vim.treesitter.get_parser(0, "html")
-  local ts_tree = parser:parse()[1]
-  local query = vim.treesitter.parse_query("html", [[
-(element
-  (start_tag
-    (tag_name) @_parent
-    (#eq? @_parent "div"))
-  (element
-    (start_tag
-      (tag_name) @_heading)
-      (#eq? @_heading "h2")
-    (element
-      (start_tag
-        (attribute
-          (attribute_name) @_href
-          (#eq? @_href "href")
-           (quoted_attribute_value
-             (attribute_value) @link)))
-      (text) @title)))
-]])
-
-  local results = {}
-  local idx = 1
-  local result_idx = 1
-
-  for _, match, _ in query:iter_matches(ts_tree:root(), 0, 0, -1) do
-    local entry = {}
-    for _, node in pairs(match) do
-      local node_type = node:type()
-      if node_type ~= "tag_name" and node_type ~= "attribute_name" then
-        local text = ts_utils.get_node_text(node)
-        entry.idx = result_idx
-
-        if idx % 2 == 0 then
-          entry.title = table.concat(
-            vim.tbl_map(function(v) return v:gsub("^%s+", " ") end, text)
-          ):gsub("&quot;", "`")
-          idx = idx + 1
-          result_idx = result_idx + 1
-        else
-          entry.url = "https:"..text[1]
-          idx = idx + 1
-        end
-      end
-
-      -- TODO(elianiva): figure out how to remove this
-      -- it inserts the same table 4-5 times if we don't do this
-      -- so there's something wrong with the above code
-      if not vim.tbl_contains(results, entry) then
-        table.insert(results, entry)
-      end
-    end
-  end
-  P(results)
 end
 
 return Util

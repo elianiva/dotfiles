@@ -26,20 +26,20 @@ M.lsp_mappings = function()
   nnoremap{'<Leader>dn', diagnostic.lsp_jump_diagnostic_next, { silent = true }}
   nnoremap{'<Leader>dN', diagnostic.lsp_jump_diagnostic_prev, { silent = true }}
 
-  nnoremap{
-    '<C-y>',
-    function()
-      return hover.smart_scroll_hover(1)
-    end,
-    { silent = true },
-  }
-  nnoremap{
-    '<C-e>',
-    function()
-      return hover.smart_scroll_hover(-1)
-    end,
-    { silent = true },
-  }
+  -- nnoremap{
+  --   '<C-y>',
+  --   function()
+  --     return hover.smart_scroll_hover(1)
+  --   end,
+  --   { silent = true },
+  -- }
+  -- nnoremap{
+  --   '<C-e>',
+  --   function()
+  --     return hover.smart_scroll_hover(-1)
+  --   end,
+  --   { silent = true },
+  -- }
 end
 
 return M

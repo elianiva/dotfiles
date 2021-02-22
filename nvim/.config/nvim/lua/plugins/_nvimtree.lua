@@ -51,5 +51,10 @@ vim.g.nvim_tree_icons = {
     untracked = "★"
   },
 
-  folder = {default = "", open = " "}
+  folder = {
+    default = "",
+    open = "",
+    empty = "",
+    empty_open = ""
+  }
 }

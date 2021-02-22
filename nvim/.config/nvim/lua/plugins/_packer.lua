@@ -25,11 +25,6 @@ if ok then
       opt = true,
       cmd = "Format"
     } -- helper for fast formatting
-    use {
-      'neoclide/jsonc.vim',
-      ft = {'jsonc'},
-      opt = true
-    } -- jsonc highlighting
     use {'wakatime/vim-wakatime', opt = false} -- track usage time using wakatime
     use {'norcalli/nvim-colorizer.lua', opt = true} -- colorize hex/rgb/hsl value
     use {
@@ -61,6 +56,7 @@ if ok then
     use {'kyazdani42/nvim-tree.lua', opt = true} -- super fast file tree viewer
     use {'akinsho/nvim-bufferline.lua', opt = true} -- snazzy bufferline
     use {'neovim/nvim-lspconfig', opt = true} -- builtin lsp config
+    use {'mfussenegger/nvim-jdtls', opt = true} -- jdtls
     use {'glepnir/lspsaga.nvim', opt = true} -- better UI for builtin LSP
     use {
       'mattn/emmet-vim',

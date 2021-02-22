@@ -1,5 +1,6 @@
 vim.cmd[[packadd nvim-lspconfig]]
 vim.cmd[[packadd lspsaga.nvim]]
+vim.cmd[[packadd nvim-jdtls]]
 
 local nvim_lsp = require("lspconfig")
 local mappings = require("modules.lsp._mappings")
@@ -73,9 +74,6 @@ local servers = {
   html = {},
   cssls = {},
   intelephense = {},
-  jdtls = {
-    cmd = {"jdtls"}
-  },
   rust_analyzer = {},
   clangd = {},
   gopls = {
@@ -159,6 +157,9 @@ local servers = {
             "awesome", "theme", "client", "P"
           },
         },
+        workspace = {
+          preloadFileSize = 400
+        }
       }
     }
   }
@@ -177,3 +178,11 @@ for name, opts in pairs(servers) do
     settings = opts.settings or {}
   }
 end
+
+-- jdtls stuff
+vim.api.nvim_exec([[
+  augroup jdtls
+  au!
+  au FileType java lua require'jdtls'.start_or_attach({cmd = {'/home/elianiva/.scripts/run_jdtls'}})
+  augroup END
+]], false)

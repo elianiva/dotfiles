@@ -80,11 +80,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/hop.nvim"
   },
-  ["jsonc.vim"] = {
-    loaded = false,
-    needs_bufread = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/jsonc.vim"
-  },
   kommentary = {
     loaded = false,
     needs_bufread = false,
@@ -121,6 +116,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe"
   },
+  ["nvim-jdtls"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-jdtls"
+  },
   ["nvim-lspconfig"] = {
     loaded = false,
     needs_bufread = false,
@@ -132,7 +132,7 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "playground", "nvim-treesitter-textobjects" },
+    after = { "nvim-treesitter-textobjects", "playground" },
     loaded = false,
     needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
@@ -251,11 +251,7 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 vim.cmd [[au FileType text ++once lua require("packer.load")({'vim-table-mode', 'goyo.vim'}, { ft = "text" }, _G.packer_plugins)]]
-vim.cmd [[au FileType jsonc ++once lua require("packer.load")({'jsonc.vim'}, { ft = "jsonc" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-table-mode', 'goyo.vim'}, { ft = "markdown" }, _G.packer_plugins)]]
-vim.cmd("augroup END")
-vim.cmd [[augroup filetypedetect]]
-vim.cmd [[source /home/elianiva/.local/share/nvim/site/pack/packer/opt/jsonc.vim/ftdetect/jsonc.vim]]
 vim.cmd("augroup END")
 END
 

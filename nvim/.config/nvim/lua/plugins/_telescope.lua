@@ -1,8 +1,5 @@
 local actions = require('telescope.actions')
 local previewers = require('telescope.previewers')
--- local conf = require('telescope.config').values
--- local finders = require('telescope.finders')
--- local pickers = require('telescope.pickers')
 
 local M = {}
 
@@ -107,48 +104,29 @@ M.files = function()
   }
 end
 
-M.arecibo = function()
-  require("telescope").extensions.arecibo.websearch(
-    require('telescope.themes').get_dropdown({
-      borderchars = {
-        { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-        prompt = {"─", "│", " ", "│", '┌', '┐', "│", "│"},
-        results = {"─", "│", "─", "│", "├", "┤", "┘", "└"},
-        preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-      },
-      previewer = false
-    })
-  )
+local no_preview = function()
+  return require('telescope.themes').get_dropdown({
+    borderchars = {
+      { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+      prompt = {"─", "│", " ", "│", '┌', '┐', "│", "│"},
+      results = {"─", "│", "─", "│", "├", "┤", "┘", "└"},
+      preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+    },
+    width = vim.api.nvim_win_get_width(0) - 40,
+    previewer = false
+  })
 end
 
--- M.colours = function(opts)
---   opts = opts or {}
---   local vimgrep_arguments = opts.vimgrep_arguments or conf.vimgrep_arguments
---   P(vimgrep_arguments)
---   local search_dirs = opts.search_dirs
---   local search = opts.search or vim.fn.expand("<cword>")
---   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd)
+M.arecibo = function()
+  require("telescope").extensions.arecibo.websearch(no_preview())
+end
 
---   if search_dirs then
---     for i, path in ipairs(search_dirs) do
---       search_dirs[i] = vim.fn.expand(path)
---     end
---   end
+M.frecency = function()
+  require"telescope".extensions.frecency.frecency(no_preview())
+end
 
---   pickers.new(opts, {
---     prompt_title = 'Live Grep',
---     finder = finders.new_oneshot_job(
---       vim.tbl_flatten {
---         vimgrep_arguments,
---         "#[a-fA-F0-9]{6}",
---         search,
---         search_dirs or "."
---       },
---       opts
---     ),
---     previewer = false,
---     sorter = conf.generic_sorter(opts),
---   }):find()
--- end
+M.buffer_fuzzy = function ()
+  require"telescope.builtin".current_buffer_fuzzy_find(no_preview())
+end
 
 return M

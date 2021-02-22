@@ -21,32 +21,10 @@ nnoremap{"<Leader>w", "<CMD>HopWord<CR>"}
 -- toggle telescope.nvim
 nnoremap{"<C-p>", require"plugins._telescope".files, { silent = true }}
 nnoremap{"<C-f>", require"plugins._telescope".grep_prompt, { silent = true }}
-nnoremap{
-  "<Leader>tb",
-  function()
-    return require"telescope.builtin".current_buffer_fuzzy_find(
-      require('telescope.themes').get_dropdown({})
-    )
-  end,
-  { silent = true },
-}
-nnoremap{
-  "<Leader>tf",
-  function()
-    return require"telescope".extensions.frecency.frecency(
-      require('telescope.themes').get_dropdown({previewer = false})
-    )
-  end,
-  { silent = true },
-}
-nnoremap{
-  "<Leader>tm",require"telescope".extensions.media_files.media_files,
-  { silent = true },
-}
-nnoremap{
-  "<Leader>ta",require"plugins._telescope".arecibo,
-  { silent = true },
-}
+nnoremap{"<Leader>tb", require"plugins._telescope".buffer_fuzzy, { silent = true }}
+nnoremap{"<Leader>tf", require"plugins._telescope".frecency, { silent = true }}
+nnoremap{"<Leader>tm", require"telescope".extensions.media_files.media_files, { silent = true }}
+nnoremap{"<Leader>ta", require"plugins._telescope".arecibo, { silent = true } }
 
 -- better movement between windows
 nnoremap{"<C-h>", "<C-w><C-h>"}
@@ -88,11 +66,17 @@ vnoremap{"<A-y>", '"+y'}
 nnoremap{"<Leader>gg", "<CMD>Goyo<CR>"}
 
 -- run luafile on current file
-nnoremap{"<Leader>r", "<CMD>luafile %<CR>"}
+-- rl stands for `run lua`
+nnoremap{"<Leader>rl", "<CMD>luafile %<CR>"}
 
 -- run node on current file
-nnoremap{"<Leader>n", "<CMD>!node %<CR>"}
-nnoremap{"<Leader>tn", "<CMD>!NO_COLOR=true deno run %<CR>"}
+-- rn stands for `run node`
+-- rd stands for `run deno`
+nnoremap{"<Leader>rn", "<CMD>!node %<CR>"}
+nnoremap{"<Leader>rd", "<CMD>!NO_COLOR=true deno run %<CR>"}
+
+-- toggle hlsearch
+nnoremap{"<Leader>n", "<CMD>nohl<CR>"}
 
 -- toggle colorizer
 nnoremap{"<Leader>c", "<CMD>ColorizerToggle<CR>"}
