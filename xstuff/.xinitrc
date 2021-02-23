@@ -12,7 +12,22 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export GOPATH="$HOME/.local/go"
 export GOBIN="$HOME/.local/go/bin"
-export PATH="$HOME/.scripts:$HOME/.local/bin:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/npm/bin:$HOME/.config/composer/vendor/bin:$HOME/.local/go/bin:$HOME/.pub-cache/bin:$HOME/.fnm:$HOME/.cargo/bin:$PATH"
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
+
+# PATH stuff
+export PATH="$HOME/.scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/npm/bin:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+export PATH="$HOME/.local/go/bin:$PATH"
+export PATH="$HOME/.pub-cache/bin:$PATH"
+export PATH="$HOME/.fnm:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Flutter stuff
+export ANDROID="$HOME/codes/android"
+export PATH="$HOME/codes/android/flutter/bin:$PATH"
+export PATH="/opt/android-sdk/cmdline-tools/latest/bin:$PATH"
 
 # Tidy up stuff
 export LESSHISTFILE="${XDG_CONFIG_HOME}less/history"

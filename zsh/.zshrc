@@ -25,8 +25,8 @@ function set_win_title(){
 }
 precmd_functions+=(set_win_title)
 eval "$(starship init zsh)"
-setopt autocd		# automatically cd into typed directory.
-stty stop undef		# disable ctrl-s to freeze terminal.
+setopt autocd   # automatically cd into typed directory.
+stty stop undef   # disable ctrl-s to freeze terminal.
 
 # History in cache directory:
 HISTSIZE=10000
@@ -104,7 +104,39 @@ run_rs() {
   rustc $1; ./$(echo "$1" | sed -e "s/\.rs$//")
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # fnm
 eval "`fnm env`"
+
+__skim_use_tmux__() {
+  [ -n "$TMUX_PANE" ] && [ "${SKIM_TMUX:-0}" != 0 ] && [ ${LINES:-40} -gt 15 ]
+}
+__skimcmd() {
+  __skim_use_tmux__ && echo "sk-tmux -d${SKIM_TMUX_HEIGHT:-40%}" || echo "sk"
+}
+skim-history-widget() {
+  local selected num
+  echo -ne "\r"
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  selected=( $(fc -rl 1 |
+    SKIM_DEFAULT_OPTIONS="--height=40% $SKIM_DEFAULT_OPTIONS -n2..,.. --tiebreak=score,index $SKIM_CTRL_R_OPTS --query=${(qqq)LBUFFER} -m" $(__skimcmd)) )
+  local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  zle reset-prompt
+  return $ret
+}
+zle     -N   skim-history-widget
+bindkey '^R' skim-history-widget
+
+skim-redraw-prompt() {
+  local precmd
+  for precmd in $precmd_functions; do
+    $precmd
+  done
+  zle reset-prompt
+}
+zle -N skim-redraw-prompt

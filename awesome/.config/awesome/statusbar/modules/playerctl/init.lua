@@ -20,7 +20,9 @@ awful.spawn.with_line_callback(
 
 M.widget:buttons(gears.table.join(
   awful.button({}, 1, function()
-    awful.spawn.easy_async("playerctl --player=%any,chrome,chromium play-pause")
+    awful.spawn.easy_async(
+      "playerctl --player=%any,chrome,chromium play-pause", function() end
+    )
   end)
 ))
 

@@ -65,16 +65,15 @@ if ok then
     } -- less typing for html code
     use {'tami5/sql.nvim', opt = false} -- sql bindings in LuaJIT
     use {
-      'Conni2461/telescope.nvim',
+      '~/repos/telescope.nvim',
       opt = false,
-      branch = "file_browser",
       requires = {
         {'nvim-lua/popup.nvim'},
         {'~/repos/plenary.nvim'}, -- more stdlib
         {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast search algo
         {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
         {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
-        {'~/repos/telescope-arecibo.nvim', rocks = {"openssl", "lua-http-parser"}}
+        {'~/repos/telescope-arecibo.nvim', rocks = {"openssl", "lua-http-parser"}},
       },
     } -- extensible fuzzy finder
     use {'lewis6991/gitsigns.nvim', opt = true} -- show git stuff in signcolumn

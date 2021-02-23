@@ -1,9 +1,7 @@
 set shell sh
 
 set previewer ~/.config/lf/preview
-set previewer ~/.config/lf/preview
 set preview true
-set previewer ~/.config/lf/preview
 set ratios 1:2:3
 # set color256 true
 set ignorecase true

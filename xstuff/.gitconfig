@@ -1,9 +1,9 @@
 [user]
-	name = elianiva
-	email = dicha.arkana03@gmail.com
+  name = elianiva
+  email = dicha.arkana03@gmail.com
 
 [credential]
-	helper = cache --timeout 86400
+  helper = cache --timeout 86400
 
 [core]
   editor = nvim
@@ -19,10 +19,10 @@
 line-numbers = true
 syntax-theme = base16
 side-by-side = false
-
 file-modified-label = modified:
 
 [interactive]
   diffFilter = delta --color-only
+
 [init]
-	defaultBranch = master
+  defaultBranch = master
