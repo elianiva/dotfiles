@@ -21,7 +21,4 @@ require"colorizer".setup{
   }
 }
 
-vim.g.indent_blankline_char = "│"
-vim.g.indent_blankline_char_highlight = "NonText"
-vim.g.indent_blankline_use_treesitter = true
-vim.g.indent_blankline_filetype_exclude = { "help" }
+require"hop".setup{}

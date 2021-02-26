@@ -17,6 +17,7 @@ if ok then
     use {'wbthomason/packer.nvim', opt = true} -- plugin manager
 
     use {'lifepillar/vim-gruvbox8', opt = false} -- nice colorscheme
+    use {'embark-theme/vim', opt = false}
     use {'windwp/nvim-autopairs', opt = true} -- autopairs brackets, braces etc
     use {'b3nj5m1n/kommentary', opt = true } -- comment stuff easier
     use {'brooth/far.vim', opt = false} -- project wide search and replace

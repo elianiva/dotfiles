@@ -3,10 +3,9 @@ au FileType * setlocal formatoptions-=cro
 
 " Set filetypes
 au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
-au BufNewFile,BufRead .prettierrc,.eslintrc set filetype=json
-au BufNewFile,BufRead tsconfig.json set filetype=jsonc
-au BufRead,BufNewFile *.svx,*.mdx set ft=markdown
-au BufRead,BufNewFile *.svelte set ft=svelte
+au BufNewFile,BufRead .prettierrc,.eslintrc,tsconfig.json set filetype=jsonc
+au BufNewFile,BufRead *.svx,*.mdx set ft=markdown
+au BufNewFile,BufRead *.svelte set ft=svelte
 
 " Set github text field to markdown (firenvim stuff)
 au BufEnter github.com_*.txt set filetype=markdown
@@ -16,6 +15,7 @@ au FileType go,java setlocal sw=4 ts=4 sts=4 noexpandtab
 au FileType lua setlocal sw=2 ts=2 sts=2
 au FileType c,cpp setlocal sw=4 ts=4 sts=4
 au FileType php setlocal sw=4 ts=4
+au FileType json set filetype=jsonc
 
 " Enable emmet.vim on these filetypes
 au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall

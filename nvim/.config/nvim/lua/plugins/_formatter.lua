@@ -13,7 +13,6 @@ local prettier = function()
           vim.api.nvim_buf_get_name(0), vim.loop.cwd().."/.prettierrc"
         )
       },
-      stdin = true
     }
   end
 
@@ -28,6 +27,10 @@ local prettier = function()
     },
     stdin = true
   }
+end
+
+local denofmt = function ()
+  return { exe = "deno", args = "fmt", stdin = true }
 end
 
 local rustfmt = function()

@@ -6,11 +6,10 @@ local nvim_lsp = require("lspconfig")
 local mappings = require("modules.lsp._mappings")
 local is_cfg_present = require("modules._util").is_cfg_present
 
-require("modules.lsp._diagnostic") -- diagnostic stuff
-
+require("modules.lsp._diagnostic")
 require"lspsaga".init_lsp_saga({
   border_style = 1,
-}) -- initialise lspsaga UI
+})
 
 local custom_on_attach = function(client)
   mappings.lsp_mappings()
@@ -33,9 +32,9 @@ end
 
 -- use eslint if the eslint config file present
 local is_using_eslint = function(_, _, result, client_id)
-  if is_cfg_present("/.eslintrc.json") or is_cfg_present("/.eslintrc.js") then
-    return
-  end
+  -- if is_cfg_present("/.eslintrc.json") or is_cfg_present("/.eslintrc.js") then
+  --   return
+  -- end
 
   return vim.lsp.handlers["textDocument/publishDiagnostics"](_, _, result, client_id)
 end
@@ -45,32 +44,41 @@ local eslint = {
   lintIgnoreExitCode = true,
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
-  rootMarkers = {
-    "package.json",
-    ".eslintrc.js",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-    ".eslintrc.json",
-  }
+}
+
+local denofmt = {
+  formatCommand = "cat ${INPUT} | deno fmt -",
+  formatStdin = true,
 }
 
 local sumneko_root = os.getenv("HOME") .. "/repos/lua-language-server"
 local servers = {
   tsserver = {
     filetypes = { "javascript", "typescript", "typescriptreact" },
-    on_attach = function(client)
+    on_attach = function (client)
       mappings.lsp_mappings()
+
       if client.config.flags then
         client.config.flags.allow_incremental_sync = true
       end
+      client.resolved_capabilities.document_formatting = false
     end,
+    init_options = {
+      documentFormatting = false,
+    },
     handlers = {
       ["textDocument/publishDiagnostics"] = is_using_eslint
     },
     on_init = custom_on_init,
     root_dir = vim.loop.cwd,
   },
-  -- denols = {},
+  -- denols = {
+  --   filetypes = { "javascript", "typescript", "typescriptreact" },
+  --   root_dir = vim.loop.cwd,
+  --   settings = {
+  --     documentFormatting = false
+  --   }
+  -- },
   html = {},
   cssls = {},
   intelephense = {},
@@ -84,14 +92,15 @@ local servers = {
     on_attach = function(client)
       client.resolved_capabilities.rename = false
       client.resolved_capabilities.hover = false
+      client.resolved_capabilities.document_formatting = true
     end,
     on_init = custom_on_init,
     filetypes = {"javascript", "typescript", "typescriptreact", "svelte"},
     settings = {
       rootMarkers = {".git", "package.json"},
       languages = {
-        javascript = { eslint },
-        typescript = { eslint },
+        javascript = { eslint, denofmt },
+        typescript = { eslint, denofmt },
         typescriptreact = { eslint },
         svelte = { eslint },
       }
@@ -183,6 +192,6 @@ end
 vim.api.nvim_exec([[
   augroup jdtls
   au!
-  au FileType java lua require'jdtls'.start_or_attach({cmd = {'/home/elianiva/.scripts/run_jdtls'}})
+  au FileType java lua require'jdtls'.start_or_attach({cmd = {'/home/elianiva/.scripts/run_jdtls'}, on_attach = require'modules.lsp._mappings'.lsp_mappings()})
   augroup END
 ]], false)
