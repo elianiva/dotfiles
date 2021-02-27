@@ -39,8 +39,10 @@ require'telescope'.setup{
 
         ['<C-u>'] = actions.preview_scrolling_up,
         ['<C-d>'] = actions.preview_scrolling_down,
-        ['<C-q>'] = actions.send_to_qflist,
+        ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
         ['<Tab>'] = actions.toggle_selection,
+        -- ["<C-s>"] = actions.cycle_previewers_next,
+        -- ["<C-a>"] = actions.cycle_previewers_prev,
         -- ["<C-w>l"] = actions.preview_switch_window_right,
       },
       n = {
@@ -112,7 +114,7 @@ local no_preview = function()
       results = {"─", "│", "─", "│", "├", "┤", "┘", "└"},
       preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
     },
-    width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+    width = 0.8,
     previewer = false
   })
 end

@@ -3,22 +3,12 @@ vim.cmd[[packadd nvim-treesitter-textobjects]]
 vim.cmd[[packadd playground]]
 
 local ts_config = require("nvim-treesitter.configs")
-local parser_config = require"nvim-treesitter.parsers".get_parser_configs()
-
-parser_config.svelte = {
-  install_info = {
-    url = "~/repos/tree-sitter-svelte",
-    files = {"src/parser.c", "src/scanner.cc"}
-  },
-  filetype = "svelte",
-  used_by = {"svelte"}
-}
 
 ts_config.setup {
   ensure_installed = {
     "javascript", "typescript", "tsx", "jsdoc", "cpp", "jsonc",
     "html", "css", "lua", "c", "rust", "go", "java", "query",
-    "python", "rst"
+    "python", "rst", "svelte"
   },
 
   highlight = {

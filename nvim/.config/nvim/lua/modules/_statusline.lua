@@ -27,41 +27,56 @@ M.colors = {
   line_col_alt  = '%#LineColAlt#',
 }
 
+M.trunc_width = setmetatable({
+  mode       = 80,
+  git_status = 90,
+  filename   = 140,
+  line_col   = 60,
+}, {
+  __index = function()
+      return 80
+  end
+})
+
 M.is_truncated = function(_, width)
   local current_width = api.nvim_win_get_width(0)
   return current_width < width
 end
 
-M.get_current_mode = function(self)
-  local modes = {
-    ['n']  = {'Normal', 'N'};
-    ['no'] = {'N·Pending', 'N·P'} ;
-    ['v']  = {'Visual', 'V' };
-    ['V']  = {'V·Line', 'V·L' };
-    [''] = {'V·Block', 'V·B'}; -- this is not ^V, but it's , they're different
-    ['s']  = {'Select', 'S'};
-    ['S']  = {'S·Line', 'S·L'};
-    [''] = {'S·Block', 'S·B'}; -- same with this one, it's not ^S but it's 
-    ['i']  = {'Insert', 'I'};
-    ['ic'] = {'Insert', 'I'};
-    ['R']  = {'Replace', 'R'};
-    ['Rv'] = {'V·Replace', 'V·R'};
-    ['c']  = {'Command', 'C'};
-    ['cv'] = {'Vim·Ex ', 'V·E'};
-    ['ce'] = {'Ex ', 'E'};
-    ['r']  = {'Prompt ', 'P'};
-    ['rm'] = {'More ', 'M'};
-    ['r?'] = {'Confirm ', 'C'};
-    ['!']  = {'Shell ', 'S'};
-    ['t']  = {'Terminal ', 'T'};
-  }
+M.modes = setmetatable({
+  ['n']  = {'Normal', 'N'};
+  ['no'] = {'N·Pending', 'N·P'} ;
+  ['v']  = {'Visual', 'V' };
+  ['V']  = {'V·Line', 'V·L' };
+  [''] = {'V·Block', 'V·B'}; -- this is not ^V, but it's , they're different
+  ['s']  = {'Select', 'S'};
+  ['S']  = {'S·Line', 'S·L'};
+  [''] = {'S·Block', 'S·B'}; -- same with this one, it's not ^S but it's 
+  ['i']  = {'Insert', 'I'};
+  ['ic'] = {'Insert', 'I'};
+  ['R']  = {'Replace', 'R'};
+  ['Rv'] = {'V·Replace', 'V·R'};
+  ['c']  = {'Command', 'C'};
+  ['cv'] = {'Vim·Ex ', 'V·E'};
+  ['ce'] = {'Ex ', 'E'};
+  ['r']  = {'Prompt ', 'P'};
+  ['rm'] = {'More ', 'M'};
+  ['r?'] = {'Confirm ', 'C'};
+  ['!']  = {'Shell ', 'S'};
+  ['t']  = {'Terminal ', 'T'};
+}, {
+  __index = function()
+      return {'Unknown', 'U'} -- handle edge cases
+  end
+})
 
+M.get_current_mode = function(self)
   local current_mode = api.nvim_get_mode().mode
 
-  if self:is_truncated(80) then
-    return string.format(' %s ', modes[current_mode][2]):upper()
+  if self:is_truncated(self.trunc_width.mode) then
+    return string.format(' %s ', self.modes[current_mode][2]):upper()
   end
-  return string.format(' %s ', modes[current_mode][1]):upper()
+  return string.format(' %s ', self.modes[current_mode][1]):upper()
 end
 
 M.get_git_status = function(self)
@@ -69,7 +84,7 @@ M.get_git_status = function(self)
   local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
   local is_head_empty = signs.head ~= ''
 
-  if self:is_truncated(90) then
+  if self:is_truncated(self.trunc_width.git_status) then
     return is_head_empty and string.format('  %s ', signs.head or '') or ''
   end
 
@@ -82,7 +97,7 @@ M.get_git_status = function(self)
 end
 
 M.get_filename = function(self)
-  if self:is_truncated(140) then return " %<%f " end
+  if self:is_truncated(self.trunc_width.filename) then return " %<%f " end
   return " %<%F "
 end
 
@@ -96,7 +111,7 @@ M.get_filetype = function()
 end
 
 M.get_line_col = function(self)
-  if self:is_truncated(60) then return ' %l:%c ' end
+  if self:is_truncated(self.trunc_width.line_col) then return ' %l:%c ' end
   return ' Ln %l, Col %c '
 end
 
