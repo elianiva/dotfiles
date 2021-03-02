@@ -1,13 +1,12 @@
-vim.cmd[[packadd nvim-lspconfig]]
-vim.cmd[[packadd lspsaga.nvim]]
-vim.cmd[[packadd nvim-jdtls]]
+vim.cmd [[packadd nvim-lspconfig]]
+vim.cmd [[packadd lspsaga.nvim]]
 
 local nvim_lsp = require("lspconfig")
 local mappings = require("modules.lsp._mappings")
 local is_cfg_present = require("modules._util").is_cfg_present
 
 require("modules.lsp._diagnostic")
-require"lspsaga".init_lsp_saga({
+require("lspsaga").init_lsp_saga({
   border_style = 1,
 })
 
@@ -25,7 +24,7 @@ end
 
 local custom_capabilities = function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true;
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   return capabilities
 end
@@ -43,7 +42,7 @@ local eslint = {
   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
   lintIgnoreExitCode = true,
   lintStdin = true,
-  lintFormats = {"%f:%l:%c: %m"},
+  lintFormats = { "%f:%l:%c: %m" },
 }
 
 local denofmt = {
@@ -55,7 +54,7 @@ local sumneko_root = os.getenv("HOME") .. "/repos/lua-language-server"
 local servers = {
   tsserver = {
     filetypes = { "javascript", "typescript", "typescriptreact" },
-    on_attach = function (client)
+    on_attach = function(client)
       mappings.lsp_mappings()
 
       if client.config.flags then
@@ -67,7 +66,7 @@ local servers = {
       documentFormatting = false,
     },
     handlers = {
-      ["textDocument/publishDiagnostics"] = is_using_eslint
+      ["textDocument/publishDiagnostics"] = is_using_eslint,
     },
     on_init = custom_on_init,
     root_dir = vim.loop.cwd,
@@ -85,7 +84,7 @@ local servers = {
   rust_analyzer = {},
   clangd = {},
   gopls = {
-    root_dir = vim.loop.cwd
+    root_dir = vim.loop.cwd,
   },
   efm = {
     cmd = { "efm-langserver" },
@@ -95,16 +94,16 @@ local servers = {
       client.resolved_capabilities.document_formatting = true
     end,
     on_init = custom_on_init,
-    filetypes = {"javascript", "typescript", "typescriptreact", "svelte"},
+    filetypes = { "javascript", "typescript", "typescriptreact", "svelte" },
     settings = {
-      rootMarkers = {".git", "package.json"},
+      rootMarkers = { ".git", "package.json" },
       languages = {
         javascript = { eslint, denofmt },
         typescript = { eslint, denofmt },
         typescriptreact = { eslint },
         svelte = { eslint },
-      }
-    }
+      },
+    },
   },
   svelte = {
     on_attach = function(client)
@@ -114,69 +113,92 @@ local servers = {
         client.config.flags.allow_incremental_sync = true
       end
       client.server_capabilities.completionProvider.triggerCharacters = {
-        ".", '"', "'", "`", "/", "@", "*",
-        "#", "$", "+", "^", "(", "[", "-", ":"
+        ".",
+        "\"",
+        "'",
+        "`",
+        "/",
+        "@",
+        "*",
+        "#",
+        "$",
+        "+",
+        "^",
+        "(",
+        "[",
+        "-",
+        ":",
       }
     end,
     handlers = {
-      ["textDocument/publishDiagnostics"] = is_using_eslint
+      ["textDocument/publishDiagnostics"] = is_using_eslint,
     },
     on_init = custom_on_init,
     filetypes = { "svelte" },
     settings = {
-      svelte =  {
+      svelte = {
         plugin = {
           html = {
             completions = {
               enable = true,
-              emmet = false
+              emmet = false,
             },
           },
           svelte = {
             completions = {
               enable = true,
-              emmet = false
+              emmet = false,
+            },
+            compilerWarnings = {
+              ["a11y-invalid-attribute"] = "ignore",
             },
           },
           css = {
             completions = {
               enable = true,
-              emmet = false
+              emmet = false,
             },
           },
-        }
-      }
+        },
+      },
     },
   },
   sumneko_lua = {
     cmd = {
-      sumneko_root
-        .. "/bin/Linux/lua-language-server", "-E",
-      sumneko_root .. "/main.lua"
+      sumneko_root .. "/bin/Linux/lua-language-server",
+      "-E",
+      sumneko_root .. "/main.lua",
     },
     on_attach = custom_on_attach,
     on_init = custom_on_init,
     settings = {
       Lua = {
-        runtime = { version = "LuaJIT", path = vim.split(package.path, ";"), },
+        runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
         diagnostics = {
           enable = true,
           globals = {
-            "vim", "describe", "it", "before_each", "after_each",
-            "awesome", "theme", "client", "P"
+            "vim",
+            "describe",
+            "it",
+            "before_each",
+            "after_each",
+            "awesome",
+            "theme",
+            "client",
+            "P",
           },
         },
         workspace = {
-          preloadFileSize = 400
-        }
-      }
-    }
-  }
+          preloadFileSize = 400,
+        },
+      },
+    },
+  },
 }
 
 for name, opts in pairs(servers) do
   local client = nvim_lsp[name]
-  client.setup{
+  client.setup({
     cmd = opts.cmd or client.cmd,
     filetypes = opts.filetypes or client.filetypes,
     on_attach = opts.on_attach or custom_on_attach,
@@ -184,14 +206,17 @@ for name, opts in pairs(servers) do
     handlers = opts.handlers or client.handlers,
     root_dir = opts.root_dir or client.root_dir,
     capabilities = opts.capabilities or custom_capabilities(),
-    settings = opts.settings or {}
-  }
+    settings = opts.settings or {},
+  })
 end
 
 -- jdtls stuff
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
   augroup jdtls
   au!
-  au FileType java lua require'jdtls'.start_or_attach({cmd = {'/home/elianiva/.scripts/run_jdtls'}, on_attach = require'modules.lsp._mappings'.lsp_mappings()})
+  au FileType java lua require'jdtls'.start_or_attach({cmd = {'/home/elianiva/.scripts/run_jdtls'}, on_attach = require'modules.lsp._mappings'.lsp_mappings("jdtls")})
   augroup END
-]], false)
+]],
+  false
+)

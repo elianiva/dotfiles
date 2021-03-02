@@ -1,6 +1,6 @@
-vim.cmd[[packadd nvim-treesitter]]
-vim.cmd[[packadd nvim-treesitter-textobjects]]
-vim.cmd[[packadd playground]]
+vim.cmd [[packadd nvim-treesitter]]
+vim.cmd [[packadd nvim-treesitter-textobjects]]
+vim.cmd [[packadd playground]]
 
 local ts_config = require("nvim-treesitter.configs")
 

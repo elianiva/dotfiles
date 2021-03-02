@@ -1,8 +1,8 @@
 return {
   extension = {
-    ['svelte'] = 'svelte',
-    ['tsx'] = 'tsx',
-    ['jsx'] = 'javascript',
-    ['gyp'] = 'json'
-  }
+    ["svelte"] = "svelte",
+    ["tsx"] = "tsx",
+    ["jsx"] = "javascript",
+    ["gyp"] = "json",
+  },
 }

@@ -1,13 +1,13 @@
 -- originally was taken from https://github.com/cooper-anderson/dotfiles
 -- with some modifications and refactoring that I did
 
-vim.cmd[[packadd nvim-bufferline.lua]]
+vim.cmd [[packadd nvim-bufferline.lua]]
 
 local options = {
   show_buffer_close_icons = false,
-  separator_style = {"", ""},
-  diagnostics = "nvim_lsp",
-  buffer_close_icon= '',
+  separator_style         = { "", "" },
+  diagnostics             = "nvim_lsp",
+  buffer_close_icon       = "",
 }
 
 local function get_diagnostics_count()
@@ -61,8 +61,8 @@ function _G.nvim_diagnostics_tab()
   return bufferline .. tabline .. "#" .. diagnostics
 end
 
-require("bufferline").setup{
+require("bufferline").setup({
   options = options,
-}
+})
 
 vim.o.tabline = "%!v:lua.nvim_diagnostics_tab()"

@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- prevent typo when pressing `wq` or `q`
-vim.cmd[[
+vim.cmd [[
   cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
   cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
   cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
@@ -10,7 +10,7 @@ vim.cmd[[
 ]]
 
 -- change cwd to current directory
-vim.cmd("cd %:p:h")
+vim.cmd [[cd %:p:h]]
 require("plugins._packer")
 
 -- load modules
