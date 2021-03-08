@@ -1,5 +1,5 @@
 " Set formatoptions
-au FileType * setlocal formatoptions-=cro
+au FileType * setlocal formatoptions-=ro
 
 " Set filetypes
 au BufNewFile,BufRead *.ejs,*.hbs set filetype=html

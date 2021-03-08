@@ -32,23 +32,28 @@ nnoremap {
   { silent = true },
 }
 nnoremap {
-  "<Leader>tb",
+  "<Leader>fb",
   require("plugins._telescope").buffer_fuzzy,
   { silent = true },
 }
 nnoremap {
-  "<Leader>tf",
+  "<Leader>ff",
   require("plugins._telescope").frecency,
   { silent = true },
 }
 nnoremap {
-  "<Leader>tm",
+  "<Leader>fm",
   require("telescope").extensions.media_files.media_files,
   { silent = true },
 }
 nnoremap {
-  "<Leader>ta",
+  "<Leader>fa",
   require("plugins._telescope").arecibo,
+  { silent = true },
+}
+nnoremap {
+  "<Leader>fl",
+  require("plugins._telescope").file_browser,
   { silent = true },
 }
 
@@ -122,3 +127,5 @@ vnoremap { ">", ">gv" }
 
 xmap { "ga", "<Plug>(EasyAlign)", { silent = true }}
 nmap { "ga", "<Plug>(EasyAlign)", { silent = true }}
+
+nmap {"<Leader>t", "<Plug>PlenaryTestFile", { silent = true }}

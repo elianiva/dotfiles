@@ -80,4 +80,4 @@ require("formatter").setup({
   },
 })
 
-nnoremap {"<Leader>f", "<CMD>Format<CR>", { silent = true }}
+nnoremap {"gf", "<CMD>Format<CR>", { silent = true }}

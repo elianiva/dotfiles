@@ -31,9 +31,9 @@ end
 
 -- use eslint if the eslint config file present
 local is_using_eslint = function(_, _, result, client_id)
-  -- if is_cfg_present("/.eslintrc.json") or is_cfg_present("/.eslintrc.js") then
-  --   return
-  -- end
+  if is_cfg_present("/.eslintrc.json") or is_cfg_present("/.eslintrc.js") then
+    return
+  end
 
   return vim.lsp.handlers["textDocument/publishDiagnostics"](_, _, result, client_id)
 end
@@ -92,6 +92,7 @@ local servers = {
       client.resolved_capabilities.rename = false
       client.resolved_capabilities.hover = false
       client.resolved_capabilities.document_formatting = true
+      client.resolved_capabilities.completion = false
     end,
     on_init = custom_on_init,
     filetypes = { "javascript", "typescript", "typescriptreact", "svelte" },

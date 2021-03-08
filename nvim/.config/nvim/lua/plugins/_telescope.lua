@@ -3,7 +3,9 @@ local previewers = require("telescope.previewers")
 
 local M = {}
 
-require("telescope").setup({
+local ok, telescope = pcall(require, "telescope")
+
+telescope.setup({
   defaults = {
     file_previewer     = previewers.vim_buffer_cat.new,
     grep_previewer     = previewers.vim_buffer_vimgrep.new,
@@ -64,6 +66,10 @@ require("telescope").setup({
     },
   },
   extensions = {
+    fzy_native = {
+      override_generic_sorter = true,
+      override_file_sorter = true,
+    },
     media_files = {
       filetypes = { "png", "webp", "jpg", "jpeg", "pdf", "mkv" },
       find_cmd  = "rg",
@@ -88,10 +94,10 @@ require("telescope").setup({
   },
 })
 
-require("telescope").load_extension("fzy_native") -- superfast sorter
-require("telescope").load_extension("media_files") -- media preview
-require("telescope").load_extension("frecency") -- frecency
-require("telescope").load_extension("arecibo") -- websearch
+pcall(require("telescope").load_extension, "fzy_native") -- superfast sorter
+pcall(require("telescope").load_extension, "media_files") -- media preview
+pcall(require("telescope").load_extension, "frecency") -- frecency
+pcall(require("telescope").load_extension, "arecibo") -- websearch
 
 M.grep_prompt = function()
   require("telescope.builtin").grep_string({
@@ -166,4 +172,12 @@ require("jdtls.ui").pick_one_async = function(results, _, label_fn, cb)
   }):find()
 end
 
-return M
+return setmetatable({}, {
+  __index = function(_, k)
+    if M[k] then
+      return M[k]
+    else
+      return require('telescope.builtin')[k]
+    end
+  end
+})

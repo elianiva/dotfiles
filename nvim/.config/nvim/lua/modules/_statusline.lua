@@ -28,10 +28,8 @@ M.colors = {
 }
 
 M.trunc_width = setmetatable({
-  mode       = 80,
   git_status = 90,
   filename   = 140,
-  line_col   = 60,
 }, {
   __index = function()
     return 80
@@ -44,39 +42,35 @@ M.is_truncated = function(_, width)
 end
 
 M.modes = setmetatable({
-  ["n"]  = { "Normal", "N" },
-  ["no"] = { "N·Pending", "N·P" },
-  ["v"]  = { "Visual", "V" },
-  ["V"]  = { "V·Line", "V·L" },
-  [""] = { "V·Block", "V·B" }, -- this is not ^V, but it's , they're different
-  ["s"]  = { "Select", "S" },
-  ["S"]  = { "S·Line", "S·L" },
-  [""] = { "S·Block", "S·B" }, -- same with this one, it's not ^S but it's 
-  ["i"]  = { "Insert", "I" },
-  ["ic"] = { "Insert", "I" },
-  ["R"]  = { "Replace", "R" },
-  ["Rv"] = { "V·Replace", "V·R" },
-  ["c"]  = { "Command", "C" },
-  ["cv"] = { "Vim·Ex ", "V·E" },
-  ["ce"] = { "Ex ", "E" },
-  ["r"]  = { "Prompt ", "P" },
-  ["rm"] = { "More ", "M" },
-  ["r?"] = { "Confirm ", "C" },
-  ["!"]  = { "Shell ", "S" },
-  ["t"]  = { "Terminal ", "T" },
+  ["n"]  = "N",
+  ["no"] = "N·P",
+  ["v"]  = "V",
+  ["V"]  = "V·L",
+  [""] = "V·B", -- this is not ^V, but it's , they're different
+  ["s"]  = "S",
+  ["S"]  = "S·L",
+  [""] = "S·B", -- same with this one, it's not ^S but it's 
+  ["i"]  = "I",
+  ["ic"] = "I",
+  ["R"]  = "R",
+  ["Rv"] = "V·R",
+  ["c"]  = "C",
+  ["cv"] = "V·E",
+  ["ce"] = "E",
+  ["r"]  = "P",
+  ["rm"] = "M",
+  ["r?"] = "C",
+  ["!"]  = "S",
+  ["t"]  = "T",
 }, {
   __index = function()
-    return { "Unknown", "U" } -- handle edge cases
+    return "U" -- handle edge cases
   end,
 })
 
 M.get_current_mode = function(self)
   local current_mode = api.nvim_get_mode().mode
-
-  if self:is_truncated(self.trunc_width.mode) then
-    return string.format(" %s ", self.modes[current_mode][2]):upper()
-  end
-  return string.format(" %s ", self.modes[current_mode][1]):upper()
+  return string.format(" %s ", self.modes[current_mode]):upper()
 end
 
 M.get_git_status = function(self)
@@ -111,16 +105,13 @@ M.get_filetype = function()
   local filetype = vim.bo.filetype
 
   if filetype == "" then
-    return ""
+    return " No FT "
   end
   return string.format(" %s %s ", icon, filetype):lower()
 end
 
-M.get_line_col = function(self)
-  if self:is_truncated(self.trunc_width.line_col) then
-    return " %l:%c "
-  end
-  return " Ln %l, Col %c "
+M.get_line_col = function()
+  return " %l:%c "
 end
 
 M.set_active = function(self)
@@ -140,15 +131,15 @@ M.set_active = function(self)
     colors.active,
     mode,
     mode_alt,
-    git,
-    git_alt,
+    line_col,
+    line_col_alt,
     "%=",
     filename,
     "%=",
     filetype_alt,
     filetype,
-    line_col_alt,
-    line_col,
+    git,
+    git_alt,
   })
 end
 
@@ -179,17 +170,14 @@ Statusline = setmetatable(M, {
 
 -- set statusline
 -- TODO: replace this once we can define autocmd using lua
-vim.api.nvim_exec(
-  [[
+api.nvim_exec([[
   augroup Statusline
   au!
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
   au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline('explorer')
   augroup END
-]],
-  false
-)
+]], false)
 
 ----[[
 --  NOTE: I don't use this since the statusline already has
@@ -223,3 +211,4 @@ vim.api.nvim_exec(
 --     )
 --   end
 -- end
+

@@ -203,4 +203,8 @@ Util.spinner = function()
   return timer
 end
 
+Util.t = function(cmd)
+  return vim.api.nvim_replace_termcodes(cmd, true, true, true)
+end
+
 return Util

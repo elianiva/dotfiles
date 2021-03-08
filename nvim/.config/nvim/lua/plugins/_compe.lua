@@ -1,5 +1,4 @@
 vim.cmd [[packadd nvim-compe]]
-
 local remap = vim.api.nvim_set_keymap
 
 vim.g.vsnip_snippet_dir = vim.fn.stdpath("config") .. "/snippets"
@@ -23,23 +22,22 @@ require("compe").setup({
   },
 })
 
-require("compe.pattern").set_filetype_config("javascript", {
-  keyword_pattern = [[\%(@\w*\|\h\w*\)]],
-})
-
-local npairs = require("nvim-autopairs")
 Util.trigger_completion = function()
   if vim.fn.pumvisible() ~= 0 then
     if vim.fn.complete_info()["selected"] ~= -1 then
       return vim.fn["compe#confirm"]()
     end
-
-    vim.fn.nvim_select_popupmenu_item(0, false, false, {})
-    P(vim.fn["compe#confirm"]())
-    return vim.fn["compe#confirm"]()
   end
 
-  return npairs.check_break_line_char()
+  local curr_col = vim.fn.col(".")
+  local prev_char = vim.fn.getline("."):sub(curr_col - 1, curr_col - 1)
+
+  -- minimal autopairs-like behaviour
+  if prev_char == "{" then return Util.t("<CR>}<C-o>O") end
+  if prev_char == "[" then return Util.t("<CR>]<C-o>O") end
+  if prev_char == "(" then return Util.t("<CR>)<C-o>O") end
+  if prev_char == ">" then return Util.t("<CR><C-o>O") end -- html indents
+  return Util.t("<CR>")
 end
 
 remap(

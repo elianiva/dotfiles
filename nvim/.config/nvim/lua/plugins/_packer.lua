@@ -27,7 +27,6 @@ if ok then
       opt = true,
       cmd = "Format",
     } -- helper for fast formatting
-    use { "wakatime/vim-wakatime", opt = false } -- track usage time using wakatime
     use { "norcalli/nvim-colorizer.lua", opt = true } -- colorize hex/rgb/hsl value
     use {
       "~/repos/nvim-treesitter",
@@ -94,29 +93,32 @@ if ok then
     use { "machakann/vim-sandwich", opt = false } -- surround words with symbol
     use {
       "glacambre/firenvim",
-      run = function()
-        vim.fn["firenvim#install"](0)
-      end,
+      run = function() vim.fn["firenvim#install"](0) end,
     }
     use {
       "mhinz/vim-sayonara",
       cmd = "Sayonara",
       opt = true,
     } -- better window and buffer management
-    -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
     use { "AndrewRadev/splitjoin.vim", opt = false }
-    use { "pwntester/octo.nvim", opt = false } -- TUI github client
+    use {
+      "pwntester/octo.nvim",
+      opt = true,
+      cmd = "Octo"
+    } -- TUI github client
     use { "tjdevries/astronauta.nvim", opt = false } -- temporary stuff before it got merged upstream
     use { "phaazon/hop.nvim", opt = false } -- easymotion but better
-    -- use {'TimUntersberger/neogit', opt = false} -- magit clone, use this later when it's more stable
     use {
       "captbaritone/better-indent-support-for-php-with-html",
       opt = false,
     } -- hhhhhhhh
-    use{
-      "andweeb/presence.nvim",
-      opt=false
+    use {
+      "tweekmonster/startuptime.vim"
     }
+
+    -- check these out again later
+    -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
+    -- use {'TimUntersberger/neogit', opt = false} -- magit clone, use this later when it's more stable
   end
 
   packer.startup(plugins)

@@ -4,5 +4,6 @@ return {
     ["tsx"] = "tsx",
     ["jsx"] = "javascript",
     ["gyp"] = "json",
+    ["svx"] = "markdown",
   },
 }

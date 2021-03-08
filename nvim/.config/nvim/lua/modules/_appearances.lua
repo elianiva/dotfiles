@@ -61,13 +61,13 @@ ColorUtil.override_gruvbox = function()
     { "StatusLine",   { bg = "#EBDBB2", fg = "#3C3836" }},
     { "StatusLineNC", { bg = "#928374", fg = "#3C3836" }},
     { "Mode",         { bg = "#928374", fg = "#1D2021", gui = "bold" }},
-    { "LineCol",      { bg = "#928374", fg = "#1D2021", gui = "bold" }},
-    { "Git",          { bg = "#504945", fg = "#EBDBB2" }},
+    { "LineCol",      { bg = "#504945", fg = "#ebdbb2", gui = "bold" }},
+    { "LineColAlt",   { bg = "#3C3836", fg = "#ebdbb2" }},
+    { "Git",          { bg = "#928374", fg = "#1D2021", gui = "bold" }},
     { "Filetype",     { bg = "#504945", fg = "#EBDBB2" }},
     { "Filename",     { bg = "#504945", fg = "#EBDBB2" }},
     { "ModeAlt",      { bg = "#504945", fg = "#928374" }},
     { "GitAlt",       { bg = "#3C3836", fg = "#504945" }},
-    { "LineColAlt",   { bg = "#504945", fg = "#928374" }},
     { "FiletypeAlt",  { bg = "#3C3836", fg = "#504945" }},
 
     -- nvimtree
@@ -116,7 +116,7 @@ vim.cmd [[colorscheme gruvbox8]]
 
 -- needs to be loaded after setting colourscheme
 vim.cmd [[packadd nvim-web-devicons]]
-require("nvim-web-devicons").setup{
+require("nvim-web-devicons").setup {
   override = {
     svg = {
       icon  = "",

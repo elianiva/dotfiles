@@ -21,7 +21,6 @@ require("modules._others")
 require("modules._mappings")
 require("modules._statusline")
 
-require("plugins._autopairs")
 require("plugins._bufferline")
 require("plugins._compe")
 require("plugins._emmet")
