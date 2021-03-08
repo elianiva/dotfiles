@@ -114,21 +114,8 @@ local servers = {
         client.config.flags.allow_incremental_sync = true
       end
       client.server_capabilities.completionProvider.triggerCharacters = {
-        ".",
-        "\"",
-        "'",
-        "`",
-        "/",
-        "@",
-        "*",
-        "#",
-        "$",
-        "+",
-        "^",
-        "(",
-        "[",
-        "-",
-        ":",
+        ".", '"', "'", "`", "/", "@", "*",
+        "#", "$", "+", "^", "(", "[", "-", ":"
       }
     end,
     handlers = {
@@ -149,9 +136,6 @@ local servers = {
             completions = {
               enable = true,
               emmet = false,
-            },
-            compilerWarnings = {
-              ["a11y-invalid-attribute"] = "ignore",
             },
           },
           css = {
@@ -178,15 +162,8 @@ local servers = {
         diagnostics = {
           enable = true,
           globals = {
-            "vim",
-            "describe",
-            "it",
-            "before_each",
-            "after_each",
-            "awesome",
-            "theme",
-            "client",
-            "P",
+            "vim", "describe", "it", "before_each", "after_each",
+            "awesome", "theme", "client", "P",
           },
         },
         workspace = {

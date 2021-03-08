@@ -4,10 +4,8 @@ local inoremap = k.inoremap
 
 local M = {}
 
--- local provider = require"lspsaga.provider"
 local hover = require("lspsaga.hover")
--- local codeaction = require"lspsaga.codeaction"
-local sig_help = require("lspsaga.signaturehelp")
+local signature = require("lspsaga.signaturehelp")
 local rename = require("lspsaga.rename")
 local diagnostic = require("lspsaga.diagnostic")
 local provider = require("lspsaga.provider")
@@ -16,10 +14,10 @@ M.lsp_mappings = function(type)
   if type == "jdtls" then
     nnoremap({ "ga", require("jdtls").code_action, { silent = true } })
   else
-    nnoremap({ "ga", require("telescope.builtin").lsp_code_actions, { silent = true } })
+    nnoremap({ "ga", require("plugins._telescope").lsp_code_actions, { silent = true } })
   end
 
-  inoremap({ "<C-s>", sig_help.signature_help, { silent = true } })
+  inoremap({ "<C-s>", signature.signature_help, { silent = true } })
   nnoremap({ "K", hover.render_hover_doc, { silent = true } })
   nnoremap({ "gd", provider.preview_definition, { silent = true } })
   nnoremap({ "<leader>gd", vim.lsp.buf.definition, { silent = true } })

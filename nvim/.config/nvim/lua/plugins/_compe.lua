@@ -29,14 +29,15 @@ Util.trigger_completion = function()
     end
   end
 
-  local curr_col = vim.fn.col(".")
-  local prev_char = vim.fn.getline("."):sub(curr_col - 1, curr_col - 1)
+  local prev_col, next_col = vim.fn.col(".") - 1, vim.fn.col(".")
+  local prev_char = vim.fn.getline("."):sub(prev_col, prev_col)
+  local next_char = vim.fn.getline("."):sub(next_col, next_col)
 
   -- minimal autopairs-like behaviour
-  if prev_char == "{" then return Util.t("<CR>}<C-o>O") end
-  if prev_char == "[" then return Util.t("<CR>]<C-o>O") end
-  if prev_char == "(" then return Util.t("<CR>)<C-o>O") end
-  if prev_char == ">" then return Util.t("<CR><C-o>O") end -- html indents
+  if prev_char == "{" and next_char == "" then return Util.t("<CR>}<C-o>O") end
+  if prev_char == "[" and next_char == "" then return Util.t("<CR>]<C-o>O") end
+  if prev_char == "(" and next_char == "" then return Util.t("<CR>)<C-o>O") end
+  if prev_char == ">" and next_char == "<" then return Util.t("<CR><C-o>O") end -- html indents
   return Util.t("<CR>")
 end
 
