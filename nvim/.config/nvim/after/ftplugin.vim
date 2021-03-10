@@ -18,9 +18,6 @@ au FileType php setlocal sw=4 ts=4
 au FileType json set filetype=jsonc
 au FileType svelte setlocal indentexpr=GetSvelteIndent()
 
-" Enable emmet.vim on these filetypes
-au FileType html,javascript,php,xml,svelte,typescriptreact EmmetInstall
-
 " enable spelling in markdown
 au FileType markdown setlocal conceallevel=3 concealcursor=nc spell
 

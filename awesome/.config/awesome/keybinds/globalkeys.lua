@@ -40,52 +40,6 @@ local M = gears.table.join(
   end,
   {description = "go back", group = "tag"}),
 
-  awful.key({ modkey }, "h", function()
-    awful.client.focus.bydirection("left")
-  end,
-  {description = "focus to left window ", group = "layout"}),
-
-  awful.key({ modkey }, "j", function()
-    awful.client.focus.bydirection("down")
-  end,
-  {description = "focus to window below ", group = "client"}),
-
-  awful.key({ modkey }, "k", function()
-    awful.client.focus.bydirection("up")
-  end,
-  {description = "focus to window above", group = "client"}),
-
-  awful.key({ modkey }, "l", function()
-    awful.client.focus.bydirection("right")
-  end,
-  {description = "focus to right window", group = "layout"}),
-
-  -- Layout manipulation
-  awful.key({ modkey, "Shift"   }, "j", function()
-    awful.client.swap.bydirection("down")
-  end,
-  {description = "swap with next client by index", group = "client"}),
-
-  awful.key({ modkey, "Shift"   }, "k", function()
-    awful.client.swap.bydirection("up")
-  end,
-  {description = "swap with previous client by index", group = "client"}),
-
-  awful.key({ modkey, "Shift"   }, "h", function()
-    awful.client.swap.bydirection("left")
-  end,
-  {description = "swap with right", group = "layout"}),
-
-  awful.key({ modkey, "Shift"   }, "l", function()
-    awful.client.swap.bydirection("right")
-  end,
-  {description = "swap with left", group = "layout"}),
-
-  awful.key({ modkey }, "u", function()
-    awful.client.urgent.jumpto()
-  end,
-  {description = "jump to urgent client", group = "client"}),
-
   -- Standard program
   awful.key({ modkey }, "Return", function()
     awful.spawn(terminal)

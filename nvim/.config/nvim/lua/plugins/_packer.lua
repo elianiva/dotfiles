@@ -17,7 +17,7 @@ if ok then
     use { "wbthomason/packer.nvim", opt = true } -- plugin manager
 
     use { "lifepillar/vim-gruvbox8", opt = false } -- nice colorscheme
-    use { "embark-theme/vim", opt = false }
+    use { "embark-theme/vim", opt = false } -- demo stuff
     use { "windwp/nvim-autopairs", opt = true } -- autopairs brackets, braces etc
     use { "b3nj5m1n/kommentary", opt = true } -- comment stuff easier
     use { "brooth/far.vim", opt = false } -- project wide search and replace
@@ -63,11 +63,7 @@ if ok then
     use { "neovim/nvim-lspconfig", opt = true } -- builtin lsp config
     use { "mfussenegger/nvim-jdtls", opt = false } -- jdtls
     use { "glepnir/lspsaga.nvim", opt = true } -- better UI for builtin LSP
-    use {
-      "mattn/emmet-vim",
-      cmd = "EmmetInstall",
-      opt = true,
-    } -- less typing for html code
+    use { "windwp/nvim-ts-autotag", opt = true } -- auto-close html tag
     use { "tami5/sql.nvim", opt = false } -- sql bindings in LuaJIT
     use {
       "~/repos/telescope.nvim",
@@ -112,9 +108,7 @@ if ok then
       "captbaritone/better-indent-support-for-php-with-html",
       opt = false,
     } -- hhhhhhhh
-    use {
-      "tweekmonster/startuptime.vim"
-    }
+    use { "tweekmonster/startuptime.vim" }
 
     -- check these out again later
     -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved

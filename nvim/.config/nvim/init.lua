@@ -17,7 +17,6 @@ require("plugins._packer")
 require("modules._settings")
 require("modules._appearances")
 require("modules._util")
-require("modules._others")
 require("modules._mappings")
 require("modules._statusline")
 
@@ -32,6 +31,9 @@ require("plugins._snippets")
 require("plugins._telescope")
 require("plugins._treesitter")
 require("plugins._kommentary")
+
+-- stuff
+require("modules._others")
 
 -- lsp stuff
 require("modules.lsp")

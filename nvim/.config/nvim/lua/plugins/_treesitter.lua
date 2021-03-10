@@ -1,6 +1,7 @@
 vim.cmd [[packadd nvim-treesitter]]
 vim.cmd [[packadd nvim-treesitter-textobjects]]
 vim.cmd [[packadd playground]]
+vim.cmd [[packadd nvim-ts-autotag]]
 
 local ts_config = require("nvim-treesitter.configs")
 
@@ -18,6 +19,10 @@ ts_config.setup {
   indent = {
     enable = true,
   },
+
+  -- autotag = {
+  --   enable = true,
+  -- },
 
   textobjects = {
     select = {

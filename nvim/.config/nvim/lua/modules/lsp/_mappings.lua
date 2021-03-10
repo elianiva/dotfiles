@@ -1,3 +1,4 @@
+
 local k = require("astronauta.keymap")
 local nnoremap = k.nnoremap
 local inoremap = k.inoremap
@@ -14,7 +15,7 @@ M.lsp_mappings = function(type)
   if type == "jdtls" then
     nnoremap({ "ga", require("jdtls").code_action, { silent = true } })
   else
-    nnoremap({ "ga", require("plugins._telescope").lsp_code_actions, { silent = true } })
+    nnoremap({ "ga", require("plugins._telescope").code_actions, { silent = true } })
   end
 
   inoremap({ "<C-s>", signature.signature_help, { silent = true } })

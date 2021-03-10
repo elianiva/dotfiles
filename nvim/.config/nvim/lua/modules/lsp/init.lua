@@ -8,6 +8,12 @@ local is_cfg_present = require("modules._util").is_cfg_present
 require("modules.lsp._diagnostic")
 require("lspsaga").init_lsp_saga({
   border_style = 1,
+  code_action_prompt = {
+     enable = true,
+     sign = true,
+     sign_priority = 20,
+     virtual_text = false,
+   },
 })
 
 local custom_on_attach = function(client)
