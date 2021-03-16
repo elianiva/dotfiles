@@ -1,12 +1,8 @@
 #!/bin/sh
-
-light -S 40 # set brightness
-setxkbmap -option caps:none # unmap useless capslock
-xset -b # remove annoying bell
-xset r rate 300 50 # gotta go fast
+source ~/.xinitrc
 
 # japanese input method using fcitx-mozc
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-fcitx &
+# fcitx &

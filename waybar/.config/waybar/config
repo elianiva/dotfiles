@@ -1,0 +1,125 @@
+// vim:ft=jsonc
+
+{
+  "layer": "top",
+  "position": "top",
+  "height": 24, // Waybar height (to be removed for auto height)
+  // "width": 1280, // Waybar width
+  // Choose the order of the modules
+  "modules-left": ["sway/workspaces", "custom/left-sep", "custom/playerctl", "sway/mode"],
+  "modules-center": ["clock"],
+  "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "battery", "tray"],
+  // Modules configuration
+  // wl-gammactl -c 1.015 -b 0.946 -g 0.985
+  "custom/playerctl": {
+    "name": "playerctl",
+    "format": "<span color=\"#d79921\"> </span> {}",
+    "return-type": "json",
+    "escape": true,
+    "max-length": 40,
+    "exec": "playerctl --player=spotify --follow metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{playerName}} : {{artist}} - {{title}}\", \"alt\": \"{{status}}\", \"class\": \"playerctl\"}' -F",
+    "on-click": "playerctl --player=spotify play-pause",
+  },
+  "custom/left-sep": {
+    "format": " ",
+    "escape": true,
+  },
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "urgent": "!",
+      "focused": "*",
+      "default": ""
+    },
+    // I prefer to show all of them
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+    }
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 10
+  },
+  "clock": {
+    "format": "{:%a, %I:%M %p}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+  "cpu": {
+    "format": "<span color=\"#d79921\"></span> {usage}%",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "<span color=\"#d79921\"></span> {used:0.1f}GB"
+  },
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C {icon}",
+    "format": "<span color=\"#d79921\">{icon}</span> {temperatureC}°C",
+    "format-icons": ["", "", ""]
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "<span color=\"#d79921\">{icon}</span> {percent}%",
+    "format-icons": ["", ""]
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span color=\"#d79921\">{icon}</span> {capacity}%",
+    "format-charging": "<span color=\"#d79921\"></span> {capacity}% ",
+    "format-plugged": "<span color=\"#d79921\"></span> {capacity}%",
+    "format-alt": "{time} {icon}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    /* "format-wifi": "{essid} ({signalStrength}%) ", */
+    "format-wifi": "<span color=\"#d79921\">直</span> Connected ({bandwidthUpBits} | {bandwidthDownBits})",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected 睊",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "<span color=\"#d79921\">{icon}</span> {volume}%",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    /* "format-source": " {volume}% ", */
+    /* "format-source-muted": "", */
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "墳",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+}

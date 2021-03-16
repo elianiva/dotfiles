@@ -140,3 +140,6 @@ skim-redraw-prompt() {
   zle reset-prompt
 }
 zle -N skim-redraw-prompt
+
+# fnm
+export PATH=/home/elianiva/.fnm:$PATH

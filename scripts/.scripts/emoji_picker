@@ -5,7 +5,8 @@
 # Must have xclip installed to even show menu.
 xclip -h 2>/dev/null || exit 1
 
-chosen=$(cut -d ';' -f1 ~/.scripts/emoji | rofi -dmenu -p "Pick: " -i -l 10 -theme ~/.config/rofi/themes/gruvbox.rasi | sed "s/ .*//")
+# chosen=$(cut -d ';' -f1 ~/.scripts/emoji | rofi -dmenu -p "Pick: " -i -l 10 -theme ~/.config/rofi/themes/gruvbox.rasi | sed "s/ .*//")
+chosen=$(cut -d ';' -f1 ~/.scripts/emoji | wofi --dmenu -p "Pick: " -i -l 10 | sed "s/ .*//")
 
 [ "$chosen" != "" ] || exit
 
@@ -13,6 +14,7 @@ chosen=$(cut -d ';' -f1 ~/.scripts/emoji | rofi -dmenu -p "Pick: " -i -l 10 -the
 if [ -n "$1" ]; then
   xdotool key Shift+Insert
 else
-  echo "$chosen" | tr -d '\n' | xclip -selection clipboard
+  # echo "$chosen" | tr -d '\n' | xclip -selection clipboard
+  echo "$chosen" | tr -d '\n' | wl-copy
   notify-send "Emoji copied to clipboard." &
 fi
