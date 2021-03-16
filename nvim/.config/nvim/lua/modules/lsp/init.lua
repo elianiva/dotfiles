@@ -9,23 +9,23 @@ require("modules.lsp._diagnostic")
 require("lspsaga").init_lsp_saga({
   border_style = 1,
   code_action_prompt = {
-     enable = true,
+     enable = false,
      sign = true,
      sign_priority = 20,
      virtual_text = false,
    },
 })
 
-local custom_on_attach = function(client)
+local custom_on_attach = function()
   mappings.lsp_mappings()
+end
+
+local custom_on_init = function(client)
+  print("Language Server Protocol started!")
 
   if client.config.flags then
     client.config.flags.allow_incremental_sync = true
   end
-end
-
-local custom_on_init = function()
-  print("Language Server Protocol started!")
 end
 
 local custom_capabilities = function()
@@ -60,13 +60,8 @@ local sumneko_root = os.getenv("HOME") .. "/repos/lua-language-server"
 local servers = {
   tsserver = {
     filetypes = { "javascript", "typescript", "typescriptreact" },
-    on_attach = function(client)
+    on_attach = function()
       mappings.lsp_mappings()
-
-      if client.config.flags then
-        client.config.flags.allow_incremental_sync = true
-      end
-      client.resolved_capabilities.document_formatting = false
     end,
     init_options = {
       documentFormatting = false,
@@ -89,6 +84,7 @@ local servers = {
   intelephense = {},
   rust_analyzer = {},
   clangd = {},
+  pyright = {},
   gopls = {
     root_dir = vim.loop.cwd,
   },
@@ -116,9 +112,6 @@ local servers = {
     on_attach = function(client)
       mappings.lsp_mappings()
 
-      if client.config.flags then
-        client.config.flags.allow_incremental_sync = true
-      end
       client.server_capabilities.completionProvider.triggerCharacters = {
         ".", '"', "'", "`", "/", "@", "*",
         "#", "$", "+", "^", "(", "[", "-", ":"

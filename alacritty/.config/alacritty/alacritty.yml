@@ -11,8 +11,8 @@ window:
     y: 0
 
   padding:
-    x: 5
-    y: 5
+    x: 4
+    y: 4
 
   dynamic_title: true
   dynamic_padding: true
@@ -41,7 +41,7 @@ font:
     family: JetBrainsMono Nerd Font
     style: Bold Italic
 
-  size: 7.5
+  size: 10.5
 
   offset:
     x: 0

@@ -1,6 +1,7 @@
 -- Standard awesome library
 local awful = require("awful")
 local beautiful = require("beautiful")
+local gears = require("gears")
 
 local M = {}
 
@@ -26,6 +27,16 @@ M.get = function()
   -- Focus follows mouse.
   client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
+  end)
+
+  client.connect_signal("property::fullscreen", function(c)
+    if c.fullscreen then
+      gears.timer.delayed_call(function()
+        if c.valid then
+          c:geometry(c.screen.geometry)
+        end
+      end)
+    end
   end)
 
   client.connect_signal("focus", function(c)

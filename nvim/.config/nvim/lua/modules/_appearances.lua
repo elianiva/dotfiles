@@ -90,8 +90,8 @@ ColorUtil.override_gruvbox = function()
     { "LspDiagnosticsUnderlineHint",        { gui = "underline" }},
 
     -- ts override
-    { "TSKeywordOperator", { bg = "NONE", fg = "#fb4934" }},
-    { "TSOperator",        { bg = "NONE", fg = "#fe8019" }},
+    -- { "TSKeywordOperator", { bg = "NONE", fg = "#fb4934" }},
+    -- { "TSOperator",        { bg = "NONE", fg = "#fe8019" }},
   }
 
   for _, highlight in ipairs(highlights) do

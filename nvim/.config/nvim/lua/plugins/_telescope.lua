@@ -41,7 +41,8 @@ telescope.setup({
 
         ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+        -- ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        -- ["<A-q>"] = actions.smart_add_to_qflist + actions.open_qflist,
         ["<Tab>"] = actions.toggle_selection,
         -- ['<C-s>'] = actions.open_selected_files,
         -- ['<C-a>'] = actions.cycle_previewers_prev,

@@ -37,6 +37,7 @@ alias nvimconf="nvim ~/.config/nvim/init.lua"
 alias zshconf="nvim ~/.zshrc"
 alias awsconf="nvim ~/.config/awesome/rc.lua"
 alias aliasconf="nvim ~/.config/aliasrc"
+alias vnim="nvim" # I got this typo quit a lot
 
 # exit vim-like
 alias :{q,Q}="exit"

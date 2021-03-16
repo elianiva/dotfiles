@@ -160,32 +160,32 @@ for_window [class=Brave-browser|GParted|Pavucontrol|Exo-helper*|mpv|firefox]    
 # read color from xresource
 # set $name <color>
 # set_from_resource $<name>       <resource_name>   <fallback>
-set_from_resource   $background   background        #181824
-set_from_resource   $foreground   foreground        #959dcb
-set_from_resource   $black        color0            #292d3e
-set_from_resource   $bblack       color8            #7f85a3
-set_from_resource   $red          color1            #f07178
-set_from_resource   $bred         color9            #f07178
-set_from_resource   $green        color2            #c3e88d
-set_from_resource   $bgreen       color10           #c3e88d
-set_from_resource   $yellow       color3            #ffcb6b
-set_from_resource   $byellow      color11           #ffcb6b
-set_from_resource   $blue         color4            #82aaff
-set_from_resource   $bblue        color12           #82aaff
-set_from_resource   $magenta      color5            #c792ea
-set_from_resource   $bmagenta     color13           #c792ea
-set_from_resource   $cyan         color6            #89ddff
-set_from_resource   $bcyan        color14           #89ddff
-set_from_resource   $white        color7            #959dcb
-set_from_resource   $bwhite       color15           #959dcb
+# set_from_resource   $background   background        #181824
+# set_from_resource   $foreground   foreground        #959dcb
+# set_from_resource   $black        color0            #292d3e
+# set_from_resource   $bblack       color8            #7f85a3
+# set_from_resource   $red          color1            #f07178
+# set_from_resource   $bred         color9            #f07178
+# set_from_resource   $green        color2            #c3e88d
+# set_from_resource   $bgreen       color10           #c3e88d
+# set_from_resource   $yellow       color3            #ffcb6b
+# set_from_resource   $byellow      color11           #ffcb6b
+# set_from_resource   $blue         color4            #82aaff
+# set_from_resource   $bblue        color12           #82aaff
+# set_from_resource   $magenta      color5            #c792ea
+# set_from_resource   $bmagenta     color13           #c792ea
+# set_from_resource   $cyan         color6            #89ddff
+# set_from_resource   $bcyan        color14           #89ddff
+# set_from_resource   $white        color7            #959dcb
+# set_from_resource   $bwhite       color15           #959dcb
 
-# class                 border      background  text        indicator   child_border
-client.focused          $blue       $blue       $background $blue       $blue
-client.focused_inactive $blue       $background $background $background $bblack
-client.unfocused        $blue       $background $foreground $background $bblack
-client.urgent           $background $background $background $background $background
-client.placeholder      $background $background $background $background $background
-client.background       $background
+# # class                 border      background  text        indicator   child_border
+# client.focused          $blue       $blue       $background $blue       $blue
+# client.focused_inactive $blue       $background $background $background $bblack
+# client.unfocused        $blue       $background $foreground $background $bblack
+# client.urgent           $background $background $background $background $background
+# client.placeholder      $background $background $background $background $background
+# client.background       $background
 # }}}
 
 ### BACKUP STUFF GOES HERE ###{{{

@@ -19,7 +19,7 @@ if ok then
     use { "lifepillar/vim-gruvbox8", opt = false } -- nice colorscheme
     use { "embark-theme/vim", opt = false } -- demo stuff
     use { "windwp/nvim-autopairs", opt = true } -- autopairs brackets, braces etc
-    use { "b3nj5m1n/kommentary", opt = true } -- comment stuff easier
+    use { "tpope/vim-commentary", opt = false } -- comment stuff easier
     use { "brooth/far.vim", opt = false } -- project wide search and replace
     use { "tpope/vim-fugitive", opt = false } -- git helpers inside neovim
     use {
