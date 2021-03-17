@@ -7,6 +7,7 @@ exec --no-startup-id wl-gammactl -c 1.015 -b 0.965 -g 0.985
 exec --no-startup-id fcitx5 -d --replace
 exec --no-startup-id flameshot
 exec --no-startup-id wl-paste -t text --watch clipman store
+exec --no-startup-id lxpolkit
 
 # Enable xwayland
 xwayland enable

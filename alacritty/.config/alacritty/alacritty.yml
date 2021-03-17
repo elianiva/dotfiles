@@ -86,36 +86,6 @@ schemes:
       cyan:    '#8ec07c'
       white:   '#ebdbb2'
 
-eunoia: &eunoia
-  # Default colors
-  primary:
-    background: '#151326'
-    foreground: '#dedbd6'
-
-  cursor:
-    text: '#151326'
-    cursor: '#dedbd6'
-
-  normal:
-    black:   '#151326'
-    red:     '#FF496F'
-    green:   '#44D695'
-    yellow:  '#F1DC49'
-    blue:    '#6391F4'
-    magenta: '#E36DD4'
-    cyan:    '#58CDFF'
-    white:   '#DEDBD6'
-
-  bright:
-    black:   '#2C2941'
-    red:     '#FF4356'
-    green:   '#2bff99'
-    yellow:  '#FFB55E'
-    blue:    '#6370F4'
-    magenta: '#DA6DE3'
-    cyan:    '#58CDFF'
-    white:   '#efefef'
-
 colors: *gruvbox
 
 background_opacity: 0.96

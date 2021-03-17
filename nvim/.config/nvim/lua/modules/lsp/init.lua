@@ -149,7 +149,8 @@ local servers = {
   },
   sumneko_lua = {
     cmd = {
-      sumneko_root .. "/bin/Linux/lua-language-server",
+      -- sumneko_root .. "/bin/Linux/lua-language-server",
+      "lua-language-server",
       "-E",
       sumneko_root .. "/main.lua",
     },
