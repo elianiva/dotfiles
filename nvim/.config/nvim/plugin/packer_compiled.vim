@@ -79,6 +79,10 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
   },
+  neogit = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/neogit"
+  },
   ["nvim-autopairs"] = {
     loaded = false,
     needs_bufread = false,
@@ -96,7 +100,7 @@ _G.packer_plugins = {
   },
   ["nvim-compe"] = {
     after = { "vim-vsnip" },
-    after_files = { "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
+    after_files = { "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_emoji.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
     loaded = false,
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe"
@@ -116,7 +120,7 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "playground", "nvim-treesitter-textobjects" },
+    after = { "nvim-ts-autotag", "nvim-ts-context-commentstring", "playground", "nvim-treesitter-textobjects" },
     loaded = false,
     needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
@@ -130,14 +134,29 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects"
   },
   ["nvim-ts-autotag"] = {
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
     loaded = false,
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-ts-autotag"
+  },
+  ["nvim-ts-context-commentstring"] = {
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-ts-context-commentstring"
   },
   ["nvim-web-devicons"] = {
     loaded = false,
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
+  },
+  ["nvim-web-nonicons"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/nvim-web-nonicons"
   },
   ["octo.nvim"] = {
     commands = { "Octo" },
@@ -198,10 +217,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
-  vim = {
-    loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim"
-  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-commentary"
@@ -209,10 +224,6 @@ _G.packer_plugins = {
   ["vim-easy-align"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-easy-align"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
   ["vim-gruvbox8"] = {
     loaded = true,
@@ -245,10 +256,10 @@ _G.packer_plugins = {
 
 
 -- Command lazy-loads
-vim.cmd [[command! -nargs=* -range -bang -complete=file Octo lua require("packer.load")({'octo.nvim'}, { cmd = "Octo", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file GitMessenger lua require("packer.load")({'git-messenger.vim'}, { cmd = "GitMessenger", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Format lua require("packer.load")({'formatter.nvim'}, { cmd = "Format", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file GitMessenger lua require("packer.load")({'git-messenger.vim'}, { cmd = "GitMessenger", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Octo lua require("packer.load")({'octo.nvim'}, { cmd = "Octo", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]

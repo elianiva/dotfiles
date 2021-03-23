@@ -2,6 +2,7 @@ vim.cmd [[packadd nvim-treesitter]]
 vim.cmd [[packadd nvim-treesitter-textobjects]]
 vim.cmd [[packadd playground]]
 vim.cmd [[packadd nvim-ts-autotag]]
+vim.cmd [[packadd nvim-ts-context-commentstring]]
 
 local ts_config = require("nvim-treesitter.configs")
 
@@ -20,9 +21,13 @@ ts_config.setup {
     enable = true,
   },
 
-  -- autotag = {
-  --   enable = true,
-  -- },
+  autotag = {
+    enable = true,
+  },
+
+  context_commentstring = {
+    enable = true,
+  },
 
   textobjects = {
     select = {

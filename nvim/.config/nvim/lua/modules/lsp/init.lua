@@ -72,6 +72,15 @@ local servers = {
     on_init = custom_on_init,
     root_dir = vim.loop.cwd,
   },
+  -- rome = {
+  --   cmd = { "rome", "lsp" },
+  --   filetypes = { "javascript", "typescript", "typescriptreact" },
+  --   on_attach = function()
+  --     mappings.lsp_mappings()
+  --   end,
+  --   on_init = custom_on_init,
+  --   root_dir = vim.loop.cwd,
+  -- },
   -- denols = {
   --   filetypes = { "javascript", "typescript", "typescriptreact" },
   --   root_dir = vim.loop.cwd,
@@ -82,7 +91,21 @@ local servers = {
   html = {},
   cssls = {},
   intelephense = {},
-  rust_analyzer = {},
+  rust_analyzer = {
+    capabilities = (function()
+      -- for autoimports
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = {
+          'documentation',
+          'detail',
+          'additionalTextEdits',
+        }
+      }
+      return capabilities
+    end)()
+  },
   clangd = {},
   pyright = {},
   gopls = {

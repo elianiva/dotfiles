@@ -67,7 +67,6 @@
 [
  (string_value)
  (color_value)
- (identifier)
  (plain_value)
  (unit)
 ] @string

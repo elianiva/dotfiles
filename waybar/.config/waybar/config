@@ -61,11 +61,11 @@
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "cpu": {
-    "format": "<span color=\"#d79921\"></span> {usage}%",
+    "format": "<span color=\"#d79921\"> </span> {usage}%",
     "tooltip": false
   },
   "memory": {
-    "format": "<span color=\"#d79921\"></span> {used:0.1f}GB"
+    "format": "<span color=\"#d79921\"> </span> {used:0.1f}GB"
   },
   "temperature": {
     // "thermal-zone": 2,
@@ -73,12 +73,12 @@
     "critical-threshold": 80,
     // "format-critical": "{temperatureC}°C {icon}",
     "format": "<span color=\"#d79921\">{icon}</span> {temperatureC}°C",
-    "format-icons": ["", "", ""]
+    "format-icons": [" ", " ", " "]
   },
   "backlight": {
     // "device": "acpi_video1",
     "format": "<span color=\"#d79921\">{icon}</span> {percent}%",
-    "format-icons": ["", ""]
+    "format-icons": [" ", " "]
   },
   "battery": {
     "states": {
@@ -87,17 +87,16 @@
       "critical": 15
     },
     "format": "<span color=\"#d79921\">{icon}</span> {capacity}%",
-    "format-charging": "<span color=\"#d79921\"></span> {capacity}% ",
-    "format-plugged": "<span color=\"#d79921\"></span> {capacity}%",
+    "format-charging": "<span color=\"#d79921\"> </span> {capacity}% ",
+    "format-plugged": "<span color=\"#d79921\"> </span> {capacity}%",
     "format-alt": "{time} {icon}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": [" ", " ", " ", " ", " "]
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    /* "format-wifi": "{essid} ({signalStrength}%) ", */
-    "format-wifi": "<span color=\"#d79921\">直</span> Connected ({bandwidthUpBits} | {bandwidthDownBits})",
+    "format-wifi": "<span color=\"#d79921\">直  </span> {bandwidthUpBits} <span color=\"#d79921\"></span> {bandwidthDownBits}",
     "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected 睊",
@@ -110,15 +109,15 @@
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",
     /* "format-source": " {volume}% ", */
-    /* "format-source-muted": "", */
+    /* "format-source-muted": " ", */
     "format-icons": {
-      "headphone": "",
+      "headphone": " ",
       "hands-free": "墳",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""]
+      "headset": " ",
+      "phone": " ",
+      "portable": " ",
+      "car": " ",
+      "default": [" ", " ", " "]
     },
     "on-click": "pavucontrol"
   },

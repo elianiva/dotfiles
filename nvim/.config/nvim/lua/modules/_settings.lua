@@ -30,7 +30,7 @@ local options = {
   termguicolors  = true, -- truecolours for better experience
   wrap           = false, -- dont wrap lines
   writebackup    = false, -- disable backup
-  backupcopy     = "yes", -- fix weirdness for postcss
+  backupcopy     = "yes", -- fix weirdness for stuff that replaces the entire file when hot reloading
   completeopt    = { "menu", "menuone", "noselect", "noinsert" }, -- better completion
   encoding       = "UTF-8", -- set encoding
   fillchars      = { vert = "│", eob = " " }, -- make vertical split sign better

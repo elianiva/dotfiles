@@ -3,10 +3,10 @@
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-exec --no-startup-id wl-gammactl -c 1.015 -b 0.965 -g 0.985 & disown
-exec --no-startup-id fcitx5 -d --replace
-exec --no-startup-id flameshot
-exec --no-startup-id wl-paste -t text --watch clipman store
+exec wl-gammactl -c 1.015 -b 0.965 -g 0.985 & disown
+exec fcitx5 -d --replace
+exec flameshot
+exec wl-paste -t text --watch clipman store
 
 # Enable xwayland
 xwayland enable
@@ -31,7 +31,7 @@ set $ws5 5
 set $ws6 6
 
 # Some apps
-set $term alacritty
+set $term kitty
 set $menu wofi --show drun
 set $menu_alt wofi --show run
 
@@ -82,8 +82,8 @@ floating_modifier $mod normal
 bindsym $mod+grave exec makoctl dismiss -a
 
 ### Take Screenshot {{{
-bindsym Print                   exec --no-startup-id flameshot gui
-bindsym $mod+Print              exec --no-startup-id ~/.scripts/shot
+bindsym Print                   exec flameshot gui
+bindsym $mod+Print              exec ~/.scripts/shot
 # }}}
 
 ### KEYBOARD CONFIG {{{
@@ -104,9 +104,9 @@ bindsym XF86AudioRaiseVolume    exec pulsemixer --change-volume +2
 bindsym XF86AudioLowerVolume    exec pulsemixer --change-volume -2
 
 # move songs
-bindsym XF86AudioNext           exec playerctl --player=spotify,%any next
-bindsym XF86AudioPrev           exec playerctl --player=spotify,%any previous
-bindsym XF86AudioPlay           exec playerctl --player=spotify,%any play-pause
+bindsym XF86AudioNext           exec playerctl next
+bindsym XF86AudioPrev           exec playerctl previous
+bindsym XF86AudioPlay           exec playerctl play-pause
 # }}}
 
 ### GAPS KEYBINDS {{{

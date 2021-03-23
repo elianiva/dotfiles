@@ -17,11 +17,9 @@ if ok then
     use { "wbthomason/packer.nvim", opt = true } -- plugin manager
 
     use { "lifepillar/vim-gruvbox8", opt = false } -- nice colorscheme
-    use { "embark-theme/vim", opt = false } -- demo stuff
     use { "windwp/nvim-autopairs", opt = true } -- autopairs brackets, braces etc
     use { "tpope/vim-commentary", opt = false } -- comment stuff easier
     use { "brooth/far.vim", opt = false } -- project wide search and replace
-    use { "tpope/vim-fugitive", opt = false } -- git helpers inside neovim
     use {
       "mhartington/formatter.nvim",
       opt = true,
@@ -33,6 +31,8 @@ if ok then
       requires = {
         { "nvim-treesitter/playground" }, -- playground for treesitter
         { "nvim-treesitter/nvim-treesitter-textobjects" }, -- "smart" textobjects
+        { "windwp/nvim-ts-autotag" }, -- auto-close html tag
+        { "JoosepAlviste/nvim-ts-context-commentstring" }, -- switch comment string based on context
       },
       opt = true,
     } -- mostly for better syntax highlighting, but it has more stuff
@@ -58,12 +58,12 @@ if ok then
       opt = true,
     } -- table alignment
     use { "kyazdani42/nvim-web-devicons", opt = true } -- fancy icons
+    use { "yamatsum/nvim-web-nonicons", opt = false } -- stuff
     use { "kyazdani42/nvim-tree.lua", opt = true } -- super fast file tree viewer
     use { "akinsho/nvim-bufferline.lua", opt = true } -- snazzy bufferline
     use { "neovim/nvim-lspconfig", opt = true } -- builtin lsp config
     use { "mfussenegger/nvim-jdtls", opt = false } -- jdtls
     use { "glepnir/lspsaga.nvim", opt = true } -- better UI for builtin LSP
-    use { "windwp/nvim-ts-autotag", opt = true } -- auto-close html tag
     use { "tami5/sql.nvim", opt = false } -- sql bindings in LuaJIT
     use {
       "~/repos/telescope.nvim",
@@ -109,10 +109,11 @@ if ok then
       opt = false,
     } -- hhhhhhhh
     use { "tweekmonster/startuptime.vim" }
+    use {'TimUntersberger/neogit', opt = false} -- magit clone, use this later when it's more stable
 
     -- check these out again later
     -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
-    -- use {'TimUntersberger/neogit', opt = false} -- magit clone, use this later when it's more stable
+    -- use { "tpope/vim-fugitive", opt = false } -- git helpers inside neovim
   end
 
   packer.startup(plugins)

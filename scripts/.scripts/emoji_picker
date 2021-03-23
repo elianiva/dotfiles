@@ -3,7 +3,7 @@
 # The famous "get a menu of emojis to copy" script.
 
 # Must have xclip installed to even show menu.
-xclip -h 2>/dev/null || exit 1
+# xclip -h 2>/dev/null || exit 1
 
 # chosen=$(cut -d ';' -f1 ~/.scripts/emoji | rofi -dmenu -p "Pick: " -i -l 10 -theme ~/.config/rofi/themes/gruvbox.rasi | sed "s/ .*//")
 chosen=$(cut -d ';' -f1 ~/.scripts/emoji | wofi --dmenu -p "Pick: " -i -l 10 | sed "s/ .*//")

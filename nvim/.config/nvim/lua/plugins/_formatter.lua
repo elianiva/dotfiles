@@ -1,4 +1,4 @@
-vim.cmd [[packadd formatter.nvim]]
+vim.cmd([[packadd formatter.nvim]])
 
 local is_cfg_present = require("modules._util").is_cfg_present
 local k = require("astronauta.keymap")
@@ -7,7 +7,7 @@ local nnoremap = k.nnoremap
 local prettier = function()
   if is_cfg_present("/.prettierrc") then
     return {
-      exe  = "prettier",
+      exe = "prettier",
       args = {
         string.format(
           "--stdin-filepath '%s' --config '%s'",
@@ -32,32 +32,32 @@ local prettier = function()
   }
 end
 
--- local denofmt = function()
---   return {
---     exe   = "deno",
---     args  = "fmt",
---     stdin = true,
---   }
--- end
+local denofmt = function()
+  return {
+    exe = "deno",
+    args = { "fmt", "-" },
+    stdin = true,
+  }
+end
 
 local rustfmt = function()
   return {
-    exe   = "rustfmt",
-    args  = { "--emit=stdout" },
+    exe = "rustfmt",
+    args = { "--emit=stdout" },
     stdin = true,
   }
 end
 
 local gofmt = function()
   return {
-    exe   = "gofumpt",
+    exe = "gofumpt",
     stdin = true,
   }
 end
 
 local stylua = function()
   return {
-    exe   = "stylua --config-path ~/.config/nvim/.stylua -",
+    exe = "stylua --config-path ~/.config/nvim/.stylua -",
     stdin = true,
   }
 end
@@ -66,7 +66,7 @@ require("formatter").setup({
   logging = false,
   filetype = {
     typescriptreact = { prettier },
-    javascript = { prettier },
+    javascript = { --[[prettier--]] denofmt },
     typescript = { prettier },
     svelte     = { prettier },
     css        = { prettier },
@@ -80,4 +80,4 @@ require("formatter").setup({
   },
 })
 
-nnoremap {"gf", "<CMD>Format<CR>", { silent = true }}
+nnoremap({ "gf", "<CMD>Format<CR>", { silent = true } })
