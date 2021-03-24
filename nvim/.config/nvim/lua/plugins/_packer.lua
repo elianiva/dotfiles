@@ -4,6 +4,7 @@ local ok, packer = pcall(require, "packer")
 
 if ok then
   local use = packer.use
+
   packer.init {
     git = {
       clone_timeout = 300, -- 5 minutes, I have horrible internet
@@ -14,106 +15,196 @@ if ok then
   }
 
   local plugins = function()
-    use { "wbthomason/packer.nvim", opt = true } -- plugin manager
+    -- A use-package inspired plugin manager for Neovim.
+    use { "wbthomason/packer.nvim", opt = true }
 
-    use { "lifepillar/vim-gruvbox8", opt = false } -- nice colorscheme
-    use { "windwp/nvim-autopairs", opt = true } -- autopairs brackets, braces etc
-    use { "tpope/vim-commentary", opt = false } -- comment stuff easier
-    use { "brooth/far.vim", opt = false } -- project wide search and replace
+    -- Custom haskell vimscripts
+    use { "neovimhaskell/haskell-vim", opt = true, ft = { "haskell" } }
+
+    -- A simplified and optimized Gruvbox colorscheme for Vim
+    use { "lifepillar/vim-gruvbox8", opt = false }
+
+    -- commentary.vim: comment stuff out
+    use { "tpope/vim-commentary", opt = false }
+
+    -- Project wide Find And Replace Vim plugin
+    use { "brooth/far.vim", opt = false }
+
+    -- Wrapper for an external formatter
     use {
       "mhartington/formatter.nvim",
       opt = true,
       cmd = "Format",
-    } -- helper for fast formatting
-    use { "norcalli/nvim-colorizer.lua", opt = true } -- colorize hex/rgb/hsl value
+    }
+
+    -- The fastest Neovim colorizer.
+    use { "norcalli/nvim-colorizer.lua", opt = true }
+
+    -- Nvim Treesitter configurations and abstraction layer
     use {
       "~/repos/nvim-treesitter",
       requires = {
-        { "nvim-treesitter/playground" }, -- playground for treesitter
-        { "nvim-treesitter/nvim-treesitter-textobjects" }, -- "smart" textobjects
-        { "windwp/nvim-ts-autotag" }, -- auto-close html tag
-        { "JoosepAlviste/nvim-ts-context-commentstring" }, -- switch comment string based on context
+        -- Treesitter playground integrated into Neovim
+        { "nvim-treesitter/playground" },
+
+        -- Extra textobjects leveraging Treesitter
+        { "nvim-treesitter/nvim-treesitter-textobjects" },
+
+        -- Use treesitter to autoclose and autorename html tag
+        { "windwp/nvim-ts-autotag" },
+
+        -- Neovim treesitter plugin for setting the commentstring based on the
+        -- cursor location in a file.
+        { "JoosepAlviste/nvim-ts-context-commentstring" },
       },
       opt = true,
-    } -- mostly for better syntax highlighting, but it has more stuff
+    }
+
+    -- Auto completion plugin for nvim written in Lua.
     use {
       "~/repos/nvim-compe",
       opt = true,
       requires = {
-        { "hrsh7th/vim-vsnip" }, -- integration with vim-vsnip
+        -- Snippet plugin for vim/nvim that supports LSP/VSCode's snippet
+        -- format. Only used for LSP completion that needs snippet
+        { "hrsh7th/vim-vsnip" },
       },
-    } -- completion framework
+    }
+
+    -- Distraction-free writing in Vim
     use {
       "junegunn/goyo.vim",
       ft = { "text", "markdown" },
       opt = true,
-    } -- no distraction mode a.k.a zen mode
+    }
+
+    -- A Vim alignment plugin
     use {
       "junegunn/vim-easy-align",
       opt = false,
-    } -- easy align using delimiter
+    }
+
+    -- VIM Table Mode for instant table creation.
     use {
       "dhruvasagar/vim-table-mode",
       ft = { "text", "markdown" },
       opt = true,
-    } -- table alignment
-    use { "kyazdani42/nvim-web-devicons", opt = true } -- fancy icons
-    use { "yamatsum/nvim-web-nonicons", opt = false } -- stuff
-    use { "kyazdani42/nvim-tree.lua", opt = true } -- super fast file tree viewer
-    use { "akinsho/nvim-bufferline.lua", opt = true } -- snazzy bufferline
-    use { "neovim/nvim-lspconfig", opt = true } -- builtin lsp config
-    use { "mfussenegger/nvim-jdtls", opt = false } -- jdtls
-    use { "glepnir/lspsaga.nvim", opt = true } -- better UI for builtin LSP
-    use { "tami5/sql.nvim", opt = false } -- sql bindings in LuaJIT
+    }
+
+    -- lua `fork` of vim-web-devicons for neovim
+    use { "kyazdani42/nvim-web-devicons", opt = true }
+
+    -- Icon set using nonicons for neovim plugins and settings.
+    -- requires nonicons font installed
+    use { "yamatsum/nvim-nonicons", opt = false }
+
+    -- A file explorer tree for neovim written in lua.
+    use { "kyazdani42/nvim-tree.lua", opt = true }
+
+    -- A snazzy bufferline for Neovim
+    use { "akinsho/nvim-bufferline.lua", opt = true }
+
+    -- Quickstart configurations for the Nvim LSP client
+    use { "neovim/nvim-lspconfig", opt = true }
+
+    -- Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
+    use { "mfussenegger/nvim-jdtls", opt = false }
+
+    -- Enhance Neovim's builtin LSP UI
+    use { "glepnir/lspsaga.nvim", opt = true }
+
+    -- SQLite/LuaJIT binding for lua and neovim
+    use { "tami5/sql.nvim", opt = false }
+
+    -- Find, Filter, Preview, Pick. All lua, all the time.
     use {
       "~/repos/telescope.nvim",
       opt = false,
       requires = {
+        -- An implementation of the Popup API from vim in Neovim.
         { "nvim-lua/popup.nvim" },
-        { "~/repos/plenary.nvim" }, -- more stdlib
-        { "nvim-telescope/telescope-fzy-native.nvim" }, -- fast search algo
-        { "nvim-telescope/telescope-media-files.nvim" }, -- media preview
-        { "nvim-telescope/telescope-frecency.nvim" }, -- media preview
+
+        -- plenary: full; complete; entire; absolute; unqualified.
+        { "~/repos/plenary.nvim" },
+
+        -- FZY style sorter that is compiled
+        { "nvim-telescope/telescope-fzy-native.nvim" },
+
+        -- Preview media files in Telescope
+        { "nvim-telescope/telescope-media-files.nvim" },
+
+        -- A telescope.nvim extension that offers intelligent prioritization
+        -- when selecting files from your editing history.
+        { "nvim-telescope/telescope-frecency.nvim" },
+
+        -- Search engine integration using Telescope
         {
           "~/repos/telescope-arecibo.nvim",
           rocks = { "openssl", "lua-http-parser" },
         },
       },
-    } -- extensible fuzzy finder
-    use { "lewis6991/gitsigns.nvim", opt = true } -- show git stuff in signcolumn
+    }
+
+    -- Git signs written in pure lua
+    use { "lewis6991/gitsigns.nvim", opt = true }
+
+    -- Vim and Neovim plugin to reveal the commit messages under the cursor
     use {
       "rhysd/git-messenger.vim",
       cmd = "GitMessenger",
       opt = true,
-    } -- sort of like git blame but in floating window
-    use { "machakann/vim-sandwich", opt = false } -- surround words with symbol
+    }
+
+    -- The set of operator and textobject plugins to search/select/edit
+    -- sandwiched textobjects.
+    use { "machakann/vim-sandwich", opt = false }
+
+    -- Embed Neovim in your browser.
     use {
       "glacambre/firenvim",
       run = function() vim.fn["firenvim#install"](0) end,
     }
+
+    -- Sane buffer/window deletion.
     use {
       "mhinz/vim-sayonara",
       cmd = "Sayonara",
       opt = true,
-    } -- better window and buffer management
+    }
+
+    -- Switch between single-line and multiline forms of code
     use { "AndrewRadev/splitjoin.vim", opt = false }
+
+    -- Github client inside Neovim
     use {
       "pwntester/octo.nvim",
       opt = true,
       cmd = "Octo"
-    } -- TUI github client
-    use { "tjdevries/astronauta.nvim", opt = false } -- temporary stuff before it got merged upstream
-    use { "phaazon/hop.nvim", opt = false } -- easymotion but better
+    }
+
+    -- temp, will remove later
+    use { "tjdevries/astronauta.nvim", opt = false }
+
+    -- Neovim motions on speed!
+    use { "phaazon/hop.nvim", opt = false }
+
+    -- fix php indent, temporary, will remove this once I'm done with PHP
     use {
       "captbaritone/better-indent-support-for-php-with-html",
       opt = false,
-    } -- hhhhhhhh
+    }
+
+    -- Breakdown Vim's --startuptime output
     use { "tweekmonster/startuptime.vim" }
-    use {'TimUntersberger/neogit', opt = false} -- magit clone, use this later when it's more stable
+
+    -- Magit for Neovim
+    use { "TimUntersberger/neogit", opt = false }
 
     -- check these out again later
     -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
     -- use { "tpope/vim-fugitive", opt = false } -- git helpers inside neovim
+    -- use { "lukas-reineke/indent-blankline.nvim", opt = false, branch = "lua" }
+
   end
 
   packer.startup(plugins)

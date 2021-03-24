@@ -70,6 +70,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/goyo.vim"
   },
+  ["haskell-vim"] = {
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/haskell-vim"
+  },
   ["hop.nvim"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/hop.nvim"
@@ -82,11 +87,6 @@ _G.packer_plugins = {
   neogit = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/neogit"
-  },
-  ["nvim-autopairs"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
   ["nvim-bufferline.lua"] = {
     loaded = false,
@@ -114,13 +114,17 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
   },
+  ["nvim-nonicons"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/nvim-nonicons"
+  },
   ["nvim-tree.lua"] = {
     loaded = false,
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-ts-autotag", "nvim-ts-context-commentstring", "playground", "nvim-treesitter-textobjects" },
+    after = { "playground", "nvim-treesitter-textobjects", "nvim-ts-autotag", "nvim-ts-context-commentstring" },
     loaded = false,
     needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
@@ -153,10 +157,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
-  },
-  ["nvim-web-nonicons"] = {
-    loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/nvim-web-nonicons"
   },
   ["octo.nvim"] = {
     commands = { "Octo" },
@@ -257,15 +257,19 @@ _G.packer_plugins = {
 
 -- Command lazy-loads
 vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Octo lua require("packer.load")({'octo.nvim'}, { cmd = "Octo", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Format lua require("packer.load")({'formatter.nvim'}, { cmd = "Format", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file GitMessenger lua require("packer.load")({'git-messenger.vim'}, { cmd = "GitMessenger", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Octo lua require("packer.load")({'octo.nvim'}, { cmd = "Octo", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'goyo.vim', 'vim-table-mode'}, { ft = "markdown" }, _G.packer_plugins)]]
-vim.cmd [[au FileType text ++once lua require("packer.load")({'goyo.vim', 'vim-table-mode'}, { ft = "text" }, _G.packer_plugins)]]
+vim.cmd [[au FileType haskell ++once lua require("packer.load")({'haskell-vim'}, { ft = "haskell" }, _G.packer_plugins)]]
+vim.cmd [[au FileType text ++once lua require("packer.load")({'vim-table-mode', 'goyo.vim'}, { ft = "text" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-table-mode', 'goyo.vim'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd("augroup END")
+vim.cmd [[augroup filetypedetect]]
+vim.cmd [[source /home/elianiva/.local/share/nvim/site/pack/packer/opt/haskell-vim/ftdetect/haskell.vim]]
 vim.cmd("augroup END")
 END
 

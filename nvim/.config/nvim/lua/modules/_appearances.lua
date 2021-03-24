@@ -97,6 +97,8 @@ ColorUtil.override_gruvbox = function()
   for _, highlight in ipairs(highlights) do
     set_hl(highlight[1], highlight[2])
   end
+
+  vim.cmd [[ hi ContextUnderline gui=underline guisp=#fb4934 ]]
 end
 
 -- italicize comments

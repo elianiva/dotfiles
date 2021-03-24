@@ -27,6 +27,7 @@ ts_config.setup {
 
   context_commentstring = {
     enable = true,
+    disable = { "javascript", "typescript" }
   },
 
   textobjects = {

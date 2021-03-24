@@ -9,10 +9,10 @@ require("modules.lsp._diagnostic")
 require("lspsaga").init_lsp_saga({
   border_style = 1,
   code_action_prompt = {
-     enable = false,
-     sign = true,
-     sign_priority = 20,
-     virtual_text = false,
+    enable = false,
+    sign = true,
+    sign_priority = 20,
+    virtual_text = false,
    },
 })
 

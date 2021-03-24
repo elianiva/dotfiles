@@ -104,9 +104,6 @@ run_rs() {
   rustc $1; ./$(echo "$1" | sed -e "s/\.rs$//")
 }
 
-# fnm
-eval "`fnm env`"
-
 __skim_use_tmux__() {
   [ -n "$TMUX_PANE" ] && [ "${SKIM_TMUX:-0}" != 0 ] && [ ${LINES:-40} -gt 15 ]
 }
@@ -140,9 +137,6 @@ skim-redraw-prompt() {
   zle reset-prompt
 }
 zle -N skim-redraw-prompt
-
-# fnm
-export PATH=/home/elianiva/.fnm:$PATH
 
 # fnm
 export PATH=/home/elianiva/.fnm:$PATH

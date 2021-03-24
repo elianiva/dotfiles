@@ -3,15 +3,15 @@
 flameshot gui --raw > /tmp/image.png
 
 # # rounded corners
-magick convert /tmp/image.png \
-     \( +clone  -alpha extract \
-        -draw 'fill black polygon 0,0 0,5 5,0 fill white circle 5,5 5,0' \
-        \( +clone -flip \) -compose Multiply -composite \
-        \( +clone -flop \) -compose Multiply -composite \
-     \) -alpha off -compose CopyOpacity -composite /tmp/image.png
+# magick convert /tmp/image.png \
+#      \( +clone  -alpha extract \
+#         -draw 'fill black polygon 0,0 0,5 5,0 fill white circle 5,5 5,0' \
+#         \( +clone -flip \) -compose Multiply -composite \
+#         \( +clone -flop \) -compose Multiply -composite \
+#      \) -alpha off -compose CopyOpacity -composite /tmp/image.png
 
 # white border
-# convert /tmp/image.png -bordercolor white -border 4 /tmp/image.png
+convert /tmp/image.png -bordercolor white -border 4 /tmp/image.png
 
 # shadow
 magick convert /tmp/image.png \( +clone -background black -shadow 40x5+0+0 \) \
@@ -21,6 +21,7 @@ magick convert /tmp/image.png \( +clone -background black -shadow 40x5+0+0 \) \
 magick convert /tmp/image.png -bordercolor white -border 10 /tmp/image.png
 
 # copy to clipboard
-xclip -selection clipboard -i /tmp/image.png -t image/png
+# xclip -selection clipboard -i /tmp/image.png -t image/png
+wl-copy < /tmp/image.png
 
 # vim: ft=sh
