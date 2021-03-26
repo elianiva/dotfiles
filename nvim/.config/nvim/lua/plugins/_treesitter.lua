@@ -25,6 +25,10 @@ ts_config.setup {
     enable = true,
   },
 
+  playground = {
+    enable = true,
+  },
+
   context_commentstring = {
     enable = true,
     disable = { "javascript", "typescript" }

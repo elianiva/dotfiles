@@ -24,6 +24,8 @@ if ok then
     -- A simplified and optimized Gruvbox colorscheme for Vim
     use { "lifepillar/vim-gruvbox8", opt = false }
 
+    use { "drewtempelmeyer/palenight.vim", opt = false }
+
     -- commentary.vim: comment stuff out
     use { "tpope/vim-commentary", opt = false }
 
@@ -107,6 +109,10 @@ if ok then
     -- Quickstart configurations for the Nvim LSP client
     use { "neovim/nvim-lspconfig", opt = true }
 
+    -- Utilities to improve the TypeScript development experience for Neovim's
+    -- built-in LSP client.
+    use { "jose-elias-alvarez/nvim-lsp-ts-utils", opt = false }
+
     -- Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
     use { "mfussenegger/nvim-jdtls", opt = false }
 
@@ -139,7 +145,7 @@ if ok then
 
         -- Search engine integration using Telescope
         {
-          "~/repos/telescope-arecibo.nvim",
+          "nvim-telescope/telescope-arecibo.nvim",
           rocks = { "openssl", "lua-http-parser" },
         },
       },
@@ -199,6 +205,9 @@ if ok then
 
     -- Magit for Neovim
     use { "TimUntersberger/neogit", opt = false }
+
+    -- Markdown Vim Mode
+    use { "plasticboy/vim-markdown", opt = false }
 
     -- check these out again later
     -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved

@@ -10,9 +10,6 @@ require("lspsaga").init_lsp_saga({
   border_style = 1,
   code_action_prompt = {
     enable = false,
-    sign = true,
-    sign_priority = 20,
-    virtual_text = false,
    },
 })
 
@@ -71,6 +68,9 @@ local servers = {
     },
     on_init = custom_on_init,
     root_dir = vim.loop.cwd,
+    extra_setup = function ()
+      require("nvim-lsp-ts-utils").setup {}
+    end
   },
   -- rome = {
   --   cmd = { "rome", "lsp" },
@@ -194,10 +194,23 @@ local servers = {
       },
     },
   },
+  jdtls = {
+    extra_setup = function()
+      vim.api.nvim_exec([[
+        augroup jdtls
+        au!
+        au FileType java lua require'jdtls'.start_or_attach({ cmd = { "/home/elianiva/.scripts/run_jdtls" }, on_attach = require'modules.lsp._mappings'.lsp_mappings("jdtls") })
+        augroup END
+      ]], false)
+    end
+  },
 }
 
 for name, opts in pairs(servers) do
   local client = nvim_lsp[name]
+  if opts.extra_setup then
+    opts.extra_setup()
+  end
   client.setup({
     cmd = opts.cmd or client.cmd,
     filetypes = opts.filetypes or client.filetypes,
@@ -209,14 +222,3 @@ for name, opts in pairs(servers) do
     settings = opts.settings or {},
   })
 end
-
--- jdtls stuff
-vim.api.nvim_exec(
-  [[
-  augroup jdtls
-  au!
-  au FileType java lua require'jdtls'.start_or_attach({cmd = {'/home/elianiva/.scripts/run_jdtls'}, on_attach = require'modules.lsp._mappings'.lsp_mappings("jdtls")})
-  augroup END
-]],
-  false
-)

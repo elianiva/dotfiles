@@ -109,6 +109,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/nvim-jdtls"
   },
+  ["nvim-lsp-ts-utils"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils"
+  },
   ["nvim-lspconfig"] = {
     loaded = false,
     needs_bufread = false,
@@ -124,7 +128,7 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "playground", "nvim-treesitter-textobjects", "nvim-ts-autotag", "nvim-ts-context-commentstring" },
+    after = { "playground", "nvim-ts-autotag", "nvim-treesitter-textobjects", "nvim-ts-context-commentstring" },
     loaded = false,
     needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
@@ -168,6 +172,10 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+  },
+  ["palenight.vim"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/palenight.vim"
   },
   playground = {
     load_after = {
@@ -229,6 +237,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-gruvbox8"
   },
+  ["vim-markdown"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-markdown"
+  },
   ["vim-sandwich"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-sandwich"
@@ -256,10 +268,10 @@ _G.packer_plugins = {
 
 
 -- Command lazy-loads
-vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Octo lua require("packer.load")({'octo.nvim'}, { cmd = "Octo", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Format lua require("packer.load")({'formatter.nvim'}, { cmd = "Format", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file GitMessenger lua require("packer.load")({'git-messenger.vim'}, { cmd = "GitMessenger", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Format lua require("packer.load")({'formatter.nvim'}, { cmd = "Format", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]

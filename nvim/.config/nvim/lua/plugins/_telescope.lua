@@ -3,7 +3,7 @@ local previewers = require("telescope.previewers")
 
 local M = {}
 
-local ok, telescope = pcall(require, "telescope")
+local _, telescope = pcall(require, "telescope")
 
 telescope.setup({
   defaults = {
@@ -31,7 +31,6 @@ telescope.setup({
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
 
-        ["<CR>"]  = actions.select_default + actions.center,
         ["<C-v>"] = actions.select_vertical,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-t>"] = actions.select_tab,

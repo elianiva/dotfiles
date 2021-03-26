@@ -18,7 +18,7 @@ au FileType php setlocal sw=4 ts=4
 au FileType json set filetype=jsonc
 
 " enable spelling in markdown
-au FileType markdown setlocal conceallevel=3 concealcursor=nc spell
+au FileType markdown setlocal conceallevel=0 nospell
 
 " Remove trailing whitespace on save
 au BufWritePre * %s/\s\+$//e
