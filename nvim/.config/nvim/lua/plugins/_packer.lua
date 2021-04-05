@@ -1,5 +1,12 @@
 vim.cmd [[packadd packer.nvim]]
 
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.cmd('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  vim.cmd('packadd packer.nvim')
+end
+
 local ok, packer = pcall(require, "packer")
 
 if ok then
@@ -18,19 +25,14 @@ if ok then
     -- A use-package inspired plugin manager for Neovim.
     use { "wbthomason/packer.nvim", opt = true }
 
-    -- Custom haskell vimscripts
-    use { "neovimhaskell/haskell-vim", opt = true, ft = { "haskell" } }
-
     -- A simplified and optimized Gruvbox colorscheme for Vim
     use { "lifepillar/vim-gruvbox8", opt = false }
 
-    use { "drewtempelmeyer/palenight.vim", opt = false }
+    -- A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.
+    use { "joshdick/onedark.vim", opt = false }
 
     -- commentary.vim: comment stuff out
     use { "tpope/vim-commentary", opt = false }
-
-    -- Project wide Find And Replace Vim plugin
-    use { "brooth/far.vim", opt = false }
 
     -- Wrapper for an external formatter
     use {
@@ -69,7 +71,7 @@ if ok then
       requires = {
         -- Snippet plugin for vim/nvim that supports LSP/VSCode's snippet
         -- format. Only used for LSP completion that needs snippet
-        { "hrsh7th/vim-vsnip" },
+        { "L3MON4D3/LuaSnip" },
       },
     }
 
@@ -208,6 +210,11 @@ if ok then
 
     -- Markdown Vim Mode
     use { "plasticboy/vim-markdown", opt = false }
+
+    use { "notomo/curstr.nvim", opt = false }
+
+    -- A Neovim port of Assorted Biscuits
+    use { "code-biscuits/nvim-biscuits", opt = false }
 
     -- check these out again later
     -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved

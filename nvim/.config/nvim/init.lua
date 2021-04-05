@@ -11,28 +11,26 @@ vim.cmd [[
 
 -- change cwd to current directory
 vim.cmd [[cd %:p:h]]
-require("plugins._packer")
+pcall(require, "plugins._packer")
 
--- load modules
-require("modules._settings")
-require("modules._appearances")
-require("modules._util")
-require("modules._mappings")
-require("modules._statusline")
+pcall(require, "modules._settings") -- `set` stuff
+pcall(require, "modules._appearances") -- colourscheme shenanigans
+pcall(require, "modules._util") -- some useful utils
+pcall(require, "modules._mappings") -- general mappings
+pcall(require, "modules._statusline") -- my custom statusline
 
-require("plugins._bufferline")
-require("plugins._compe")
-require("plugins._emmet")
-require("plugins._firenvim")
-require("plugins._formatter")
-require("plugins._gitsigns")
-require("plugins._nvimtree")
+pcall(require, "plugins._bufferline") -- nvim-bufferline + extra stuff
+pcall(require, "plugins._compe") -- completion config
+-- pcall(require, "plugins._emmet") -- not using this anymore
+pcall(require, "plugins._firenvim") -- firenvim stuff
+pcall(require, "plugins._formatter") -- formatter configuration
+pcall(require, "plugins._gitsigns") -- gitsings config
+pcall(require, "plugins._nvimtree") -- nvimtree config
+-- pcall(require, "plugins._snippets") -- snippets config
 require("plugins._snippets")
-require("plugins._telescope")
-require("plugins._treesitter")
+pcall(require, "plugins._telescope") -- to see planets and stars
+pcall(require, "plugins._treesitter") -- something awesome
 
--- stuff
-require("modules._others")
+pcall(require, "modules._others") -- other stuff
 
--- lsp stuff
-require("modules.lsp")
+pcall(require, "modules.lsp") -- lsp related stuff

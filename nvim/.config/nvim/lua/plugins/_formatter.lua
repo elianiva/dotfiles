@@ -66,7 +66,7 @@ require("formatter").setup({
   logging = false,
   filetype = {
     typescriptreact = { prettier },
-    javascript = { --[[prettier--]] denofmt },
+    javascript = { prettier },
     typescript = { prettier },
     svelte     = { prettier },
     css        = { prettier },
@@ -80,4 +80,4 @@ require("formatter").setup({
   },
 })
 
-nnoremap({ "gf", "<CMD>Format<CR>", { silent = true } })
+nnoremap({ "<Leader>gf", "<CMD>Format<CR>", { silent = true } })

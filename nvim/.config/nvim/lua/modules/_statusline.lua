@@ -6,7 +6,7 @@ local M = {}
 -- possible values are 'arrow' | 'rounded' | 'blank'
 local active_sep = "blank"
 
--- change them if you want to different separator
+-- change them if you want to different separatora
 M.separators = {
   arrow   = { "", "" },
   rounded = { "", "" },

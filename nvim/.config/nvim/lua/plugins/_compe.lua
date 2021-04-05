@@ -16,7 +16,7 @@ require("compe").setup({
     path     = true,
     calc     = true,
     buffer   = true,
-    vsnip    = true,
+    luasnip  = true,
     nvim_lsp = true,
     nvim_lua = true,
   },

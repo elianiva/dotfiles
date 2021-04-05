@@ -1,27 +1,42 @@
-vim.cmd [[packadd vim-vsnip]]
-local remap = vim.api.nvim_set_keymap
+-- vim.cmd [[packadd vim-vsnip]]
+vim.cmd([[packadd LuaSnip]])
+local ls = require("luasnip")
+local k = require("astronauta.keymap")
+local inoremap = k.inoremap
+local snoremap = k.snoremap
 
-remap(
-  "i",
+ls.snippets = {
+  all = {
+    ls.parser.parse_snippet({ trig = "todo" }, "TODO(elianiva): ${1:todo}"),
+    ls.parser.parse_snippet({ trig = "fixme" }, "FIXME(elianiva): ${1:fixme}"),
+  },
+}
+
+
+inoremap {
   "<C-j>",
-  "vsnip#jumpable(1) ? \"<Plug>(vsnip-jump-next)\" : \"<C-j>\"",
-  { silent = true, expr = true }
-)
-remap(
-  "s",
+  function()
+    return ls.expand_or_jumpable() and ls.expand_or_jump() or Util.t("<C-j>")
+  end,
+  { silent = true }
+}
+
+snoremap {
   "<C-j>",
-  "vsnip#jumpable(1) ? \"<Plug>(vsnip-jump-next)\" : \"<C-j>\"",
-  { silent = true, expr = true }
-)
-remap(
-  "i",
+  function()
+    return ls.expand_or_jumpable() and ls.expand_or_jump() or Util.t("<C-j>")
+  end,
+  { silent = true }
+}
+
+inoremap {
   "<C-k>",
-  "vsnip#jumpable(-1) ? \"<Plug>(vsnip-jump-prev)\" : \"<C-k>\"",
-  { silent = true, expr = true }
-)
-remap(
-  "s",
+  function() require("luasnip").jump(-1) end,
+  { silent = true },
+}
+
+snoremap {
   "<C-k>",
-  "vsnip#jumpable(-1) ? \"<Plug>(vsnip-jump-prev)\" : \"<C-k>\"",
-  { silent = true, expr = true }
-)
+  function() require("luasnip").jump(-1) end,
+  { silent = true },
+}

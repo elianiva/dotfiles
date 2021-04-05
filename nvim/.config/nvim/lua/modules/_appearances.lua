@@ -9,7 +9,6 @@ ColorUtil.override_gruvbox = function()
     { "Comment",     { gui = "italic"  }},
     { "SignColumn",  { bg  = "NONE"    }},
     { "ColorColumn", { bg  = "#3C3836" }},
-    { "IncSearch",   { bg  = "#928374" }},
     { "String",      { gui = "NONE"    }},
     { "Special",     { gui = "NONE"    }},
     { "Folded",      { gui = "NONE"    }},
@@ -55,11 +54,10 @@ ColorUtil.override_gruvbox = function()
     { "IncSearch",             { bg  = "#282828", fg  = "#928374"   }},
     { "mkdLink",               { fg  = "#458588", gui = "underline" }},
     { "markdownCode",          { bg  = "NONE",    fg  = "#fe8019"   }},
-    { "StrikeThrough",         { gui = "strikethrough" }},
 
     -- statusline colours
-    { "StatusLine",   { bg = "#EBDBB2", fg = "#3C3836" }},
-    { "StatusLineNC", { bg = "#928374", fg = "#3C3836" }},
+    { "StatusLine",   { bg = "#3C3836", fg = "#EBDBB2", gui = "NONE" }},
+    { "StatusLineNC", { bg = "#3C3836", fg = "#928374", gui = "NONE" }},
     { "Mode",         { bg = "#928374", fg = "#1D2021", gui = "bold" }},
     { "LineCol",      { bg = "#504945", fg = "#ebdbb2", gui = "bold" }},
     { "LineColAlt",   { bg = "#3C3836", fg = "#ebdbb2" }},
@@ -79,7 +77,7 @@ ColorUtil.override_gruvbox = function()
     { "TelescopeMatching",  { bg = "NONE", fg = "#fb4934", gui = "bold" }},
     { "TelescopeBorder",    { bg = "NONE", fg = "#928374", gui = "bold" }},
 
-    -- diagnostic nvim
+    -- diagnostic stuff
     { "LspDiagnosticsDefaultError",         { bg  = "NONE", fg = "#fb4934" }},
     { "LspDiagnosticsDefaultWarning",       { bg  = "NONE", fg = "#d79921" }},
     { "LspDiagnosticsDefaultInformation",   { bg  = "NONE", fg = "#458588" }},
@@ -97,107 +95,78 @@ ColorUtil.override_gruvbox = function()
   for _, highlight in ipairs(highlights) do
     set_hl(highlight[1], highlight[2])
   end
-
-  vim.cmd [[ hi ContextUnderline gui=underline guisp=#fb4934 ]]
 end
 
-ColorUtil.override_palenight = function()
+ColorUtil.override_onedark = function()
   local highlights = {
     -- normal stuff
-    { "Normal",      { bg  = "NONE" }},
-    { "SignColumn",  { bg  = "NONE" }},
-    { "Special",     { gui = "NONE" }},
-    { "Folded",      { gui = "NONE" }},
-    { "EndOfBuffer", { bg  = "NONE" }},
-    { "ColorColumn", { bg  = "#32374d" }},
-    { "CursorLine",  { bg  = "#32374d" }},
+    { "Normal",      { bg  = "#1c1e26" }},
+    { "Comment",     { gui = "italic"  }},
+    { "SignColumn",  { bg  = "NONE"    }},
+    { "IncSearch",   { bg  = "#61afef", fg = "#14151a" }},
+    { "OnYank",      { bg  = "#3f4450" }},
+    { "Visual",      { bg  = "#3f4450", fg = "NONE" }},
+    { "VertSplit",   { fg  = "#14151a", bg = "NONE" }},
+    { "String",      { gui = "NONE"    }},
+    { "Special",     { gui = "NONE"    }},
+    { "Folded",      { gui = "NONE"    }},
+    { "EndOfBuffer", { bg  = "NONE"    }},
+
+    -- git stuff
+    { "SignAdd",    { fg = "#61afef", bg = "NONE" }},
+    { "SignChange", { fg = "#e5c07b", bg = "NONE" }},
+    { "SignDelete", { fg = "#e95678", bg = "NONE" }},
 
     -- tabline stuff
     { "Tabline",            { bg = "NONE"  }},
-    { "TablineSuccess",     { bg = "NONE", fg = "#c3e88d", gui = "bold" }},
-    { "TablineError",       { bg = "NONE", fg = "#f07178"  }},
-    { "TablineWarning",     { bg = "NONE", fg = "#ffcb6b"  }},
-    { "TablineInformation", { bg = "NONE", fg = "#82aaff"  }},
-    { "TablineHint",        { bg = "NONE", fg = "#89ddff"  }},
+    { "TablineSuccess",     { bg = "NONE", fg = "#abcf84", gui = "bold" }},
+    { "TablineError",       { bg = "NONE", fg = "#e95678"  }},
+    { "TablineWarning",     { bg = "NONE", fg = "#e5c07b"  }},
+    { "TablineInformation", { bg = "NONE", fg = "#61afef"  }},
+    { "TablineHint",        { bg = "NONE", fg = "#56b6c2"  }},
 
-    -- vim-illuminate
-    { "illuminatedWord", { gui = "underline" } },
-
-    -- git stuff
-    { "SignAdd",    { fg = "#82aaff", bg = "NONE" }},
-    { "SignChange", { fg = "#ffcb6b", bg = "NONE" }},
-    { "SignDelete", { fg = "#f07178", bg = "NONE" }},
-
-    -- lsp saga stuff
-    { "TargetWord",             { fg = "#ffcb6b", bg  = "NONE",    gui = "bold" }},
-    { "LspSagaFinderSelection", { fg = "#ffcb6b", bg  = "#292d3e", gui = "bold" }},
-    { "LspDiagErrorBorder",     { fg = "#f07178", gui = "bold" }},
-    { "LspDiagWarnBorder",      { fg = "#ffcb6b", gui = "bold" }},
-    { "LspDiagInfoBorder",      { fg = "#82aaff", gui = "bold" }},
-    { "LspDiagHintBorder",      { fg = "#82aaff", gui = "bold" }},
-
-    -- octo.nvim stuff
-    { "OctoNvimIssueOpen",         { fg = "#c3e88d" }},
-    { "OctoNvimIssueClosed",       { fg = "#f07178" }},
-    { "OctoNvimDirty",             { fg = "#f07178" }},
-    { "OctoNvimPullAdditions",     { fg = "#c3e88d" }},
-    { "OctoNvimPullDeletions",     { fg = "#f07178" }},
-    { "OctoNvimPullModifications", { fg = "#ffcb6b" }},
-
-    -- misc
-    { "jsonNoQuotesError",     { fg  = "#f07178" }},
-    { "jsonMissingCommaError", { fg  = "#f07178" }},
-    { "mkdLineBreak",          { bg  = "NONE"    }},
-    { "htmlLink",              { gui = "NONE",    fg  = "#82aaff"   }},
-    { "IncSearch",             { bg  = "#ffcb6b", fg  = "#292d3e"   }},
-    { "mkdLink",               { fg  = "#82aaff", gui = "underline" }},
-    { "markdownCode",          { bg  = "NONE",    fg  = "#f07178"   }},
-    { "StrikeThrough",         { gui = "strikethrough" }},
-
-    -- statusline colours
-    { "StatusLine",   { bg = "#3a405a", fg = "#A6ACCD" }},
-    { "StatusLineNC", { bg = "#3a405a", fg = "#828ab7" }},
-    { "Mode",         { bg = "#828ab7", fg = "#202331", gui = "bold" }},
-    { "LineCol",      { bg = "#414863", fg = "#A6ACCD", gui = "bold" }},
-    { "LineColAlt",   { bg = "#3a405a", fg = "#A6ACCD" }},
-    { "Git",          { bg = "#828ab7", fg = "#202331", gui = "bold" }},
-    { "Filetype",     { bg = "#414863", fg = "#A6ACCD" }},
-    { "Filename",     { bg = "#414863", fg = "#A6ACCD" }},
-    { "ModeAlt",      { bg = "#414863", fg = "#828ab7" }},
-    { "GitAlt",       { bg = "#3a405a", fg = "#414863" }},
-    { "FiletypeAlt",  { bg = "#3a405a", fg = "#414863" }},
-
-    -- nvimtree
-    { "NvimTreeFolderIcon",   { fg = "#82aaff" }},
-    { "NvimTreeIndentMarker", { fg = "#717CB4" }},
-
-    -- telescope
-    { "TelescopeSelection", { bg = "NONE", fg = "#82aaff", gui = "bold" }},
-    { "TelescopeMatching",  { bg = "NONE", fg = "#f07178", gui = "bold" }},
-    { "TelescopeBorder",    { bg = "NONE", fg = "#717CB4", gui = "bold" }},
-
-    -- diagnostic nvim
-    { "LspDiagnosticsDefaultError",         { bg  = "NONE", fg = "#f07178" }},
-    { "LspDiagnosticsDefaultWarning",       { bg  = "NONE", fg = "#ffcb6b" }},
-    { "LspDiagnosticsDefaultInformation",   { bg  = "NONE", fg = "#82aaff" }},
-    { "LspDiagnosticsDefaultHint",          { bg  = "NONE", fg = "#c3e88d" }},
+    -- diagnostic stuff
+    { "LspDiagnosticsDefaultError",         { bg  = "NONE", fg = "#e95678" }},
+    { "LspDiagnosticsDefaultWarning",       { bg  = "NONE", fg = "#e5c07b" }},
+    { "LspDiagnosticsDefaultInformation",   { bg  = "NONE", fg = "#61afef" }},
+    { "LspDiagnosticsDefaultHint",          { bg  = "NONE", fg = "#abcf84" }},
     { "LspDiagnosticsUnderlineError",       { gui = "underline" }},
     { "LspDiagnosticsUnderlineWarning",     { gui = "underline" }},
     { "LspDiagnosticsUnderlineInformation", { gui = "underline" }},
     { "LspDiagnosticsUnderlineHint",        { gui = "underline" }},
 
-    -- ts override
-    { "TSPunctBracket", { fg = "#ffcb6b" }},
-    { "TSConstructor",  { fg = "#ffcb6b" }},
-    { "TSTag",          { fg = "#f07178" }},
-    { "TSVariable",     { fg = "#A6ACCD" }},
+    -- telescope
+    { "TelescopeSelection",       { bg = "NONE", fg = "#61afef", gui = "bold" }},
+    { "TelescopeMatching",        { bg = "NONE", fg = "#e95678", gui = "bold" }},
+    { "TelescopeBorder",          { bg = "NONE", fg = "#3f4450", gui = "bold" }},
+    { "TelescopePromptBorder",    { bg = "NONE", fg = "#61afef", gui = "bold" }},
+
+    -- statusline colours
+    { "StatusLine",   { bg = "#14151a", fg = "#bbc2cf", gui = "NONE" }},
+    { "StatusLineNC", { bg = "#14151a", fg = "#5B6268", gui = "NONE" }},
+    { "Mode",         { bg = "#5B6268", fg = "#14151a", gui = "bold" }},
+    { "LineCol",      { bg = "#3f4450", fg = "#bbc2cf", gui = "bold" }},
+    { "LineColAlt",   { bg = "#14151a", fg = "#bbc2cf" }},
+    { "Git",          { bg = "#5B6268", fg = "#14151a", gui = "bold" }},
+    { "Filetype",     { bg = "#3f4450", fg = "#bbc2cf" }},
+    { "Filename",     { bg = "#3f4450", fg = "#bbc2cf" }},
+    { "ModeAlt",      { bg = "#3f4450", fg = "#5B6268" }},
+    { "GitAlt",       { bg = "#14151a", fg = "#3f4450" }},
+    { "FiletypeAlt",  { bg = "#14151a", fg = "#3f4450" }},
+
+    { "BiscuitColor",    { fg = "#5B6268", bg = "NONE", gui = "bold" }},
+
+    { "TSVariable",           { fg = "#ABB2BF", bg = "NONE" }},
+    { "TSVariableBuiltin",    { fg = "#E5C07B", bg = "NONE" }},
+    { "TSPunctBracket",       { fg = "#ABB2BF", bg = "NONE" }},
+    { "TSPunctDelimiter",     { fg = "#ABB2BF", bg = "NONE" }},
+    { "TSConstructor",        { fg = "#e95678", bg = "NONE" }},
+    { "TSTagDelimiter",       { fg = "#61afef", bg = "NONE" }},
   }
 
   for _, highlight in ipairs(highlights) do
     set_hl(highlight[1], highlight[2])
   end
-
-  vim.cmd [[ hi ContextUnderline gui=underline guisp=#fb4934 ]]
 end
 
 -- italicize comments
@@ -208,13 +177,14 @@ vim.api.nvim_exec([[
   augroup NewColor
   au!
   au ColorScheme gruvbox8 call v:lua.ColorUtil.override_gruvbox()
-  au ColorScheme palenight call v:lua.ColorUtil.override_palenight()
+  au ColorScheme onedark call v:lua.ColorUtil.override_onedark()
   augroup END
 ]], false)
 
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false
-vim.cmd [[colorscheme palenight]]
+-- vim.cmd [[colorscheme gruvbox8]]
+vim.cmd [[ colorscheme onedark]]
 
 -- needs to be loaded after setting colourscheme
 vim.cmd [[packadd nvim-web-devicons]]

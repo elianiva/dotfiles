@@ -73,7 +73,7 @@ local servers = {
     end
   },
   -- rome = {
-  --   cmd = { "rome", "lsp" },
+  --   cmd = { "/home/elianiva/repos/tools/rome", "lsp" },
   --   filetypes = { "javascript", "typescript", "typescriptreact" },
   --   on_attach = function()
   --     mappings.lsp_mappings()
@@ -85,7 +85,7 @@ local servers = {
   --   filetypes = { "javascript", "typescript", "typescriptreact" },
   --   root_dir = vim.loop.cwd,
   --   settings = {
-  --     documentFormatting = false
+  --     documentFormatting = true
   --   }
   -- },
   html = {},

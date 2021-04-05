@@ -32,6 +32,14 @@ local function try_loadstring(s, component, name)
 end
 
 _G.packer_plugins = {
+  LuaSnip = {
+    load_after = {
+      ["nvim-compe"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/LuaSnip"
+  },
   ["astronauta.nvim"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/astronauta.nvim"
@@ -40,9 +48,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/better-indent-support-for-php-with-html"
   },
-  ["far.vim"] = {
+  ["curstr.nvim"] = {
     loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/far.vim"
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/curstr.nvim"
   },
   firenvim = {
     loaded = true,
@@ -70,11 +78,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/goyo.vim"
   },
-  ["haskell-vim"] = {
-    loaded = false,
-    needs_bufread = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/haskell-vim"
-  },
   ["hop.nvim"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/hop.nvim"
@@ -88,6 +91,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/neogit"
   },
+  ["nvim-biscuits"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/nvim-biscuits"
+  },
   ["nvim-bufferline.lua"] = {
     loaded = false,
     needs_bufread = false,
@@ -99,8 +106,8 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
-    after = { "vim-vsnip" },
-    after_files = { "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_emoji.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
+    after = { "LuaSnip" },
+    after_files = { "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_emoji.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_luasnip.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
     loaded = false,
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-compe"
@@ -128,7 +135,7 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "playground", "nvim-ts-autotag", "nvim-treesitter-textobjects", "nvim-ts-context-commentstring" },
+    after = { "nvim-treesitter-textobjects", "nvim-ts-autotag", "nvim-ts-context-commentstring", "playground" },
     loaded = false,
     needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
@@ -168,14 +175,14 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/octo.nvim"
   },
+  ["onedark.vim"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/onedark.vim"
+  },
   ["packer.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/packer.nvim"
-  },
-  ["palenight.vim"] = {
-    loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/palenight.vim"
   },
   playground = {
     load_after = {
@@ -255,33 +262,21 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-table-mode"
-  },
-  ["vim-vsnip"] = {
-    load_after = {
-      ["nvim-compe"] = true
-    },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   }
 }
 
 
 -- Command lazy-loads
-vim.cmd [[command! -nargs=* -range -bang -complete=file Octo lua require("packer.load")({'octo.nvim'}, { cmd = "Octo", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file GitMessenger lua require("packer.load")({'git-messenger.vim'}, { cmd = "GitMessenger", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Format lua require("packer.load")({'formatter.nvim'}, { cmd = "Format", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Octo lua require("packer.load")({'octo.nvim'}, { cmd = "Octo", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
-vim.cmd [[au FileType haskell ++once lua require("packer.load")({'haskell-vim'}, { ft = "haskell" }, _G.packer_plugins)]]
 vim.cmd [[au FileType text ++once lua require("packer.load")({'vim-table-mode', 'goyo.vim'}, { ft = "text" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-table-mode', 'goyo.vim'}, { ft = "markdown" }, _G.packer_plugins)]]
-vim.cmd("augroup END")
-vim.cmd [[augroup filetypedetect]]
-vim.cmd [[source /home/elianiva/.local/share/nvim/site/pack/packer/opt/haskell-vim/ftdetect/haskell.vim]]
 vim.cmd("augroup END")
 END
 

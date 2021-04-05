@@ -6,6 +6,16 @@ vim.cmd [[packadd nvim-ts-context-commentstring]]
 
 local ts_config = require("nvim-treesitter.configs")
 
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+parser_config.zig = {
+  install_info = {
+    url = "~/repos/tree-sitter-zig", -- update this accordingly
+    files = {"src/parser.c"}
+  },
+  filetype = "zig"
+}
+
 ts_config.setup {
   ensure_installed = {
     "javascript", "typescript", "tsx", "jsdoc", "cpp", "jsonc",
