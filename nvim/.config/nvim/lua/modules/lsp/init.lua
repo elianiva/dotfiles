@@ -1,21 +1,14 @@
 vim.cmd [[packadd nvim-lspconfig]]
-vim.cmd [[packadd lspsaga.nvim]]
 
 local nvim_lsp = require("lspconfig")
 local mappings = require("modules.lsp._mappings")
 local is_cfg_present = require("modules._util").is_cfg_present
 
-require("modules.lsp._diagnostic")
-require("lspsaga").init_lsp_saga({
-  border_style = 1,
-  code_action_prompt = {
-    enable = false,
-   },
-})
-
 local custom_on_attach = function()
   mappings.lsp_mappings()
 end
+
+pcall(require, "modules.lsp._handlers")
 
 local custom_on_init = function(client)
   print("Language Server Protocol started!")

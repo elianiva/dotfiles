@@ -60,6 +60,9 @@ if ok then
         -- Neovim treesitter plugin for setting the commentstring based on the
         -- cursor location in a file.
         { "JoosepAlviste/nvim-ts-context-commentstring" },
+
+        -- Better % experience
+        { "theHamsta/nvim-treesitter-pairs" },
       },
       opt = true,
     }
@@ -70,7 +73,7 @@ if ok then
       opt = true,
       requires = {
         -- Snippet plugin for vim/nvim that supports LSP/VSCode's snippet
-        -- format. Only used for LSP completion that needs snippet
+        -- format. Only used for LSP completion that needs snippet and todo stuff
         { "L3MON4D3/LuaSnip" },
       },
     }
@@ -117,9 +120,6 @@ if ok then
 
     -- Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
     use { "mfussenegger/nvim-jdtls", opt = false }
-
-    -- Enhance Neovim's builtin LSP UI
-    use { "glepnir/lspsaga.nvim", opt = true }
 
     -- SQLite/LuaJIT binding for lua and neovim
     use { "tami5/sql.nvim", opt = false }

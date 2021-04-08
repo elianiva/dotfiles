@@ -32,7 +32,6 @@ ColorUtil.override_gruvbox = function()
 
     -- lsp saga stuff
     { "TargetWord",             { fg = "#d79921", bg  = "NONE",    gui = "bold" }},
-    { "LspSagaFinderSelection", { fg = "#d79921", bg  = "#3C3836", gui = "bold" }},
     { "LspDiagErrorBorder",     { fg = "#fb4934", gui = "bold" }},
     { "LspDiagWarnBorder",      { fg = "#d79921", gui = "bold" }},
     { "LspDiagInfoBorder",      { fg = "#458588", gui = "bold" }},
@@ -130,10 +129,10 @@ ColorUtil.override_onedark = function()
     { "LspDiagnosticsDefaultWarning",       { bg  = "NONE", fg = "#e5c07b" }},
     { "LspDiagnosticsDefaultInformation",   { bg  = "NONE", fg = "#61afef" }},
     { "LspDiagnosticsDefaultHint",          { bg  = "NONE", fg = "#abcf84" }},
-    { "LspDiagnosticsUnderlineError",       { gui = "underline" }},
-    { "LspDiagnosticsUnderlineWarning",     { gui = "underline" }},
-    { "LspDiagnosticsUnderlineInformation", { gui = "underline" }},
-    { "LspDiagnosticsUnderlineHint",        { gui = "underline" }},
+    { "LspDiagnosticsUnderlineError",       { fg = "NONE", gui = "underline" }},
+    { "LspDiagnosticsUnderlineWarning",     { fg = "NONE", gui = "underline" }},
+    { "LspDiagnosticsUnderlineInformation", { fg = "NONE", gui = "underline" }},
+    { "LspDiagnosticsUnderlineHint",        { fg = "NONE", gui = "underline" }},
 
     -- telescope
     { "TelescopeSelection",       { bg = "NONE", fg = "#61afef", gui = "bold" }},
@@ -162,6 +161,9 @@ ColorUtil.override_onedark = function()
     { "TSPunctDelimiter",     { fg = "#ABB2BF", bg = "NONE" }},
     { "TSConstructor",        { fg = "#e95678", bg = "NONE" }},
     { "TSTagDelimiter",       { fg = "#61afef", bg = "NONE" }},
+
+    { "Pmenu",       { bg = "#333740", fg = "NONE" }},
+    { "Bordaa",      { bg = "NONE", fg = "#333740" }},
   }
 
   for _, highlight in ipairs(highlights) do

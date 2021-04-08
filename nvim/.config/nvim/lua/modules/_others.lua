@@ -28,7 +28,7 @@ require('nvim-biscuits').setup {
     max_length = 40,
     min_distance = 6,
     prefix_string = " // ",
-    on_events = { "InsertLeave", "CursorHold" }
+    on_events = { "BufWritePost" }
   }
 }
 

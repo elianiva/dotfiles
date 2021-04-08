@@ -164,11 +164,12 @@ Util.set_hl = function(group, options)
   local bg     = options.bg == nil and "" or "guibg=" .. options.bg
   local fg     = options.fg == nil and "" or "guifg=" .. options.fg
   local gui    = options.gui == nil and "" or "gui=" .. options.gui
+  local guisp    = options.guisp == nil and "" or "guisp=" .. options.guisp
   local link   = options.link or false
   local target = options.target
 
   if not link then
-    vim.cmd(string.format("hi %s %s %s %s", group, bg, fg, gui))
+    vim.cmd(string.format("hi %s %s %s %s %s", group, bg, fg, gui, guisp))
   else
     vim.cmd(string.format("hi! link", group, target))
   end
@@ -206,5 +207,24 @@ end
 Util.t = function(cmd)
   return vim.api.nvim_replace_termcodes(cmd, true, true, true)
 end
+
+Util.borders = {
+  -- {"┌", "FloatBorder"},
+  -- {"─", "FloatBorder"},
+  -- {"┐", "FloatBorder"},
+  -- {"│", "FloatBorder"},
+  -- {"┘", "FloatBorder"},
+  -- {"─", "FloatBorder"},
+  -- {"└", "FloatBorder"},
+  -- {"│", "FloatBorder"}
+  {"▄", "Bordaa"},
+  {"▄", "Bordaa"},
+  {"▄", "Bordaa"},
+  {"█", "Bordaa"},
+  {"▀", "Bordaa"},
+  {"▀", "Bordaa"},
+  {"▀", "Bordaa"},
+  {"█", "Bordaa"}
+}
 
 return Util

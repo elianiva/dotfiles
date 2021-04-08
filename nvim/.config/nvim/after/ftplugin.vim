@@ -17,14 +17,14 @@ au FileType c,cpp setlocal sw=4 ts=4 sts=4
 au FileType php setlocal sw=4 ts=4
 au FileType json set filetype=jsonc
 
-" enable spelling in markdown
+" disable conceal
 au FileType markdown setlocal conceallevel=0 nospell
 
 " Remove trailing whitespace on save
 au BufWritePre * %s/\s\+$//e
 
 " automatically go to insert mode on terminal buffer
-autocmd TermOpen * startinsert
+autocmd BufEnter term://* startinsert
 
 " enable/disable wordwrap
 augroup Goyo
@@ -36,8 +36,8 @@ augroup END
 " disable nvim-compe inside telescope
 augroup Compe
   au!
-  au BufEnter * let g:compe_enabled = v:true
-  au FileType TelescopePrompt let g:compe_enabled = v:false
+  au WinLeave,FileType TelescopePrompt let g:compe_enabled = v:true
+  au WinEnter,FileType TelescopePrompt let g:compe_enabled = v:false
 augroup END
 
 " hide the cursor if we're inside NvimTree
