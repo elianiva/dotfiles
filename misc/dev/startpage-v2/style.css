@@ -13,6 +13,10 @@ body {
   width: 100%;
 }
 
+.thing[foo="bar"] {
+  color: red;
+}
+
 body {
   background-image: linear-gradient(to top, #1f2940, #384665);
   display: flex;

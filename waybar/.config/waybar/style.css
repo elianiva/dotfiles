@@ -1,39 +1,38 @@
 window#waybar {
-  background-color: #292d3e;
-  color: #A6ACCD;
+  background-color: #282828;
+  color: #ebdbb2;
   font-family: "Inter", "M+ 1p", sans-serif;
   font-size: 13.5;
   min-height: 0;
 }
 
 #workspaces button {
-  color: #A6ACCD;
+  color: #ebdbb2;
   padding: 0.25rem 0.5rem;
 }
 
 #workspaces button:hover {
   box-shadow: inherit;
   text-shadow: inherit;
-  background: #414863;
-  /* background: #504945; */
-  border: 1px #414863 solid;
+  background: #504945;
+  border: 1px #504945 solid;
 }
 
 #workspaces button.focused {
-  color: #82aaff;
+  color: #d79921;
 }
 
 #workspaces button.persistent {
-  color: #414863;
+  color: #504945;
 }
 
 #custom-playerctl.playerctl {
-  color: #A6ACCD;
+  color: #ebdbb2;
   margin-left: 0.25rem;
 }
 
 #custom-playerctl.playerctl.playerctl-icon {
-  color: #82aaff;
+  color: #d79921;
 }
 
 #pulseaudio, #network, #cpu, #memory, #temperature, #battery, #clock {

@@ -18,6 +18,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # PATH stuff
 export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.deno/bin:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH="$HOME/.local/go/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"

@@ -83,7 +83,9 @@ local servers = {
   -- },
   html = {},
   cssls = {},
-  intelephense = {},
+  intelephense = {
+    root_dir = vim.loop.cwd
+  },
   rust_analyzer = {
     capabilities = (function()
       -- for autoimports

@@ -129,3 +129,17 @@ xmap { "ga", "<Plug>(EasyAlign)", { silent = true }}
 nmap { "ga", "<Plug>(EasyAlign)", { silent = true }}
 
 nmap {"<Leader>t", "<Plug>PlenaryTestFile", { silent = true }}
+
+local curstr = require("curstr").execute
+
+nnoremap {
+  "gf",
+  function()
+    if vim.bo.filetype == "lua" then
+      return curstr("vim/lua")
+    end
+
+    return curstr("file/path")
+  end,
+  { silent = true }
+}
