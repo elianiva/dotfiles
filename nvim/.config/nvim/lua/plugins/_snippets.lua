@@ -10,6 +10,10 @@ ls.snippets = {
     ls.parser.parse_snippet({ trig = "todo" }, "TODO(elianiva): ${1:todo}"),
     ls.parser.parse_snippet({ trig = "fixme" }, "FIXME(elianiva): ${1:fixme}"),
   },
+  php = {
+    ls.parser.parse_snippet({ trig = "php" }, "<?php $0 ?>"),
+    ls.parser.parse_snippet({ trig = "phpp" }, "<?= $0 ?>"),
+  },
 }
 
 

@@ -28,11 +28,11 @@ if ok then
     -- A simplified and optimized Gruvbox colorscheme for Vim
     use { "lifepillar/vim-gruvbox8", opt = false }
 
-    -- A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.
-    use { "joshdick/onedark.vim", opt = false }
-
     -- commentary.vim: comment stuff out
     use { "tpope/vim-commentary", opt = false }
+
+    -- Dim your inactive window
+    use { "sunjon/Shade.nvim", opt = false}
 
     -- Wrapper for an external formatter
     use {
@@ -53,9 +53,6 @@ if ok then
 
         -- Extra textobjects leveraging Treesitter
         { "nvim-treesitter/nvim-treesitter-textobjects" },
-
-        -- Use treesitter to autoclose and autorename html tag
-        { "windwp/nvim-ts-autotag" },
 
         -- Neovim treesitter plugin for setting the commentstring based on the
         -- cursor location in a file.
@@ -135,15 +132,15 @@ if ok then
         -- plenary: full; complete; entire; absolute; unqualified.
         { "~/repos/plenary.nvim" },
 
-        -- FZY style sorter that is compiled
-        { "nvim-telescope/telescope-fzy-native.nvim" },
-
         -- Preview media files in Telescope
         { "nvim-telescope/telescope-media-files.nvim" },
 
         -- A telescope.nvim extension that offers intelligent prioritization
         -- when selecting files from your editing history.
         { "nvim-telescope/telescope-frecency.nvim" },
+
+        -- FZF style sorter
+        { "nvim-telescope/telescope-fzf-native.nvim" },
 
         -- Search engine integration using Telescope
         {
@@ -206,7 +203,7 @@ if ok then
     use { "tweekmonster/startuptime.vim" }
 
     -- Magit for Neovim
-    use { "TimUntersberger/neogit", opt = false }
+    use { "TimUntersberger/neogit", opt = false, disable = true }
 
     -- Markdown Vim Mode
     use { "plasticboy/vim-markdown", opt = false }
@@ -214,7 +211,7 @@ if ok then
     use { "notomo/curstr.nvim", opt = false }
 
     -- A Neovim port of Assorted Biscuits
-    use { "code-biscuits/nvim-biscuits", opt = false }
+    -- use { "code-biscuits/nvim-biscuits", opt = false }
 
     -- check these out again later
     -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved

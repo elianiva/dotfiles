@@ -66,8 +66,8 @@ telescope.setup({
     },
   },
   extensions = {
-    fzy_native = {
-      override_generic_sorter = true,
+    fzf = {
+      override_generic_sorter = false,
       override_file_sorter = true,
     },
     media_files = {
@@ -94,7 +94,7 @@ telescope.setup({
   },
 })
 
-pcall(require("telescope").load_extension, "fzy_native") -- superfast sorter
+pcall(require("telescope").load_extension, "fzf") -- superfast sorter
 pcall(require("telescope").load_extension, "media_files") -- media preview
 pcall(require("telescope").load_extension, "frecency") -- frecency
 pcall(require("telescope").load_extension, "arecibo") -- websearch
@@ -135,6 +135,10 @@ end
 
 M.buffer_fuzzy = function()
   require("telescope.builtin").current_buffer_fuzzy_find(no_preview())
+end
+
+M.reload = function()
+  require("telescope.builtin").reloader(no_preview())
 end
 
 M.code_actions = function()

@@ -18,6 +18,7 @@ M.lsp_mappings = function(type)
     "gD",
     function()
       vim.lsp.diagnostic.show_line_diagnostics {
+        show_header = false,
         border = Util.borders
       }
     end,
@@ -28,14 +29,24 @@ M.lsp_mappings = function(type)
   nnoremap({
     "<Leader>dn",
     function()
-      vim.lsp.diagnostic.goto_next { popup_opts = { border = Util.borders } }
+      vim.lsp.diagnostic.goto_next {
+        popup_opts = {
+          show_header = false,
+          border = Util.borders
+        }
+      }
     end,
     { silent = true },
   })
   nnoremap({
     "<Leader>dN",
     function()
-      vim.lsp.diagnostic.goto_next { popup_opts = { border = Util.borders } }
+      vim.lsp.diagnostic.goto_next {
+        popup_opts = {
+          show_header = false,
+          border = Util.borders
+        }
+      }
     end,
     { silent = true },
   })

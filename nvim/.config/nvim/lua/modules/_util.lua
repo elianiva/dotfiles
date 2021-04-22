@@ -160,18 +160,17 @@ Util.is_cfg_present = function(cfg_name)
 end
 
 -- helper for defining highlight groups
-Util.set_hl = function(group, options)
-  local bg     = options.bg == nil and "" or "guibg=" .. options.bg
-  local fg     = options.fg == nil and "" or "guifg=" .. options.fg
-  local gui    = options.gui == nil and "" or "gui=" .. options.gui
-  local guisp    = options.guisp == nil and "" or "guisp=" .. options.guisp
-  local link   = options.link or false
-  local target = options.target
+Util.set_hl = function(group, opts)
+  local bg     = opts.bg == nil and "" or "guibg=" .. opts.bg
+  local fg     = opts.fg == nil and "" or "guifg=" .. opts.fg
+  local gui    = opts.gui == nil and "" or "gui=" .. opts.gui
+  local guisp    = opts.guisp == nil and "" or "guisp=" .. opts.guisp
+  local link   = opts.link or false
 
   if not link then
     vim.cmd(string.format("hi %s %s %s %s %s", group, bg, fg, gui, guisp))
   else
-    vim.cmd(string.format("hi! link", group, target))
+    vim.cmd(string.format("hi! link %s %s", group, link))
   end
 end
 
@@ -209,6 +208,14 @@ Util.t = function(cmd)
 end
 
 Util.borders = {
+  {"🭽", "FloatBorder"},
+  {"▔", "FloatBorder"},
+  {"🭾", "FloatBorder"},
+  {"▕", "FloatBorder"},
+  {"🭿", "FloatBorder"},
+  {"▁", "FloatBorder"},
+  {"🭼", "FloatBorder"},
+  {"▏", "FloatBorder"},
   -- {"┌", "FloatBorder"},
   -- {"─", "FloatBorder"},
   -- {"┐", "FloatBorder"},
@@ -217,14 +224,35 @@ Util.borders = {
   -- {"─", "FloatBorder"},
   -- {"└", "FloatBorder"},
   -- {"│", "FloatBorder"}
-  {"▄", "Bordaa"},
-  {"▄", "Bordaa"},
-  {"▄", "Bordaa"},
-  {"█", "Bordaa"},
-  {"▀", "Bordaa"},
-  {"▀", "Bordaa"},
-  {"▀", "Bordaa"},
-  {"█", "Bordaa"}
+  -- {"▄", "Bordaa"},
+  -- {"▄", "Bordaa"},
+  -- {"▄", "Bordaa"},
+  -- {"█", "Bordaa"},
+  -- {"▀", "Bordaa"},
+  -- {"▀", "Bordaa"},
+  -- {"▀", "Bordaa"},
+  -- {"█", "Bordaa"}
 }
+
+-- see lua/plugins/_compe.lua for context
+Util.trigger_completion = function()
+  if vim.fn.pumvisible() ~= 0 then
+    if vim.fn.complete_info()["selected"] ~= -1 then
+      return vim.fn["compe#confirm"]()
+    end
+  end
+
+   local prev_col, next_col = vim.fn.col(".") - 1, vim.fn.col(".")
+  local prev_char = vim.fn.getline("."):sub(prev_col, prev_col)
+  local next_char = vim.fn.getline("."):sub(next_col, next_col)
+
+  -- minimal autopairs-like behaviour
+  if prev_char == "{" and next_char == "" then return Util.t("<CR>}<C-o>O") end
+  if prev_char == "[" and next_char == "" then return Util.t("<CR>]<C-o>O") end
+  if prev_char == "(" and next_char == "" then return Util.t("<CR>)<C-o>O") end
+  if prev_char == ">" and next_char == "<" then return Util.t("<CR><C-o>O") end -- html indents
+
+  return Util.t("<CR>")
+end
 
 return Util

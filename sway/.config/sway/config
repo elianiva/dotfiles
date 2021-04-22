@@ -54,8 +54,9 @@ set $menu_alt wofi --show run
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 # output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/elianiva/.config/awesome/themes/main/img/ryuko-spring.png fill
-#
+# output * bg /home/elianiva/.config/awesome/themes/main/img/ryuko-spring.png fill
+output * bg /home/elianiva/.config/awesome/themes/main/img/autumn_gurl.png fill
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0

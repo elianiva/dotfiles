@@ -2,6 +2,6 @@
 
 configuration {
   show-icons: true;
-  icon-theme: "Numix";
+  icon-theme: "Breeze";
   location:   0;
 }

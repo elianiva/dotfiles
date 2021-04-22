@@ -3,21 +3,10 @@ vim.api.nvim_exec([[
   packadd nvim-treesitter-textobjects
   packadd nvim-treesitter-pairs
   packadd playground
-  packadd nvim-ts-autotag
   packadd nvim-ts-context-commentstring
 ]], false)
 
 local ts_config = require("nvim-treesitter.configs")
-
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
-parser_config.zig = {
-  install_info = {
-    url = "~/repos/tree-sitter-zig", -- update this accordingly
-    files = {"src/parser.c"}
-  },
-  filetype = "zig"
-}
 
 ts_config.setup {
   ensure_installed = {
@@ -44,13 +33,15 @@ ts_config.setup {
 
   context_commentstring = {
     enable = true,
-    disable = { "javascript", "typescript" }
+    config = {
+      lua = "-- %s",
+    }
   },
 
   pairs = {
     enable = true,
     highlight_pair_events = { "CursorMoved" }, -- when to highlight the pairs, use {} to deactivate highlighting
-    highlight_self = true,
+    highlight_self = false,
     goto_right_end = false, -- whether to go to the end of the right partner or the beginning
     fallback_cmd_normal = "call matchit#Match_wrapper('',1,'n')", -- What command to issue when we can't find a pair (e.g. "normal! %")
     keymaps = {

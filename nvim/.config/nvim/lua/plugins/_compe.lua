@@ -3,6 +3,16 @@ local remap = vim.api.nvim_set_keymap
 
 vim.g.vsnip_snippet_dir = vim.fn.stdpath("config") .. "/snippets"
 
+-- don't load *all* modules
+vim.g.loaded_compe_snippets_nvim = true
+vim.g.loaded_compe_spell = true
+vim.g.loaded_compe_tags = true
+vim.g.loaded_compe_treesitter = true
+vim.g.loaded_compe_emoji = true
+vim.g.loaded_compe_omni = true
+vim.g.loaded_compe_vsnip = true
+vim.g.loaded_compe_ultisnips = true
+vim.g.loaded_compe_vim_lsc = true
 require("compe").setup({
   enabled              = true,
   debug                = false,
@@ -21,25 +31,6 @@ require("compe").setup({
     nvim_lua = true,
   },
 })
-
-Util.trigger_completion = function()
-  if vim.fn.pumvisible() ~= 0 then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      return vim.fn["compe#confirm"]()
-    end
-  end
-
-  local prev_col, next_col = vim.fn.col(".") - 1, vim.fn.col(".")
-  local prev_char = vim.fn.getline("."):sub(prev_col, prev_col)
-  local next_char = vim.fn.getline("."):sub(next_col, next_col)
-
-  -- minimal autopairs-like behaviour
-  if prev_char == "{" and next_char == "" then return Util.t("<CR>}<C-o>O") end
-  if prev_char == "[" and next_char == "" then return Util.t("<CR>]<C-o>O") end
-  if prev_char == "(" and next_char == "" then return Util.t("<CR>)<C-o>O") end
-  if prev_char == ">" and next_char == "<" then return Util.t("<CR><C-o>O") end -- html indents
-  return Util.t("<CR>")
-end
 
 remap(
   "i",

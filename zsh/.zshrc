@@ -45,14 +45,11 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 bindkey -v # vi mode
 bindkey "jj" vi-cmd-mode # Use jj instead of <Esc>
 
-# Use vim keys in tab complete menu:
-bindkey -v '^?' backward-delete-char
-
 # history substring function
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# Change cursor shape for different vi modes.
+# # Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
@@ -65,12 +62,10 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
-zle-line-init() {
-    echo -ne "\e[5 q"
+_fix_cursor() {
+   echo -ne '\e[5 q'
 }
-zle -N zle-line-init
-echo -ne '\e[5 q' # use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # use beam shape cursor for each new prompt.
+precmd_functions+=(_fix_cursor)
 
 lfcd () {
     tmp="$(mktemp)"

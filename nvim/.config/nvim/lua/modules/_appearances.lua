@@ -5,7 +5,8 @@ ColorUtil = {}
 ColorUtil.override_gruvbox = function()
   local highlights = {
     -- normal stuff
-    { "Normal",      { bg  = "NONE"    }},
+    -- { "Normal",      { bg  = "NONE"    }},
+    { "Normal",      { bg  = "#1d2021"    }},
     { "Comment",     { gui = "italic"  }},
     { "SignColumn",  { bg  = "NONE"    }},
     { "ColorColumn", { bg  = "#3C3836" }},
@@ -13,6 +14,7 @@ ColorUtil.override_gruvbox = function()
     { "Special",     { gui = "NONE"    }},
     { "Folded",      { gui = "NONE"    }},
     { "EndOfBuffer", { bg  = "NONE",fg = "#282828" }},
+    { "OnYank",      { link  = "Visual" }},
 
     -- tabline stuff
     { "Tabline",            { bg = "NONE"  }},
@@ -72,9 +74,9 @@ ColorUtil.override_gruvbox = function()
     { "NvimTreeIndentMarker", { fg = "#928374" }},
 
     -- telescope
-    { "TelescopeSelection", { bg = "NONE", fg = "#d79921", gui = "bold" }},
-    { "TelescopeMatching",  { bg = "NONE", fg = "#fb4934", gui = "bold" }},
-    { "TelescopeBorder",    { bg = "NONE", fg = "#928374", gui = "bold" }},
+    { "TelescopeSelection",    { bg = "NONE", fg = "#d79921", gui = "bold" }},
+    { "TelescopeMatching",     { bg = "NONE", fg = "#fb4934", gui = "bold" }},
+    { "TelescopeBorder",       { bg = "NONE", fg = "#928374", gui = "bold" }},
 
     -- diagnostic stuff
     { "LspDiagnosticsDefaultError",         { bg  = "NONE", fg = "#fb4934" }},
@@ -87,8 +89,16 @@ ColorUtil.override_gruvbox = function()
     { "LspDiagnosticsUnderlineHint",        { gui = "underline" }},
 
     -- ts override
+    { "Bordaa",           { bg = "NONE", fg = "#504945" }},
+    { "FloatBorder",      { bg = "#504945", fg = "#A69481" }},
     -- { "TSKeywordOperator", { bg = "NONE", fg = "#fb4934" }},
     -- { "TSOperator",        { bg = "NONE", fg = "#fe8019" }},
+
+
+    -- temporary html stuff
+    { "htmlTag",          { link = "TSAttribute" } },
+    { "htmlArg",          { link = "TSProperty" } },
+    { "htmlEvent",        { link = "TSProperty" } },
   }
 
   for _, highlight in ipairs(highlights) do
@@ -99,7 +109,7 @@ end
 ColorUtil.override_onedark = function()
   local highlights = {
     -- normal stuff
-    { "Normal",      { bg  = "#1c1e26" }},
+    { "Normal",      { bg  = "NONE" }},
     { "Comment",     { gui = "italic"  }},
     { "SignColumn",  { bg  = "NONE"    }},
     { "IncSearch",   { bg  = "#61afef", fg = "#14151a" }},
@@ -185,8 +195,7 @@ vim.api.nvim_exec([[
 
 -- disable invert selection for gruvbox
 vim.g.gruvbox_invert_selection = false
--- vim.cmd [[colorscheme gruvbox8]]
-vim.cmd [[ colorscheme onedark]]
+vim.cmd [[colorscheme gruvbox8]]
 
 -- needs to be loaded after setting colourscheme
 vim.cmd [[packadd nvim-web-devicons]]

@@ -11,26 +11,46 @@ vim.cmd [[
 
 -- change cwd to current directory
 vim.cmd [[cd %:p:h]]
-pcall(require, "plugins._packer")
 
-pcall(require, "modules._settings") -- `set` stuff
-pcall(require, "modules._appearances") -- colourscheme shenanigans
-pcall(require, "modules._util") -- some useful utils
-pcall(require, "modules._mappings") -- general mappings
-pcall(require, "modules._statusline") -- my custom statusline
+-- order matters
+local modules = {
+  "plugins._packer",
 
-pcall(require, "plugins._bufferline") -- nvim-bufferline + extra stuff
-pcall(require, "plugins._compe") -- completion config
--- pcall(require, "plugins._emmet") -- not using this anymore
-pcall(require, "plugins._firenvim") -- firenvim stuff
-pcall(require, "plugins._formatter") -- formatter configuration
-pcall(require, "plugins._gitsigns") -- gitsings config
-pcall(require, "plugins._nvimtree") -- nvimtree config
--- pcall(require, "plugins._snippets") -- snippets config
-require("plugins._snippets")
-pcall(require, "plugins._telescope") -- to see planets and stars
-pcall(require, "plugins._treesitter") -- something awesome
+  -- plugin unrelated(-ish) stuff
+  "modules._settings",    -- `set` stuff
+  "modules._appearances", -- colourscheme shenanigans
+  "modules._util",        -- some useful utils
+  "modules._mappings",    -- general mappings
+  "modules._statusline",  -- my custom statusline
 
-pcall(require, "modules._others") -- other stuff
+  -- plugin related stuff
+  "plugins._bufferline",  -- nvim-bufferline + extra stuff
+  "plugins._compe",       -- completion config
+  "plugins._firenvim",    -- firenvim stuff
+  "plugins._formatter",   -- formatter configuration
+  "plugins._gitsigns",    -- gitsings config
+  "plugins._nvimtree",    -- nvimtree config
+  "plugins._snippets",    -- snippets config
+  "plugins._telescope",   -- to see planets and stars
+  "plugins._treesitter",  -- something awesome
 
-pcall(require, "modules.lsp") -- lsp related stuff
+  -- some stuff
+  "modules._others",
+
+  -- lsp stuff
+  "modules.lsp",
+}
+
+local errors = {}
+for _, v in pairs(modules) do
+  local ok, err = pcall(require, v)
+  if not ok then
+    table.insert(errors, err)
+  end
+end
+
+if not vim.tbl_isempty(errors) then
+  for _, v in pairs(errors) do
+    print(v)
+  end
+end

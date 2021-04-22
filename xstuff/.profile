@@ -1,7 +1,7 @@
 #!/bin/sh
 export EDITOR="nvim"
 export DOTS="/home/elianiva/repos/dotfiles"
-export TERMINAL="alacritty"
+export TERMINAL="kitty"
 export CC="gcc"
 export CM_LAUNCHER="rofi"
 export CM_SELECTIONS="clipboard"

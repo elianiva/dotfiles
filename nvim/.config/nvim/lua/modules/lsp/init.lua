@@ -158,7 +158,7 @@ local servers = {
           css = {
             completions = {
               enable = true,
-              emmet = false,
+              emmet = true,
             },
           },
         },

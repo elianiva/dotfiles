@@ -9,12 +9,12 @@ local prettier = function()
     return {
       exe = "prettier",
       args = {
-        string.format(
-          "--stdin-filepath '%s' --config '%s'",
-          vim.api.nvim_buf_get_name(0),
-          vim.loop.cwd() .. "/.prettierrc"
-        ),
+        "--stdin-filepath",
+        vim.api.nvim_buf_get_name(0),
+        "--config",
+        vim.loop.cwd() .. "/.prettierrc"
       },
+      stdin = true,
     }
   end
 
@@ -22,23 +22,22 @@ local prettier = function()
   return {
     exe = "prettier",
     args = {
-      string.format(
-        "--stdin-filepath '%s' --config '%s'",
-        vim.api.nvim_buf_get_name(0),
-        vim.fn.stdpath("config") .. "/.prettierrc"
-      ),
+      "--stdin-filepath",
+      vim.api.nvim_buf_get_name(0),
+      "--config",
+      vim.fn.stdpath("config") .. "/.prettierrc"
     },
     stdin = true,
   }
 end
 
-local denofmt = function()
-  return {
-    exe = "deno",
-    args = { "fmt", "-" },
-    stdin = true,
-  }
-end
+-- local denofmt = function()
+--   return {
+--     exe = "deno",
+--     args = { "fmt", "-" },
+--     stdin = true,
+--   }
+-- end
 
 local rustfmt = function()
   return {
@@ -57,13 +56,18 @@ end
 
 local stylua = function()
   return {
-    exe = "stylua --config-path ~/.config/nvim/.stylua -",
+    exe = "stylua",
+    args = {
+      "--config-path",
+      "~/.config/nvim/.stylua",
+      "-"
+    },
     stdin = true,
   }
 end
 
 require("formatter").setup({
-  logging = false,
+  logging = true,
   filetype = {
     typescriptreact = { prettier },
     javascript = { prettier },

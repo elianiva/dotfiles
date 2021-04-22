@@ -91,8 +91,8 @@ local exit = create_button(exit_text_icon, theme.red, exit_command)
 local exit_screen = wibox({visible = false, ontop = true, type = "dock"})
 awful.placement.maximize(exit_screen)
 
-exit_screen.bg = theme.exit_screen_bg or exitscreen_bg or "#282828"
-exit_screen.fg = theme.exit_screen_fg or theme.wibar_fg or "#ebdbb2"
+exit_screen.bg = theme.exit_screen_bg or exitscreen_bg
+exit_screen.fg = theme.exit_screen_fg or theme.wibar_fg
 
 local exit_screen_grabber
 local exit_screen_hide = function()
