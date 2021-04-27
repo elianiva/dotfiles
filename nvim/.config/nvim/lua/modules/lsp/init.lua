@@ -48,23 +48,23 @@ local denofmt = {
 
 local sumneko_root = os.getenv("HOME") .. "/repos/lua-language-server"
 local servers = {
-  tsserver = {
-    filetypes = { "javascript", "typescript", "typescriptreact" },
-    on_attach = function()
-      mappings.lsp_mappings()
-    end,
-    init_options = {
-      documentFormatting = false,
-    },
-    handlers = {
-      ["textDocument/publishDiagnostics"] = is_using_eslint,
-    },
-    on_init = custom_on_init,
-    root_dir = vim.loop.cwd,
-    extra_setup = function ()
-      require("nvim-lsp-ts-utils").setup {}
-    end
-  },
+  -- tsserver = {
+  --   filetypes = { "javascript", "typescript", "typescriptreact" },
+  --   on_attach = function()
+  --     mappings.lsp_mappings()
+  --   end,
+  --   init_options = {
+  --     documentFormatting = false,
+  --   },
+  --   handlers = {
+  --     ["textDocument/publishDiagnostics"] = is_using_eslint,
+  --   },
+  --   on_init = custom_on_init,
+  --   root_dir = vim.loop.cwd,
+  --   extra_setup = function ()
+  --     require("nvim-lsp-ts-utils").setup {}
+  --   end
+  -- },
   -- rome = {
   --   cmd = { "/home/elianiva/repos/tools/rome", "lsp" },
   --   filetypes = { "javascript", "typescript", "typescriptreact" },
@@ -74,15 +74,18 @@ local servers = {
   --   on_init = custom_on_init,
   --   root_dir = vim.loop.cwd,
   -- },
-  -- denols = {
-  --   filetypes = { "javascript", "typescript", "typescriptreact" },
-  --   root_dir = vim.loop.cwd,
-  --   settings = {
-  --     documentFormatting = true
-  --   }
-  -- },
+  denols = {
+    filetypes = { "javascript", "typescript", "typescriptreact" },
+    root_dir = vim.loop.cwd,
+    settings = {
+      documentFormatting = true
+    }
+  },
   html = {},
   cssls = {},
+  -- phpactor = {
+  --   root_dir = vim.loop.cwd
+  -- },
   intelephense = {
     root_dir = vim.loop.cwd
   },

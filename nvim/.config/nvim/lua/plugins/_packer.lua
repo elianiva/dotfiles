@@ -7,9 +7,9 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd('packadd packer.nvim')
 end
 
-local ok, packer = pcall(require, "packer")
+local packer_ok, packer = pcall(require, "packer")
 
-if ok then
+if packer_ok then
   local use = packer.use
 
   packer.init {
@@ -32,21 +32,61 @@ if ok then
     use { "tpope/vim-commentary", opt = false }
 
     -- Dim your inactive window
-    use { "sunjon/Shade.nvim", opt = false}
+    use {
+      "sunjon/shade.nvim",
+      opt = false,
+      config = function()
+        require("shade").setup {
+          overlay_opacity = 50,
+          opacity_step = 1,
+          keys = {
+            brightness_up = "<C-Up>",
+            brightness_down = "<C-Down>",
+            toggle = "<Leader>s",
+          },
+        }
+      end,
+    }
+
+    -- A pretty diagnostics list to help you solve all the trouble your code is
+    -- causing.
+    use {
+      "folke/lsp-trouble.nvim",
+      opt = false,
+      config = function() require("trouble").setup {} end,
+    }
 
     -- Wrapper for an external formatter
     use {
       "mhartington/formatter.nvim",
-      opt = true,
-      cmd = "Format",
+      opt = false,
+      config = function() require("plugins._formatter") end,
     }
 
     -- The fastest Neovim colorizer.
-    use { "norcalli/nvim-colorizer.lua", opt = true }
+    use {
+      "norcalli/nvim-colorizer.lua",
+      opt = true,
+      ft = {
+        "lua", "html", "css", "typescript",
+        "javascript", "svelte"
+      },
+      config = function()
+        require("colorizer").setup {
+          ["*"] = {
+            css = true,
+            css_fn = true,
+            mode = "background",
+          },
+        }
+      end,
+    }
 
     -- Nvim Treesitter configurations and abstraction layer
     use {
       "~/repos/nvim-treesitter",
+      opt = false,
+      config = function() require("plugins._treesitter") end,
       requires = {
         -- Treesitter playground integrated into Neovim
         { "nvim-treesitter/playground" },
@@ -61,17 +101,20 @@ if ok then
         -- Better % experience
         { "theHamsta/nvim-treesitter-pairs" },
       },
-      opt = true,
     }
 
     -- Auto completion plugin for nvim written in Lua.
     use {
-      "~/repos/nvim-compe",
-      opt = true,
+      "hrsh7th/nvim-compe",
+      opt = false,
+      config = function() require("plugins._compe") end,
       requires = {
         -- Snippet plugin for vim/nvim that supports LSP/VSCode's snippet
         -- format. Only used for LSP completion that needs snippet and todo stuff
-        { "L3MON4D3/LuaSnip" },
+        {
+          "L3MON4D3/LuaSnip",
+          config = function() require("plugins._snippets") end,
+        },
       },
     }
 
@@ -96,17 +139,29 @@ if ok then
     }
 
     -- lua `fork` of vim-web-devicons for neovim
-    use { "kyazdani42/nvim-web-devicons", opt = true }
-
-    -- Icon set using nonicons for neovim plugins and settings.
-    -- requires nonicons font installed
-    use { "yamatsum/nvim-nonicons", opt = false }
+    use {
+      "kyazdani42/nvim-web-devicons",
+      opt = true,
+      requires = {
+        -- Icon set using nonicons for neovim plugins and settings.
+        -- requires nonicons font installed
+        "yamatsum/nvim-nonicons"
+      }
+    }
 
     -- A file explorer tree for neovim written in lua.
-    use { "kyazdani42/nvim-tree.lua", opt = true }
+    use {
+      "kyazdani42/nvim-tree.lua",
+      opt = false,
+      config = function() require("plugins._nvimtree") end,
+    }
 
     -- A snazzy bufferline for Neovim
-    use { "akinsho/nvim-bufferline.lua", opt = true }
+    use {
+      "akinsho/nvim-bufferline.lua",
+      opt = false,
+      config = function() require("plugins._bufferline") end,
+    }
 
     -- Quickstart configurations for the Nvim LSP client
     use { "neovim/nvim-lspconfig", opt = true }
@@ -125,12 +180,13 @@ if ok then
     use {
       "~/repos/telescope.nvim",
       opt = false,
+      config = function() require("plugins._telescope") end,
       requires = {
         -- An implementation of the Popup API from vim in Neovim.
         { "nvim-lua/popup.nvim" },
 
         -- plenary: full; complete; entire; absolute; unqualified.
-        { "~/repos/plenary.nvim" },
+        { "nvim-lua/plenary.nvim" },
 
         -- Preview media files in Telescope
         { "nvim-telescope/telescope-media-files.nvim" },
@@ -151,13 +207,26 @@ if ok then
     }
 
     -- Git signs written in pure lua
-    use { "lewis6991/gitsigns.nvim", opt = true }
+    use {
+      "lewis6991/gitsigns.nvim",
+      opt = false,
+      config = function() require("plugins._gitsigns") end,
+    }
+
+    use {
+      "ruifm/gitlinker.nvim",
+      opt = false,
+      config = function() require("gitlinker").setup {} end,
+    }
 
     -- Vim and Neovim plugin to reveal the commit messages under the cursor
     use {
       "rhysd/git-messenger.vim",
       cmd = "GitMessenger",
       opt = true,
+      config = function()
+        vim.g.git_messenger_no_default_mappings = true
+      end
     }
 
     -- The set of operator and textobject plugins to search/select/edit
@@ -168,6 +237,7 @@ if ok then
     use {
       "glacambre/firenvim",
       run = function() vim.fn["firenvim#install"](0) end,
+      config = function() require("plugins._firenvim") end,
     }
 
     -- Sane buffer/window deletion.
@@ -191,7 +261,12 @@ if ok then
     use { "tjdevries/astronauta.nvim", opt = false }
 
     -- Neovim motions on speed!
-    use { "phaazon/hop.nvim", opt = false }
+    use {
+      "phaazon/hop.nvim",
+      opt = true,
+      cmd = "HopWord",
+      config = function() require("hop").setup {} end,
+    }
 
     -- fix php indent, temporary, will remove this once I'm done with PHP
     use {
@@ -203,12 +278,15 @@ if ok then
     use { "tweekmonster/startuptime.vim" }
 
     -- Magit for Neovim
-    use { "TimUntersberger/neogit", opt = false, disable = true }
+    use { "TimUntersberger/neogit", opt = false }
 
     -- Markdown Vim Mode
     use { "plasticboy/vim-markdown", opt = false }
 
     use { "notomo/curstr.nvim", opt = false }
+
+    -- Find the enemy and replace them with dark power.
+    use { "windwp/nvim-spectre", opt = false }
 
     -- A Neovim port of Assorted Biscuits
     -- use { "code-biscuits/nvim-biscuits", opt = false }

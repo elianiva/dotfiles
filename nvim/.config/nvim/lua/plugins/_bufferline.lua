@@ -1,8 +1,5 @@
 -- originally was taken from https://github.com/cooper-anderson/dotfiles
 -- with some modifications and refactoring that I did
-
-vim.cmd [[packadd nvim-bufferline.lua]]
-
 local options = {
   show_buffer_close_icons = false,
   separator_style         = { "", "" },

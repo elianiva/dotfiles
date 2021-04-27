@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Specifies python provider path to make startup faster
+vim.g.python3_host_prog = "/usr/bin/python3"
+
 -- prevent typo when pressing `wq` or `q`
 vim.cmd [[
   cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
@@ -8,6 +11,9 @@ vim.cmd [[
   cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
   cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
 ]]
+
+-- highlight yanked text for 250ms
+vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank { timeout = 250, higroup = "OnYank" }]]
 
 -- change cwd to current directory
 vim.cmd [[cd %:p:h]]
@@ -22,23 +28,7 @@ local modules = {
   "modules._util",        -- some useful utils
   "modules._mappings",    -- general mappings
   "modules._statusline",  -- my custom statusline
-
-  -- plugin related stuff
-  "plugins._bufferline",  -- nvim-bufferline + extra stuff
-  "plugins._compe",       -- completion config
-  "plugins._firenvim",    -- firenvim stuff
-  "plugins._formatter",   -- formatter configuration
-  "plugins._gitsigns",    -- gitsings config
-  "plugins._nvimtree",    -- nvimtree config
-  "plugins._snippets",    -- snippets config
-  "plugins._telescope",   -- to see planets and stars
-  "plugins._treesitter",  -- something awesome
-
-  -- some stuff
-  "modules._others",
-
-  -- lsp stuff
-  "modules.lsp",
+  "modules.lsp",          -- lsp stuff
 }
 
 local errors = {}

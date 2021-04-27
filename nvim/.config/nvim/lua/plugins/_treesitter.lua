@@ -1,11 +1,3 @@
-vim.api.nvim_exec([[
-  packadd nvim-treesitter
-  packadd nvim-treesitter-textobjects
-  packadd nvim-treesitter-pairs
-  packadd playground
-  packadd nvim-ts-context-commentstring
-]], false)
-
 local ts_config = require("nvim-treesitter.configs")
 
 ts_config.setup {
@@ -47,6 +39,15 @@ ts_config.setup {
     keymaps = {
       goto_partner = "%"
     }
+  },
+
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<Leader>i",
+      node_incremental = "<C-i>",
+      node_decremental = "<A-i>",
+    },
   },
 
   textobjects = {

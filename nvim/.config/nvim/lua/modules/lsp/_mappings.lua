@@ -14,6 +14,7 @@ M.lsp_mappings = function(type)
   inoremap({ "<C-s>", vim.lsp.buf.signature_help, { silent = true } })
   nnoremap({ "K", vim.lsp.buf.hover, { silent = true } })
   nnoremap({ "gd", vim.lsp.buf.definition, { silent = true } })
+  nnoremap({ "<Leader>dd", "<CMD>LspTroubleToggle<CR>", { silent = true } })
   nnoremap({
     "gD",
     function()

@@ -4,11 +4,7 @@ add_newline = false
 truncation_length = 8
 
 [git_status]
-enabled = true
 format = '([\($all_status$ahead_behind\)]($style) )'
-staged_count.enabled = true
-untracked_count.enabled = true
-modified_count.enabled = true
 ahead = "⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕⇡${ahead_count} ⇣${behind_count}"

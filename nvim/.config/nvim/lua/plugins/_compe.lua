@@ -1,4 +1,3 @@
-vim.cmd [[packadd nvim-compe]]
 local remap = vim.api.nvim_set_keymap
 
 vim.g.vsnip_snippet_dir = vim.fn.stdpath("config") .. "/snippets"
@@ -13,6 +12,7 @@ vim.g.loaded_compe_omni = true
 vim.g.loaded_compe_vsnip = true
 vim.g.loaded_compe_ultisnips = true
 vim.g.loaded_compe_vim_lsc = true
+
 require("compe").setup({
   enabled              = true,
   debug                = false,

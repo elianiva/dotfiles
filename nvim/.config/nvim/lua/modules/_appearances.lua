@@ -32,13 +32,6 @@ ColorUtil.override_gruvbox = function()
     { "SignChange", { fg = "#D79921", bg = "NONE" }},
     { "SignDelete", { fg = "#fb4934", bg = "NONE" }},
 
-    -- lsp saga stuff
-    { "TargetWord",             { fg = "#d79921", bg  = "NONE",    gui = "bold" }},
-    { "LspDiagErrorBorder",     { fg = "#fb4934", gui = "bold" }},
-    { "LspDiagWarnBorder",      { fg = "#d79921", gui = "bold" }},
-    { "LspDiagInfoBorder",      { fg = "#458588", gui = "bold" }},
-    { "LspDiagHintBorder",      { fg = "#458588", gui = "bold" }},
-
     -- octo.nvim stuff
     { "OctoNvimIssueOpen",         { fg = "#b8bb26" }},
     { "OctoNvimIssueClosed",       { fg = "#fb4934" }},
@@ -83,22 +76,19 @@ ColorUtil.override_gruvbox = function()
     { "LspDiagnosticsDefaultWarning",       { bg  = "NONE", fg = "#d79921" }},
     { "LspDiagnosticsDefaultInformation",   { bg  = "NONE", fg = "#458588" }},
     { "LspDiagnosticsDefaultHint",          { bg  = "NONE", fg = "#689D6A" }},
-    { "LspDiagnosticsUnderlineError",       { gui = "underline" }},
-    { "LspDiagnosticsUnderlineWarning",     { gui = "underline" }},
-    { "LspDiagnosticsUnderlineInformation", { gui = "underline" }},
-    { "LspDiagnosticsUnderlineHint",        { gui = "underline" }},
+    { "LspDiagnosticsUnderlineError",       { gui = "underline", guisp="#fb4934" }},
+    { "LspDiagnosticsUnderlineWarning",     { gui = "underline", guisp="#d79921" }},
+    { "LspDiagnosticsUnderlineInformation", { gui = "underline", guisp="#458588" }},
+    { "LspDiagnosticsUnderlineHint",        { gui = "underline", guisp="#689D6A" }},
 
-    -- ts override
+    -- cosmetics
     { "Bordaa",           { bg = "NONE", fg = "#504945" }},
     { "FloatBorder",      { bg = "#504945", fg = "#A69481" }},
-    -- { "TSKeywordOperator", { bg = "NONE", fg = "#fb4934" }},
-    -- { "TSOperator",        { bg = "NONE", fg = "#fe8019" }},
-
 
     -- temporary html stuff
-    { "htmlTag",          { link = "TSAttribute" } },
-    { "htmlArg",          { link = "TSProperty" } },
-    { "htmlEvent",        { link = "TSProperty" } },
+    { "htmlTag",          { link = "TSAttribute" }},
+    { "htmlArg",          { link = "TSProperty" }},
+    { "htmlEvent",        { link = "TSProperty" }},
   }
 
   for _, highlight in ipairs(highlights) do

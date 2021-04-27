@@ -18,7 +18,7 @@ inoremap { "JJ", "<Esc><Esc>" }
 nnoremap { "<C-n>", "<CMD>NvimTreeToggle<CR>" }
 
 -- hippity hoppity your word is not my property
-nnoremap { "<Leader>w", require("hop").hint_words }
+nnoremap { "<Leader>w", "<CMD>HopWord<CR>" }
 
 -- toggle telescope.nvim
 nnoremap {
