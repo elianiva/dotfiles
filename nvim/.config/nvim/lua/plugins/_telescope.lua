@@ -85,7 +85,7 @@ telescope.setup({
       ["selected_engine"]   = "duckduckgo",
       ["url_open_command"]  = "xdg-open",
       ["show_http_headers"] = false,
-      ["show_domain_icons"] = false,
+      ["show_domain_icons"] = true,
     },
   },
 })

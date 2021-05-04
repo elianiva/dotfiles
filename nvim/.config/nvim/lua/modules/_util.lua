@@ -243,6 +243,7 @@ Util.trigger_completion = function()
   if prev_char == "[" and next_char == "" then return Util.t("<CR>]<C-o>O") end
   if prev_char == "(" and next_char == "" then return Util.t("<CR>)<C-o>O") end
   if prev_char == ">" and next_char == "<" then return Util.t("<CR><C-o>O") end -- html indents
+  if prev_char == "(" and next_char == ")" then return Util.t("<CR><C-o>O") end -- flutter indents
 
   return Util.t("<CR>")
 end

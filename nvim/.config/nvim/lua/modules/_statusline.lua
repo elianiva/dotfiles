@@ -16,15 +16,16 @@ M.separators = {
 -- highlight groups
 M.colors = {
   active       = "%#StatusLine#",
-  inactive     = "%#StatuslineNC#",
-  mode         = "%#Mode#",
-  mode_alt     = "%#ModeAlt#",
-  git          = "%#Git#",
-  git_alt      = "%#GitAlt#",
-  filetype     = "%#Filetype#",
-  filetype_alt = "%#FiletypeAlt#",
-  line_col     = "%#LineCol#",
-  line_col_alt = "%#LineColAlt#",
+  inactive     = "%#StatusLineNC#",
+  mode         = "%#StatusLineMode#",
+  mode_alt     = "%#StatusLineModeAlt#",
+  git          = "%#StatusLineGit#",
+  git_alt      = "%#StatusLineGitAlt#",
+  filetype     = "%#StatusLineFT#",
+  filetype_alt = "%#StatusLineFTAlt#",
+  line_col     = "%#StatusLineLCol#",
+  line_col_alt = "%#StatusLineLColAlt#",
+  lsp          = "%#StatusLineLSP#",
 }
 
 M.trunc_width = setmetatable({
@@ -114,6 +115,19 @@ M.get_line_col = function()
   return " %l:%c "
 end
 
+M.lsp_progress = function()
+  local lsp = vim.lsp.util.get_progress_messages()[1]
+  if lsp then
+    local name = lsp.name or ""
+    local msg = lsp.message or ""
+    local percentage = lsp.percentage or 0
+    local title = lsp.title or ""
+    return string.format(" %s: %s %s (%s%%%%) ", name, title, msg, percentage)
+  end
+
+  return ""
+end
+
 M.set_active = function(self)
   local colors = self.colors
 
@@ -126,6 +140,7 @@ M.set_active = function(self)
   local filetype = colors.filetype .. self:get_filetype()
   local line_col = colors.line_col .. self:get_line_col()
   local line_col_alt = colors.line_col_alt .. self.separators[active_sep][2]
+  local lsp = colors.lsp .. self:lsp_progress()
 
   return table.concat({
     colors.active,
@@ -136,6 +151,7 @@ M.set_active = function(self)
     "%=",
     filename,
     "%=",
+    lsp,
     filetype_alt,
     filetype,
     git,

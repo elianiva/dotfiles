@@ -6,6 +6,14 @@ local is_cfg_present = require("modules._util").is_cfg_present
 
 local custom_on_attach = function()
   mappings.lsp_mappings()
+  require("lsp_signature").on_attach {
+      bind = true,
+      doc_lines = 2,
+      hint_enable = false,
+      handler_opts = {
+        border = Util.borders
+      }
+    }
 end
 
 pcall(require, "modules.lsp._handlers")
@@ -48,61 +56,38 @@ local denofmt = {
 
 local sumneko_root = os.getenv("HOME") .. "/repos/lua-language-server"
 local servers = {
-  -- tsserver = {
-  --   filetypes = { "javascript", "typescript", "typescriptreact" },
-  --   on_attach = function()
-  --     mappings.lsp_mappings()
-  --   end,
-  --   init_options = {
-  --     documentFormatting = false,
-  --   },
-  --   handlers = {
-  --     ["textDocument/publishDiagnostics"] = is_using_eslint,
-  --   },
-  --   on_init = custom_on_init,
-  --   root_dir = vim.loop.cwd,
-  --   extra_setup = function ()
-  --     require("nvim-lsp-ts-utils").setup {}
-  --   end
-  -- },
-  -- rome = {
-  --   cmd = { "/home/elianiva/repos/tools/rome", "lsp" },
-  --   filetypes = { "javascript", "typescript", "typescriptreact" },
-  --   on_attach = function()
-  --     mappings.lsp_mappings()
-  --   end,
-  --   on_init = custom_on_init,
-  --   root_dir = vim.loop.cwd,
-  -- },
-  denols = {
+  tsserver = {
     filetypes = { "javascript", "typescript", "typescriptreact" },
+    init_options = {
+      documentFormatting = false,
+    },
+    handlers = {
+      ["textDocument/publishDiagnostics"] = is_using_eslint,
+    },
+    on_init = custom_on_init,
     root_dir = vim.loop.cwd,
-    settings = {
-      documentFormatting = true
-    }
+    extra_setup = function ()
+      require("nvim-lsp-ts-utils").setup {}
+    end
   },
-  html = {},
-  cssls = {},
+  -- denols = {
+  --   filetypes = { "javascript", "typescript", "typescriptreact" },
+  --   root_dir = vim.loop.cwd,
+  --   settings = {
+  --     documentFormatting = true,
+  --     lint = true
+  --   }
+  -- },
+  -- html = {},
+  -- cssls = {},
+  hls = {
+    root_dir = vim.loop.cwd
+  },
   -- phpactor = {
   --   root_dir = vim.loop.cwd
   -- },
   intelephense = {
     root_dir = vim.loop.cwd
-  },
-  rust_analyzer = {
-    capabilities = (function()
-      -- for autoimports
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-      capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = {
-          'documentation',
-          'detail',
-          'additionalTextEdits',
-        }
-      }
-      return capabilities
-    end)()
   },
   clangd = {},
   pyright = {},
@@ -220,3 +205,69 @@ for name, opts in pairs(servers) do
     settings = opts.settings or {},
   })
 end
+
+-- Flutter stuff
+require("flutter-tools").setup {
+  experimental = { -- map of feature flags
+    lsp_derive_paths = false, -- experimental: Attempt to find the user's flutter SDK
+  },
+  debugger = { -- experimental: integrate with nvim dap
+    enabled = false,
+  },
+  flutter_path = os.getenv("HOME") .. "/dev/android/flutter/bin/flutter", -- <-- this takes priority over the lookup
+  widget_guides = {
+    enabled = true,
+  },
+  closing_tags = {
+    highlight = "Comment", -- highlight for the closing tag
+    prefix = "// " -- character to use for close tag e.g. > Widget
+  },
+  dev_log = {
+    open_cmd = "tabedit", -- command to use to open the log buffer
+  },
+  outline = {
+    open_cmd = "30vnew", -- command to use to open the outline buffer
+  },
+  lsp = {
+    on_attach = custom_on_attach,
+    settings = {
+      showTodos = true,
+      -- completeFunctionCalls = true -- NOTE: this is WIP and doesn't work currently
+    }
+  }
+}
+
+-- Rust stuff
+require("rust-tools").setup {
+  tools = {
+    inlay_hints = {
+      -- wheter to show parameter hints with the inlay hints or not
+      -- default: true
+      show_parameter_hints = true,
+
+      -- prefix for parameter hints
+      -- default: "<-"
+      parameter_hints_prefix = "  <- ",
+
+      -- prefix for all the other hints (type, chaining)
+      -- default: "=>"
+      other_hints_prefix = "  => ",
+    },
+  },
+  server = {
+    on_attach = custom_on_attach,
+    capabilities = (function()
+      -- for autoimports
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = {
+          'documentation',
+          'detail',
+          'additionalTextEdits',
+        }
+      }
+      return capabilities
+    end)()
+  }
+}

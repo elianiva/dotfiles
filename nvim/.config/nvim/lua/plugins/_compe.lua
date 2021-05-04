@@ -27,8 +27,11 @@ require("compe").setup({
     calc     = true,
     buffer   = true,
     luasnip  = true,
-    nvim_lsp = true,
     nvim_lua = true,
+    nvim_lsp = {
+      enable = true,
+      priority = 10001, -- takes precedence over file completion
+    },
   },
 })
 

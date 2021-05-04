@@ -1,5 +1,5 @@
 " Set formatoptions
-au FileType * setlocal formatoptions-=ro
+au BufRead,FileType * set formatoptions-=ro
 
 " Set filetypes
 au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
@@ -21,7 +21,7 @@ au FileType json set filetype=jsonc
 au FileType markdown setlocal conceallevel=0 nospell
 
 " Remove trailing whitespace on save
-au BufWritePre * %s/\s\+$//e
+" au BufWritePre * %s/\s\+$//e
 
 " automatically go to insert mode on terminal buffer
 autocmd BufEnter term://* startinsert

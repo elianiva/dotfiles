@@ -4,7 +4,7 @@ ts_config.setup {
   ensure_installed = {
     "javascript", "typescript", "tsx", "jsdoc", "cpp", "jsonc",
     "html", "css", "lua", "c", "rust", "go", "java", "query",
-    "python", "rst", "svelte"
+    "python", "rst", "svelte", "json"
   },
 
   highlight = {
@@ -12,7 +12,7 @@ ts_config.setup {
   },
 
   indent = {
-    enable = true,
+    enable = false, -- wait until it's back to normal
   },
 
   autotag = {

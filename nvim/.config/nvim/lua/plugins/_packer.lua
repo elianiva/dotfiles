@@ -31,22 +31,11 @@ if packer_ok then
     -- commentary.vim: comment stuff out
     use { "tpope/vim-commentary", opt = false }
 
-    -- Dim your inactive window
-    use {
-      "sunjon/shade.nvim",
-      opt = false,
-      config = function()
-        require("shade").setup {
-          overlay_opacity = 50,
-          opacity_step = 1,
-          keys = {
-            brightness_up = "<C-Up>",
-            brightness_down = "<C-Down>",
-            toggle = "<Leader>s",
-          },
-        }
-      end,
-    }
+    use { "rktjmp/lush.nvim", opt = false }
+
+    use { "sindrets/diffview.nvim", opt = false }
+
+    use { "~/repos/gruvy", opt = false }
 
     -- A pretty diagnostics list to help you solve all the trouble your code is
     -- causing.
@@ -69,7 +58,7 @@ if packer_ok then
       opt = true,
       ft = {
         "lua", "html", "css", "typescript",
-        "javascript", "svelte"
+        "javascript", "svelte", "vim"
       },
       config = function()
         require("colorizer").setup {
@@ -166,6 +155,15 @@ if packer_ok then
     -- Quickstart configurations for the Nvim LSP client
     use { "neovim/nvim-lspconfig", opt = true }
 
+    -- Tools to help create flutter apps in neovim using the native lsp
+    use { "akinsho/flutter-tools.nvim", opt = false }
+
+    -- Tools for better development in rust using neovim's builtin lsp
+    use { "simrat39/rust-tools.nvim", opt = false }
+
+    -- lsp signature hint when you type
+    use { "ray-x/lsp_signature.nvim", opt = false }
+
     -- Utilities to improve the TypeScript development experience for Neovim's
     -- built-in LSP client.
     use { "jose-elias-alvarez/nvim-lsp-ts-utils", opt = false }
@@ -213,6 +211,7 @@ if packer_ok then
       config = function() require("plugins._gitsigns") end,
     }
 
+    -- A lua neovim plugin to generate shareable file permalinks
     use {
       "ruifm/gitlinker.nvim",
       opt = false,
@@ -292,7 +291,7 @@ if packer_ok then
     -- use { "code-biscuits/nvim-biscuits", opt = false }
 
     -- check these out again later
-    -- use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
+    use {'RRethy/vim-illuminate'} -- wait until treesitter priority issue solved
     -- use { "tpope/vim-fugitive", opt = false } -- git helpers inside neovim
     -- use { "lukas-reineke/indent-blankline.nvim", opt = false, branch = "lua" }
 

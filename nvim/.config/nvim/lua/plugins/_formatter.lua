@@ -47,6 +47,14 @@ local rustfmt = function()
   }
 end
 
+local dartfmt = function()
+  return {
+    exe = "dartfmt",
+    args = { "--fix" },
+    stdin = true,
+  }
+end
+
 local gofmt = function()
   return {
     exe = "gofumpt",
@@ -81,6 +89,7 @@ require("formatter").setup({
     rust       = { rustfmt },
     go         = { gofmt },
     lua        = { stylua },
+    dart       = { dartfmt },
   },
 })
 

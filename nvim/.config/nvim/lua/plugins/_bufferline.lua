@@ -26,10 +26,10 @@ function _G.nvim_diagnostics_tab()
   bufferline = string.sub(bufferline, 1, tabstart)
 
   local err, warn, info, hint = get_diagnostics_count()
-  local prefix = "%#Tabline"
+  local prefix = "%#TabLine"
 
   if #tabline ~= 0 then
-    prefix = "%#Tabline"
+    prefix = "%#TabLine"
   end
 
   local diagnostics = ""
@@ -38,18 +38,10 @@ function _G.nvim_diagnostics_tab()
     return string.format("%s%s%s%s", diagnostics, prefix, hl_group, count)
   end
 
-  if hint ~= 0 then
-    diagnostics = format_sign("Hint# ﬤ ", hint)
-  end
-  if info ~= 0 then
-    diagnostics = format_sign("Information#  ", info)
-  end
-  if warn ~= 0 then
-    diagnostics = format_sign("Warning#  ", warn)
-  end
-  if err ~= 0 then
-    diagnostics = format_sign("Error#  ", err)
-  end
+  if hint ~= 0 then diagnostics = format_sign("Hint# ﬤ ", hint) end
+  if info ~= 0 then diagnostics = format_sign("Information#  ", info) end
+  if warn ~= 0 then diagnostics = format_sign("Warning#  ", warn) end
+  if err ~= 0 then diagnostics = format_sign("Error#  ", err) end
 
   if err + warn + info + hint == 0 then
     diagnostics = format_sign("Success#  ", "")
