@@ -1,0 +1,3 @@
+#!/bin/sh
+
+LC_ALL=C rofi -matching fuzzy -no-lazy-grab -modi $1 -show $1 -theme ~/.config/rofi/themes/$2.rasi

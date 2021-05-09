@@ -16,8 +16,8 @@ elif [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty2 ]]; then
   export QT_QPA_PLATFORM=wayland
   export MOZ_ENABLE_WAYLAND=1
   export GDK_BACKEND=wayland
-  # exec sway;
-  exec dbus-run-session gnome-session
+  exec sway;
+  # exec dbus-run-session gnome-session
   # exec dbus-run-session startplasma-wayland
 fi
 

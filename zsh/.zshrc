@@ -133,9 +133,9 @@ skim-redraw-prompt() {
 }
 zle -N skim-redraw-prompt
 
-# fnm
-export PATH=/home/elianiva/.fnm:$PATH
-eval "`fnm env`"
-
 # don't use `xterm-kitty`
-export TERM=xterm-256color
+# export TERM=xterm-256color
+
+# # fnm
+# export PATH=/home/elianiva/.fnm:$PATH
+# eval "`fnm env`"

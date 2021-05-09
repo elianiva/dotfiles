@@ -1,0 +1,23 @@
+* {
+  accent:           #d79921;
+  background:       #1d2021;
+  background-light: #282828;
+  foreground:       #ebdbb2;
+  on:               #44ad4d;
+  off:              #e34039;
+
+  text-font:                            "M+ 1p 12";
+
+  inputbar-margin:                      3px 3px;
+  prompt-padding:                       5px 5px;
+  entry-padding:                        5px 0px 5px 0px;
+  list-element-padding:                 5px;
+  list-element-margin:                  @inputbar-margin;
+  list-element-border:                  0px 0px 0px 4px;
+
+  apps-textbox-prompt-colon-padding:    5px -5px 0px 0px;
+
+  background-color: @background;
+  text-color: @foreground;
+  font: @text-font;
+}

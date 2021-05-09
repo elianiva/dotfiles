@@ -1,4 +1,4 @@
-# Nothing feels like ~
+## dots using home-manager
 
 > Please do not blindly copy this thing. I use this place as a backup :)
 > You may take whatever you want.
@@ -19,10 +19,6 @@
 [pcmanfm-link]: https://github.com/lxde/pcmanfm
 [lf-link]: https://github.com/gokcehan/lf
 [picom-link]: https://github.com/yshui/picom
-[mpd-link]: https://github.com/MusicPlayerDaemon/MPD
-[ncmpcpp-link]: https://github.com/ncmpcpp/ncmpcpp
-[mpv-link]: https://github.com/mpv-player/mpv
-[ncspot-link]: https://github.com/hrkfdn/ncspot
 [polybar-link]: https://github.com/polybar/polybar
 [rofi-link]: https://github.com/davatorium/rofi
 [pacman-link]: https://wiki.archlinux.org/index.php/pacman
@@ -31,20 +27,18 @@
 [sxhkd-link]: https://github.com/baskerville/sxhkd
 [tmux-link]: https://github.com/tmux/tmux
 [sway-link]: https://github.com/swaywm/sway
-[kde-link]: https://kde.org/plasma-desktop/
 [swaybar-link]: https://github.com/Alexays/Waybar
 [kitty-link]: https://github.com/kovidgoyal/kitty
 [wofi-link]: https://github.com/mikn/wofi
-[dolphin-link]: https://github.com/KDE/dolphin
-[spotify-link]: https://open.spotify.com/
+[nix-link]: https://nixos.org/
 
 ---
 
 ### Some Details
-- **Operating System:** [Archlinux][arch-link]
-- **Desktop Environment:** [KDE Plasma][kde-link]
+- **Operating System:**
+  - [Archlinux][arch-link]
 - **Window Manager:**
-  - [AwesomeWM][awesome-link] (no longer using)
+  - [AwesomeWM][awesome-link]
   - [Sway][sway-link] (no longer using)
   - [BSPWM][bspwm-link] (no longer using)
   - [i3][i3-link] (no longer using)
@@ -52,31 +46,33 @@
 - **Bar:**
   - [Polybar][polybar-link] (no longer using)
   - [Swaybar][swaybar-link] (no longer using)
-- **Text Editor:** [Neovim][neovim-link]
+- **Text Editor:**
+  - [Neovim][neovim-link]
 - **Terminal:**
   - [Kitty][kitty-link]
   - [Alacritty][alacritty-link] (no longer using)
-- **Shell:** [ZSH][zsh-link]
-- **Shell Prompt:** [Starship][starship-link]
+- **Shell:**
+  - [ZSH][zsh-link]
+- **Shell Prompt:**
+  - [Starship][starship-link]
 - **Package/Plugin Manager:**
   - [Pacman][pacman-link] (main package manager)
+  - [Nix][nix-link] (main(-ish) package manager)
   - [Paru][paru-link] (AUR helper)
   - [Zinit][zinit-link] (ZSH plugin manager)
 - **Launcher:**
   - [Wofi][wofi-link] (no longer using)
   - [Rofi][rofi-link] (no longer using)
-- **Notification Daemon:** [Dunst][dunst-link] (no longer using)
+- **Notification Daemon:**
+  - [Dunst][dunst-link] (no longer using)
 - **File Manager:**
-  - [Dolphin][dolphin-link] (GUI)
   - [Pcmanfm][pcmanfm-link] (GUI)
   - [lf][lf-link] (CLI)
 - **Compositor:**
   - [picom][picom-link]
-- **Music Player:**
-  - [Spotify][spotify-link]
-  - [MPD][mpd-link] (no longer using)
-  - [ncmpcpp][ncmpcpp-link] (no longer using)
-  - [nscpot][ncspot-link] (no longer using)
-- **Video Player:** [MPV][mpv-link]
-- **Hotkey Daemon:** [sxhkd][sxhkd-link] (no longer using)
-- **Terminal Multiplexer:** [tmux][tmux-link] (no longer using)
+- **Video Player:**
+  - [MPV][mpv-link]
+- **Hotkey Daemon:**
+  - [sxhkd][sxhkd-link] (no longer using)
+- **Terminal Multiplexer:**
+  - [tmux][tmux-link] (no longer using)
