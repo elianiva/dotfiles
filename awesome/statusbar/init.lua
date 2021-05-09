@@ -16,7 +16,6 @@ local netspeed = require("statusbar.modules.netspeed")
 local volume = require("statusbar.modules.volume")
 local temp = require("statusbar.modules.temp")
 local taglist = require("statusbar.modules.taglist")
-local playerctl = require("statusbar.modules.playerctl")
 local todo = require("statusbar.modules.todo")
 
 local set_wallpaper = function(s)
@@ -58,17 +57,6 @@ awful.screen.connect_for_each_screen(function(s)
         bottom = dpi(0)
       }),
       s.taglist,
-
-      module_wrapper({ type = "icon", widget = playerctl.icon }),
-
-      module_wrapper({
-        type = "module",
-        widget = playerctl.widget,
-        left = dpi(0),
-        right = dpi(12),
-        top = dpi(0),
-        bottom = dpi(0)
-      }),
 
       layout = wibox.layout.fixed.horizontal
     },
