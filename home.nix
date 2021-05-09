@@ -32,7 +32,23 @@ in {
     stateVersion = "21.05";
   };
 
+  nixpkgs.overlays = [
+    (self: super: {
+      awesome-git = super.awesome.overrideAttrs (old: {
+        version = "master";
+
+        src = super.fetchFromGitHub {
+          owner = "awesomewm";
+          repo = "awesome";
+          rev = "a4572b9b52d89369ce3bd462904d536ec116dc35";
+          sha256 = "1kj2qz2ns0jn5gha4ryr8w8vvy23s3bb5z3vjhwwfnrv7ypb40iz";
+        };
+      });
+    })
+  ];
+
   home.packages = with pkgs; [
+    nixUnstable          # needed for flakes
     ripgrep              # super fast grep
     mycli                # mysql client
     picom                # compositor
@@ -45,6 +61,7 @@ in {
     rofi                 # popup launcher menu
     exa                  # better `ls` replacement
     nodejs               # js runtime
+    awesome-git          # awesomewm git version
   ] ++ languageServers
     ++ customFonts;
 
