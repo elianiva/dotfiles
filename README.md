@@ -31,6 +31,7 @@
 [kitty-link]: https://github.com/kovidgoyal/kitty
 [wofi-link]: https://github.com/mikn/wofi
 [nix-link]: https://nixos.org/
+[mpv-link]: https://mpv.io/
 
 ---
 
