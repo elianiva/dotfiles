@@ -80,27 +80,6 @@ function M.get()
         widget = awful.titlebar.widget.iconwidget(c)
       }
 
-      -- awful.titlebar(c, { position = "left", size = theme.titlebar_size}):setup {
-      --   { close, layout = wibox.layout.fixed.vertical }, -- top left
-      --   { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle left
-      --   { floating, layout = wibox.layout.fixed.vertical }, -- bottom left
-      --   layout = wibox.layout.align.vertical
-      -- }
-
-      -- awful.titlebar(c, {position = "right", size = theme.titlebar_size}):setup {
-      --   { close, layout  = wibox.layout.fixed.vertical }, -- top right
-      --   { buttons = buttons, layout  = wibox.layout.flex.vertical }, -- middle right
-      --   { floating, layout = wibox.layout.fixed.vertical }, -- bottom right
-      --   layout = wibox.layout.align.vertical
-      -- }
-
-      -- awful.titlebar(c, {position = "bottom", size = theme.titlebar_size}):setup {
-      --   { floating, layout  = wibox.layout.fixed.horizontal }, -- bottom left
-      --   { buttons = buttons, layout  = wibox.layout.flex.horizontal }, -- middle
-      --   { floating, layout = wibox.layout.fixed.horizontal }, -- bottom right
-      --   layout = wibox.layout.align.horizontal
-      -- }
-
       awful.titlebar(c, {position = "top", size = theme.titlebar_size}):setup {
         {
           margin(icon, dpi(2), dpi(2), dpi(2), dpi(2)),

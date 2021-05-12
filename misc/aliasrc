@@ -42,5 +42,8 @@ alias vnim="nvim" # I got this typo quit a lot
 # exit vim-like
 alias :{q,Q}="exit"
 
-# todo
 alias ls="exa --colour=always --group-directories-first --sort=name"
+
+# nix stuff
+alias nixgc="nix-collect-garbage"
+alias hm-switch="home-manager switch"

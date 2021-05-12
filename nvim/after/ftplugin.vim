@@ -23,10 +23,9 @@ augroup Indents
   au FileType json set filetype=jsonc
 augroup END
 
-" disable conceal
-augroup Conceal
+augroup Markdown
   au!
-  au FileType markdown setlocal conceallevel=0 nospell
+  au FileType markdown setlocal conceallevel=0 nospell foldexpr=
 augroup END
 
 " Remove trailing whitespace on save

@@ -34,6 +34,7 @@ vim.g.nvim_tree_bindings = {
   ["<2-LeftMouse>"] = get_lua_cb("edit"),
   ["<2-RightMouse>"] = get_lua_cb("cd"),
   ["<C-]>"] = get_lua_cb("cd"),
+  ["<C-[>"] = get_lua_cb("dir_up"),
   ["<C-v>"] = get_lua_cb("vsplit"),
   ["<C-x>"] = get_lua_cb("split"),
   ["<C-t>"] = get_lua_cb("tabnew"),
@@ -52,7 +53,6 @@ vim.g.nvim_tree_bindings = {
   ["p"] = get_lua_cb("paste"),
   ["[c"] = get_lua_cb("prev_git_item"),
   ["]c"] = get_lua_cb("next_git_item"),
-  ["-"] = get_lua_cb("dir_up"),
   ["q"] = get_lua_cb("close"),
 }
 

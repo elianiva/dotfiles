@@ -94,7 +94,7 @@ nnoremap { "q:", "<Nop>" }
 vnoremap { "<A-y>", "\"+y" }
 
 -- no distraction mode for writing
-nnoremap { "<Leader>gg", "<CMD>Goyo<CR>" }
+-- nnoremap { "<Leader>gg", "<CMD>Goyo<CR>" }
 
 -- run luafile on current file
 -- rl stands for `run lua`
@@ -117,6 +117,8 @@ nnoremap {
   "<Leader>v",
   "<CMD>vnew | setlocal buftype=nofile | setlocal bufhidden=hide<CR>",
 }
+
+nnoremap { "<Leader>gg", require("modules._center").centered, { silent = true }}
 
 -- cd to currently opened file
 nnoremap { "<Leader>d", "<CMD>cd %:p:h<CR>" }

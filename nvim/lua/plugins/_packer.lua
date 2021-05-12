@@ -46,6 +46,8 @@ if packer_ok then
 
     use { "~/repos/gruvy", opt = false }
 
+    use { "editorconfig/editorconfig-vim", opt = false }
+
     use {
       "mattn/emmet-vim",
       opt = false,
@@ -324,6 +326,9 @@ if packer_ok then
       "plasticboy/vim-markdown",
       opt = false,
       filetype = { "markdown" },
+      config = function()
+        vim.g.vim_markdown_frontmatter = 1
+      end
     }
 
     -- better `gf` movement
