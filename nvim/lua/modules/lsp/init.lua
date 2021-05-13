@@ -251,16 +251,8 @@ require("flutter-tools").setup {
 require("rust-tools").setup {
   tools = {
     inlay_hints = {
-      -- wheter to show parameter hints with the inlay hints or not
-      -- default: true
       show_parameter_hints = true,
-
-      -- prefix for parameter hints
-      -- default: "<-"
       parameter_hints_prefix = "  <- ",
-
-      -- prefix for all the other hints (type, chaining)
-      -- default: "=>"
       other_hints_prefix = "  => ",
     },
     hover_actions = {

@@ -18,8 +18,6 @@ let
     exa                  # better `ls` replacement
     nodejs-16_x          # js runtime; without npm
     awesome-git          # awesomewm git version
-    tdesktop             # telegram desktop client
-    numix-cursor-theme   # cursor based on numix
   ];
   customFonts = with pkgs; [
     noto-fonts            # a bunch of useful fonts
@@ -72,29 +70,6 @@ in {
 
   # make fonts installed through nix discoverable
   fonts.fontconfig.enable = true;
-
-  gtk = {
-    enable = true;
-    font = {
-      name = "Inter";
-      size = 11;
-    };
-    # TODO(elianiva): nixify my gruvbox theme
-    theme.name = "gruvbox";
-    iconTheme = {
-      name = "Numix";
-      package = pkgs.numix-icon-theme;
-    };
-    gtk3.extraConfig = {
-      gtk-cursor-theme-name = "Numix-Cursor";
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-    style.name = "gtk2";
-  };
 
   xdg = {
     enable = true;

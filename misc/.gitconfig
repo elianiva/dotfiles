@@ -1,7 +1,7 @@
 [user]
   name = elianiva
   email = dicha.arkana03@gmail.com
-	signingkey = 6035FB45062CDE53
+  signingkey = 6035FB45062CDE53
 
 [credential]
   helper = cache --timeout 86400

@@ -14,5 +14,3 @@ export LESS_TERMCAP_ue=$(tput sgr0)
 export LESS_TERMCAP_me=$(tput sgr0)
 
 source "$HOME/.cargo/env"
-
-source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
