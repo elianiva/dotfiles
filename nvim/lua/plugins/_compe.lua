@@ -10,6 +10,7 @@ vim.g.loaded_compe_omni          = 1
 vim.g.loaded_compe_vsnip         = 1
 vim.g.loaded_compe_ultisnips     = 1
 vim.g.loaded_compe_vim_lsc       = 1
+vim.g.loaded_compe_calc          = 1
 
 require("compe").setup({
   enabled              = true,
@@ -22,7 +23,6 @@ require("compe").setup({
 
   source = {
     path     = true,
-    calc     = true,
     buffer   = true,
     luasnip  = true,
     nvim_lua = true,

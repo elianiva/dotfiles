@@ -48,6 +48,17 @@ if packer_ok then
 
     use { "editorconfig/editorconfig-vim", opt = false }
 
+    -- Sooon...
+    -- use {
+    --   "vhyrro/neorg",
+    --   config = function()
+    --     require("neorg").setup {
+    --       load = { ["core.defaults"] = {} },
+    --     }
+    --   end,
+    --   requires = { "nvim-lua/plenary.nvim" },
+    -- }
+
     use {
       "mattn/emmet-vim",
       opt = false,
@@ -60,6 +71,19 @@ if packer_ok then
       "folke/lsp-trouble.nvim",
       opt = false,
       config = function() require("trouble").setup {} end,
+    }
+
+    -- Highlight, list and search todo comments in your projects
+    use {
+      "folke/todo-comments.nvim",
+      opt = false,
+      config = function() require("plugins._todo") end,
+    }
+
+    use {
+      "folke/which-key.nvim",
+      opt = false,
+      config = function() require("plugins._which-key") end,
     }
 
     -- Wrapper for an external formatter
@@ -109,6 +133,9 @@ if packer_ok then
     use {
       "andymass/vim-matchup",
       opt = false,
+      config = function()
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end
     }
 
     -- Auto completion plugin for nvim written in Lua.

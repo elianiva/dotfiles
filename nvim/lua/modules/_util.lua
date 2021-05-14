@@ -3,8 +3,10 @@ local fn = vim.fn
 
 _G.Util = {}
 
+---@param stuff any Print table and return it
 P = function(stuff)
-  return print(vim.inspect(stuff))
+  print(vim.inspect(stuff))
+  return stuff
 end
 
 Util.check_backspace = function()
@@ -87,13 +89,13 @@ Util.convert_colour = function(mode)
     return print("Not Supported!")
   end
 
-  vim.api.nvim_command(string.format("s/%s/%s", Util.get_word(), result))
+  vim.cmd(string.format("s/%s/%s", Util.get_word(), result))
 end
 
-vim.api.nvim_exec([[
+vim.cmd [[
   command! -nargs=? -range=% ToRgb call v:lua.Util.convert_color('rgb')
   command! -nargs=? -range=% ToHex call v:lua.Util.convert_color('hex')
-]], false)
+]]
 
 -- translate selected word, useful for when I do jp assignments
 Util.translate = function(lang)
@@ -216,6 +218,26 @@ Util.trigger_completion = function()
   if prev_char == "(" and next_char == ")" then return Util.t("<CR><C-o>O") end -- flutter indents
 
   return Util.t("<CR>")
+end
+
+Util.lsp_on_attach = function()
+  require("modules.lsp._mappings").lsp_mappings()
+  require("lsp_signature").on_attach {
+    bind = true,
+    doc_lines = 2,
+    hint_enable = false,
+    handler_opts = {
+      border = Util.borders
+    }
+  }
+end
+
+Util.lsp_on_init = function()
+  print("Language Server Protocol started!")
+
+  if client.config.flags then
+    client.config.flags.allow_incremental_sync = true
+  end
 end
 
 return Util

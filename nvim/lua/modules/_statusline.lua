@@ -26,6 +26,7 @@ M.colors = {
   line_col     = "%#StatusLineLCol#",
   line_col_alt = "%#StatusLineLColAlt#",
   lsp          = "%#StatusLineLSP#",
+  filename     = "%#StatusLineFileName#",
 }
 
 M.trunc_width = setmetatable({
@@ -77,7 +78,7 @@ end
 M.get_git_status = function(self)
   -- use fallback because it doesn't set this variable on the initial `BufEnter`
   local signs = vim.b.gitsigns_status_dict
-    or { head = "", added = 0, changed = 0, removed = 0 }
+  or { head = "", added = 0, changed = 0, removed = 0 }
   local is_head_empty = signs.head ~= ""
 
   if self:is_truncated(self.trunc_width.git_status) then
@@ -85,19 +86,20 @@ M.get_git_status = function(self)
   end
 
   return is_head_empty and string.format(
-    " +%s ~%s -%s |  %s ",
-    signs.added,
-    signs.changed,
-    signs.removed,
-    signs.head
+  " +%s ~%s -%s |  %s ",
+  signs.added,
+  signs.changed,
+  signs.removed,
+  signs.head
   ) or ""
 end
 
 M.get_filename = function(self)
+  local filepath = vim.fn.expand("%")
   if self:is_truncated(self.trunc_width.filename) then
-    return " %<%f "
+    return string.format(" %%<%s ", filepath)
   end
-  return " %<%F "
+  return string.format(" %%<%s", filepath)
 end
 
 M.get_filetype = function()
@@ -135,7 +137,16 @@ M.set_active = function(self)
   local mode_alt = colors.mode_alt .. self.separators[active_sep][1]
   local git = colors.git .. self:get_git_status()
   local git_alt = colors.git_alt .. self.separators[active_sep][1]
-  local filename = colors.inactive .. self:get_filename()
+
+  local f = fn.expand("%:t")
+  local filename = (function()
+    return colors.inactive .. self:get_filename():gsub(
+    f,
+    -- this is weird..
+    string.format("%%%s%s%%%s", colors.filename, f, colors.inactive)
+    )
+  end)()
+
   local filetype_alt = colors.filetype_alt .. self.separators[active_sep][2]
   local filetype = colors.filetype .. self:get_filetype()
   local line_col = colors.line_col .. self:get_line_col()
@@ -148,7 +159,6 @@ M.set_active = function(self)
     mode_alt,
     line_col,
     line_col_alt,
-    "%=",
     filename,
     "%=",
     lsp,
@@ -194,37 +204,3 @@ api.nvim_exec([[
   au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline('explorer')
   augroup END
 ]], false)
-
-----[[
---  NOTE: I don't use this since the statusline already has
---  so much stuff going on. Feel free to use it!
---  credit: https://github.com/nvim-lua/lsp-status.nvim
---  also, this might be broken lol idk
---
---  I now use `tabline` to display these errors, go to `_bufferline.lua` if you
---  want to check that out
-----]]
--- Statusline.get_lsp_diagnostic = function(self)
---   local result = {}
---   local levels = {
---     errors = 'Error',
---     warnings = 'Warning',
---     info = 'Information',
---     hints = 'Hint'
---   }
-
---   for k, level in pairs(levels) do
---     result[k] = vim.lsp.diagnostic.get_count(0, level)
---   end
-
---   if self:is_truncated(120) then
---     return ''
---   else
---     return string.format(
---       "| :%s :%s :%s :%s ",
---       result['errors'] or 0, result['warnings'] or 0,
---       result['info'] or 0, result['hints'] or 0
---     )
---   end
--- end
-

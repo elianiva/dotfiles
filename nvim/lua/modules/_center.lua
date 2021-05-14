@@ -23,6 +23,7 @@ local split = function(curr_win, direction, width)
   o.splitright = direction == "right"
 
   vim.cmd (width .. "vnew | setlocal buftype=nofile | setlocal bufhidden=wipe")
+  wo.cursorline = false
 
   local buf = a.nvim_get_current_buf()
   a.nvim_buf_set_name(buf, direction)
