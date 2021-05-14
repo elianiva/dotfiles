@@ -1,4 +1,4 @@
-## dots using home-manager
+## dot dot dot
 
 > Please do not blindly copy this thing. I use this place as a backup :)
 > You may take whatever you want.
@@ -30,7 +30,6 @@
 [swaybar-link]: https://github.com/Alexays/Waybar
 [kitty-link]: https://github.com/kovidgoyal/kitty
 [wofi-link]: https://github.com/mikn/wofi
-[nix-link]: https://nixos.org/
 [mpv-link]: https://mpv.io/
 
 ---
@@ -58,17 +57,16 @@
   - [Starship][starship-link]
 - **Package/Plugin Manager:**
   - [Pacman][pacman-link] (main package manager)
-  - [Nix][nix-link] (main(-ish) package manager)
   - [Paru][paru-link] (AUR helper)
   - [Zinit][zinit-link] (ZSH plugin manager)
 - **Launcher:**
+  - [Rofi][rofi-link]
   - [Wofi][wofi-link] (no longer using)
-  - [Rofi][rofi-link] (no longer using)
 - **Notification Daemon:**
   - [Dunst][dunst-link] (no longer using)
 - **File Manager:**
   - [Pcmanfm][pcmanfm-link] (GUI)
-  - [lf][lf-link] (CLI)
+  - [lf][lf-link] (TUI)
 - **Compositor:**
   - [picom][picom-link]
 - **Video Player:**

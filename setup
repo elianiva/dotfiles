@@ -14,6 +14,7 @@ gui=(
 cli=(
   "dhcpcd" "docker" "exa" "light" "tree-sitter"
   "unzip" "ripgrep" "acpi" "bat" "imagemagick"
+  "github-cli"
 )
 others=("lxsession" "ntfs-3g" "picom" "xdg-user-dirs")
 shell=("zsh" "dash")
