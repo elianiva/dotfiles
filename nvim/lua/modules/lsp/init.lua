@@ -36,7 +36,7 @@ local eslint = {
 
 local servers = {
   tsserver = {
-    filetypes = { "javascript", "typescript", "typescriptreact" },
+    filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
     init_options = {
       documentFormatting = false,
     },
@@ -92,7 +92,7 @@ local servers = {
       client.resolved_capabilities.completion = false
     end,
     on_init = Util.lsp_on_init,
-    filetypes = { "javascript", "typescript", "typescriptreact", "svelte" },
+    filetypes = { "javascript",  "javascriptreact", "typescript", "typescriptreact", "svelte" },
     settings = {
       rootMarkers = { ".git", "package.json" },
       languages = {

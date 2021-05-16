@@ -41,6 +41,7 @@ M.centered = function()
     toggle_decoration(false)
     wo.cursorline = true
     g.centered = false
+    wo.signcolumn = "yes"
     return
   end
 
@@ -48,6 +49,7 @@ M.centered = function()
   split(win, "right", width)
   toggle_decoration(true)
   wo.cursorline = false
+  wo.signcolumn = "no"
   g.centered = true
 end
 

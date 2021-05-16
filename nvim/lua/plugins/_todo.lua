@@ -1,12 +1,12 @@
 require("todo-comments").setup {
   signs = false,
   keywords = {
-    FIX  = { icon = " ", color = "warning", alt = { "FIXME", "BUG", "FIXIT", "FIX", "ISSUE" } },
+    FIX  = { icon = " ", color = "warning", alt = { "FIXME", "BUG", "FIX" }},
     TODO = { icon = " ", color = "info" },
     HACK = { icon = " ", color = "error" },
-    NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+    NOTE = { icon = " ", color = "hint", alt = { "INFO" }},
   },
-  highlight = { before = "", keyword = "fg", after = "" },
+  highlight = { before = "", keyword = "wide", after = "" },
   -- list of named colors where we try to extract the guifg from the
   -- list of hilight groups or use the hex color if hl not found as a fallback
   colors = {
@@ -16,6 +16,15 @@ require("todo-comments").setup {
     hint    = { "LspDiagnosticsDefaultHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
   },
-  -- pattern = "(KEYWORDS)\\(.*\\):",
-  pattern = "(KEYWORDS:|KEYWORDS\\(.*\\):)",
+  search = {
+   command = "rg",
+    args = {
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+    },
+    pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+  }
 }

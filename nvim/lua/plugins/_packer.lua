@@ -243,10 +243,11 @@ if packer_ok then
         { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 
         -- Search engine integration using Telescope
-        {
-          "nvim-telescope/telescope-arecibo.nvim",
-          rocks = { "openssl", "lua-http-parser" },
-        },
+        -- wait until this one is fixed
+        -- {
+        --   "nvim-telescope/telescope-arecibo.nvim",
+        --   rocks = { "openssl", "lua-http-parser" },
+        -- },
       },
     }
 
@@ -262,16 +263,6 @@ if packer_ok then
       "ruifm/gitlinker.nvim",
       opt = false,
       config = function() require("gitlinker").setup {} end,
-    }
-
-    -- Vim and Neovim plugin to reveal the commit messages under the cursor
-    use {
-      "rhysd/git-messenger.vim",
-      cmd = "GitMessenger",
-      opt = true,
-      config = function()
-        vim.g.git_messenger_no_default_mappings = true
-      end
     }
 
     -- The set of operator and textobject plugins to search/select/edit
@@ -313,12 +304,6 @@ if packer_ok then
       config = function() require("hop").setup {} end,
     }
 
-    -- fix php indent, temporary, will remove this once I'm done with PHP
-    use {
-      "captbaritone/better-indent-support-for-php-with-html",
-      opt = false,
-    }
-
     -- Breakdown Vim's --startuptime output
     use {
       "tweekmonster/startuptime.vim",
@@ -337,7 +322,6 @@ if packer_ok then
         require("neogit").setup {
           disable_signs = false,
           disable_context_highlighting = true,
-          -- customize displayed signs
           signs = {
             -- { CLOSED, OPENED }
             section = { "", "" },

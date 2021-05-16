@@ -44,7 +44,7 @@ awful.screen.connect_for_each_screen(function(s)
   })
 
   -- Add widgets to the wibox
-  s.wibox:setup{
+  s.wibox:setup {
     layout = wibox.layout.align.horizontal,
     expand = "none",
     {
@@ -61,6 +61,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal
     },
     {
+      module_wrapper({ type = "icon", widget = clock.icon }),
       module_wrapper({ type = "module", widget = clock.widget }),
 
       layout = wibox.layout.fixed.horizontal

@@ -119,7 +119,7 @@ nnoremap {
 }
 
 vim.cmd [[
-  command! -nargs=? -range=% Center lua require("module._center").centered
+  command! -nargs=0 Center :lua require("modules._center").centered()
 ]]
 
 -- better indenting experience

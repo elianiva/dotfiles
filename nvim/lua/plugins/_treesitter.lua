@@ -34,23 +34,12 @@ ts_config.setup {
     }
   },
 
-  pairs = {
-    enable = true,
-    highlight_pair_events = { "CursorMoved" }, -- when to highlight the pairs, use {} to deactivate highlighting
-    highlight_self = false,
-    goto_right_end = false, -- whether to go to the end of the right partner or the beginning
-    fallback_cmd_normal = "call matchit#Match_wrapper('',1,'n')", -- What command to issue when we can't find a pair (e.g. "normal! %")
-    keymaps = {
-      goto_partner = "%"
-    }
-  },
-
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<Leader>i",
-      node_incremental = "<C-i>",
-      node_decremental = "<A-i>",
+      init_selection = "<Enter>",
+      node_incremental = "<Enter>",
+      node_decremental = "<BS>",
     },
   },
 

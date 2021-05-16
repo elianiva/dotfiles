@@ -96,6 +96,8 @@ end
 
 M.get_filename = function(self)
   local filepath = vim.fn.expand("%")
+  if filepath == "" then return "" end
+
   if self:is_truncated(self.trunc_width.filename) then
     return string.format(" %%<%s ", filepath)
   end
