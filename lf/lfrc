@@ -104,7 +104,8 @@ map ss stripspace
 map cd push :cd<space>
 map gc cd ~/.config
 map gC cd ~/codes
-map gd cd ~/dls
+map gd cd ~/dev
+map gl cd ~/dls
 map gD cd ~/dox
 map gr cd ~/repos
 map gv cd ~/vids

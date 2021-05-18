@@ -4,53 +4,36 @@
 local o, wo, a, g = vim.o, vim.wo, vim.api, vim.g
 local M = {}
 
-local user = {
-  stl = o.laststatus,
-  tab = o.showtabline,
-  fill = o.fillchars,
-}
-
-local toggle_decoration = function(hidden)
-  o.laststatus = hidden and 0 or user.stl
-  o.showtabline = hidden and 0 or user.tab
-  o.fillchars = hidden and "vert: ,eob: " or user.fill
-  wo.fillchars = hidden and "vert: ,eob: " or user.fill
-  wo.linebreak = hidden
-  wo.wrap = hidden
-end
-
-local split = function(curr_win, direction, width)
-  o.splitright = direction == "right"
-
-  vim.cmd (width .. "vnew | setlocal buftype=nofile | setlocal bufhidden=wipe")
-  wo.cursorline = false
-
-  local buf = a.nvim_get_current_buf()
-  a.nvim_buf_set_name(buf, direction)
-  a.nvim_set_current_win(curr_win)
-end
-
 M.centered = function()
-  local win = a.nvim_get_current_win()
-  local width = math.floor((o.columns - 80) / 2)
+  local width, height = 80, 30
+  local winwidth = vim.o.columns
+  local winheight = a.nvim_win_get_height(0)
+  local bufnr = a.nvim_get_current_buf()
+  vim.o.laststatus = 0
+  vim.o.showtabline = 0
+  vim.o.ruler = false
 
-  if g.centered then
-    vim.cmd [[
-      bwipeout left right | set nolinebreak | set nowrap
-    ]]
-    toggle_decoration(false)
-    wo.cursorline = true
-    g.centered = false
-    wo.signcolumn = "yes"
-    return
-  end
-
-  split(win, "left", width)
-  split(win, "right", width)
-  toggle_decoration(true)
-  wo.cursorline = false
-  wo.signcolumn = "no"
-  g.centered = true
+  vim.cmd [[ tabnew ]]
+  local win = a.nvim_open_win(bufnr, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    col = (winwidth / 2) - (width / 2),
+    row = (winheight / 2) - (height / 2),
+    style = "minimal",
+    border = {
+      {" ", "Normal"},
+      {" ", "Normal"},
+      {" ", "Normal"},
+      {" ", "Normal"},
+      {" ", "Normal"},
+      {" ", "Normal"},
+      {" ", "Normal"},
+      {" ", "Normal"},
+    },
+    zindex = 10
+  })
+  vim.wo.winhl = 'Normal:Normal'
 end
 
 return M

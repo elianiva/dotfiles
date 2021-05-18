@@ -20,19 +20,28 @@ end
 
 -- use eslint if the eslint config file present
 local is_using_eslint = function(_, _, result, client_id)
-  if is_cfg_present("/.eslintrc.json") or is_cfg_present("/.eslintrc.js") then
+  if
+    is_cfg_present("/.eslintrc.json")
+    or is_cfg_present("/.eslintrc.js")
+    or is_cfg_present("/.eslintrc.cjs")
+  then
     return
   end
 
   return vim.lsp.handlers["textDocument/publishDiagnostics"](_, _, result, client_id)
 end
 
-local eslint = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
-  lintIgnoreExitCode = true,
-  lintStdin = true,
-  lintFormats = { "%f:%l:%c: %m" },
-}
+local ts_utils = function(client)
+  local ts_utils = require("nvim-lsp-ts-utils")
+  ts_utils.setup {
+    eslint_bin = "eslint_d",
+    eslint_args = {"-f", "json", "--stdin", "--stdin-filename", "$FILENAME"},
+    eslint_enable_disable_comments = true,
+    eslint_enable_diagnostics = true,
+    eslint_diagnostics_debounce = 250,
+  }
+  ts_utils.setup_client(client)
+end
 
 local servers = {
   tsserver = {
@@ -44,9 +53,9 @@ local servers = {
       ["textDocument/publishDiagnostics"] = is_using_eslint,
     },
     on_init = Util.lsp_on_init,
-    on_attach = function()
+    on_attach = function(client)
       require("modules.lsp._mappings").lsp_mappings()
-      require("nvim-lsp-ts-utils").setup {}
+      ts_utils(client)
     end,
     root_dir = vim.loop.cwd,
   },
@@ -58,54 +67,22 @@ local servers = {
   --     lint = true
   --   }
   -- },
-  html = {
-    cmd = { "vscode-html-language-server", "--stdio" }
-  },
-  cssls = {
-    cmd = { "vscode-css-language-server", "--stdio" }
-  },
   jsonls = {
     cmd = { "vscode-json-language-server", "--stdio" },
     filetypes = { "json", "jsonc" },
     root_dir = vim.loop.cwd
   },
-  hls = {
-    root_dir = vim.loop.cwd
-  },
-  -- phpactor = {
-  --   root_dir = vim.loop.cwd
-  -- },
-  intelephense = {
-    root_dir = vim.loop.cwd
-  },
+  html = { cmd = { "vscode-html-language-server", "--stdio" } },
+  cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
+  intelephense = { root_dir = vim.loop.cwd },
   clangd = {},
-  pyright = {},
-  gopls = {
-    root_dir = vim.loop.cwd,
-  },
-  efm = {
-    cmd = { "efm-langserver" },
-    on_attach = function(client)
-      client.resolved_capabilities.rename = false
-      client.resolved_capabilities.hover = false
-      client.resolved_capabilities.document_formatting = true
-      client.resolved_capabilities.completion = false
-    end,
-    on_init = Util.lsp_on_init,
-    filetypes = { "javascript",  "javascriptreact", "typescript", "typescriptreact", "svelte" },
-    settings = {
-      rootMarkers = { ".git", "package.json" },
-      languages = {
-        javascript = { eslint },
-        typescript = { eslint },
-        typescriptreact = { eslint },
-        svelte = { eslint },
-      },
-    },
+  pyright = {
+    root_dir = vim.loop.cwd
   },
   svelte = {
     on_attach = function(client)
       require("modules.lsp._mappings").lsp_mappings()
+      ts_utils(client)
 
       client.server_capabilities.completionProvider.triggerCharacters = {
         ".", '"', "'", "`", "/", "@", "*",
@@ -120,24 +97,9 @@ local servers = {
     settings = {
       svelte = {
         plugin = {
-          html = {
-            completions = {
-              enable = true,
-              emmet = false,
-            },
-          },
-          svelte = {
-            completions = {
-              enable = true,
-              emmet = false,
-            },
-          },
-          css = {
-            completions = {
-              enable = true,
-              emmet = true,
-            },
-          },
+          html = { completions = { enable = true, emmet = false } },
+          svelte = { completions = { enable = true, emmet = false } },
+          css = { completions = { enable = true, emmet = true } },
         },
       },
     },

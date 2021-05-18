@@ -39,6 +39,7 @@ awful.screen.connect_for_each_screen(function(s)
   s.wibox = awful.wibar({
     position = "top",
     screen = s,
+    bg = theme.statusbar_bg,
     height = theme.statusbar_height,
     width = s.geometry.width
   })

@@ -314,10 +314,7 @@ if packer_ok then
     -- Magit for Neovim
     use {
       "TimUntersberger/neogit",
-      opt = true,
-      cond = function()
-        return Util.is_git_repo(vim.loop.cwd())
-      end,
+      opt = false,
       config = function ()
         require("neogit").setup {
           disable_signs = false,
@@ -328,6 +325,9 @@ if packer_ok then
             item = { "+", "-" },
             hunk = { "", "" },
           },
+          integrations = {
+            diffview = true
+          }
         }
       end
     }

@@ -54,7 +54,7 @@ augroup END
 
 augroup Emmet
   au!
-  autocmd FileType html,svelte EmmetInstall
+  autocmd FileType html,svelte,javascriptreact EmmetInstall
 augroup END
 
 " highlight yanked text for 250ms

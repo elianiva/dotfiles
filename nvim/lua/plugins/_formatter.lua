@@ -1,31 +1,14 @@
 vim.cmd([[packadd formatter.nvim]])
 
-local is_cfg_present = require("modules._util").is_cfg_present
 local k = require("astronauta.keymap")
 local nnoremap = k.nnoremap
+vim.env.PRETTIERD_DEFAULT_CONFIG = "~/.config/nvim/.prettierrc"
 
 local prettier = function()
-  if is_cfg_present("/.prettierrc") then
-    return {
-      exe = "prettier",
-      args = {
-        "--stdin-filepath",
-        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-        "--config",
-        vim.loop.cwd() .. "/.prettierrc"
-      },
-      stdin = true,
-    }
-  end
-
-  -- fallback to global config
   return {
-    exe = "prettier",
+    exe = "prettierd",
     args = {
-      "--stdin-filepath",
-      vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-      "--config",
-      vim.fn.stdpath("config") .. "/.prettierrc"
+      vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
     },
     stdin = true,
   }

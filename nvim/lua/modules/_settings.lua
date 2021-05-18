@@ -34,17 +34,18 @@ local options = {
   completeopt    = { "menu", "menuone", "noselect", "noinsert" }, -- better completion
   encoding       = "UTF-8", -- set encoding
   fillchars      = { vert = "│", eob = " " }, -- make vertical split sign better
-  foldmethod     = "marker", -- foldmethod using marker
+  -- foldmethod     = "expr", -- foldmethod using marker
   -- foldexpr       = "nvim_treesitter#foldexpr()",
   -- foldlevel      = 0, -- don't fold anything if I don't tell it to do so
-  -- foldnestmax    = 2, -- only allow 2 nested folds, it can be confusing if I have too many
+  -- foldnestmax    = 1, -- only allow 1 nested folds, it can be confusing if I have too many
   -- foldopen       = {"percent", "search"}, -- don't open fold if I don't tell it to do so
-  -- foldcolumn     = "auto", -- enable fold column for better visualisation
+  -- foldcolumn     = "1", -- enable fold column for better visualisation
   inccommand     = "split", -- incrementally show result of command
   listchars      = { eol = "↲", tab= "» " }, -- set listchars
   mouse          = "a", -- enable mouse support
   shortmess      = "csa", -- disable some stuff on shortmess
   signcolumn     = "yes", -- enable sign column all the time, 4 column
+  shell          = "/usr/bin/bash", -- use bash instead of zsh
   colorcolumn    = 80, -- 80 chars color column
   laststatus     = 2, -- always enable statusline
   pumheight      = 10, -- limit completion items

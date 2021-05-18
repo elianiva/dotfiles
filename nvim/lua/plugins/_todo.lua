@@ -6,7 +6,7 @@ require("todo-comments").setup {
     HACK = { icon = " ", color = "error" },
     NOTE = { icon = " ", color = "hint", alt = { "INFO" }},
   },
-  highlight = { before = "", keyword = "wide", after = "" },
+  highlight = { before = "", keyword = "fg", after = "" },
   -- list of named colors where we try to extract the guifg from the
   -- list of hilight groups or use the hex color if hl not found as a fallback
   colors = {
@@ -26,5 +26,6 @@ require("todo-comments").setup {
       "--column",
     },
     pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+    comments_only = true
   }
 }
