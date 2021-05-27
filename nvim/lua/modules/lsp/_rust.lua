@@ -11,7 +11,7 @@ require("rust-tools").setup {
     }
   },
   server = {
-    on_attach = Util.custom_on_attach,
+    on_attach = Util.lsp_on_attach,
     capabilities = (function()
       -- for autoimports
       local capabilities = vim.lsp.protocol.make_client_capabilities()

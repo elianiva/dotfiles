@@ -12,8 +12,6 @@ end
 -- add libraris to get detected by sumneko_lua
 add("$VIMRUNTIME")
 add("~/.config/nvim")
-add("~/.local/share/nvim/site/pack/packer/opt/*")
-add("~/.local/share/nvim/site/pack/packer/start/*")
 
 require("lspconfig").sumneko_lua.setup {
   cmd = {

@@ -2,13 +2,13 @@ vim.cmd([[packadd formatter.nvim]])
 
 local k = require("astronauta.keymap")
 local nnoremap = k.nnoremap
-vim.env.PRETTIERD_DEFAULT_CONFIG = "~/.config/nvim/.prettierrc"
+vim.env.PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath('config') .. "/.prettierrc"
 
 local prettier = function()
   return {
     exe = "prettierd",
     args = {
-      vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
+      vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
     },
     stdin = true,
   }
@@ -51,7 +51,7 @@ local stylua = function()
     args = {
       "--config-path",
       "~/.config/nvim/.stylua",
-      "-"
+      "-",
     },
     stdin = true,
   }
@@ -77,4 +77,4 @@ require("formatter").setup({
   },
 })
 
-nnoremap { "<Leader>gf", "<CMD>Format<CR>", { silent = true } }
+nnoremap({ "<Leader>gf", "<CMD>Format<CR>", { silent = true } })

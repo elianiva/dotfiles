@@ -17,6 +17,15 @@ wk.register({
     ["]"] = "Next Diagnostic",
     ["["] = "Prev Diagnostic" ,
   },
+  d = {
+    name  = "+DAP",
+    b     = "Toggle Breakpoint" ,
+    c     = "Continue" ,
+    o     = "Step Over" ,
+    r     = "Open REPL" ,
+    ['>'] = "Step Into" ,
+    ['<'] = "Step Out" ,
+  },
   h = {
     name  = "+GitSigns",
     b     = "Blame Line" ,
@@ -31,6 +40,7 @@ wk.register({
     n     = "Node" ,
     l     = "Lua" ,
     d     = "Deno" ,
+    r     = "Rest Client" ,
   },
   i = "Start Incremental Selection",
   v = "Open Scratch Split",
@@ -75,10 +85,11 @@ wk.setup {
     group = "+",
   },
   window = {
-    border = Util.borders, -- none, single, double, shadow
+    -- border = { "", "▔", "", "", "", "", "", "" }, -- none, single, double, shadow
+    border = "none",
     position = "bottom", -- bottom, top
-    margin = { 2, 2, 2, 1 }, -- extra window margin [top, right, bottom, left]
-    padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+    margin = { 0, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
+    padding = { 4, 2, 4, 2 }, -- extra window padding [top, right, bottom, left]
   },
   layout = {
     height = { min = 4, max = 25 }, -- min and max height of the columns

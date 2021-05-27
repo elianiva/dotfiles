@@ -2,23 +2,26 @@ local k = require("astronauta.keymap")
 
 local noremap = k.noremap
 local nnoremap = k.nnoremap
-local inoremap = k.inoremap
+-- local inoremap = k.inoremap
 local vnoremap = k.vnoremap
 local nmap = k.nmap
 local xmap = k.xmap
 
--- use jj instead of Esc
--- 4 mappings to prevent typos :p
-inoremap { "jj", "<Esc><Esc>" }
-inoremap { "Jj", "<Esc><Esc>" }
-inoremap { "jJ", "<Esc><Esc>" }
-inoremap { "JJ", "<Esc><Esc>" }
+-- -- use jj instead of Esc
+-- -- 4 mappings to prevent typos :p
+-- inoremap { "jk", "<Esc><Esc>" }
+-- inoremap { "Jk", "<Esc><Esc>" }
+-- inoremap { "jK", "<Esc><Esc>" }
+-- inoremap { "JK", "<Esc><Esc>" }
 
 -- toggle nvimtree
 nnoremap { "<C-n>", "<CMD>NvimTreeToggle<CR>" }
 
 -- hippity hoppity your word is not my property
 nnoremap { "<Leader>w", "<CMD>HopWord<CR>" }
+
+-- execute rest.nvim
+nmap { "<Leader>rr", "<Plug>RestNvim" }
 
 -- toggle telescope.nvim
 nnoremap {

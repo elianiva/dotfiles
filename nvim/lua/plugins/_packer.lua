@@ -65,14 +65,6 @@ if packer_ok then
       config = function() require("plugins._emmet") end,
     }
 
-    -- A pretty diagnostics list to help you solve all the trouble your code is
-    -- causing.
-    use {
-      "folke/lsp-trouble.nvim",
-      opt = false,
-      config = function() require("trouble").setup {} end,
-    }
-
     -- Highlight, list and search todo comments in your projects
     use {
       "folke/todo-comments.nvim",
@@ -199,7 +191,18 @@ if packer_ok then
     }
 
     -- Quickstart configurations for the Nvim LSP client
-    use { "neovim/nvim-lspconfig", opt = true }
+    use {
+      "neovim/nvim-lspconfig",
+      opt = false,
+    }
+
+    -- Debug Adapter Protocol client implementation for Neovim (>= 0.5)
+    use {
+      "mfussenegger/nvim-dap",
+      opt = false,
+      config = function() require("modules.dap") end,
+      requires = { "rcarriga/nvim-dap-ui" },
+    }
 
     -- Tools to help create flutter apps in neovim using the native lsp
     use { "akinsho/flutter-tools.nvim", opt = false }
@@ -212,7 +215,21 @@ if packer_ok then
 
     -- Utilities to improve the TypeScript development experience for Neovim's
     -- built-in LSP client.
-    use { "jose-elias-alvarez/nvim-lsp-ts-utils", opt = false }
+    use {
+      "jose-elias-alvarez/nvim-lsp-ts-utils",
+      opt = false,
+      branch = "develop",
+    }
+
+    -- Use Neovim as a language server to inject LSP diagnostics, code actions,
+    -- and more via Lua.
+    use {
+      "jose-elias-alvarez/null-ls.nvim",
+      opt = false,
+      config = function()
+        require("null-ls").setup {}
+      end,
+    }
 
     -- Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
     use { "mfussenegger/nvim-jdtls", opt = false }
@@ -332,15 +349,15 @@ if packer_ok then
       end
     }
 
-    -- Better markdown support
-    use {
-      "plasticboy/vim-markdown",
-      opt = false,
-      filetype = { "markdown" },
-      config = function()
-        vim.g.vim_markdown_frontmatter = 1
-      end
-    }
+    -- -- Better markdown support
+    -- use {
+    --   "plasticboy/vim-markdown",
+    --   opt = false,
+    --   filetype = { "markdown" },
+    --   config = function()
+    --     vim.g.vim_markdown_frontmatter = 1
+    --   end
+    -- }
 
     -- better `gf` movement
     use { "notomo/curstr.nvim", opt = false }
@@ -348,13 +365,15 @@ if packer_ok then
     -- Find the enemy and replace them with dark power.
     use { "windwp/nvim-spectre", opt = false }
 
-    -- Highlights matching word
-    use { "RRethy/vim-illuminate" }
+
+    -- A fast Neovim http client written in Lua
+    use { "NTBBloodbath/rest.nvim" }
 
     -- A Neovim port of Assorted Biscuits
     -- use { "code-biscuits/nvim-biscuits", opt = false }
 
     -- check these out again later
+    -- use { "RRethy/vim-illuminate" }
     -- use { "tpope/vim-fugitive", opt = false } -- git helpers inside neovim
     -- use { "lukas-reineke/indent-blankline.nvim", opt = false, branch = "lua" }
   end
