@@ -314,6 +314,11 @@ local plugins = function()
     opt = false,
   }
 
+  use {
+    "steelsojka/pears.nvim",
+    config = function() require("plugins._pears") end
+  }
+
   -- temp, will remove later
   use { "tjdevries/astronauta.nvim", opt = false }
 

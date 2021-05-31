@@ -39,6 +39,7 @@ link_paths=(
   # TUI apps
   "lf                   <> .config/lf             <> LF_File_Manager"
   "pacman               <> .config/pacman         <> Pacman"
+  "bat                  <> .config/bat            <> Bat"
   "misc/picom.conf      <> .config/picom.conf     <> Picom"
   "tmux/.tmux.conf      <> .tmux.conf             <> Tmux"
 
