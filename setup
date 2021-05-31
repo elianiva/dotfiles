@@ -9,7 +9,7 @@ x11=("xorg-server" "xorg-xinit" "xorg-xrandr" "xorg-xset" "xclip")
 audio=("pipewire" "pulsemixer")
 gui=(
   "flameshot" "gcolor2" "kitty" "rofi" "simplescreenrecorder"
-  "lxappearance" "telegram-desktop" "mpv" "pcmanfm"
+  "lxappearance" "telegram-desktop" "mpv" "pcmanfm" "engrampa"
 )
 cli=(
   "dhcpcd" "docker" "exa" "light" "tree-sitter"
@@ -47,6 +47,11 @@ link_paths=(
   "misc/zathurarc       <> .config/zathurarc      <> Zathura"
 
   # x stuff
+  "i3                   <> .config/i3             <> i3_Config"
+  "bspwm                <> .config/bspwm          <> BSPWM_Config"
+  "sxhkd                <> .config/sxhkd          <> SXHKD_Config"
+  "dunst                <> .config/dunst          <> Dunst_Config"
+  "polybar              <> .config/polybar        <> Polybar_Config"
   "misc/.profile        <> .profile               <> Env_Profile"
   "misc/.xprofile       <> .xprofile              <> X_Profile"
   "misc/.Xresources     <> .Xresources            <> X_Resources"
@@ -61,6 +66,15 @@ link_paths=(
   "zsh/.zprofile        <> .zprofile              <> ZSH_Profile"
   "misc/aliasrc         <> .config/aliasrc        <> Shell_Aliases"
   "misc/starship.toml   <> .config/starship.toml  <> Starship_Config"
+
+  # wayland stuff
+  "sway                 <> .config/sway           <> Sway_Config"
+  "waybar               <> .config/waybar         <> Waybar_Config"
+  "mako                 <> .config/mako           <> Mako_Config"
+  "wofi                 <> .config/wofi           <> Wofi_Config"
+
+  # startpage
+  "misc/dev/startpage-v2   <> dev/startpage-v2    <> Startpage"
 )
 
 # concat array using delimiter
@@ -70,7 +84,6 @@ function join_by() {
   echo "$*"
 }
 
-asdf=()
 function split() {
   local IFS="<>"
   read -ra array <<< "$1"
@@ -93,19 +106,29 @@ function setup_links() {
   done
 }
 
+function setup_pacman() {
+  local p=$(join_by " " "${packages[@]}")
+  sudo -S pacman -S $p
+}
+
+function setup_aur() {
+  git clone https://aur.archlinux.org/packages/paru-bin.git
+  cd paru-bin
+  makepkg -si
+}
+
 function setup_arch() {
   echo "Installing deps..."
-
-  local p=$(join_by " " "${packages[@]}")
-
-  # sudo -S pacman -S $p
-
+  setup_pacman
   setup_links
 }
 
 case $distro in
-  "arch")
+  "arch:fresh")
     setup_arch
+    ;;
+  "arch:link")
+    setup_links
     ;;
   "*")
     echo "not supported.."

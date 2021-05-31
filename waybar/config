@@ -1,4 +1,4 @@
-// vim:ft=jsonc
+// vim: ft=jsonc
 
 {
   "layer": "top",
@@ -6,23 +6,14 @@
   "height": 24, // Waybar height (to be removed for auto height)
   // "width": 1280, // Waybar width
   // Choose the order of the modules
-  "modules-left": ["sway/workspaces", "custom/left-sep", "custom/playerctl", "sway/mode"],
+  "modules-left": ["sway/workspaces", "custom/left-sep", "sway/mode", "network"],
   "modules-center": ["clock"],
-  "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "battery", "tray"],
+  "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "battery", "tray"],
   // Modules configuration
   // wl-gammactl -c 1.015 -b 0.946 -g 0.985
-  "custom/playerctl": {
-    "name": "playerctl",
-    "format": "<span color=\"#d79921\"> </span> {}",
-    "return-type": "json",
-    "escape": true,
-    "max-length": 40,
-    "exec": "playerctl --player=spotify --follow metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{playerName}} : {{artist}} - {{title}}\", \"alt\": \"{{status}}\", \"class\": \"playerctl\"}' -F",
-    "on-click": "playerctl --player=spotify play-pause",
-  },
   "custom/left-sep": {
-    "format": " ",
-    "escape": true,
+    "format": "<span font='18'></span>",
+    "escape": true
   },
   "sway/workspaces": {
     "disable-scroll": true,
@@ -46,7 +37,7 @@
       "3": [],
       "4": [],
       "5": [],
-      "6": [],
+      "6": []
     }
   },
   "sway/mode": {
@@ -58,22 +49,22 @@
   },
   "clock": {
     "format": "{:%a, %I:%M %p}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "cpu": {
-    "format": "<span color=\"#d79921\"> </span> {usage}%",
+    "format": "<span color=\"#d79921\">CPU:</span> {usage}%",
     "tooltip": false
   },
   "memory": {
-    "format": "<span color=\"#d79921\"> </span> {used:0.1f}GB"
+    "format": "<span color=\"#d79921\">MEM:</span> {used:0.1f}GB"
   },
   "temperature": {
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     "critical-threshold": 80,
     // "format-critical": "{temperatureC}°C {icon}",
-    "format": "<span color=\"#d79921\">{icon}</span> {temperatureC}°C",
-    "format-icons": [" ", " ", " "]
+    "format": "<span color=\"#d79921\">TEMP:</span> {temperatureC}°C"
+    /* "format-icons": [" ", " ", " "] */
   },
   "backlight": {
     // "device": "acpi_video1",
@@ -82,29 +73,29 @@
   },
   "battery": {
     "states": {
-      // "good": 95,
+      "good": 95,
       "warning": 30,
       "critical": 15
     },
-    "format": "<span color=\"#d79921\">{icon}</span> {capacity}%",
+    "format": "<span color=\"#d79921\">BAT:</span> {capacity}%",
     "format-charging": "<span color=\"#d79921\"> </span> {capacity}% ",
-    "format-plugged": "<span color=\"#d79921\"> </span> {capacity}%",
-    "format-alt": "{time} {icon}",
+    "format-plugged": "<span color=\"#d79921\"> </span> {capacity}%"
+    /* "format-alt": "{time} {icon}" */
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": [" ", " ", " ", " ", " "]
+    /* "format-icons": [" ", " ", " ", " ", " "] */
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "<span color=\"#d79921\">直  </span> {bandwidthUpBits} <span color=\"#d79921\"></span> {bandwidthDownBits}",
+    "format-wifi": "<span color=\"#d79921\">NET:</span> {bandwidthUpBits} | {bandwidthDownBits}",
     "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected 睊",
+    "format-disconnected": "<span color=\"#d79921\">NET:</span> DISCONNECTED",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "<span color=\"#d79921\">{icon}</span> {volume}%",
+    "format": "<span color=\"#d79921\">VOL:</span> {volume}%",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",
@@ -120,5 +111,5 @@
       "default": [" ", " ", " "]
     },
     "on-click": "pavucontrol"
-  },
+  }
 }

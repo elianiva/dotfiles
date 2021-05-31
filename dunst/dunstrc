@@ -1,0 +1,181 @@
+[global]
+    ### Display ###
+
+    # Which monitor should the notifications be displayed on.
+    monitor = 0
+    follow = mouse
+
+    # The geometry of the window:
+    #   [{width}]x{height}[+/-{x}+/-{y}]
+    # geometry = "300x60-10+36"
+    geometry = "320x60-8+36"
+
+    # Show how many messages are currently hidden (because of geometry).
+    indicate_hidden = yes
+
+    # Shrink window if it's smaller than the width.  Will be ignored if
+    # width is 0.
+    shrink = no
+
+    # The transparency of the window.  Range: [0; 100].
+    # This option will only work if a compositing window manager is
+    # present (e.g. xcompmgr, compiz, etc.).
+    transparency = 0
+
+    notification_height = 0
+
+    # Draw a line of "separator_height" pixel height between two
+    # notifications.
+    # Set to 0 to disable.
+    separator_height = 0
+
+    # Padding between text and separator.
+    padding = 20
+
+    # Horizontal padding.
+    horizontal_padding = 10
+
+    # Defines width in pixels of frame around the notification window.
+    # Set to 0 to disable.
+    frame_width = 1
+
+    # Defines color of the frame around the notification window.
+    frame_color = "#fffaee"
+
+    # Define a color for the separator.
+    # possible values are:
+    #  * auto: dunst tries to find a color fitting to the background;
+    #  * foreground: use the same color as the foreground;
+    #  * frame: use the same color as the frame;
+    #  * anything else will be interpreted as a X color.
+    separator_color = auto
+
+    # Sort messages by urgency.
+    sort = yes
+
+    # Don't remove messages, if the user is idle (no mouse or keyboard input)
+    # for longer than idle_threshold seconds.
+    # Set to 0 to disable.
+    # A client can set the 'transient' hint to bypass this. See the rules
+    # section for how to disable this if necessary
+    idle_threshold = 120
+
+    ### Text ###
+    font = Iosevka 12
+    markup = full
+
+    # The format of the message.  Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    #   %p  progress value if set ([  0%] to [100%]) or nothing
+    #   %n  progress value if set without any extra characters
+    #   %%  Literal %
+    format = "%s\n%b"
+
+    # Alignment of message text.
+    # Possible values are "left", "center" and "right".
+    alignment = left
+
+    # Show age of message if message is older than show_age_threshold
+    # seconds.
+    # Set to -1 to disable.
+    show_age_threshold = 60
+
+    # Split notifications into multiple lines if they don't fit into
+    # geometry.
+    word_wrap = yes
+
+    # When word_wrap is set to no, specify where to make an ellipsis in long lines.
+    # Possible values are "start", "middle" and "end".
+    ellipsize = middle
+
+    # Ignore newlines '\n' in notifications.
+    ignore_newline = no
+
+    # Stack together notifications with the same content
+    stack_duplicates = true
+
+    # Hide the count of stacked notifications with the same content
+    hide_duplicate_count = true
+
+    # Display indicators for URLs (U) and actions (A).
+    show_indicators = yes
+
+    ### Icons ###
+    icon_position = left
+    max_icon_size = 64x64
+    icon_path = /usr/share/icons/Numix/32/status/:/usr/share/icons/Numix/32/devices/
+
+    ### History ###
+    sticky_history = yes
+    history_length = 1
+
+    ### Misc/Advanced ###
+
+    # dmenu path.
+    dmenu = /usr/bin/dmenu -p dunst:
+
+    # Browser for opening urls in context menu.
+    browser = /usr/bin/firefox -new-tab
+
+    # Always run rule-defined scripts, even if the notification is suppressed
+    always_run_script = true
+
+    # Define the title of the windows spawned by dunst
+    title = Dunst
+
+    # Define the class of the windows spawned by dunst
+    class = Dunst
+
+    startup_notification = false
+
+    # Manage dunst's desire for talking
+    verbosity = mesg
+
+    corner_radius = 0
+
+    ### Legacy
+    force_xinerama = false
+
+    ### mouse
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = close_all
+
+[experimental]
+    per_monitor_dpi = false
+
+[shortcuts]
+
+    # Close notification.
+    close = ctrl+space
+
+    # Close all notifications.
+    close_all = ctrl+shift+space
+
+    # Redisplay last message(s).
+    # history = ctrl+alt+grave
+
+    # Context menu.
+    # context = ctrl+shift+period
+
+[urgency_low]
+    background = "#282828"
+    foreground = "#ebdbb2"
+    timeout = 5
+
+[urgency_normal]
+    background = "#282828"
+    foreground = "#ebdbb2"
+    timeout = 5
+
+[urgency_critical]
+    background = "#282828"
+    foreground = "#ebdbb2"
+    frame_color = "#cc241d"
+    timeout = 0
+
+# vim: ft=cfg

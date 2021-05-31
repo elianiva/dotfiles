@@ -9,6 +9,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
   # export QT_QPA_PLATFORM=wayland
   # export MOZ_ENABLE_WAYLAND=1
   # export GDK_BACKEND=wayland
+  # exec sway;
   exec dbus-launch startx;
 elif [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty2 ]]; then
   export XDG_SESSION_TYPE=wayland
@@ -17,7 +18,6 @@ elif [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty2 ]]; then
   export MOZ_ENABLE_WAYLAND=1
   export GDK_BACKEND=wayland
   exec sway;
-  # exec dbus-run-session gnome-session
-  # exec dbus-run-session startplasma-wayland
+  # exec dbus-launch startx;
 fi
 

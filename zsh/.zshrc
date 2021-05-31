@@ -25,7 +25,7 @@ function set_win_title(){
 }
 precmd_functions+=(set_win_title)
 eval "$(starship init zsh)"
-setopt autocd   # automatically cd into typed directory.
+setopt autocd     # automatically cd into typed directory.
 stty stop undef   # disable ctrl-s to freeze terminal.
 
 # History in cache directory:
@@ -43,7 +43,8 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # case insensitive
 
 bindkey -v # vi mode
-bindkey "jj" vi-cmd-mode # Use jj instead of <Esc>
+KEYTIMEOUT=1
+# bindkey "jk" vi-cmd-mode
 
 # history substring function
 bindkey -M vicmd 'k' history-substring-search-up
@@ -67,7 +68,7 @@ _fix_cursor() {
 }
 precmd_functions+=(_fix_cursor)
 
-lfcd () {
+function lfcd() {
     tmp="$(mktemp)"
     lf -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
@@ -81,11 +82,12 @@ bindkey '^[[Z' reverse-menu-complete # fix reverse menu
 bindkey '^[[P' delete-char
 
 # Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
+autoload edit-command-line
+zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # clone subdirectory using subversion
-git-svn() {
+function git-svn() {
   if [[ ! -z "$1" && ! -z "$2" ]]; then
     echo "Starting clone/copy..."
     repo=$(echo $1 | sed 's/\/$\|.git$//')
@@ -95,22 +97,16 @@ git-svn() {
   fi
 }
 
-run_rs() {
+function run_rs() {
   rustc $1; ./$(echo "$1" | sed -e "s/\.rs$//")
 }
 
-__skim_use_tmux__() {
-  [ -n "$TMUX_PANE" ] && [ "${SKIM_TMUX:-0}" != 0 ] && [ ${LINES:-40} -gt 15 ]
-}
-__skimcmd() {
-  __skim_use_tmux__ && echo "sk-tmux -d${SKIM_TMUX_HEIGHT:-40%}" || echo "sk"
-}
-skim-history-widget() {
+function skim-history-widget() {
   local selected num
   echo -ne "\r"
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
   selected=( $(fc -rl 1 |
-    SKIM_DEFAULT_OPTIONS="--height=40% $SKIM_DEFAULT_OPTIONS -n2..,.. --tiebreak=score,index $SKIM_CTRL_R_OPTS --query=${(qqq)LBUFFER} -m" $(__skimcmd)) )
+    SKIM_DEFAULT_OPTIONS="--height=40% $SKIM_DEFAULT_OPTIONS -n2..,.. --tiebreak=score,index $SKIM_CTRL_R_OPTS --query=${(qqq)LBUFFER} -m" sk) )
   local ret=$?
   if [ -n "$selected" ]; then
     num=$selected[1]
@@ -133,9 +129,8 @@ skim-redraw-prompt() {
 }
 zle -N skim-redraw-prompt
 
-# don't use `xterm-kitty`
-# export TERM=xterm-256color
-
-# # fnm
+# fnm
 export PATH=/home/elianiva/.fnm:$PATH
 eval "`fnm env`"
+
+alias luamake=/home/elianiva/repos/lua-language-server/3rd/luamake/luamake
