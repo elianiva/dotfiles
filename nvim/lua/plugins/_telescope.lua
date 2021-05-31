@@ -92,7 +92,8 @@ telescope.setup {
 pcall(require("telescope").load_extension, "fzf") -- superfast sorter
 pcall(require("telescope").load_extension, "media_files") -- media preview
 pcall(require("telescope").load_extension, "frecency") -- frecency
-pcall(require("telescope").load_extension, "arecibo") -- websearch
+-- pcall(require("telescope").load_extension, "arecibo") -- websearch
+pcall(require("telescope").load_extension, "dap") -- DAP integrations
 
 local no_preview = function(opts)
   opts = opts or {}

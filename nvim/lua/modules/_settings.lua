@@ -1,4 +1,4 @@
-require("modules._opts")
+-- require("modules._opts")
 
 local apply_options = function(opts)
   for k, v in pairs(opts) do
@@ -33,12 +33,16 @@ local options = {
   backupcopy     = "yes", -- fix weirdness for stuff that replaces the entire file when hot reloading
   completeopt    = { "menu", "menuone", "noselect", "noinsert" }, -- better completion
   encoding       = "UTF-8", -- set encoding
-  fillchars      = { vert = "│", eob = " " }, -- make vertical split sign better
-  -- foldmethod     = "expr", -- foldmethod using marker
+  fillchars      = {
+    vert = "│",
+    eob = " ",
+    fold = " ",
+  }, -- make vertical split sign better
+  foldmethod     = "marker",
   -- foldexpr       = "nvim_treesitter#foldexpr()",
   -- foldlevel      = 0, -- don't fold anything if I don't tell it to do so
   -- foldnestmax    = 1, -- only allow 1 nested folds, it can be confusing if I have too many
-  -- foldopen       = {"percent", "search"}, -- don't open fold if I don't tell it to do so
+  foldopen       = {"percent", "search"}, -- don't open fold if I don't tell it to do so
   -- foldcolumn     = "1", -- enable fold column for better visualisation
   inccommand     = "split", -- incrementally show result of command
   listchars      = { eol = "↲", tab= "» " }, -- set listchars
@@ -46,7 +50,7 @@ local options = {
   shortmess      = "csa", -- disable some stuff on shortmess
   signcolumn     = "yes", -- enable sign column all the time, 4 column
   shell          = "/usr/bin/bash", -- use bash instead of zsh
-  colorcolumn    = 80, -- 80 chars color column
+  colorcolumn    = { "80" }, -- 80 chars color column
   laststatus     = 2, -- always enable statusline
   pumheight      = 10, -- limit completion items
   re             = 0, -- set regexp engine to auto
@@ -54,7 +58,6 @@ local options = {
   sidescroll     = 2, -- make scrolling better
   shiftwidth     = 2, -- set indentation width
   sidescrolloff  = 15, -- make scrolling better
-  -- synmaxcol      = 300, -- set limit for syntax highlighting in a single line, probably gonna remove this since treesitter handles this very well
   tabstop        = 2, -- tabsize
   timeoutlen     = 400, -- faster timeout wait time
   updatetime     = 100, -- set faster update time

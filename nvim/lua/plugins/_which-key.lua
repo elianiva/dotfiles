@@ -68,12 +68,12 @@ wk.setup {
     registers = true,
     spelling = { enabled = false },
     presets = {
-      operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-      motions = true, -- adds help for motions
-      text_objects = true, -- help for text objects triggered after entering an operator
-      windows = true, -- default bindings on <c-w>
-      z = true, -- bindings for folds, spelling and others prefixed with z
-      g = true, -- bindings for prefixed with g
+      operators = false,
+      motions = false,
+      text_objects = false,
+      windows = true,
+      z = true,
+      g = true,
     },
   },
   -- add operators that will trigger motion and text object completion

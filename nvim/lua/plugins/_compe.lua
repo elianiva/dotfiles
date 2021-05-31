@@ -1,17 +1,5 @@
 local remap = vim.api.nvim_set_keymap
 
--- don't load *all* modules
-vim.g.loaded_compe_snippets_nvim = 1
-vim.g.loaded_compe_spell         = 1
-vim.g.loaded_compe_tags          = 1
-vim.g.loaded_compe_treesitter    = 1
-vim.g.loaded_compe_emoji         = 1
-vim.g.loaded_compe_omni          = 1
-vim.g.loaded_compe_vsnip         = 1
-vim.g.loaded_compe_ultisnips     = 1
-vim.g.loaded_compe_vim_lsc       = 1
-vim.g.loaded_compe_calc          = 1
-
 require("compe").setup({
   enabled              = true,
   debug                = false,
@@ -19,7 +7,8 @@ require("compe").setup({
   preselect            = "disable",
   source_timeout       = 200,
   incomplete_delay     = 400,
-  allow_prefix_unmatch = false,
+  throttle_time        = 200,
+  allow_prefix_unmatch = true,
 
   source = {
     path     = true,

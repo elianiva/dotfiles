@@ -26,7 +26,7 @@ dap.listeners.after['event_initialized']['me'] = function()
   api.nvim_set_keymap(
     'n',
     'K',
-    '<Cmd>lua require("dap.ui.variables").hover()<CR>', {
+    '<Cmd>lua require("dap.ui.widgets").hover(nil, { border = Util.borders })<CR>', {
     silent = true,
   })
 end

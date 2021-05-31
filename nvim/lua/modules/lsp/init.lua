@@ -1,6 +1,6 @@
-vim.cmd [[packadd nvim-lspconfig]]
+vim.cmd([[packadd nvim-lspconfig]])
 
-local nvim_lsp = require("lspconfig")
+local lspconfig = require("lspconfig")
 
 -- override handlers
 pcall(require, "modules.lsp._handlers")
@@ -30,19 +30,18 @@ local servers = {
   jsonls = {
     cmd = { "vscode-json-language-server", "--stdio" },
     filetypes = { "json", "jsonc" },
-    root_dir = vim.loop.cwd
+    root_dir = vim.loop.cwd,
   },
   html = { cmd = { "vscode-html-language-server", "--stdio" } },
   cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
   intelephense = { root_dir = vim.loop.cwd },
   clangd = {},
-  pyright = {
-    root_dir = vim.loop.cwd
-  },
+  pyright = {},
   svelte = {
     on_attach = function(client)
       require("modules.lsp._mappings").lsp_mappings()
       require("modules.lsp._tsserver").ts_utils(client)
+      require("null-ls").setup {}
 
       client.server_capabilities.completionProvider.triggerCharacters = {
         ".", '"', "'", "`", "/", "@", "*",
@@ -63,18 +62,21 @@ local servers = {
   },
   jdtls = {
     extra_setup = function()
-      vim.api.nvim_exec([[
+      vim.api.nvim_exec(
+        [[
         augroup jdtls
         au!
         au FileType java lua require'jdtls'.start_or_attach({ cmd = { "/home/elianiva/.scripts/run_jdtls" }, on_attach = require'modules.lsp._mappings'.lsp_mappings("jdtls") })
         augroup END
-      ]], false)
-    end
+      ]],
+        false
+      )
+    end,
   },
 }
 
 for name, opts in pairs(servers) do
-  local client = nvim_lsp[name]
+  local client = lspconfig[name]
   if opts.extra_setup then
     opts.extra_setup()
   end

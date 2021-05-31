@@ -21,6 +21,7 @@ M.config = {
   on_init = Util.lsp_on_init,
   on_attach = function(client)
     require("modules.lsp._mappings").lsp_mappings()
+    require("null-ls").setup {}
     M.ts_utils(client)
   end,
   root_dir = vim.loop.cwd,

@@ -1,5 +1,5 @@
 local Job = require("plenary.job")
-local fn = vim.fn
+local fn, api = vim.fn, vim.api
 
 _G.Util = {}
 
@@ -165,7 +165,7 @@ Util.spinner = function()
 end
 
 Util.t = function(cmd)
-  return vim.api.nvim_replace_termcodes(cmd, true, true, true)
+  return api.nvim_replace_termcodes(cmd, true, true, true)
 end
 
 Util.is_git_repo = function(cwd)
@@ -234,10 +234,20 @@ end
 
 Util.lsp_on_init = function()
   print("Language Server Protocol started!")
-
-  if client.config.flags then
-    client.config.flags.allow_incremental_sync = true
-  end
 end
+
+Util.foldtext = function()
+  local start = vim.v.foldstart
+  local endl = vim.v.foldend
+  local line = api.nvim_buf_get_lines(0, start - 1, start, true)[1]
+  local width = api.nvim_win_get_width(0)
+  local total = string.format("(%s) lines", endl - start + 1)
+
+  return string.format(
+    "%s… %s%s",
+    line, string.rep(" ", width - #line - #total - 6), total
+  )
+end
+vim.o.foldtext = "v:lua.Util.foldtext()"
 
 return Util
