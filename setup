@@ -9,14 +9,14 @@ x11=("xorg-server" "xorg-xinit" "xorg-xrandr" "xorg-xset" "xclip")
 audio=("pipewire" "pulsemixer")
 gui=(
   "flameshot" "gcolor2" "kitty" "rofi" "simplescreenrecorder"
-  "lxappearance" "telegram-desktop" "mpv" "pcmanfm" "engrampa"
+  "lxappearance" "telegram-desktop" "mpv" "pcmanfm-gtk3" "engrampa"
 )
 cli=(
   "dhcpcd" "docker" "exa" "light" "tree-sitter"
   "unzip" "ripgrep" "acpi" "bat" "imagemagick"
   "github-cli"
 )
-others=("lxsession" "ntfs-3g" "picom" "xdg-user-dirs")
+others=("lxsession" "ntfs-3g" "picom" "xdg-user-dirs" "qt5ct")
 shell=("zsh" "dash")
 
 packages=(
@@ -47,12 +47,19 @@ link_paths=(
   "rofi                 <> .config/rofi           <> Rofi"
   "misc/zathurarc       <> .config/zathurarc      <> Zathura"
 
+  # stuff
+  "fontconfig           <> .config/fontconfig     <> FontConfig"
+
   # x stuff
   "i3                   <> .config/i3             <> i3_Config"
   "bspwm                <> .config/bspwm          <> BSPWM_Config"
   "sxhkd                <> .config/sxhkd          <> SXHKD_Config"
   "dunst                <> .config/dunst          <> Dunst_Config"
   "polybar              <> .config/polybar        <> Polybar_Config"
+  "flameshot            <> .config/flameshot      <> Flameshot_Config"
+  "gtk-3.0              <> .config/gtk-3.0        <> GTK3_Config"
+  "icons                <> .icons                 <> Icons"
+  "qt5ct                <> .config/qt5ct          <> QT5CT_Config"
   "misc/.profile        <> .profile               <> Env_Profile"
   "misc/.xprofile       <> .xprofile              <> X_Profile"
   "misc/.Xresources     <> .Xresources            <> X_Resources"

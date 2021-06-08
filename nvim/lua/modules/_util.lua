@@ -198,17 +198,6 @@ Util.borders = {
   -- {"█", "Bordaa"}
 }
 
--- see lua/plugins/_compe.lua for context
-Util.trigger_completion = function()
-  if vim.fn.pumvisible() ~= 0 then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      return vim.fn["compe#confirm"]()
-    end
-  end
-
-  return Util.t("<CR>")
-end
-
 Util.lsp_on_attach = function()
   require("modules.lsp._mappings").lsp_mappings()
   require("lsp_signature").on_attach {

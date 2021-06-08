@@ -1,6 +1,6 @@
 {
   "semi": true,
-  "singleQuote": true,
+  "singleQuote": false,
   "arrowParens": "avoid",
   "useTabs": false,
   "tabWidth": 2,
@@ -11,5 +11,5 @@
   "svelteBracketNewLine": true,
   "svelteIndentScriptAndStyle": false,
   "printWidth": 80,
-  "phpVersion": "7.4",
+  "phpVersion": "7.4"
 }

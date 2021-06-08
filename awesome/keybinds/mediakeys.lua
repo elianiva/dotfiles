@@ -1,5 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
+local noop = require("main.helpers").noop
 
 local M = gears.table.join(
   awful.key({}, "XF86AudioLowerVolume", function()
@@ -27,28 +28,28 @@ local M = gears.table.join(
   {description = "mute the audio", group = "media"}),
 
   awful.key({}, "XF86AudioPlay", function()
-    awful.spawn.with_shell("playerctl --player=%any,chrome,chromium play-pause")
+    awful.spawn.easy_async_easy_async_with_shell("playerctl --player=%any,chrome,chromium play-pause", noop)
   end,
   {description = "toggle the audio", group = "media"}),
 
   awful.key({}, "XF86AudioNext", function()
-    awful.spawn.with_shell("playerctl --player=%any,chrome,chromium next")
+    awful.spawn.easy_async_with_shell("playerctl --player=%any,chrome,chromium next", noop)
   end,
   {description = "toggle the audio", group = "media"}),
 
   awful.key({}, "XF86AudioPrev", function()
-    awful.spawn.with_shell("playerctl --player=%any,chrome,chromium previous")
+    awful.spawn.easy_async_with_shell("playerctl --player=%any,chrome,chromium previous", noop)
   end,
   {description = "toggle the audio", group = "media"}),
 
   -- Brightness
   awful.key({}, "XF86MonBrightnessDown", function()
-    awful.spawn.with_shell("light -U 10")
+    awful.spawn.easy_async_with_shell("light -U 10", noop)
   end,
   {description = "decrease brightness", group = "brightness"}),
 
   awful.key({}, "XF86MonBrightnessUp", function()
-    awful.spawn.with_shell("light -A 10")
+    awful.spawn.easy_async_with_shell("light -A 10", noop)
   end,
   {description = "increase brightness", group = "brightness"})
 )

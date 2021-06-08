@@ -16,11 +16,7 @@ ts_config.setup {
   },
 
   indent = {
-    enable = false, -- wait until it's back to normal
-  },
-
-  autotag = {
-    enable = true,
+    enable = true, -- wait until it's back to normal
   },
 
   playground = {

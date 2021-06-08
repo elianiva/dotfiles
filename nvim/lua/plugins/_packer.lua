@@ -5,9 +5,7 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({
-    "git",
-    "clone",
-    "https://github.com/wbthomason/packer.nvim",
+    "git", "clone", "https://github.com/wbthomason/packer.nvim",
     install_path,
   })
   vim.cmd [[packadd packer.nvim]]
@@ -45,9 +43,12 @@ local plugins = function()
   -- Better markdown support
   use {
     "plasticboy/vim-markdown",
-    opt = false,
+    opt = true,
     filetype = { "markdown" },
-    config = function() vim.g.vim_markdown_frontmatter = 1 end
+    config = function()
+      vim.g.vim_markdown_folding_disabled = 1
+      vim.g.vim_markdown_frontmatter = 1
+    end
   }
 
   -- The fastest Neovim colorizer.
@@ -208,21 +209,11 @@ local plugins = function()
 
   -- Utilities to improve the TypeScript development experience for Neovim's
   -- built-in LSP client.
-  use {
-    "jose-elias-alvarez/nvim-lsp-ts-utils",
-    opt = false,
-    branch = "develop",
-  }
+  use { "jose-elias-alvarez/nvim-lsp-ts-utils", opt = false }
 
   -- Use Neovim as a language server to inject LSP diagnostics, code actions,
   -- and more via Lua.
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    opt = false,
-    config = function()
-      require("null-ls").setup {}
-    end,
-  }
+  use { "jose-elias-alvarez/null-ls.nvim", opt = false }
 
   -- Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
   use { "mfussenegger/nvim-jdtls", opt = false }
@@ -306,13 +297,10 @@ local plugins = function()
   use { "tpope/vim-commentary", opt = false }
 
   -- A fast Neovim http client written in Lua
-  use { "NTBBloodbath/rest.nvim" }
+  use { "NTBBloodbath/rest.nvim", opt = false }
 
   -- A Vim alignment plugin
-  use {
-    "junegunn/vim-easy-align",
-    opt = false,
-  }
+  use { "junegunn/vim-easy-align", opt = false }
 
   use {
     "steelsojka/pears.nvim",
@@ -344,19 +332,16 @@ local plugins = function()
   -- sandwiched textobjects.
   use { "machakann/vim-sandwich", opt = false }
 
-  -- emmet for vim: http://emmet.io/
-  use {
-    "mattn/emmet-vim",
-    opt = false,
-    config = function() require("plugins._emmet") end,
-  }
-
   -- even better %
   use {
     "andymass/vim-matchup",
     opt = false,
     config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      vim.g.matchup_matchparen_offscreen = {
+        method = "popup",
+        fullwidth = true,
+        highlight = "Normal"
+      }
     end
   }
 

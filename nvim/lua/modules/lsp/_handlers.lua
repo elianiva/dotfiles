@@ -24,19 +24,30 @@ lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(
   }
 )
 
-fn.sign_define(
-  "LspDiagnosticsSignError",
-  { text = "", texthl = "LspDiagnosticsSignError" }
-)
-fn.sign_define(
-  "LspDiagnosticsSignWarning",
-  { text = "", texthl = "LspDiagnosticsSignWarning" }
-)
-fn.sign_define(
-  "LspDiagnosticsSignInformation",
-  { text = "", texthl = "LspDiagnosticsSignInformation" }
-)
-fn.sign_define(
-  "LspDiagnosticsSignHint",
-  { text = "", texthl = "LspDiagnosticsSignHint" }
-)
+fn.sign_define("LspDiagnosticsSignError", {
+  text = "",
+  texthl = "LspDiagnosticsSignError",
+  linehl = "",
+  numhl = "",
+})
+
+fn.sign_define("LspDiagnosticsSignWarning", {
+  text = "",
+  texthl = "LspDiagnosticsSignWarning",
+  linehl = "",
+  numhl = "",
+})
+
+fn.sign_define("LspDiagnosticsSignInformation", {
+  text = "",
+  texthl = "LspDiagnosticsSignInformation",
+  linehl = "",
+  numhl = "",
+})
+
+fn.sign_define("LspDiagnosticsSignHint", {
+  text = "",
+  texthl = "LspDiagnosticsSignHint",
+  linehl = "",
+  numhl = "",
+})

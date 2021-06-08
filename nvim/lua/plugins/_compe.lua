@@ -24,12 +24,6 @@ require("compe").setup({
 
 remap(
   "i",
-  "<CR>",
-  "v:lua.Util.trigger_completion()",
-  { expr = true, silent = true }
-)
-remap(
-  "i",
   "<Tab>",
   table.concat({
     "pumvisible() ? \"<C-n>\" : v:lua.Util.check_backspace()",

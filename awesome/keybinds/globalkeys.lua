@@ -3,6 +3,7 @@ local awful = require("awful")
 local naughty = require("naughty")
 local exit_screen_show = require("main.exitscreen")
 local systray = require("statusbar.modules.systray")
+local noop = require("main.helpers").noop
 
 -- Resource Configuration
 local launcher = RC.vars.launcher
@@ -47,12 +48,12 @@ local M = gears.table.join(
   {description = "open a terminal", group = "launcher"}),
 
   awful.key({ modkey }, "d", function()
-    awful.spawn.with_shell(launcher .. "run " .. theme.color_name)
+    awful.spawn.easy_async_with_shell(launcher .. "run " .. theme.color_name, noop)
   end,
   {description = "open app launcher", group = "launcher"}),
 
   awful.key({ modkey, "Shift" }, "d", function()
-    awful.spawn.with_shell(launcher .. "run " .. theme.color_name)
+    awful.spawn.easy_async_with_shell(launcher .. "run " .. theme.color_name, noop)
   end,
   {description = "open command launcher", group = "launcher"}),
 
@@ -92,12 +93,12 @@ local M = gears.table.join(
   {description = "dismiss notification", group = "notifications"}),
 
   awful.key({ modkey }, "Print", function()
-    awful.spawn.with_shell(shot)
+    awful.spawn.easy_async_with_shell(shot, noop)
   end,
   {description = "screenshot with borders", group = "misc"}),
 
   awful.key({ }, "Print", function()
-    awful.spawn.with_shell("flameshot gui -p "..os.getenv("HOME").."/pix/shots")
+    awful.spawn.easy_async_with_shell("flameshot gui -p "..os.getenv("HOME").."/pix/shots", noop)
   end,
   {description = "screenshot without borders", group = "misc"})
 )

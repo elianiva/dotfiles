@@ -19,6 +19,7 @@ end
 
 local servers = {
   tsserver = require("modules.lsp._tsserver").config,
+  -- rust_analyzer = {},
   -- denols = {
   --   filetypes = { "javascript", "typescript", "typescriptreact" },
   --   root_dir = vim.loop.cwd,
@@ -36,6 +37,7 @@ local servers = {
   cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
   intelephense = { root_dir = vim.loop.cwd },
   clangd = {},
+  gopls = {},
   pyright = {},
   svelte = {
     on_attach = function(client)
@@ -66,11 +68,9 @@ local servers = {
         [[
         augroup jdtls
         au!
-        au FileType java lua require'jdtls'.start_or_attach({ cmd = { "/home/elianiva/.scripts/run_jdtls" }, on_attach = require'modules.lsp._mappings'.lsp_mappings("jdtls") })
+        au FileType java lua require'jdtls'.start_or_attach({ cmd = { "/home/elianiva/.scripts/run_jdtls" }, on_attach = function() require'modules.lsp._mappings'.lsp_mappings("jdtls") end })
         augroup END
-      ]],
-        false
-      )
+      ]], false)
     end,
   },
 }

@@ -18,7 +18,6 @@ exec_always {
 exec {
   wl-gammactl -c 1.015 -b 0.965 -g 0.985 & disown
   fcitx5 -d --replace
-  flameshot
   wl-paste -t text --watch clipman store
   light -S 40
 }
@@ -99,9 +98,9 @@ bindsym $mod+grave exec makoctl dismiss -a
 # }}}
 
 ### Take Screenshot {{{
-bindsym Print                   exec flameshot gui
-bindsym $mod+Print              exec ~/.scripts/shot
-bindsym Mod1+Print              exec grimshot copy area
+bindsym Print                   exec grimshot copy area
+bindsym $mod+Print              exec grimshot save area
+bindsym Mod1+Print              exec grimshot save window
 # }}}
 
 ### KEYBOARD CONFIG {{{
@@ -138,6 +137,8 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+bindsym alt+Tab focus next
+bindsym alt+Shift+Tab focus prev
 # }}}
 
 ### TOGGLE FOCUSED WINDOW MODE {{{
@@ -186,13 +187,15 @@ bindsym $mod+Shift+r reload
 # }}}
 
 ### BORDER RULES {{{
-for_window [class="^.*"] border normal 2
+# for_window [class="^.*"] border normal 2
+for_window [class="^.*"] border pixel 2
 font pango:Inter 8
 title_align center
-default_border normal 2
-default_floating_border normal 2
+# default_border normal 2
+default_border pixel 2
+# default_floating_border normal 2
+default_floating_border pixel 2
 default_orientation auto
-# hide_edge_borders both
 # }}}
 
 ### GAPS CONFIG {{{
@@ -211,7 +214,7 @@ for_window [class=Chromium|Gimp*|Inkscape|Vlc|Lxappearance|Audacity|Wps]        
 # }}}
 
 ### COLOURS {{{
-set $main #514946
+set $main #ebdbb2
 set $grey #3C3835
 set $foreground #ebdbb2
 set $background #282828
@@ -223,12 +226,12 @@ set $bblack #1d2021
 # set $bblack #202331
 
 # class                 border      backgr.     text        indicator   child_border
+client.background       $background
 client.focused          $main       $main       $foreground $background $main
 client.focused_inactive $main       $background $background $background $bblack
 client.unfocused        $grey       $grey       $foreground $background $grey
 client.urgent           $background $background $background $background $background
-client.placeholder      $background $background $background $background $background
-client.background       $background
+# client.placeholder      $background $background $background $background $background
 # }}}
 
 ### STATUSBAR {{{

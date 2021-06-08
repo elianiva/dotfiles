@@ -47,8 +47,8 @@
 
 window {
     background-color: #1d202088;
-    /* padding:          4; */
     padding:          200 360;
+    font:             "JetBrainsMono Nerd Font 12";
 }
 
 mainbox {

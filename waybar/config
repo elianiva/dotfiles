@@ -78,7 +78,7 @@
       "critical": 15
     },
     "format": "<span color=\"#d79921\">BAT:</span> {capacity}%",
-    "format-charging": "<span color=\"#d79921\"> </span> {capacity}% ",
+    "format-charging": "<span color=\"#d79921\">BAT:</span> {capacity}%+",
     "format-plugged": "<span color=\"#d79921\"> </span> {capacity}%"
     /* "format-alt": "{time} {icon}" */
     // "format-good": "", // An empty format will hide the module

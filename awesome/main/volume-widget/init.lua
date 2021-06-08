@@ -63,7 +63,7 @@ function M.get()
   -- show volume-adjust when "volume_change" signal is emitted
   awesome.connect_signal("volume_change", function()
     -- set new volume value
-    awful.spawn.easy_async( "pulsemixer --get-volume", function(stdout)
+    awful.spawn.easy_async("pulsemixer --get-volume", function(stdout)
       volume_bar.value = tonumber(stdout:gmatch("%d%d")())
     end)
 

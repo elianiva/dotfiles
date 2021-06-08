@@ -8,7 +8,7 @@ M.ts_utils = function(client)
     eslint_enable_disable_comments = true,
     eslint_enable_diagnostics = true,
     eslint_diagnostics_debounce = 250,
-    eslint_config_fallback = vim.fn.stdpath("config") .. "/.eslintrc.js"
+    -- eslint_config_fallback = vim.fn.stdpath("config") .. "/.eslintrc.js"
   }
   ts_utils.setup_client(client)
 end
@@ -22,6 +22,14 @@ M.config = {
   on_attach = function(client)
     require("modules.lsp._mappings").lsp_mappings()
     require("null-ls").setup {}
+    require("lsp_signature").on_attach {
+      bind = true,
+      doc_lines = 2,
+      hint_enable = false,
+      handler_opts = {
+        border = Util.borders
+      }
+    }
     M.ts_utils(client)
   end,
   root_dir = vim.loop.cwd,

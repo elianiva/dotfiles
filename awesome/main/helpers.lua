@@ -6,6 +6,8 @@ local dpi = xresources.apply_dpi
 
 local helpers = {}
 
+helpers.noop = function() return end
+
 -- Resize client or factor
 local floating_resize_amount = dpi(20)
 local tiling_resize_factor = 0.05
