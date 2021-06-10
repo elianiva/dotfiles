@@ -88,6 +88,7 @@ function M.get(clientkeys, clientbuttons)
           "Google-chrome-unstable",
           "firefoxdeveloperedition",
           "Brave-browser",
+          "DesktopEditors",
         },
       },
       properties = {

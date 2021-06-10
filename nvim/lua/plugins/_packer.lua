@@ -293,6 +293,25 @@ local plugins = function()
 -- }}}
 
 -- {{{ UTILITY PLUGINS
+  -- VimTeX: A modern Vim and neovim filetype plugin for LaTeX files.
+  use {
+    "lervag/vimtex",
+    opt = false,
+    config = function()
+      vim.g.vimtex_quickfix_enabled = false
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_compiler_latexmk = {
+        options = {
+          "--shell-escape",
+          "-verbose",
+          "-file-line-error",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+        }
+      }
+    end
+  }
+
   -- commentary.vim: comment stuff out
   use { "tpope/vim-commentary", opt = false }
 

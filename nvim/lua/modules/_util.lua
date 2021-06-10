@@ -3,7 +3,6 @@ local fn, api = vim.fn, vim.api
 
 _G.Util = {}
 
----@param stuff any Print table and return it
 P = function(stuff)
   print(vim.inspect(stuff))
   return stuff
@@ -15,20 +14,6 @@ Util.check_backspace = function()
   local prev_char = fn.getline("."):sub(curr_col - 1, curr_col - 1)
 
   if is_first_col or prev_char:match("%s") then
-    return true
-  else
-    return false
-  end
-end
-
-Util.check_surroundings = function()
-  local col = fn.col(".")
-  local line = fn.getline(".")
-  local prev_char = line:sub(col - 1, col - 1)
-  local next_char = line:sub(col, col)
-  local pattern = "[%{|%}|%[|%]]"
-
-  if prev_char:match(pattern) and next_char:match(pattern) then
     return true
   else
     return false
@@ -100,17 +85,16 @@ vim.cmd [[
 -- translate selected word, useful for when I do jp assignments
 Util.translate = function(lang)
   local word = Util.get_word()
-  local job = Job:new({
+  local job = Job:new {
     command = "trans",
     args    = { "-b", ":" .. (lang or "en"), word },
-  })
+  }
 
   local ok, result = pcall(function()
     return vim.trim(job:sync()[1])
   end)
-  if ok then
-    print(result)
-  end
+  if ok then return print(result) end
+  print("Failed to translate.")
 end
 vim.cmd [[command! -range -nargs=1 Translate call v:lua.Util.translate(<f-args>)]]
 
@@ -125,7 +109,7 @@ Util.set_hl = function(group, opts)
   local bg     = opts.bg == nil and "" or "guibg=" .. opts.bg
   local fg     = opts.fg == nil and "" or "guifg=" .. opts.fg
   local gui    = opts.gui == nil and "" or "gui=" .. opts.gui
-  local guisp    = opts.guisp == nil and "" or "guisp=" .. opts.guisp
+  local guisp  = opts.guisp == nil and "" or "guisp=" .. opts.guisp
   local link   = opts.link or false
 
   if not link then
@@ -168,18 +152,8 @@ Util.t = function(cmd)
   return api.nvim_replace_termcodes(cmd, true, true, true)
 end
 
-Util.is_git_repo = function(cwd)
-  local fd = vim.loop.fs_scandir(cwd)
-  if fd then
-    while true do
-      local name, typ = vim.loop.fs_scandir_next(fd)
-      if name == nil then return false end
-      if typ == 'directory' and name == '.git' then return true end
-    end
-  end
-end
-
 Util.borders = {
+  -- fancy border
   {"🭽", "FloatBorder"},
   {"▔", "FloatBorder"},
   {"🭾", "FloatBorder"},
@@ -188,6 +162,8 @@ Util.borders = {
   {"▁", "FloatBorder"},
   {"🭼", "FloatBorder"},
   {"▏", "FloatBorder"},
+
+  -- padding border
   -- {"▄", "Bordaa"},
   -- {"▄", "Bordaa"},
   -- {"▄", "Bordaa"},
@@ -211,21 +187,7 @@ Util.lsp_on_attach = function()
 end
 
 Util.lsp_on_init = function()
-  print("Language Server Protocol started!")
+  print("Language Server Client successfully started!")
 end
-
-Util.foldtext = function()
-  local start = vim.v.foldstart
-  local endl = vim.v.foldend
-  local line = api.nvim_buf_get_lines(0, start - 1, start, true)[1]
-  local width = api.nvim_win_get_width(0)
-  local total = string.format("(%s) lines", endl - start + 1)
-
-  return string.format(
-    "%s… %s%s",
-    line, string.rep(" ", width - #line - #total - 6), total
-  )
-end
-vim.o.foldtext = "v:lua.Util.foldtext()"
 
 return Util
