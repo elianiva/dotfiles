@@ -1,4 +1,4 @@
-local k = require("astronauta.keymap")
+local k = require("modules._keymap")
 
 local noremap = k.noremap
 local nnoremap = k.nnoremap
@@ -26,22 +26,22 @@ nmap { "<Leader>rr", "<Plug>RestNvim" }
 -- toggle telescope.nvim
 nnoremap {
   "<C-p>",
-  require("plugins._telescope").files,
+  require("modules._telescope").files,
   { silent = true },
 }
 nnoremap {
   "<C-f>",
-  require("plugins._telescope").grep_prompt,
+  require("modules._telescope").grep_prompt,
   { silent = true },
 }
 nnoremap {
   "<Leader>fb",
-  require("plugins._telescope").buffer_fuzzy,
+  require("modules._telescope").buffer_fuzzy,
   { silent = true },
 }
 nnoremap {
   "<Leader>ff",
-  require("plugins._telescope").frecency,
+  require("modules._telescope").frecency,
   { silent = true },
 }
 nnoremap {
@@ -51,12 +51,12 @@ nnoremap {
 }
 nnoremap {
   "<Leader>fa",
-  require("plugins._telescope").arecibo,
+  require("modules._telescope").arecibo,
   { silent = true },
 }
 nnoremap {
   "<Leader>fl",
-  require("plugins._telescope").file_browser,
+  require("modules._telescope").file_browser,
   { silent = true },
 }
 

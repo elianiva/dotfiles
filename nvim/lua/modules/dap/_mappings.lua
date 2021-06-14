@@ -1,4 +1,4 @@
-local k = require("astronauta.keymap")
+local k = require("modules._keymap")
 local nnoremap = k.nnoremap
 
 local dap = require("dap")

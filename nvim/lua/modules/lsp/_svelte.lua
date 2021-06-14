@@ -4,7 +4,6 @@ M.config = {
   on_attach = function(client)
     require("modules.lsp._mappings").lsp_mappings()
     require("modules.lsp._tsserver").ts_utils(client)
-    require("null-ls").setup({})
 
     client.server_capabilities.completionProvider.triggerCharacters = {
       ".", "\"", "'", "`", "/", "@", "*",

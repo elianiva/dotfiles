@@ -3,9 +3,26 @@ local s = ls.s -- Snippet
 local t = ls.t -- Text
 local i = ls.i -- Input
 local f = ls.f -- Function
-local k = require("astronauta.keymap")
+-- local d = ls.d -- Dynamic
+-- local c = ls.c -- Choice
+-- local sn = ls.sn -- Snip
+local k = require("modules._keymap")
 local inoremap = k.inoremap
 local snoremap = k.snoremap
+
+local copy = function(args) return args[1] end
+
+-- -- 'recursive' dynamic snippet. Expands to some text followed by itself.
+-- local rec_ls
+-- rec_ls = function()
+--   return sn(nil, {
+--     c(1, {
+--       -- Order is important, sn(...) first would cause infinite loop of expansion.
+--       t({""}),
+--       sn(nil, {t({"", "\t\\item "}), i(1), d(2, rec_ls, {})}),
+--     }),
+--   });
+-- end
 
 local react = {
   s({ trig = "rfc" }, {
@@ -23,8 +40,6 @@ local react = {
     }),
   }),
 }
-
-local copy = function(args) return args[1] end
 
 local LOREM_IPSUM  = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
 
@@ -68,18 +83,16 @@ ls.snippets = {
 }
 
 
+snoremap { "<C-j>", function() return ls.jump(1) end, { silent = true }}
 inoremap {
   "<C-j>",
   function()
-    print(ls.expand_or_jumpable())
-    if ls.expand_or_jumpable() then
-      return ls.expand_or_jump()
-    end
-    Util.t("<C-j>")
+    return ls.expand_or_jumpable() and ls.expand_or_jump() or Util.t("<C-j>")
   end,
   { silent = true }
 }
 
+snoremap { "<C-k>", function() return ls.jump(-1) end, { silent = true }}
 inoremap {
   "<C-k>",
   function()
@@ -88,6 +101,18 @@ inoremap {
   { silent = true },
 }
 
-snoremap { "<C-j>", function() return ls.jump(1) end, { silent = true }}
-
-snoremap { "<C-k>", function() return ls.jump(-1) end, { silent = true }}
+-- snoremap {
+--   "<C-e>",
+--   function()
+--     return ls.choice_active() and ls.change_choice(1) or Util.t("<C-e>")
+--   end,
+--   { silent = true },
+-- }
+-- inoremap {
+--   "<C-e>",
+--   function()
+--     P(ls.choice_active())
+--     return ls.choice_active() and ls.change_choice(1) or Util.t("<C-e>")
+--   end,
+--   { silent = true },
+-- }

@@ -182,7 +182,9 @@ Util.lsp_on_attach = function()
     hint_enable = false,
     handler_opts = {
       border = Util.borders
-    }
+    },
+    max_height = 12,
+    max_width = 120,
   }
 end
 

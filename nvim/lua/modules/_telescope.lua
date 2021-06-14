@@ -95,7 +95,7 @@ pcall(require("telescope").load_extension, "frecency") -- frecency
 -- pcall(require("telescope").load_extension, "arecibo") -- websearch
 pcall(require("telescope").load_extension, "dap") -- DAP integrations
 
-local no_preview = function(opts)
+M.no_preview = function(opts)
   opts = opts or {}
   return require("telescope.themes").get_dropdown(
     vim.tbl_extend("force", {
@@ -125,54 +125,23 @@ M.files = function()
 end
 
 M.arecibo = function()
-  require("telescope").extensions.arecibo.websearch(no_preview())
+  require("telescope").extensions.arecibo.websearch(M.no_preview())
 end
 
 M.frecency = function()
-  require("telescope").extensions.frecency.frecency(no_preview())
+  require("telescope").extensions.frecency.frecency(M.no_preview())
 end
 
 M.buffer_fuzzy = function()
-  require("telescope.builtin").current_buffer_fuzzy_find(no_preview())
+  require("telescope.builtin").current_buffer_fuzzy_find(M.no_preview())
 end
 
 M.reload = function()
-  require("telescope.builtin").reloader(no_preview())
+  require("telescope.builtin").reloader(M.no_preview())
 end
 
 M.code_actions = function()
-  require("telescope.builtin").lsp_code_actions(no_preview())
-end
-
-local finders = require("telescope.finders")
-local sorters = require("telescope.sorters")
-local pickers = require("telescope.pickers")
-require("jdtls.ui").pick_one_async = function(results, _, label_fn, cb)
-  local opts = no_preview()
-  pickers.new(opts, {
-    prompt_title = "LSP Code Actions",
-    finder = finders.new_table({
-      results = results,
-      entry_maker = function(line)
-        return {
-          valid = line ~= nil,
-          value = line,
-          ordinal = label_fn(line),
-          display = label_fn(line),
-        }
-      end,
-    }),
-    attach_mappings = function(prompt_bufnr)
-      actions.select_default:replace(function()
-        local selection = actions.get_selected_entry(prompt_bufnr)
-        actions.close(prompt_bufnr)
-
-        cb(selection.value)
-      end)
-      return true
-    end,
-    sorter = sorters.get_fzy_sorter(),
-  }):find()
+  require("telescope.builtin").lsp_code_actions(M.no_preview())
 end
 
 return setmetatable({}, {

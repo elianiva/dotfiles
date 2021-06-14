@@ -14,7 +14,7 @@ M.config = function()
     },
     closing_tags = {
       highlight = "Comment", -- highlight for the closing tag
-      prefix = "// " -- character to use for close tag e.g. > Widget
+      prefix = "// ", -- character to use for close tag e.g. > Widget
     },
     dev_log = {
       open_cmd = "tabedit", -- command to use to open the log buffer
@@ -27,8 +27,8 @@ M.config = function()
       settings = {
         showTodos = true,
         -- completeFunctionCalls = true -- NOTE: this is WIP and doesn't work currently
-      }
-    }
+      },
+    },
   }
 end
 

@@ -3,6 +3,8 @@ local R = require("pears.rule")
 local on_enter = R.virtual_key(R.VirtualKey.ENTER)
 
 pears.setup(function(conf)
+  conf.expand_on_enter(true)
+
   conf.preset("tag_matching", {
     filetypes = {
       "html",
@@ -17,6 +19,7 @@ pears.setup(function(conf)
   conf.pair("'")
   conf.pair('"')
 
+  conf.pair('`', { close = "`", expand_when = on_enter })
   conf.pair("{", { close = "}", expand_when = on_enter })
   conf.pair("(", { close = ")", expand_when = on_enter })
   conf.pair("[", { close = "]", expand_when = on_enter })
@@ -37,6 +40,4 @@ pears.setup(function(conf)
 
     pears_handle()
   end)
-
-  conf.expand_on_enter(true)
 end)
