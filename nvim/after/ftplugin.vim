@@ -58,6 +58,11 @@ augroup Yank
   au TextYankPost * silent! lua vim.highlight.on_yank { timeout = 250, higroup = "Visual" }
 augroup END
 
+augroup Emmet
+  au!
+  au FileType html,javascript,typescript,javascriptreact,typescriptreact,svelte EmmetInstall
+augroup END
+
 " " hide the cursor if we're inside NvimTree
 " augroup HideCursor
 "   au!

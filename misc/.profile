@@ -14,7 +14,7 @@ export GOPATH="$HOME/.local/go"
 export GOBIN="$HOME/.local/go/bin"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
 export _JAVA_AWT_WM_NONREPARENTING=1
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 # export JAVA_OPTS="-XX:+IgnoreUnrecognizedVMOptions"
 unset JAVA_OPTS
 export ANDROID_SDK_ROOT="/opt/android-sdk"

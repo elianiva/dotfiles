@@ -1,4 +1,4 @@
-local k = require("modules._keymap")
+local k = require "modules._keymap"
 
 local noremap = k.noremap
 local nnoremap = k.nnoremap
@@ -59,6 +59,11 @@ nnoremap {
   require("modules._telescope").file_browser,
   { silent = true },
 }
+nnoremap {
+  "<Leader>fg",
+  require("modules._telescope").git_commits,
+  { silent = true },
+}
 
 -- better movement between windows
 nnoremap { "<C-h>", "<C-w><C-h>" }
@@ -94,7 +99,7 @@ nnoremap { "Q", "<Nop>" }
 nnoremap { "q:", "<Nop>" }
 
 -- copy to system clipboard
-vnoremap { "<A-y>", "\"+y" }
+vnoremap { "<A-y>", '"+y' }
 
 -- no distraction mode for writing
 -- nnoremap { "<Leader>gg", "<CMD>Goyo<CR>" }
@@ -129,9 +134,9 @@ vim.cmd [[
 vnoremap { "<", "<gv" }
 vnoremap { ">", ">gv" }
 
-xmap { "ga", "<Plug>(EasyAlign)", { silent = true }}
+xmap { "ga", "<Plug>(EasyAlign)", { silent = true } }
 
-nmap {"<Leader>t", "<Plug>PlenaryTestFile", { silent = true }}
+nmap { "<Leader>t", "<Plug>PlenaryTestFile", { silent = true } }
 
 nmap {
   "<F2>",
@@ -145,10 +150,10 @@ nnoremap {
   "gf",
   function()
     if vim.bo.filetype == "lua" then
-      return curstr("vim/lua")
+      return curstr "vim/lua"
     end
 
-    return curstr("file/path")
+    return curstr "file/path"
   end,
-  { silent = true }
+  { silent = true },
 }

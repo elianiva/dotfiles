@@ -37,9 +37,17 @@ local plugins = function()
   -- {{{ UI RELATED PLUGINS
   -- my custom colourscheme based on gruvbox
   use {
-    "~/repos/gruvy",
+    "rktjmp/lush.nvim",
     opt = false,
-    requires = { "rktjmp/lush.nvim" },
+    requires = {
+      "~/repos/gruvy",
+      "~/repos/icy",
+    },
+  }
+
+  use {
+    "cocopon/iceberg.vim",
+    opt = false
   }
 
   -- Better markdown support
@@ -286,10 +294,11 @@ local plugins = function()
   -- A fast Neovim http client written in Lua
   use { "NTBBloodbath/rest.nvim", opt = false }
 
+  -- Emmet for vim
+  use { "mattn/emmet-vim", opt = false }
+
   -- A Vim alignment plugin
   use { "junegunn/vim-easy-align", opt = false }
-
-  use { "steelsojka/pears.nvim", opt = false }
 
   -- Neovim motions on speed!
   use {

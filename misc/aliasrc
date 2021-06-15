@@ -26,6 +26,7 @@ gmrebase() {
 }
 # save current work
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "[WIP]: $(date)"'
+
 # Logging helpers
 alias gls='git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate'
 alias gll='git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'
@@ -43,7 +44,3 @@ alias vnim="nvim" # I got this typo quit a lot
 alias :{q,Q}="exit"
 
 alias ls="exa --colour=always --group-directories-first --sort=name"
-
-# nix stuff
-alias nixgc="nix-collect-garbage"
-alias hm-switch="home-manager switch"

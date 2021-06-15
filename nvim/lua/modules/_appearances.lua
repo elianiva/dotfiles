@@ -89,7 +89,8 @@ vim.api.nvim_exec([[
 ]], false)
 
 -- set colourscheme
-require('lush')(require('lush_theme.gruvy'))
+-- require('lush')(require('lush_theme.gruvy'))
+require('lush')(require('lush_theme.icy'))
 
 -- needs to be loaded after setting colourscheme
 vim.cmd [[packadd nvim-web-devicons]]

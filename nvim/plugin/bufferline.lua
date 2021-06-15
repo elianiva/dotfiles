@@ -5,6 +5,14 @@ require("bufferline").setup {
     diagnostics = "nvim_lsp",
     buffer_close_icon = "",
     close_icon = "",
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        text_align = "center",
+        padding = 1,
+      },
+    },
     custom_areas = {
       right = function()
         local result = {}
@@ -31,6 +39,23 @@ require("bufferline").setup {
 
         return result
       end,
+    },
+  },
+  highlights = {
+    fill        = { guibg = { attribute = "bg", highlight = "TabLineFill" }},
+    background  = { guibg = { attribute = "bg", highlight = "TabLineFill" }},
+    tab_close   = { guibg = { attribute = "bg", highlight = "TabLineFill" }},
+    separator    = {
+      guifg = { attribute = "bg", highlight = "Normal" },
+      guibg = { attribute = "bg", highlight = "Normal" },
+    },
+    separator_visible = {
+      guifg = { attribute = "bg", highlight = "TabLineFill" },
+      guibg = { attribute = "bg", highlight = "Normal" },
+    },
+    separator_selected = {
+      guifg = { attribute = "bg", highlight = "TabLineFill" },
+      guibg = { attribute = "bg", highlight = "Normal" },
     },
   },
 }

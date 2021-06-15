@@ -3,10 +3,14 @@
 > Please do not blindly copy this thing. I use this place as a backup :)
 > You may take whatever you want.
 
-![Preview](preview.png)
+<p align="center">
+  <kbd><img src="./preview.png"></kbd>
+  <kbd><img src="./preview-plasma.png"></kbd>
+</p>
 
 [arch-link]: https://archlinux.org/
 [awesome-link]: https://github.com/awesomewm/awesome
+[plasma-link]: https://kde.org/plasma-desktop/
 [i3-link]: https://github.com/i3/i3
 [bspwm-link]: https://github.com/baskerville/bspwm
 [openbox-link]: https://github.com/danakj/openbox
@@ -16,7 +20,9 @@
 [zinit-link]: https://github.com/zdharma/zinit
 [starship-link]: https://starship.rs/
 [dunst-link]: https://github.com/dunst-project/dunst
+[mako-link]: https://github.com/emersion/mako
 [pcmanfm-link]: https://github.com/lxde/pcmanfm
+[dolphin-link]: https://apps.kde.org/dolphin/
 [lf-link]: https://github.com/gokcehan/lf
 [picom-link]: https://github.com/yshui/picom
 [polybar-link]: https://github.com/polybar/polybar
@@ -31,21 +37,25 @@
 [kitty-link]: https://github.com/kovidgoyal/kitty
 [wofi-link]: https://github.com/mikn/wofi
 [mpv-link]: https://mpv.io/
+[flameshot-link]: https://github.com/flameshot-org/flameshot
+[spectacle-link]: https://apps.kde.org/spectacle/
 
 ---
 
 ### Some Details
 - **Operating System:**
   - [Archlinux][arch-link]
+- **Desktop Environment:**
+  - [KDE Plasma][plasma-link]
 - **Window Manager:**
   - [AwesomeWM][awesome-link]
-  - [Sway][sway-link] (no longer using)
+  - [Sway][sway-link]
   - [BSPWM][bspwm-link] (no longer using)
   - [i3][i3-link] (no longer using)
   - [Openbox][openbox-link] (no longer using)
 - **Bar:**
   - [Polybar][polybar-link] (no longer using)
-  - [Swaybar][swaybar-link] (no longer using)
+  - [Swaybar][swaybar-link]
 - **Text Editor:**
   - [Neovim][neovim-link]
 - **Terminal:**
@@ -53,6 +63,9 @@
   - [Alacritty][alacritty-link] (no longer using)
 - **Shell:**
   - [ZSH][zsh-link]
+- **Screenshot Tool:**
+  - [Flameshot][flameshot-link]
+  - [Spectacle][spectacle-link]
 - **Shell Prompt:**
   - [Starship][starship-link]
 - **Package/Plugin Manager:**
@@ -63,8 +76,10 @@
   - [Rofi][rofi-link]
   - [Wofi][wofi-link] (no longer using)
 - **Notification Daemon:**
+  - [Mako][mako-link]
   - [Dunst][dunst-link] (no longer using)
 - **File Manager:**
+  - [Dolphin][dolphin-link] (GUI)
   - [Pcmanfm][pcmanfm-link] (GUI)
   - [lf][lf-link] (TUI)
 - **Compositor:**

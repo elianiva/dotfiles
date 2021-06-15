@@ -20,6 +20,27 @@ Util.check_backspace = function()
   end
 end
 
+Util.trigger_completion = function()
+  if vim.fn.pumvisible() ~= 0 then
+    if vim.fn.complete_info()["selected"] ~= -1 then
+      return vim.fn["compe#confirm"]()
+    end
+  end
+
+  local prev_col, next_col = vim.fn.col(".") - 1, vim.fn.col(".")
+  local prev_char = vim.fn.getline("."):sub(prev_col, prev_col)
+  local next_char = vim.fn.getline("."):sub(next_col, next_col)
+
+  -- minimal autopairs-like behaviour
+  if prev_char == "{" and next_char ~= "}" then return Util.t("<CR>}<C-o>O") end
+  if prev_char == "[" and next_char ~= "]" then return Util.t("<CR>]<C-o>O") end
+  if prev_char == "(" and next_char ~= ")" then return Util.t("<CR>)<C-o>O") end
+  if prev_char == ">" and next_char == "<" then return Util.t("<CR><C-o>O") end -- html indents
+  if prev_char == "(" and next_char == ")" then return Util.t("<CR><C-o>O") end -- flutter indents
+
+  return Util.t("<CR>")
+end
+
 local to_rgb = function(hex)
   local red, green, blue, alpha
 
@@ -179,12 +200,12 @@ Util.lsp_on_attach = function()
   require("lsp_signature").on_attach {
     bind = true,
     doc_lines = 2,
-    hint_enable = false,
+    floating_window = true,
     handler_opts = {
       border = Util.borders
     },
-    max_height = 12,
-    max_width = 120,
+    max_height = 4,
+    max_width = 40,
   }
 end
 
