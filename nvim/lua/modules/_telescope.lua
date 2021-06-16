@@ -1,9 +1,35 @@
 local _, telescope = pcall(require, "telescope")
-local actions = require("telescope.actions")
-local previewers = require("telescope.previewers")
-local builtin = require("telescope.builtin")
-
+local actions = require "telescope.actions"
+local previewers = require "telescope.previewers"
 local M = {}
+
+local delta = previewers.new_termopen_previewer {
+  get_command = function(entry)
+    return {
+      "git",
+      "-c",
+      "core.pager=delta",
+      "-c",
+      "delta.side-by-side=false",
+      "diff",
+      entry.value .. "^!",
+    }
+  end,
+}
+
+M.no_preview = function(opts)
+  opts = opts or {}
+  return require("telescope.themes").get_dropdown(vim.tbl_extend("force", {
+    borderchars = {
+      { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+      prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+      results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+      preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+    },
+    width = 0.8,
+    previewer = false,
+  }, opts))
+end
 
 telescope.setup {
   defaults = {
@@ -61,6 +87,20 @@ telescope.setup {
       },
     },
   },
+  pickers = {
+    find_files = {
+      file_ignore_patterns = { "%.png", "%.jpg", "%.webp" },
+    },
+    lsp_code_actions = M.no_preview(),
+    current_buffer_fuzzy_find = M.no_preview(),
+    git_commits = {
+      previewer = {
+        delta,
+        previewers.git_commit_message.new({}),
+        previewers.git_commit_diff_as_was.new({}),
+      },
+    },
+  },
   extensions = {
     fzf = {
       override_generic_sorter = true,
@@ -96,71 +136,6 @@ pcall(require("telescope").load_extension, "frecency") -- frecency
 -- pcall(require("telescope").load_extension, "arecibo") -- websearch
 pcall(require("telescope").load_extension, "dap") -- DAP integrations
 
-M.no_preview = function(opts)
-  opts = opts or {}
-  return require("telescope.themes").get_dropdown(vim.tbl_extend("force", {
-    borderchars = {
-      { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-      prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-      results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-      preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-    },
-    width = 0.8,
-    previewer = false,
-  }, opts))
-end
-
-local delta = previewers.new_termopen_previewer {
-  get_command = function(entry)
-    return {
-      "git",
-      "-c",
-      "core.pager=delta",
-      "-c",
-      "delta.side-by-side=false",
-      "diff",
-      entry.value .. "^!",
-    }
-  end,
-}
-
-M.git_commits = function(opts)
-  opts = opts or {}
-  opts.previewer = {
-    delta,
-    previewers.git_commit_message.new(opts),
-    previewers.git_commit_diff_as_was.new(opts),
-  }
-
-  builtin.git_commits(opts)
-end
-
-M.git_bcommits = function(opts)
-  opts = opts or {}
-  opts.previewer = {
-    delta,
-    previewers.git_commit_message.new(opts),
-    previewers.git_commit_diff_as_was.new(opts),
-  }
-
-  builtin.git_bcommits(opts)
-end
-
-M.grep_prompt = function()
-  builtin.grep_string {
-    shorten_path = true,
-    search = vim.fn.input "Grep String > ",
-  }
-end
-
-M.files = function()
-  builtin.find_files { file_ignore_patterns = { "%.png", "%.jpg", "%.webp" } }
-end
-
-M.buffer_fuzzy = function()
-  builtin.current_buffer_fuzzy_find(M.no_preview())
-end
-
 M.arecibo = function()
   require("telescope").extensions.arecibo.websearch(M.no_preview())
 end
@@ -169,12 +144,13 @@ M.frecency = function()
   require("telescope").extensions.frecency.frecency(M.no_preview())
 end
 
-M.reload = function()
-  require("telescope.builtin").reloader(M.no_preview())
-end
-
-M.code_actions = function()
-  require("telescope.builtin").lsp_code_actions(M.no_preview())
+M.grep_prompt = function()
+  require("telescope.builtin").grep_string {
+    shorten_path = true,
+    search = vim.fn.input "Grep String > ",
+    only_sort_text = true,
+    use_regex = true
+  }
 end
 
 return setmetatable({}, {

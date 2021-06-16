@@ -19,9 +19,8 @@ vim.fn.sign_define('DapStopped', {
 
 vim.cmd [[
   command! -complete=file -nargs=* DebugC lua require "modules.dap._custom_launch".c_debug({<f-args>}, "gdb")
-]]
-vim.cmd [[
   command! -complete=file -nargs=* DebugRust lua require "modules.dap._custom_launch".c_debug({<f-args>}, "lldb", "rust-lldb")
+  command! -complete=file -nargs=* DebugNode lua require "modules.dap._custom_launch".node()
 ]]
 
 
@@ -44,16 +43,4 @@ dap.adapters.rust = {
     LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES",
   },
   name = "lldb",
-}
-
-dap.configurations.javascript = {
-  {
-    type = "node2",
-    request = "launch",
-    program = "${workspaceFolder}/${file}",
-    cwd = vim.loop.cwd(),
-    sourceMaps = true,
-    protocol = "inspector",
-    console = "integratedTerminal",
-  },
 }

@@ -26,7 +26,7 @@ nmap { "<Leader>rr", "<Plug>RestNvim" }
 -- toggle telescope.nvim
 nnoremap {
   "<C-p>",
-  require("modules._telescope").files,
+  require("modules._telescope").find_files,
   { silent = true },
 }
 nnoremap {
@@ -36,7 +36,7 @@ nnoremap {
 }
 nnoremap {
   "<Leader>fb",
-  require("modules._telescope").buffer_fuzzy,
+  require("modules._telescope").current_buffer_fuzzy_find,
   { silent = true },
 }
 nnoremap {

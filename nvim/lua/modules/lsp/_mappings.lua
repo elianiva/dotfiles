@@ -9,7 +9,7 @@ M.lsp_mappings = function(type)
   if type == "jdtls" then
     nnoremap { "<Leader>ga", require("jdtls").code_action, { silent = true } }
   else
-    nnoremap { "<Leader>ga", require("modules._telescope").code_actions, { silent = true } }
+    nnoremap { "<Leader>ga", require("modules._telescope").lsp_code_actions, { silent = true } }
   end
 
   inoremap { "<C-s>", vim.lsp.buf.signature_help, { silent = true } }

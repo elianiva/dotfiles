@@ -101,15 +101,15 @@
 
 (tset M :set-active
       (fn [self]
-        (let [colors self.colors
-              mode (.. colors.mode (: self :get-current-mode))
-              mode-alt (.. colors.mode-alt (. (. self.separator active-sep) 1))
-              git (.. colors.git (: self :get-git-status))
-              git-alt (.. colors.git-alt (. (. self.separators active-sep) 1))
-              filename (.. colors.inactive (: self :get-filename))
-              filetype-alt (.. colors.filetype-alt (. (. self.separator active-sep) 2))
-              line-col (.. colors.line-col (: self :get-line-col))
-              line-col-alt (.. colors.line-col-alt (. (. self.separators active-sep) 2))]
+        (let [colors        self.colors
+              mode          (.. colors.mode (: self :get-current-mode))
+              mode-alt      (.. colors.mode-alt (. self.separator active-sep 1))
+              git           (.. colors.git (: self :get-git-status))
+              git-alt       (.. colors.git-alt (. self.separators active-sep 1))
+              filename      (.. colors.inactive (: self :get-filename))
+              filetype-alt  (.. colors.filetype-alt (. self.separator active-sep 2))
+              line-col      (.. colors.line-col (: self :get-line-col))
+              line-col-alt  (.. colors.line-col-alt (. self.separators active-sep 2))]
           (table.concat [colors.active
                          mode mode-alt
                          line-col line-colt-alt

@@ -169,10 +169,7 @@ local plugins = function()
   use {
     "mfussenegger/nvim-dap",
     opt = false,
-    config = function()
-      require("modules.dap")
-    end,
-    requires = { "rcarriga/nvim-dap-ui" },
+    config = function() require("modules.dap") end
   }
 
   -- Tools to help create flutter apps in neovim using the native lsp
@@ -290,6 +287,8 @@ local plugins = function()
 
   -- commentary.vim: comment stuff out
   use { "tpope/vim-commentary", opt = false }
+
+  use { "steelsojka/headwind.nvim", opt = false }
 
   -- A fast Neovim http client written in Lua
   use { "NTBBloodbath/rest.nvim", opt = false }
