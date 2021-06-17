@@ -1,4 +1,4 @@
-local lspconfig = require("lspconfig")
+local lspconfig = require "lspconfig"
 
 -- override handlers
 pcall(require, "modules.lsp._handlers")
@@ -25,8 +25,8 @@ local servers = {
   jsonls = require("modules.lsp._json").config,
   svelte = require("modules.lsp._svelte").config,
   jdtls = require("modules.lsp._jdtls").config,
-  html = { cmd = { "vscode-html-language-server", "--stdio" }},
-  cssls = { cmd = { "vscode-css-language-server", "--stdio" }},
+  html = { cmd = { "vscode-html-language-server", "--stdio" } },
+  cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
   intelephense = { root_dir = vim.loop.cwd },
   clangd = {},
   gopls = {},
@@ -39,7 +39,7 @@ for name, opts in pairs(servers) do
     opts()
   else
     local client = lspconfig[name]
-    client.setup({
+    client.setup {
       cmd          = opts.cmd or client.cmd,
       filetypes    = opts.filetypes or client.filetypes,
       on_attach    = opts.on_attach or Util.lsp_on_attach,
@@ -48,6 +48,6 @@ for name, opts in pairs(servers) do
       root_dir     = opts.root_dir or client.root_dir,
       capabilities = opts.capabilities or custom_capabilities(),
       settings     = opts.settings or {},
-    })
+    }
   end
 end

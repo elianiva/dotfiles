@@ -1,7 +1,7 @@
 require("bufferline").setup {
   options = {
     show_buffer_close_icons = false,
-    separator_style = { "", "" },
+    separator_style = "slant",
     diagnostics = "nvim_lsp",
     buffer_close_icon = "",
     close_icon = "",
@@ -45,9 +45,12 @@ require("bufferline").setup {
     fill        = { guibg = { attribute = "bg", highlight = "TabLineFill" }},
     background  = { guibg = { attribute = "bg", highlight = "TabLineFill" }},
     tab_close   = { guibg = { attribute = "bg", highlight = "TabLineFill" }},
-    separator    = {
-      guifg = { attribute = "bg", highlight = "Normal" },
+    buffer_selected = {
       guibg = { attribute = "bg", highlight = "Normal" },
+    },
+    separator    = {
+      guifg = { attribute = "bg", highlight = "TabLineFill" },
+      guibg = { attribute = "bg", highlight = "TabLineFill" },
     },
     separator_visible = {
       guifg = { attribute = "bg", highlight = "TabLineFill" },

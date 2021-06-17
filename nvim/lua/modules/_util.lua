@@ -1,4 +1,4 @@
-local Job = require("plenary.job")
+local job_ok, Job = pcall(require, "plenary.job")
 local fn, api = vim.fn, vim.api
 
 _G.Util = {}
@@ -13,23 +13,20 @@ Util.check_backspace = function()
   local is_first_col = fn.col(".") - 1 == 0
   local prev_char = fn.getline("."):sub(curr_col - 1, curr_col - 1)
 
-  if is_first_col or prev_char:match("%s") then
-    return true
-  else
-    return false
-  end
+  return (is_first_col or prev_char:match("%s") == " ")
 end
 
 Util.trigger_completion = function()
-  if vim.fn.pumvisible() ~= 0 then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      return vim.fn["compe#confirm"]()
-    end
+  if
+    fn.pumvisible() ~= 0
+    and fn.complete_info()["selected"] ~= -1
+  then
+    return fn["compe#confirm"]()
   end
 
-  local prev_col, next_col = vim.fn.col(".") - 1, vim.fn.col(".")
-  local prev_char = vim.fn.getline("."):sub(prev_col, prev_col)
-  local next_char = vim.fn.getline("."):sub(next_col, next_col)
+  local prev_col, next_col = fn.col(".") - 1, fn.col(".")
+  local prev_char = fn.getline("."):sub(prev_col, prev_col)
+  local next_char = fn.getline("."):sub(next_col, next_col)
 
   -- minimal autopairs-like behaviour
   if prev_char == "{" and next_char ~= "}" then return Util.t("<CR>}<C-o>O") end
@@ -42,45 +39,34 @@ Util.trigger_completion = function()
 end
 
 local to_rgb = function(hex)
-  local red, green, blue, alpha
-
   if #hex == 9 then
-    _, red, green, blue, alpha = hex:match("(.)(..)(..)(..)(..)")
+    local _, r, g, b, a = hex:match("(.)(..)(..)(..)(..)")
     return string.format(
       "rgba(%s, %s, %s, %s)",
-      tonumber("0x" .. red),
-      tonumber("0x" .. green),
-      tonumber("0x" .. blue),
-      tonumber("0x" .. alpha)
+      tonumber("0x" .. r),
+      tonumber("0x" .. g),
+      tonumber("0x" .. b),
+      tonumber("0x" .. a)
     )
   end
 
-  _, red, green, blue = hex:match("(.)(..)(..)(..)")
+  local _, r, g, b = hex:match("(.)(..)(..)(..)")
   return string.format(
     "rgb(%s, %s, %s)",
-    tonumber("0x" .. red),
-    tonumber("0x" .. green),
-    tonumber("0x" .. blue)
+    tonumber("0x" .. r),
+    tonumber("0x" .. g),
+    tonumber("0x" .. b)
   )
 end
 
 local to_hex = function(rgb)
-  local red, green, blue, alpha
   if #rgb >= 16 then
-    red, green, blue, alpha = rgb:match("%((%d+),%s(%d+),%s(%d+),%s(%d+)")
-    return string.format("#%x%x%x%x", red, green, blue, alpha)
+    local r, g, b, a = rgb:match("%((%d+),%s(%d+),%s(%d+),%s(%d+)")
+    return string.format("#%x%x%x%x", r, g, b, a)
   end
 
-  red, green, blue = rgb:match("%((%d+),%s(%d+),%s(%d+)")
-  return string.format("#%x%x%x", red, green, blue)
-end
-
-Util.get_word = function()
-  local first_line, last_line = fn.getpos("'<")[2], fn.getpos("'>")[2]
-  local first_col, last_col = fn.getpos("'<")[3], fn.getpos("'>")[3]
-  local current_word = fn.getline(first_line, last_line)[1]:sub(first_col, last_col)
-
-  return current_word
+  local r, g, b = rgb:match("%((%d+),%s(%d+),%s(%d+)")
+  return string.format("#%x%x%x", r, g, b)
 end
 
 -- convert colours
@@ -103,21 +89,43 @@ vim.cmd [[
   command! -nargs=? -range=% ToHex call v:lua.Util.convert_color('hex')
 ]]
 
+Util.get_word = function()
+  local first_line, last_line = fn.getpos("'<")[2], fn.getpos("'>")[2]
+  local first_col, last_col = fn.getpos("'<")[3], fn.getpos("'>")[3]
+  return fn.getline(first_line, last_line)[1]:sub(first_col, last_col)
+end
+
 -- translate selected word, useful for when I do jp assignments
 Util.translate = function(lang)
+  if not job_ok then return end
+
+  lang = lang or "en"
   local word = Util.get_word()
   local job = Job:new {
     command = "trans",
-    args    = { "-b", ":" .. (lang or "en"), word },
+    args    = { "-b", ":" .. lang, word },
   }
 
   local ok, result = pcall(function()
     return vim.trim(job:sync()[1])
   end)
-  if ok then return print(result) end
+
+  -- if ok then return print(result) end
+  if ok then
+    vim.lsp.handlers["textDocument/hover"](nil, "textDocument/hover", {
+      contents = {
+        "Translate to ["..lang.."]:",
+        string.rep("─", #result),
+        "",
+        result
+      }
+    })
+    -- return print(result)
+    return
+  end
   print("Failed to translate.")
 end
-vim.cmd [[command! -range -nargs=1 Translate call v:lua.Util.translate(<f-args>)]]
+vim.cmd [[command! -range -nargs=* Translate call v:lua.Util.translate(<f-args>)]]
 
 Util.is_cfg_present = function(cfg_name)
   -- this returns 1 if it's not present and 0 if it's present
@@ -138,35 +146,6 @@ Util.set_hl = function(group, opts)
   else
     vim.cmd(string.format("hi! link %s %s", group, link))
   end
-end
-
--- might be useful
-Util.spinner = function()
-  local anim_frames = {
-    "   ",
-    "▪  ",
-    "▪▪ ",
-    "▪▪▪",
-    "▬▪▪",
-    "▬▬▪",
-    "▬▬▬",
-    "▪▬▬",
-    "▪▪▬",
-    "▪▪▪",
-    " ▪▪",
-    "  ▪",
-    "   ",
-  }
-
-  local current_frame = 0
-  local results_updated = function()
-    current_frame = current_frame >= #anim_frames and 1 or current_frame + 1
-    print(anim_frames[current_frame])
-  end
-
-  local timer = fn.timer_start(80, results_updated, { ["repeat"] = 100 })
-
-  return timer
 end
 
 Util.t = function(cmd)
@@ -200,6 +179,7 @@ Util.lsp_on_attach = function()
   require("lsp_signature").on_attach {
     bind = true,
     doc_lines = 2,
+    hint_enable = false,
     floating_window = true,
     handler_opts = {
       border = Util.borders

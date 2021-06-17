@@ -17,7 +17,6 @@ M.lsp_mappings = function(type)
   nnoremap { "<Leader>gf", vim.lsp.buf.formatting_seq_sync, { silent = true } }
   snoremap { "<Leader>gf", vim.lsp.buf.range_formatting, { silent = true } }
   nnoremap { "<Leader>gd", vim.lsp.buf.definition, { silent = true } }
-  nnoremap { "<Leader>gt", "<CMD>LspTroubleToggle<CR>", { silent = true } }
   nnoremap {
     "<Leader>gD",
     function()

@@ -1,22 +1,7 @@
-local fn = vim.fn
-local install_path = fn.stdpath "data" .. "/site/pack/packer/opt/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system {
-    "git",
-    "clone",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  vim.cmd [[packadd packer.nvim]]
-end
-
 local packer_ok, packer = pcall(require, "packer")
 if not packer_ok then
   return
 end
-
-local use = packer.use
 
 packer.init {
   transitive_opt = false,
@@ -30,28 +15,18 @@ packer.init {
   },
 }
 
-local plugins = function()
-  -- A use-package inspired plugin manager for Neovim.
-  use { "wbthomason/packer.nvim", opt = true }
+local plugins = {
+  -- let packer manage itself
+  { "wbthomason/packer.nvim" },
 
-  -- {{{ UI RELATED PLUGINS
-  -- my custom colourscheme based on gruvbox
-  use {
-    "rktjmp/lush.nvim",
-    opt = false,
-    requires = {
-      "~/repos/gruvy",
-      "~/repos/icy",
-    },
-  }
+  { "Olical/conjure", tag = "v4.21.0" },
+  { "Olical/aniseed", tag = "v3.19.0" },
 
-  use {
-    "cocopon/iceberg.vim",
-    opt = false
-  }
+  -- colorscheme
+  { "rktjmp/lush.nvim", requires = { "~/repos/gruvy", "~/repos/icy" } },
 
-  -- Better markdown support
-  use {
+  -- better markdown support
+  {
     "plasticboy/vim-markdown",
     opt = true,
     filetype = { "markdown" },
@@ -59,21 +34,13 @@ local plugins = function()
       vim.g.vim_markdown_folding_disabled = 1
       vim.g.vim_markdown_frontmatter = 1
     end,
-  }
+  },
 
   -- The fastest Neovim colorizer.
-  use {
+  {
     "norcalli/nvim-colorizer.lua",
     opt = true,
-    ft = {
-      "lua",
-      "html",
-      "css",
-      "typescript",
-      "javascript",
-      "svelte",
-      "vim",
-    },
+    ft = { "lua", "html", "css", "vim", "typescript", "javascript", "svelte" },
     config = function()
       require("colorizer").setup {
         ["*"] = {
@@ -83,66 +50,52 @@ local plugins = function()
         },
       }
     end,
-  }
-
-  -- Create key bindings that stick
-  use { "folke/which-key.nvim", opt = false }
-
-  -- Nvim Treesitter configurations and abstraction layer
-  use {
+  },
+  -- cheatsheet for keybinds
+  { "folke/which-key.nvim" },
+  -- treesitter abstraction layer
+  {
     "~/repos/nvim-treesitter",
-    opt = false,
     requires = {
-      -- Treesitter playground integrated into Neovim
+      -- debug stuff
       {
         "nvim-treesitter/playground",
         opt = true,
         cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" },
       },
-
-      -- Extra textobjects leveraging Treesitter
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
-
-      -- Neovim treesitter plugin for setting the commentstring based on the
-      -- cursor location in a file.
-      { "JoosepAlviste/nvim-ts-context-commentstring" },
+      -- moar textobjects
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      -- context aware commentstring
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
-  }
-
+  },
   -- lua `fork` of vim-web-devicons for neovim
-  use {
+  {
     "kyazdani42/nvim-web-devicons",
-    opt = true,
+    config = function()
+      require("nvim-web-devicons").setup { default = true }
+    end,
     requires = {
-      -- Icon set using nonicons for neovim plugins and settings.
       -- requires nonicons font installed
       "yamatsum/nvim-nonicons",
     },
-  }
+  },
+  -- file tree explorer
+  { "kyazdani42/nvim-tree.lua" },
 
-  -- A file explorer tree for neovim written in lua.
-  use { "kyazdani42/nvim-tree.lua", opt = false }
+  -- bufferline
+  { "akinsho/nvim-bufferline.lua" },
 
-  -- A snazzy bufferline for Neovim
-  use { "akinsho/nvim-bufferline.lua", opt = false }
-  -- }}}
-
-  -- {{{ GIT RELATED PLUGINS
   -- Single tabpage interface to easily cycle through diffs for all modified
   -- files for any git rev.
-  use {
-    "sindrets/diffview.nvim",
-    opt = true,
-    cmd = { "DiffViewOpen" },
-  }
+  { "sindrets/diffview.nvim" },
 
   -- Git signs written in pure lua
-  use { "lewis6991/gitsigns.nvim", opt = false }
+  { "lewis6991/gitsigns.nvim" },
 
   -- Magit for Neovim
-  use {
+  {
     "TimUntersberger/neogit",
-    opt = false,
     config = function()
       require("neogit").setup {
         disable_signs = false,
@@ -158,57 +111,51 @@ local plugins = function()
         },
       }
     end,
-  }
-  -- }}}
+  },
 
-  -- {{{ LSP AND DAP RELATED PLUGINS
-  -- Quickstart configurations for the Nvim LSP client
-  use { "neovim/nvim-lspconfig", opt = false }
+  -- nvim lsp config abstraction layer
+  { "neovim/nvim-lspconfig" },
 
-  -- Debug Adapter Protocol client implementation for Neovim (>= 0.5)
-  use {
+  -- DAP client for neovim
+  {
     "mfussenegger/nvim-dap",
-    opt = false,
-    config = function() require("modules.dap") end
-  }
+    config = function()
+      require "modules.dap"
+    end,
+  },
 
   -- Tools to help create flutter apps in neovim using the native lsp
-  use { "akinsho/flutter-tools.nvim", opt = false }
+  { "akinsho/flutter-tools.nvim" },
 
   -- Tools for better development in rust using neovim's builtin lsp
-  use { "simrat39/rust-tools.nvim", opt = false }
+  { "simrat39/rust-tools.nvim" },
 
   -- lsp signature hint when you type
-  use { "ray-x/lsp_signature.nvim", opt = false }
+  { "ray-x/lsp_signature.nvim" },
 
   -- Utilities to improve the TypeScript development experience for Neovim's
   -- built-in LSP client.
-  use { "jose-elias-alvarez/nvim-lsp-ts-utils", opt = false }
+  { "jose-elias-alvarez/nvim-lsp-ts-utils" },
 
   -- Use Neovim as a language server to inject LSP diagnostics, code actions,
   -- and more via Lua.
-  use { "jose-elias-alvarez/null-ls.nvim", opt = false }
+  { "jose-elias-alvarez/null-ls.nvim" },
 
   -- Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
-  use { "mfussenegger/nvim-jdtls", opt = false }
+  { "mfussenegger/nvim-jdtls" },
 
-  -- Auto completion plugin for nvim written in Lua.
-  use {
+  -- autocompletion
+  {
     "hrsh7th/nvim-compe",
-    opt = false,
     requires = {
-      -- Snippet plugin for vim/nvim that supports LSP/VSCode's snippet
-      -- format. Only used for LSP completion that needs snippet and todo stuff
+      -- snippets integration
       { "L3MON4D3/LuaSnip" },
     },
-  }
-  -- }}}
+  },
 
-  -- {{{ TELESCOPE RELATED PLUGINS
   -- Find, Filter, Preview, Pick. All lua, all the time.
-  use {
+  {
     "~/repos/telescope.nvim",
-    opt = false,
     config = function()
       require "modules._telescope"
     end,
@@ -239,37 +186,41 @@ local plugins = function()
       --   rocks = { "openssl", "lua-http-parser" },
       -- },
     },
-  }
+  },
 
   -- SQLite/LuaJIT binding for lua and neovim
-  use { "tami5/sql.nvim", opt = false }
-  -- }}}
-
-  -- {{{ OTHER STUFF
-  -- editorconfig support
-  use { "editorconfig/editorconfig-vim", opt = false }
+  { "tami5/sql.nvim" },
 
   -- Embed Neovim in your browser.
-  use {
+  {
     "glacambre/firenvim",
     run = function()
       vim.fn["firenvim#install"](0)
     end,
-  }
+    config = function()
+      if vim.fn.exists("g:started_by_firenvim") == 1 then
+        vim.cmd [[
+          set laststatus=0
+          set showtabline=0
+          set guifont=JetBrainsMono:h11
+        ]]
+      end
+      vim.g.firenvim_config = {
+        localSettings = {[".*"] = { takeover = "never", priority = 1 }},
+      }
+    end
+  },
 
   -- Breakdown Vim's --startuptime output
-  use {
+  {
     "tweekmonster/startuptime.vim",
     opt = true,
     cmd = "StartupTime",
-  }
-  -- }}}
+  },
 
-  -- {{{ UTILITY PLUGINS
   -- VimTeX: A modern Vim and neovim filetype plugin for LaTeX files.
-  use {
+  {
     "lervag/vimtex",
-    opt = false,
     config = function()
       vim.g.vimtex_quickfix_enabled = false
       vim.g.vimtex_view_method = "zathura"
@@ -283,48 +234,56 @@ local plugins = function()
         },
       }
     end,
-  }
+  },
 
-  -- commentary.vim: comment stuff out
-  use { "tpope/vim-commentary", opt = false }
+  -- comment stuff out
+  { "tpope/vim-commentary" },
 
-  use { "steelsojka/headwind.nvim", opt = false }
+  -- sort tailwind classes
+  { "steelsojka/headwind.nvim" },
 
   -- A fast Neovim http client written in Lua
-  use { "NTBBloodbath/rest.nvim", opt = false }
+  { "NTBBloodbath/rest.nvim" },
 
   -- Emmet for vim
-  use { "mattn/emmet-vim", opt = false }
+  {
+    "mattn/emmet-vim",
+    config = function()
+      vim.g.user_emmet_install_global = 0
+      vim.g.user_emmet_leader_key = ","
+    end,
+  },
 
   -- A Vim alignment plugin
-  use { "junegunn/vim-easy-align", opt = false }
+  { "junegunn/vim-easy-align" },
 
   -- Neovim motions on speed!
-  use {
+  {
     "phaazon/hop.nvim",
     opt = true,
     cmd = "HopWord",
-    config = function() require("hop").setup {} end,
-  }
+    config = function()
+      require("hop").setup {}
+    end,
+  },
 
   -- Switch between single-line and multiline forms of code
-  use { "AndrewRadev/splitjoin.vim", opt = false }
+  { "AndrewRadev/splitjoin.vim" },
 
   -- VIM Table Mode for instant table creation.
-  use {
+  {
     "dhruvasagar/vim-table-mode",
     ft = { "text", "markdown" },
     opt = true,
-  }
+  },
 
   -- The set of operator and textobject plugins to search/select/edit
   -- sandwiched textobjects.
-  use { "machakann/vim-sandwich", opt = false }
+  { "machakann/vim-sandwich" },
 
   -- even better %
-  use {
+  {
     "andymass/vim-matchup",
-    opt = false,
     setup = function()
       vim.g.matchup_matchparen_offscreen = {
         method = "popup",
@@ -332,39 +291,42 @@ local plugins = function()
         highlight = "Normal",
       }
     end,
-  }
+  },
 
   -- Sane buffer/window deletion.
-  use {
+  {
     "mhinz/vim-sayonara",
     opt = true,
     cmd = "Sayonara",
-  }
+  },
 
   -- better `gf` movement
-  use { "notomo/curstr.nvim", opt = false }
-  -- }}}
+  { "notomo/curstr.nvim" },
 
   -- {{{ UNUSED, CHECK LATER
   -- A Neovim port of Assorted Biscuits
-  -- use { "code-biscuits/nvim-biscuits", opt = false }
+  -- { "code-biscuits/nvim-biscuits" },
 
   -- check these out again later
-  -- use { "RRethy/vim-illuminate" }
-  -- use { "tpope/vim-fugitive", opt = false } -- git helpers inside neovim
-  -- use { "lukas-reineke/indent-blankline.nvim", opt = false, branch = "lua" }
+  -- { "RRethy/vim-illuminate" },
+  -- { "tpope/vim-fugitive" } -- git helpers inside neovim
+  -- { "lukas-reineke/indent-blankline.nvim", branch = "lua" },
 
   -- Sooon...
-  -- use {
+  -- {
   --   "vhyrro/neorg",
   --   config = function()
   --     require("neorg").setup {
   --       load = { ["core.defaults"] = {} },
-  --     }
+  --     },
   --   end,
   --   requires = { "nvim-lua/plenary.nvim" },
-  -- }
-  -- }}}
-end
+  -- },
+  -- }}},
+}
 
-packer.startup(plugins)
+packer.startup(function(use)
+  for _, v in pairs(plugins) do
+    use(v)
+  end
+end)

@@ -31,7 +31,7 @@ M.colors = {
 
 M.trunc_width = setmetatable({
   git_status = 90,
-  filename   = 140,
+  filename = 140,
 }, {
   __index = function()
     return 80
@@ -78,7 +78,7 @@ end
 M.get_git_status = function(self)
   -- use fallback because it doesn't set this variable on the initial `BufEnter`
   local signs = vim.b.gitsigns_status_dict
-  or { head = "", added = 0, changed = 0, removed = 0 }
+    or { head = "", added = 0, changed = 0, removed = 0 }
   local is_head_empty = signs.head ~= ""
 
   if self:is_truncated(self.trunc_width.git_status) then
@@ -86,16 +86,13 @@ M.get_git_status = function(self)
   end
 
   return is_head_empty and string.format(
-  " +%s ~%s -%s |  %s ",
-  signs.added,
-  signs.changed,
-  signs.removed,
-  signs.head
+    " +%s ~%s -%s |  %s ",
+    signs.added, signs.changed, signs.removed, signs.head
   ) or ""
 end
 
 M.get_filepath = function(self)
-  local filepath = fn.fnamemodify(fn.expand("%"), ":.:h")
+  local filepath = fn.fnamemodify(fn.expand "%", ":.:h")
   if
     filepath == ""
     or filepath == "."
@@ -108,14 +105,20 @@ M.get_filepath = function(self)
 end
 
 M.get_filename = function()
-  local filename = fn.expand("%:t")
-  if filename == "" then return "" end
+  local filename = fn.expand "%:t"
+  if filename == "" then
+    return ""
+  end
   return filename
 end
 
 M.get_filetype = function()
-  local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
-  local icon = require("nvim-web-devicons").get_icon(file_name, file_ext, { default = true })
+  local file_name, file_ext = fn.expand "%:t", fn.expand "%:e"
+  local icon = require("nvim-web-devicons").get_icon(
+    file_name,
+    file_ext,
+    { default = true }
+  )
   local filetype = vim.bo.filetype
 
   if filetype == "" then
@@ -164,7 +167,7 @@ M.set_active = function(self)
   local line_col_alt = colors.line_col_alt .. self.separators[active_sep][2]
   local lsp = colors.lsp .. self:lsp_progress()
 
-  return table.concat({
+  return table.concat {
     colors.active,
     mode,
     mode_alt,
@@ -177,7 +180,7 @@ M.set_active = function(self)
     filetype,
     git,
     git_alt,
-  })
+  }
 end
 
 M.set_inactive = function(self)
@@ -188,30 +191,22 @@ M.set_explorer = function(self)
   local title = self.colors.mode .. "   "
   local title_alt = self.colors.mode_alt .. self.separators[active_sep][2]
 
-  return table.concat({ self.colors.active, title, title_alt })
+  return table.concat { self.colors.active, title, title_alt }
 end
 
 Statusline = setmetatable(M, {
-  __call = function(statusline, mode)
-    if mode == "active" then
-      return statusline:set_active()
-    end
-    if mode == "inactive" then
-      return statusline:set_inactive()
-    end
-    if mode == "explorer" then
-      return statusline:set_explorer()
-    end
+  __call = function(self, mode)
+    return self["set_" .. mode](self)
   end,
 })
 
 -- set statusline
--- TODO: replace this once we can define autocmd using lua
-api.nvim_exec([[
+-- TODO(elianiva): replace this once we can define autocmd using lua
+vim.cmd [[
   augroup Statusline
   au!
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
   au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline('explorer')
   augroup END
-]], false)
+]]

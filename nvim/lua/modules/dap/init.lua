@@ -23,7 +23,6 @@ vim.cmd [[
   command! -complete=file -nargs=* DebugNode lua require "modules.dap._custom_launch".node()
 ]]
 
-
 dap.adapters.node2 = {
   type = "executable",
   command = "node",

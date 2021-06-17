@@ -36,6 +36,22 @@ export default function $1() {
   ]]),
 }
 
+local html = {
+  ls.parser.parse_snippet({ trig = "!" }, [[
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>${1:awesome title}</title>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>
+  ]])
+}
+
 local dart = {
   ls.parser.parse_snippet({ trig = "stl" }, [[
 class ${1:WidgetName} extends StatelessWidget {
@@ -48,13 +64,13 @@ class ${1:WidgetName} extends StatelessWidget {
   ls.parser.parse_snippet({ trig = "stf" }, [[
 class ${1:WidgetName} extends StatefulWidget {
   @override
-  _$1 createState() => _$1
+  _$1 createState() => _$1()
 }
 
 class _$1 extends State<$1> {
   @override
   Widget build(BuildContext context) {
-    $0
+    return $0
   }
 }
   ]]),
@@ -69,6 +85,7 @@ ls.snippets = {
     ls.parser.parse_snippet({ trig = "php" }, "<?php $0 ?>"),
     ls.parser.parse_snippet({ trig = "phpp" }, "<?= $0 ?>"),
   },
+  html = html,
   dart = dart,
   javascriptreact = react,
   typescriptreact = react,

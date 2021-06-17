@@ -13,7 +13,7 @@ wk.register({
     d     = "Symbol Definition(s)" ,
     r     = "Symbol Reference(s)" ,
     R     = "Rename Symbol" ,
-    t     = "Show Diagnostic List" ,
+    D     = "Show Line Diagnostic" ,
     ["]"] = "Next Diagnostic",
     ["["] = "Prev Diagnostic" ,
   },

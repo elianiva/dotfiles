@@ -12,7 +12,10 @@ require("compe").setup {
 
   source = {
     path = true,
-    buffer = true,
+    buffer = {
+      enable = true,
+      priority = 1, -- last priority
+    },
     luasnip = true,
     nvim_lua = true,
     nvim_lsp = {
@@ -36,14 +39,14 @@ remap(
   "i",
   "<S-Tab>",
   'pumvisible() ? "<C-p>" : "<S-Tab>"',
-  { noremap = true, expr = true }
+  { silent = true, noremap = true, expr = true }
 )
 
 remap(
   "i",
   "<CR>",
   "v:lua.Util.trigger_completion()",
-  { noremap = true, expr = true }
+  { silent = true, noremap = true, expr = true }
 )
 
 remap(

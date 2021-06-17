@@ -55,6 +55,7 @@ M.setup = function()
         bind = true,
         doc_lines = 2,
         hint_enable = false,
+        floating_window = true,
         handler_opts = {
           border = Util.borders,
         },
