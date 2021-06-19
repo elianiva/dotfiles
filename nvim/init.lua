@@ -44,12 +44,11 @@ vim.cmd [[cd %:p:h]]
 
 -- order matters
 local modules = {
+  "modules._keymap",      -- keymap helpers
   "modules._settings",    -- `set` stuff
-  "modules._appearances", -- colourscheme shenanigans
   "modules._util",        -- some useful utils
   "modules._mappings",    -- general mappings
   "modules._statusline",  -- my custom statusline
-  "modules.lsp",          -- lsp stuff
 }
 
 local errors = {}

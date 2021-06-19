@@ -16,19 +16,91 @@ packer.init {
 }
 
 local plugins = {
-  -- let packer manage itself
   { "wbthomason/packer.nvim" },
 
-  { "Olical/conjure", tag = "v4.21.0" },
-  { "Olical/aniseed", tag = "v3.19.0" },
+  require("plugins.compe").plugin,
+  require("plugins.gitsigns").plugin,
+  require("plugins.null-ls").plugin,
+  require("plugins.nvim-bufferline").plugin,
+  require("plugins.nvim-jdtls").plugin,
+  require("plugins.nvim-lspconfig").plugin,
+  require("plugins.nvim-tree").plugin,
+  require("plugins.rest-nvim").plugin,
+  require("plugins.rust-tools").plugin,
+  require("plugins.flutter-tools").plugin,
+  require("plugins.telescope").plugin,
+  require("plugins.treesitter").plugin,
+  require("plugins.tsserver").plugin,
+  require("plugins.which-key").plugin,
 
-  -- colorscheme
-  { "rktjmp/lush.nvim", requires = { "~/repos/gruvy", "~/repos/icy" } },
+  {
+    "rktjmp/lush.nvim",
+    event = "VimEnter",
+    requires = { "~/repos/gruvy", "~/repos/icy" },
+    config = function()
+      -- set colourscheme
+      -- require('lush')(require('lush_theme.gruvy'))
+      require("lush")(require "lush_theme.icy")
+    end,
+  },
 
-  -- better markdown support
+  { "tami5/sql.nvim" },
+
+  { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
+
+  { "tpope/vim-commentary", keys = "gc" },
+
+  { "steelsojka/headwind.nvim" },
+
+  { "junegunn/vim-easy-align", keys = "<Plug>(EasyAlign)" },
+
+  { "AndrewRadev/splitjoin.vim", keys = "gS" },
+
+  { "dhruvasagar/vim-table-mode", ft = { "text", "markdown" } },
+
+  { "machakann/vim-sandwich", keys = "s" },
+
+  { "mhinz/vim-sayonara", cmd = "Sayonara" },
+
+  {
+    "kyazdani42/nvim-web-devicons",
+    after = "lush.nvim",
+    config = function()
+      require("nvim-web-devicons").setup { default = true }
+    end,
+    requires = {
+      -- requires nonicons font installed
+      { "yamatsum/nvim-nonicons", after = "nvim-web-devicons" },
+    },
+  },
+
+  {
+    "phaazon/hop.nvim",
+    cmd = "HopWord",
+    setup = function()
+      vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>w",
+        "<CMD>HopWord<CR>",
+        { noremap = true }
+      )
+    end,
+    config = function()
+      require("hop").setup {}
+    end,
+  },
+
+  {
+    "mattn/emmet-vim",
+    cmd = "EmmetInstall",
+    config = function()
+      vim.g.user_emmet_install_global = 0
+      vim.g.user_emmet_leader_key = ","
+    end,
+  },
+
   {
     "plasticboy/vim-markdown",
-    opt = true,
     filetype = { "markdown" },
     config = function()
       vim.g.vim_markdown_folding_disabled = 1
@@ -36,64 +108,18 @@ local plugins = {
     end,
   },
 
-  -- The fastest Neovim colorizer.
   {
-    "norcalli/nvim-colorizer.lua",
-    opt = true,
-    ft = { "lua", "html", "css", "vim", "typescript", "javascript", "svelte" },
-    config = function()
-      require("colorizer").setup {
-        ["*"] = {
-          css = true,
-          css_fn = true,
-          mode = "background",
-        },
+    "andymass/vim-matchup",
+    event = "CursorMoved",
+    setup = function()
+      vim.g.matchup_matchparen_offscreen = {
+        method = "popup",
+        fullwidth = true,
+        highlight = "Normal",
       }
     end,
   },
-  -- cheatsheet for keybinds
-  { "folke/which-key.nvim" },
-  -- treesitter abstraction layer
-  {
-    "~/repos/nvim-treesitter",
-    requires = {
-      -- debug stuff
-      {
-        "nvim-treesitter/playground",
-        opt = true,
-        cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" },
-      },
-      -- moar textobjects
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      -- context aware commentstring
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
-  },
-  -- lua `fork` of vim-web-devicons for neovim
-  {
-    "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").setup { default = true }
-    end,
-    requires = {
-      -- requires nonicons font installed
-      "yamatsum/nvim-nonicons",
-    },
-  },
-  -- file tree explorer
-  { "kyazdani42/nvim-tree.lua" },
 
-  -- bufferline
-  { "akinsho/nvim-bufferline.lua" },
-
-  -- Single tabpage interface to easily cycle through diffs for all modified
-  -- files for any git rev.
-  { "sindrets/diffview.nvim" },
-
-  -- Git signs written in pure lua
-  { "lewis6991/gitsigns.nvim" },
-
-  -- Magit for Neovim
   {
     "TimUntersberger/neogit",
     config = function()
@@ -111,116 +137,29 @@ local plugins = {
         },
       }
     end,
-  },
-
-  -- nvim lsp config abstraction layer
-  { "neovim/nvim-lspconfig" },
-
-  -- DAP client for neovim
-  {
-    "mfussenegger/nvim-dap",
-    config = function()
-      require "modules.dap"
-    end,
-  },
-
-  -- Tools to help create flutter apps in neovim using the native lsp
-  { "akinsho/flutter-tools.nvim" },
-
-  -- Tools for better development in rust using neovim's builtin lsp
-  { "simrat39/rust-tools.nvim" },
-
-  -- lsp signature hint when you type
-  { "ray-x/lsp_signature.nvim" },
-
-  -- Utilities to improve the TypeScript development experience for Neovim's
-  -- built-in LSP client.
-  { "jose-elias-alvarez/nvim-lsp-ts-utils" },
-
-  -- Use Neovim as a language server to inject LSP diagnostics, code actions,
-  -- and more via Lua.
-  { "jose-elias-alvarez/null-ls.nvim" },
-
-  -- Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
-  { "mfussenegger/nvim-jdtls" },
-
-  -- autocompletion
-  {
-    "hrsh7th/nvim-compe",
     requires = {
-      -- snippets integration
-      { "L3MON4D3/LuaSnip" },
+      "sindrets/diffview.nvim",
     },
   },
 
-  -- Find, Filter, Preview, Pick. All lua, all the time.
   {
-    "~/repos/telescope.nvim",
-    config = function()
-      require "modules._telescope"
+    "vim-test/vim-test",
+    cmd = { "TestFile", "TestNearest", "TestSuite", "TestVisit" },
+    setup = function()
+      local remap = vim.api.nvim_set_keymap
+
+      remap("n", "<Leader>tn", "<CMD>TestNearest<CR>", { noremap = true })
+      remap("n", "<Leader>tf", "<CMD>TestFile<CR>", { noremap = true })
+      remap("n", "<Leader>ts", "<CMD>TestSuite<CR>", { noremap = true })
+      remap("n", "<Leader>tl", "<CMD>TestLast<CR>", { noremap = true })
+      remap("n", "<Leader>tg", "<CMD>TestVisit<CR>", { noremap = true })
+      vim.g["test#strategy"] = "neovim"
     end,
-    requires = {
-      -- An implementation of the Popup API from vim in Neovim.
-      { "nvim-lua/popup.nvim" },
-
-      -- plenary: full; complete; entire; absolute; unqualified.
-      { "nvim-lua/plenary.nvim" },
-
-      -- Preview media files in Telescope
-      { "nvim-telescope/telescope-media-files.nvim" },
-
-      -- A telescope.nvim extension that offers intelligent prioritization
-      -- when selecting files from your editing history.
-      { "nvim-telescope/telescope-frecency.nvim" },
-
-      -- FZF style sorter
-      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-
-      -- Integration for nvim-dap with telescope.nvim
-      { "nvim-telescope/telescope-dap.nvim" },
-
-      -- Search engine integration using Telescope
-      -- wait until this one is fixed
-      -- {
-      --   "nvim-telescope/telescope-arecibo.nvim",
-      --   rocks = { "openssl", "lua-http-parser" },
-      -- },
-    },
   },
 
-  -- SQLite/LuaJIT binding for lua and neovim
-  { "tami5/sql.nvim" },
-
-  -- Embed Neovim in your browser.
-  {
-    "glacambre/firenvim",
-    run = function()
-      vim.fn["firenvim#install"](0)
-    end,
-    config = function()
-      if vim.fn.exists("g:started_by_firenvim") == 1 then
-        vim.cmd [[
-          set laststatus=0
-          set showtabline=0
-          set guifont=JetBrainsMono:h11
-        ]]
-      end
-      vim.g.firenvim_config = {
-        localSettings = {[".*"] = { takeover = "never", priority = 1 }},
-      }
-    end
-  },
-
-  -- Breakdown Vim's --startuptime output
-  {
-    "tweekmonster/startuptime.vim",
-    opt = true,
-    cmd = "StartupTime",
-  },
-
-  -- VimTeX: A modern Vim and neovim filetype plugin for LaTeX files.
   {
     "lervag/vimtex",
+    ft = "latex",
     config = function()
       vim.g.vimtex_quickfix_enabled = false
       vim.g.vimtex_view_method = "zathura"
@@ -236,93 +175,26 @@ local plugins = {
     end,
   },
 
-  -- comment stuff out
-  { "tpope/vim-commentary" },
-
-  -- sort tailwind classes
-  { "steelsojka/headwind.nvim" },
-
-  -- A fast Neovim http client written in Lua
-  { "NTBBloodbath/rest.nvim" },
-
-  -- Emmet for vim
   {
-    "mattn/emmet-vim",
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
     config = function()
-      vim.g.user_emmet_install_global = 0
-      vim.g.user_emmet_leader_key = ","
-    end,
-  },
-
-  -- A Vim alignment plugin
-  { "junegunn/vim-easy-align" },
-
-  -- Neovim motions on speed!
-  {
-    "phaazon/hop.nvim",
-    opt = true,
-    cmd = "HopWord",
-    config = function()
-      require("hop").setup {}
-    end,
-  },
-
-  -- Switch between single-line and multiline forms of code
-  { "AndrewRadev/splitjoin.vim" },
-
-  -- VIM Table Mode for instant table creation.
-  {
-    "dhruvasagar/vim-table-mode",
-    ft = { "text", "markdown" },
-    opt = true,
-  },
-
-  -- The set of operator and textobject plugins to search/select/edit
-  -- sandwiched textobjects.
-  { "machakann/vim-sandwich" },
-
-  -- even better %
-  {
-    "andymass/vim-matchup",
-    setup = function()
-      vim.g.matchup_matchparen_offscreen = {
-        method = "popup",
-        fullwidth = true,
-        highlight = "Normal",
+      require("colorizer").setup {
+        ["*"] = {
+          css = true,
+          css_fn = true,
+          mode = "background",
+        },
       }
     end,
   },
 
-  -- Sane buffer/window deletion.
   {
-    "mhinz/vim-sayonara",
-    opt = true,
-    cmd = "Sayonara",
+    "mfussenegger/nvim-dap",
+    config = function()
+      require "modules.dap"
+    end,
   },
-
-  -- better `gf` movement
-  { "notomo/curstr.nvim" },
-
-  -- {{{ UNUSED, CHECK LATER
-  -- A Neovim port of Assorted Biscuits
-  -- { "code-biscuits/nvim-biscuits" },
-
-  -- check these out again later
-  -- { "RRethy/vim-illuminate" },
-  -- { "tpope/vim-fugitive" } -- git helpers inside neovim
-  -- { "lukas-reineke/indent-blankline.nvim", branch = "lua" },
-
-  -- Sooon...
-  -- {
-  --   "vhyrro/neorg",
-  --   config = function()
-  --     require("neorg").setup {
-  --       load = { ["core.defaults"] = {} },
-  --     },
-  --   end,
-  --   requires = { "nvim-lua/plenary.nvim" },
-  -- },
-  -- }}},
 }
 
 packer.startup(function(use)

@@ -1,5 +1,4 @@
-local k = require "modules._keymap"
-
+local k = vim.keymap
 local noremap = k.noremap
 local nnoremap = k.nnoremap
 -- local inoremap = k.inoremap
@@ -7,63 +6,11 @@ local vnoremap = k.vnoremap
 local nmap = k.nmap
 local xmap = k.xmap
 
--- -- use jj instead of Esc
--- -- 4 mappings to prevent typos :p
--- inoremap { "jk", "<Esc><Esc>" }
--- inoremap { "Jk", "<Esc><Esc>" }
--- inoremap { "jK", "<Esc><Esc>" }
--- inoremap { "JK", "<Esc><Esc>" }
-
 -- toggle nvimtree
 nnoremap { "<C-n>", "<CMD>NvimTreeToggle<CR>" }
 
 -- hippity hoppity your word is not my property
 nnoremap { "<Leader>w", "<CMD>HopWord<CR>" }
-
--- execute rest.nvim
-nmap { "<Leader>rr", "<Plug>RestNvim" }
-
--- toggle telescope.nvim
-nnoremap {
-  "<C-p>",
-  require("modules._telescope").find_files,
-  { silent = true },
-}
-nnoremap {
-  "<C-f>",
-  require("modules._telescope").grep_prompt,
-  { silent = true },
-}
-nnoremap {
-  "<Leader>fb",
-  require("modules._telescope").current_buffer_fuzzy_find,
-  { silent = true },
-}
-nnoremap {
-  "<Leader>ff",
-  require("modules._telescope").frecency,
-  { silent = true },
-}
-nnoremap {
-  "<Leader>fm",
-  require("telescope").extensions.media_files.media_files,
-  { silent = true },
-}
-nnoremap {
-  "<Leader>fa",
-  require("modules._telescope").arecibo,
-  { silent = true },
-}
-nnoremap {
-  "<Leader>fl",
-  require("modules._telescope").file_browser,
-  { silent = true },
-}
-nnoremap {
-  "<Leader>fg",
-  require("modules._telescope").git_commits,
-  { silent = true },
-}
 
 -- better movement between windows
 nnoremap { "<C-h>", "<C-w><C-h>" }
@@ -101,17 +48,11 @@ nnoremap { "q:", "<Nop>" }
 -- copy to system clipboard
 vnoremap { "<A-y>", '"+y' }
 
--- no distraction mode for writing
--- nnoremap { "<Leader>gg", "<CMD>Goyo<CR>" }
-
--- run luafile on current file
 -- rl stands for `run lua`
 nnoremap { "<Leader>rl", "<CMD>luafile %<CR>" }
-
--- run node on current file
 -- rn stands for `run node`
--- rd stands for `run deno`
 nnoremap { "<Leader>rn", "<CMD>!node %<CR>" }
+-- rd stands for `run deno`
 nnoremap { "<Leader>rd", "<CMD>!NO_COLOR=true deno run %<CR>" }
 
 -- toggle hlsearch
@@ -136,24 +77,8 @@ vnoremap { ">", ">gv" }
 
 xmap { "ga", "<Plug>(EasyAlign)", { silent = true } }
 
-nmap { "<Leader>t", "<Plug>PlenaryTestFile", { silent = true } }
-
 nmap {
   "<F2>",
   ":let g:strip_whitespace = !g:strip_whitespace | echo 'Strip whitespace mode toggled!'<CR>",
-  { silent = true },
-}
-
-local curstr = require("curstr").execute
-
-nnoremap {
-  "gf",
-  function()
-    if vim.bo.filetype == "lua" then
-      return curstr "vim/lua"
-    end
-
-    return curstr "file/path"
-  end,
   { silent = true },
 }

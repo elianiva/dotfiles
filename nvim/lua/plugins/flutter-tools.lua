@@ -1,5 +1,12 @@
 local M = {}
 
+M.plugin = {
+  "akinsho/flutter-tools.nvim",
+  config = function()
+    require("plugins.flutter-tools").config()
+  end
+}
+
 M.config = function()
   require("flutter-tools").setup {
     experimental = { -- map of feature flags

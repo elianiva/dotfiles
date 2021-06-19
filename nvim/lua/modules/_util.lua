@@ -176,17 +176,6 @@ Util.borders = {
 
 Util.lsp_on_attach = function()
   require("modules.lsp._mappings").lsp_mappings()
-  require("lsp_signature").on_attach {
-    bind = true,
-    doc_lines = 2,
-    hint_enable = false,
-    floating_window = true,
-    handler_opts = {
-      border = Util.borders
-    },
-    max_height = 4,
-    max_width = 40,
-  }
 end
 
 Util.lsp_on_init = function()

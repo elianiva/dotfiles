@@ -138,7 +138,7 @@ M.lsp_progress = function()
     local msg = lsp.message or ""
     local percentage = lsp.percentage or 0
     local title = lsp.title or ""
-    return string.format(" %s: %s %s (%s%%%%) ", name, title, msg, percentage)
+    return string.format(" %%<%s: %s %s (%s%%%%) ", name, title, msg, percentage)
   end
 
   return ""

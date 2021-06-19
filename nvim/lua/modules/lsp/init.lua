@@ -19,12 +19,8 @@ local servers = {
   --   }
   -- },
   sumneko_lua = require("modules.lsp._sumneko").config,
-  rust_analyzer = require("modules.lsp._rust").config,
-  flutter = require("modules.lsp._flutter").config,
-  tsserver = require("modules.lsp._tsserver").config,
   jsonls = require("modules.lsp._json").config,
   svelte = require("modules.lsp._svelte").config,
-  jdtls = require("modules.lsp._jdtls").config,
   html = { cmd = { "vscode-html-language-server", "--stdio" } },
   cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
   intelephense = { root_dir = vim.loop.cwd },

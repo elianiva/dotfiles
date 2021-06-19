@@ -1,5 +1,11 @@
--- Rust stuff
 local M = {}
+
+M.plugin = {
+  "simrat39/rust-tools.nvim",
+  config = function()
+    require("plugins.rust-tools").config()
+  end,
+}
 
 M.config = function()
   require("rust-tools").setup {

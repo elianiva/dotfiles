@@ -1,4 +1,4 @@
-local k = require("modules._keymap")
+local k = vim.keymap
 local nnoremap = k.nnoremap
 
 local dap = require("dap")
