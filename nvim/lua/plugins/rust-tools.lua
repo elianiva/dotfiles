@@ -2,6 +2,7 @@ local M = {}
 
 M.plugin = {
   "simrat39/rust-tools.nvim",
+  ft = "rust",
   config = function()
     require("plugins.rust-tools").config()
   end,

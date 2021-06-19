@@ -40,17 +40,24 @@ local plugins = {
     config = function()
       -- set colourscheme
       -- require('lush')(require('lush_theme.gruvy'))
-      require("lush")(require "lush_theme.icy")
+      require "lush"(require "lush_theme.icy")
     end,
   },
-
-  { "tami5/sql.nvim" },
 
   { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
 
   { "tpope/vim-commentary", keys = "gc" },
 
-  { "steelsojka/headwind.nvim" },
+  {
+    "steelsojka/headwind.nvim",
+    cmd = { "HeadwindBuf", "HeadwindVisual" },
+    setup = function()
+      vim.cmd [[
+        command! -nargs=0 -range=% HeadwindBuf lua require "headwind".buf_sort_tailwind_classes(0)
+        command! -nargs=0 -range=% HeadwindVisual lua require "headwind".sort_tailwind_classes(0)
+      ]]
+    end,
+  },
 
   { "junegunn/vim-easy-align", keys = "<Plug>(EasyAlign)" },
 
@@ -101,8 +108,8 @@ local plugins = {
 
   {
     "plasticboy/vim-markdown",
-    filetype = { "markdown" },
-    config = function()
+    filetype = "markdown",
+    setup = function()
       vim.g.vim_markdown_folding_disabled = 1
       vim.g.vim_markdown_frontmatter = 1
     end,
@@ -122,6 +129,7 @@ local plugins = {
 
   {
     "TimUntersberger/neogit",
+    cmd = "Neogit",
     config = function()
       require("neogit").setup {
         disable_signs = false,
@@ -138,7 +146,10 @@ local plugins = {
       }
     end,
     requires = {
-      "sindrets/diffview.nvim",
+      {
+        "sindrets/diffview.nvim",
+        after = "neogit",
+      },
     },
   },
 
@@ -191,6 +202,7 @@ local plugins = {
 
   {
     "mfussenegger/nvim-dap",
+    keys = "<Leader>d",
     config = function()
       require "modules.dap"
     end,

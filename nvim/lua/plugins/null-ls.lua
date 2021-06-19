@@ -15,6 +15,9 @@ M.plugin = {
     "lua",
     "go",
   },
+  config = function()
+    require("plugins.null-ls").config()
+  end
 }
 
 M.config = function()

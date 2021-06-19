@@ -25,10 +25,13 @@ M.plugin = {
 
     -- Integration for npm stuff
     { "~/repos/telescope-npm" },
+
+    -- lua sqlite binding
+    { "tami5/sql.nvim" },
   },
   config = function()
     require("plugins.telescope").config()
-  end
+  end,
 }
 
 M.config = function()

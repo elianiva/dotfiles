@@ -1,9 +1,14 @@
-local ts_utils = require "nvim-lsp-ts-utils"
-
 local M = {}
 
 M.plugin = {
   "jose-elias-alvarez/nvim-lsp-ts-utils",
+  after = "nvim-lspconfig",
+  filetype = {
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+  },
   config = function()
     require("plugins.tsserver").config()
   end,
@@ -11,6 +16,7 @@ M.plugin = {
 
 M.config = function()
   local lspconfig = require "lspconfig"
+  local ts_utils = require "nvim-lsp-ts-utils"
 
   lspconfig.tsserver.setup {
     filetypes = {

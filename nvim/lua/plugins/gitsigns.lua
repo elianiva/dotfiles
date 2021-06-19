@@ -2,6 +2,7 @@ local M = {}
 
 M.plugin = {
   "lewis6991/gitsigns.nvim",
+  event = "BufRead",
   config = function()
     require("plugins.gitsigns").config()
   end,

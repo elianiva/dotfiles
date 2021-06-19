@@ -26,7 +26,7 @@ M.config = function()
     local actions = require "telescope.actions"
 
     jdtls_ui.pick_one_async = function(results, _, label_fn, cb)
-      local opts = TelescopeNoPreview
+      local opts = require("plugins.telescope").no_preview()
       pickers.new(opts, {
         prompt_title = "LSP Code Actions",
         finder = finders.new_table {

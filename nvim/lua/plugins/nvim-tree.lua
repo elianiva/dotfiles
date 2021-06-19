@@ -4,7 +4,7 @@ M.plugin = {
   "kyazdani42/nvim-tree.lua",
   cmd = "NvimTreeToggle",
   config = function()
-    require("plugins.nvim-tree")
+    require("plugins.nvim-tree").config()
   end
 }
 

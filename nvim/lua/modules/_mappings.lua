@@ -67,10 +67,6 @@ nnoremap {
   "<CMD>vnew | setlocal buftype=nofile | setlocal bufhidden=hide<CR>",
 }
 
-vim.cmd [[
-  command! -nargs=0 Center :lua require("modules._center").centered()
-]]
-
 -- better indenting experience
 vnoremap { "<", "<gv" }
 vnoremap { ">", ">gv" }

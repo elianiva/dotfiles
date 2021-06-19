@@ -1,3 +1,4 @@
+
 local M = {}
 
 M.plugin = {
@@ -7,7 +8,6 @@ M.plugin = {
     require("plugins.compe").config()
   end,
   requires = {
-    -- snippets integration
     require("plugins.luasnip").plugin,
   },
 }

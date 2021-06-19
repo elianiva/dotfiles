@@ -6,11 +6,15 @@ M.plugin = {
     -- debug stuff
     {
       "nvim-treesitter/playground",
+      after = "nvim-treesitter",
       cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" },
     },
 
     -- moar textobjects
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      after = "nvim-treesitter",
+    },
 
     -- context aware commentstring
     {
