@@ -1,3 +1,5 @@
+vim.cmd [[ packadd packer.nvim ]]
+
 local packer_ok, packer = pcall(require, "packer")
 if not packer_ok then
   return
@@ -16,14 +18,13 @@ packer.init {
 }
 
 local plugins = {
-  { "wbthomason/packer.nvim" },
+  { "wbthomason/packer.nvim", opt = true },
 
   require("plugins.compe").plugin,
   require("plugins.gitsigns").plugin,
   require("plugins.null-ls").plugin,
   require("plugins.nvim-bufferline").plugin,
   require("plugins.nvim-jdtls").plugin,
-  require("plugins.nvim-lspconfig").plugin,
   require("plugins.nvim-tree").plugin,
   require("plugins.rest-nvim").plugin,
   require("plugins.rust-tools").plugin,
@@ -38,9 +39,16 @@ local plugins = {
     event = "VimEnter",
     requires = { "~/repos/gruvy", "~/repos/icy" },
     config = function()
-      -- set colourscheme
       -- require('lush')(require('lush_theme.gruvy'))
       require "lush"(require "lush_theme.icy")
+    end,
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    event = "BufRead",
+    config = function()
+      require "modules.lsp"
     end,
   },
 
@@ -100,9 +108,32 @@ local plugins = {
   {
     "mattn/emmet-vim",
     cmd = "EmmetInstall",
-    config = function()
+    setup = function()
       vim.g.user_emmet_install_global = 0
       vim.g.user_emmet_leader_key = ","
+    end,
+  },
+
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    config = function()
+      require("zen-mode").setup {
+        window = {
+          backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+          width = 80, -- width of the Zen window
+          height = 30, -- height of the Zen window
+        },
+        plugins = {
+          options = {
+            enabled = true,
+            ruler = false,
+            showcmd = false,
+          },
+          gitsigns = { enabled = true }, -- disables git signs
+          tmux = { enabled = false }, -- disables the tmux statusline
+        },
+      }
     end,
   },
 

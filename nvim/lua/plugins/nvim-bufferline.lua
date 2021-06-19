@@ -2,7 +2,7 @@ local M = {}
 
 M.plugin = {
   "akinsho/nvim-bufferline.lua",
-  after = "lush.nvim", -- load after my colourscheme (which was made using lush)
+  after = {"lush.nvim", "nvim-web-devicons"}, -- load after my colourscheme (which was made using lush)
   config = function()
     require("plugins.nvim-bufferline").config()
   end,

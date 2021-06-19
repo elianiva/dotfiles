@@ -2,6 +2,7 @@ local M = {}
 
 M.plugin = {
   "~/repos/nvim-treesitter",
+  event = "BufRead",
   requires = {
     -- debug stuff
     {
@@ -13,6 +14,7 @@ M.plugin = {
     -- moar textobjects
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      event = "BufRead",
       after = "nvim-treesitter",
     },
 

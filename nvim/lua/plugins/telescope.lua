@@ -15,7 +15,10 @@ M.plugin = {
 
     -- A telescope.nvim extension that offers intelligent prioritization
     -- when selecting files from your editing history.
-    { "nvim-telescope/telescope-frecency.nvim" },
+    {
+      "nvim-telescope/telescope-frecency.nvim",
+      after = "telescope.nvim"
+    },
 
     -- FZF style sorter
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
