@@ -3,7 +3,7 @@ local M = {}
 M.plugin = {
   "folke/which-key.nvim",
   config = function()
-    require("plugins.which-key")
+    require("plugins.which-key").config()
   end
 }
 

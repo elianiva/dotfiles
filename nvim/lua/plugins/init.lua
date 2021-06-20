@@ -120,9 +120,11 @@ local plugins = {
     config = function()
       require("zen-mode").setup {
         window = {
-          backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+          backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
           width = 80, -- width of the Zen window
-          height = 30, -- height of the Zen window
+          height = 32, -- height of the Zen window
+          linebreak = true,
+          wrap = true,
         },
         plugins = {
           options = {
@@ -133,6 +135,10 @@ local plugins = {
           gitsigns = { enabled = true }, -- disables git signs
           tmux = { enabled = false }, -- disables the tmux statusline
         },
+        on_open = function(win)
+          vim.api.nvim_win_set_option(win, "wrap", true)
+          vim.api.nvim_win_set_option(win, "linebreak", true)
+        end,
       }
     end,
   },
@@ -202,7 +208,7 @@ local plugins = {
   {
     "lervag/vimtex",
     ft = "latex",
-    config = function()
+    setup = function()
       vim.g.vimtex_quickfix_enabled = false
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_compiler_latexmk = {
