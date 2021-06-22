@@ -1,5 +1,8 @@
-" Set formatoptions
-au BufRead,FileType * set formatoptions-=ro
+" prevent typo when pressing `wq` or `q`
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
+cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
+cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
 
 " Set filetypes
 augroup Filetypes
@@ -14,19 +17,8 @@ augroup END
 " Set github text field to markdown (firenvim stuff)
 au BufEnter github.com_*.txt set filetype=markdown
 
-" Set tabsize for each filetype
-augroup Indents
-  au!
-  au FileType go,java setlocal sw=4 ts=4 sts=4 noexpandtab
-  au FileType lua setlocal sw=2 ts=2 sts=2
-  au FileType c,cpp setlocal sw=4 ts=4 sts=4
-  au FileType json set filetype=jsonc
-augroup END
-
-augroup Markdown
-  au!
-  au FileType markdown setlocal conceallevel=0 nospell foldexpr=
-augroup END
+" Set current working directory
+au VimEnter * cd %:p:h
 
 " Remove trailing whitespace on save
 let g:strip_whitespace = v:true
@@ -37,13 +29,6 @@ augroup END
 
 " automatically go to insert mode on terminal buffer
 autocmd BufEnter term://* startinsert
-
-" enable/disable wordwrap
-augroup Goyo
-  au!
-  au User GoyoEnter setlocal linebreak wrap
-  au User GoyoLeave setlocal nolinebreak nowrap
-augroup END
 
 " disable nvim-compe inside telescope
 augroup Compe

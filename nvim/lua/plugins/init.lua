@@ -6,7 +6,6 @@ if not packer_ok then
 end
 
 packer.init {
-  transitive_opt = false,
   git = {
     clone_timeout = 300, -- 5 minutes, I have horrible internet
   },
@@ -34,6 +33,12 @@ local plugins = {
   require("plugins.tsserver").plugin,
   require("plugins.which-key").plugin,
 
+  -- plenary: full; complete; entire; absolute; unqualified.
+  { "nvim-lua/plenary.nvim" },
+
+  -- An implementation of the Popup API from vim in Neovim.
+  { "nvim-lua/popup.nvim" },
+
   {
     "rktjmp/lush.nvim",
     event = "VimEnter",
@@ -55,6 +60,14 @@ local plugins = {
   { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
 
   { "tpope/vim-commentary", keys = "gc" },
+
+  {
+    "mapkts/enwise",
+    event = "BufRead",
+    setup = function()
+      vim.g.enwise_enable_globally = 1
+    end
+  },
 
   {
     "steelsojka/headwind.nvim",

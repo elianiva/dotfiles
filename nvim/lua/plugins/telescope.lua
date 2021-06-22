@@ -4,14 +4,11 @@ M.plugin = {
   "~/repos/telescope.nvim",
   after = "nvim-web-devicons",
   requires = {
-    -- An implementation of the Popup API from vim in Neovim.
-    { "nvim-lua/popup.nvim" },
-
-    -- plenary: full; complete; entire; absolute; unqualified.
-    { "nvim-lua/plenary.nvim" },
-
     -- Preview media files in Telescope
-    { "nvim-telescope/telescope-media-files.nvim" },
+    {
+      "nvim-telescope/telescope-media-files.nvim",
+      after = "telescope.nvim"
+    },
 
     -- A telescope.nvim extension that offers intelligent prioritization
     -- when selecting files from your editing history.
@@ -21,10 +18,16 @@ M.plugin = {
     },
 
     -- FZF style sorter
-    { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      run = "make",
+    },
 
     -- Integration for nvim-dap with telescope.nvim
-    { "nvim-telescope/telescope-dap.nvim" },
+    {
+      "nvim-telescope/telescope-dap.nvim",
+      after = "telescope.nvim"
+    },
 
     -- Integration for npm stuff
     { "~/repos/telescope-npm" },
@@ -167,11 +170,11 @@ M.config = function()
 
   local builtin = require "telescope.builtin"
 
-  pcall(require("telescope").load_extension, "fzf") -- superfast sorter
-  pcall(require("telescope").load_extension, "media_files") -- media preview
-  pcall(require("telescope").load_extension, "frecency") -- frecency
-  pcall(require("telescope").load_extension, "dap") -- DAP integrations
-  pcall(require("telescope").load_extension, "npm") -- NPM integrations
+  pcall(telescope.load_extension, "fzf") -- superfast sorter
+  pcall(telescope.load_extension, "media_files") -- media preview
+  pcall(telescope.load_extension, "frecency") -- frecency
+  pcall(telescope.load_extension, "dap") -- DAP integrations
+  pcall(telescope.load_extension, "npm") -- NPM integrations
 
   M.arecibo = function()
     telescope.extensions.arecibo.websearch(M.no_preview())

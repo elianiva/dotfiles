@@ -2,6 +2,9 @@ local M = {}
 
 M.plugin = {
   "lewis6991/gitsigns.nvim",
+  wants = {
+    "plenary.nvim",
+  },
   event = "BufRead",
   config = function()
     require("plugins.gitsigns").config()
@@ -11,11 +14,11 @@ M.plugin = {
 M.config = function()
   require("gitsigns").setup {
     signs = {
-      add          = { hl = "SignAdd",    text = "┃" },
-      change       = { hl = "SignChange", text = "┃" },
-      delete       = { hl = "SignDelete", text = "┃" },
-      topdelete    = { hl = "SignDelete", text = "┃" },
-      changedelete = { hl = "SignChange", text = "┃" },
+      add          = { hl = "SignAdd",    text = "▎" },
+      change       = { hl = "SignChange", text = "▎" },
+      delete       = { hl = "SignDelete", text = "▎" },
+      topdelete    = { hl = "SignDelete", text = "▎" },
+      changedelete = { hl = "SignChange", text = "▎" },
     },
     keymaps = {
       noremap = true,

@@ -48,7 +48,7 @@ M.config = function()
     },
 
     indent = {
-      enable = true, -- wait until it's back to normal
+      enable = false, -- wait until it's back to normal
     },
 
     playground = {

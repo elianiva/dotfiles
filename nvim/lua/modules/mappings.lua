@@ -5,6 +5,17 @@ local nnoremap = k.nnoremap
 local vnoremap = k.vnoremap
 local nmap = k.nmap
 local xmap = k.xmap
+local remap = vim.api.nvim_set_keymap
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+remap(
+  "", "n", '"Nn"[v:searchforward]',
+  { noremap = true, expr = true, silent = true }
+)
+remap(
+  "", "N", '"nN"[v:searchforward]',
+  { noremap = true, expr = true, silent = true }
+)
 
 -- toggle nvimtree
 nnoremap { "<C-n>", "<CMD>NvimTreeToggle<CR>" }

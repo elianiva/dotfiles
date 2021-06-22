@@ -3,6 +3,9 @@ local M = {}
 M.plugin = {
   "simrat39/rust-tools.nvim",
   ft = "rust",
+  wants = {
+    "nvim-lspconfig",
+  },
   config = function()
     require("plugins.rust-tools").config()
   end,

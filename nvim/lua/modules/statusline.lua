@@ -191,7 +191,7 @@ M.set_explorer = function(self)
   local title = self.colors.mode .. "   "
   local title_alt = self.colors.mode_alt .. self.separators[active_sep][2]
 
-  return table.concat { self.colors.active, title, title_alt }
+  return self.colors.active .. title .. title_alt
 end
 
 Statusline = setmetatable(M, {

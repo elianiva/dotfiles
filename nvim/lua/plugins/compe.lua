@@ -43,10 +43,7 @@ M.config = function()
   remap(
     "i",
     "<Tab>",
-    table.concat {
-      'pumvisible() ? "<C-n>" : v:lua.Util.check_backspace()',
-      '? "<Tab>" : compe#confirm()',
-    },
+    'pumvisible() ? "<C-n>" : "<Tab>"',
     { silent = true, noremap = true, expr = true }
   )
 
@@ -61,7 +58,7 @@ M.config = function()
     "i",
     "<CR>",
     "v:lua.Util.trigger_completion()",
-    { silent = true, noremap = true, expr = true }
+    { silent = true, expr = true }
   )
 
   remap(

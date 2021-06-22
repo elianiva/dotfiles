@@ -14,7 +14,7 @@ M.config = function()
   local t = ls.t -- Text
   local i = ls.i -- Input
   local f = ls.f -- Function
-  local k = require "modules._keymap"
+  local k = vim.keymap
   local inoremap = k.inoremap
   local snoremap = k.snoremap
 
