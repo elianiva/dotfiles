@@ -1,42 +1,43 @@
-! scheme: "gruvbox"
-! author: "Morhetz (https://github.com/morhetz)"
-*background: #1d2020
-*foreground: #e0d2ae
-*color0:  #3b3735
-*color8:  #655b53
-*color1:  #ec5421
-*color9:  #cc2714
-*color2:  #a3ba5e
-*color10: #7d923f
-*color3:  #efb839
-*color11: #d09611
-*color4:  #7ea9a7
-*color12: #5a8784
-*color5:  #d4879c
-*color13: #bd4767
-*color6:  #4e9753
-*color14: #78ba7d
-*color7:  #918273
-*color15: #e0d2ae
+!! scheme: "gruvbox"
+!! author: "Morhetz (https://github.com/morhetz)"
+!*background: #1d2020
+!*foreground: #e0d2ae
+!*color0:  #3b3735
+!*color8:  #655b53
+!*color1:  #ec5421
+!*color9:  #cc2714
+!*color2:  #a3ba5e
+!*color10: #7d923f
+!*color3:  #efb839
+!*color11: #d09611
+!*color4:  #7ea9a7
+!*color12: #5a8784
+!*color5:  #d4879c
+!*color13: #bd4767
+!*color6:  #4e9753
+!*color14: #78ba7d
+!*color7:  #918273
+!*color15: #e0d2ae
 
-/* *foreground: #eeeeee */
-/* *background: #1c1e26 */
-/* *color0: #333740 */
-/* *color8: #ABB2BF */
-/* *color1: #e06b74 */
-/* *color9: #e06b74 */
-/* *color2:  #98c379 */
-/* *color10: #98c379 */
-/* *color3:  #ffc24b */
-/* *color11: #ffc24b */
-/* *color4:  #62aeef */
-/* *color12: #62aeef */
-/* *color5:  #c778dd */
-/* *color13: #c778dd */
-/* *color6:  #55b6c2 */
-/* *color14: #55b6c2 */
-/* *color7:  #eeeeee */
-/* *color15: #ffffff */
+! icy
+*foreground: #c6c8d1
+*background: #161821
+*color0: #161821
+*color8: #6b7089
+*color1: #e27878
+*color9: #e98989
+*color2: #b4be82
+*color10: #c0ca8e
+*color3: #e2a478
+*color11: #e9b189
+*color4: #84a0c6
+*color12: #91acd1
+*color5: #a093c7
+*color13: #ada0d3
+*color6: #89b8c2
+*color14: #95c4ce
+*color7: #c6c8d1
+*color15: #d2d4de
 
 
 ! ------------------------------------------------------------------------------

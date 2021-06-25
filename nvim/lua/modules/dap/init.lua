@@ -1,20 +1,20 @@
-local dap = require("dap")
+local dap = require "dap"
 
-require("modules.dap._mappings")
+require "modules.dap._mappings"
 -- require("modules.dap._ui")
 
-vim.fn.sign_define('DapBreakpoint', {
-  text='🛑',
-  texthl='LspDiagnosticsDefaultError',
-  linehl='',
-  numhl='',
+vim.fn.sign_define("DapBreakpoint", {
+  text = "🛑",
+  texthl = "LspDiagnosticsDefaultError",
+  linehl = "",
+  numhl = "",
 })
 
-vim.fn.sign_define('DapStopped', {
-  text='',
-  texthl='',
-  linehl='',
-  numhl='',
+vim.fn.sign_define("DapStopped", {
+  text = "",
+  texthl = "",
+  linehl = "",
+  numhl = "",
 })
 
 vim.cmd [[

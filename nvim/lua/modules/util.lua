@@ -9,10 +9,7 @@ P = function(stuff)
 end
 
 Util.trigger_completion = function()
-  if
-    fn.pumvisible() ~= 0
-    and fn.complete_info()["selected"] ~= -1
-  then
+  if fn.pumvisible() ~= 0 and fn.complete_info()["selected"] ~= -1 then
     return fn["compe#confirm"]()
   end
 
