@@ -1,1 +1,1 @@
-vim.bo.indentexpr = vim.fn.GetSvelteIndent()
+vim.bo.indentexpr = "GetSvelteIndent()"

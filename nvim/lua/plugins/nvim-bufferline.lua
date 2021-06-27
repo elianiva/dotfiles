@@ -3,7 +3,7 @@ require("bufferline").setup {
     show_buffer_close_icons = false,
     separator_style = "thick",
     diagnostics = "nvim_lsp",
-    buffer_close_icon = "",
+    buffer_close_icon = "",
     offsets = {
       {
         filetype = "NvimTree",

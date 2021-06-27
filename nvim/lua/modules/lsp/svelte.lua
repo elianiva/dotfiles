@@ -2,7 +2,7 @@ local M = {}
 
 M.config = {
   on_attach = function(client)
-    require("modules.lsp._mappings").lsp_mappings()
+    require("modules.lsp.mappings").lsp_mappings()
     require("plugins.tsserver").ts_utils(client)
 
     client.server_capabilities.completionProvider.triggerCharacters = {

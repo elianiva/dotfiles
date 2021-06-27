@@ -59,7 +59,7 @@ M.setup = function()
   require("jdtls").start_or_attach {
     cmd = { vim.env.HOME .. "/.scripts/run_jdtls" },
     on_attach = function()
-      require("modules.lsp._mappings").lsp_mappings "jdtls"
+      require("modules.lsp.mappings").lsp_mappings "jdtls"
     end,
   }
 end

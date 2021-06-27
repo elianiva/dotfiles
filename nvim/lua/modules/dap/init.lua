@@ -1,7 +1,7 @@
 local dap = require "dap"
 
-require "modules.dap._mappings"
--- require("modules.dap._ui")
+require "modules.dap.mappings"
+-- require("modules.dap.ui")
 
 vim.fn.sign_define("DapBreakpoint", {
   text = "🛑",
@@ -18,9 +18,9 @@ vim.fn.sign_define("DapStopped", {
 })
 
 vim.cmd [[
-  command! -complete=file -nargs=* DebugC lua require "modules.dap._custom_launch".c_debug({<f-args>}, "gdb")
-  command! -complete=file -nargs=* DebugRust lua require "modules.dap._custom_launch".c_debug({<f-args>}, "lldb", "rust-lldb")
-  command! -complete=file -nargs=* DebugNode lua require "modules.dap._custom_launch".node()
+  command! -complete=file -nargs=* DebugC lua require "modules.dap.custom_launch".c_debug({<f-args>}, "gdb")
+  command! -complete=file -nargs=* DebugRust lua require "modules.dap.custom_launch".c_debug({<f-args>}, "lldb", "rust-lldb")
+  command! -complete=file -nargs=* DebugNode lua require "modules.dap.custom_launch".node()
 ]]
 
 dap.adapters.node2 = {
