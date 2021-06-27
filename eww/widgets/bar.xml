@@ -1,0 +1,185 @@
+<eww>
+  <definitions>
+    <def name="bar">
+      <box class="bar" orientation="h" hexpand="true">
+        <leftstuff />
+        <time />
+        <rightstuff />
+      </box>
+    </def>
+
+    <def name="leftstuff">
+      <box class="leftstuff" orientation="h" space-evenly="false" halign="start">
+        <workspaces />
+        <netspeed />
+      </box>
+    </def>
+
+    <def name="rightstuff">
+      <box class="rightstuff" orientation="h" space-evenly="false" halign="end" spacing="6">
+        <network />
+        <vol />
+        <temp />
+        <ram />
+        <battery />
+        <menu />
+      </box>
+    </def>
+
+    <def name="workspaces">
+      <box class="tags-box" orientation="h" space-evenly="true" halign="start">
+        <button
+          class="{{if (active-ws == 1) then 'active' else 'inactive'}}"
+          onclick="swaymsg workspace 1"
+          cursor="pointer"
+        >
+          一
+        </button>
+        <button
+          class="{{if (active-ws == 2) then 'active' else 'inactive'}}"
+          onclick="swaymsg workspace 2"
+          cursor="pointer"
+        >
+          二
+        </button>
+        <button
+          class="{{if (active-ws == 3) then 'active' else 'inactive'}}"
+          onclick="swaymsg workspace 3"
+          cursor="pointer"
+        >
+          三
+        </button>
+        <button
+          class="{{if (active-ws == 4) then 'active' else 'inactive'}}"
+          onclick="swaymsg workspace 4"
+          cursor="pointer"
+        >
+          四
+        </button>
+        <button
+          class="{{if (active-ws == 5) then 'active' else 'inactive'}}"
+          onclick="swaymsg workspace 5"
+          cursor="pointer"
+        >
+          五
+        </button>
+        <button
+          class="{{if (active-ws == 6) then 'active' else 'inactive'}}"
+          onclick="swaymsg workspace 6"
+          cursor="pointer"
+        >
+          六
+        </button>
+      </box>
+    </def>
+
+    <def name="network">
+      <box orientation="h" class="module net-box" space-evenly="false" spacing="10">
+        <box class="icon">直</box>
+        <label text="{{network}}" />
+      </box>
+    </def>
+
+    <def name="vol">
+      <box orientation="h" class="module vol-box" space-evenly="false" spacing="10">
+        <box class="icon">墳</box>
+        <scale
+          class="slider"
+          min="0"
+          max="100"
+          value="{{volume}}"
+          onchange="pulsemixer --set-volume {} && eww update volume={}"
+        />
+        <label text="{{volume}}%" />
+      </box>
+    </def>
+
+    <def name="temp">
+      <box orientation="h" class="module temp-box" space-evenly="false" spacing="10">
+        <box class="icon">糖</box>
+        <label text="{{temp}}" />
+      </box>
+    </def>
+
+    <def name="ram">
+      <box orientation="h" class="module ram-box" space-evenly="false" spacing="10">
+        <box class="icon"></box>
+        <label text="{{ram-used}}%" />
+      </box>
+    </def>
+
+    <def name="menu">
+      <button class="module menu" orientation="h" onclick="eww close sidebar || eww open sidebar">
+        舘
+      </button>
+    </def>
+
+    <def name="battery">
+      <box orientation="h" class="module battery-box" space-evenly="false" spacing="10">
+        <box class="icon"></box>
+        <label text="{{battery-remaining}}%" />
+      </box>
+    </def>
+
+    <def name="netspeed">
+      <box class="module netspeed" orientation="h" space-evenly="false" spacing="10">
+        <label class="icon" text="龍" />
+        <label text=" {{EWW_NET.wlan0.NET_DOWN / 1024 / 2}}KiB  {{EWW_NET.wlan0.NET_UP / 1024 / 2}}KiB" />
+      </box>
+    </def>
+
+    <def name="time">
+      <!--Time-->
+      <box orientation="h" class="time" space-evenly="false" halign="center">
+        <button
+          class="time-box"
+          onclick="eww close calendar-popup || eww open calendar-popup"
+        >
+          {{day}}, {{hour}}:{{min}} {{ampm}}
+        </button>
+      </box>
+    </def>
+  </definitions>
+
+  <variables>
+    <script-var name="volume">~/.config/eww/scripts/sys_info --vol</script-var>
+
+    <script-var name="network" interval="1m">
+      ~/.config/eww/scripts/sys_info --net
+    </script-var>
+
+    <!--Date vars-->
+    <script-var name="day" interval="24h">date "+%a"</script-var>
+    <script-var name="hour" interval="1h">date "+%I"</script-var>
+    <script-var name="min" interval="1m">date "+%M"</script-var>
+    <script-var name="ampm" interval="12h">date "+%p"</script-var>
+
+    <!--RAM var-->
+    <script-var name="ram-used" interval="5s">
+      ~/.config/eww/scripts/sys_info --mem
+    </script-var>
+
+    <!--Battery charge var-->
+    <script-var name="battery-remaining" interval="2m">
+      ~/.config/eww/scripts/sys_info --bat
+    </script-var>
+
+    <!-- active workspace -->
+    <var name="active-ws">1</var>
+  </variables>
+
+  <windows>
+    <window
+      name="bar"
+      screen="0"
+      focusable="false"
+      stacking="fg"
+      exclusive="true"
+    >
+      <geometry anchor="top center" x="0%" y="0%" width="100%" height="18" />
+      <widget>
+        <bar />
+      </widget>
+    </window>
+  </windows>
+</eww>

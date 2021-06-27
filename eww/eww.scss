@@ -1,0 +1,367 @@
+// colours
+$dark: #0c0d12;
+$bg: #161821;
+$bg-alt: #2b2d3b;
+$fg: #c6c8d1;
+$fg-alt: #6b7089;
+$grey: #36384a;
+$blue: #84a0c6;
+$red: #d35d6e;
+$green: #b4be82;
+$purple: #a093c7;
+$orange: #e2a478;
+
+* {
+  all: unset; // Unsets everything
+}
+
+window {
+  background-color: $bg;
+  color: $fg;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 12px;
+}
+
+.bar {
+  padding: 4px;
+}
+
+.module {
+  background-color: $bg-alt;
+  padding: 0 10px;
+}
+
+// ==== NETSPEED ====
+.netspeed {
+  margin-left: 8px;
+  border-bottom: 1px $red solid;
+
+  .icon {
+    margin-right: 4px;
+    color: $blue;
+  }
+}
+// =================
+
+// ==== NETWORK ====
+.net-box {
+  border-bottom: 1px $purple solid;
+
+  .icon {
+    color: $purple;
+  }
+}
+// =================
+
+// ====  VOL  ====
+.vol-box {
+  background-color: $bg-alt;
+  padding: 0 10px;
+  border-bottom: 1px $green solid;
+
+  .icon {
+    color: $green;
+  }
+
+  .slider trough {
+    all: unset;
+    background-color: $grey;
+    border-radius: 50px;
+    min-height: 3px;
+    min-width: 80px;
+
+    highlight {
+      all: unset;
+      background-color: $green;
+      color: #000000;
+      border-radius: 10px;
+    }
+  }
+}
+// =================
+
+// ====  NOTIF  ====
+.notif {
+  border-bottom: 1px $green solid;
+  color: $green;
+}
+// =================
+
+// ====  MENU  ====
+.menu {
+  border-bottom: 1px $purple solid;
+  color: $purple;
+}
+// =================
+
+// ====  RAM  ====
+.ram-box {
+  border-bottom: 1px $red solid;
+
+  .icon {
+    color: $red;
+  }
+}
+// =================
+
+
+// ====  TEMP  ====
+.temp-box {
+  border-bottom: 1px $orange solid;
+
+  .icon {
+    color: $orange;
+  }
+}
+// =================
+
+
+// ==== BATTERY ====
+.battery-box {
+  background-color: $bg-alt;
+  padding: 0 10px;
+  border-bottom: 1px $blue solid;
+
+  .icon {
+    color: $blue;
+  }
+}
+// =================
+
+// ==== TIME ====
+.time-box {
+  border-bottom: 1px $blue solid;
+}
+// ==============
+
+// ==== TAGS ====
+.tags-box {
+  font-family: "M+ 1p", sans-serif;
+  color: $fg-alt;
+  padding: 4px;
+  background-color: $bg-alt;
+
+  .active {
+    color: $blue;
+    border-bottom: 1px $blue solid;
+  }
+
+  button {
+    padding: 0 8px;
+
+    &:hover {
+      background-color: $grey;
+      color: $blue;
+    }
+  }
+}
+// ==============
+
+// ==== CALENDAR ====
+.calendar-popup {
+  padding: 24px 10px 0 10px;
+  border: 1px $grey solid;
+  font-size: 14px;
+
+  .year {
+    font-style: italic;
+    font-size: 24px;
+    color: $fg-alt;
+    padding: 0 20px 0 20px;
+  }
+
+  .detail {
+    font-style: italic;
+    font-size: 28px;
+    padding: 0 20px 10px 20px;
+    font-family: monospace;
+    font-weight: 500;
+  }
+
+  calendar {
+    padding: 6px;
+  }
+
+  calendar.highlight {
+    font-weight: bold;
+    background-color: $grey;
+    color: $fg;
+  }
+
+  calendar:selected {
+    font-weight: 500;
+    background-color: $blue;
+    color: $bg;
+    border-radius: 4px;
+  }
+
+  calendar:indeterminate {
+    color: $fg-alt;
+  }
+}
+// ==================
+
+// -------------------
+
+// ==== SIDEBAR =====
+.sidebar {
+  padding: 10px;
+  border: 2px $grey solid;
+  font-size: 24px;
+}
+
+.powermenu {
+  button {
+    padding: 10px;
+    border: 1px $grey solid;
+  }
+
+  .logout:hover {
+    color: $purple;
+    border: 1px $purple solid;
+  }
+
+  .poweroff:hover {
+    color: $red;
+    border: 1px $red solid;
+  }
+
+  .reboot:hover {
+    color: $blue;
+    border: 1px $blue solid;
+  }
+
+  .sleep:hover {
+    color: $green;
+    border: 1px $green solid;
+  }
+}
+
+.sliders,
+.bars {
+  border: 1px $grey solid;
+  padding: 20px 20px;
+}
+
+.sidebar-slider {
+  trough {
+    all: unset;
+    background-color: $grey;
+    min-height: 5px;
+    min-width: 80px;
+
+    highlight {
+      all: unset;
+    }
+  }
+
+  slider {
+    all: unset;
+    min-height: 14px;
+    margin: -4px;
+    background-color: $fg;
+  }
+}
+
+.light {
+  trough highlight {
+    background-color: $blue;
+  }
+}
+
+.vol {
+  trough highlight {
+    background-color: $green;
+  }
+}
+
+.bar {
+  trough {
+    all: unset;
+    min-height: 5px;
+    min-width: 80px;
+
+    highlight {
+      all: unset;
+    }
+  }
+}
+
+.ram {
+  trough {
+    background-color: $grey;
+    highlight {
+      background-color: $red;
+    }
+  }
+}
+
+.bat {
+  trough {
+    background-color: $grey;
+    highlight {
+      background-color: $blue;
+    }
+  }
+}
+
+.temp {
+  trough {
+    background-color: $grey;
+    highlight {
+      background-color: $orange;
+    }
+  }
+}
+
+.big-time {
+  font-size: 42px;
+  font-weight: 200;
+  font-style: italic;
+  padding: 20px 0;
+
+  .detail {
+    font-weight: 400;
+    font-size: 24px;
+    color: $fg-alt;
+    font-style: italic;
+  }
+
+  .ampm {
+    margin-top: -10px;
+    font-weight: 400;
+    font-size: 18px;
+    color: $fg-alt;
+    font-style: italic;
+  }
+}
+
+.notification {
+  padding: 10px;
+  border: 1px $grey solid;
+  font-size: 24px;
+
+  .title {
+    font-weight: bold;
+    padding: 5px;
+    font-size: 15px;
+    color: $fg;
+  }
+
+  .clear {
+    color: $fg-alt;
+    padding: 0px 12px;
+    font-size: 26px;
+    border: 1px $bg solid;
+
+    &:hover {
+      color: $fg;
+      border: 1px $fg solid;
+    }
+  }
+}
+
+.notif-item {
+  margin: 10px 5px 5px 5px;
+  padding: 0px
+}

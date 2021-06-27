@@ -1,0 +1,41 @@
+<eww>
+  <definitions>
+    <def name="notification-widget">
+      <revealer transition="slideup" duration="500ms" reveal="{{notification}}">
+        <notification-center/>
+      </revealer>
+    </def>
+
+    <def name="notification">
+      <notification-center />
+    </def>
+
+    <def name="notification-center">
+      <box class="notification" orientation="v" spacing="0" space-evenly="false">
+        <box class="header" halign="fill" orientation="h" spacing="10" space-evenly="true">
+          <box class="title" halign="start">
+            Notification Center
+          </box>
+          <button class="clear" onclick="eww update content=''" halign="end"></button>
+        </box>
+        <box style="padding: 0px 5px 0px 5px">
+          <literal content="{{content}}"/>
+        </box>
+      </box>
+    </def>
+  </definitions>
+
+  <variables>
+    <var name="notification"></var>
+    <var name="content"></var>
+  </variables>
+
+  <windows>
+    <window name="notification" screen="0" stacking="ov">
+      <geometry anchor="top left" x="6" y="5" width="25%" height="10%" />
+      <widget>
+        <notification />
+      </widget>
+    </window>
+  </windows>
+</eww>

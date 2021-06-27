@@ -1,0 +1,7 @@
+#!/bin/sh
+
+eww daemon &
+
+eww open bar &
+
+~/.config/eww/scripts/subscribe-ws &
