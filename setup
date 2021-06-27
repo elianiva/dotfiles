@@ -80,6 +80,7 @@ link_paths=(
   "waybar               <> .config/waybar         <> Waybar_Config"
   "mako                 <> .config/mako           <> Mako_Config"
   "wofi                 <> .config/wofi           <> Wofi_Config"
+  "eww                  <> .config/eww            <> EWW_Config"
 
   # startpage
   "misc/dev/startpage-v2   <> dev/startpage-v2    <> Startpage"

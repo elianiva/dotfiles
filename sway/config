@@ -6,10 +6,10 @@
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-    gsettings set $gnome-schema gtk-theme "gruvbox"
-    gsettings set $gnome-schema icon-theme "Numix"
-    gsettings set $gnome-schema cursor-theme "Breeze"
-    gsettings set $gnome-schema font-name "Arimo 11"
+  gsettings set $gnome-schema gtk-theme "Arc-Dark"
+  gsettings set $gnome-schema icon-theme "Papirus-Dark"
+  gsettings set $gnome-schema cursor-theme "Breeze"
+  gsettings set $gnome-schema font-name "Inter V, 10"
 }
 
 # }}}
@@ -20,6 +20,7 @@ exec {
   fcitx5 -d --replace
   wl-paste -t text --watch clipman store
   light -S 40
+  eww daemon
 }
 # }}}
 
@@ -45,8 +46,9 @@ set $ws6 6
 
 # Some apps
 set $term kitty
-set $menu wofi --show drun
-set $menu_alt wofi --show run
+# set $menu wofi --show drun
+set $menu launcher drun icy
+set $menu_alt launcher run icy
 # }}}
 
 ### Output configuration
@@ -54,7 +56,7 @@ set $menu_alt wofi --show run
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 # output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # output * bg /home/elianiva/.config/awesome/themes/main/img/ryuko-spring.png fill
-output * bg /home/elianiva/.config/awesome/themes/main/img/autumn_gurl.png fill
+output * bg /home/elianiva/pix/arknights/1024268.jpg fill
 
 # Example configuration:
 #
@@ -107,7 +109,7 @@ bindsym Mod1+Print              exec grimshot save window
 input type:keyboard {
   repeat_delay  300
   repeat_rate   50
-  xkb_options   caps:escape
+  xkb_options   "caps:escape"
 }
 # }}}
 
@@ -207,29 +209,29 @@ gaps outer 0
 
 ### WINDOW RULES {{{
 for_window [class=java-lang-Thread|Navigator|simplescreenrecorder|Sxiv|kasir-App]             floating enable
-for_window [class=music|Navigator]                                                                      move position center; sticky enable;
+for_window [class=music|Navigator]                                                            move position center; sticky enable;
 for_window [class=Brave-browser|Chromium|firefox|Wps|mpv|Google-chrome-unstable]              border pixel 0
 for_window [class=firefox-developer-edition]                                                  border pixel 0; focus
 for_window [class=Chromium|Gimp*|Inkscape|Vlc|Lxappearance|Audacity|Wps]                      focus
 # }}}
 
 ### COLOURS {{{
-set $main #ebdbb2
-set $grey #3C3835
-set $foreground #ebdbb2
-set $background #282828
-set $bblack #1d2021
-# set $main #414863
-# set $grey #717CB4
-# set $foreground #A6ACCD
-# set $background #292d3e
-# set $bblack #202331
+set $main #c6c8d1
+set $grey #6b7089
+set $foreground #c6c8d1
+set $background #161821
+set $black #161821
+#set $main #ebdbb2
+#set $grey #3C3835
+#set $foreground #ebdbb2
+#set $background #282828
+#set $black #1d2021
 
 # class                 border      backgr.     text        indicator   child_border
 client.background       $background
-client.focused          $main       $main       $foreground $background $main
-client.focused_inactive $main       $background $background $background $bblack
-client.unfocused        $grey       $grey       $foreground $background $grey
+client.focused          $grey       $background $foreground $grey $grey
+client.focused_inactive $black      $background $background $grey $black
+client.unfocused        $background $background $grey       $background $background
 client.urgent           $background $background $background $background $background
 # client.placeholder      $background $background $background $background $background
 # }}}

@@ -5,15 +5,14 @@
   "position": "top",
   "height": 24, // Waybar height (to be removed for auto height)
   // "width": 1280, // Waybar width
-  // Choose the order of the modules
-  "modules-left": ["sway/workspaces", "custom/left-sep", "sway/mode", "network"],
+  "modules-left": ["custom/menu", "sway/workspaces", "sway/mode"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "battery", "tray"],
+  "modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "battery", "tray"],
   // Modules configuration
   // wl-gammactl -c 1.015 -b 0.946 -g 0.985
-  "custom/left-sep": {
-    "format": "<span font='18'></span>",
-    "escape": true
+  "custom/menu": {
+    "format": "舘",
+    "on-click": "eww close sidebar || eww open sidebar"
   },
   "sway/workspaces": {
     "disable-scroll": true,
@@ -49,26 +48,27 @@
   },
   "clock": {
     "format": "{:%a, %I:%M %p}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip": false,
+    "on-click": "eww close calendar-popup || eww open calendar-popup"
   },
   "cpu": {
-    "format": "<span color=\"#d79921\">CPU:</span> {usage}%",
+    "format": "<span color=\"#84a0c6\"></span> {usage}%",
     "tooltip": false
   },
   "memory": {
-    "format": "<span color=\"#d79921\">MEM:</span> {used:0.1f}GB"
+    "format": "<span color=\"#d35d6e\"></span> {used:0.1f}GB"
   },
   "temperature": {
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 80,
+    "critical-threshold": 90,
     // "format-critical": "{temperatureC}°C {icon}",
-    "format": "<span color=\"#d79921\">TEMP:</span> {temperatureC}°C"
-    /* "format-icons": [" ", " ", " "] */
+    "format": "<span color=\"#e2a478\">{icon}</span> {temperatureC}°C",
+    "format-icons": [" "]
   },
   "backlight": {
     // "device": "acpi_video1",
-    "format": "<span color=\"#d79921\">{icon}</span> {percent}%",
+    "format": "<span color=\"#84a0c6\">{icon}</span> {percent}%",
     "format-icons": [" ", " "]
   },
   "battery": {
@@ -77,9 +77,9 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "<span color=\"#d79921\">BAT:</span> {capacity}%",
-    "format-charging": "<span color=\"#d79921\">BAT:</span> {capacity}%+",
-    "format-plugged": "<span color=\"#d79921\"> </span> {capacity}%"
+    "format": "<span color=\"#b4be82\"></span> {capacity}%",
+    "format-charging": "<span color=\"#b4be82\">BAT:</span> {capacity}%+",
+    "format-plugged": "<span color=\"#b4be82\"> </span> {capacity}%"
     /* "format-alt": "{time} {icon}" */
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
@@ -87,27 +87,22 @@
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "<span color=\"#d79921\">NET:</span> {bandwidthUpBits} | {bandwidthDownBits}",
+    "format-wifi": "<span color=\"#84a0c6\">直 </span> {bandwidthUpBits} | {bandwidthDownBits}",
     "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "<span color=\"#d79921\">NET:</span> DISCONNECTED",
+    "format-disconnected": "<span color=\"#84a0c6\">NET:</span> DISCONNECTED",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "<span color=\"#d79921\">VOL:</span> {volume}%",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
+    "format": "<span color=\"#a093c7\">{icon}</span> {volume}%",
+    "format-muted": "<span color=\"#a093c7\">ﱝ</span> muted",
     /* "format-source": " {volume}% ", */
     /* "format-source-muted": " ", */
     "format-icons": {
       "headphone": " ",
       "hands-free": "墳",
       "headset": " ",
-      "phone": " ",
-      "portable": " ",
-      "car": " ",
       "default": [" ", " ", " "]
     },
     "on-click": "pavucontrol"

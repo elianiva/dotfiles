@@ -4,46 +4,38 @@
   margin: 0px 4px 0px 4px;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
 #entry:selected {
-  color: #d79921;
-  background-color: #282828;
+  color: #84a0c6;
+  background-color: #36384A;
   padding: 7px;
 }
 
 #text:selected {
-  color: #d79921;
+  color: #84a0c6;
 }
 
 #window {
-  animation-name: fadeIn;
-  animation-duration: 0.4s;
   background-color: transparent;
-  font-family: "JetBrains Mono";
-  /* font-size:14; */
+  font-family: "JetBrains Mono", monospace;
 }
 
 #input {
-  color: #ebdbb2;
+  color: #c6c8d1;
   border: none;
-  background-color: #282828;
+  background-color: #36384A;
   border-radius: 5px;
   margin: 4px 4px 8px 4px;
-  border-color: #ebdbb2;
+  border-color: #c6c8d1;
 }
 
 #inner-box {
-  color: #ebdbb2;
+  color: #c6c8d1;
   border-radius: 5px;
   /* margin-right: 180px; */
 }
 
 #outer-box {
-  background-color: #1d2021;
+  background-color: #161821;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0px 0px 6px 1px  #0F0F0F;
@@ -51,7 +43,7 @@
 }
 
 #text {
-  color: #ebdbb2;
+  color: #c6c8d1;
   background-color: transparent;
 }
 
