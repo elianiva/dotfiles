@@ -6,6 +6,7 @@ if not packer_ok then
 end
 
 packer.init {
+  compile_path = vim.fn.stdpath('data')..'/site/pack/loader/start/packer.nvim/plugin/packer_compiled.vim',
   git = {
     clone_timeout = 300, -- 5 minutes, I have horrible internet
   },
@@ -71,7 +72,7 @@ local plugins = {
     event = "VimEnter",
     requires = { "~/repos/gruvy", "~/repos/icy" },
     config = function()
-      -- require('lush')(require('lush_theme.gruvy'))
+      -- require "lush"(require "lush_theme.gruvy")
       require "lush"(require "lush_theme.icy")
     end,
   },
@@ -283,11 +284,8 @@ local plugins = {
       }
     end,
     requires = {
-      {
-        "sindrets/diffview.nvim",
-        cmd = "DiffViewOpen",
-      },
-    },
+      "sindrets/diffview.nvim",
+    }
   },
 
   {

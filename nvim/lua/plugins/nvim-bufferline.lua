@@ -9,7 +9,6 @@ require("bufferline").setup {
         filetype = "NvimTree",
         text = "File Explorer",
         text_align = "center",
-        padding = 1,
       },
     },
     custom_areas = {

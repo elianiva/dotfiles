@@ -12,6 +12,7 @@ augroup Filetypes
   au BufNewFile,BufRead *.svx,*.mdx set ft=markdown
   au BufNewFile,BufRead *.svelte set ft=svelte
   au BufNewFile,BufRead *.nix set ft=nix
+  au BufNewFile,BufRead *.zig set ft=zig
 augroup END
 
 " Set github text field to markdown (firenvim stuff)

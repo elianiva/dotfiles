@@ -20,8 +20,8 @@ window#waybar {
 #workspaces button:hover {
   box-shadow: inherit;
   text-shadow: inherit;
-  background: #36384a;
-  border: 1px #36384a solid;
+  background: #36384A;
+  border: 1px #36384A solid;
   color: #84a0c6;
 }
 
@@ -31,24 +31,23 @@ window#waybar {
 }
 
 #workspaces button.persistent {
-  color: #36384a;
+  color: #36384A;
 }
 
 #pulseaudio,
-#network,
 #cpu,
 #memory,
 #temperature,
 #custom-menu,
 #battery {
-  background-color: #2b2d3b;
+  background-color: #22242F;
   padding: 0 10px;
   margin-right: 4px;
 }
 
 #custom-menu {
-  color: #d35d6e;
-  border-bottom: 1px #d35d6e solid;
+  color: #e27878;
+  border-bottom: 1px #e27878 solid;
 }
 
 #pulseaudio {
@@ -64,7 +63,7 @@ window#waybar {
 }
 
 #memory {
-  border-bottom: 1px #d35d6e solid;
+  border-bottom: 1px #e27878 solid;
 }
 
 #battery {
@@ -73,5 +72,6 @@ window#waybar {
 
 #network {
   border-bottom: 1px #84a0c6 solid;
+  padding: 0 10px;
 }
 

@@ -35,6 +35,9 @@ alias gdatelong='git log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%
 
 # config stuff
 alias nvimconf="nvim ~/.config/nvim/init.lua"
+alias swayconf="nvim ~/.config/sway/config"
+alias barconf="nvim ~/.config/waybar/config"
+alias kittyconf="nvim ~/.config/kitty/kitty.conf"
 alias zshconf="nvim ~/.zshrc"
 alias awsconf="nvim ~/.config/awesome/rc.lua"
 alias aliasconf="nvim ~/.config/aliasrc"

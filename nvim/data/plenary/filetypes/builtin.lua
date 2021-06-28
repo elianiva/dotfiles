@@ -5,5 +5,6 @@ return {
     ["jsx"] = "javascript",
     ["gyp"] = "json",
     ["svx"] = "markdown",
+    ["zig"] = "zig",
   },
 }
