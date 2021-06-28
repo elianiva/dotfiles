@@ -14,7 +14,6 @@ M.plugin = {
     -- moar textobjects
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      event = "BufRead",
       after = "nvim-treesitter",
     },
 

@@ -63,22 +63,28 @@ local plugins = {
     end,
   },
 
-  { "nvim-lua/plenary.nvim" },
+  {
+    "nvim-lua/plenary.nvim",
+    module = "plenary"
+  },
 
-  { "nvim-lua/popup.nvim" },
+  {
+    "nvim-lua/popup.nvim",
+    module = "popup"
+  },
 
   {
     "rktjmp/lush.nvim",
     event = "VimEnter",
     requires = { "~/repos/gruvy", "~/repos/icy" },
     config = function()
-      -- require "lush"(require "lush_theme.gruvy")
       require "lush"(require "lush_theme.icy")
     end,
   },
 
   {
     "folke/which-key.nvim",
+    module = "which-key",
     config = function()
       require "plugins.which-key"
     end,
@@ -136,8 +142,7 @@ local plugins = {
 
   {
     "akinsho/nvim-bufferline.lua",
-    -- load after my colourscheme (which was made using lush)
-    after = { "lush.nvim", "nvim-web-devicons" },
+    after = "lush.nvim",
     config = function()
       require "plugins.nvim-bufferline"
     end,
@@ -180,13 +185,16 @@ local plugins = {
 
   {
     "kyazdani42/nvim-web-devicons",
-    after = "lush.nvim",
+    module = "nvim-web-devicons",
     config = function()
       require("nvim-web-devicons").setup { default = true }
     end,
     requires = {
       -- requires nonicons font installed
-      { "yamatsum/nvim-nonicons", after = "nvim-web-devicons" },
+      {
+        "yamatsum/nvim-nonicons",
+        module = "nvim-nonicons"
+      },
     },
   },
 
@@ -285,6 +293,8 @@ local plugins = {
     end,
     requires = {
       "sindrets/diffview.nvim",
+      cmd = { "DiffViewOpen" },
+      module = "diffview"
     }
   },
 

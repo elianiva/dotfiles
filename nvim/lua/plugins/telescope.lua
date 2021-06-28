@@ -2,19 +2,28 @@ local M = {}
 
 M.plugin = {
   "~/repos/telescope.nvim",
-  after = "nvim-web-devicons",
+  module = "telescope",
+  keys = {
+    {"", "<C-p>"},
+    {"", "<C-f>"},
+    {"n", "<Leader>f"}
+  },
   requires = {
     -- Preview media files in Telescope
     {
       "nvim-telescope/telescope-media-files.nvim",
-      after = "telescope.nvim"
+      after = "telescope.nvim",
     },
 
     -- A telescope.nvim extension that offers intelligent prioritization
     -- when selecting files from your editing history.
     {
       "nvim-telescope/telescope-frecency.nvim",
-      after = "telescope.nvim"
+      after = "telescope.nvim",
+      requires = {
+        -- lua sqlite binding
+        "tami5/sql.nvim",
+      },
     },
 
     -- FZF style sorter
@@ -26,14 +35,8 @@ M.plugin = {
     -- Integration for nvim-dap with telescope.nvim
     {
       "nvim-telescope/telescope-dap.nvim",
-      after = "telescope.nvim"
+      after = "telescope.nvim",
     },
-
-    -- Integration for npm stuff
-    { "~/repos/telescope-npm" },
-
-    -- lua sqlite binding
-    { "tami5/sql.nvim" },
   },
   config = function()
     require("plugins.telescope").config()
