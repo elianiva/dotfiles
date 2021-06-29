@@ -1,4 +1,3 @@
-local job_ok, Job = pcall(require, "plenary.job")
 local fn, api = vim.fn, vim.api
 
 _G.Util = {}
