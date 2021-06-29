@@ -43,3 +43,5 @@ dap.adapters.rust = {
   },
   name = "lldb",
 }
+
+require("dap.ext.vscode").load_launchjs()

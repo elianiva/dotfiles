@@ -125,7 +125,7 @@ end, { silent = true } }
 inoremap {
   "<C-k>",
   function()
-    return ls.jumpable(-1) and ls.jump_prev() or Util.t "<C-j>"
+    return ls.jumpable(-1) and ls.jump_prev() or Util.t "<C-k>"
   end,
   { silent = true },
 }

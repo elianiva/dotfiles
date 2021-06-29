@@ -30,5 +30,5 @@ let g:loaded_spec         = 1
 runtime! lua/modules/keymap.lua
 runtime! lua/modules/options.lua
 runtime! lua/modules/util.lua
-runtime! lua/modules/mappings.lua
+runtime! lua/modules/mappings.vim
 runtime! lua/modules/statusline.lua
