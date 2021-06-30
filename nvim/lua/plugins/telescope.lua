@@ -8,34 +8,38 @@ M.plugin = {
     {"", "<C-f>"},
     {"n", "<Leader>f"}
   },
+  wants = {
+    "popup.nvim",
+    "plenary.nvim",
+    "telescope-fzf-native.nvim",
+    "telescope-frecency.nvim",
+  },
   requires = {
     -- Preview media files in Telescope
     {
       "nvim-telescope/telescope-media-files.nvim",
-      after = "telescope.nvim",
+      opt = true
     },
 
     -- A telescope.nvim extension that offers intelligent prioritization
     -- when selecting files from your editing history.
     {
       "nvim-telescope/telescope-frecency.nvim",
-      after = "telescope.nvim",
+      opt = true,
       requires = {
         -- lua sqlite binding
-        "tami5/sql.nvim",
+        {
+          "tami5/sql.nvim",
+          module = "sql",
+        },
       },
     },
 
     -- FZF style sorter
     {
       "nvim-telescope/telescope-fzf-native.nvim",
+      opt = true,
       run = "make",
-    },
-
-    -- Integration for nvim-dap with telescope.nvim
-    {
-      "nvim-telescope/telescope-dap.nvim",
-      after = "telescope.nvim",
     },
   },
   config = function()

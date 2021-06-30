@@ -139,6 +139,8 @@ wk.setup {
   },
   -- show help message on the command line when the popup is visible
   show_help = true,
-  -- automatically setup triggers
-  triggers = "auto",
+  triggers = "auto", -- automatically setup triggers
+  triggers_blacklist = {
+    i = { "," },
+  },
 }
