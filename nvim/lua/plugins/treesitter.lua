@@ -2,30 +2,34 @@ local M = {}
 
 M.plugin = {
   "~/repos/nvim-treesitter",
-  event = "BufRead",
+  event = "BufReadPost",
+  wants = {
+    "playground",
+    "nvim-treesitter-textobjects",
+    "nvim-ts-context-commentstring",
+  },
   requires = {
     -- debug stuff
     {
       "nvim-treesitter/playground",
-      after = "nvim-treesitter",
       cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" },
     },
 
     -- moar textobjects
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      after = "nvim-treesitter",
+      opt = true,
     },
 
     -- context aware commentstring
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
-      after = "vim-commentary",
+      opt = true,
     },
   },
   config = function()
     require("plugins.treesitter").config()
-  end
+  end,
 }
 
 M.config = function()
@@ -33,9 +37,25 @@ M.config = function()
 
   ts_config.setup {
     ensure_installed = {
-      "javascript", "typescript", "tsx", "jsdoc", "cpp", "jsonc",
-      "html", "css", "lua", "c", "rust", "go", "java", "query", "python",
-      "rst", "svelte", "json", "comment",
+      "javascript",
+      "typescript",
+      "tsx",
+      "jsdoc",
+      "cpp",
+      "jsonc",
+      "html",
+      "css",
+      "lua",
+      "c",
+      "rust",
+      "go",
+      "java",
+      "query",
+      "python",
+      "rst",
+      "svelte",
+      "json",
+      "comment",
     },
 
     matchup = {

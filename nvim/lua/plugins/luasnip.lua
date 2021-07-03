@@ -24,25 +24,6 @@ export default function $1() {
   ),
 }
 
-local html = {
-  ls.parser.parse_snippet(
-    { trig = "!" },
-    [[
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>${1:awesome title}</title>
-  </head>
-  <body>
-    <div></div>
-  </body>
-</html>
-    ]]
-  ),
-}
-
 local dart = {
   ls.parser.parse_snippet(
     { trig = "stl" },
@@ -85,7 +66,6 @@ ls.snippets = {
     ls.parser.parse_snippet({ trig = "php" }, "<?php $0 ?>"),
     ls.parser.parse_snippet({ trig = "phpp" }, "<?= $0 ?>"),
   },
-  html = html,
   dart = dart,
   javascriptreact = react,
   typescriptreact = react,

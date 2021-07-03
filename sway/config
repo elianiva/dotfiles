@@ -6,7 +6,7 @@
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-  gsettings set $gnome-schema gtk-theme "gruvbox"
+  gsettings set $gnome-schema gtk-theme "Arc-Dark"
   gsettings set $gnome-schema icon-theme "Papirus-Dark"
   gsettings set $gnome-schema cursor-theme "Breeze"
   gsettings set $gnome-schema font-name "Inter V, 10"

@@ -1,2 +1,3 @@
-set recolor-lightcolor \#1d2021
-set recolor-darkcolor \#ebdbb2
+set recolor
+set recolor-lightcolor \#161822
+set recolor-darkcolor \#c6c8d1

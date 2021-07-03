@@ -6,7 +6,7 @@ if not packer_ok then
 end
 
 packer.init {
-  compile_path = vim.fn.stdpath('data')..'/site/pack/loader/start/packer.nvim/plugin/packer_compiled.vim',
+  compile_path = vim.fn.stdpath('data')..'/site/pack/loader/start/packer.nvim/plugin/packer_compiled.lua',
   git = {
     clone_timeout = 300, -- 5 minutes, I have horrible internet
   },
@@ -262,7 +262,7 @@ local plugins = {
 
   {
     "andymass/vim-matchup",
-    event = "CursorMoved",
+    event = "BufRead",
     setup = function()
       vim.g.matchup_matchparen_offscreen = {
         method = "popup",
@@ -304,7 +304,6 @@ local plugins = {
       local noremap = function(lhs, rhs)
         vim.api.nvim_set_keymap("n", lhs, rhs, { noremap = true })
       end
-
       noremap("<Leader>tn", "<CMD>TestNearest<CR>")
       noremap("<Leader>tf", "<CMD>TestFile<CR>")
       noremap("<Leader>ts", "<CMD>TestSuite<CR>")

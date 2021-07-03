@@ -2,22 +2,9 @@ local M = {}
 
 M.plugin = {
   "jose-elias-alvarez/null-ls.nvim",
-  ft = {
-    "typescriptreact",
-    "typescript",
-    "javascriptreact",
-    "javascript",
-    "svelte",
-    "json",
-    "jsonc",
-    "css",
-    "html",
-    "lua",
-    "go",
-  },
   config = function()
     require("plugins.null-ls").config()
-  end
+  end,
 }
 
 M.config = function()
@@ -40,6 +27,9 @@ M.config = function()
 
   local sources = {
     gofumpt,
+    b.formatting.shfmt.with {
+      args = { "-i", "2" },
+    },
     b.formatting.stylua.with {
       args = {
         "--config-path",
