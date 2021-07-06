@@ -2,12 +2,8 @@ local M = {}
 
 M.plugin = {
   "~/repos/nvim-treesitter",
-  event = "BufReadPost",
-  wants = {
-    "playground",
-    "nvim-treesitter-textobjects",
-    "nvim-ts-context-commentstring",
-  },
+  event = "BufRead",
+  opt = true,
   requires = {
     -- debug stuff
     {
@@ -16,16 +12,10 @@ M.plugin = {
     },
 
     -- moar textobjects
-    {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      opt = true,
-    },
+    "nvim-treesitter/nvim-treesitter-textobjects",
 
     -- context aware commentstring
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      opt = true,
-    },
+    "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
     require("plugins.treesitter").config()
@@ -58,21 +48,10 @@ M.config = function()
       "comment",
     },
 
-    matchup = {
-      enable = true,
-    },
-
-    highlight = {
-      enable = true,
-    },
-
-    indent = {
-      enable = false, -- wait until it's back to normal
-    },
-
-    playground = {
-      enable = true,
-    },
+    matchup = { enable = true },
+    highlight = { enable = true },
+    indent = { enable = false }, -- wait until it's back to normal
+    playground = { enable = true },
 
     context_commentstring = {
       enable = true,

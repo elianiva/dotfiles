@@ -3,6 +3,7 @@ local M = {}
 M.plugin = {
   "~/repos/telescope.nvim",
   module = "telescope",
+  cmd = "Telescope",
   keys = {
     {"", "<C-p>"},
     {"", "<C-f>"},
@@ -13,11 +14,19 @@ M.plugin = {
     "plenary.nvim",
     "telescope-fzf-native.nvim",
     "telescope-frecency.nvim",
+    "telescope-media-files.nvim",
+    "telescope-npm",
   },
   requires = {
     -- Preview media files in Telescope
     {
       "nvim-telescope/telescope-media-files.nvim",
+      opt = true
+    },
+
+    -- NPM stuff
+    {
+      "~/repos/telescope-npm",
       opt = true
     },
 
@@ -114,7 +123,7 @@ M.config = function()
           ["<C-t>"] = actions.select_tab,
 
           ["<C-c>"] = actions.close,
-          ["<Esc>"] = actions.close,
+          -- ["<Esc>"] = actions.close,
 
           ["<C-u>"] = actions.preview_scrolling_up,
           ["<C-d>"] = actions.preview_scrolling_down,

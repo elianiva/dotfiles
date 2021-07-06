@@ -33,7 +33,7 @@ M.config = function()
     b.formatting.stylua.with {
       args = {
         "--config-path",
-        vim.env.HOME .. "/.config/nvim/stylua.toml",
+        vim.fn.stdpath "config" .. "stylua.toml",
         "-",
       },
     },

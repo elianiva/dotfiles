@@ -32,7 +32,7 @@
 
   <windows>
     <window name="notification" screen="0" stacking="ov">
-      <geometry anchor="top left" x="6" y="5" width="25%" height="10%" />
+      <geometry anchor="top right" x="5" y="5" width="25%" height="10%" />
       <widget>
         <notification />
       </widget>

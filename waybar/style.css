@@ -39,6 +39,7 @@ window#waybar {
 #memory,
 #temperature,
 #custom-menu,
+#custom-notif,
 #battery {
   background-color: #22242F;
   padding: 0 10px;
@@ -46,6 +47,11 @@ window#waybar {
 }
 
 #custom-menu {
+  color: #e27878;
+  border-bottom: 1px #e27878 solid;
+}
+
+#custom-notif {
   color: #e27878;
   border-bottom: 1px #e27878 solid;
 }

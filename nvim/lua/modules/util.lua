@@ -16,13 +16,14 @@ Util.trigger_completion = function()
   local prev_char = fn.getline("."):sub(prev_col, prev_col)
   local next_char = fn.getline("."):sub(next_col, next_col)
 
-  -- handle indent
-  -- html indents
-  if prev_char == ">" and next_char == "<" then
-    return Util.t "<CR><C-o>O"
-  end
+  -- minimal autopairs-like behaviour
+  if prev_char == "{" and next_char ~= "}" then return Util.t("<CR>}<C-o>O") end
+  if prev_char == "[" and next_char ~= "]" then return Util.t("<CR>]<C-o>O") end
+  if prev_char == "(" and next_char ~= ")" then return Util.t("<CR>)<C-o>O") end
+  if prev_char == ">" and next_char == "<" then return Util.t("<CR><C-o>O") end -- html indents
+  if prev_char == "(" and next_char == ")" then return Util.t("<CR><C-o>O") end -- flutter indents
 
-  return Util.t "<CR><C-R>=enwise#close()<CR>"
+  return Util.t "<CR>"
 end
 
 local to_rgb = function(hex)

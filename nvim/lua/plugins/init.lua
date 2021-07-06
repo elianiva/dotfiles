@@ -6,7 +6,8 @@ if not packer_ok then
 end
 
 packer.init {
-  compile_path = vim.fn.stdpath('data')..'/site/pack/loader/start/packer.nvim/plugin/packer_compiled.lua',
+  compile_path = vim.fn.stdpath "data"
+    .. "/site/pack/loader/start/packer.nvim/plugin/packer_compiled.lua",
   git = {
     clone_timeout = 300, -- 5 minutes, I have horrible internet
   },
@@ -65,12 +66,12 @@ local plugins = {
 
   {
     "nvim-lua/plenary.nvim",
-    module = "plenary"
+    module = "plenary",
   },
 
   {
     "nvim-lua/popup.nvim",
-    module = "popup"
+    module = "popup",
   },
 
   {
@@ -164,14 +165,6 @@ local plugins = {
   },
 
   {
-    "mapkts/enwise",
-    event = "BufRead",
-    setup = function()
-      vim.g.enwise_enable_globally = 1
-    end,
-  },
-
-  {
     "steelsojka/headwind.nvim",
     cmd = { "HeadwindBuf", "HeadwindVisual" },
     setup = function()
@@ -188,13 +181,6 @@ local plugins = {
     config = function()
       require("nvim-web-devicons").setup { default = true }
     end,
-    requires = {
-      -- requires nonicons font installed
-      {
-        "yamatsum/nvim-nonicons",
-        module = "nvim-nonicons"
-      },
-    },
   },
 
   {
@@ -293,8 +279,8 @@ local plugins = {
     requires = {
       "sindrets/diffview.nvim",
       cmd = { "DiffViewOpen" },
-      module = "diffview"
-    }
+      module = "diffview",
+    },
   },
 
   {

@@ -7,12 +7,16 @@
   // "width": 1280, // Waybar width
   "modules-left": ["custom/menu", "sway/workspaces", "river/tags", "sway/mode", "network"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "battery", "tray"],
+  "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "battery", "custom/notif", "tray"],
   // Modules configuration
   // wl-gammactl -c 1.015 -b 0.946 -g 0.985
   "custom/menu": {
     "format": "舘",
     "on-click": "eww close sidebar || eww open sidebar"
+  },
+  "custom/notif": {
+    "format": "",
+    "on-click": "eww close notification || eww open notification"
   },
   "river/tags": {
     "num-tags": 5

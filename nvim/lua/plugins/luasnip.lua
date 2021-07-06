@@ -3,13 +3,16 @@ local s = ls.s -- Snippet
 local t = ls.t -- Text
 local i = ls.i -- Input
 local f = ls.f -- Function
-local k = vim.keymap
-local inoremap = k.inoremap
-local snoremap = k.snoremap
+
+ls.config.set_config {
+  history = true,
+  updateevents = "TextChanged,TextChangedI",
+}
 
 local copy = function(args)
   return args[1]
 end
+
 
 local react = {
   ls.parser.parse_snippet(
@@ -86,26 +89,10 @@ ls.snippets = {
   },
 }
 
-snoremap { "<C-j>", function()
-  return ls.jump(1)
-end, { silent = true } }
-
-inoremap {
-  "<C-j>",
-  function()
-    return ls.expand_or_jumpable() and ls.expand_or_jump() or Util.t "<C-j>"
-  end,
-  { silent = true },
-}
-
-snoremap { "<C-k>", function()
-  return ls.jump(-1)
-end, { silent = true } }
-
-inoremap {
-  "<C-k>",
-  function()
-    return ls.jumpable(-1) and ls.jump_prev() or Util.t "<C-k>"
-  end,
-  { silent = true },
-}
+vim.cmd [[
+  imap <silent><expr> <c-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-k>'
+  inoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
+  imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+  snoremap <silent> <c-k> <cmd>lua require('luasnip').jump(1)<CR>
+  snoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
+]]
