@@ -150,7 +150,7 @@ M.config = function()
     },
     pickers = {
       find_files = {
-        file_ignore_patterns = { "%.png", "%.jpg", "%.webp" },
+        file_ignore_patterns = { "%.png", "%.jpg", "%.webp", "node_modules" },
       },
       lsp_code_actions = M.no_preview(),
       current_buffer_fuzzy_find = M.no_preview(),
@@ -205,9 +205,23 @@ M.config = function()
     telescope.extensions.npm.scripts(M.no_preview())
   end
 
+  M.npm_packages = function()
+    telescope.extensions.npm.packages(M.no_preview())
+  end
+
+  M.builtins = function()
+    require("telescope.builtin").builtin(M.no_preview())
+  end
+
+  M.workspace_symbols = function()
+    require("telescope.builtin").lsp_workspace_symbols {
+      path_display = { "absolute" },
+    }
+  end
+
   M.grep_prompt = function()
     builtin.grep_string {
-      shorten_path = true,
+      path_display = { "shorten" },
       search = vim.fn.input "Grep String > ",
       only_sort_text = true,
       use_regex = true,
@@ -217,12 +231,14 @@ M.config = function()
   -- toggle telescope.nvim
   nnoremap { "<C-p>", builtin.find_files, { silent = true } }
   nnoremap { "<C-f>", M.grep_prompt, { silent = true } }
+  nnoremap { "<Leader>ft", M.builtins, { silent = true } }
   nnoremap { "<Leader>fb", builtin.current_buffer_fuzzy_find, { silent = true } }
   nnoremap { "<Leader>ff", M.frecency, { silent = true } }
   nnoremap { "<Leader>fa", M.arecibo, { silent = true } }
-  nnoremap { "<Leader>fl", builtin.file_browser, { silent = true } }
+  nnoremap { "<Leader>fls", M.workspace_symbols, { silent = true } }
   nnoremap { "<Leader>fg", builtin.git_commits, { silent = true } }
   nnoremap { "<Leader>fns", M.npm_script, { silent = true } }
+  nnoremap { "<Leader>fnp", M.npm_packages, { silent = true } }
 end
 
 return M

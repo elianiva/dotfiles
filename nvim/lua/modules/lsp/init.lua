@@ -14,8 +14,10 @@ local servers = {
   --   filetypes = { "javascript", "typescript", "typescriptreact" },
   --   root_dir = vim.loop.cwd,
   --   settings = {
-  --     documentFormatting = true,
-  --     lint = true
+  --     documentFormatting = false,
+  --     lint = true,
+  --     unstable = true,
+  --     config = "./tsconfig.json"
   --   }
   -- },
   sumneko_lua = require("modules.lsp.sumneko").config,
@@ -25,7 +27,20 @@ local servers = {
   cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
   intelephense = { root_dir = vim.loop.cwd },
   clangd = {},
-  gopls = {},
+  gopls = {
+    settings = {
+      gopls = {
+        codelenses = {
+          references = true,
+          test = true,
+          tidy = true,
+          upgrade_dependency = true,
+          generate = true
+        },
+        gofumpt = true,
+      },
+    },
+  },
   pyright = {},
   texlab = {},
 }

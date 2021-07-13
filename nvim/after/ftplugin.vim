@@ -1,9 +1,3 @@
-" prevent typo when pressing `wq` or `q`
-cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
-cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
-cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
-cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
-
 " Set filetypes
 augroup Filetypes
   au!
@@ -48,11 +42,3 @@ augroup Emmet
   au!
   au FileType html,javascript,typescript,javascriptreact,typescriptreact,svelte EmmetInstall
 augroup END
-
-" " hide the cursor if we're inside NvimTree
-" augroup HideCursor
-"   au!
-"   au WinLeave,FileType NvimTree set guicursor=n-v-c-sm:block,i-ci-ve:ver2u,r-cr-o:hor20,
-"   au WinEnter,FileType NvimTree set guicursor=n-c-v:block-Cursor/Cursor-blinkon0,
-" augroup END
-" au FileType NvimTree hi Cursor blend=100

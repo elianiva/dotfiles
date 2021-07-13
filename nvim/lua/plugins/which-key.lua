@@ -13,10 +13,16 @@ wk.register({
     name = "+Telescope",
     f = "Frecency",
     b = "Buffer Fuzzy",
-    l = "File Browser",
+    g = "Git Commits",
+    t = "Builtins",
+    l = {
+      name = "+LSP",
+      s = "Workspace Symbols",
+    }
   },
   g = {
     name = "+LSP",
+    f = "Formatting",
     a = "Code Action",
     d = "Symbol Definition(s)",
     r = "Symbol Reference(s)",

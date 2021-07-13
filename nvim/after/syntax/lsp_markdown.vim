@@ -1,7 +1,7 @@
-syntax region mkdID matchgroup=mkdEscape start="\[" end="\]" oneline concealends
 syntax region mkdURL matchgroup=mkdEscape start="(" end=")" contained oneline
-syntax region mkdCode matchgroup=mkdEscape start="`" end="`" oneline concealends
-syntax region mkdURI matchgroup=mkdEscape  start="\\\@<!!\?\[\ze[^]\n]*\n\?[^]\n]*\][[(]" end="\]" contains=mkdID,mkdURL nextgroup=mkdURL,mkdID skipwhite
+syntax region mkdCode matchgroup=mkdEscape start="`" end="`" oneline concealends contained
+syntax region mkdID matchgroup=mkdEscape start="\[" end="\]" oneline concealends contains=mkdCode
+syntax region mkdURI matchgroup=mkdEscape  start="\\\@<!!\?\[\ze[^]\n]*\n\?[^]\n]*\][[(]" end="\]" contains=mkdID,mkdURL,mkdCode nextgroup=mkdURL,mkdID skipwhite
 syntax match mkdUnderline /─*$/
 syntax match mkdLeftAngle /&lt;/ conceal cchar=<
 syntax match mkdRightAngle /&gt;/ conceal cchar=>

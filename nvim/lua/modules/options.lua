@@ -2,7 +2,6 @@ local o = vim.opt
 
 -- o.number         = true -- enable number
 -- o.relativenumber = true -- enable relativenumber
-o.autoindent     = true -- enable autoindent
 o.undofile       = true -- persistent undo
 o.backup         = false -- disable backup
 o.cursorline     = true -- enable cursorline
@@ -16,6 +15,7 @@ o.equalalways    = true -- make window size always equal
 o.lazyredraw     = true -- lazyredraw to make macro faster
 o.list           = true -- display listchars
 o.showmode       = false -- don't show mode
+o.autoindent     = true -- enable autoindent
 o.smartindent    = true -- smarter indentation
 o.smarttab       = true -- make tab behaviour smarter
 o.splitbelow     = true -- split below instead of above

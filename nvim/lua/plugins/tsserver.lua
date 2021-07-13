@@ -36,6 +36,7 @@ end
 
 M.config = function()
   local lspconfig = require "lspconfig"
+  -- if true then return end
 
   lspconfig.tsserver.setup {
     filetypes = {

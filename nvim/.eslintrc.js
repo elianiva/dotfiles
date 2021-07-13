@@ -6,6 +6,10 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 2019,
-    sourceType: "module"
+    sourceType: "module",
+    ecmaFeatures: {
+      blockBindings: true,
+      jsx: true,
+    },
   },
 };

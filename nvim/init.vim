@@ -26,6 +26,12 @@ let g:loaded_matchit      = 1
 let g:loaded_matchparen   = 1
 let g:loaded_spec         = 1
 
+" prevent typo when pressing `wq` or `q`
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
+cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
+cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
+
 " order matters
 runtime! lua/modules/keymap.lua
 runtime! lua/modules/options.lua
