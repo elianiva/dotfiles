@@ -14,4 +14,4 @@ theme.white = xrdb.color15
 theme.white_alt = xrdb.color7
 
 theme.grey = xrdb.color8
-theme.grey_alt = "#504945"
+theme.grey_alt = "#22242F"

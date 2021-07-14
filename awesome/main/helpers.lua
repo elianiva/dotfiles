@@ -1,12 +1,14 @@
-local awful = require("awful")
-local gears = require("gears")
-local wibox = require("wibox")
-local xresources = require("beautiful.xresources")
+local awful = require "awful"
+local gears = require "gears"
+local wibox = require "wibox"
+local xresources = require "beautiful.xresources"
 local dpi = xresources.apply_dpi
 
 local helpers = {}
 
-helpers.noop = function() return end
+helpers.noop = function()
+  return
+end
 
 -- Resize client or factor
 local floating_resize_amount = dpi(20)
@@ -43,10 +45,7 @@ end
 helpers.markup = function(content, opts)
   local fg = opts.fg or ""
 
-  return string.format(
-    '<span foreground="%s">%s</span>',
-    fg, content
-  )
+  return string.format('<span foreground="%s">%s</span>', fg, content)
 end
 
 helpers.rrect = function(radius)
@@ -59,24 +58,67 @@ helpers.module_wrapper = function(opts)
   local left, right, top, bottom
 
   if opts.type == "icon" then
-    left = opts.left or 4
+    left = opts.left or 6
     right = opts.right or 4
-    top = opts.top or 8
-    bottom = opts.bottom or 8
-  else
-    if opts.type == "module" then
-      left = opts.left or 0
-      right = opts.right or 6
-      top = opts.top or 4
-      bottom = opts.bottom or 4
-    else
-      return
-    end
+    top = opts.top or opts.no_bg and 8 or 4
+    bottom = opts.bottom or opts.no_bg and 8 or 4
+  elseif opts.type == "module" then
+    left = opts.left or 0
+    right = opts.right or 6
+    top = opts.top or 4
+    bottom = opts.bottom or 4
   end
 
-  return wibox.container.margin(
-    opts.widget, dpi(left), dpi(right), dpi(top), dpi(bottom)
-  )
+  if opts.no_bg then
+    return wibox.widget {
+      opts.widget,
+      top = dpi(top),
+      left = dpi(left),
+      right = dpi(right),
+      bottom = dpi(bottom),
+      widget = wibox.container.margin,
+    }
+  end
+
+  return wibox.widget {
+    {
+      {
+        {
+          opts.widget,
+          top = dpi(top),
+          left = dpi(left),
+          right = dpi(right),
+          bottom = dpi(bottom),
+          widget = wibox.container.margin,
+        },
+        bg = theme.grey_alt,
+        widget = wibox.container.background,
+      },
+      color = theme.blue,
+      bottom = dpi(1),
+      widget = wibox.container.margin,
+    },
+    top = dpi(4),
+    bottom = dpi(2),
+    widget = wibox.container.margin,
+  }
+
+  -- return wibox.container.margin(
+  --   wibox.container.background(
+  --     wibox.container.margin(
+  --       opts.widget,
+  --       dpi(left),
+  --       dpi(right),
+  --       dpi(top),
+  --       dpi(bottom)
+  --     ),
+  --     theme.grey_alt
+  --   ),
+  --   dpi(0),
+  --   dpi(0),
+  --   dpi(4),
+  --   dpi(4)
+  -- )
 end
 
 return helpers

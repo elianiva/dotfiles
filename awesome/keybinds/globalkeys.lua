@@ -48,7 +48,7 @@ local M = gears.table.join(
   {description = "open a terminal", group = "launcher"}),
 
   awful.key({ modkey }, "d", function()
-    awful.spawn.easy_async_with_shell(launcher .. "run " .. theme.color_name, noop)
+    awful.spawn.easy_async_with_shell(launcher .. "drun " .. theme.color_name, noop)
   end,
   {description = "open app launcher", group = "launcher"}),
 
