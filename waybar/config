@@ -1,5 +1,4 @@
 // vim: ft=jsonc
-
 {
   "layer": "top",
   "position": "top",
@@ -7,7 +6,7 @@
   // "width": 1280, // Waybar width
   "modules-left": ["custom/menu", "sway/workspaces", "river/tags", "sway/mode", "network"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "battery", "custom/notif", "tray"],
+  "modules-right": ["custom/recorder", "pulseaudio", "temperature", "cpu", "memory", "battery", "custom/notif", "tray"],
   // Modules configuration
   // wl-gammactl -c 1.015 -b 0.946 -g 0.985
   "custom/menu": {
@@ -17,6 +16,13 @@
   "custom/notif": {
     "format": "",
     "on-click": "eww close notification || eww open notification"
+  },
+  "custom/recorder": {
+    "format": "",
+    "return-type": "json",
+    "interval": 1,
+    "exec": "echo '{\"class\": \"recording\"}'",
+    "exec-if": "pgrep wf-recorder"
   },
   "river/tags": {
     "num-tags": 5
@@ -71,12 +77,17 @@
     "critical-threshold": 90,
     // "format-critical": "{temperatureC}°C {icon}",
     "format": "<span color=\"#e2a478\">{icon}</span> {temperatureC}°C",
-    "format-icons": [" "]
+    "format-icons": [
+      " "
+    ]
   },
   "backlight": {
     // "device": "acpi_video1",
     "format": "<span color=\"#84a0c6\">{icon}</span> {percent}%",
-    "format-icons": [" ", " "]
+    "format-icons": [
+      " ",
+      " "
+    ]
   },
   "battery": {
     "states": {
@@ -110,7 +121,11 @@
       "headphone": " ",
       "hands-free": "墳",
       "headset": " ",
-      "default": [" ", " ", " "]
+      "default": [
+        " ",
+        " ",
+        " "
+      ]
     },
     "on-click": "pavucontrol"
   }

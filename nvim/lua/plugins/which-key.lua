@@ -28,6 +28,7 @@ wk.register({
     r = "Symbol Reference(s)",
     R = "Rename Symbol",
     D = "Show Line Diagnostic",
+    l = "Run codelense",
     ["]"] = "Next Diagnostic",
     ["["] = "Prev Diagnostic",
   },

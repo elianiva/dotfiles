@@ -2,7 +2,7 @@ local gears = require("gears")
 local awful = require("awful")
 local naughty = require("naughty")
 local exit_screen_show = require("main.exitscreen")
-local systray = require("statusbar.modules.systray")
+local dpi = require"beautiful.xresources".apply_dpi
 local noop = require("main.helpers").noop
 
 -- Resource Configuration
@@ -21,9 +21,17 @@ local M = gears.table.join(
 
   -- Toggle tray visibility
   awful.key({ modkey }, "=", function()
-    systray.visible = not systray.visible
+    theme.useless_gap = dpi(4)
+    awful.layout.arrange(awful.screen.focused())
   end,
-  {description = "toggle tray visibility", group = "awesome"}),
+  {description = "show gaps", group = "awesome"}),
+
+  -- Toggle tray visibility
+  awful.key({ modkey, "Shift" }, "=", function()
+    theme.useless_gap = dpi(0)
+    awful.layout.arrange(awful.screen.focused())
+  end,
+  {description = "hide gaps", group = "awesome"}),
 
   -- Tag browsing
   awful.key({ modkey }, "Left", function()

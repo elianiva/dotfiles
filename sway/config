@@ -1,7 +1,5 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
+# vim: foldmethod=marker
+
 ### GTK 3 Theme{{{
 
 set $gnome-schema org.gnome.desktop.interface
@@ -21,6 +19,7 @@ exec {
   wl-paste -t text --watch clipman store
   light -S 40
   eww daemon
+  ~/.config/eww/scripts/notification
 }
 # }}}
 
@@ -189,6 +188,9 @@ bindsym $mod+Ctrl+l resize grow width 20 px
 ### RESTART SWAY WINDOW MANAGER {{{
 bindsym $mod+Shift+r reload
 # }}}
+
+# record screen
+bindsym $mod+r exec toggle-recorder
 
 ### BORDER RULES {{{
 # for_window [class="^.*"] border normal 2

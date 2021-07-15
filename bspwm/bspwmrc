@@ -5,13 +5,13 @@
 bspc monitor LVDS-1 -d 1 2 3 4 5 6
 
 # border colors
-bspc config focused_border_color "#ebdbb2"
-bspc config active_border_color "#ebdbb2"
-bspc config normal_border_color "#3e3e3e"
-bspc config presel_feedback_color "#282828"
+bspc config focused_border_color "#6b7089"
+bspc config active_border_color "#6b7089"
+bspc config normal_border_color "#161821"
+bspc config presel_feedback_color "#161821"
 
 bspc config border_width             2
-bspc config window_gap               8
+bspc config window_gap               4
 bspc config top_padding              28
 bspc config bottom_padding           0
 bspc config left_padding             0
@@ -48,14 +48,12 @@ lxpolkit &
 clipmenud &
 nitrogen --restore &
 # lemon_panel &
-viper start &
 polybar -c ~/.config/polybar/config.ini top &
 xsetroot -cursor_name left_ptr &
 picom --experimental-backends -b &
 xrandr --output LVDS-1 --gamma 0.8:0.8:0.8
-setxkbmap -option caps:none
 xfce4-power-manager &
-(ps x | grep bspswallow | grep -v grep) || bspswallow &
+# (ps x | grep bspswallow | grep -v grep) || bspswallow &
 # mpd 2>&1>/dev/null && mpc add / &
 # conky &
 #}}}

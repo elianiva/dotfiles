@@ -11,5 +11,5 @@ picom --experimental-backends &
 
 dbus-launch --exit-with-session
 
-# exec awesome
-exec dbus-launch startplasma-x11
+exec awesome
+# exec dbus-launch startplasma-x11

@@ -10,7 +10,7 @@ nnoremap <C-n> <CMD>NvimTreeToggle<CR>
 tnoremap <C-h> <C-\><C-n><C-w><C-h>
 tnoremap <C-j> <C-\><C-n><C-w><C-j>
 tnoremap <C-k> <C-\><C-n><C-w><C-k>
-tnoremap <C-l> <C-\><C-n><C-w><C-l>
+" tnoremap <C-l> <C-\><C-n><C-w><C-l>
 
 " resize
 tnoremap <Left>  <C-\><C-n>:vertical resize +2<CR>

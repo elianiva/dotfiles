@@ -56,6 +56,12 @@ window#waybar {
   border-bottom: 1px #e27878 solid;
 }
 
+#custom-recorder {
+  padding: 0 10px;
+  margin-right: 4px;
+  color: #e27878;
+}
+
 #pulseaudio {
   border-bottom: 1px #a093c7 solid;
 }

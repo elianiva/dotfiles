@@ -6,7 +6,7 @@ super + Return
 
 # Launch rofi
 super + {_, shift + } d
-         ~/.config/rofi/launchers/launcher.sh {drun, run}
+        launcher {drun, run} icy
 
 # Emoji picker
 super + e
@@ -16,33 +16,22 @@ super + e
 super + c
         clipmenu -p "Clipboard: " -theme ~/.config/rofi/themes/gruvbox.rasi
 
-# Launch wifi menu using rofi
-super + i
-        dmenu_todo dmenu
-
-# Launch Music Pop Up
-super + s
-        $TERMINAL -c music -e ncmpcpp
-
 # Powermenu
 super + x
         powermenu
 
 # Take Screenshot
 Print
-        flameshot gui -p ~/pix/shots
+        flameshot full -p ~/pix/shots
 
 super + Print
-        shot
+        flameshot gui -p ~/pix/shots
 
 # Control MPC
 XF86Audio{Play,Prev,Next,Stop}
         playerctl {play-pause,previous,next,toggle}
 
 Pause
-        mpc toggle
-
-super + space
         mpc toggle
 
 # Control Volume
@@ -71,7 +60,7 @@ super + q
 
 # Change Gaps
 super + {_, shift +} equal
-        bspc config -d focused window_gap {8, 0}
+        bspc config -d focused window_gap {4, 0}
 
 # Swap to Biggest Window in Current Workspace
 super + g
