@@ -9,6 +9,10 @@ require("compe").setup {
   incomplete_delay = 400,
   throttle_time = 200,
   allow_prefix_unmatch = true,
+  documentation = {
+    border = "solid",
+    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+  },
 
   source = {
     path = true,
@@ -17,7 +21,6 @@ require("compe").setup {
       priority = 1, -- last priority
     },
     luasnip = true,
-    nvim_lua = true,
     nvim_lsp = {
       enable = true,
       priority = 10001, -- takes precedence over file completion

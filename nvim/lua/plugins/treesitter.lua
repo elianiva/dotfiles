@@ -2,6 +2,7 @@ local M = {}
 
 M.plugin = {
   "~/repos/nvim-treesitter",
+  module = "nvim-treesitter",
   event = "BufRead",
   opt = true,
   requires = {

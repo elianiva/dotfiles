@@ -21,14 +21,16 @@ local M = gears.table.join(
 
   -- Toggle tray visibility
   awful.key({ modkey }, "=", function()
-    theme.useless_gap = dpi(4)
+    local tag = awful.screen.focused().selected_tag
+    tag.gap = dpi(4)
     awful.layout.arrange(awful.screen.focused())
   end,
   {description = "show gaps", group = "awesome"}),
 
   -- Toggle tray visibility
   awful.key({ modkey, "Shift" }, "=", function()
-    theme.useless_gap = dpi(0)
+    local tag = awful.screen.focused().selected_tag
+    tag.gap = dpi(0)
     awful.layout.arrange(awful.screen.focused())
   end,
   {description = "hide gaps", group = "awesome"}),

@@ -3,11 +3,15 @@ local lspconfig = require "lspconfig"
 -- override handlers
 pcall(require, "modules.lsp.handlers")
 
-local custom_capabilities = function()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return capabilities
-end
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    "documentation",
+    "detail",
+    "additionalTextEdits",
+  },
+}
 
 local servers = {
   -- denols = {
@@ -35,7 +39,7 @@ local servers = {
           test = true,
           tidy = true,
           upgrade_dependency = true,
-          generate = true
+          generate = true,
         },
         gofumpt = true,
       },
@@ -43,6 +47,7 @@ local servers = {
   },
   pyright = {},
   texlab = {},
+  -- ["null-ls"] = {},
 }
 
 for name, opts in pairs(servers) do
@@ -51,13 +56,14 @@ for name, opts in pairs(servers) do
   else
     local client = lspconfig[name]
     client.setup {
+      flags = { debounce_text_changes = 150 },
       cmd = opts.cmd or client.cmd,
       filetypes = opts.filetypes or client.filetypes,
       on_attach = opts.on_attach or Util.lsp_on_attach,
       on_init = opts.on_init or Util.lsp_on_init,
       handlers = opts.handlers or client.handlers,
       root_dir = opts.root_dir or client.root_dir,
-      capabilities = opts.capabilities or custom_capabilities(),
+      capabilities = opts.capabilities or capabilities,
       settings = opts.settings or {},
     }
   end

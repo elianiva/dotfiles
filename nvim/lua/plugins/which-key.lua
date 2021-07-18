@@ -69,6 +69,7 @@ wk.register({
 
 wk.register {
   gc = "Comments",
+  gy = "Copy Github Link",
   gJ = "Join Multiline",
   gS = "Split Into Multiline",
 

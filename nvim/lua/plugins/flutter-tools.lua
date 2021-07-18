@@ -2,7 +2,6 @@ local M = {}
 
 M.plugin = {
   "akinsho/flutter-tools.nvim",
-  ft = "flutter",
   config = function()
     require("plugins.flutter-tools").config()
   end

@@ -13,7 +13,6 @@ local copy = function(args)
   return args[1]
 end
 
-
 local react = {
   ls.parser.parse_snippet(
     { trig = "rfc" },
@@ -57,19 +56,37 @@ class _$1 extends State<$1> {
   ),
 }
 
+local go = {
+  ls.parser.parse_snippet(
+    { trig = "main" },
+    [[
+func main() {
+  $0
+}
+    ]]
+  ),
+  ls.parser.parse_snippet(
+    { trig = "ife" },
+    [[
+if err != nil {
+  return $0
+}
+    ]]
+  ),
+}
+
 ls.snippets = {
   all = {
     ls.parser.parse_snippet({ trig = "todo" }, "TODO(elianiva): ${1:todo}"),
     ls.parser.parse_snippet({ trig = "fixme" }, "FIXME(elianiva): ${1:fixme}"),
-    s({ trig = "date" }, {
-      t { vim.fn.strftime "%FT%T" },
-    }),
+    s({ trig = "date" }, { t { vim.fn.strftime "%F-%T" } }),
   },
   php = {
     ls.parser.parse_snippet({ trig = "php" }, "<?php $0 ?>"),
     ls.parser.parse_snippet({ trig = "phpp" }, "<?= $0 ?>"),
   },
   dart = dart,
+  go = go,
   javascriptreact = react,
   typescriptreact = react,
   tex = {
