@@ -1,7 +1,7 @@
 local M = {}
 
 M.plugin = {
-  "~/repos/telescope.nvim",
+  "~/Repos/telescope.nvim",
   module = "telescope",
   cmd = "Telescope",
   keys = {
@@ -26,7 +26,7 @@ M.plugin = {
 
     -- NPM stuff
     {
-      "~/repos/telescope-npm",
+      "~/Repos/telescope-npm",
       opt = true
     },
 

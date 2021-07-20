@@ -13,7 +13,7 @@ M.config = function()
 
   vim.env.PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath "config" .. "/.prettierrc"
 
-  null_ls.setup {
+  null_ls.config {
     debounce = 150,
     sources = {
       b.formatting.black,

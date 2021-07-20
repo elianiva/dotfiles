@@ -29,8 +29,6 @@ local plugins = {
   require("plugins.treesitter").plugin,
   require("plugins.tsserver").plugin,
 
-  { "dart-lang/dart-vim-plugin" },
-
   { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
 
   { "tpope/vim-commentary", keys = "gc" },
@@ -78,8 +76,7 @@ local plugins = {
 
   {
     "rktjmp/lush.nvim",
-    event = "VimEnter",
-    requires = { "~/repos/gruvy", "~/repos/icy" },
+    requires = { "~/Repos/gruvy", "~/Repos/icy" },
     config = function()
       require "lush"(require "lush_theme.icy")
     end,
@@ -162,6 +159,7 @@ local plugins = {
 
   {
     "neovim/nvim-lspconfig",
+    wants = "null-ls",
     config = function()
       require "modules.lsp"
     end,

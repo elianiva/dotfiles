@@ -1,4 +1,4 @@
-local sumneko_root = os.getenv "HOME" .. "/repos/lua-language-server"
+local sumneko_root = os.getenv "HOME" .. "/Repos/lua-language-server"
 local library = {}
 local M = {}
 

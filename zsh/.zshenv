@@ -14,3 +14,4 @@ export LESS_TERMCAP_ue=$(tput sgr0)
 export LESS_TERMCAP_me=$(tput sgr0)
 
 source "$HOME/.cargo/env"
+. "$HOME/.cargo/env"

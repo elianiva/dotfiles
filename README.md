@@ -1,16 +1,16 @@
 ## dot dot dot
 
 > Please do not blindly copy this thing. I use this place as a backup :)
-> You may take whatever you want.
+>
+> Feel free to take whatever you want, though.
 
 <p align="center">
-  <kbd><img src="./preview.png"></kbd>
-  <kbd><img src="./preview-plasma.png"></kbd>
+  <kbd><img src="./preview-arch.png"></kbd>
+  <kbd><img src="./preview-fedora.png"></kbd>
 </p>
 
 [arch-link]: https://archlinux.org/
 [awesome-link]: https://github.com/awesomewm/awesome
-[plasma-link]: https://kde.org/plasma-desktop/
 [i3-link]: https://github.com/i3/i3
 [bspwm-link]: https://github.com/baskerville/bspwm
 [openbox-link]: https://github.com/danakj/openbox
@@ -22,7 +22,6 @@
 [dunst-link]: https://github.com/dunst-project/dunst
 [mako-link]: https://github.com/emersion/mako
 [pcmanfm-link]: https://github.com/lxde/pcmanfm
-[dolphin-link]: https://apps.kde.org/dolphin/
 [lf-link]: https://github.com/gokcehan/lf
 [picom-link]: https://github.com/yshui/picom
 [polybar-link]: https://github.com/polybar/polybar
@@ -79,7 +78,6 @@
   - [Mako][mako-link]
   - [Dunst][dunst-link] (no longer using)
 - **File Manager:**
-  - [Dolphin][dolphin-link] (GUI)
   - [Pcmanfm][pcmanfm-link] (GUI)
   - [lf][lf-link] (TUI)
 - **Compositor:**

@@ -108,7 +108,7 @@ local M = gears.table.join(
   {description = "screenshot with borders", group = "misc"}),
 
   awful.key({ }, "Print", function()
-    awful.spawn.easy_async_with_shell("flameshot gui -p "..os.getenv("HOME").."/pix/shots", noop)
+    awful.spawn.easy_async_with_shell("flameshot gui -p "..os.getenv("HOME").."/Pictures/shots", noop)
   end,
   {description = "screenshot without borders", group = "misc"})
 )

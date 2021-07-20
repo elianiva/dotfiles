@@ -30,14 +30,12 @@ export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH="$HOME/.local/go/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.fnm:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
 
 # Flutter stuff
-export ANDROID="$HOME/codes/android"
+export ANDROID="$HOME/Dev/android"
 export PATH="/opt/android-sdk/cmdline-tools/latest/bin:$PATH"
-export PATH="$HOME/dev/android/flutter/bin:$PATH"
-export PATH="$HOME/codes/android/flutter/bin:$PATH"
+export PATH="$HOME/Dev/android/flutter/bin:$PATH"
 export PATH="$ANDROID_HOME/emulator:$PATH"
 export PATH="$ANDROID_HOME/platform-tools/:$PATH"
 export PATH="$ANDROID_HOME/tools/bin/:$PATH"
@@ -210,3 +208,4 @@ ex= :\
 *.pdf= :\
 *.nix= :\
 "
+. "$HOME/.cargo/env"
