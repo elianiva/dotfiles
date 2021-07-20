@@ -12,7 +12,7 @@ cmd open ${{
     case $(file --mime-type "$f" -bL) in
         text/*|application/json) $EDITOR "$f";;
         video/*) mpv "$f";;
-        image/*) sxiv "$f";;
+        image/*) imv "$f";;
         application/pdf) zathura "$f";;
         *) xdg-open "$f" ;;
     esac
@@ -103,15 +103,12 @@ map ss stripspace
 # Basic Functions
 map cd push :cd<space>
 map gc cd ~/.config
-map gC cd ~/codes
-map gd cd ~/dev
-map gl cd ~/dls
-map gD cd ~/dox
-map gr cd ~/repos
-map gv cd ~/vids
-map gp cd ~/pix
-map gm cd ~/music
-map gs cd ~/sites
+map gd cd ~/Dev
+map gl cd ~/Downloads
+map gD cd ~/Documents
+map gr cd ~/Repos
+map gv cd ~/Videos
+map gp cd ~/Pictures
 
 map . set hidden!
 map pp paste

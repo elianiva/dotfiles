@@ -10,6 +10,7 @@
 </p>
 
 [arch-link]: https://archlinux.org/
+[fedora-link]: https://getfedora.org/
 [awesome-link]: https://github.com/awesomewm/awesome
 [i3-link]: https://github.com/i3/i3
 [bspwm-link]: https://github.com/baskerville/bspwm
@@ -44,8 +45,7 @@
 ### Some Details
 - **Operating System:**
   - [Archlinux][arch-link]
-- **Desktop Environment:**
-  - [KDE Plasma][plasma-link]
+  - [Fedora][fedora-link]
 - **Window Manager:**
   - [AwesomeWM][awesome-link]
   - [Sway][sway-link]
