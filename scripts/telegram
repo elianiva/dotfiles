@@ -1,3 +1,0 @@
-#!/bin/sh
-
-env QT_QPA_PLATFORMTHEME=gtk2 TDESKTOP_DISABLE_TRAY_COUNTER=1 telegram-desktop -- %u
