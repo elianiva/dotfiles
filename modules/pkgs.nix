@@ -1,13 +1,14 @@
 {config, pkgs, home-manager, ...}:
 {
   home.packages = with pkgs; [
+    imv
     picom
     zathura
     simplescreenrecorder
     flameshot
-    rofi
+    (writeShellScriptBin "rofi" ''LANG=C ${pkgs.rofi}/bin/rofi "$@"'')
     xclip
-    awesome-git # this one comes from the custom overlay
+    awesome-git # this one comes from the overlay
   ];
   services.clipmenu.enable = true;
 }

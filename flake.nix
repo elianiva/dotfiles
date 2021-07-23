@@ -44,7 +44,6 @@
                 overlays = overlays;
               };
               imports = [
-                ./modules/fonts.nix
                 ./modules/cli.nix
                 ./modules/git.nix
                 ./modules/neovim.nix

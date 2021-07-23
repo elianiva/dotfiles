@@ -4,6 +4,7 @@
     clang-tools
     stylua
     sumneko-lua-language-server
+    rust-analyzer
     gopls
   ];
 }

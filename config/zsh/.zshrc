@@ -132,4 +132,8 @@ zle -N skim-redraw-prompt
 export PATH=/home/elianiva/.fnm:$PATH
 eval "`fnm env`"
 
+# gpg prompt
+export GPG_TTY="$(tty)"
+
+# shell prompt
 eval "$(starship init zsh)"

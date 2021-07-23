@@ -1,19 +1,24 @@
 { config, pkgs, libs, ... }:
 {
   home.packages = with pkgs; [
+    acpi
     bat
     exa
     fd
-    skim
     htop
     jq
     lf
+    light
+    lm_sensors
+    neofetch
     pulsemixer
     ripgrep
+    skim
     starship
     tmux
     xh
-    neofetch
+    xorg.setxkbmap
+    xorg.xset
   ];
 
   programs.bat = {
