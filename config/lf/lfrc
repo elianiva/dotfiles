@@ -12,7 +12,7 @@ cmd open ${{
     case $(file --mime-type "$f" -bL) in
         text/*|application/json) $EDITOR "$f";;
         video/*) mpv "$f";;
-        image/*) imv "$f";;
+        image/*) sxiv "$f";;
         application/pdf) zathura "$f";;
         *) xdg-open "$f" ;;
     esac

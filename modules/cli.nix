@@ -5,6 +5,7 @@
     bat
     exa
     fd
+    ffmpeg
     htop
     jq
     lf
@@ -14,6 +15,7 @@
     pulsemixer
     ripgrep
     skim
+    slop
     starship
     tmux
     xh

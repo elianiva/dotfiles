@@ -47,7 +47,7 @@ local servers = {
   },
   pyright = {},
   texlab = {},
-  -- ["null-ls"] = {},
+  ["null-ls"] = {},
 }
 
 for name, opts in pairs(servers) do
