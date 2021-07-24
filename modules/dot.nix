@@ -28,6 +28,7 @@ in
     ".zshenv".source               = link "config/zsh/.zshenv";
     ".zshrc".source                = link "config/zsh/.zshrc";
     ".gitconfig".source            = link "config/git/config";
+    ".gnupg/gpg-agent.conf".text   = "pinentry-program ${pkgs.pinentry.gnome3}/bin/pinentry";
 
     # These stuff are not used ATM
     # ".config/pacman".source  = link ../config/pacman;
