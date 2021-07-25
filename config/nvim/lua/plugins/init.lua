@@ -123,7 +123,7 @@ local plugins = {
   {
     "hrsh7th/nvim-compe",
     event = "InsertEnter",
-    wants = "LuaSnip",
+    wants = {"LuaSnip"},
     config = function()
       require "plugins.compe"
     end,
@@ -159,18 +159,12 @@ local plugins = {
 
   {
     "neovim/nvim-lspconfig",
-    wants = { "null-ls.nvim" },
     config = function()
       require "modules.lsp"
     end,
     requires = {
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require("plugins.null-ls").config()
-        end,
-      },
-    },
+      "jose-elias-alvarez/null-ls.nvim"
+    }
   },
 
   {

@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = function()
+M.setup = function()
   local null_ls = require "null-ls"
   local b = null_ls.builtins
 
