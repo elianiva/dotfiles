@@ -35,11 +35,11 @@
           username = username;
           configuration = { pkgs, config, ... }:
             {
-              xdg.configFile."nix/nix.conf".source = ./config/nix/nix.conf;
+              xdg.configFile."nix/nix.conf".text = ''
+              experimental-features = nix-command ca-references flakes
+              '';
               nixpkgs = {
-                config = {
-                  allowUnfree = true;
-                };
+                config = { allowUnfree = true; };
                 overlays = overlays;
               };
               imports = [

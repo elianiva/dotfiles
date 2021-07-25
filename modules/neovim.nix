@@ -6,5 +6,6 @@
     sumneko-lua-language-server
     rust-analyzer
     gopls
+    vale
   ];
 }
