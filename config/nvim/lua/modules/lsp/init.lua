@@ -55,16 +55,11 @@ for name, opts in pairs(servers) do
     opts()
   else
     local client = lspconfig[name]
-    client.setup {
+    client.setup(vim.tbl_extend("force", {
       flags = { debounce_text_changes = 150 },
-      cmd = opts.cmd or client.cmd,
-      filetypes = opts.filetypes or client.filetypes,
-      on_attach = opts.on_attach or Util.lsp_on_attach,
-      on_init = opts.on_init or Util.lsp_on_init,
-      handlers = opts.handlers or client.handlers,
-      root_dir = opts.root_dir or client.root_dir,
-      capabilities = opts.capabilities or capabilities,
-      settings = opts.settings or {},
-    }
+      on_attach = Util.lsp_on_attach,
+      on_init = Util.lsp_on_init,
+      capabilities = capabilities,
+    }, opts))
   end
 end

@@ -26,6 +26,16 @@ M.plugin = {
 M.config = function()
   local ts_config = require "nvim-treesitter.configs"
 
+  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  parser_config.css = {
+    install_info = {
+      url = "~/projects/tree-sitter-css", -- local path or git repo
+      files = { "src/parser.c", "src/scanner.c" },
+    },
+    filetype = "css", -- if filetype does not agrees with parser name
+    used_by = { "css" }, -- additional filetypes that use this parser
+  }
+
   ts_config.setup {
     ensure_installed = {
       "javascript",
@@ -35,7 +45,7 @@ M.config = function()
       "cpp",
       "jsonc",
       "html",
-      "css",
+      -- "css",
       "lua",
       "c",
       "rust",

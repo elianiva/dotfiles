@@ -54,7 +54,7 @@ o.listchars      = {
   eol = "↲",
   tab= "» ",
 } -- set listchars
-o.mouse          = "n" -- enable mouse support in normal mode
+o.mouse          = "nv" -- enable mouse support in normal and visual mode
 o.shortmess      = "csa" -- disable some stuff on shortmess
 o.signcolumn     = "yes" -- enable sign column all the time 4 column
 o.shell          = "/usr/bin/bash" -- use bash instead of zsh

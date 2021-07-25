@@ -1,12 +1,5 @@
 local M = {}
 
-M.plugin = {
-  "jose-elias-alvarez/null-ls.nvim",
-  config = function()
-    require("plugins.null-ls").config()
-  end,
-}
-
 M.config = function()
   local null_ls = require "null-ls"
   local b = null_ls.builtins

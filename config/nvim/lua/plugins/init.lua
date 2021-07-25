@@ -21,7 +21,6 @@ packer.init {
 local plugins = {
   { "wbthomason/packer.nvim", opt = true },
 
-  require("plugins.null-ls").plugin,
   require("plugins.nvim-jdtls").plugin,
   require("plugins.rust-tools").plugin,
   require("plugins.flutter-tools").plugin,
@@ -78,7 +77,8 @@ local plugins = {
     "rktjmp/lush.nvim",
     requires = { "~/Repos/gruvy", "~/Repos/icy" },
     config = function()
-      require "lush"(require "lush_theme.icy")
+      -- require "lush"(require "lush_theme.icy")
+      vim.cmd [[ colorscheme icy ]]
     end,
   },
 
@@ -159,10 +159,18 @@ local plugins = {
 
   {
     "neovim/nvim-lspconfig",
-    wants = "null-ls",
+    wants = { "null-ls.nvim" },
     config = function()
       require "modules.lsp"
     end,
+    requires = {
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require("plugins.null-ls").config()
+        end,
+      },
+    },
   },
 
   {
@@ -178,9 +186,9 @@ local plugins = {
     cmd = { "HeadwindBuf", "HeadwindVisual" },
     setup = function()
       vim.cmd [[
-        command! -nargs=0 -range=% HeadwindBuf lua require "headwind".buf_sort_tailwind_classes(0)
-        command! -nargs=0 -range=% HeadwindVisual lua require "headwind".sort_tailwind_classes(0)
-      ]]
+      command! -nargs=0 -range=% HeadwindBuf lua require "headwind".buf_sort_tailwind_classes(0)
+      command! -nargs=0 -range=% HeadwindVisual lua require "headwind".sort_tailwind_classes(0)
+    ]]
     end,
   },
 
