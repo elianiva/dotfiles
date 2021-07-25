@@ -36,7 +36,7 @@ function M.get(clientkeys, clientbuttons)
           "Anki",
           "lxappearance",
           "Lxappearance",
-          "fcitx-config-gtk3",
+          "fcitx5-config-qt",
           "jswing-App"
         },
 
