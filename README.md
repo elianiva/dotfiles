@@ -27,7 +27,7 @@
 [picom-link]: https://github.com/yshui/picom
 [polybar-link]: https://github.com/polybar/polybar
 [rofi-link]: https://github.com/davatorium/rofi
-[pacman-link]: https://wiki.archlinux.org/index.php/pacman
+[nix-link]: https://nixos.org/
 [paru-link]: https://github.com/Morganamilo/paru
 [zinit-link]: https://github.com/zdharma/zinit
 [sxhkd-link]: https://github.com/baskerville/sxhkd
@@ -67,8 +67,8 @@
   - [Spectacle][spectacle-link]
 - **Shell Prompt:**
   - [Starship][starship-link]
-- **Package/Plugin Manager:**
-  - [Pacman][pacman-link] (main package manager)
+- **External Package/Plugin Manager:**
+  - [Nix][nix-link] (mostly for CLI stuff)
   - [Paru][paru-link] (AUR helper)
   - [Zinit][zinit-link] (ZSH plugin manager)
 - **Launcher:**

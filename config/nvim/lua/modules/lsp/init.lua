@@ -14,16 +14,16 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 local servers = {
-  denols = {
-    filetypes = { "javascript", "typescript", "typescriptreact" },
-    root_dir = vim.loop.cwd,
-    settings = {
-      documentFormatting = false,
-      lint = true,
-      unstable = true,
-      config = "./tsconfig.json"
-    }
-  },
+  -- denols = {
+  --   filetypes = { "javascript", "typescript", "typescriptreact" },
+  --   root_dir = vim.loop.cwd,
+  --   settings = {
+  --     documentFormatting = false,
+  --     lint = true,
+  --     unstable = true,
+  --     config = "./tsconfig.json"
+  --   }
+  -- },
   sumneko_lua = require("modules.lsp.sumneko").config,
   jsonls = require("modules.lsp.json").config,
   svelte = require("modules.lsp.svelte").config,

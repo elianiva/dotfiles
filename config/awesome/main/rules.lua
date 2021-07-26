@@ -24,7 +24,7 @@ function M.get(clientkeys, clientbuttons)
     {
       rule_any = {
         instance = {
-        "pinentry"
+          "pinentry"
         },
         class = {
           "Arandr",
@@ -37,7 +37,9 @@ function M.get(clientkeys, clientbuttons)
           "lxappearance",
           "Lxappearance",
           "fcitx5-config-qt",
-          "jswing-App"
+          "jswing-App",
+          "gcr-prompter",
+          "Gcr-prompter"
         },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -46,6 +48,7 @@ function M.get(clientkeys, clientbuttons)
           "Event Tester",  -- xev.
           "Open File",  -- file picker
           "Media viewer",  -- new telegram image viewer
+          "pinentry-gnome3",
         },
         role = {
           "GtkFileChooserDialog",  -- file picker
