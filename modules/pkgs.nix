@@ -4,7 +4,13 @@
     sxiv
     picom
     zathura
-    (writeShellScriptBin "rofi" ''LANG=C ${pkgs.rofi}/bin/rofi "$@"'')
+    (pkgs.symlinkJoin {
+      name = "rofi";
+      paths = [
+        (writeShellScriptBin "rofi" ''LANG=C ${pkgs.rofi}/bin/rofi "$@"'')
+        pkgs.rofi
+      ];
+    })
     xclip
     awesome-git # this one comes from the overlay
     gcr # for pinentry-gnome3

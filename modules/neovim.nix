@@ -6,5 +6,9 @@
     sumneko-lua-language-server
     rust-analyzer
     gopls
-  ];
+  ] ++ (with nodePackages; [
+    pyright
+    svelte-language-server
+    typescript-language-server
+  ]);
 }
