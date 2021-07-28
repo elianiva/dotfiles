@@ -90,6 +90,7 @@ function M.get(clientkeys, clientbuttons)
           "Chromium",
           "Google-chrome-unstable",
           "firefoxdeveloperedition",
+          "Firefox",
           "Brave-browser",
           "DesktopEditors",
         },
