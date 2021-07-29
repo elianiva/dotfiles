@@ -1,7 +1,7 @@
 local k = vim.keymap
 local nnoremap = k.nnoremap
 local inoremap = k.inoremap
-local snoremap = k.snoremap
+local vnoremap = k.vnoremap
 local telescope = require("telescope.builtin")
 
 local M = {}
@@ -11,7 +11,7 @@ M.lsp_mappings = function()
   nnoremap { "K", vim.lsp.buf.hover, { silent = true } }
   nnoremap { "<Leader>ga", telescope.lsp_code_actions, { silent = true } }
   nnoremap { "<Leader>gf", vim.lsp.buf.formatting_seq_sync, { silent = true } }
-  snoremap { "<Leader>gf", vim.lsp.buf.range_formatting, { silent = true } }
+  vnoremap { "<Leader>gf", vim.lsp.buf.range_formatting, { silent = true } }
   nnoremap { "<Leader>gd", vim.lsp.buf.definition, { silent = true } }
   nnoremap { "<Leader>gl", vim.lsp.codelens.run, { silent = true } }
   nnoremap {

@@ -9,8 +9,9 @@ M.setup = function()
   null_ls.config {
     debounce = 150,
     sources = {
-      b.formatting.black,
-      b.code_actions.gitsigns,
+      b.diagnostics.eslint.with {
+        command = "eslint_d",
+      },
       b.formatting.stylua.with {
         args = {
           "--config-path",

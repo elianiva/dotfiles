@@ -26,7 +26,6 @@ local plugins = {
   require("plugins.flutter-tools").plugin,
   require("plugins.telescope").plugin,
   require("plugins.treesitter").plugin,
-  require("plugins.tsserver").plugin,
 
   { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
 
@@ -123,7 +122,7 @@ local plugins = {
   {
     "hrsh7th/nvim-compe",
     event = "InsertEnter",
-    wants = {"LuaSnip"},
+    wants = { "LuaSnip" },
     config = function()
       require "plugins.compe"
     end,
@@ -163,8 +162,8 @@ local plugins = {
       require "modules.lsp"
     end,
     requires = {
-      "jose-elias-alvarez/null-ls.nvim"
-    }
+      "jose-elias-alvarez/null-ls.nvim",
+    },
   },
 
   {

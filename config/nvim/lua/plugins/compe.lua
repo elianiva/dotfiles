@@ -1,4 +1,4 @@
-local remap = vim.api.nvim_set_keymap
+ local remap = vim.api.nvim_set_keymap
 
 require("compe").setup {
   enabled = true,

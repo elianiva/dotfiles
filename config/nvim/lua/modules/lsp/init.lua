@@ -24,6 +24,11 @@ local servers = {
   --     config = "./tsconfig.json"
   --   }
   -- },
+  tsserver = {
+    init_options = { documentFormatting = false },
+    on_init = Util.lsp_on_init,
+    root_dir = vim.loop.cwd,
+  },
   sumneko_lua = require("modules.lsp.sumneko").config,
   jsonls = require("modules.lsp.json").config,
   svelte = require("modules.lsp.svelte").config,
