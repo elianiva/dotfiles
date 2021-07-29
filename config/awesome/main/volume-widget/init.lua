@@ -13,8 +13,7 @@ local volume_up = os.getenv("HOME") .. "/.config/awesome/main/volume-widget/volu
 
 local M = {}
 
-function M.get()
-
+function M.setup()
   -- create the volume_adjust component
   local volume_adjust = wibox({
     screen = awful.screen.focused(),
@@ -77,4 +76,4 @@ function M.get()
   end)
 end
 
-return setmetatable({}, { __call = function() return M.get() end })
+return M

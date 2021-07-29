@@ -1,10 +1,12 @@
-local awful     = require("awful")
-local beautiful = require("beautiful")
+local awful = require "awful"
+local beautiful = require "beautiful"
+local clientbuttons = require "keybinds.clientbuttons"
+local clientkeys = require "keybinds.clientkeys"
 
 local M = {}
 
-function M.get(clientkeys, clientbuttons)
-  local rules = {
+M.setup = function()
+  awful.rules.rules = {
     -- All clients will match this rule.
     {
       rule = {},
@@ -16,15 +18,15 @@ function M.get(clientkeys, clientbuttons)
         keys = clientkeys,
         buttons = clientbuttons,
         screen = awful.screen.preferred,
-        titlebars_enabled = true
-      }
+        titlebars_enabled = true,
+      },
     },
 
     -- Floating clients.
     {
       rule_any = {
         instance = {
-          "pinentry"
+          "pinentry",
         },
         class = {
           "Arandr",
@@ -39,48 +41,48 @@ function M.get(clientkeys, clientbuttons)
           "fcitx5-config-qt",
           "jswing-App",
           "gcr-prompter",
-          "Gcr-prompter"
+          "Gcr-prompter",
         },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
         name = {
-          "Event Tester",  -- xev.
-          "Open File",  -- file picker
-          "Media viewer",  -- new telegram image viewer
+          "Event Tester", -- xev.
+          "Open File", -- file picker
+          "Media viewer", -- new telegram image viewer
           "pinentry-gnome3",
         },
         role = {
-          "GtkFileChooserDialog",  -- file picker
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
+          "GtkFileChooserDialog", -- file picker
+          "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+        },
       },
       properties = {
         floating = true,
-        placement = awful.placement.centered
-      }
+        placement = awful.placement.centered,
+      },
     },
 
     {
       rule_any = {
         name = {
-          "Media viewer",  -- new telegram image viewer
+          "Media viewer", -- new telegram image viewer
         },
       },
       properties = {
         fullscreen = true,
-        placement = awful.placement.centered
-      }
+        placement = awful.placement.centered,
+      },
     },
 
     -- Add titlebars to normal clients and dialogs
     {
       rule_any = {
-        type = { "normal", "dialog" }
+        type = { "normal", "dialog" },
       },
       properties = {
-        titlebars_enabled = true
-      }
+        titlebars_enabled = true,
+      },
     },
 
     -- remove borders from browsers
@@ -97,12 +99,10 @@ function M.get(clientkeys, clientbuttons)
       },
       properties = {
         border_width = 0,
-        titlebars_enabled = false
-      }
+        titlebars_enabled = false,
+      },
     },
   }
-
-  return rules
 end
 
-return setmetatable({}, { __call = function(_, ...) return M.get(...) end })
+return M

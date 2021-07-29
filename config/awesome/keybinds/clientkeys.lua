@@ -3,10 +3,11 @@ local gears = require("gears")
 local awful = require("awful")
 local beautiful = require("beautiful")
 local helpers = require("main.helpers")
+local vars = require "main.variables"
 
-local modkey = RC.vars.modkey
-local ctrlkey = RC.vars.ctrlkey
-local altkey = RC.vars.altkey
+local modkey = vars.modkey
+local ctrlkey = vars.ctrlkey
+local altkey = vars.altkey
 
 local clientkeys = gears.table.join(
   awful.key({ modkey }, "0", function(c)

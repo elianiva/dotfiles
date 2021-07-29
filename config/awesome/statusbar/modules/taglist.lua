@@ -1,9 +1,8 @@
 local gears = require "gears"
 local awful = require "awful"
+local modkey = require("main.variables").modkey
 
 local M = {}
-
-local modkey = RC.vars.modkey
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(

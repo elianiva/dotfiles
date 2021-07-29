@@ -5,7 +5,7 @@ local gears = require("gears")
 
 local M = {}
 
-M.get = function()
+M.setup = function()
   -- Signal function to execute when a new client appears.
   client.connect_signal("manage", function(c)
     -- Set the windows at the slave,
@@ -48,4 +48,4 @@ M.get = function()
   end)
 end
 
-return setmetatable({}, {__call = function() return M.get() end})
+return M

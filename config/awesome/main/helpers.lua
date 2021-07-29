@@ -44,7 +44,6 @@ end
 
 helpers.markup = function(content, opts)
   local fg = opts.fg or ""
-
   return string.format('<span foreground="%s">%s</span>', fg, content)
 end
 
@@ -102,23 +101,6 @@ helpers.module_wrapper = function(opts)
     bottom = dpi(2),
     widget = wibox.container.margin,
   }
-
-  -- return wibox.container.margin(
-  --   wibox.container.background(
-  --     wibox.container.margin(
-  --       opts.widget,
-  --       dpi(left),
-  --       dpi(right),
-  --       dpi(top),
-  --       dpi(bottom)
-  --     ),
-  --     theme.grey_alt
-  --   ),
-  --   dpi(0),
-  --   dpi(0),
-  --   dpi(4),
-  --   dpi(4)
-  -- )
 end
 
 return helpers

@@ -6,7 +6,7 @@ local margin = wibox.container.margin
 
 local M = {}
 
-function M.get()
+function M.setup()
   local create_title_button = function(c, color_focus, color_unfocus)
     local tb_color = wibox.widget {
       bg = theme.black,
@@ -99,4 +99,4 @@ function M.get()
   )
 end
 
-return setmetatable({}, { __call = function() return M.get() end })
+return M
