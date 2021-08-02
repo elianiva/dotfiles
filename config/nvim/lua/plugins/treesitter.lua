@@ -47,6 +47,7 @@ M.config = function()
       "svelte",
       "json",
       "comment",
+      "glimmer",
     },
 
     matchup = { enable = true },

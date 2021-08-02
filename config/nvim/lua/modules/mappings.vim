@@ -2,6 +2,11 @@
 noremap n "Nn"[v:searchforward]
 noremap N "nN"[v:searchforward]
 
+" stolen from justinmk
+" keeps jumplist after searching
+nnoremap / ms/
+nnoremap ? ms?
+
 " toggle nvimtree
 nnoremap <C-n> <CMD>NvimTreeToggle<CR>
 

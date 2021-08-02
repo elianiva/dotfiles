@@ -6,8 +6,10 @@ require("compe").setup {
   min_length = 2,
   preselect = "disable",
   source_timeout = 200,
-  incomplete_delay = 400,
-  throttle_time = 200,
+  -- incomplete_delay = 400,
+  -- throttle_time = 200,
+  incomplete_delay = 0,
+  throttle_time = 0,
   allow_prefix_unmatch = true,
   documentation = {
     border = "solid",

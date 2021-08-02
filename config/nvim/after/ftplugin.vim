@@ -1,12 +1,13 @@
 " Set filetypes
 augroup Filetypes
   au!
-  au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
+  au BufNewFile,BufRead *.ejs set filetype=html
   au BufNewFile,BufRead .prettierrc,.eslintrc,tsconfig.json set filetype=jsonc
   au BufNewFile,BufRead *.svx,*.mdx set ft=markdown
   au BufNewFile,BufRead *.svelte set ft=svelte
   au BufNewFile,BufRead *.nix set ft=nix
   au BufNewFile,BufRead *.zig set ft=zig
+  au BufNewFile,BufRead *.hbs set ft=handlebars
 augroup END
 
 " Set github text field to markdown (firenvim stuff)

@@ -9,6 +9,7 @@ M.setup = function()
     "lxpolkit",
     "setxkbmap -option caps:escape",
     "xfce4-power-manager",
+    "fcitx5 --replace -d",
     "xrandr --output LVDS-1 --gamma 0.8:0.8:0.8",
   }
 

@@ -150,7 +150,6 @@ local plugins = {
 
   {
     "akinsho/nvim-bufferline.lua",
-    after = "lush.nvim",
     config = function()
       require "plugins.nvim-bufferline"
     end,
