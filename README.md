@@ -38,9 +38,10 @@
 [wofi-link]: https://github.com/mikn/wofi
 [mpv-link]: https://mpv.io/
 [flameshot-link]: https://github.com/flameshot-org/flameshot
-[spectacle-link]: https://apps.kde.org/spectacle/
 
 ---
+
+> The information below is may very well be outdated :p
 
 ### Some Details
 - **Operating System:**
@@ -64,7 +65,6 @@
   - [ZSH][zsh-link]
 - **Screenshot Tool:**
   - [Flameshot][flameshot-link]
-  - [Spectacle][spectacle-link]
 - **Shell Prompt:**
   - [Starship][starship-link]
 - **External Package/Plugin Manager:**

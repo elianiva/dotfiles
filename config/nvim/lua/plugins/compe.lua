@@ -1,4 +1,6 @@
- local remap = vim.api.nvim_set_keymap
+-- vim: foldmethod=marker
+--{{{
+local remap = vim.api.nvim_set_keymap
 
 require("compe").setup {
   enabled = true,
@@ -57,3 +59,37 @@ remap(
   "compe#complete()",
   { noremap = true, expr = true, silent = true }
 )
+--}}}
+
+-- local remap = vim.api.nvim_set_keymap
+
+-- require("cmp").setup {
+--   documentation = {
+--     border = "solid"
+--   }
+-- }
+-- require("cmp_nvim_lsp").setup()
+
+-- remap(
+--   "i",
+--   "<C-Space>",
+--   "<CMD>lua cmp.complete()<CR>",
+--   { noremap = true }
+-- )
+-- remap(
+--   "i",
+--   "<Tab>",
+--   'pumvisible() ? "<C-n>" : "<Tab>"',
+--   { silent = true, noremap = true, expr = true }
+-- )
+-- remap(
+--   "i",
+--   "<S-Tab>",
+--   'pumvisible() ? "<C-p>" : "<S-Tab>"',
+--   { silent = true, noremap = true, expr = true }
+-- )
+
+-- vim.cmd [[
+--   hi! CmpDocumentation guibg=#0E1016
+--   hi! CmpDocumentationBorder guibg=#0E1016
+-- ]]

@@ -119,6 +119,17 @@ local plugins = {
     end,
   },
 
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   config = function()
+  --     require "plugins.compe"
+  --   end,
+  --   requires = {
+  --     "hrsh7th/cmp-path",
+  --     "hrsh7th/cmp-nvim-lsp",
+  --   },
+  -- },
+
   {
     "hrsh7th/nvim-compe",
     event = "InsertEnter",
