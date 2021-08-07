@@ -9,49 +9,37 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }:
     let
       username = "elianiva";
-      overlays = [
-        (self: super: {
-          awesome-git = super.awesome.overrideAttrs (old: {
-            version = "master";
-
-            src = super.fetchFromGitHub {
-              owner = "awesomewm";
-              repo = "awesome";
-              rev = "832483dd60ba194f3ae0200ab39a3a548c26e910";
-              sha256 = "1bcbxsiydlz439af6dq69z8g7rca4jganlz65f3ajrlgqknk86cq";
-            };
-          });
-        })
-      ];
     in
-    {
-      homeConfigurations = {
-        fedora = inputs.home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
-          homeDirectory = "/home/${username}";
-          username = username;
-          configuration = { pkgs, config, ... }:
-            {
-              xdg.configFile."nix/nix.conf".text = ''
-              experimental-features = nix-command ca-references flakes
-              '';
-              nixpkgs = {
-                config = { allowUnfree = true; };
-                overlays = overlays;
+      {
+        homeConfigurations = {
+          fedora = home-manager.lib.homeManagerConfiguration {
+            system = "x86_64-linux";
+            homeDirectory = "/home/${username}";
+            username = username;
+            configuration = { pkgs, config, ... }:
+              {
+                xdg.configFile."nix/nix.conf".text = ''
+                  experimental-features = nix-command ca-references flakes
+                '';
+                nixpkgs = {
+                  config = { allowUnfree = true; };
+                  overlays = [
+                    (import ./modules/overlays.nix)
+                  ];
+                };
+                imports = [
+                  ./modules/cli.nix
+                  ./modules/git.nix
+                  ./modules/neovim.nix
+                  ./modules/dot.nix
+                  ./modules/pkgs.nix
+                ];
               };
-              imports = [
-                ./modules/cli.nix
-                ./modules/git.nix
-                ./modules/neovim.nix
-                ./modules/dot.nix
-                ./modules/pkgs.nix
-              ];
-            };
+          };
         };
+        fedora = self.homeConfigurations.fedora.activationPackage;
       };
-      fedora = self.homeConfigurations.fedora.activationPackage;
-    };
 }

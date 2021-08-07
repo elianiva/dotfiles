@@ -1,18 +1,20 @@
-{config, pkgs, home-manager, ...}:
+{ config, pkgs, home-manager, ... }:
 {
   home.packages = with pkgs; [
+    my.awesome-git
     sxiv
     picom
     zathura
-    (pkgs.symlinkJoin {
-      name = "rofi";
-      paths = [
-        (writeShellScriptBin "rofi" ''LANG=C ${pkgs.rofi}/bin/rofi "$@"'')
-        pkgs.rofi
-      ];
-    })
+    (
+      pkgs.symlinkJoin {
+        name = "rofi";
+        paths = [
+          (writeShellScriptBin "rofi" ''LANG=C ${pkgs.rofi}/bin/rofi "$@"'')
+          pkgs.rofi
+        ];
+      }
+    )
     xclip
-    awesome-git # this one comes from the overlay
     gcr # for pinentry-gnome3
   ];
   services.clipmenu.enable = true;

@@ -2,7 +2,7 @@
 let
   link = path:
     config.lib.file.mkOutOfStoreSymlink
-    "${config.home.homeDirectory}/Repos/dotfiles/${path}";
+      "${config.home.homeDirectory}/Repos/dotfiles/${path}";
 in
 {
   home.file = {

@@ -1,1 +1,1 @@
-nix-shell -p nixUnstable --command "nix build --impure --experimental-features 'nix-command flakes' '.#$1'"
+nix-shell -p nixUnstable --command "nix build --experimental-features 'nix-command flakes' '.#$1'"
