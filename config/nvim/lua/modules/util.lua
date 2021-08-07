@@ -114,15 +114,17 @@ Util.lsp_on_attach = function(client)
     vim.cmd [[
     augroup CodeLens
       au!
-      au CursorHold,CursorHoldI * lua vim.lsp.codelens.refresh()
+      au InsertEnter,InsertLeave * lua vim.lsp.codelens.refresh()
     augroup END
     ]]
   end
   require("modules.lsp.mappings").lsp_mappings()
 end
 
-Util.lsp_on_init = function()
-  print "Language Server Client successfully started!"
+Util.lsp_on_init = function(client)
+  vim.notify("Language Server Client successfully started!", "info", {
+    title = client.name
+  })
 end
 
 return Util

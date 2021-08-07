@@ -15,7 +15,7 @@ M.plugin = {
 
 M.setup = function()
   require("jdtls").start_or_attach {
-    cmd = { vim.env.HOME .. "/.scripts/run_jdtls" },
+    cmd = { "jdt-language-server" },
     on_attach = Util.lsp_on_attach,
   }
 end

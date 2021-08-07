@@ -29,6 +29,25 @@ local plugins = {
 
   { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
 
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+      vim.cmd [[
+        hi! NotifyERROR      guifg=#e27878
+        hi! NotifyWARN       guifg=#e2a478
+        hi! NotifyINFO       guifg=#b4be82
+        hi! NotifyDEBUG      guifg=#89b8c2
+        hi! NotifyTRACE      guifg=#c6c8d1
+        hi! NotifyERRORTitle guifg=#e98989
+        hi! NotifyWARNTitle  guifg=#e9b189
+        hi! NotifyINFOTitle  guifg=#c0ca8e
+        hi! NotifyDEBUGTitle guifg=#95c4ce
+        hi! NotifyTRACETitle guifg=#d2d4de
+      ]]
+    end
+  },
+
   { "tpope/vim-commentary", keys = "gc" },
 
   {

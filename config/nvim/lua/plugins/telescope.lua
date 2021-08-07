@@ -2,7 +2,7 @@ local M = {}
 
 M.plugin = {
   "~/Repos/telescope.nvim",
-  module = "telescope",
+  module_pattern = { "telescope", "telescope.*" },
   cmd = "Telescope",
   keys = {
     {"", "<C-p>"},
@@ -39,7 +39,10 @@ M.plugin = {
         -- lua sqlite binding
         {
           "tami5/sql.nvim",
-          module = "sql",
+          setup = function()
+            vim.g.sql_clib_path = "/lib64/libsqlite3.so.0.8.6"
+          end,
+          module_pattern = { "sql", "sql.*" },
         },
       },
     },
@@ -191,7 +194,6 @@ M.config = function()
   pcall(telescope.load_extension, "fzf") -- superfast sorter
   pcall(telescope.load_extension, "media_files") -- media preview
   pcall(telescope.load_extension, "frecency") -- frecency
-  pcall(telescope.load_extension, "dap") -- DAP integrations
   pcall(telescope.load_extension, "npm") -- NPM integrations
 
   M.arecibo = function()

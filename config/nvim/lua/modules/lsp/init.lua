@@ -26,7 +26,6 @@ local servers = {
   -- },
   tsserver = {
     init_options = { documentFormatting = false },
-    on_init = Util.lsp_on_init,
     root_dir = vim.loop.cwd,
   },
   sumneko_lua = require("modules.lsp.sumneko").config,
@@ -36,6 +35,7 @@ local servers = {
   cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
   intelephense = { root_dir = vim.loop.cwd },
   clangd = {},
+  rnix = {},
   gopls = {
     settings = {
       gopls = {

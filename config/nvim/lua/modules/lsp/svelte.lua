@@ -3,7 +3,6 @@ local M = {}
 M.config = {
   on_attach = function(client)
     require("modules.lsp.mappings").lsp_mappings()
-    require("plugins.tsserver").ts_utils(client)
 
     client.server_capabilities.completionProvider.triggerCharacters = {
       ".", "\"", "'", "`", "/", "@", "*",
