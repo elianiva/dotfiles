@@ -32,7 +32,7 @@ local plugins = {
   {
     "rcarriga/nvim-notify",
     config = function()
-      vim.notify = require("notify")
+      vim.notify = require "notify"
       vim.cmd [[
         hi! NotifyERROR      guifg=#e27878
         hi! NotifyWARN       guifg=#e2a478
@@ -45,7 +45,7 @@ local plugins = {
         hi! NotifyDEBUGTitle guifg=#95c4ce
         hi! NotifyTRACETitle guifg=#d2d4de
       ]]
-    end
+    end,
   },
 
   { "tpope/vim-commentary", keys = "gc" },
@@ -138,40 +138,30 @@ local plugins = {
     end,
   },
 
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   config = function()
-  --     require "plugins.compe"
-  --   end,
-  --   requires = {
-  --     "hrsh7th/cmp-path",
-  --     "hrsh7th/cmp-nvim-lsp",
-  --   },
-  -- },
-
   {
-    "hrsh7th/nvim-compe",
-    event = "InsertEnter",
-    wants = { "LuaSnip" },
+    "hrsh7th/nvim-cmp",
     config = function()
-      require "plugins.compe"
+      require "plugins.cmp"
     end,
     requires = {
       {
         "L3MON4D3/LuaSnip",
         opt = true,
+        module_pattern = { "luasnip", "luasnip.*" },
         config = function()
           require "plugins.luasnip"
         end,
       },
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "saadparwaiz1/cmp_luasnip",
     },
   },
 
   {
     "lewis6991/gitsigns.nvim",
-    wants = {
-      "plenary.nvim",
-    },
+    wants = { "plenary.nvim" },
     event = "BufRead",
     config = function()
       require "plugins.gitsigns"

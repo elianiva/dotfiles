@@ -26,13 +26,6 @@ augroup END
 " automatically go to insert mode on terminal buffer
 autocmd BufEnter term://* startinsert
 
-" disable nvim-compe inside telescope
-augroup Compe
-  au!
-  au WinLeave,FileType TelescopePrompt let g:compe_enabled = v:true
-  au WinEnter,FileType TelescopePrompt let g:compe_enabled = v:false
-augroup END
-
 " highlight yanked text for 250ms
 augroup Yank
   au!

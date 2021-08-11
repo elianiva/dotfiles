@@ -18,6 +18,11 @@ wk.register({
     l = {
       name = "+LSP",
       s = "Workspace Symbols",
+    },
+    m = {
+      name = "+NPM",
+      s = "Scripts",
+      p = "Packages",
     }
   },
   g = {
