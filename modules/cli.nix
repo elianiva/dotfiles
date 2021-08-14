@@ -7,6 +7,7 @@
     fd
     ffmpeg
     htop
+    imagemagick
     jq
     lf
     light
@@ -18,9 +19,10 @@
     slop
     starship
     tmux
+    unzip
     xh
-    xorg.setxkbmap
     xorg.xset
+    # xorg.setxkbmap
   ];
 
   programs.bat = {

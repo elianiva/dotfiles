@@ -15,14 +15,14 @@
     in
       {
         homeConfigurations = {
-          fedora = home-manager.lib.homeManagerConfiguration {
+          arch = home-manager.lib.homeManagerConfiguration {
             system = "x86_64-linux";
             homeDirectory = "/home/${username}";
             username = username;
             configuration = { pkgs, config, ... }:
               {
                 xdg.configFile."nix/nix.conf".text = ''
-                  experimental-features = nix-command ca-references flakes
+                  experimental-features = nix-command flakes
                 '';
                 nixpkgs = {
                   config = { allowUnfree = true; };
@@ -40,6 +40,6 @@
               };
           };
         };
-        fedora = self.homeConfigurations.fedora.activationPackage;
+        arch = self.homeConfigurations.arch.activationPackage;
       };
 }
