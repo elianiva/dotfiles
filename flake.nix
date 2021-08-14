@@ -15,7 +15,7 @@
     in
       {
         homeConfigurations = {
-          arch = home-manager.lib.homeManagerConfiguration {
+          linux = home-manager.lib.homeManagerConfiguration {
             system = "x86_64-linux";
             homeDirectory = "/home/${username}";
             username = username;
@@ -40,6 +40,6 @@
               };
           };
         };
-        arch = self.homeConfigurations.arch.activationPackage;
+        linux = self.homeConfigurations.linux.activationPackage;
       };
 }

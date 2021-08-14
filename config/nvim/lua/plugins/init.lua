@@ -146,7 +146,6 @@ local plugins = {
     requires = {
       {
         "L3MON4D3/LuaSnip",
-        opt = true,
         module_pattern = { "luasnip", "luasnip.*" },
         config = function()
           require "plugins.luasnip"
@@ -277,7 +276,6 @@ local plugins = {
 
   {
     "andymass/vim-matchup",
-    after = "nvim-treesitter",
     setup = function()
       vim.g.matchup_matchparen_offscreen = {
         method = "popup",

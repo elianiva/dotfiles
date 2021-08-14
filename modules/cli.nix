@@ -22,6 +22,7 @@
     unzip
     xh
     xorg.xset
+    wget
     # xorg.setxkbmap
   ];
 

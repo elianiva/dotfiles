@@ -21,10 +21,14 @@ cmp.setup {
     { name = "buffer" },
   },
   mapping = {
-    ["<TAB>"] = cmp.mapping.item.next(),
-    ["<S-TAB>"] = cmp.mapping.item.prev(),
+    ["<S-TAB>"]   = cmp.mapping.prev_item(),
+    ["<TAB>"]     = cmp.mapping.next_item(),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-e>"]     = cmp.mapping.close(),
+    ["<CR>"]      = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
   },
 }
 

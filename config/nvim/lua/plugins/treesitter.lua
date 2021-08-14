@@ -2,9 +2,6 @@ local M = {}
 
 M.plugin = {
   "~/Repos/nvim-treesitter",
-  module = "nvim-treesitter",
-  event = "BufRead",
-  opt = true,
   requires = {
     -- debug stuff
     {
@@ -28,26 +25,27 @@ M.config = function()
 
   ts_config.setup {
     ensure_installed = {
-      "javascript",
-      "typescript",
-      "tsx",
-      "jsdoc",
-      "cpp",
-      "jsonc",
-      "html",
-      "css",
-      "lua",
       "c",
-      "rust",
-      "go",
-      "java",
-      "query",
-      "python",
-      "rst",
-      "svelte",
-      "json",
       "comment",
+      "cpp",
+      "css",
       "glimmer",
+      "go",
+      "html",
+      "java",
+      "javascript",
+      "jsdoc",
+      "json",
+      "jsonc",
+      "lua",
+      "nix",
+      "python",
+      "query",
+      "rst",
+      "rust",
+      "svelte",
+      "tsx",
+      "typescript",
     },
 
     matchup = { enable = true },

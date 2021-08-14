@@ -13,7 +13,7 @@ export QT_FONT_DPI=80
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export GOPATH="$HOME/.local/go"
 export GOBIN="$HOME/.local/go/bin"
-export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+export XDG_DATA_DIRS="$HOME/.nix-profile/share:/usr/share:$HOME/.local/share:$XDG_DATA_DIRS"
 
 # Nix stuff
 export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH

@@ -1,7 +1,4 @@
 local fn, api = vim.fn, vim.api
-local core = require "cmp.core"
-local cmp = require "cmp"
-local types = require "cmp.types"
 
 _G.Util = {}
 
@@ -11,18 +8,6 @@ P = function(stuff)
 end
 
 Util.trigger_completion = function()
-  if fn.pumvisible() ~= 0 and fn.complete_info()["selected"] ~= -1 then
-    local e = core.menu:get_selected_entry() or (core.menu:get_first_entry())
-    core.confirm(e, {
-      behavior = cmp.ConfirmBehavior.Replace,
-    }, function()
-      core.complete(
-        core.get_context { reason = types.cmp.ContextReason.TriggerOnly }
-      )
-    end)
-    return
-  end
-
   local prev_col, next_col = fn.col "." - 1, fn.col "."
   local prev_char = fn.getline("."):sub(prev_col, prev_col)
   local next_char = fn.getline("."):sub(next_col, next_col)
@@ -131,6 +116,10 @@ Util.borders = {
 }
 
 Util.lsp_on_attach = function(client)
+  if client.name == "tsserver" then
+    client.resolved_capabilities.document_formatting = false
+  end
+
   if client.resolved_capabilities.code_lens then
     vim.cmd [[
     augroup CodeLens
