@@ -42,6 +42,7 @@ M.setup = function()
           "jswing-App",
           "gcr-prompter",
           "Gcr-prompter",
+          "explorer.exe"
         },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client

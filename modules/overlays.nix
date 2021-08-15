@@ -1,8 +1,12 @@
-final: prev: {
+final: prev:
+let
+  pkgs = import <nixpkgs> {};
+in
+{
   my = {
     jdt-language-server = (
       prev.callPackage ./jdtls.nix {
-        inherit (import <nixpkgs> {});
+        inherit (pkgs);
       }
     );
     awesome-git = prev.awesome.overrideAttrs (

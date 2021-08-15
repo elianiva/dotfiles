@@ -30,6 +30,18 @@ in
     ".gitconfig".source            = link "config/git/config";
     ".gnupg/gpg-agent.conf".text   = "pinentry-program ${pkgs.pinentry.gnome3}/bin/pinentry";
 
+    ".config/kbct/config.yml".text = ''
+    - keyboards: ["FANTECH MAXFIT61 Mechanical Keyboard"]
+      keymap:
+        capslock: esc
+        esc: grave
+        grave: esc
+      layers:
+        - modifiers: ["leftshift"]
+          keymap:
+            grave: grave
+    '';
+
     # These stuff are not used ATM
     # ".config/pacman".source  = link ../config/pacman;
     # ".config/sway".source    = link ../sway;

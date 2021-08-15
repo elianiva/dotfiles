@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     acpi
+    aria
     bat
     exa
     fd
@@ -13,6 +14,7 @@
     light
     lm_sensors
     neofetch
+    p7zip
     pulsemixer
     ripgrep
     skim
