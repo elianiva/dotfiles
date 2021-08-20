@@ -5,38 +5,23 @@ M.plugin = {
   module_pattern = { "telescope", "telescope.*" },
   cmd = "Telescope",
   keys = {
-    {"", "<C-p>"},
-    {"", "<C-f>"},
-    {"n", "<Leader>f"}
+    { "", "<C-p>" },
+    { "", "<C-f>" },
+    { "n", "<Leader>f" },
   },
   wants = {
     "popup.nvim",
     "plenary.nvim",
     "telescope-fzf-native.nvim",
     "telescope-frecency.nvim",
-    "telescope-media-files.nvim",
     "telescope-npm",
   },
   requires = {
-    -- Preview media files in Telescope
-    {
-      "nvim-telescope/telescope-media-files.nvim",
-      opt = true
-    },
-
-    -- NPM stuff
-    {
-      "~/Repos/telescope-npm",
-      opt = true
-    },
-
-    -- A telescope.nvim extension that offers intelligent prioritization
-    -- when selecting files from your editing history.
+    { "~/Repos/telescope-npm", opt = true },
     {
       "nvim-telescope/telescope-frecency.nvim",
       opt = true,
       requires = {
-        -- lua sqlite binding
         {
           "tami5/sql.nvim",
           setup = function()
@@ -46,13 +31,7 @@ M.plugin = {
         },
       },
     },
-
-    -- FZF style sorter
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      opt = true,
-      run = "make",
-    },
+    { "nvim-telescope/telescope-fzf-native.nvim", opt = true, run = "make" },
   },
   config = function()
     require("plugins.telescope").config()
@@ -154,7 +133,7 @@ M.config = function()
     pickers = {
       find_files = {
         -- file_ignore_patterns = { "%.png", "%.jpg", "%.webp", "node_modules" },
-        file_ignore_patterns = { ".store.go", ".store_test.go" }
+        file_ignore_patterns = { ".store.go", ".store_test.go" },
       },
       lsp_code_actions = M.no_preview(),
       current_buffer_fuzzy_find = M.no_preview(),
@@ -171,10 +150,6 @@ M.config = function()
         override_generic_sorter = true,
         override_file_sorter = true,
       },
-      media_files = {
-        filetypes = { "png", "webp", "jpg", "jpeg", "pdf", "mkv" },
-        find_cmd = "rg",
-      },
       frecency = {
         show_scores = false,
         show_unindexed = true,
@@ -189,10 +164,7 @@ M.config = function()
     },
   }
 
-  local builtin = require "telescope.builtin"
-
   pcall(telescope.load_extension, "fzf") -- superfast sorter
-  pcall(telescope.load_extension, "media_files") -- media preview
   pcall(telescope.load_extension, "frecency") -- frecency
   pcall(telescope.load_extension, "npm") -- NPM integrations
 
@@ -223,7 +195,7 @@ M.config = function()
   end
 
   M.grep_prompt = function()
-    builtin.grep_string {
+    require("telescope.builtin").grep_string {
       path_display = { "shorten" },
       search = vim.fn.input "Grep String > ",
       only_sort_text = true,
@@ -232,16 +204,19 @@ M.config = function()
   end
 
   -- toggle telescope.nvim
-  nnoremap { "<C-p>", builtin.find_files, { silent = true } }
+  nnoremap { "<C-p>", require("telescope.builtin").find_files, { silent = true } }
   nnoremap { "<C-f>", M.grep_prompt, { silent = true } }
   nnoremap { "<Leader>ft", M.builtins, { silent = true } }
-  nnoremap { "<Leader>fb", builtin.current_buffer_fuzzy_find, { silent = true } }
   nnoremap { "<Leader>ff", M.frecency, { silent = true } }
   nnoremap { "<Leader>fa", M.arecibo, { silent = true } }
   nnoremap { "<Leader>fls", M.workspace_symbols, { silent = true } }
-  nnoremap { "<Leader>fg", builtin.git_commits, { silent = true } }
   nnoremap { "<Leader>fns", M.npm_script, { silent = true } }
   nnoremap { "<Leader>fnp", M.npm_packages, { silent = true } }
+  nnoremap {
+    "<Leader>fb",
+    require("telescope.builtin").current_buffer_fuzzy_find,
+    { silent = true },
+  }
 end
 
 return M

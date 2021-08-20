@@ -5,7 +5,6 @@ augroup Filetypes
   au BufNewFile,BufRead .prettierrc,.eslintrc,tsconfig.json set filetype=jsonc
   au BufNewFile,BufRead *.svx,*.mdx set ft=markdown
   au BufNewFile,BufRead *.svelte set ft=svelte
-  au BufNewFile,BufRead *.nix set ft=nix
   au BufNewFile,BufRead *.zig set ft=zig
   au BufNewFile,BufRead *.hbs set ft=handlebars
 augroup END
@@ -32,7 +31,7 @@ augroup Yank
   au TextYankPost * silent! lua vim.highlight.on_yank { timeout = 250, higroup = "Visual" }
 augroup END
 
-augroup Emmet
-  au!
-  au FileType html,javascript,typescript,javascriptreact,typescriptreact,svelte EmmetInstall
-augroup END
+" augroup Emmet
+"   au!
+"   au FileType html,javascript,typescript,javascriptreact,typescriptreact,svelte EmmetInstall
+" augroup END

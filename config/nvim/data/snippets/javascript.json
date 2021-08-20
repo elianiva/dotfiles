@@ -1,0 +1,15 @@
+{
+  "rfc": {
+    "prefix": [
+      "rfc"
+    ],
+    "body": [
+      "export default function $1() {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t)",
+      "}"
+    ],
+    "description": "fixme reminder"
+  }
+}

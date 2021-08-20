@@ -115,9 +115,20 @@ Util.borders = {
   -- {"█", "Bordaa"}
 }
 
+Util.lsp_on_init = function(client)
+  vim.notify("Language Server Client successfully started!", "info", {
+    title = client.name,
+  })
+end
+
 Util.lsp_on_attach = function(client)
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
+    local ts_utils = require "nvim-lsp-ts-utils"
+    ts_utils.setup {
+      enable_import_on_completion = true,
+    }
+    ts_utils.setup_client(client)
   end
 
   if client.resolved_capabilities.code_lens then
@@ -129,12 +140,6 @@ Util.lsp_on_attach = function(client)
     ]]
   end
   require("modules.lsp.mappings").lsp_mappings()
-end
-
-Util.lsp_on_init = function(client)
-  vim.notify("Language Server Client successfully started!", "info", {
-    title = client.name,
-  })
 end
 
 return Util

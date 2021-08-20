@@ -1,17 +1,5 @@
 -- local sumneko_root = os.getenv "HOME" .. "/Repos/lua-language-server"
-local library = {}
 local M = {}
-
-local add = function(lib)
-  for _, p in pairs(vim.fn.expand(lib, false, true)) do
-    p = vim.loop.fs_realpath(p)
-    library[p] = true
-  end
-end
-
--- add libraris to get detected by sumneko_lua
-add "$VIMRUNTIME"
-add "~/.config/nvim"
 
 M.config = {
   cmd = { "lua-language-server" },
@@ -22,12 +10,6 @@ M.config = {
   -- },
   on_attach = Util.lsp_on_attach,
   on_init = Util.lsp_on_init,
-  on_new_config = function(config, root)
-    local libs = vim.tbl_deep_extend("force", {}, library)
-    libs[root] = nil
-    config.settings.Lua.workspace.library = libs
-    return config
-  end,
   settings = {
     Lua = {
       completion = {
@@ -37,10 +19,10 @@ M.config = {
       runtime = {
         version = "LuaJIT",
         path = (function()
-          local path = vim.split(package.path, ";")
-          table.insert(path, "lua/?.lua")
-          table.insert(path, "lua/?/init.lua")
-          return path
+          local runtime_path = vim.split(package.path, ";")
+          table.insert(runtime_path, "lua/?.lua")
+          table.insert(runtime_path, "lua/?/init.lua")
+          return runtime_path
         end)(),
       },
       diagnostics = {
@@ -59,7 +41,7 @@ M.config = {
       },
       workspace = {
         preloadFileSize = 400,
-        library = library,
+        library = vim.api.nvim_get_runtime_file("", true),
       },
     },
   },

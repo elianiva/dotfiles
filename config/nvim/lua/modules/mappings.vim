@@ -48,9 +48,6 @@ noremap <A-l> <CMD>bn<CR>
 nnoremap j gj
 nnoremap k gk
 
-" better yank behaviour
-nnoremap Y y$
-
 " remove annoying exmode
 nnoremap Q  <Nop>
 nnoremap q: <Nop>

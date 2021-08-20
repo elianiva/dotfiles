@@ -7,7 +7,6 @@ local dpi = xresources.apply_dpi
 local helpers = {}
 
 helpers.noop = function()
-  return
 end
 
 -- Resize client or factor

@@ -1,30 +1,14 @@
-" Ensures a given github.com/USER/REPO is cloned in the pack/packer/opt directory.
-function! Ensure(user, repo)
-  let l:install_path = stdpath("data") . "/site/pack/packer/opt/" . a:repo
-  if empty(glob(l:install_path)) > 0
-    execute printf("!git clone https://github.com/%s/%s %s", a:user, a:repo, l:install_path)
-    packadd repo
-  endif
-endfunction
-
-" Bootstrap essential plugins required for installing and loading the rest.
-call Ensure("wbthomason", "packer.nvim")
+let s:user = "wbthomason"
+let s:repo = "packer.nvim"
+let s:install_path = stdpath("data") . "/site/pack/packer/opt/" . s:repo
+if empty(glob(s:install_path)) > 0
+  execute printf("!git clone https://github.com/%s/%s %s", s:user, s:repo, s:install_path)
+  packadd repo
+endif
 
 " map leader key to space
 let g:mapleader = " "
 let g:maplocalleader = " "
-
-" disable builtin plugins I don't use
-let g:loaded_gzip         = 1
-let g:loaded_tar          = 1
-let g:loaded_tarPlugin    = 1
-let g:loaded_zipPlugin    = 1
-let g:loaded_2html_plugin = 1
-let g:loaded_netrw        = 1
-let g:loaded_netrwPlugin  = 1
-let g:loaded_matchit      = 1
-let g:loaded_matchparen   = 1
-let g:loaded_spec         = 1
 
 " prevent typo when pressing `wq` or `q`
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
@@ -38,3 +22,11 @@ runtime! lua/modules/options.lua
 runtime! lua/modules/util.lua
 runtime! lua/modules/mappings.vim
 runtime! lua/modules/statusline.lua
+
+command! PackerInstall packadd packer.nvim | lua require('plugins').install()
+command! PackerUpdate packadd packer.nvim | lua require('plugins').update()
+command! PackerSync packadd packer.nvim | lua require('plugins').sync()
+command! PackerClean packadd packer.nvim | lua require('plugins').clean()
+command! PackerStatus packadd packer.nvim | lua require('plugins').status()
+command! PackerCompile packadd packer.nvim | lua require('plugins').compile('~/.config/nvim/plugin/packer_load.vim')
+command! -nargs=+ -complete=customlist,v:lua.require'packer'.loader_complete PackerLoad | lua require('packer').loader(<q-args>)

@@ -1,5 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
+local naughty = require("naughty")
 local noop = require("main.helpers").noop
 
 local M = gears.table.join(
@@ -28,17 +29,32 @@ local M = gears.table.join(
   {description = "mute the audio", group = "media"}),
 
   awful.key({}, "XF86AudioPlay", function()
-    awful.spawn.easy_async("playerctl --player=%any,chrome,chromium play-pause", noop)
+    awful.spawn.easy_async("playerctl --player=%any,chrome,chromium play-pause", function()
+      naughty.notify {
+        title = "Playerctl",
+        text = "Audio toggled!"
+      }
+    end)
   end,
   {description = "toggle the audio", group = "media"}),
 
   awful.key({}, "XF86AudioNext", function()
-    awful.spawn.easy_async("playerctl --player=%any,chrome,chromium next", noop)
+    awful.spawn.easy_async("playerctl --player=%any,chrome,chromium next", function()
+      naughty.notify {
+        title = "Playerctl",
+        text = "Audio toggled!"
+      }
+    end)
   end,
   {description = "toggle the audio", group = "media"}),
 
   awful.key({}, "XF86AudioPrev", function()
-    awful.spawn.easy_async("playerctl --player=%any,chrome,chromium previous", noop)
+    awful.spawn.easy_async("playerctl --player=%any,chrome,chromium previous", function()
+      naughty.notify {
+        title = "Playerctl",
+        text = "Audio toggled!"
+      }
+    end)
   end,
   {description = "toggle the audio", group = "media"}),
 

@@ -28,7 +28,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 local servers = {
   -- denols = {
   --   filetypes = { "javascript", "typescript", "typescriptreact" },
-  --   root_dir = vim.loop.cwd,
   --   settings = {
   --     documentFormatting = false,
   --     lint = true,
@@ -38,14 +37,13 @@ local servers = {
   -- },
   tsserver = {
     init_options = { documentFormatting = false },
-    root_dir = vim.loop.cwd,
   },
   sumneko_lua = require("modules.lsp.sumneko").config,
   jsonls = require("modules.lsp.json").config,
   svelte = require("modules.lsp.svelte").config,
   html = { cmd = { "vscode-html-language-server", "--stdio" } },
   cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
-  intelephense = { root_dir = vim.loop.cwd },
+  intelephense = {},
   clangd = {},
   rnix = {},
   gopls = {

@@ -15,6 +15,7 @@
     lm_sensors
     neofetch
     p7zip
+    playerctl
     pulsemixer
     ripgrep
     skim
