@@ -56,16 +56,10 @@ return packer.startup {
       "mhinz/vim-sayonara",
       cmd = "Sayonara",
       setup = function()
-        local map = function(lhs, rhs)
-          vim.api.nvim_set_keymap(
-            "",
-            lhs,
-            rhs,
-            { noremap = true, silent = true }
-          )
-        end
-        map("<A-j>", "<CMD>Sayonara!<CR>")
-        map("<A-k>", "<CMD>Sayonara<CR>")
+        vim.cmd [[
+          nnoremap <silent> <A-j> <CMD>Sayonara!<CR>
+          nnoremap <silent> <A-k> <CMD>Sayonara<CR>
+        ]]
       end,
     },
 
@@ -75,7 +69,7 @@ return packer.startup {
 
     {
       "rktjmp/lush.nvim",
-      requires = { "~/Repos/gruvy", "~/Repos/icy" },
+      requires = { "~/Repos/icy" },
       config = function()
         vim.cmd [[ colorscheme icy ]]
       end,
@@ -83,18 +77,13 @@ return packer.startup {
 
     {
       "folke/which-key.nvim",
+      keys = {
+        { "n", "<leader>" },
+        { "n", "g" },
+        { "n", "z" },
+      },
       config = function()
         require "plugins.which-key"
-      end,
-    },
-
-    {
-      "ruifm/gitlinker.nvim",
-      key = { "gy" },
-      config = function()
-        require("gitlinker").setup {
-          mappings = "gy",
-        }
       end,
     },
 
@@ -115,6 +104,7 @@ return packer.startup {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-vsnip",
         {
           "hrsh7th/vim-vsnip",
           opt = false,
@@ -135,7 +125,6 @@ return packer.startup {
             ]]
           end,
         },
-        "hrsh7th/cmp-vsnip",
       },
     },
 
@@ -164,14 +153,6 @@ return packer.startup {
         "jose-elias-alvarez/null-ls.nvim",
         "jose-elias-alvarez/nvim-lsp-ts-utils",
       },
-    },
-
-    {
-      "mfussenegger/nvim-dap",
-      keys = "<Leader>d",
-      config = function()
-        require "modules.dap"
-      end,
     },
 
     { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
@@ -239,19 +220,8 @@ return packer.startup {
     },
 
     {
-      "TimUntersberger/neogit",
-      cmd = "Neogit",
-      config = function()
-        require("neogit").setup {
-          disable_signs = false,
-          disable_context_highlighting = true,
-          signs = {
-            section = { "", "" },
-            item = { "+", "-" },
-            hunk = { "", "" },
-          },
-        }
-      end,
+      "tpope/vim-fugitive",
+      cmd = { "G", "Git", "Gdiffsplit", "GBrowse" },
     },
 
     {

@@ -23,7 +23,7 @@ wk.register({
       name = "+NPM",
       s = "Scripts",
       p = "Packages",
-    }
+    },
   },
   g = {
     name = "+LSP",
@@ -37,23 +37,16 @@ wk.register({
     ["]"] = "Next Diagnostic",
     ["["] = "Prev Diagnostic",
   },
-  d = {
-    name = "+DAP",
-    b = "Toggle Breakpoint",
-    c = "Continue",
-    o = "Step Over",
-    r = "Open REPL",
-    [">"] = "Step Into",
-    ["<"] = "Step Out",
-  },
   h = {
     name = "+GitSigns",
     b = "Blame Line",
     R = "Reset Buffer",
-    p = "Preview Hunk",
+    P = "Preview Hunk",
     r = "Reset Hunk",
     s = "Stage Hunk",
     u = "Undo Hunk",
+    n = "Next Hunk",
+    p = "Prev Hunk",
   },
   r = {
     name = "+Execute",
@@ -74,7 +67,6 @@ wk.register({
 
 wk.register {
   gc = "Comments",
-  gy = "Copy Github Link",
   gJ = "Join Multiline",
   gS = "Split Into Multiline",
 
@@ -82,23 +74,12 @@ wk.register {
   sa = "Add Surrounding Character",
   sd = "Remove Surrounding Character",
   sr = "Replace Surrounding Character",
-
-  -- zettel
-  gz = {
-    name = "+Neuron",
-    n = "New Note",
-    z = "Find Note",
-    b = "Find Backlinks",
-    t = "Find Tags",
-    ["["] = "Goto Prev Link",
-    ["]"] = "Goto Next Link",
-  },
 }
 
 wk.setup {
   plugins = {
-    marks = true,
-    registers = true,
+    marks = false,
+    registers = false,
     spelling = { enabled = false },
     presets = {
       operators = false,
@@ -124,22 +105,17 @@ wk.setup {
     padding = { 4, 2, 4, 2 }, -- TRBL
   },
   layout = {
-    -- min and max height of the columns
     height = {
       min = 4,
       max = 25,
     },
-    -- min and max width of the columns
     width = {
       min = 20,
       max = 50,
     },
-    -- spacing between columns
     spacing = 8,
   },
-  -- enable this to hide mappings for which you didn't specify a label
   ignore_missing = false,
-  -- hide mapping boilerplate
   hidden = {
     "<silent>",
     "<cmd>",
@@ -150,9 +126,8 @@ wk.setup {
     "^:",
     "^ ",
   },
-  -- show help message on the command line when the popup is visible
   show_help = true,
-  triggers = "auto", -- automatically setup triggers
+  triggers = "auto",
   triggers_blacklist = {
     i = { "," },
   },

@@ -122,6 +122,9 @@ Util.lsp_on_init = function(client)
 end
 
 Util.lsp_on_attach = function(client)
+  if client.name == "svelte" then
+    client.resolved_capabilities.document_formatting = false
+  end
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
     local ts_utils = require "nvim-lsp-ts-utils"
