@@ -3,12 +3,10 @@
 local remap = vim.api.nvim_set_keymap
 local cmp = require "cmp"
 
-require("cmp_nvim_lsp").setup()
-
 cmp.setup {
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
   documentation = {
@@ -16,16 +14,16 @@ cmp.setup {
   },
   sources = {
     { name = "nvim_lsp" },
-    { name = "vsnip" },
+    { name = "luasnip" },
     { name = "path" },
     { name = "buffer" },
   },
   mapping = {
-    ["<S-TAB>"] = cmp.mapping.prev_item(),
-    ["<TAB>"] = cmp.mapping.next_item(),
+    ["<S-TAB>"]   = cmp.mapping.select_prev_item(),
+    ["<TAB>"]     = cmp.mapping.select_next_item(),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm {
+    ["<C-e>"]     = cmp.mapping.close(),
+    ["<CR>"]      = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },

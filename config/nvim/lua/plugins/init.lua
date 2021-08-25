@@ -19,6 +19,8 @@ return packer.startup {
 
     { "machakann/vim-sandwich", keys = "s" },
 
+    { "Olical/conjure", tag = "v4.23.0" },
+
     {
       "~/Repos/nvim-treesitter",
       requires = {
@@ -35,7 +37,10 @@ return packer.startup {
     {
       "rcarriga/nvim-notify",
       config = function()
-        vim.notify = require "notify"
+        vim.notify = function(msg, kind, opts)
+          opts = vim.tbl_deep_extend("keep", opts, { timeout = 3000 })
+          require "notify"(msg, kind, opts)
+        end
       end,
     },
 
@@ -104,24 +109,18 @@ return packer.startup {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-vsnip",
+        "saadparwaiz1/cmp_luasnip",
         {
-          "hrsh7th/vim-vsnip",
-          opt = false,
-          setup = function()
-            vim.g.vsnip_snippet_dir = vim.fn.stdpath "config"
-              .. "/data/snippets"
-            vim.g.vsnip_filetypes = {}
-            vim.g.vsnip_filetypes.javascript = {
-              "javascript",
-              "javascriptreact",
-              "typescriptreact",
+          "L3MON4D3/LuaSnip",
+          config = function()
+            require("luasnip.loaders.from_vscode").lazy_load {
+              paths = vim.fn.stdpath "config" .. "/data/snippets",
             }
             vim.cmd [[
-              imap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
-              smap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
-              imap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
-              smap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
+              snoremap <silent> <C-j> <cmd>lua require('luasnip').jump(1)<CR>
+              imap <silent><expr> <C-j> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-j>'
+              snoremap <silent> <C-k> <cmd>lua require('luasnip').jump(-1)<CR>
+              inoremap <silent> <C-k> <cmd>lua require('luasnip').jump(-1)<CR>
             ]]
           end,
         },
@@ -151,7 +150,15 @@ return packer.startup {
       end,
       requires = {
         "jose-elias-alvarez/null-ls.nvim",
-        "jose-elias-alvarez/nvim-lsp-ts-utils",
+        {
+          "jose-elias-alvarez/nvim-lsp-ts-utils",
+          ft = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+          },
+        },
       },
     },
 
@@ -272,9 +279,21 @@ return packer.startup {
       end,
     },
 
-    { "mfussenegger/nvim-jdtls" },
-    { "akinsho/flutter-tools.nvim" },
-    { "simrat39/rust-tools.nvim", wants = { "nvim-lspconfig" } },
+    {
+      "mfussenegger/nvim-jdtls",
+      ft = "java",
+    },
+
+    {
+      "akinsho/flutter-tools.nvim",
+      ft = "dart",
+    },
+
+    {
+      "simrat39/rust-tools.nvim",
+      ft = "rust",
+      wants = { "nvim-lspconfig" },
+    },
   },
   config = {
     compile_path = vim.fn.stdpath "data"

@@ -14,6 +14,7 @@
     light
     lm_sensors
     neofetch
+    nixUnstable
     p7zip
     playerctl
     pulsemixer
@@ -21,11 +22,12 @@
     skim
     slop
     starship
+    tealdeer
     tmux
     unzip
+    wget
     xh
     xorg.xset
-    wget
     # xorg.setxkbmap
   ];
 
