@@ -44,6 +44,9 @@ local servers = {
   html = { cmd = { "vscode-html-language-server", "--stdio" } },
   cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
   intelephense = {},
+  -- omnisharp = {
+  --   cmd = { "omnisharp" }
+  -- },
   clangd = {},
   rnix = {},
   gopls = {

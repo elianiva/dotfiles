@@ -7,6 +7,8 @@ return packer.startup {
   {
     { "wbthomason/packer.nvim", opt = true },
 
+    { "lewis6991/impatient.nvim" },
+
     require("plugins.telescope").plugin,
 
     { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
@@ -18,8 +20,6 @@ return packer.startup {
     { "dhruvasagar/vim-table-mode", ft = { "text", "markdown" } },
 
     { "machakann/vim-sandwich", keys = "s" },
-
-    { "Olical/conjure", tag = "v4.23.0" },
 
     {
       "~/Repos/nvim-treesitter",
@@ -37,10 +37,13 @@ return packer.startup {
     {
       "rcarriga/nvim-notify",
       config = function()
-        vim.notify = function(msg, kind, opts)
-          opts = vim.tbl_deep_extend("keep", opts, { timeout = 3000 })
-          require "notify"(msg, kind, opts)
-        end
+        local notify = require "notify"
+        notify.setup {
+          stages = "fade",
+          timeout = 2500,
+          background_colour = "#161822",
+        }
+        vim.notify = notify
       end,
     },
 
@@ -73,12 +76,13 @@ return packer.startup {
     { "nvim-lua/popup.nvim", module = "popup" },
 
     {
-      "rktjmp/lush.nvim",
-      requires = { "~/Repos/icy" },
+      "~/Repos/icy",
       config = function()
         vim.cmd [[ colorscheme icy ]]
       end,
     },
+
+    { "rktjmp/lush.nvim", cmd = "Lushify" },
 
     {
       "folke/which-key.nvim",
@@ -217,6 +221,7 @@ return packer.startup {
 
     {
       "andymass/vim-matchup",
+      opt = true,
       setup = function()
         vim.g.matchup_matchparen_offscreen = {
           method = "popup",
@@ -227,8 +232,20 @@ return packer.startup {
     },
 
     {
-      "tpope/vim-fugitive",
-      cmd = { "G", "Git", "Gdiffsplit", "GBrowse" },
+      "TimUntersberger/neogit",
+      cmd = "Neogit",
+      config = function()
+        require("neogit").setup {
+          disable_signs = false,
+          disable_context_highlighting = true,
+          signs = {
+            -- { CLOSED, OPENED }
+            section = { "", "" },
+            item = { "+", "-" },
+            hunk = { "", "" },
+          },
+        }
+      end,
     },
 
     {
@@ -279,21 +296,11 @@ return packer.startup {
       end,
     },
 
-    {
-      "mfussenegger/nvim-jdtls",
-      ft = "java",
-    },
+    { "mfussenegger/nvim-jdtls" },
 
-    {
-      "akinsho/flutter-tools.nvim",
-      ft = "dart",
-    },
+    { "akinsho/flutter-tools.nvim" },
 
-    {
-      "simrat39/rust-tools.nvim",
-      ft = "rust",
-      wants = { "nvim-lspconfig" },
-    },
+    { "simrat39/rust-tools.nvim", wants = { "nvim-lspconfig" } },
   },
   config = {
     compile_path = vim.fn.stdpath "data"
