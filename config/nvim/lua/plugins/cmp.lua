@@ -28,6 +28,9 @@ cmp.setup {
       select = true,
     },
   },
+  -- experimental = {
+  --   ghost_text = true,
+  -- },
 }
 
 remap(

@@ -9,7 +9,6 @@ in
     ".config/alacritty".source     = link "config/alacritty";
     ".config/kitty".source         = link "config/kitty";
     ".config/awesome".source       = link "config/awesome";
-    ".config/fontconfig".source    = link "config/fontconfig";
     ".config/nvim".source          = link "config/nvim";
     ".config/lf".source            = link "config/lf";
     ".config/picom.conf".source    = link "config/misc/picom.conf";
@@ -29,6 +28,7 @@ in
     ".zshrc".source                = link "config/zsh/.zshrc";
     ".gitconfig".source            = link "config/git/config";
     ".gnupg/gpg-agent.conf".text   = "pinentry-program ${pkgs.pinentry.gnome3}/bin/pinentry";
+    ".config/fontconfig/conf.d/20-japanese-preferred.conf".source = link "config/fontconfig/conf.d/20-japanese-preferred.conf";
 
     ".config/kbct/config.yml".text = ''
     - keyboards: ["FANTECH MAXFIT61 Mechanical Keyboard"]

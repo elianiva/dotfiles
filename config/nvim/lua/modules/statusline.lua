@@ -56,7 +56,7 @@ M.get_git_status = function(self)
   local is_head_empty = signs.head ~= ""
 
   if self:is_truncated(self.trunc_width.git_status) then
-    return is_head_empty and string.format("  %s ", signs.head or "") or ""
+    return is_head_empty and string.format(" [ %s] ", signs.head or "") or ""
   end
 
   return is_head_empty
@@ -147,11 +147,11 @@ M.set_active = function(self)
 end
 
 M.set_inactive = function()
-  return "%#StatusLineNC" .. "%= %F %="
+  return "%#StatusLineNC#" .. "%= %F %="
 end
 
 M.set_explorer = function()
-  return "%#StatusLineNC"
+  return "%#StatusLineNC#"
 end
 
 Statusline = setmetatable(M, {

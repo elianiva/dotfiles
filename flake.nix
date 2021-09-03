@@ -36,6 +36,7 @@
                   ./modules/neovim.nix
                   ./modules/dot.nix
                   ./modules/pkgs.nix
+                  ./modules/fonts.nix
                 ];
               };
           };

@@ -221,7 +221,6 @@ return packer.startup {
 
     {
       "andymass/vim-matchup",
-      opt = true,
       setup = function()
         vim.g.matchup_matchparen_offscreen = {
           method = "popup",
@@ -233,6 +232,9 @@ return packer.startup {
 
     {
       "TimUntersberger/neogit",
+      requires = {
+        "sindrets/diffview.nvim"
+      },
       cmd = "Neogit",
       config = function()
         require("neogit").setup {
@@ -244,6 +246,9 @@ return packer.startup {
             item = { "+", "-" },
             hunk = { "", "" },
           },
+          integrations = {
+            diffview = true,
+          }
         }
       end,
     },

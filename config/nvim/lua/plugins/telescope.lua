@@ -10,6 +10,7 @@ M.plugin = {
     { "n", "<Leader>f" },
   },
   wants = {
+    "sqlite.lua",
     "popup.nvim",
     "plenary.nvim",
     "telescope-fzf-native.nvim",
@@ -17,21 +18,15 @@ M.plugin = {
     "telescope-npm",
   },
   requires = {
-    { "~/Repos/telescope-npm", opt = true },
     {
-      "nvim-telescope/telescope-frecency.nvim",
-      opt = true,
-      requires = {
-        {
-          "tami5/sql.nvim",
-          setup = function()
-            vim.g.sql_clib_path = "/lib64/libsqlite3.so.0.8.6"
-          end,
-          module_pattern = { "sql", "sql.*" },
-        },
-      },
+      "tami5/sqlite.lua",
+      setup = function()
+        vim.g.sqlite_clib_path = "/lib64/libsqlite3.so.0.8.6"
+      end,
     },
-    { "nvim-telescope/telescope-fzf-native.nvim", opt = true, run = "make" },
+    "~/Repos/telescope-npm",
+    "nvim-telescope/telescope-frecency.nvim",
+    { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
   },
   config = function()
     require("plugins.telescope").config()
@@ -151,21 +146,21 @@ M.config = function()
         override_file_sorter = true,
       },
       frecency = {
-        show_scores = false,
+        show_scores = true,
         show_unindexed = true,
+        devicons_disabled = true,
         ignore_patterns = { "*.git/*", "*/tmp/*" },
         workspaces = {
           ["nvim"] = "/home/elianiva/.config/nvim",
           ["awesome"] = "/home/elianiva/.config/awesome",
-          ["alacritty"] = "/home/elianiva/.config/alacritty",
-          ["scratch"] = "/home/elianiva/codes/scratch",
+          ["scratch"] = "/home/elianiva/Dev/scratch",
         },
       },
     },
   }
 
   pcall(telescope.load_extension, "fzf") -- superfast sorter
-  pcall(telescope.load_extension, "frecency") -- frecency
+  telescope.load_extension "frecency"
   pcall(telescope.load_extension, "npm") -- NPM integrations
 
   M.arecibo = function()
