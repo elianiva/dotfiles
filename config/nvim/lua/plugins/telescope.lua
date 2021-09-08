@@ -127,8 +127,12 @@ M.config = function()
     },
     pickers = {
       find_files = {
-        -- file_ignore_patterns = { "%.png", "%.jpg", "%.webp", "node_modules" },
-        file_ignore_patterns = { ".store.go", ".store_test.go" },
+        file_ignore_patterns = {
+          "%.png",
+          "%.jpg",
+          "%.webp",
+          "node_modules",
+        },
       },
       lsp_code_actions = M.no_preview(),
       current_buffer_fuzzy_find = M.no_preview(),

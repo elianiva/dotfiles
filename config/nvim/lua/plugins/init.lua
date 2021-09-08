@@ -11,7 +11,7 @@ return packer.startup {
 
     require("plugins.telescope").plugin,
 
-    { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
+    { "dstein64/vim-startuptime", cmd = "StartupTime" },
 
     { "tpope/vim-commentary", keys = "gc" },
 
@@ -75,10 +75,17 @@ return packer.startup {
 
     { "nvim-lua/popup.nvim", module = "popup" },
 
+    -- {
+    --   "~/Repos/icy",
+    --   config = function()
+    --     vim.cmd [[ colorscheme icy ]]
+    --   end,
+    -- },
+
     {
-      "~/Repos/icy",
+      "~/Repos/gitgud",
       config = function()
-        vim.cmd [[ colorscheme icy ]]
+        vim.cmd [[ colorscheme gitgud ]]
       end,
     },
 
@@ -233,7 +240,7 @@ return packer.startup {
     {
       "TimUntersberger/neogit",
       requires = {
-        "sindrets/diffview.nvim"
+        "sindrets/diffview.nvim",
       },
       cmd = "Neogit",
       config = function()
@@ -248,7 +255,7 @@ return packer.startup {
           },
           integrations = {
             diffview = true,
-          }
+          },
         }
       end,
     },
@@ -305,7 +312,32 @@ return packer.startup {
 
     { "akinsho/flutter-tools.nvim" },
 
-    { "simrat39/rust-tools.nvim", wants = { "nvim-lspconfig" } },
+    {
+      "simrat39/rust-tools.nvim",
+      -- wait until rust-tools.nvim adapt to new handler signature
+      opt = true,
+      wants = { "nvim-lspconfig" },
+      config = function()
+        require("rust-tools").setup {
+          tools = {
+            inlay_hints = {
+              show_parameter_hints = true,
+              parameter_hints_prefix = "  <- ",
+              other_hints_prefix = "  => ",
+            },
+            hover_actions = {
+              border = Util.borders,
+            },
+          },
+          server = {
+            init_options = {
+              detachedFiles = vim.fn.expand "%",
+            },
+            on_attach = Util.lsp_on_attach,
+          },
+        }
+      end,
+    },
   },
   config = {
     compile_path = vim.fn.stdpath "data"

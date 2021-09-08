@@ -19,25 +19,46 @@
 !*color7:  #918273
 !*color15: #e0d2ae
 
-! icy
-*foreground: #c6c8d1
-*background: #161821
-*color0: #161821
-*color8: #6b7089
-*color1: #e27878
-*color9: #e98989
-*color2: #b4be82
-*color10: #c0ca8e
-*color3: #e2a478
-*color11: #e9b189
-*color4: #84a0c6
-*color12: #91acd1
-*color5: #a093c7
-*color13: #ada0d3
-*color6: #89b8c2
-*color14: #95c4ce
-*color7: #c6c8d1
-*color15: #d2d4de
+/* ! icy */
+/* *foreground: #c6c8d1 */
+/* *background: #161821 */
+/* *color0: #161821 */
+/* *color8: #6b7089 */
+/* *color1: #e27878 */
+/* *color9: #e98989 */
+/* *color2: #b4be82 */
+/* *color10: #c0ca8e */
+/* *color3: #e2a478 */
+/* *color11: #e9b189 */
+/* *color4: #84a0c6 */
+/* *color12: #91acd1 */
+/* *color5: #a093c7 */
+/* *color13: #ada0d3 */
+/* *color6: #89b8c2 */
+/* *color14: #95c4ce */
+/* *color7: #c6c8d1 */
+/* *color15: #d2d4de */
+
+
+! gitgud
+*foreground: #C9D1D9
+*background: #161B22
+*color0: #161B22
+*color8: #545664
+*color1: #FF7A70
+*color9: #FF8880
+*color2: #8CDA8B
+*color10: #96E695
+*color3: #F69E51
+*color11: #FFAB61
+*color4: #7AC1FF
+*color12: #7AC1FF
+*color5: #D2A8FF
+*color13: #D7B3FF
+*color6: #A3D6FF
+*color14: #ADDBFF
+*color7: #C9D1D9
+*color15: #E6ECF2
 
 
 ! ------------------------------------------------------------------------------

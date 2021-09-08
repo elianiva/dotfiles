@@ -11,17 +11,17 @@ lsp.handlers["textDocument/signatureHelp"] = lsp.with(
   }
 )
 
-local on_publish_diagnostics = function(_, _, params, client_id, _, config)
-  local uri = params.uri
+local on_publish_diagnostics = function(_, result, ctx, config)
+  local uri = result.uri
   local bufnr = vim.uri_to_bufnr(uri)
 
   if not bufnr then
     return
   end
 
-  local diagnostics = params.diagnostics
+  local diagnostics = result.diagnostics
 
-  vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
+  vim.lsp.diagnostic.save(diagnostics, bufnr, ctx.client_id)
 
   if not vim.api.nvim_buf_is_loaded(bufnr) then
     return
@@ -37,7 +37,7 @@ local on_publish_diagnostics = function(_, _, params, client_id, _, config)
       v.message
     )
   end
-  vim.lsp.diagnostic.display(prefixed_diagnostics, bufnr, client_id, config)
+  vim.lsp.diagnostic.display(prefixed_diagnostics, bufnr, ctx.client_id, config)
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

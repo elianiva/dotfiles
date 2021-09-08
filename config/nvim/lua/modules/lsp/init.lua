@@ -44,10 +44,10 @@ local servers = {
   html = { cmd = { "vscode-html-language-server", "--stdio" } },
   cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
   intelephense = {},
-  -- omnisharp = {
-  --   cmd = { "omnisharp" }
-  -- },
+  omnisharp = { cmd = { "omnisharp" } },
   clangd = {},
+  -- wait until rust-tools.nvim adapt to new handler signature
+  rust_analyzer = {},
   rnix = {},
   gopls = {
     settings = {
