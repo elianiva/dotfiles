@@ -4,6 +4,7 @@ local remap = vim.api.nvim_set_keymap
 local cmp = require "cmp"
 
 cmp.setup {
+  preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)

@@ -125,14 +125,14 @@ Util.lsp_on_attach = function(client)
     ts_utils.setup_client(client)
   end
 
-  if client.resolved_capabilities.code_lens then
-    vim.cmd [[
-    augroup CodeLens
-      au!
-      au InsertEnter,InsertLeave * lua vim.lsp.codelens.refresh()
-    augroup END
-    ]]
-  end
+  -- if client.resolved_capabilities.code_lens then
+  --   vim.cmd [[
+  --   augroup CodeLens
+  --     au!
+  --     au InsertEnter,InsertLeave * lua vim.lsp.codelens.refresh()
+  --   augroup END
+  --   ]]
+  -- end
   require("modules.lsp.mappings").lsp_mappings()
 end
 

@@ -21,6 +21,10 @@ return packer.startup {
 
     { "machakann/vim-sandwich", keys = "s" },
 
+    { "gpanders/editorconfig.nvim" },
+
+    { "adelarsq/neofsharp.vim" },
+
     {
       "~/Repos/nvim-treesitter",
       requires = {

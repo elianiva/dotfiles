@@ -8,7 +8,7 @@ capabilities.textDocument.completion.completionItem.documentationFormat = {
   "markdown",
 }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = false
+capabilities.textDocument.completion.completionItem.preselectSupport = true
 capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
 capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
 capabilities.textDocument.completion.completionItem.deprecatedSupport = true
@@ -44,7 +44,15 @@ local servers = {
   html = { cmd = { "vscode-html-language-server", "--stdio" } },
   cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
   intelephense = {},
-  omnisharp = { cmd = { "omnisharp" } },
+  fsautocomplete = {},
+  omnisharp = {
+    cmd = {
+      "omnisharp",
+      "--languageserver",
+      "--hostPID",
+      tostring(vim.fn.getpid()),
+    },
+  },
   clangd = {},
   -- wait until rust-tools.nvim adapt to new handler signature
   rust_analyzer = {},

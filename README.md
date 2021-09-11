@@ -4,10 +4,19 @@
 >
 > Feel free to take whatever you want, though.
 
-<p align="center">
-  <kbd><img src="./preview-arch.png"></kbd>
-  <kbd><img src="./preview-fedora.png"></kbd>
-</p>
+[gruvy-link]: https://github.com/elianiva/gruvy.nvim
+[icy-link]: https://github.com/elianiva/icy.nvim
+[gitgud-link]: https://github.com/elianiva/gitgud.nvim
+[gruvbox-link]: https://github.com/gruvbox-community/gruvbox
+
+Arch + [Gruvbox][gruvy-link]  |  Arch + [Gruvy][gruvy-link]
+:----------------------------:|:------------------------------:
+![](./preview-old.png)        | ![](./preview-arch.png)
+
+
+Fedora + [Icy][icy-link]    | Arch + [Gitgud][gitgud-link]
+:--------------------------:|:------------------------------------:
+ ![](./preview-fedora.png)  |  ![](./preview-arch-new.png)
 
 [arch-link]: https://archlinux.org/
 [fedora-link]: https://getfedora.org/
