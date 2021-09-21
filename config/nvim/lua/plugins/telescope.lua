@@ -136,13 +136,6 @@ M.config = function()
       },
       lsp_code_actions = M.no_preview(),
       current_buffer_fuzzy_find = M.no_preview(),
-      git_commits = {
-        previewer = {
-          delta,
-          previewers.git_commit_message.new {},
-          previewers.git_commit_diff_as_was.new {},
-        },
-      },
     },
     extensions = {
       fzf = {
@@ -163,9 +156,9 @@ M.config = function()
     },
   }
 
-  pcall(telescope.load_extension, "fzf") -- superfast sorter
+  telescope.load_extension "fzf" -- superfast sorter
   telescope.load_extension "frecency"
-  pcall(telescope.load_extension, "npm") -- NPM integrations
+  telescope.load_extension "npm" -- NPM integrations
 
   M.arecibo = function()
     telescope.extensions.arecibo.websearch(M.no_preview())

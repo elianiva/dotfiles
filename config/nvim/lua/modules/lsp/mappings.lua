@@ -17,7 +17,7 @@ M.lsp_mappings = function()
   nnoremap {
     "<Leader>gD",
     function()
-      vim.lsp.diagnostic.show_line_diagnostics {
+      vim.diagnostic.show_line_diagnostics {
         show_header = false,
         border = Util.borders,
       }
@@ -29,7 +29,7 @@ M.lsp_mappings = function()
   nnoremap {
     "<Leader>g]",
     function()
-      vim.lsp.diagnostic.goto_next {
+      vim.diagnostic.goto_next {
         popup_opts = {
           show_header = false,
           border = Util.borders,
@@ -41,7 +41,7 @@ M.lsp_mappings = function()
   nnoremap {
     "<Leader>g[",
     function()
-      vim.lsp.diagnostic.goto_prev {
+      vim.diagnostic.goto_prev {
         popup_opts = {
           show_header = false,
           border = Util.borders,

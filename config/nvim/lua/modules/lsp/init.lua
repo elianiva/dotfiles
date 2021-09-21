@@ -1,7 +1,7 @@
 local lspconfig = require "lspconfig"
 
 -- override handlers
-pcall(require, "modules.lsp.handlers")
+require "modules.lsp.handlers"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = {

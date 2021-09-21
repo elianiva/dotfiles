@@ -165,15 +165,7 @@ return packer.startup {
       end,
       requires = {
         "jose-elias-alvarez/null-ls.nvim",
-        {
-          "jose-elias-alvarez/nvim-lsp-ts-utils",
-          ft = {
-            "javascript",
-            "javascriptreact",
-            "typescript",
-            "typescriptreact",
-          },
-        },
+        "jose-elias-alvarez/nvim-lsp-ts-utils",
       },
     },
 
@@ -318,8 +310,6 @@ return packer.startup {
 
     {
       "simrat39/rust-tools.nvim",
-      -- wait until rust-tools.nvim adapt to new handler signature
-      opt = true,
       wants = { "nvim-lspconfig" },
       config = function()
         require("rust-tools").setup {
