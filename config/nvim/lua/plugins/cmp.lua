@@ -4,6 +4,9 @@ local remap = vim.api.nvim_set_keymap
 local cmp = require "cmp"
 
 cmp.setup {
+  completion = {
+    autocomplete = false,
+  },
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)

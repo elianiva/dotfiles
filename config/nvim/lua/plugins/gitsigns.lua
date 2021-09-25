@@ -18,7 +18,7 @@ require("gitsigns").setup {
     ["n <leader>hR"] = '<cmd>lua require("gitsigns").reset_buffer()<CR>',
     ["n <leader>hP"] = '<cmd>lua require("gitsigns").preview_hunk()<CR>',
   },
-  watch_index = {
+  watch_gitdir = {
     interval = 1000,
   },
   preview_config = {

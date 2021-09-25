@@ -7,7 +7,16 @@ return packer.startup {
   {
     { "wbthomason/packer.nvim", opt = true },
 
-    { "lewis6991/impatient.nvim" },
+    {
+      "lewis6991/impatient.nvim",
+    },
+
+    {
+      "tami5/sqlite.lua",
+      setup = function()
+        vim.g.sqlite_clib_path = "/lib64/libsqlite3.so.0.8.6"
+      end,
+    },
 
     require("plugins.telescope").plugin,
 
@@ -17,13 +26,13 @@ return packer.startup {
 
     { "AndrewRadev/splitjoin.vim", keys = "gS" },
 
-    { "dhruvasagar/vim-table-mode", ft = { "text", "markdown" } },
-
     { "machakann/vim-sandwich", keys = "s" },
 
     { "gpanders/editorconfig.nvim" },
 
-    { "adelarsq/neofsharp.vim" },
+    { "nvim-lua/plenary.nvim", module = "plenary" },
+
+    { "nvim-lua/popup.nvim", module = "popup" },
 
     {
       "~/Repos/nvim-treesitter",
@@ -74,10 +83,6 @@ return packer.startup {
         ]]
       end,
     },
-
-    { "nvim-lua/plenary.nvim", module = "plenary" },
-
-    { "nvim-lua/popup.nvim", module = "popup" },
 
     -- {
     --   "~/Repos/icy",
@@ -145,7 +150,7 @@ return packer.startup {
     {
       "lewis6991/gitsigns.nvim",
       wants = { "plenary.nvim" },
-      event = "BufEnter",
+      event = "BufEnter", -- don't need this on scratch buffer
       config = function()
         require "plugins.gitsigns"
       end,
@@ -264,23 +269,23 @@ return packer.startup {
       end,
     },
 
-    {
-      "lervag/vimtex",
-      ft = "latex",
-      setup = function()
-        vim.g.vimtex_quickfix_enabled = false
-        vim.g.vimtex_view_method = "zathura"
-        vim.g.vimtex_compiler_latexmk = {
-          options = {
-            "--shell-escape",
-            "-verbose",
-            "-file-line-error",
-            "-synctex=1",
-            "-interaction=nonstopmode",
-          },
-        }
-      end,
-    },
+    -- {
+    --   "lervag/vimtex",
+    --   ft = "latex",
+    --   setup = function()
+    --     vim.g.vimtex_quickfix_enabled = false
+    --     vim.g.vimtex_view_method = "zathura"
+    --     vim.g.vimtex_compiler_latexmk = {
+    --       options = {
+    --         "--shell-escape",
+    --         "-verbose",
+    --         "-file-line-error",
+    --         "-synctex=1",
+    --         "-interaction=nonstopmode",
+    --       },
+    --     }
+    --   end,
+    -- },
 
     {
       "norcalli/nvim-colorizer.lua",

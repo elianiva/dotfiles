@@ -9,7 +9,11 @@ in
     inter
     mplus-outline-fonts
     open-sans
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+      ];
+    })
   ];
 
   fonts.fontconfig.enable = true;

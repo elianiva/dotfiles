@@ -18,12 +18,6 @@ M.plugin = {
     "telescope-npm",
   },
   requires = {
-    {
-      "tami5/sqlite.lua",
-      setup = function()
-        vim.g.sqlite_clib_path = "/lib64/libsqlite3.so.0.8.6"
-      end,
-    },
     "~/Repos/telescope-npm",
     "nvim-telescope/telescope-frecency.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
