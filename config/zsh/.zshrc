@@ -96,10 +96,6 @@ function git-svn() {
   fi
 }
 
-function run_rs() {
-  rustc $1; ./$(echo "$1" | sed -e "s/\.rs$//")
-}
-
 function skim-history-widget() {
   local selected num
   echo -ne "\r"

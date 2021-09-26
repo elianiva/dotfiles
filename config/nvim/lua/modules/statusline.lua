@@ -97,7 +97,11 @@ M.get_filetype = function()
     return " No FT "
   end
 
-  return string.format("[ft: %s]", filetype):lower()
+  return string.format("[ft: %s] ", filetype):lower()
+end
+
+M.get_fileformat = function()
+  return string.format("[%s]", vim.o.fileformat):lower()
 end
 
 M.get_line_col = function()
@@ -124,25 +128,19 @@ M.lsp_progress = function()
 end
 
 M.set_active = function(self)
-  local mode = self:get_current_mode()
-  local git = self:get_git_status()
-
-  local filetype = self:get_filetype()
-  local line_col = self:get_line_col()
-  local lsp = self:lsp_progress()
-
   return table.concat {
     "%#StatusLine#",
-    mode,
+    self:get_current_mode(),
     "%#StatusLineAccent#",
-    line_col,
+    self:get_line_col(),
     "%#StatusLine#",
     self:get_filepath(),
     self:get_filename(),
     "%=",
-    lsp,
-    filetype,
-    git,
+    self:lsp_progress(),
+    self:get_filetype(),
+    self:get_fileformat(),
+    self:get_git_status(),
   }
 end
 
