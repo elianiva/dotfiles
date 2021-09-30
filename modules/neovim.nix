@@ -6,7 +6,6 @@
   };
   home.packages = with pkgs; [
     my.jdt-language-server
-    jdk11
     clang-tools
     stylua
     sumneko-lua-language-server

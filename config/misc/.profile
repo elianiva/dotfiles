@@ -28,14 +28,18 @@ export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.fnm:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
 
-# Flutter stuff
 # export JAVA_OPTS="-XX:+IgnoreUnrecognizedVMOptions"
 # export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
+
+# required if java is installed from nix
+export JAVA_HOME="${$(readlink -e $(type -p java))%*/bin/java}"
 unset JAVA_OPTS
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 export ANDROID="$HOME/Dev/android"
+
+# Flutter stuff
 export PATH="/opt/android-sdk/cmdline-tools/latest/bin:$PATH"
 export PATH="$HOME/Dev/android/flutter/bin:$PATH"
 export PATH="$ANDROID_HOME/emulator:$PATH"
