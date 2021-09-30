@@ -7,9 +7,9 @@ return packer.startup {
   {
     { "wbthomason/packer.nvim", opt = true },
 
-    {
-      "lewis6991/impatient.nvim",
-    },
+    { "lewis6991/impatient.nvim" },
+
+    { "nathom/filetype.nvim" },
 
     {
       "tami5/sqlite.lua",

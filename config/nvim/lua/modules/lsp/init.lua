@@ -41,8 +41,12 @@ local servers = {
   sumneko_lua = require("modules.lsp.sumneko").config,
   jsonls = require("modules.lsp.json").config,
   svelte = require("modules.lsp.svelte").config,
-  html = { cmd = { "vscode-html-language-server", "--stdio" } },
-  cssls = { cmd = { "vscode-css-language-server", "--stdio" } },
+  html = {
+    cmd = { "vscode-html-language-server", "--stdio" },
+  },
+  cssls = {
+    cmd = { "vscode-css-language-server", "--stdio" },
+  },
   intelephense = {},
   fsautocomplete = {},
   omnisharp = {
@@ -57,6 +61,7 @@ local servers = {
   -- wait until rust-tools.nvim adapt to new handler signature
   rust_analyzer = {},
   rnix = {},
+  volar = {},
   gopls = {
     settings = {
       gopls = {
@@ -72,7 +77,6 @@ local servers = {
     },
   },
   pyright = {},
-  texlab = {},
   ["null-ls"] = {},
 }
 

@@ -14,11 +14,21 @@ Util.trigger_completion = function()
 
   -- minimal autopairs-like behaviour
 
-  if prev_char == "{" and next_char ~= "}" then return Util.t "<CR>}<C-o>O" end
-  if prev_char == "[" and next_char ~= "]" then return Util.t "<CR>]<C-o>O" end
-  if prev_char == "(" and next_char ~= ")" then return Util.t "<CR>)<C-o>O" end
-  if prev_char == ">" and next_char == "<" then return Util.t "<CR><C-o>O" end -- html indents
-  if prev_char == "(" and next_char == ")" then return Util.t "<CR><C-o>O" end -- flutter indents
+  if prev_char == "{" and next_char ~= "}" then
+    return Util.t "<CR>}<C-o>O"
+  end
+  if prev_char == "[" and next_char ~= "]" then
+    return Util.t "<CR>]<C-o>O"
+  end
+  if prev_char == "(" and next_char ~= ")" then
+    return Util.t "<CR>)<C-o>O"
+  end
+  if prev_char == ">" and next_char == "<" then
+    return Util.t "<CR><C-o>O"
+  end -- html indents
+  if prev_char == "(" and next_char == ")" then
+    return Util.t "<CR><C-o>O"
+  end -- flutter indents
 
   return Util.t "<CR>"
 end
@@ -113,7 +123,7 @@ Util.lsp_on_init = function(client)
 end
 
 Util.lsp_on_attach = function(client)
-  if client.name == "svelte" then
+  if client.name == "svelte" or client.name == "volar" then
     client.resolved_capabilities.document_formatting = false
   end
   if client.name == "tsserver" then
@@ -125,14 +135,14 @@ Util.lsp_on_attach = function(client)
     ts_utils.setup_client(client)
   end
 
-  -- if client.resolved_capabilities.code_lens then
-  --   vim.cmd [[
-  --   augroup CodeLens
-  --     au!
-  --     au InsertEnter,InsertLeave * lua vim.lsp.codelens.refresh()
-  --   augroup END
-  --   ]]
-  -- end
+  if client.resolved_capabilities.code_lens then
+    vim.cmd [[
+    augroup CodeLens
+      au!
+      au InsertEnter,InsertLeave * lua vim.lsp.codelens.refresh()
+    augroup END
+    ]]
+  end
   require("modules.lsp.mappings").lsp_mappings()
 end
 
