@@ -126,12 +126,11 @@ Util.lsp_on_attach = function(client)
   if client.name == "svelte" or client.name == "volar" then
     client.resolved_capabilities.document_formatting = false
   end
+
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
     local ts_utils = require "nvim-lsp-ts-utils"
-    ts_utils.setup {
-      enable_import_on_completion = true,
-    }
+    ts_utils.setup { enable_import_on_completion = true }
     ts_utils.setup_client(client)
   end
 

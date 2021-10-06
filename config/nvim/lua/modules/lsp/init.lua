@@ -32,8 +32,8 @@ local servers = {
   --     documentFormatting = false,
   --     lint = true,
   --     unstable = true,
-  --     config = "./tsconfig.json"
-  --   }
+  --     config = "./tsconfig.json",
+  --   },
   -- },
   tsserver = {
     init_options = { documentFormatting = false },
@@ -48,20 +48,21 @@ local servers = {
     cmd = { "vscode-css-language-server", "--stdio" },
   },
   intelephense = {},
-  fsautocomplete = {},
-  omnisharp = {
-    cmd = {
-      "omnisharp",
-      "--languageserver",
-      "--hostPID",
-      tostring(vim.fn.getpid()),
-    },
-  },
+  -- fsautocomplete = {},
+  -- omnisharp = {
+  --   cmd = {
+  --     "omnisharp",
+  --     "--languageserver",
+  --     "--hostPID",
+  --     tostring(vim.fn.getpid()),
+  --   },
+  -- },
   clangd = {},
   -- wait until rust-tools.nvim adapt to new handler signature
   rust_analyzer = {},
   rnix = {},
   volar = {},
+  elmls = {},
   gopls = {
     settings = {
       gopls = {

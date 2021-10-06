@@ -32,7 +32,7 @@ export PATH="$HOME/.pub-cache/bin:$PATH"
 # export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 
 # required if java is installed from nix
-export JAVA_HOME="${$(readlink -e $(type -p java))%*/bin/java}"
+#export JAVA_HOME="${$(readlink -e $(type -p java))%*/bin/java}"
 unset JAVA_OPTS
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
 export _JAVA_AWT_WM_NONREPARENTING=1
