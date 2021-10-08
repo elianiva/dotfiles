@@ -12,12 +12,5 @@
     rust-analyzer
     gopls
     rnix-lsp
-  ] ++ (
-    with nodePackages; [
-      pyright
-      svelte-language-server
-      typescript-language-server
-      eslint_d
-    ]
-  );
+  ];
 }

@@ -5,7 +5,7 @@ set fish_greeting
 starship init fish | source
 
 # fnm
-fnm env
+fnm env | source
 
 # Start X at login
 if status is-login
