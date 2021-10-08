@@ -22,13 +22,26 @@ return packer.startup {
 
     { "dstein64/vim-startuptime", cmd = "StartupTime" },
 
-    { "tpope/vim-commentary", keys = "gc" },
+    {
+      "numToStr/Comment.nvim",
+      keys = "gc",
+      config = function()
+        require("Comment").setup()
+      end,
+    },
 
     { "AndrewRadev/splitjoin.vim", keys = "gS" },
 
     { "machakann/vim-sandwich", keys = "s" },
 
     { "gpanders/editorconfig.nvim" },
+
+    {
+      "https://gitlab.com/yorickpeterse/nvim-pqf",
+      config = function()
+        require("pqf").setup()
+      end,
+    },
 
     { "nvim-lua/plenary.nvim", module = "plenary" },
 

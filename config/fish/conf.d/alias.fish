@@ -6,7 +6,7 @@ alias gd="git diff"
 alias gr="git restore"
 
 # save current work
-alias gwip='git add -A; git rm (git ls-files --deleted) 2> /dev/null; git commit -m "[WIP]: (date)"'
+alias gwip='git add -A; git rm (git ls-files --deleted) 2> /dev/null; git commit -m "[WIP]: '(date)'"'
 
 # Logging helpers
 alias gls='git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate'

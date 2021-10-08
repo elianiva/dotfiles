@@ -23,18 +23,19 @@ cmp.setup {
     { name = "buffer" },
   },
   mapping = {
-    ["<S-TAB>"]   = cmp.mapping.select_prev_item(),
-    ["<TAB>"]     = cmp.mapping.select_next_item(),
+    ["<S-TAB>"]   = cmp.mapping.select_prev_item { cmp.SelectBehavior.Select },
+    ["<TAB>"]     = cmp.mapping.select_next_item { cmp.SelectBehavior.Select },
     ["<C-SPACE>"] = cmp.mapping.complete(),
     ["<C-E>"]     = cmp.mapping.close(),
     ["<CR>"]      = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
+      select   = true,
     },
   },
-  -- experimental = {
-  --   ghost_text = true,
-  -- },
+  experimental = {
+    -- ghost_text = true,
+    native_menu = true, -- I don't use autocompletion anyway
+  },
 }
 
 remap(

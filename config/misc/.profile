@@ -2,6 +2,7 @@
 
 # env variables from home manager
 source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 export EDITOR="nvim"
 export DOTS="/home/elianiva/repos/dotfiles"
