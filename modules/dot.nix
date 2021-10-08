@@ -17,6 +17,7 @@ in
     ".config/starship.toml".source = link "config/misc/starship.toml";
     ".config/zathurarc".source     = link "config/misc/zathurarc";
     ".config/qt5ct".source         = link "config/qt5ct";
+    ".config/fish".source          = link "config/fish";
     ".tmux.conf".source            = link "config/tmux/.tmux.conf";
     ".scripts".source              = link "config/scripts";
     ".profile".source              = link "config/misc/.profile";

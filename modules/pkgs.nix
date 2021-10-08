@@ -16,6 +16,7 @@
     )
     xclip
     gcr # for pinentry-gnome3
+    fishPlugins.foreign-env # `fenv`
   ];
   services.clipmenu.enable = true;
   programs.man.enable = false;

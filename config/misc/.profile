@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# env variables from home manager
+source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
 export EDITOR="nvim"
 export DOTS="/home/elianiva/repos/dotfiles"
 export TERMINAL="kitty"
@@ -32,20 +36,19 @@ export PATH="$HOME/.pub-cache/bin:$PATH"
 # export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 
 # required if java is installed from nix
-#export JAVA_HOME="${$(readlink -e $(type -p java))%*/bin/java}"
 unset JAVA_OPTS
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 export ANDROID="$HOME/Dev/android"
 
-# Flutter stuff
-export PATH="/opt/android-sdk/cmdline-tools/latest/bin:$PATH"
-export PATH="$HOME/Dev/android/flutter/bin:$PATH"
-export PATH="$ANDROID_HOME/emulator:$PATH"
-export PATH="$ANDROID_HOME/platform-tools/:$PATH"
-export PATH="$ANDROID_HOME/tools/bin/:$PATH"
-export PATH="$ANDROID_HOME/tools/:$PATH"
+# # Flutter stuff
+# export PATH="/opt/android-sdk/cmdline-tools/latest/bin:$PATH"
+# export PATH="$HOME/Dev/android/flutter/bin:$PATH"
+# export PATH="$ANDROID_HOME/emulator:$PATH"
+# export PATH="$ANDROID_HOME/platform-tools/:$PATH"
+# export PATH="$ANDROID_HOME/tools/bin/:$PATH"
+# export PATH="$ANDROID_HOME/tools/:$PATH"
 
 # Fcitx5 Stuff
 export GLFW_IM_MODULE="ibus"

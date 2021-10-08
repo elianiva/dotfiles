@@ -1,7 +1,6 @@
 
 #!/bin/sh
 source ~/.profile
-source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 ## automatically login to WM
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
