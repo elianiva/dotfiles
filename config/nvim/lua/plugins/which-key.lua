@@ -128,5 +128,6 @@ wk.setup {
   triggers = "auto",
   triggers_blacklist = {
     i = { "," },
+    n = { "'" },
   },
 }

@@ -12,6 +12,14 @@ return packer.startup {
     { "nathom/filetype.nvim" },
 
     {
+      "ruifm/gitlinker.nvim",
+      keys = "<leader>gy",
+      config = function()
+        require("gitlinker").setup()
+      end,
+    },
+
+    {
       "tami5/sqlite.lua",
       setup = function()
         vim.g.sqlite_clib_path = "/lib64/libsqlite3.so.0.8.6"
@@ -26,7 +34,11 @@ return packer.startup {
       "numToStr/Comment.nvim",
       keys = "gc",
       config = function()
-        require("Comment").setup()
+        require("Comment").setup {
+          pre_hook = function()
+            return require("ts_context_commentstring.internal").calculate_commentstring()
+          end,
+        }
       end,
     },
 
@@ -43,9 +55,15 @@ return packer.startup {
       end,
     },
 
-    { "nvim-lua/plenary.nvim", module = "plenary" },
+    {
+      "nvim-lua/plenary.nvim",
+      module_pattern = { "plenary", "plenary.*" },
+    },
 
-    { "nvim-lua/popup.nvim", module = "popup" },
+    {
+      "nvim-lua/popup.nvim",
+      module_pattern = { "popup", "popup.*" },
+    },
 
     {
       "~/Repos/nvim-treesitter",
@@ -56,7 +74,10 @@ return packer.startup {
         },
         "nvim-treesitter/nvim-treesitter-textobjects",
         "windwp/nvim-ts-autotag",
-        "JoosepAlviste/nvim-ts-context-commentstring",
+        {
+          "JoosepAlviste/nvim-ts-context-commentstring",
+          module_pattern = "ts_context_commentstring.*",
+        },
       },
     },
 
@@ -282,6 +303,7 @@ return packer.startup {
       end,
     },
 
+    -- not writing any latex atm
     -- {
     --   "lervag/vimtex",
     --   ft = "latex",
@@ -324,7 +346,8 @@ return packer.startup {
 
     { "mfussenegger/nvim-jdtls" },
 
-    { "akinsho/flutter-tools.nvim" },
+    -- not doing flutter atm
+    -- { "akinsho/flutter-tools.nvim" },
 
     {
       "simrat39/rust-tools.nvim",
@@ -351,6 +374,7 @@ return packer.startup {
       end,
     },
   },
+
   config = {
     compile_path = vim.fn.stdpath "data"
       .. "/site/pack/loader/start/packer.nvim/plugin/packer_compiled.lua",

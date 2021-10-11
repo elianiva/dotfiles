@@ -35,20 +35,6 @@ M.config = function()
   local k = vim.keymap
   local nnoremap = k.nnoremap
 
-  local delta = previewers.new_termopen_previewer {
-    get_command = function(entry)
-      return {
-        "git",
-        "-c",
-        "core.pager=delta",
-        "-c",
-        "delta.side-by-side=false",
-        "diff",
-        entry.value .. "^!",
-      }
-    end,
-  }
-
   M.no_preview = function()
     return require("telescope.themes").get_dropdown {
       borderchars = {
@@ -190,7 +176,11 @@ M.config = function()
   end
 
   -- toggle telescope.nvim
-  nnoremap { "<C-p>", require("telescope.builtin").find_files, { silent = true } }
+  nnoremap {
+    "<C-p>",
+    require("telescope.builtin").find_files,
+    { silent = true },
+  }
   nnoremap { "<C-f>", M.grep_prompt, { silent = true } }
   nnoremap { "<Leader>ft", M.builtins, { silent = true } }
   nnoremap { "<Leader>ff", M.frecency, { silent = true } }

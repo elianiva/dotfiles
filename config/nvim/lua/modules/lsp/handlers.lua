@@ -4,12 +4,12 @@ lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
   border = Util.borders,
 })
 
-lsp.handlers["textDocument/signatureHelp"] = lsp.with(
-  lsp.handlers.signature_help,
-  {
-    border = Util.borders,
-  }
-)
+-- lsp.handlers["textDocument/signatureHelp"] = lsp.with(
+--   lsp.handlers.signature_help,
+--   {
+--     border = Util.borders,
+--   }
+-- )
 
 local signs = {
   Error = " ",

@@ -28,6 +28,7 @@ runtime! lua/modules/util.lua
 runtime! lua/modules/mappings.vim
 runtime! lua/modules/statusline.lua
 
+" packer commands
 command! PackerInstall packadd packer.nvim | lua require('plugins').install()
 command! PackerUpdate  packadd packer.nvim | lua require('plugins').update()
 command! PackerSync    packadd packer.nvim | lua require('plugins').sync()

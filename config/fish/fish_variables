@@ -1,6 +1,28 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR __fish_initialized:3100
+SETUVAR _fish_abbr__3A_Q:exit
+SETUVAR _fish_abbr__3A_q:exit
+SETUVAR _fish_abbr_aliasconf:nvim\x20\x7e/\x2econfig/aliasrc
+SETUVAR _fish_abbr_awsconf:nvim\x20\x7e/\x2econfig/awesome/rc\x2elua
+SETUVAR _fish_abbr_barconf:nvim\x20\x7e/\x2econfig/waybar/config
+SETUVAR _fish_abbr_ga:git\x20add
+SETUVAR _fish_abbr_gc:git\x20commit
+SETUVAR _fish_abbr_gd:git\x20diff
+SETUVAR _fish_abbr_gdate:git\x20log\x20\x2d\x2dpretty\x3dformat\x3a\x22\x25C\x28yellow\x29\x25h\x5c\x20\x25ad\x25Cred\x25d\x5c\x20\x25Creset\x25s\x25Cblue\x5c\x20\x5b\x25cn\x5d\x22\x20\x2d\x2ddecorate\x20\x2d\x2ddate\x3drelative
+SETUVAR _fish_abbr_gdatelong:git\x20log\x20\x2d\x2dpretty\x3dformat\x3a\x22\x25C\x28yellow\x29\x25h\x5c\x20\x25ad\x25Cred\x25d\x5c\x20\x25Creset\x25s\x25Cblue\x5c\x20\x5b\x25cn\x5d\x22\x20\x2d\x2ddecorate\x20\x2d\x2ddate\x3dshort
+SETUVAR _fish_abbr_gll:git\x20log\x20\x2d\x2dpretty\x3dformat\x3a\x22\x25C\x28yellow\x29\x25h\x25Cred\x25d\x5c\x20\x25Creset\x25s\x25Cblue\x5c\x20\x5b\x25cn\x5d\x22\x20\x2d\x2ddecorate\x20\x2d\x2dnumstat
+SETUVAR _fish_abbr_gls:git\x20log\x20\x2d\x2dpretty\x3dformat\x3a\x22\x25C\x28yellow\x29\x25h\x25Cred\x25d\x5c\x20\x25Creset\x25s\x25Cblue\x5c\x20\x5b\x25cn\x5d\x22\x20\x2d\x2ddecorate
+SETUVAR _fish_abbr_gpush:git\x20push
+SETUVAR _fish_abbr_gr:git\x20restore
+SETUVAR _fish_abbr_gs:git\x20status
+SETUVAR _fish_abbr_gwip:git\x20add\x20\x2dA\x3b\x20git\x20rm\x20\x28git\x20ls\x2dfiles\x20\x2d\x2ddeleted\x29\x202\x3e\x20/dev/null\x3b\x20git\x20commit\x20\x2dm\x20\x22\x5bWIP\x5d\x3a\x20Mon\x20Oct\x2011\x2004\x3a11\x3a56\x20PM\x20WIB\x202021\x22
+SETUVAR _fish_abbr_kittyconf:nvim\x20\x7e/\x2econfig/kitty/kitty\x2econf
+SETUVAR _fish_abbr_ls:exa\x20\x2d\x2dcolour\x3dalways\x20\x2d\x2dgroup\x2ddirectories\x2dfirst\x20\x2d\x2dsort\x3dname
+SETUVAR _fish_abbr_nvimconf:nvim\x20\x7e/\x2econfig/nvim/init\x2evim
+SETUVAR _fish_abbr_swayconf:nvim\x20\x7e/\x2econfig/sway/config
+SETUVAR _fish_abbr_vnim:nvim
+SETUVAR _fish_abbr_zshconf:nvim\x20\x7e/\x2ezshrc
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:brgreen
