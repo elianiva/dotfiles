@@ -15,6 +15,7 @@ M.config = {
       completion = {
         enable = true,
         callSnippet = "Replace",
+        showWord = "Disable",
       },
       runtime = {
         version = "LuaJIT",

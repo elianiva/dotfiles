@@ -17,10 +17,10 @@ cmp.setup {
     border = "solid",
   },
   sources = {
-    { name = "nvim_lsp" },
+    { name = "nvim_lsp", priority = 10 },
     { name = "luasnip" },
     { name = "path" },
-    { name = "buffer" },
+    { name = "buffer", keyword_length = 4 },
   },
   mapping = {
     ["<S-TAB>"]   = cmp.mapping.select_prev_item { cmp.SelectBehavior.Select },
@@ -31,10 +31,6 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Insert,
       select   = true,
     },
-  },
-  experimental = {
-    -- ghost_text = true,
-    native_menu = true, -- I don't use autocompletion anyway
   },
 }
 
