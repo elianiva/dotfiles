@@ -28,10 +28,13 @@ cmp.setup {
     ["<C-SPACE>"] = cmp.mapping.complete(),
     ["<C-E>"]     = cmp.mapping.close(),
     ["<CR>"]      = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
+      behavior = cmp.ConfirmBehavior.Replace,
       select   = true,
     },
   },
+  experimental = {
+    native_menu = true
+  }
 }
 
 remap(

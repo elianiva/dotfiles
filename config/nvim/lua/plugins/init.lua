@@ -12,6 +12,13 @@ return packer.startup {
     { "nathom/filetype.nvim" },
 
     {
+      "luukvbaal/stabilize.nvim",
+      config = function()
+        require("stabilize").setup()
+      end,
+    },
+
+    {
       "ruifm/gitlinker.nvim",
       keys = "<leader>gy",
       config = function()

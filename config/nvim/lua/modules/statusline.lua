@@ -34,7 +34,7 @@ M.modes = setmetatable({
   ["cv"] = "V·E",
   ["ce"] = "E",
   ["r"] = "P",
-  ["rm"] = "M",
+  ["rm"] = "RM",
   ["r?"] = "C",
   ["!"] = "S",
   ["t"] = "T",
@@ -59,19 +59,21 @@ M.get_git_status = function(self)
     return is_head_empty and string.format(" [ %s] ", signs.head or "") or ""
   end
 
+  -- stylua: ignore
   return is_head_empty
-      and string.format(
-        " [+%s ~%s -%s] [ %s] ",
-        signs.added,
-        signs.changed,
-        signs.removed,
-        signs.head
-      )
+    and string.format(
+      " [+%s ~%s -%s] [ %s] ",
+      signs.added,
+      signs.changed,
+      signs.removed,
+      signs.head
+    )
     or ""
 end
 
 M.get_filepath = function(self)
   local filepath = fn.fnamemodify(fn.expand "%", ":.:h")
+
   if
     filepath == ""
     or filepath == "."
@@ -85,19 +87,16 @@ end
 
 M.get_filename = function()
   local filename = fn.expand "%:t"
-  if filename == "" then
-    return ""
-  end
-  return filename
+  return filename == "" and "" or filename
 end
 
 M.get_filetype = function()
   local filetype = vim.bo.filetype
-  if filetype == "" then
-    return " No FT "
-  end
 
-  return string.format("[ft: %s] ", filetype):lower()
+  -- stylua: ignore
+  return filetype == ""
+    and " No FT "
+    or string.format("[ft: %s] ", filetype):lower()
 end
 
 M.get_fileformat = function()
@@ -110,6 +109,7 @@ end
 
 M.lsp_progress = function()
   local lsp = vim.lsp.util.get_progress_messages()[1]
+
   if lsp then
     local name = lsp.name or ""
     local msg = lsp.message or ""

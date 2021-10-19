@@ -52,7 +52,7 @@ o.foldopen       = {
 o.inccommand     = "split" -- incrementally show result of command
 o.listchars      = {
   eol = "↲",
-  tab= "» ",
+  tab = "» ",
 } -- set listchars
 o.mouse          = "nv" -- enable mouse support in normal and visual mode
 o.shortmess      = "csa" -- disable some stuff on shortmess
