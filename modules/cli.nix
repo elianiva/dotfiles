@@ -25,6 +25,7 @@
     tealdeer
     tmux
     unzip
+    unrar
     wget
     xh
     xorg.xset

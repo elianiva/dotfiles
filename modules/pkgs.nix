@@ -5,6 +5,7 @@
     sxiv
     picom
     zathura
+    transmission-gtk
     (
       pkgs.symlinkJoin {
         name = "rofi";

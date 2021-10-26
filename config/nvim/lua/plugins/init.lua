@@ -11,6 +11,8 @@ return packer.startup {
 
     { "nathom/filetype.nvim" },
 
+    { "wakatime/vim-wakatime" },
+
     {
       "luukvbaal/stabilize.nvim",
       config = function()

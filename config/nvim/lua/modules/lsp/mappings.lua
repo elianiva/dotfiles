@@ -2,7 +2,7 @@ local k = vim.keymap
 local nnoremap = k.nnoremap
 local inoremap = k.inoremap
 local vnoremap = k.vnoremap
-local telescope = require("telescope.builtin")
+local telescope = require "telescope.builtin"
 
 local M = {}
 
@@ -17,10 +17,12 @@ M.lsp_mappings = function()
   nnoremap {
     "<Leader>gD",
     function()
-      vim.diagnostic.show_line_diagnostics {
+      vim.diagnostic.open_float(0, {
         show_header = false,
         border = Util.borders,
-      }
+        severity_sort = true,
+        scope = "line",
+      })
     end,
     { silent = true },
   }
@@ -30,7 +32,7 @@ M.lsp_mappings = function()
     "<Leader>g]",
     function()
       vim.diagnostic.goto_next {
-        popup_opts = {
+        float = {
           show_header = false,
           border = Util.borders,
         },
@@ -42,7 +44,7 @@ M.lsp_mappings = function()
     "<Leader>g[",
     function()
       vim.diagnostic.goto_prev {
-        popup_opts = {
+        float = {
           show_header = false,
           border = Util.borders,
         },

@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # env variables from home manager
-source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 export EDITOR="nvim"

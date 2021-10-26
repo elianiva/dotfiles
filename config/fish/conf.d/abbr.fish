@@ -25,3 +25,5 @@ abbr -a zshconf "nvim ~/.zshrc"
 abbr -a awsconf "nvim ~/.config/awesome/rc.lua"
 abbr -a aliasconf "nvim ~/.config/aliasrc"
 abbr -a vnim "nvim" # I got this typo quit a lot
+
+abbr -a ls "exa --colour=always --group-directories-first --sort=name"

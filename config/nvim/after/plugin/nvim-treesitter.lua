@@ -28,7 +28,7 @@ ts_config.setup {
 
   autotag = { enable = true },
   highlight = { enable = true },
-  indent = { enable = true }, -- wait until it's back to normal
+  indent = { enable = false }, -- wait until it's back to normal
   matchup = { enable = true },
   playground = { enable = true },
 
