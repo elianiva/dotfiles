@@ -21,4 +21,3 @@ if status is-login
         startplasma-wayland
     end
 end
-

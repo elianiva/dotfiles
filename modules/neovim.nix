@@ -1,9 +1,11 @@
 { config, pkgs, home-manager, ... }:
 {
+
   programs.java = {
     enable = true;
     package = pkgs.jdk11;
   };
+
   home.packages = with pkgs; [
     my.jdt-language-server
     clang-tools

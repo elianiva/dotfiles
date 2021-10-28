@@ -42,6 +42,7 @@ local mapping_list = {
   { key = "<C-x>", cb = tree_cb "split" },
   { key = "<C-t>", cb = tree_cb "tabnew" },
   { key = "<BS>", cb = tree_cb "close_node" },
+  { key = "<Esc>", cb = tree_cb "close_node" },
   { key = "<S-CR>", cb = tree_cb "close_node" },
   { key = "<Tab>", cb = tree_cb "preview" },
   { key = "I", cb = tree_cb "toggle_ignored" },

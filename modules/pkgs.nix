@@ -1,11 +1,14 @@
 { config, pkgs, home-manager, ... }:
 {
   home.packages = with pkgs; [
+    fishPlugins.foreign-env # `fenv`
+    gcr # for pinentry-gnome3
     my.awesome-git
-    sxiv
     picom
-    zathura
+    sxiv
     transmission-gtk
+    xclip
+    zathura
     (
       pkgs.symlinkJoin {
         name = "rofi";
@@ -15,9 +18,6 @@
         ];
       }
     )
-    xclip
-    gcr # for pinentry-gnome3
-    fishPlugins.foreign-env # `fenv`
   ];
   services.clipmenu.enable = true;
   programs.man.enable = false;

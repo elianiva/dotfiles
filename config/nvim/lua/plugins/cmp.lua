@@ -28,7 +28,7 @@ cmp.setup {
     ["<C-SPACE>"] = cmp.mapping.complete(),
     ["<C-E>"]     = cmp.mapping.close(),
     ["<CR>"]      = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
+      behavior = cmp.ConfirmBehavior.Insert,
       select   = true,
     },
   },
