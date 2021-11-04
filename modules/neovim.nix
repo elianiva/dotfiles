@@ -13,6 +13,8 @@
     sumneko-lua-language-server
     rust-analyzer
     gopls
+    go_1_17
+    rustup
     rnix-lsp
   ] ++ (with nodePackages; [
     pyright

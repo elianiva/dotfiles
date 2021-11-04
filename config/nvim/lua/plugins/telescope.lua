@@ -35,19 +35,23 @@ M.config = function()
   local k = vim.keymap
   local nnoremap = k.nnoremap
 
-  M.no_preview = function()
-    return require("telescope.themes").get_dropdown {
-      borderchars = {
-        { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-        prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-        results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-        preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+  M.no_preview = function(opts)
+    return vim.tbl_extend(
+      "force",
+      require("telescope.themes").get_dropdown {
+        borderchars = {
+          { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+          results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+          preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        },
+        layout_config = {
+          width = 0.6,
+        },
+        previewer = false,
       },
-      layout_config = {
-        width = 0.6,
-      },
-      previewer = false,
-    }
+      opts or {}
+    )
   end
 
   telescope.setup {
@@ -136,8 +140,8 @@ M.config = function()
     },
   }
 
-  telescope.load_extension "fzf" -- superfast sorter
-  telescope.load_extension "frecency"
+  telescope.load_extension "fzf" -- Sorter using fzf algorithm
+  telescope.load_extension "frecency" -- Frecency algorithm
   telescope.load_extension "npm" -- NPM integrations
 
   M.arecibo = function()
@@ -154,6 +158,10 @@ M.config = function()
 
   M.npm_packages = function()
     telescope.extensions.npm.packages(M.no_preview())
+  end
+
+  M.project = function()
+    telescope.extensions.project.project(M.no_preview { display_type = "full" })
   end
 
   M.builtins = function()
@@ -193,6 +201,7 @@ M.config = function()
     require("telescope.builtin").current_buffer_fuzzy_find,
     { silent = true },
   }
+  nnoremap { "<Leader>fp", M.project, { silent = true } }
 end
 
 return M

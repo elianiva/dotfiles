@@ -91,19 +91,6 @@ return packer.startup {
     },
 
     {
-      "rcarriga/nvim-notify",
-      config = function()
-        local notify = require "notify"
-        notify.setup {
-          stages = "fade",
-          timeout = 2500,
-          background_colour = "#161822",
-        }
-        vim.notify = notify
-      end,
-    },
-
-    {
       "junegunn/vim-easy-align",
       setup = function()
         vim.api.nvim_set_keymap(
@@ -172,18 +159,16 @@ return packer.startup {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
-        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-vsnip",
         {
-          "L3MON4D3/LuaSnip",
-          config = function()
-            require("luasnip.loaders.from_vscode").lazy_load {
-              paths = vim.fn.stdpath "config" .. "/data/snippets",
-            }
+          "hrsh7th/vim-vsnip",
+          setup = function()
             vim.cmd [[
-              snoremap <silent> <C-j> <cmd>lua require('luasnip').jump(1)<CR>
-              imap <silent><expr> <C-j> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-j>'
-              snoremap <silent> <C-k> <cmd>lua require('luasnip').jump(-1)<CR>
-              inoremap <silent> <C-k> <cmd>lua require('luasnip').jump(-1)<CR>
+              " Jump forward or backward
+              imap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
+              smap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
+              imap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
+              smap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
             ]]
           end,
         },
@@ -230,6 +215,9 @@ return packer.startup {
           { noremap = true }
         )
       end,
+      config = function()
+        require'hop'.setup()
+      end
     },
 
     {

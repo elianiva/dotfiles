@@ -18,6 +18,9 @@ in
     ".config/zathurarc".source     = link "config/misc/zathurarc";
     ".config/qt5ct".source         = link "config/qt5ct";
     ".config/fish".source          = link "config/fish";
+    ".config/nixpkgs".source       = link "config/nixpkgs";
+    ".config/gtk-3.0".source       = link "config/gtk-3.0";
+    ".config/gtk-4.0".source       = link "config/gtk-4.0";
     ".tmux.conf".source            = link "config/tmux/.tmux.conf";
     ".scripts".source              = link "config/scripts";
     ".profile".source              = link "config/misc/.profile";
@@ -31,19 +34,19 @@ in
     ".gnupg/gpg-agent.conf".text   = "pinentry-program ${pkgs.pinentry.gnome3}/bin/pinentry";
     ".config/fontconfig/conf.d/20-japanese-preferred.conf".source = link "config/fontconfig/conf.d/20-japanese-preferred.conf";
 
-    ".config/kbct/config.yml".text = ''
-    - keyboards: ["FANTECH MAXFIT61 Mechanical Keyboard"]
-      keymap:
-        capslock: esc
-        esc: grave
-        grave: esc
-      layers:
-        - modifiers: ["leftshift"]
-          keymap:
-            grave: grave
-    '';
 
     # These stuff are not used ATM
+    # ".config/kbct/config.yml".text = ''
+    # - keyboards: ["FANTECH MAXFIT61 Mechanical Keyboard"]
+    #   keymap:
+    #     capslock: esc
+    #     esc: grave
+    #     grave: esc
+    #   layers:
+    #     - modifiers: ["leftshift"]
+    #       keymap:
+    #         grave: grave
+    # '';
     # ".config/pacman".source  = link ../config/pacman;
     # ".config/sway".source    = link ../sway;
     # ".config/wofi".source    = link ../wofi;

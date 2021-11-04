@@ -1,9 +1,10 @@
 # git stuff
-abbr -a ga "git add"
-abbr -a gc "git commit"
-abbr -a gs "git status"
-abbr -a gd "git diff"
-abbr -a gr "git restore"
+abbr -a ga    "git add"
+abbr -a gc    "git commit"
+abbr -a gs    "git status"
+abbr -a gd    "git diff"
+abbr -a gds   "git diff --staged"
+abbr -a gr    "git restore"
 abbr -a gpush "git push"
 
 # save current work
@@ -21,6 +22,7 @@ abbr -a nvimconf "nvim ~/.config/nvim/init.vim"
 abbr -a swayconf "nvim ~/.config/sway/config"
 abbr -a barconf "nvim ~/.config/waybar/config"
 abbr -a kittyconf "nvim ~/.config/kitty/kitty.conf"
+abbr -a fishconf "nvim ~/.config/fish/config.fish"
 abbr -a zshconf "nvim ~/.zshrc"
 abbr -a awsconf "nvim ~/.config/awesome/rc.lua"
 abbr -a aliasconf "nvim ~/.config/aliasrc"

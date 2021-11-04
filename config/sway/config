@@ -57,7 +57,7 @@ set $menu_alt launcher run icy
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 # output * bg /home/elianiva/.config/awesome/themes/main/img/ryuko-spring.png fill
 # output * bg /home/elianiva/pix/arknights/1024268.jpg fill
-output * bg /home/elianiva/pix/walls/kanojo.png fill
+output * bg /home/elianiva/Pictures/kitsune-kanojo.png fill
 
 # Example configuration:
 #

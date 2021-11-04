@@ -117,9 +117,7 @@ Util.borders = {
 }
 
 Util.lsp_on_init = function(client)
-  vim.notify("Language Server Client successfully started!", "info", {
-    title = client.name,
-  })
+  vim.notify(client.name .. ": Language Server Client successfully started!", "info")
 end
 
 Util.lsp_on_attach = function(client)
@@ -142,6 +140,15 @@ Util.lsp_on_attach = function(client)
     augroup END
     ]]
   end
+
+  if client.resolved_capabilities.document_highlight then
+    vim.cmd [[
+      autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    ]]
+  end
+
   require("modules.lsp.mappings").lsp_mappings()
 end
 

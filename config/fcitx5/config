@@ -41,7 +41,7 @@ DeactivateKeys=
 # Active By Default
 ActiveByDefault=False
 # Share Input State
-ShareInputState=No
+ShareInputState=All
 # Show preedit in application
 PreeditEnabledByDefault=True
 # Show Input Method Information when switch input method

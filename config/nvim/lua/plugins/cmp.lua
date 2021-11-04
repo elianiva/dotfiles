@@ -10,7 +10,7 @@ cmp.setup {
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
-      require("luasnip").lsp_expand(args.body)
+      vim.fn["vsnip#anonymous"](args.body)
     end,
   },
   documentation = {
@@ -18,23 +18,22 @@ cmp.setup {
   },
   sources = {
     { name = "nvim_lsp", priority = 10 },
-    { name = "luasnip" },
+    { name = "vsnip" },
     { name = "path" },
     { name = "buffer", keyword_length = 4 },
   },
   mapping = {
-    ["<S-TAB>"]   = cmp.mapping.select_prev_item { cmp.SelectBehavior.Select },
-    ["<TAB>"]     = cmp.mapping.select_next_item { cmp.SelectBehavior.Select },
-    ["<C-SPACE>"] = cmp.mapping.complete(),
-    ["<C-E>"]     = cmp.mapping.close(),
-    ["<CR>"]      = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
-      select   = true,
+    ["<Tab>"] = cmp.mapping.select_next_item { cmp.SelectBehavior.Select },
+    ["<S-Tab>"] = cmp.mapping.select_prev_item { cmp.SelectBehavior.Select },
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
     },
   },
-  experimental = {
-    native_menu = true
-  }
 }
 
 remap(
