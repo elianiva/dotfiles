@@ -17,6 +17,8 @@ tnoremap <C-j> <C-\><C-n><C-w><C-j>
 tnoremap <C-k> <C-\><C-n><C-w><C-k>
 " tnoremap <C-l> <C-\><C-n><C-w><C-l>
 
+nmap <2-LeftMouse> gcc
+
 " resize
 tnoremap <Left>  <C-\><C-n>:vertical resize +2<CR>
 tnoremap <Right> <C-\><C-n>:vertical resize -2<CR>

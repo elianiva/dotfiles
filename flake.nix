@@ -35,6 +35,7 @@
                   ./modules/git.nix
                   ./modules/neovim.nix
                   ./modules/dot.nix
+                  ./modules/kdeplasma.nix
                   ./modules/pkgs.nix
                   ./modules/fonts.nix
                 ];

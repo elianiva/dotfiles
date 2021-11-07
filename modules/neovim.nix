@@ -18,7 +18,6 @@
     rnix-lsp
   ] ++ (with nodePackages; [
     pyright
-    eslint_d
     typescript-language-server
     svelte-language-server
   ]);

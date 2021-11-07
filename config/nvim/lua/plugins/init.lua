@@ -114,13 +114,6 @@ return packer.startup {
       end,
     },
 
-    -- {
-    --   "~/Repos/icy",
-    --   config = function()
-    --     vim.cmd [[ colorscheme icy ]]
-    --   end,
-    -- },
-
     {
       "~/Repos/gitgud",
       config = function()
@@ -128,7 +121,17 @@ return packer.startup {
       end,
     },
 
-    { "rktjmp/lush.nvim", cmd = "Lushify" },
+    {
+      "rktjmp/shipwright.nvim",
+      cmd = "Shipwright",
+      module_pattern = { "shipwright", "shipwright.*" },
+    },
+
+    {
+      "rktjmp/lush.nvim",
+      cmd = "Lushify",
+      module_pattern = { "lush", "lush.*" },
+    },
 
     {
       "folke/which-key.nvim",
@@ -216,8 +219,8 @@ return packer.startup {
         )
       end,
       config = function()
-        require'hop'.setup()
-      end
+        require("hop").setup()
+      end,
     },
 
     {

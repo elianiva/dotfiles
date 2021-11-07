@@ -1,4 +1,4 @@
-" lua require("impatient")
+lua require("impatient")
 
 let s:user = "wbthomason"
 let s:repo = "packer.nvim"

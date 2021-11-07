@@ -36,7 +36,11 @@ local servers = {
   --   },
   -- },
   tsserver = {
-    init_options = { documentFormatting = false },
+    init_options = vim.tbl_extend(
+      "force",
+      require("nvim-lsp-ts-utils").init_options,
+      { documentFormatting = false }
+    ),
   },
   sumneko_lua = require("modules.lsp.sumneko").config,
   jsonls = require("modules.lsp.json").config,
@@ -79,6 +83,7 @@ local servers = {
   },
   pyright = {},
   ["null-ls"] = {},
+  eslint = {},
 }
 
 require("plugins.null-ls").setup()
