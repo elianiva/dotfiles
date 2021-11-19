@@ -53,14 +53,14 @@ local servers = {
   },
   intelephense = {},
   -- fsautocomplete = {},
-  -- omnisharp = {
-  --   cmd = {
-  --     "omnisharp",
-  --     "--languageserver",
-  --     "--hostPID",
-  --     tostring(vim.fn.getpid()),
-  --   },
-  -- },
+  omnisharp = {
+    cmd = {
+      "omnisharp",
+      "--languageserver",
+      "--hostPID",
+      tostring(vim.fn.getpid()),
+    },
+  },
   clangd = {},
   -- wait until rust-tools.nvim adapt to new handler signature
   rust_analyzer = {},

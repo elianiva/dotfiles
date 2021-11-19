@@ -20,7 +20,7 @@ cmp.setup {
     { name = "nvim_lsp", priority = 10 },
     { name = "vsnip" },
     { name = "path" },
-    { name = "buffer", keyword_length = 4 },
+    { name = "buffer", keyword_length = 8 },
   },
   mapping = {
     ["<Tab>"] = cmp.mapping.select_next_item { cmp.SelectBehavior.Select },

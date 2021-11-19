@@ -16,10 +16,12 @@ M.plugin = {
     "telescope-fzf-native.nvim",
     "telescope-frecency.nvim",
     "telescope-npm",
+    "telescope-ui-select.nvim",
   },
   requires = {
     "~/Repos/telescope-npm",
     "nvim-telescope/telescope-frecency.nvim",
+    "nvim-telescope/telescope-ui-select.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
   },
   config = function()
@@ -110,18 +112,29 @@ M.config = function()
       },
     },
     pickers = {
+      grep_string = {
+        file_ignore_patterns = {
+          "%.png",
+          "%.jpg",
+          "%.webp",
+          "node_modules",
+          "*%.min%.*",
+        },
+      },
       find_files = {
         file_ignore_patterns = {
           "%.png",
           "%.jpg",
           "%.webp",
           "node_modules",
+          "*%.min%.*",
         },
       },
       lsp_code_actions = M.no_preview(),
       current_buffer_fuzzy_find = M.no_preview(),
     },
     extensions = {
+      ["ui-select"] = M.no_preview(),
       fzf = {
         override_generic_sorter = true,
         override_file_sorter = true,
@@ -143,6 +156,7 @@ M.config = function()
   telescope.load_extension "fzf" -- Sorter using fzf algorithm
   telescope.load_extension "frecency" -- Frecency algorithm
   telescope.load_extension "npm" -- NPM integrations
+  telescope.load_extension "ui-select" -- vim.ui.select
 
   M.arecibo = function()
     telescope.extensions.arecibo.websearch(M.no_preview())

@@ -43,7 +43,6 @@ blurEnabled=true
 kwin4_effect_fadingpopupsEnabled=false
 kwin4_effect_fullscreenEnabled=false
 kwin4_effect_maximizeEnabled=false
-kwin4_effect_translucencyEnabled=false
 screenedgeEnabled=false
 slideEnabled=false
 

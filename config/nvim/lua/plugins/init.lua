@@ -9,9 +9,30 @@ return packer.startup {
 
     { "lewis6991/impatient.nvim" },
 
+    { "dstein64/vim-startuptime", cmd = "StartupTime" },
+
     { "nathom/filetype.nvim" },
 
     { "wakatime/vim-wakatime" },
+
+    { "AndrewRadev/splitjoin.vim", keys = "gS" },
+
+    { "machakann/vim-sandwich", keys = "s" },
+
+    { "gpanders/editorconfig.nvim" },
+
+    {
+      "vuki656/package-info.nvim",
+      setup = function()
+        vim.cmd [[
+          nnoremap <leader>ps <cmd>lua require('package-info').show()<cr>
+          nnoremap <leader>pi <cmd>lua require('package-info').install()<cr>
+          nnoremap <leader>pr <cmd>lua require('package-info').reinstall()<cr>
+          nnoremap <leader>pd <cmd>lua require('package-info').delete()<cr>
+          nnoremap <leader>pu <cmd>lua require('package-info').change_version()<cr>
+        ]]
+      end
+    },
 
     {
       "luukvbaal/stabilize.nvim",
@@ -37,8 +58,6 @@ return packer.startup {
 
     require("plugins.telescope").plugin,
 
-    { "dstein64/vim-startuptime", cmd = "StartupTime" },
-
     {
       "numToStr/Comment.nvim",
       keys = "gc",
@@ -50,13 +69,6 @@ return packer.startup {
         }
       end,
     },
-
-    { "AndrewRadev/splitjoin.vim", keys = "gS" },
-
-    { "machakann/vim-sandwich", keys = "s" },
-
-    { "gpanders/editorconfig.nvim" },
-
     {
       "https://gitlab.com/yorickpeterse/nvim-pqf",
       config = function()

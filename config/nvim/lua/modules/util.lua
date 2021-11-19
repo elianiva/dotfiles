@@ -128,7 +128,10 @@ Util.lsp_on_attach = function(client)
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
     local ts_utils = require "nvim-lsp-ts-utils"
-    ts_utils.setup { enable_import_on_completion = true }
+    ts_utils.setup {
+      auto_inlay_hints = false, -- enable this once #9496 got merged
+      enable_import_on_completion = true,
+    }
     ts_utils.setup_client(client)
   end
 
