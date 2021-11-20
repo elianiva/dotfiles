@@ -1,7 +1,7 @@
 local wibox = require("wibox")
 local awful = require("awful")
-local colorize = require"main.helpers".colorize
-local markup = require"main.helpers".markup
+local colorize = require("main.helpers").colorize
+local markup = require("main.helpers").markup
 local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/battery/icon.svg"
 
 local M = {}
@@ -16,7 +16,7 @@ local get_bat_status = [[
 ]]
 
 M.widget = awful.widget.watch(get_bat_status, 60, function(widget, stdout)
-  widget:set_markup(markup(stdout, {fg = theme.foreground}))
+	widget:set_markup(markup(stdout, { fg = theme.foreground }))
 end)
 
 return M

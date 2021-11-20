@@ -1,8 +1,8 @@
 local wibox = require("wibox")
 local awful = require("awful")
-local icon = os.getenv("HOME") ..  "/.config/awesome/statusbar/modules/cpu/icon.svg"
+local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/cpu/icon.svg"
 local colorize = require("main.helpers").colorize
-local markup = require"main.helpers".markup
+local markup = require("main.helpers").markup
 
 local M = {}
 
@@ -16,7 +16,7 @@ local get_cpu_status = [[
 ]]
 
 M.widget = awful.widget.watch(get_cpu_status, 5, function(widget, stdout)
-  widget:set_markup(markup(stdout, {fg = theme.foreground}))
+	widget:set_markup(markup(stdout, { fg = theme.foreground }))
 end)
 
 return M

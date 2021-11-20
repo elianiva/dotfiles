@@ -1,4 +1,4 @@
-local xrdb = require"beautiful.xresources".get_current_theme()
+local xrdb = require("beautiful.xresources").get_current_theme()
 
 theme.background = xrdb.background
 theme.foreground = xrdb.foreground

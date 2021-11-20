@@ -28,7 +28,7 @@
     ~/.profile: config/misc/.profile
     ~/.xinitrc: config/misc/.xinitrc
     ~/.xprofile: config/misc/.xprofile
-    ~/.Xresources: config/misc/.Xresourcess
+    ~/.Xresources: config/misc/.Xresources
     ~/.zprofile: config/zsh/.zprofile
     ~/.zshenv: config/zsh/.zshenv
     ~/.zshrc: config/zsh/.zshrc

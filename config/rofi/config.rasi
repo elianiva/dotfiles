@@ -1,11 +1,70 @@
-/** Configured For Applets **/
-
 configuration {
-  show-icons:   true;
-  icon-theme:   "Numix";
-  location:     0;
-  lines:        8;
-  matching:     "fuzzy";
-  width:        30;
-  fullscreen:   true;
+  modi: "drun,run,window,combi";
+  font: "mono 12";
+  /*	location: 0;*/
+  /*	yoffset: 0;*/
+  /*	xoffset: 0;*/
+  fixed-num-lines: true;
+  show-icons: true;
+  terminal: "rofi-sensible-terminal";
+  run-command: "{cmd}";
+  /*	run-list-command: "";*/
+  /*	run-shell-command: "{terminal} -e {cmd}";*/
+  /*	window-command: "wmctrl -i -R {window}";*/
+  /*	window-match-fields: "all";*/
+  icon-theme: "Papirus Dark";
+  /*	drun-match-fields: "name,generic,exec,categories,keywords";*/
+  /*	drun-categories: ;*/
+  /*	drun-show-actions: false;*/
+  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  /*	drun-url-launcher: "xdg-open";*/
+  /*	disable-history: false;*/
+  /*	ignored-prefixes: "";*/
+  /*	sort: false;*/
+  /*	sorting-method: "normal";*/
+  case-sensitive: false;
+  /*	cycle: true;*/
+  /*	sidebar-mode: false;*/
+  /*	hover-select: false;*/
+  /*	eh: 1;*/
+  /*	auto-select: false;*/
+  /*	parse-hosts: false;*/
+  /*	parse-known-hosts: true;*/
+  combi-modi: "window,drun,run";
+  matching: "fuzzy";
+  /*	tokenize: true;*/
+  /*	m: "-5";*/
+  /*	filter: ;*/
+  /*	dpi: -1;*/
+  /*	threads: 0;*/
+  /*	scroll-method: 0;*/
+  /*	window-format: "{w}    {c}   {t}";*/
+  /*	click-to-exit: true;*/
+  theme: "gitgud";
+  /*	max-history-size: 25;*/
+  combi-hide-mode-prefix: true;
+  /*	cache-dir: ;*/
+  window-thumbnail: true;
+  /*	drun-use-desktop-cache: false;*/
+  /*	drun-reload-desktop-cache: false;*/
+  /*	normalize-match: false;*/
+  /*	steal-focus: false;*/
+  /*	application-fallback-icon: ;*/
+  /*	pid: "/run/user/1000/rofi.pid";*/
+  /*	display-window: ;*/
+  /*	display-windowcd: ;*/
+  /*	display-run: ;*/
+  /*	display-ssh: ;*/
+  /*	display-drun: ;*/
+  /*	display-combi: ;*/
+  /*	display-keys: ;*/
+  /*	display-filebrowser: ;*/
+  timeout {
+    action: "kb-cancel";
+    delay:  0;
+  }
+  filebrowser {
+    directories-first: true;
+    sorting-method:    "name";
+  }
 }

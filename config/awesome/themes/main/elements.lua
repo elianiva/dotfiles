@@ -1,14 +1,14 @@
 local theme_assets = require("beautiful.theme_assets")
-local dpi = require"beautiful.xresources".apply_dpi
+local dpi = require("beautiful.xresources").apply_dpi
 local theme_path = os.getenv("HOME") .. "/.config/awesome/themes/main/"
-local rrect = require"main.helpers".rrect
+local rrect = require("main.helpers").rrect
 
 -- wallpaper and icon
 theme.icon_theme = "Numix"
 -- theme.wallpaper = theme_path .. "img/ryuko-spring.png"
 -- theme.wallpaper = theme_path .. "img/autumn_gurl.png"
 -- theme.wallpaper = theme_path .. "img/knowname1.png"
-theme.wallpaper = os.getenv("HOME") .. "/Pictures/madoka.png"
+theme.wallpaper = os.getenv("HOME") .. "/Pictures/walls/anime/madoka.png"
 -- theme.wallpaper = os.getenv("HOME") .. "/pix/gurl.jpg"
 theme.menu_icon = theme_path .. "icons/killlakill.png"
 -- theme.wallpaper     = theme_path .. "img/babymetal.jpg"
@@ -19,7 +19,7 @@ theme.font = "Inter 10"
 theme.nerd_font = "JetBrainsMono Nerd Font 10"
 theme.titlebar_font = "Inter 11"
 theme.taglist_font = "M+ 2p Medium 11"
-theme.color_name = "icy"
+theme.color_name = "gitgud"
 
 -- background stuff
 theme.bg_normal = theme.black
@@ -113,7 +113,5 @@ theme.taglist_fg_occupied = theme.white
 theme.taglist_spacing = dpi(2)
 
 local taglist_square_size = dpi(5)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-  taglist_square_size, theme.fg_normal)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-  taglist_square_size, theme.fg_normal)
+theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
+theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)

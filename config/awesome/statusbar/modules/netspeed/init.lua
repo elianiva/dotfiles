@@ -1,7 +1,7 @@
 local wibox = require("wibox")
 local awful = require("awful")
-local markup = require"main.helpers".markup
-local colorize = require"main.helpers".colorize
+local markup = require("main.helpers").markup
+local colorize = require("main.helpers").colorize
 
 local up = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/netspeed/up.svg"
 local down = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/netspeed/down.svg"
@@ -28,25 +28,25 @@ local get_down = [[
 ]]
 
 M.up = awful.widget.watch(get_up, 2, function(widget, stdout)
-  local num
-  if up_old == 0 then
-    num = 0
-  else
-    num = math.floor(((tonumber(stdout) - up_old) / 1024) / 2)
-  end
-  widget:set_markup(markup(tostring(num).."KiB", {fg = theme.foreground}))
-  up_old = tonumber(stdout)
+	local num
+	if up_old == 0 then
+		num = 0
+	else
+		num = math.floor(((tonumber(stdout) - up_old) / 1024) / 2)
+	end
+	widget:set_markup(markup(tostring(num) .. "KiB", { fg = theme.foreground }))
+	up_old = tonumber(stdout)
 end)
 
 M.down = awful.widget.watch(get_down, 2, function(widget, stdout)
-  local num
-  if down_old == 0 then
-    num = 0
-  else
-    num = math.floor(((tonumber(stdout) - down_old) / 1024) / 2)
-  end
-  widget:set_markup(markup(tostring(num).."KiB", {fg = theme.foreground}))
-  down_old = tonumber(stdout)
+	local num
+	if down_old == 0 then
+		num = 0
+	else
+		num = math.floor(((tonumber(stdout) - down_old) / 1024) / 2)
+	end
+	widget:set_markup(markup(tostring(num) .. "KiB", { fg = theme.foreground }))
+	down_old = tonumber(stdout)
 end)
 
 return M

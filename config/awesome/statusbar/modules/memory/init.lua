@@ -2,7 +2,7 @@ local wibox = require("wibox")
 local awful = require("awful")
 local icon = os.getenv("HOME") .. "/.config/awesome/statusbar/modules/memory/icon.svg"
 local colorize = require("main.helpers").colorize
-local markup = require"main.helpers".markup
+local markup = require("main.helpers").markup
 
 local M = {}
 
@@ -16,7 +16,7 @@ local get_mem_status = [[
 ]]
 
 M.widget = awful.widget.watch(get_mem_status, 5, function(widget, stdout)
-  widget:set_markup(markup(stdout, {fg = theme.foreground}))
+	widget:set_markup(markup(stdout, { fg = theme.foreground }))
 end)
 
 return M

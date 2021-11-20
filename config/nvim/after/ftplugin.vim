@@ -8,6 +8,7 @@ augroup Filetypes
   au BufNewFile,BufRead *.zig set ft=zig
   au BufNewFile,BufRead *.hbs set ft=handlebars
   au BufNewFile,BufRead *.edge set ft=html
+  au BufNewFile,BufRead *.rasi set ft=css
 augroup END
 
 " Set github text field to markdown (firenvim stuff)

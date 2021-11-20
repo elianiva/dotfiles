@@ -1,16 +1,14 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
-require("beautiful").init(
-  os.getenv "HOME" .. "/.config/awesome/themes/main/theme.lua"
-)
-require "awful.autofocus"
+require("beautiful").init(os.getenv("HOME") .. "/.config/awesome/themes/main/theme.lua")
+require("awful.autofocus")
 
-local gears = require "gears"
-local menubar = require "menubar"
-local bind_to_tags = require "keybinds.bindtotags"
-local mediakeys = require "keybinds.mediakeys"
-local globalkeys = require "keybinds.globalkeys"
+local gears = require("gears")
+local menubar = require("menubar")
+local bind_to_tags = require("keybinds.bindtotags")
+local mediakeys = require("keybinds.mediakeys")
+local globalkeys = require("keybinds.globalkeys")
 
 local terminal = require("main.variables").terminal
 menubar.utils.terminal = terminal
