@@ -4,11 +4,11 @@ let
 in
 {
   my = {
-    jdt-language-server = (
-      prev.callPackage ./jdtls.nix {
-        inherit (pkgs);
-      }
-    );
+    # jdt-language-server = (
+    #   prev.callPackage ./jdtls.nix {
+    #     inherit (pkgs);
+    #   }
+    # );
     awesome-git = prev.awesome.overrideAttrs (
       old: {
         version = "master";

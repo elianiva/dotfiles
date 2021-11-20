@@ -3,11 +3,11 @@
 
   programs.java = {
     enable = true;
-    package = pkgs.jdk11;
+    package = pkgs.jdk17;
   };
 
   home.packages = with pkgs; [
-    my.jdt-language-server
+    # my.jdt-language-server
     clang-tools
     stylua
     sumneko-lua-language-server

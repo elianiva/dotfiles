@@ -14,7 +14,7 @@
     light
     lm_sensors
     neofetch
-    nixUnstable
+    # nix
     p7zip
     playerctl
     pulsemixer

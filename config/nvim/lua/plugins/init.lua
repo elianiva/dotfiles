@@ -23,6 +23,10 @@ return packer.startup {
 
     {
       "vuki656/package-info.nvim",
+      requires = "MunifTanjim/nui.nvim",
+      config = function()
+        require('package-info').setup()
+      end,
       setup = function()
         vim.cmd [[
           nnoremap <leader>ps <cmd>lua require('package-info').show()<cr>
