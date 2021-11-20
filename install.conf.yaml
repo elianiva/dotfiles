@@ -1,0 +1,47 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.config:
+      glob: true
+      path: config/kdeplasma/**
+    ~/.config/alacritty: config/alacritty
+    ~/.config/aliasrc: config/misc/aliasrc
+    ~/.config/awesome: config/awesome
+    ~/.config/bat: config/bat
+    ~/.config/fish: config/fish
+    ~/.config/gtk-3.0: config/gtk-3.0
+    ~/.config/gtk-4.0: config/gtk-4.0
+    ~/.config/kitty: config/kitty
+    ~/.config/lf: config/lf
+    ~/.config/nvim: config/nvim
+    ~/.config/picom.conf: config/misc/picom.conf
+    ~/.config/qt5ct: config/qt5ct
+    ~/.config/rofi: config/rofi
+    ~/.config/starship.toml: config/misc/starship.toml
+    ~/.config/zathurarc: config/misc/zathurarc
+    ~/.tmux.conf: config/tmux/.tmux.conf
+    ~/.scripts: config/scripts
+    ~/.profile: config/misc/.profile
+    ~/.xinitrc: config/misc/.xinitrc
+    ~/.xprofile: config/misc/.xprofile
+    ~/.Xresources: config/misc/.Xresourcess
+    ~/.zprofile: config/zsh/.zprofile
+    ~/.zshenv: config/zsh/.zshenv
+    ~/.zshrc: config/zsh/.zshrc
+    ~/.gitconfig: config/git/config
+    ~/.config/fontconfig/conf.d/20-japanese-preferred.conf: config/fontconfig/conf.d/20-japanese-preferred.conf
+
+# - create:
+
+- shell:
+  - [git submodule update --init --recursive, Updating dotbot]
+  -
+    command: python ./scripts
+    stdin: true
+    stdout: true
+    description: Installing packages
+    quiet: false

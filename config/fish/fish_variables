@@ -28,13 +28,15 @@ SETUVAR _fish_abbr_gpush:git\x20push
 SETUVAR _fish_abbr_gr:git\x20restore
 SETUVAR _fish_abbr_gs:git\x20status
 SETUVAR _fish_abbr_gss:git\x20status\x20\x2d\x2dstaged
-SETUVAR _fish_abbr_gwip:git\x20add\x20\x2dA\x3b\x20git\x20rm\x20\x28git\x20ls\x2dfiles\x20\x2d\x2ddeleted\x29\x202\x3e\x20/dev/null\x3b\x20git\x20commit\x20\x2dm\x20\x22\x5bWIP\x5d\x3a\x20Sat\x20Nov\x2020\x2011\x3a13\x3a24\x20AM\x20WIB\x202021\x22
+SETUVAR _fish_abbr_gwip:git\x20add\x20\x2dA\x3b\x20git\x20rm\x20\x28git\x20ls\x2dfiles\x20\x2d\x2ddeleted\x29\x202\x3e\x20/dev/null\x3b\x20git\x20commit\x20\x2dm\x20\x22\x5bWIP\x5d\x3a\x20Sat\x20Nov\x2020\x2008\x3a05\x3a24\x20PM\x20WIB\x202021\x22
 SETUVAR _fish_abbr_kittyconf:nvim\x20\x7e/\x2econfig/kitty/kitty\x2econf
 SETUVAR _fish_abbr_ls:exa\x20\x2d\x2dcolour\x3dalways\x20\x2d\x2dgroup\x2ddirectories\x2dfirst\x20\x2d\x2dsort\x3dname
 SETUVAR _fish_abbr_nvimconf:nvim\x20\x7e/\x2econfig/nvim/init\x2evim
 SETUVAR _fish_abbr_swayconf:nvim\x20\x7e/\x2econfig/sway/config
 SETUVAR _fish_abbr_vnim:nvim
 SETUVAR _fish_abbr_zshconf:nvim\x20\x7e/\x2ezshrc
+SETUVAR _fisher_oh_2D_my_2D_fish_2F_plugin_2D_foreign_2D_env_files:/home/elianiva/\x2econfig/fish/functions/fenv\x2eapply\x2efish\x1e/home/elianiva/\x2econfig/fish/functions/fenv\x2efish\x1e/home/elianiva/\x2econfig/fish/functions/fenv\x2emain\x2efish\x1e/home/elianiva/\x2econfig/fish/functions/fenv\x2eparse\x2eafter\x2efish\x1e/home/elianiva/\x2econfig/fish/functions/fenv\x2eparse\x2ebefore\x2efish\x1e/home/elianiva/\x2econfig/fish/functions/fenv\x2eparse\x2ediff\x2efish\x1e/home/elianiva/\x2econfig/fish/functions/fenv\x2eparse\x2edivider\x2efish
+SETUVAR _fisher_plugins:oh\x2dmy\x2dfish/plugin\x2dforeign\x2denv
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:brgreen

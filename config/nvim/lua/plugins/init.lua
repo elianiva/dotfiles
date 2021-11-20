@@ -27,15 +27,6 @@ return packer.startup {
       config = function()
         require('package-info').setup()
       end,
-      setup = function()
-        vim.cmd [[
-          nnoremap <leader>ps <cmd>lua require('package-info').show()<cr>
-          nnoremap <leader>pi <cmd>lua require('package-info').install()<cr>
-          nnoremap <leader>pr <cmd>lua require('package-info').reinstall()<cr>
-          nnoremap <leader>pd <cmd>lua require('package-info').delete()<cr>
-          nnoremap <leader>pu <cmd>lua require('package-info').change_version()<cr>
-        ]]
-      end
     },
 
     {

@@ -119,6 +119,7 @@ M.config = function()
           "%.webp",
           "node_modules",
           "*%.min%.*",
+          "dotbot",
         },
       },
       find_files = {
@@ -128,6 +129,7 @@ M.config = function()
           "%.webp",
           "node_modules",
           "*%.min%.*",
+          "dotbot",
         },
       },
       lsp_code_actions = M.no_preview(),
