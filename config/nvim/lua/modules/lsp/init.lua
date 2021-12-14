@@ -36,11 +36,22 @@ local servers = {
   --   },
   -- },
   tsserver = {
-    init_options = vim.tbl_extend(
+    init_options = vim.tbl_deep_extend(
       "force",
       require("nvim-lsp-ts-utils").init_options,
-      { documentFormatting = false }
+      {
+        preferences = {
+          importModuleSpecifierEnding = "auto",
+          importModuleSpecifierPreference = "shortest",
+        },
+        documentFormatting = false,
+      }
     ),
+    settings = {
+      completions = {
+        completeFunctionCalls = true,
+      },
+    },
   },
   sumneko_lua = require("modules.lsp.sumneko").config,
   jsonls = require("modules.lsp.json").config,
@@ -63,7 +74,7 @@ local servers = {
   },
   clangd = {},
   -- wait until rust-tools.nvim adapt to new handler signature
-  rust_analyzer = {},
+  -- rust_analyzer = {},
   rnix = {},
   volar = {},
   elmls = {},
@@ -82,7 +93,6 @@ local servers = {
     },
   },
   pyright = {},
-  ["null-ls"] = {},
   eslint = {},
 }
 
@@ -93,6 +103,7 @@ for name, opts in pairs(servers) do
     opts()
   else
     local client = lspconfig[name]
+
     client.setup(vim.tbl_extend("force", {
       flags = { debounce_text_changes = 150 },
       on_attach = Util.lsp_on_attach,

@@ -40,7 +40,6 @@ configuration {
   /*	scroll-method: 0;*/
   /*	window-format: "{w}    {c}   {t}";*/
   /*	click-to-exit: true;*/
-  theme: "gitgud";
   /*	max-history-size: 25;*/
   combi-hide-mode-prefix: true;
   /*	cache-dir: ;*/
@@ -68,3 +67,5 @@ configuration {
     sorting-method:    "name";
   }
 }
+
+@theme "gitgud"

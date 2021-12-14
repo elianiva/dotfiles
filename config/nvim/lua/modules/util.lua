@@ -117,16 +117,22 @@ Util.borders = {
 }
 
 Util.lsp_on_init = function(client)
-  vim.notify(client.name .. ": Language Server Client successfully started!", "info")
-end
-
-Util.lsp_on_attach = function(client)
-  if client.name == "svelte" or client.name == "volar" then
+  if
+    client.name == "svelte"
+    or client.name == "volar"
+    or client.name == "tsserver"
+  then
     client.resolved_capabilities.document_formatting = false
   end
 
+  vim.notify(
+    client.name .. ": Language Server Client successfully started!",
+    "info"
+  )
+end
+
+Util.lsp_on_attach = function(client)
   if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
     local ts_utils = require "nvim-lsp-ts-utils"
     ts_utils.setup {
       auto_inlay_hints = false, -- enable this once #9496 got merged

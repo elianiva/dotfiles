@@ -69,6 +69,9 @@ nnoremap <Leader>rd <CMD>!NO_COLOR=true deno run %<CR>
 " toggle hlsearch
 nnoremap <Leader>n <CMD>nohl<CR>
 
+" use <C-w> to delete word instead of <C-S-W> in telescope prompt
+au FileType TelescopePrompt inoremap <C-W> <C-S-W>
+
 noremap <Leader>v
       \ :exe "vnew"<CR>
       \ :exe "setlocal buftype=nofile bufhidden=hide"<CR>

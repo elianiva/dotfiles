@@ -6,7 +6,7 @@ M.setup = function()
 
   vim.env.PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath "config" .. "/.prettierrc"
 
-  null_ls.config {
+  null_ls.setup {
     debounce = 150,
     sources = {
       b.formatting.stylua.with {

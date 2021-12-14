@@ -2,11 +2,13 @@
 update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar,icons_remove_effects.upd:IconsRemoveEffects,kwin.upd:animation-speed,style_widgetstyle_default_breeze.upd:StyleWidgetStyleDefaultBreeze
 
 [ColorEffects:Disabled]
+ChangeSelectionColor=
 Color=56,56,56
 ColorAmount=0
 ColorEffect=0
 ContrastAmount=0.65
 ContrastEffect=1
+Enable=
 IntensityAmount=0.1
 IntensityEffect=2
 
@@ -150,16 +152,12 @@ smallestReadableFont=Inter,8,-1,5,50,0,0,0,0,0
 toolBarFont=Inter,10,-1,5,50,0,0,0,0,0
 widgetStyle=Breeze
 
-[Icons]
-Theme=breeze-dark
-
 [KDE]
 AnimationDurationFactor=0.35355339059327373
 ColorScheme=BreezeDark
 LookAndFeelPackage=org.kde.breezedark.desktop
 SingleClick=false
 contrast=4
-widgetStyle=Breeze
 
 [KFileDialog Settings]
 Allow Expansion=false

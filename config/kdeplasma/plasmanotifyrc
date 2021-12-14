@@ -7,6 +7,12 @@ Seen=true
 [Applications][discord]
 Seen=true
 
+[Applications][telegramdesktop]
+Seen=true
+
+[DoNotDisturb]
+NotificationSoundsMuted=true
+
 [Notifications]
 LowPriorityHistory=true
 LowPriorityPopups=false

@@ -22,10 +22,33 @@ return packer.startup {
     { "gpanders/editorconfig.nvim" },
 
     {
+      "andweeb/presence.nvim",
+      config = function()
+        require("presence"):setup {}
+      end,
+    },
+
+    -- { "Olical/conjure" },
+
+    {
+      "nvim-orgmode/orgmode",
+      requires = {
+        "akinsho/org-bullets.nvim",
+      },
+      config = function()
+        require("orgmode").setup {
+          org_agenda_files = { "~/Dev/org/*" },
+          org_default_notes_file = "~/Dev/org/notes.org",
+        }
+      end,
+    },
+
+    {
       "vuki656/package-info.nvim",
       requires = "MunifTanjim/nui.nvim",
+      ft = { "json", "jsonc" },
       config = function()
-        require('package-info').setup()
+        require("package-info").setup()
       end,
     },
 

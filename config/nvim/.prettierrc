@@ -8,8 +8,7 @@
   "bracketSpacing": true,
   "svelteSortOrder": "options-styles-markup-scripts",
   "svelteAllowShorthand": true,
-  "svelteBracketNewLine": true,
   "svelteIndentScriptAndStyle": false,
   "printWidth": 80,
-  "phpVersion": "7.4"
+  "plugins": ["prettier-plugin-svelte"]
 }

@@ -51,7 +51,6 @@ BorderActivate=9
 DesktopLayout=org.kde.breeze.desktop
 DesktopListLayout=org.kde.breeze.desktop
 HighlightWindows=false
-LayoutName=thumbnail_grid
 
 [Windows]
 Placement=Centered
