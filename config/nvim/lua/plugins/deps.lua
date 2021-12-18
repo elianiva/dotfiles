@@ -5,21 +5,19 @@ end
 
 return packer.startup {
   {
-    { "wbthomason/packer.nvim", opt = true },
+    {
+      "wbthomason/packer.nvim",
+      opt = true,
+    },
 
-    { "lewis6991/impatient.nvim" },
-
-    { "dstein64/vim-startuptime", cmd = "StartupTime" },
-
-    { "nathom/filetype.nvim" },
-
-    { "wakatime/vim-wakatime" },
+    "lewis6991/impatient.nvim",
+    "nathom/filetype.nvim",
+    "wakatime/vim-wakatime",
+    "gpanders/editorconfig.nvim",
 
     { "AndrewRadev/splitjoin.vim", keys = "gS" },
-
     { "machakann/vim-sandwich", keys = "s" },
-
-    { "gpanders/editorconfig.nvim" },
+    { "dstein64/vim-startuptime", cmd = "StartupTime" },
 
     {
       "andweeb/presence.nvim",
@@ -28,11 +26,10 @@ return packer.startup {
       end,
     },
 
-    -- { "Olical/conjure" },
-
     {
       "nvim-orgmode/orgmode",
       requires = {
+        "nvim-treesitter/nvim-treesitter",
         "akinsho/org-bullets.nvim",
       },
       config = function()
@@ -40,15 +37,6 @@ return packer.startup {
           org_agenda_files = { "~/Dev/org/*" },
           org_default_notes_file = "~/Dev/org/notes.org",
         }
-      end,
-    },
-
-    {
-      "vuki656/package-info.nvim",
-      requires = "MunifTanjim/nui.nvim",
-      ft = { "json", "jsonc" },
-      config = function()
-        require("package-info").setup()
       end,
     },
 
@@ -62,31 +50,57 @@ return packer.startup {
     {
       "ruifm/gitlinker.nvim",
       keys = "<leader>gy",
+      requires = {
+        "nvim-lua/plenary.nvim",
+      },
       config = function()
         require("gitlinker").setup()
       end,
     },
 
     {
-      "tami5/sqlite.lua",
-      setup = function()
-        vim.g.sqlite_clib_path = "/lib64/libsqlite3.so.0.8.6"
+      "nvim-telescope/telescope.nvim",
+      wants = {
+        "plenary.nvim",
+        "popup.nvim",
+        "telescope-fzf-native.nvim",
+        "kyazdani42/nvim-web-devicons",
+      },
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-lua/popup.nvim",
+        "kyazdani42/nvim-web-devicons",
+        {
+          "tami5/sqlite.lua",
+          setup = function()
+            vim.g.sqlite_clib_path = "/lib64/libsqlite3.so.0.8.6"
+          end,
+        },
+        { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+        "nvim-telescope/telescope-frecency.nvim",
+        "nvim-telescope/telescope-ui-select.nvim",
+      },
+      config = function()
+        require("plugins.telescope").config()
       end,
     },
-
-    require("plugins.telescope").plugin,
 
     {
       "numToStr/Comment.nvim",
       keys = "gc",
+      requires = {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+      },
       config = function()
         require("Comment").setup {
+          ignore = "^$",
           pre_hook = function()
             return require("ts_context_commentstring.internal").calculate_commentstring()
           end,
         }
       end,
     },
+
     {
       "https://gitlab.com/yorickpeterse/nvim-pqf",
       config = function()
@@ -95,17 +109,10 @@ return packer.startup {
     },
 
     {
-      "nvim-lua/plenary.nvim",
-      module_pattern = { "plenary", "plenary.*" },
-    },
-
-    {
-      "nvim-lua/popup.nvim",
-      module_pattern = { "popup", "popup.*" },
-    },
-
-    {
       "~/Repos/nvim-treesitter",
+      config = function()
+        require "plugins.nvim-treesitter"
+      end,
       requires = {
         {
           "nvim-treesitter/playground",
@@ -113,15 +120,13 @@ return packer.startup {
         },
         "nvim-treesitter/nvim-treesitter-textobjects",
         "windwp/nvim-ts-autotag",
-        {
-          "JoosepAlviste/nvim-ts-context-commentstring",
-          module_pattern = "ts_context_commentstring.*",
-        },
+        "JoosepAlviste/nvim-ts-context-commentstring",
       },
     },
 
     {
       "junegunn/vim-easy-align",
+      keys = "<Plug>(EasyAlign)",
       setup = function()
         vim.api.nvim_set_keymap(
           "x",
@@ -130,7 +135,6 @@ return packer.startup {
           { noremap = false, silent = true }
         )
       end,
-      keys = "<Plug>(EasyAlign)",
     },
 
     {
@@ -138,16 +142,16 @@ return packer.startup {
       cmd = "Sayonara",
       setup = function()
         vim.cmd [[
-          nnoremap <silent> <A-j> <CMD>Sayonara!<CR>
-          nnoremap <silent> <A-k> <CMD>Sayonara<CR>
-        ]]
+        nnoremap <silent> <A-j> <CMD>Sayonara!<CR>
+        nnoremap <silent> <A-k> <CMD>Sayonara<CR>
+      ]]
       end,
     },
 
     {
       "~/Repos/gitgud",
       config = function()
-        vim.cmd [[ colorscheme gitgud ]]
+        vim.cmd [[colorscheme gitgud]]
       end,
     },
 
@@ -197,12 +201,12 @@ return packer.startup {
           "hrsh7th/vim-vsnip",
           setup = function()
             vim.cmd [[
-              " Jump forward or backward
-              imap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
-              smap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
-              imap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
-              smap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
-            ]]
+            " Jump forward or backward
+            imap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
+            smap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
+            imap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
+            smap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
+          ]]
           end,
         },
       },
@@ -210,8 +214,13 @@ return packer.startup {
 
     {
       "lewis6991/gitsigns.nvim",
-      wants = { "plenary.nvim" },
       event = "BufEnter", -- don't need this on scratch buffer
+      wants = {
+        "plenary.nvim",
+      },
+      requires = {
+        "nvim-lua/plenary.nvim",
+      },
       config = function()
         require "plugins.gitsigns"
       end,
@@ -219,6 +228,9 @@ return packer.startup {
 
     {
       "akinsho/nvim-bufferline.lua",
+      requires = {
+        "kyazdani42/nvim-web-devicons",
+      },
       config = function()
         require "plugins.nvim-bufferline"
       end,
@@ -235,21 +247,19 @@ return packer.startup {
       },
     },
 
-    { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-
     {
       "phaazon/hop.nvim",
       cmd = "HopWord",
+      config = function()
+        require("hop").setup()
+      end,
       setup = function()
         vim.api.nvim_set_keymap(
           "n",
           "<Leader>w",
           "<CMD>HopWord<CR>",
-          { noremap = true }
+          { noremap = true, silent = true }
         )
-      end,
-      config = function()
-        require("hop").setup()
       end,
     },
 
@@ -304,10 +314,10 @@ return packer.startup {
 
     {
       "TimUntersberger/neogit",
+      cmd = "Neogit",
       requires = {
         "sindrets/diffview.nvim",
       },
-      cmd = "Neogit",
       config = function()
         require("neogit").setup {
           disable_signs = false,
@@ -333,35 +343,11 @@ return packer.startup {
       end,
     },
 
-    -- not writing any latex atm
-    -- {
-    --   "lervag/vimtex",
-    --   ft = "latex",
-    --   setup = function()
-    --     vim.g.vimtex_quickfix_enabled = false
-    --     vim.g.vimtex_view_method = "zathura"
-    --     vim.g.vimtex_compiler_latexmk = {
-    --       options = {
-    --         "--shell-escape",
-    --         "-verbose",
-    --         "-file-line-error",
-    --         "-synctex=1",
-    --         "-interaction=nonstopmode",
-    --       },
-    --     }
-    --   end,
-    -- },
-
     {
       "norcalli/nvim-colorizer.lua",
       cmd = "ColorizerToggle",
       setup = function()
-        vim.api.nvim_set_keymap(
-          "n",
-          "<Leader>c",
-          "<CMD>ColorizerToggle<CR>",
-          { noremap = true, silent = true }
-        )
+        vim.cmd [[ nnoremap <silent> <Leader>c <CMD>ColorizerToggle<CR> ]]
       end,
       config = function()
         require("colorizer").setup {
@@ -381,7 +367,9 @@ return packer.startup {
 
     {
       "simrat39/rust-tools.nvim",
-      wants = { "nvim-lspconfig" },
+      requires = {
+        "neovim/nvim-lspconfig",
+      },
       config = function()
         require("rust-tools").setup {
           tools = {
@@ -403,6 +391,25 @@ return packer.startup {
         }
       end,
     },
+
+    -- not writing any latex atm
+    -- {
+    --   "lervag/vimtex",
+    --   ft = "latex",
+    --   setup = function()
+    --     vim.g.vimtex_quickfix_enabled = false
+    --     vim.g.vimtex_view_method = "zathura"
+    --     vim.g.vimtex_compiler_latexmk = {
+    --       options = {
+    --         "--shell-escape",
+    --         "-verbose",
+    --         "-file-line-error",
+    --         "-synctex=1",
+    --         "-interaction=nonstopmode",
+    --       },
+    --     }
+    --   end,
+    -- },
   },
 
   config = {

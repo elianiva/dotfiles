@@ -4,11 +4,7 @@
   "arrowParens": "always",
   "useTabs": false,
   "tabWidth": 2,
-  "trailingComma": "es5",
+  "trailingComma": "none",
   "bracketSpacing": true,
-  "svelteSortOrder": "options-styles-markup-scripts",
-  "svelteAllowShorthand": true,
-  "svelteIndentScriptAndStyle": false,
-  "printWidth": 80,
-  "plugins": ["prettier-plugin-svelte"]
+  "printWidth": 80
 }

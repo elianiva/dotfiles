@@ -1,34 +1,5 @@
 local M = {}
 
-M.plugin = {
-  "~/Repos/telescope.nvim",
-  module_pattern = { "telescope", "telescope.*" },
-  cmd = "Telescope",
-  keys = {
-    { "", "<C-p>" },
-    { "", "<C-f>" },
-    { "n", "<Leader>f" },
-  },
-  wants = {
-    "sqlite.lua",
-    "popup.nvim",
-    "plenary.nvim",
-    "telescope-fzf-native.nvim",
-    "telescope-frecency.nvim",
-    "telescope-npm",
-    "telescope-ui-select.nvim",
-  },
-  requires = {
-    "~/Repos/telescope-npm",
-    "nvim-telescope/telescope-frecency.nvim",
-    "nvim-telescope/telescope-ui-select.nvim",
-    { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-  },
-  config = function()
-    require("plugins.telescope").config()
-  end,
-}
-
 M.config = function()
   local _, telescope = pcall(require, "telescope")
   local actions = require "telescope.actions"
@@ -157,7 +128,7 @@ M.config = function()
 
   telescope.load_extension "fzf" -- Sorter using fzf algorithm
   telescope.load_extension "frecency" -- Frecency algorithm
-  telescope.load_extension "npm" -- NPM integrations
+  -- telescope.load_extension "npm" -- NPM integrations
   telescope.load_extension "ui-select" -- vim.ui.select
 
   M.arecibo = function()

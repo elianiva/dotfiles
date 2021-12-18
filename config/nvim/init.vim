@@ -1,4 +1,4 @@
-lua require("impatient")
+lua require("impatient").enable_profile()
 
 let s:user = "wbthomason"
 let s:repo = "packer.nvim"
@@ -29,10 +29,10 @@ runtime! lua/modules/mappings.vim
 runtime! lua/modules/statusline.lua
 
 " packer commands
-command! PackerInstall packadd packer.nvim | lua require('plugins').install()
-command! PackerUpdate  packadd packer.nvim | lua require('plugins').update()
-command! PackerSync    packadd packer.nvim | lua require('plugins').sync()
-command! PackerClean   packadd packer.nvim | lua require('plugins').clean()
-command! PackerStatus  packadd packer.nvim | lua require('plugins').status()
-command! PackerCompile packadd packer.nvim | lua require('plugins').compile('~/.config/nvim/plugin/packer_load.vim')
+command! PackerInstall packadd packer.nvim | lua require('plugins.deps').install()
+command! PackerUpdate  packadd packer.nvim | lua require('plugins.deps').update()
+command! PackerSync    packadd packer.nvim | lua require('plugins.deps').sync()
+command! PackerClean   packadd packer.nvim | lua require('plugins.deps').clean()
+command! PackerStatus  packadd packer.nvim | lua require('plugins.deps').status()
+command! PackerCompile packadd packer.nvim | lua require('plugins.deps').compile('~/.config/nvim/plugin/packer_load.vim')
 command! -nargs=+ -complete=customlist,v:lua.require'packer'.loader_complete PackerLoad | lua require('packer').loader(<q-args>)

@@ -24,6 +24,7 @@ ts_config.setup {
     "jsdoc",
     "json",
     "jsonc",
+    "markdown",
     "lua",
     "org",
     "python",
