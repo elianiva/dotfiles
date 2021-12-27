@@ -6,6 +6,7 @@
 
 - link:
     ~/.config:
+      force: true
       glob: true
       path: config/kdeplasma/**
     ~/.config/alacritty: config/alacritty

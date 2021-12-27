@@ -1,6 +1,7 @@
 [ActivityManager]
 _k_friendly_name=Activity Manager
 switch-to-activity-723d2ea2-27d9-4a02-afe6-0ec1deeb0c41=none,none,Switch to activity "Default"
+switch-to-activity-840eca49-7fc6-44e3-8b36-da3c8d024ef2=none,none,Switch to activity "Default"
 switch-to-activity-f5adb6ee-6eab-4ff3-a406-c2f0003ae19b=none,none,Switch to activity "Default"
 
 [KDE Keyboard Layout Switcher]
@@ -253,6 +254,7 @@ activate task manager entry 6=none,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=Meta+7,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=Meta+8,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=Meta+9,Meta+9,Activate Task Manager Entry 9
+activate widget 24=none,none,Activate Media Player Widget
 activate widget 28=none,none,Activate Icons-only Task Manager Widget
 activate widget 3=Alt+F1,none,Activate Application Launcher Widget
 clear-history=none,none,Clear Clipboard History

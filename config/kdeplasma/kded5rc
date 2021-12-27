@@ -4,6 +4,9 @@ autoload=true
 [Module-baloosearchmodule]
 autoload=false
 
+[Module-browserintegrationreminder]
+autoload=false
+
 [Module-colorcorrectlocationupdater]
 autoload=false
 
