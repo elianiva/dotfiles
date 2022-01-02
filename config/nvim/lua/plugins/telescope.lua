@@ -5,8 +5,7 @@ M.config = function()
   local actions = require "telescope.actions"
   local previewers = require "telescope.previewers"
 
-  local k = vim.keymap
-  local nnoremap = k.nnoremap
+  local map = vim.api.nvim_set_keymap
 
   M.no_preview = function(opts)
     return vim.tbl_extend(
@@ -128,27 +127,10 @@ M.config = function()
 
   telescope.load_extension "fzf" -- Sorter using fzf algorithm
   telescope.load_extension "frecency" -- Frecency algorithm
-  -- telescope.load_extension "npm" -- NPM integrations
   telescope.load_extension "ui-select" -- vim.ui.select
-
-  M.arecibo = function()
-    telescope.extensions.arecibo.websearch(M.no_preview())
-  end
 
   M.frecency = function()
     telescope.extensions.frecency.frecency(M.no_preview())
-  end
-
-  M.npm_script = function()
-    telescope.extensions.npm.scripts(M.no_preview())
-  end
-
-  M.npm_packages = function()
-    telescope.extensions.npm.packages(M.no_preview())
-  end
-
-  M.project = function()
-    telescope.extensions.project.project(M.no_preview { display_type = "full" })
   end
 
   M.builtins = function()
@@ -171,24 +153,40 @@ M.config = function()
   end
 
   -- toggle telescope.nvim
-  nnoremap {
-    "<C-p>",
-    require("telescope.builtin").find_files,
-    { silent = true },
-  }
-  nnoremap { "<C-f>", M.grep_prompt, { silent = true } }
-  nnoremap { "<Leader>ft", M.builtins, { silent = true } }
-  nnoremap { "<Leader>ff", M.frecency, { silent = true } }
-  nnoremap { "<Leader>fa", M.arecibo, { silent = true } }
-  nnoremap { "<Leader>fls", M.workspace_symbols, { silent = true } }
-  nnoremap { "<Leader>fns", M.npm_script, { silent = true } }
-  nnoremap { "<Leader>fnp", M.npm_packages, { silent = true } }
-  nnoremap {
-    "<Leader>fb",
-    require("telescope.builtin").current_buffer_fuzzy_find,
-    { silent = true },
-  }
-  nnoremap { "<Leader>fp", M.project, { silent = true } }
+  map("n", "<C-p>", "", {
+    callback = require("telescope.builtin").find_files,
+    desc = "Fuzzy find files using Telescope",
+    noremap = true,
+    silent = true,
+  })
+
+  map("n", "<C-f>", "", {
+    callback = M.grep_prompt,
+    desc = "Fuzzy grep files using Telescope",
+    noremap = true,
+    silent = true,
+  })
+
+  map("n", "<Leader>ft", "", {
+    callback = M.builtins,
+    desc = "Fuzzy grep files using Telescope",
+    noremap = true,
+    silent = true,
+  })
+
+  map("n", "<Leader>ff", "", {
+    callback = M.frecency,
+    desc = "File picker using frecency algorithm",
+    noremap = true,
+    silent = true,
+  })
+
+  map("n", "<Leader>fb", "", {
+    callback = require("telescope.builtin").current_buffer_fuzzy_find,
+    desc = "Fuzzy grep current buffer content using Telescope",
+    noremap = true,
+    silent = true,
+  })
 end
 
 return M

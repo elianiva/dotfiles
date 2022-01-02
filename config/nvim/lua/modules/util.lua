@@ -131,7 +131,7 @@ Util.lsp_on_init = function(client)
   )
 end
 
-Util.lsp_on_attach = function(client)
+Util.lsp_on_attach = function(client, bufnr)
   if client.name == "tsserver" then
     local ts_utils = require "nvim-lsp-ts-utils"
     ts_utils.setup {
@@ -158,7 +158,7 @@ Util.lsp_on_attach = function(client)
     ]]
   end
 
-  require("modules.lsp.mappings").lsp_mappings()
+  require("modules.lsp.mappings").lsp_mappings(bufnr)
 end
 
 return Util
