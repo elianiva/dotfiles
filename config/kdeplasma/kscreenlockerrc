@@ -2,6 +2,7 @@
 update_info=kscreenlocker.upd:0.1-autolock
 
 [Daemon]
+Autolock=false
 Timeout=10
 
 [Greeter][Wallpaper][org.kde.image][General]

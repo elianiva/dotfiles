@@ -22,7 +22,6 @@ cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('
 cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
 
 " order matters
-" runtime! lua/modules/keymap.lua
 runtime! lua/modules/options.lua
 runtime! lua/modules/util.lua
 runtime! lua/modules/mappings.vim

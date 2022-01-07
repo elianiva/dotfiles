@@ -32,13 +32,6 @@ M.lsp_mappings = function(bufnr)
     silent = true,
   })
 
-  map(bufnr, "v", "<Leader>gf", "", {
-    callback = vim.lsp.buf.range_formatting,
-    desc = "Range format current document",
-    noremap = true,
-    silent = true,
-  })
-
   map(bufnr, "n", "<Leader>gd", "", {
     callback = vim.lsp.buf.definition,
     desc = "Go to symbol definition",

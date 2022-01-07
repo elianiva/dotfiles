@@ -167,17 +167,17 @@ return packer.startup {
       module_pattern = { "lush", "lush.*" },
     },
 
-    {
-      "folke/which-key.nvim",
-      keys = {
-        { "n", "<leader>" },
-        { "n", "g" },
-        { "n", "z" },
-      },
-      config = function()
-        require "plugins.which-key"
-      end,
-    },
+    -- {
+    --   "folke/which-key.nvim",
+    --   keys = {
+    --     { "n", "<leader>" },
+    --     { "n", "g" },
+    --     { "n", "z" },
+    --   },
+    --   config = function()
+    --     require "plugins.which-key"
+    --   end,
+    -- },
 
     {
       "kyazdani42/nvim-tree.lua",
@@ -246,6 +246,13 @@ return packer.startup {
         "jose-elias-alvarez/nvim-lsp-ts-utils",
       },
     },
+
+    -- {
+    --   "mfussenegger/nvim-dap",
+    --   config = function()
+    --     require "plugins.dap"
+    --   end
+    -- },
 
     {
       "phaazon/hop.nvim",
