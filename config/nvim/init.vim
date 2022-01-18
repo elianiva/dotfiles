@@ -12,8 +12,11 @@ endif
 let g:mapleader = " "
 let g:maplocalleader = " "
 
+" enable filetype.lua
+let g:do_filetype_lua = 1
+
 " disable filetype.vim
-let g:did_load_filetypes = 1
+let g:did_load_filetypes = 0
 
 " prevent typo when pressing `wq` or `q`
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))

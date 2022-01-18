@@ -11,13 +11,20 @@ return packer.startup {
     },
 
     "lewis6991/impatient.nvim",
-    "nathom/filetype.nvim",
     "wakatime/vim-wakatime",
     "gpanders/editorconfig.nvim",
 
     { "AndrewRadev/splitjoin.vim", keys = "gS" },
     { "machakann/vim-sandwich", keys = "s" },
     { "dstein64/vim-startuptime", cmd = "StartupTime" },
+
+    {
+      "~/Dev/asciidoclive",
+      run = "cd ./app && npm ci",
+      config = function()
+        require("asciidoclive").setup()
+      end,
+    },
 
     {
       "andweeb/presence.nvim",
@@ -92,10 +99,26 @@ return packer.startup {
         "JoosepAlviste/nvim-ts-context-commentstring",
       },
       config = function()
+        local U = require "Comment.utils"
+
         require("Comment").setup {
           ignore = "^$",
-          pre_hook = function()
-            return require("ts_context_commentstring.internal").calculate_commentstring()
+          pre_hook = function(ctx)
+            local type = ctx.ctype == U.ctype.line and "__default"
+              or "__multiline"
+            local location = nil
+            if ctx.ctype == U.ctype.block then
+              location =
+                require("ts_context_commentstring.utils").get_cursor_location()
+            elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+              location =
+                require("ts_context_commentstring.utils").get_visual_start_location()
+            end
+
+            return require("ts_context_commentstring.internal").calculate_commentstring {
+              key = type,
+              location = location,
+            }
           end,
         }
       end,
@@ -380,19 +403,12 @@ return packer.startup {
       config = function()
         require("rust-tools").setup {
           tools = {
-            inlay_hints = {
-              show_parameter_hints = true,
-              parameter_hints_prefix = "  <- ",
-              other_hints_prefix = "  => ",
-            },
             hover_actions = {
               border = Util.borders,
             },
           },
           server = {
-            init_options = {
-              detachedFiles = vim.fn.expand "%",
-            },
+            standalone = false,
             on_attach = Util.lsp_on_attach,
           },
         }

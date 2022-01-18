@@ -3,15 +3,15 @@ Seen=true
 
 [Applications][brave-browser]
 Seen=true
+ShowBadges=false
+ShowInHistory=false
+ShowPopups=false
 
 [Applications][discord]
 Seen=true
 
 [Applications][telegramdesktop]
 Seen=true
-
-[DoNotDisturb]
-NotificationSoundsMuted=true
 
 [Notifications]
 LowPriorityHistory=true

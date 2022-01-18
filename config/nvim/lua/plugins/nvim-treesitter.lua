@@ -46,9 +46,6 @@ ts_config.setup {
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
-    config = {
-      lua = "-- %s",
-    },
   },
 
   incremental_selection = {

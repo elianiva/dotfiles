@@ -1,6 +1,7 @@
 [
   "->"
   "=>"
+  "::"
 ] @operator
 
 (
@@ -14,3 +15,7 @@
   "bool"
   "array"
 ] @type
+
+(class_constant_access_expression
+  (_)
+  (name) @field)
