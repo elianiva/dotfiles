@@ -1,36 +1,15 @@
-local fn, api = vim.fn, vim.api
+local fn = vim.fn
 
 _G.Util = {}
 
-P = function(stuff)
-  print(vim.inspect(stuff))
-  return stuff
-end
+P = function(...)
+  local args = { ... }
 
-Util.trigger_completion = function()
-  local prev_col, next_col = fn.col "." - 1, fn.col "."
-  local prev_char = fn.getline("."):sub(prev_col, prev_col)
-  local next_char = fn.getline("."):sub(next_col, next_col)
-
-  -- minimal autopairs-like behaviour
-
-  if prev_char == "{" and next_char ~= "}" then
-    return Util.t "<CR>}<C-o>O"
+  for _, v in ipairs(args) do
+    print(vim.inspect(v))
   end
-  if prev_char == "[" and next_char ~= "]" then
-    return Util.t "<CR>]<C-o>O"
-  end
-  if prev_char == "(" and next_char ~= ")" then
-    return Util.t "<CR>)<C-o>O"
-  end
-  if prev_char == ">" and next_char == "<" then
-    return Util.t "<CR><C-o>O"
-  end -- html indents
-  if prev_char == "(" and next_char == ")" then
-    return Util.t "<CR><C-o>O"
-  end -- flutter indents
 
-  return Util.t "<CR>"
+  return args
 end
 
 local to_rgb = function(hex)
@@ -88,10 +67,6 @@ Util.get_word = function()
   local first_line, last_line = fn.getpos("'<")[2], fn.getpos("'>")[2]
   local first_col, last_col = fn.getpos("'<")[3], fn.getpos("'>")[3]
   return fn.getline(first_line, last_line)[1]:sub(first_col, last_col)
-end
-
-Util.t = function(cmd)
-  return api.nvim_replace_termcodes(cmd, true, true, true)
 end
 
 Util.borders = {

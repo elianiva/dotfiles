@@ -1,27 +1,31 @@
 require("gitsigns").setup {
   signs = {
-    add          = { hl = "SignAdd",    text = "▎" },
-    change       = { hl = "SignChange", text = "▎" },
-    delete       = { hl = "SignDelete", text = "🭻" },
-    topdelete    = { hl = "SignDelete", text = "🭶" },
+    add = { hl = "SignAdd", text = "▎" },
+    change = { hl = "SignChange", text = "▎" },
+    delete = { hl = "SignDelete", text = "🭻" },
+    topdelete = { hl = "SignDelete", text = "🭶" },
     changedelete = { hl = "SignChange", text = "▎" },
   },
-  keymaps = {
-    noremap = true,
-    buffer = true,
-    ["n <leader>hp"] = '<cmd>lua require("gitsigns").next_hunk()<CR>',
-    ["n <leader>hn"] = '<cmd>lua require("gitsigns").prev_hunk()<CR>',
-    ["n <leader>hs"] = '<cmd>lua require("gitsigns").stage_hunk()<CR>',
-    ["n <leader>hu"] = '<cmd>lua require("gitsigns").undo_stage_hunk()<CR>',
-    ["n <leader>hr"] = '<cmd>lua require("gitsigns").reset_hunk()<CR>',
-    ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ["n <leader>hb"] = '<cmd>lua require("gitsigns").blame_line()<CR>',
-    ["n <leader>hR"] = '<cmd>lua require("gitsigns").reset_buffer()<CR>',
-    ["n <leader>hP"] = '<cmd>lua require("gitsigns").preview_hunk()<CR>',
-  },
-  watch_gitdir = {
-    interval = 1000,
-  },
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- stylua: ignore start
+    map("n", "<leader>hn", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
+    map("n", "<leader>hp", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
+    map("n", "<leader>hs", gs.stage_hunk)
+    map("n", "<leader>hu", gs.undo_stage_hunk)
+    map({ "n", "v" }, "<leader>hp", "<cmd>Gitsigns reset_hunk<CR>", { expr = true })
+    map("n", "<leader>hb", gs.blame_line)
+    map("n", "<leader>hR", gs.reset_buffer)
+    map("n", "<leader>hP", gs.preview_hunk)
+    -- stylua: ignore end
+  end,
   preview_config = {
     border = Util.borders,
   },
@@ -31,5 +35,5 @@ require("gitsigns").setup {
   status_formatter = nil, -- Use default
   diff_opts = {
     internal = true,
-  }
+  },
 }

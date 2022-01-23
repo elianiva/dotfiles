@@ -40,11 +40,11 @@ o.fillchars      = {
   fold = " ",
   diff = " ",
 } -- make vertical split sign better
-o.foldmethod     = "manual"
-o.foldopen       = {
-  "percent",
-  "search",
-} -- don't open fold if I don't tell it to do so
+-- o.foldmethod     = "manual"
+-- o.foldopen       = {
+--   "percent",
+--   "search",
+-- } -- don't open fold if I don't tell it to do so
 -- o.foldexpr       = "nvim_treesitter#foldexpr()"
 -- o.foldlevel      = 0 -- don't fold anything if I don't tell it to do so
 -- o.foldnestmax    = 1 -- only allow 1 nested folds it can be confusing if I have too many

@@ -1,6 +1,6 @@
 -- vim: foldmethod=marker
 
-local remap = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local cmp = require "cmp"
 
 cmp.setup {
@@ -36,9 +36,23 @@ cmp.setup {
   },
 }
 
-remap(
-  "i",
-  "<CR>",
-  "v:lua.Util.trigger_completion()",
-  { noremap = true, expr = true }
-)
+local fn = vim.fn
+local trigger_completion = function()
+  local prev_col, next_col = fn.col "." - 1, fn.col "."
+  local prev_char = fn.getline("."):sub(prev_col, prev_col)
+  local next_char = fn.getline("."):sub(next_col, next_col)
+
+  -- minimal autopairs-like behaviour
+
+  -- stylua: ignore start
+  if prev_char == "{" and next_char ~= "}" then return "<CR>}<C-o>O" end
+  if prev_char == "[" and next_char ~= "]" then return "<CR>]<C-o>O" end
+  if prev_char == "(" and next_char ~= ")" then return "<CR>)<C-o>O" end
+  if prev_char == ">" and next_char == "<" then return "<CR><C-o>O" end -- html indents
+  if prev_char == "(" and next_char == ")" then return "<CR><C-o>O" end -- flutter indents
+  -- stylua: ignore end
+
+  return "<CR>"
+end
+
+map("i", "<CR>", trigger_completion, { expr = true })

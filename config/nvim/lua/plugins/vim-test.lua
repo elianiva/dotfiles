@@ -1,6 +1,7 @@
 local noremap = function(lhs, rhs)
-  vim.api.nvim_set_keymap("n", lhs, rhs, { noremap = true })
+  vim.keymap.set("n", lhs, rhs, { noremap = true })
 end
+
 noremap("<Leader>tn", "<CMD>TestNearest<CR>")
 noremap("<Leader>tf", "<CMD>TestFile<CR>")
 noremap("<Leader>ts", "<CMD>TestSuite<CR>")

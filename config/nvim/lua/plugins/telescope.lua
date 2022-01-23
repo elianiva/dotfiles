@@ -1,11 +1,18 @@
 local M = {}
 
+local ignored_list = {
+  "%.png",
+  "%.jpg",
+  "%.webp",
+  "node_modules",
+  "vendor",
+  "*%.min%.*",
+  "dotbot",
+}
+
 M.config = function()
   local _, telescope = pcall(require, "telescope")
   local actions = require "telescope.actions"
-  local previewers = require "telescope.previewers"
-
-  local map = vim.api.nvim_set_keymap
 
   M.no_preview = function(opts)
     return vim.tbl_extend(
@@ -28,9 +35,6 @@ M.config = function()
 
   telescope.setup {
     defaults = {
-      file_previewer = previewers.vim_buffer_cat.new,
-      grep_previewer = previewers.vim_buffer_vimgrep.new,
-      qflist_previewer = previewers.vim_buffer_qflist.new,
       scroll_strategy = "cycle",
       selection_strategy = "reset",
       layout_strategy = "flex",
@@ -83,24 +87,10 @@ M.config = function()
     },
     pickers = {
       grep_string = {
-        file_ignore_patterns = {
-          "%.png",
-          "%.jpg",
-          "%.webp",
-          "node_modules",
-          "*%.min%.*",
-          "dotbot",
-        },
+        file_ignore_patterns = ignored_list,
       },
       find_files = {
-        file_ignore_patterns = {
-          "%.png",
-          "%.jpg",
-          "%.webp",
-          "node_modules",
-          "*%.min%.*",
-          "dotbot",
-        },
+        file_ignore_patterns = ignored_list,
       },
       lsp_code_actions = M.no_preview(),
       current_buffer_fuzzy_find = M.no_preview(),
@@ -111,27 +101,11 @@ M.config = function()
         override_generic_sorter = true,
         override_file_sorter = true,
       },
-      frecency = {
-        show_scores = true,
-        show_unindexed = true,
-        devicons_disabled = true,
-        ignore_patterns = { "*.git/*", "*/tmp/*" },
-        workspaces = {
-          ["nvim"] = "/home/elianiva/.config/nvim",
-          ["awesome"] = "/home/elianiva/.config/awesome",
-          ["scratch"] = "/home/elianiva/Dev/scratch",
-        },
-      },
     },
   }
 
   telescope.load_extension "fzf" -- Sorter using fzf algorithm
-  telescope.load_extension "frecency" -- Frecency algorithm
   telescope.load_extension "ui-select" -- vim.ui.select
-
-  M.frecency = function()
-    telescope.extensions.frecency.frecency(M.no_preview())
-  end
 
   M.builtins = function()
     require("telescope.builtin").builtin(M.no_preview())
@@ -152,37 +126,28 @@ M.config = function()
     }
   end
 
+  local map = vim.keymap.set
+
   -- toggle telescope.nvim
-  map("n", "<C-p>", "", {
-    callback = require("telescope.builtin").find_files,
+  map("n", "<C-p>", require("telescope.builtin").find_files, {
     desc = "Fuzzy find files using Telescope",
     noremap = true,
     silent = true,
   })
 
-  map("n", "<C-f>", "", {
-    callback = M.grep_prompt,
+  map("n", "<C-f>", M.grep_prompt, {
     desc = "Fuzzy grep files using Telescope",
     noremap = true,
     silent = true,
   })
 
-  map("n", "<Leader>ft", "", {
-    callback = M.builtins,
+  map("n", "<Leader>ft", M.builtins, {
     desc = "Fuzzy grep files using Telescope",
     noremap = true,
     silent = true,
   })
 
-  map("n", "<Leader>ff", "", {
-    callback = M.frecency,
-    desc = "File picker using frecency algorithm",
-    noremap = true,
-    silent = true,
-  })
-
-  map("n", "<Leader>fb", "", {
-    callback = require("telescope.builtin").current_buffer_fuzzy_find,
+  map("n", "<Leader>fb", require("telescope.builtin").current_buffer_fuzzy_find, {
     desc = "Fuzzy grep current buffer content using Telescope",
     noremap = true,
     silent = true,

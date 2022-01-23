@@ -1,18 +1,8 @@
-" Set filetypes
-augroup Filetypes
-  au!
-  au BufNewFile,BufRead *.ejs set filetype=html
-  au BufNewFile,BufRead .prettierrc,.eslintrc,tsconfig.json set filetype=jsonc
-  au BufNewFile,BufRead *.svx,*.mdx set ft=markdown
-  au BufNewFile,BufRead *.svelte set ft=svelte
-  au BufNewFile,BufRead *.zig set ft=zig
-  au BufNewFile,BufRead *.hbs set ft=handlebars
-  au BufNewFile,BufRead *.edge set ft=html
-  au BufNewFile,BufRead *.rasi set ft=css
-augroup END
+" enable filetype.lua
+let g:do_filetype_lua = 1
 
-" Set github text field to markdown (firenvim stuff)
-au BufEnter github.com_*.txt set filetype=markdown
+" disable filetype.vim
+let g:did_load_filetypes = 0
 
 " Set current working directory
 au VimEnter * cd %:p:h
@@ -32,8 +22,3 @@ augroup Yank
   au!
   au TextYankPost * silent! lua vim.highlight.on_yank { timeout = 250, higroup = "Visual" }
 augroup END
-
-" augroup Emmet
-"   au!
-"   au FileType html,javascript,typescript,javascriptreact,typescriptreact,svelte EmmetInstall
-" augroup END

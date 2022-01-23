@@ -5,26 +5,15 @@ end
 
 return packer.startup {
   {
-    {
-      "wbthomason/packer.nvim",
-      opt = true,
-    },
+    { "wbthomason/packer.nvim", opt = true },
 
     "lewis6991/impatient.nvim",
-    "wakatime/vim-wakatime",
     "gpanders/editorconfig.nvim",
 
     { "AndrewRadev/splitjoin.vim", keys = "gS" },
     { "machakann/vim-sandwich", keys = "s" },
-    { "dstein64/vim-startuptime", cmd = "StartupTime" },
-
-    {
-      "~/Dev/asciidoclive",
-      run = "cd ./app && npm ci",
-      config = function()
-        require("asciidoclive").setup()
-      end,
-    },
+    -- { "dstein64/vim-startuptime", cmd = "StartupTime" },
+    { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
 
     {
       "andweeb/presence.nvim",
@@ -34,17 +23,16 @@ return packer.startup {
     },
 
     {
-      "nvim-orgmode/orgmode",
-      requires = {
-        "nvim-treesitter/nvim-treesitter",
-        "akinsho/org-bullets.nvim",
-      },
+      "nvim-neorg/neorg",
       config = function()
-        require("orgmode").setup {
-          org_agenda_files = { "~/Dev/org/*" },
-          org_default_notes_file = "~/Dev/org/notes.org",
+        require("neorg").setup {
+          load = {
+            ["core.defaults"] = {}, -- Load all the default modules
+            ["core.norg.concealer"] = {}, -- Allows for use of icons
+          },
         }
       end,
+      requires = { "nvim-lua/plenary.nvim" },
     },
 
     {
@@ -84,7 +72,6 @@ return packer.startup {
           end,
         },
         { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-        "nvim-telescope/telescope-frecency.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
       },
       config = function()
@@ -94,33 +81,11 @@ return packer.startup {
 
     {
       "numToStr/Comment.nvim",
-      keys = "gc",
       requires = {
         "JoosepAlviste/nvim-ts-context-commentstring",
       },
       config = function()
-        local U = require "Comment.utils"
-
-        require("Comment").setup {
-          ignore = "^$",
-          pre_hook = function(ctx)
-            local type = ctx.ctype == U.ctype.line and "__default"
-              or "__multiline"
-            local location = nil
-            if ctx.ctype == U.ctype.block then
-              location =
-                require("ts_context_commentstring.utils").get_cursor_location()
-            elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-              location =
-                require("ts_context_commentstring.utils").get_visual_start_location()
-            end
-
-            return require("ts_context_commentstring.internal").calculate_commentstring {
-              key = type,
-              location = location,
-            }
-          end,
-        }
+        require("plugins.comments").config()
       end,
     },
 
@@ -151,12 +116,10 @@ return packer.startup {
       "junegunn/vim-easy-align",
       keys = "<Plug>(EasyAlign)",
       setup = function()
-        vim.api.nvim_set_keymap(
-          "x",
-          "ga",
-          "<Plug>(EasyAlign)",
-          { noremap = false, silent = true }
-        )
+        vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", {
+          remap = false,
+          silent = true,
+        })
       end,
     },
 
@@ -164,10 +127,8 @@ return packer.startup {
       "mhinz/vim-sayonara",
       cmd = "Sayonara",
       setup = function()
-        vim.cmd [[
-        nnoremap <silent> <A-j> <CMD>Sayonara!<CR>
-        nnoremap <silent> <A-k> <CMD>Sayonara<CR>
-      ]]
+        vim.keymap.set("n", "<A-j>", "<CMD>Sayonara!", { silent = true })
+        vim.keymap.set("n", "<A-k>", "<CMD>Sayonara", { silent = true })
       end,
     },
 
@@ -229,7 +190,7 @@ return packer.startup {
             smap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
             imap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
             smap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
-          ]]
+            ]]
           end,
         },
       },
@@ -284,12 +245,10 @@ return packer.startup {
         require("hop").setup()
       end,
       setup = function()
-        vim.api.nvim_set_keymap(
-          "n",
-          "<Leader>w",
-          "<CMD>HopWord<CR>",
-          { noremap = true, silent = true }
-        )
+        vim.api.nvim_set_keymap("n", "<Leader>w", "<CMD>HopWord<CR>", {
+          noremap = true,
+          silent = true,
+        })
       end,
     },
 
@@ -319,15 +278,6 @@ return packer.startup {
             vim.api.nvim_win_set_option(win, "linebreak", true)
           end,
         }
-      end,
-    },
-
-    {
-      "plasticboy/vim-markdown",
-      filetype = "markdown",
-      setup = function()
-        vim.g.vim_markdown_folding_disabled = 1
-        vim.g.vim_markdown_frontmatter = 1
       end,
     },
 
@@ -377,7 +327,7 @@ return packer.startup {
       "norcalli/nvim-colorizer.lua",
       cmd = "ColorizerToggle",
       setup = function()
-        vim.cmd [[ nnoremap <silent> <Leader>c <CMD>ColorizerToggle<CR> ]]
+        vim.keymap.set("n", "<leader>c", "<CMD>ColorizerToggle<CR>", { silent = true });
       end,
       config = function()
         require("colorizer").setup {
@@ -433,6 +383,15 @@ return packer.startup {
     --     }
     --   end,
     -- },
+
+    -- {
+    --   "~/Dev/asciidoclive",
+    --   run = "cd ./app && npm ci",
+    --   config = function()
+    --     require("asciidoclive").setup()
+    --   end,
+    -- },
+
   },
 
   config = {
@@ -442,9 +401,7 @@ return packer.startup {
       clone_timeout = 300, -- 5 minutes, I have horrible internet
     },
     display = {
-      open_fn = function()
-        return require("packer.util").float { border = Util.borders }
-      end,
+      open_cmd = "80vnew \\[packer\\]",
     },
   },
 }
