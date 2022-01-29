@@ -40,21 +40,22 @@ o.fillchars      = {
   fold = " ",
   diff = " ",
 } -- make vertical split sign better
--- o.foldmethod     = "manual"
+-- o.foldmethod     = "expr"
 -- o.foldopen       = {
 --   "percent",
 --   "search",
 -- } -- don't open fold if I don't tell it to do so
 -- o.foldexpr       = "nvim_treesitter#foldexpr()"
--- o.foldlevel      = 0 -- don't fold anything if I don't tell it to do so
--- o.foldnestmax    = 1 -- only allow 1 nested folds it can be confusing if I have too many
+-- o.foldlevel      = 99 -- don't fold anything if I don't tell it to do so
+-- o.foldminlines   = 5 -- don't fold anything below 5 lines
+-- o.foldnestmax    = 99
 -- o.foldcolumn     = "1" -- enable fold column for better visualisation
 o.inccommand     = "split" -- incrementally show result of command
 o.listchars      = {
   eol = "↲",
   tab = "» ",
 } -- set listchars
-o.mouse          = "nv" -- enable mouse support in normal and visual mode
+o.mouse          = "nvi" -- enable mouse support in normal, insert, and visual mode
 o.shortmess      = "csa" -- disable some stuff on shortmess
 o.signcolumn     = "yes" -- enable sign column all the time 4 column
 o.shell          = "/usr/bin/bash" -- use bash instead of zsh
@@ -71,15 +72,3 @@ o.timeoutlen     = 400 -- faster timeout wait time
 o.updatetime     = 1000 -- set faster update time
 o.joinspaces     = false
 o.diffopt:append { "algorithm:histogram", "indent-heuristic" }
-
--- stolen from tjdevries
-o.formatoptions = o.formatoptions
-  - "a" -- Auto formatting is BAD.
-  - "t" -- Don't auto format my code. I got linters for that.
-  + "c" -- In general, I like it when comments respect textwidth
-  + "q" -- Allow formatting comments w/ gq
-  - "o" -- O and o, don't continue comments
-  + "r" -- But do continue when pressing enter.
-  + "n" -- Indent past the formatlistpat, not underneath it.
-  + "j" -- Auto-remove comments if possible.
-  - "2" -- I'm not in gradeschool anymore

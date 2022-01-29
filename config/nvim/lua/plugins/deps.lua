@@ -42,6 +42,8 @@ return packer.startup {
       end,
     },
 
+    "simrat39/symbols-outline.nvim",
+
     {
       "ruifm/gitlinker.nvim",
       keys = "<leader>gy",
@@ -127,15 +129,15 @@ return packer.startup {
       "mhinz/vim-sayonara",
       cmd = "Sayonara",
       setup = function()
-        vim.keymap.set("n", "<A-j>", "<CMD>Sayonara!", { silent = true })
-        vim.keymap.set("n", "<A-k>", "<CMD>Sayonara", { silent = true })
+        vim.keymap.set("n", "<A-j>", "<CMD>Sayonara!<CR>", { silent = true })
+        vim.keymap.set("n", "<A-k>", "<CMD>Sayonara<CR>", { silent = true })
       end,
     },
 
     {
       "~/Repos/gitgud",
       config = function()
-        vim.cmd [[colorscheme gitgud]]
+        vim.cmd [[colorscheme gitgud_dark]]
       end,
     },
 
@@ -181,6 +183,7 @@ return packer.startup {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-vsnip",
+        "hrsh7th/cmp-copilot",
         {
           "hrsh7th/vim-vsnip",
           setup = function()
@@ -194,6 +197,10 @@ return packer.startup {
           end,
         },
       },
+    },
+
+    {
+      "github/copilot.vim"
     },
 
     {
@@ -231,12 +238,16 @@ return packer.startup {
       },
     },
 
-    -- {
-    --   "mfussenegger/nvim-dap",
-    --   config = function()
-    --     require "plugins.dap"
-    --   end
-    -- },
+    {
+      "mfussenegger/nvim-dap",
+      config = function()
+        require "plugins.dap"
+      end,
+      requires = {
+        "rcarriga/nvim-dap-ui",
+        "leoluz/nvim-dap-go"
+      }
+    },
 
     {
       "phaazon/hop.nvim",

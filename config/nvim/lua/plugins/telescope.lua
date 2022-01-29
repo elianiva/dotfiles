@@ -33,6 +33,24 @@ M.config = function()
     )
   end
 
+  M.dropdown = function(opts)
+    return vim.tbl_extend(
+      "force",
+      require("telescope.themes").get_dropdown {
+        borderchars = {
+          { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+          results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+          preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        },
+        layout_config = {
+          width = 0.6,
+        },
+      },
+      opts or {}
+    )
+  end
+
   telescope.setup {
     defaults = {
       scroll_strategy = "cycle",
@@ -92,6 +110,7 @@ M.config = function()
       find_files = {
         file_ignore_patterns = ignored_list,
       },
+      lsp_refernces = M.dropdown(),
       lsp_code_actions = M.no_preview(),
       current_buffer_fuzzy_find = M.no_preview(),
     },

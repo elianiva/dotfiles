@@ -26,7 +26,7 @@ cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('
 vim.cmd [[
 runtime! lua/modules/options.lua
 runtime! lua/modules/util.lua
-runtime! lua/modules/mappings.vim
+runtime! lua/modules/mappings.lua
 runtime! lua/modules/statusline.lua
 ]]
 

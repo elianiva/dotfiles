@@ -1,33 +1,56 @@
-local dap = require('dap')
+local dap = require "dap"
+local dapui = require "dapui"
+local dap_go = require "dap-go"
 
-dap.adapters.lldb = {
-  type = 'executable',
-  command = '/usr/bin/lldb-vscode',
-  name = "lldb"
+local nnoremap = function(lhs, rhs, opts)
+  opts = opts or {}
+  opts.noremap = true
+  vim.keymap.set("n", lhs, rhs, opts)
+end
+
+dapui.setup()
+dap_go.setup()
+
+nnoremap("<F5>", dap.continue, {
+  desc = "Continue the current debug session",
+})
+nnoremap("<F10>", dap.step_over, {
+  desc = "Step over the current line",
+})
+nnoremap("<F11>", dap.step_into, {
+  desc = "Step into the current line",
+})
+nnoremap("<F12>", dap.step_out, {
+  desc = "Step out of the current function",
+})
+nnoremap("<Leader>du", dapui.toggle, {
+  desc = "Toggle the DAP UI",
+})
+nnoremap("<Leader>db", dap.toggle_breakpoint, {
+  desc = "Toggle a breakpoint on the current line",
+})
+nnoremap("<Leader>dt", dap.terminate, {
+  desc = "Terminate the current debug session",
+})
+nnoremap("<Leader>dB", function()
+  dap.set_breakpoint(vim.fn.input "Breakpoint condition: ")
+end, {
+  desc = "Set a breakpoint on the current line",
+})
+
+local signs = {
+  Breakpoint = " ",
+  BreakpointCondition = " ",
+  LogPoint = " ",
+  Stopped = " ",
+  BreakpointRejected = " ",
 }
 
-dap.configurations.cpp = {
-  {
-    name = "Launch",
-    type = "lldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    args = {},
-
-    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-    --
-    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-    --
-    -- Otherwise you might get the following error:
-    --
-    --    Error on launch: Failed to attach to the target process
-    --
-    -- But you should be aware of the implications:
-    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-    runInTerminal = false,
-  },
-}
+for name, char in pairs(signs) do
+  local hl = "Dap" .. name
+  vim.fn.sign_define(hl, {
+    text = char,
+    texthl = hl,
+    numhl = "",
+  })
+end

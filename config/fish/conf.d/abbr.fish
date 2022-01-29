@@ -18,7 +18,7 @@ abbr -a gwip 'git add -A; git rm (git ls-files --deleted) 2> /dev/null; git comm
 # abbr -a gdatelong 'git log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
 
 # config stuff
-abbr -a nvimconf "nvim ~/.config/nvim/init.vim"
+abbr -a nvimconf "nvim ~/.config/nvim/init.lua"
 abbr -a swayconf "nvim ~/.config/sway/config"
 abbr -a barconf "nvim ~/.config/waybar/config"
 abbr -a kittyconf "nvim ~/.config/kitty/kitty.conf"

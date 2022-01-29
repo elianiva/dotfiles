@@ -17,14 +17,15 @@ cmp.setup {
     border = "solid",
   },
   sources = {
+    -- { name = "copilot" },
     { name = "nvim_lsp", priority = 10 },
     { name = "vsnip" },
     { name = "path" },
     { name = "buffer", keyword_length = 8 },
   },
   mapping = {
-    ["<Tab>"] = cmp.mapping.select_next_item { cmp.SelectBehavior.Select },
-    ["<S-Tab>"] = cmp.mapping.select_prev_item { cmp.SelectBehavior.Select },
+    -- ["<Tab>"] = cmp.mapping.select_next_item { cmp.SelectBehavior.Select },
+    -- ["<S-Tab>"] = cmp.mapping.select_prev_item { cmp.SelectBehavior.Select },
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
