@@ -127,13 +127,38 @@ Util.lsp_on_attach = function(client, bufnr)
 
   if client.resolved_capabilities.document_highlight then
     vim.cmd [[
+    augroup DocumentHighlight
+      au!
       autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    augroup END
     ]]
   end
 
   require("modules.lsp.mappings").lsp_mappings(bufnr)
+end
+
+local get_mapper = function(mode, noremap)
+  return function(lhs, rhs, opts)
+    opts = opts or {}
+    opts.noremap = noremap
+    vim.keymap.set(mode, lhs, rhs, opts)
+  end
+end
+
+Util.noremap = get_mapper("n", false)
+Util.nnoremap = get_mapper("n", true)
+Util.inoremap = get_mapper("i", true)
+Util.tnoremap = get_mapper("t", true)
+Util.vnoremap = get_mapper("v", true)
+
+Util.is_vscode = function()
+  return vim.g.vscode == 1;
+end
+
+Util.vscode_notify = function(command)
+  return vim.fn.VSCodeNotify(command)
 end
 
 return Util

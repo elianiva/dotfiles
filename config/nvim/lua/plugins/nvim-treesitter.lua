@@ -53,7 +53,7 @@ ts_config.setup {
   },
 
   autotag = { enable = true },
-  highlight = { enable = true },
+  highlight = { enable = vim.g.vscode ~= 1 },
   indent = { enable = true },
   matchup = { enable = true },
   playground = { enable = true },

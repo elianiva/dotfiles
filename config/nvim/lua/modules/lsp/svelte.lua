@@ -1,8 +1,8 @@
 local M = {}
 
 M.config = {
-  on_attach = function(client)
-    require("modules.lsp.mappings").lsp_mappings()
+  on_attach = function(client, bufnr)
+    require("modules.lsp.mappings").lsp_mappings(bufnr)
 
     client.server_capabilities.completionProvider.triggerCharacters = {
       ".", "\"", "'", "`", "/", "@", "*",

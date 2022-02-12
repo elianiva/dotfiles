@@ -137,7 +137,7 @@ ForegroundVisited=155,89,182
 
 [General]
 BrowserApplication=brave-browser.desktop
-ColorScheme=BreezeDark
+ColorSchemeHash=9163139877916089673a361083a2231d380293d7
 Name=Breeze Dark
 Name[en_GB]=Breeze Dark
 TerminalApplication=kitty

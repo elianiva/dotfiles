@@ -1,9 +1,9 @@
 require("gitsigns").setup {
   signs = {
-    add = { hl = "SignAdd", text = "▎" },
-    change = { hl = "SignChange", text = "▎" },
-    delete = { hl = "SignDelete", text = "🭻" },
-    topdelete = { hl = "SignDelete", text = "🭶" },
+    add          = { hl = "SignAdd",    text = "▎" },
+    change       = { hl = "SignChange", text = "▎" },
+    delete       = { hl = "SignDelete", text = "🭻" },
+    topdelete    = { hl = "SignDelete", text = "🭶" },
     changedelete = { hl = "SignChange", text = "▎" },
   },
   on_attach = function(bufnr)
@@ -20,7 +20,7 @@ require("gitsigns").setup {
     map("n", "<leader>hp", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
     map("n", "<leader>hs", gs.stage_hunk)
     map("n", "<leader>hu", gs.undo_stage_hunk)
-    map({ "n", "v" }, "<leader>hp", "<cmd>Gitsigns reset_hunk<CR>", { expr = true })
+    map({ "n", "v" }, "<leader>hr", "<CMD>Gitsigns reset_hunk<CR>")
     map("n", "<leader>hb", gs.blame_line)
     map("n", "<leader>hR", gs.reset_buffer)
     map("n", "<leader>hP", gs.preview_hunk)

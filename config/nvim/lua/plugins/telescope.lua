@@ -14,16 +14,18 @@ M.config = function()
   local _, telescope = pcall(require, "telescope")
   local actions = require "telescope.actions"
 
+  local borderchars = {
+    { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+    prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+    results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+    preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+  }
+
   M.no_preview = function(opts)
     return vim.tbl_extend(
       "force",
       require("telescope.themes").get_dropdown {
-        borderchars = {
-          { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-          prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-          results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-          preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-        },
+        borderchars = borderchars,
         layout_config = {
           width = 0.6,
         },
@@ -37,12 +39,7 @@ M.config = function()
     return vim.tbl_extend(
       "force",
       require("telescope.themes").get_dropdown {
-        borderchars = {
-          { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-          prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-          results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-          preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-        },
+        borderchars = borderchars,
         layout_config = {
           width = 0.6,
         },
@@ -104,14 +101,14 @@ M.config = function()
       },
     },
     pickers = {
-      grep_string = {
+      grep_string = M.dropdown {
         file_ignore_patterns = ignored_list,
       },
       find_files = {
         file_ignore_patterns = ignored_list,
       },
-      lsp_refernces = M.dropdown(),
-      lsp_code_actions = M.no_preview(),
+      lsp_references = M.dropdown(),
+      lsp_document_symbols = M.dropdown(),
       current_buffer_fuzzy_find = M.no_preview(),
     },
     extensions = {

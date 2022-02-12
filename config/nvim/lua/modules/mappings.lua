@@ -1,16 +1,9 @@
-local get_mapper = function(mode, noremap)
-  return function(lhs, rhs, opts)
-    opts = opts or {}
-    opts.noremap = noremap
-    vim.keymap.set(mode, lhs, rhs, opts)
-  end
-end
-
-local noremap = get_mapper("n", false)
-local nnoremap = get_mapper("n", true)
-local inoremap = get_mapper("i", true)
-local tnoremap = get_mapper("t", true)
-local vnoremap = get_mapper("v", true)
+local u = require "modules.util"
+local noremap = u.noremap
+local nnoremap = u.nnoremap
+local inoremap = u.inoremap
+local tnoremap = u.tnoremap
+local vnoremap = u.vnoremap
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 noremap("n", '"Nn"[v:searchforward]', {
@@ -26,8 +19,7 @@ noremap("N", '"nN"[v:searchforward]', {
 nnoremap("/", "ms/", { desc = "Keeps jumplist after forward searching" })
 nnoremap("?", "ms?", { desc = "Keeps jumplist after backward searching" })
 
--- nvimtree
-nnoremap("<C-n>", "<CMD>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
+nnoremap("<C-n>", "<CMD>NeoTreeRevealToggle<CR>", { desc = "Toggle NeoTree" })
 
 -- TERMINAL MAPPINGS
 tnoremap("<C-h>", "<C-\\><C-n><C-w><C-h>", {
@@ -65,16 +57,24 @@ tnoremap("<Esc><Esc>", "<C-\\><C-n>", {
 })
 
 -- Better movement between windows
-nnoremap("<C-h>", "<C-w><Ch-h>", { desc = "Go to the left window" })
-nnoremap("<C-l>", "<C-w><Ch-l>", { desc = "Go to the right window" })
-nnoremap("<C-j>", "<C-w><Ch-j>", { desc = "Go to the bottom window" })
-nnoremap("<C-k>", "<C-w><Ch-k>", { desc = "Go to the top window" })
+nnoremap("<C-h>", "<C-w><C-h>", { desc = "Go to the left window" })
+nnoremap("<C-l>", "<C-w><C-l>", { desc = "Go to the right window" })
+nnoremap("<C-j>", "<C-w><C-j>", { desc = "Go to the bottom window" })
+nnoremap("<C-k>", "<C-w><C-k>", { desc = "Go to the top window" })
 
 -- Resize buffer easier
-nnoremap("<C-h>", "<C-w><C-h>", { desc = "Resize buffer to the left" })
-nnoremap("<C-l>", "<C-w><C-l>", { desc = "Resize buffer to the right" })
-nnoremap("<C-j>", "<C-w><C-j>", { desc = "Resize buffer to the bottom" })
-nnoremap("<C-k>", "<C-w><C-k>", { desc = "Resize buffer to the top" })
+nnoremap("<Left>", ":vertical resize +2<CR>", {
+  desc = "Resize buffer to the left",
+})
+nnoremap("<Right>", ":vertical resize -2<CR>", {
+  desc = "Resize buffer to the right",
+})
+nnoremap("<Up>", ":resize +2<CR>", {
+  desc = "Resize buffer to the top",
+})
+nnoremap("<Down>", ":resize -2<CR>", {
+  desc = "Resize buffer to the bottom",
+})
 
 -- Buffer movements
 noremap("<A-h>", "<CMD>bp<CR>", { desc = "Go to previous buffer" })

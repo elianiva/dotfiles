@@ -26,6 +26,7 @@ M.setup = function()
           "jsonc",
           "css",
           "html",
+          "vue",
         },
       },
     },

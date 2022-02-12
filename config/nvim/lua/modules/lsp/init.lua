@@ -55,8 +55,8 @@ local servers = {
   --   },
   -- },
   clangd = {},
-  vuels = {}, -- vue 2 only
-  -- volar = {}, -- vue 3 only
+  -- vuels = {}, -- vue 2 only
+  volar = {}, -- vue 3 only
   gopls = {
     settings = {
       gopls = {

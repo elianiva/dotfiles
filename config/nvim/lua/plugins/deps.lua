@@ -42,8 +42,6 @@ return packer.startup {
       end,
     },
 
-    "simrat39/symbols-outline.nvim",
-
     {
       "ruifm/gitlinker.nvim",
       keys = "<leader>gy",
@@ -118,10 +116,7 @@ return packer.startup {
       "junegunn/vim-easy-align",
       keys = "<Plug>(EasyAlign)",
       setup = function()
-        vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", {
-          remap = false,
-          silent = true,
-        })
+        vim.cmd [[xmap ga <Plug>(EasyAlign)]]
       end,
     },
 
@@ -153,24 +148,16 @@ return packer.startup {
       module_pattern = { "lush", "lush.*" },
     },
 
-    -- {
-    --   "folke/which-key.nvim",
-    --   keys = {
-    --     { "n", "<leader>" },
-    --     { "n", "g" },
-    --     { "n", "z" },
-    --   },
-    --   config = function()
-    --     require "plugins.which-key"
-    --   end,
-    -- },
-
     {
-      "kyazdani42/nvim-tree.lua",
-      cmd = "NvimTreeToggle",
+      "nvim-neo-tree/neo-tree.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "kyazdani42/nvim-web-devicons",
+        "MunifTanjim/nui.nvim"
+      },
       config = function()
-        require "plugins.nvim-tree"
-      end,
+        require "plugins.neo-tree"
+      end
     },
 
     {
@@ -183,7 +170,6 @@ return packer.startup {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-vsnip",
-        "hrsh7th/cmp-copilot",
         {
           "hrsh7th/vim-vsnip",
           setup = function()
@@ -200,7 +186,13 @@ return packer.startup {
     },
 
     {
-      "github/copilot.vim"
+      "github/copilot.vim",
+      setup = function()
+        vim.cmd [[
+          imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
+          let g:copilot_no_tab_map = v:true
+        ]]
+      end
     },
 
     {
@@ -267,28 +259,7 @@ return packer.startup {
       "folke/zen-mode.nvim",
       cmd = "ZenMode",
       config = function()
-        require("zen-mode").setup {
-          window = {
-            backdrop = 1,
-            width = 80,
-            height = 32,
-            linebreak = true,
-            wrap = true,
-          },
-          plugins = {
-            options = {
-              enabled = true,
-              ruler = false,
-              showcmd = false,
-            },
-            gitsigns = { enabled = true }, -- disables git signs
-            tmux = { enabled = false }, -- disables the tmux statusline
-          },
-          on_open = function(win)
-            vim.api.nvim_win_set_option(win, "wrap", true)
-            vim.api.nvim_win_set_option(win, "linebreak", true)
-          end,
-        }
+        require("plugins.zenmod")
       end,
     },
 
@@ -299,29 +270,6 @@ return packer.startup {
           method = "popup",
           fullwidth = true,
           highlight = "Normal",
-        }
-      end,
-    },
-
-    {
-      "TimUntersberger/neogit",
-      cmd = "Neogit",
-      requires = {
-        "sindrets/diffview.nvim",
-      },
-      config = function()
-        require("neogit").setup {
-          disable_signs = false,
-          disable_context_highlighting = true,
-          signs = {
-            -- { CLOSED, OPENED }
-            section = { "", "" },
-            item = { "+", "-" },
-            hunk = { "", "" },
-          },
-          integrations = {
-            diffview = true,
-          },
         }
       end,
     },
