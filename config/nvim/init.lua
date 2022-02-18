@@ -1,30 +1,29 @@
--- bootstrap impatient.nvim
-vim.cmd [[
-  let s:user = "lewis6991"
-  let s:repo = "impatient.nvim"
-  let s:install_path = stdpath("data") . "/site/pack/" . s:repo . "/start/" . s:repo
-  if empty(glob(s:install_path)) > 0
-    execute printf("!git clone --depth=1 https://github.com/%s/%s %s", s:user, s:repo, s:install_path)
-    execute "packadd " .. s:repo
-  endif
-]]
+local repos = {
+  lewis6991 = { "impatient.nvim", "impatient" },
+  tani = { "vim-jetpack", "jetpack" },
+}
+
+for user, repo in pairs(repos) do
+  local install_path = vim.fn.stdpath "data"
+    .. "/site/pack/"
+    .. repo[2]
+    .. "/start/"
+    .. repo[1]
+
+  if vim.fn.empty(vim.fn.glob(install_path)) == 1 then
+    vim.cmd(
+      string.format(
+        [[execute "!git clone --depth=1 https://github.com/%s/%s %s"]],
+        user,
+        repo[1],
+        install_path
+      )
+    )
+    vim.cmd("packadd " .. repo[1])
+  end
+end
 
 require("impatient").enable_profile()
-
-vim.cmd [[
-  let s:user = "tani"
-  let s:repo = "vim-jetpack"
-  let s:install_path = stdpath("data") . "/site/pack/jetpack/start/" . s:repo
-  if empty(glob(s:install_path)) > 0
-    execute printf("!git clone --depth=1 https://github.com/%s/%s %s", s:user, s:repo, s:install_path)
-    execute "packadd " .. s:repo
-  endif
-]]
-
-require("deps")
-
--- optimise vim-jetpack
-vim.g["jetpack#optimization"] = 2
 
 -- map leader key to space
 vim.g.mapleader = " "
@@ -40,6 +39,7 @@ cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('
 
 -- order matters
 vim.cmd [[
+runtime! lua/deps.lua
 runtime! lua/modules/options.lua
 runtime! lua/modules/util.lua
 runtime! lua/modules/mappings.lua

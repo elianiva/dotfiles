@@ -1,5 +1,5 @@
 require("jetpack").setup {
-  "lewis6991/impatient.nvim",
+  { "tani/vim-jetpack", opt = true },
 
   "gpanders/editorconfig.nvim",
   "AndrewRadev/splitjoin.vim",
@@ -22,7 +22,11 @@ require("jetpack").setup {
   "nvim-lua/popup.nvim",
   "kyazdani42/nvim-web-devicons",
   "tami5/sqlite.lua",
-  { "nvim-telescope/telescope-fzf-native.nvim", ["do"] = "make" },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    ["do"] = "cd ~/.local/share/nvim/site/pack/jetpack/src/telescope-fzf-native.nvim && make",
+    frozen = true
+  },
   "nvim-telescope/telescope-ui-select.nvim",
 
   "lewis6991/gitsigns.nvim",
@@ -42,10 +46,9 @@ require("jetpack").setup {
   "mhinz/vim-sayonara",
 
   -- { "rktjmp/lush.nvim", opt = true },
+  -- "rktjmp/shipwright.nvim",
 
-  "github/copilot.vim",
-
-  "rktjmp/shipwright.nvim",
+  { "github/copilot.vim", opt = true },
 
   "nvim-neo-tree/neo-tree.nvim",
   "MunifTanjim/nui.nvim",
