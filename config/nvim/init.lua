@@ -1,14 +1,30 @@
+-- bootstrap impatient.nvim
+vim.cmd [[
+  let s:user = "lewis6991"
+  let s:repo = "impatient.nvim"
+  let s:install_path = stdpath("data") . "/site/pack/" . s:repo . "/start/" . s:repo
+  if empty(glob(s:install_path)) > 0
+    execute printf("!git clone --depth=1 https://github.com/%s/%s %s", s:user, s:repo, s:install_path)
+    execute "packadd " .. s:repo
+  endif
+]]
+
 require("impatient").enable_profile()
 
 vim.cmd [[
-  let s:user = "wbthomason"
-  let s:repo = "packer.nvim"
-  let s:install_path = stdpath("data") . "/site/pack/packer/opt/" . s:repo
+  let s:user = "tani"
+  let s:repo = "vim-jetpack"
+  let s:install_path = stdpath("data") . "/site/pack/jetpack/start/" . s:repo
   if empty(glob(s:install_path)) > 0
-    execute printf("!git clone https://github.com/%s/%s %s", s:user, s:repo, s:install_path)
-    packadd repo
+    execute printf("!git clone --depth=1 https://github.com/%s/%s %s", s:user, s:repo, s:install_path)
+    execute "packadd " .. s:repo
   endif
 ]]
+
+require("deps")
+
+-- optimise vim-jetpack
+vim.g["jetpack#optimization"] = 2
 
 -- map leader key to space
 vim.g.mapleader = " "
@@ -29,3 +45,5 @@ runtime! lua/modules/util.lua
 runtime! lua/modules/mappings.lua
 runtime! lua/modules/statusline.lua
 ]]
+
+vim.cmd [[ colorscheme gitgud_dark ]]

@@ -75,8 +75,6 @@ local servers = {
   eslint = {},
 }
 
-require("plugins.null-ls").setup()
-
 for name, opts in pairs(servers) do
   if type(opts) == "function" then
     opts()
