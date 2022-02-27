@@ -7,6 +7,7 @@ vim.filetype.add({
     svelte = "svelte",
     rasi = "css",
     norg = "norg",
+    patch = "patch",
   },
   filename = {
     [".prettierrc"] = "jsonc",

@@ -1,1 +1,1 @@
-(comment) @jsdoc
+; (comment) @jsdoc

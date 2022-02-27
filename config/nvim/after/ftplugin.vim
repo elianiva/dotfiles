@@ -1,9 +1,3 @@
-" enable filetype.lua
-let g:do_filetype_lua = 1
-
-" disable filetype.vim
-let g:did_load_filetypes = 1
-
 " Set current working directory
 au VimEnter * cd %:p:h
 

@@ -1,27 +1,10 @@
-local repos = {
-  lewis6991 = { "impatient.nvim", "impatient" },
-  tani = { "vim-jetpack", "jetpack" },
-}
+-- disable filetype.vim
+vim.g.did_load_filetypes = 1
 
-for user, repo in pairs(repos) do
-  local install_path = vim.fn.stdpath "data"
-    .. "/site/pack/"
-    .. repo[2]
-    .. "/start/"
-    .. repo[1]
+-- enable filetype.lua
+vim.g.do_filetype_lua = 1
 
-  if vim.fn.empty(vim.fn.glob(install_path)) == 1 then
-    vim.cmd(
-      string.format(
-        [[execute "!git clone --depth=1 https://github.com/%s/%s %s"]],
-        user,
-        repo[1],
-        install_path
-      )
-    )
-    vim.cmd("packadd " .. repo[1])
-  end
-end
+require("bootstrap")
 
 require("impatient").enable_profile()
 

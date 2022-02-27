@@ -10,6 +10,9 @@ ShowPopups=false
 [Applications][discord]
 Seen=true
 
+[Applications][org.qbittorrent.qBittorrent]
+Seen=true
+
 [Applications][telegramdesktop]
 Seen=true
 

@@ -1,3 +1,5 @@
+vim.cmd [[ packadd vim-jetpack ]]
+
 require("jetpack").setup {
   { "tani/vim-jetpack", opt = true },
 
@@ -6,6 +8,8 @@ require("jetpack").setup {
   "machakann/vim-sandwich",
   "tweekmonster/startuptime.vim" ,
   "elianiva/gitgud.nvim",
+
+  "akinsho/toggleterm.nvim",
 
   "nvim-treesitter/nvim-treesitter",
   "nvim-treesitter/nvim-treesitter-textobjects",
@@ -22,11 +26,7 @@ require("jetpack").setup {
   "nvim-lua/popup.nvim",
   "kyazdani42/nvim-web-devicons",
   "tami5/sqlite.lua",
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    ["do"] = "cd ~/.local/share/nvim/site/pack/jetpack/src/telescope-fzf-native.nvim && make",
-    frozen = true
-  },
+  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
   "nvim-telescope/telescope-ui-select.nvim",
 
   "lewis6991/gitsigns.nvim",
