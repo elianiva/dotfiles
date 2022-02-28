@@ -1,0 +1,69 @@
+{
+  "workbench.colorTheme": "GitHub Dark Dimmed",
+  "editor.minimap.enabled": false,
+  // "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
+  // "vscode-neovim.textDecorationsAtTop": true,
+  "editor.fontLigatures": true,
+  "svelte.enable-ts-plugin": true,
+  "window.menuBarVisibility": "toggle",
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
+  },
+  "editor.fontFamily": "'monospace', monospace",
+  "editor.tabSize": 2,
+  "editor.inlineSuggest.enabled": true,
+  "files.associations": {
+    "*.svx": "mdx"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false,
+    "typescript": true
+  },
+  "javascript.referencesCodeLens.enabled": true,
+  "javascript.referencesCodeLens.showOnAllFunctions": true,
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.referencesCodeLens.showOnAllFunctions": true,
+  // "javascript.preferences.importModuleSpecifierEnding": "js",
+  // "typescript.preferences.importModuleSpecifierEnding": "js",
+  "diffEditor.renderSideBySide": false,
+  "typescript.implementationsCodeLens.enabled": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "todohighlight.keywordsPattern": "TODO\\((.*)\\):",
+  "todohighlight.defaultStyle": {
+    "backgroundColor": "#22272e",
+    "color": "#6CB6FF"
+  },
+  "todohighlight.exclude": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.vscode/**",
+    "**/.github/**",
+    "**/_output/**",
+    "**/*.min.*",
+    "**/*.map",
+    "**/.next/**",
+    "settings.json"
+  ],
+  "workbench.startupEditor": "none"
+}
