@@ -29,8 +29,6 @@ require("jetpack").setup {
   { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
   "nvim-telescope/telescope-ui-select.nvim",
 
-  "lewis6991/gitsigns.nvim",
-
    -- requires plenary.nvim
   "nvim-neorg/neorg",
 
@@ -48,13 +46,13 @@ require("jetpack").setup {
   -- { "rktjmp/lush.nvim", opt = true },
   -- "rktjmp/shipwright.nvim",
 
-  { "github/copilot.vim", opt = true },
+  -- { "github/copilot.vim", opt = true },
 
   "nvim-neo-tree/neo-tree.nvim",
   "MunifTanjim/nui.nvim",
 
   "hrsh7th/nvim-cmp",
-  "hrsh7th/cmp-nvim-lsp",
+  -- "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-vsnip",
@@ -66,22 +64,22 @@ require("jetpack").setup {
   -- requires kyazdani42/nvim-web-devicons
   "akinsho/nvim-bufferline.lua",
 
-  "neovim/nvim-lspconfig",
-  "jose-elias-alvarez/null-ls.nvim",
-  "jose-elias-alvarez/nvim-lsp-ts-utils",
-  "simrat39/rust-tools.nvim",
+  -- "neovim/nvim-lspconfig",
+  -- "jose-elias-alvarez/null-ls.nvim",
+  -- "jose-elias-alvarez/nvim-lsp-ts-utils",
+  -- "simrat39/rust-tools.nvim",
 
-  "mfussenegger/nvim-dap",
-  "rcarriga/nvim-dap-ui",
-  "leoluz/nvim-dap-go",
+  -- "mfussenegger/nvim-dap",
+  -- "rcarriga/nvim-dap-ui",
+  -- "leoluz/nvim-dap-go",
 
   "phaazon/hop.nvim",
 
-  "folke/zen-mode.nvim",
+  -- "folke/zen-mode.nvim",
 
   "andymass/vim-matchup",
 
-  "vim-test/vim-test",
+  -- "vim-test/vim-test",
 
   "norcalli/nvim-colorizer.lua",
 }

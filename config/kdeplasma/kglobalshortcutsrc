@@ -28,9 +28,11 @@ display=Display\tMeta+P,Display\tMeta+P,Switch Display
 _k_friendly_name=Custom Shortcuts Service
 {206f94a6-0af9-4386-93a4-a86d2e6dd088}=Meta+E,none,New Action
 {3e3fc25f-1b8d-4c10-b5ba-b4d8647beb50}=Print,none,Screenshot
-{6317ae45-ecb5-40a4-ad56-6f8ae81b0b4b}=Meta+D,none,New Action
+{6317ae45-ecb5-40a4-ad56-6f8ae81b0b4b}=none,none,New Action
 {747377dc-fed7-4191-bcd1-bc11918a54f9}=Meta+Return,none,Open Terminal
+{bd8e175f-7817-4f16-8028-331de92ade47}=,none,Launch Konsole
 {c448a1e6-e6eb-44b7-be82-83bed6436325}=Meta+C,none,New Action
+{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
 
 [kmix]
 _k_friendly_name=Audio Volume
@@ -216,7 +218,7 @@ _launch=none,Meta+E,Dolphin
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
 _k_friendly_name=KRunner
-_launch=none,Alt+Space\tAlt+F2\tSearch,KRunner
+_launch=Meta+D,Alt+Space\tAlt+F2\tSearch,KRunner
 
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector

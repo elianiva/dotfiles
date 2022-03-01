@@ -1073,7 +1073,7 @@ Uuid={3e3fc25f-1b8d-4c10-b5ba-b4d8647beb50}
 
 [Data_6]
 Comment=Comment
-Enabled=true
+Enabled=false
 Name=New Action
 Type=SIMPLE_ACTION_DATA
 
@@ -1125,7 +1125,7 @@ Uuid={206f94a6-0af9-4386-93a4-a86d2e6dd088}
 
 [Data_8]
 Comment=Comment
-Enabled=true
+Enabled=false
 Name=New Action
 Type=SIMPLE_ACTION_DATA
 
