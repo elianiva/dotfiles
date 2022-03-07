@@ -1,12 +1,9 @@
--- disable filetype.vim
-vim.g.did_load_filetypes = 1
+require("bootstrap")
+require("impatient").enable_profile()
+require("deps")
 
 -- enable filetype.lua
 vim.g.do_filetype_lua = 1
-
-require("bootstrap")
-
-require("impatient").enable_profile()
 
 -- map leader key to space
 vim.g.mapleader = " "
@@ -22,7 +19,6 @@ cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('
 
 -- order matters
 vim.cmd [[
-runtime! lua/deps.lua
 runtime! lua/modules/options.lua
 runtime! lua/modules/util.lua
 runtime! lua/modules/mappings.lua

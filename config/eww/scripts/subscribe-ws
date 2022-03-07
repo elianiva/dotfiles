@@ -1,5 +1,0 @@
-#!/bin/sh
-swaymsg -t subscribe -m '["workspace"]' | while read line; do
-  current=$(echo $line | jq -c 'select(.change=="focus") | .current.name | tonumber')
-  [[ ! -z "$current" ]] && eww update active-ws=$current
-done

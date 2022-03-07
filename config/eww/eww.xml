@@ -1,8 +1,0 @@
-<eww>
-  <includes>
-    <file path="./widgets/bar.xml"/>
-    <file path="./widgets/calendar-popup.xml"/>
-    <file path="./widgets/sidebar.xml"/>
-    <file path="./widgets/notification.xml"/>
-  </includes>
-</eww>

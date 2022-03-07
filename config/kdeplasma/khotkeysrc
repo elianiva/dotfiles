@@ -1149,6 +1149,9 @@ Key=Meta+C
 Type=SHORTCUT
 Uuid={c448a1e6-e6eb-44b7-be82-83bed6436325}
 
+[DirSelect Dialog]
+DirSelectDialog Size[$d]
+
 [General]
 BrowserApplication[$d]
 ColorScheme[$d]

@@ -10,4 +10,5 @@ picom --experimental-backends &
 export $(systemctl --user show-environment | grep DBUS_SESSION_BUS_ADDRESS)
 # exec dbus-launch awesome
 # exec dbus-launch --sh-syntax --exit-with-session awesome
-exec dbus-launch startplasma-x11
+# exec dbus-launch startplasma-x11
+exec dbus-run-session startplasma-x11

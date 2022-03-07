@@ -1,3 +1,0 @@
-#!/bin/sh
-eww update active-ws=$1;
-swaymsg workspace $1;

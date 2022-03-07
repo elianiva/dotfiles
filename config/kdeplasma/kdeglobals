@@ -135,6 +135,9 @@ ForegroundNormal=252,252,252
 ForegroundPositive=39,174,96
 ForegroundVisited=155,89,182
 
+[DirSelect Dialog]
+DirSelectDialog Size=734,580
+
 [General]
 BrowserApplication=brave-browser.desktop
 ColorSchemeHash=9163139877916089673a361083a2231d380293d7

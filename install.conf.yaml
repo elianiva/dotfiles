@@ -9,7 +9,6 @@
       force: true
       glob: true
       path: config/kdeplasma/**
-    ~/.config/alacritty: config/alacritty
     ~/.config/aliasrc: config/misc/aliasrc
     ~/.config/awesome: config/awesome
     ~/.config/bat: config/bat
@@ -19,8 +18,6 @@
     ~/.config/kitty: config/kitty
     ~/.config/lf: config/lf
     ~/.config/nvim: config/nvim
-    ~/.config/picom.conf: config/misc/picom.conf
-    ~/.config/qt5ct: config/qt5ct
     ~/.config/rofi: config/rofi
     ~/.config/starship.toml: config/misc/starship.toml
     ~/.config/zathurarc: config/misc/zathurarc
@@ -30,9 +27,6 @@
     ~/.xinitrc: config/misc/.xinitrc
     ~/.xprofile: config/misc/.xprofile
     ~/.Xresources: config/misc/.Xresources
-    ~/.zprofile: config/zsh/.zprofile
-    ~/.zshenv: config/zsh/.zshenv
-    ~/.zshrc: config/zsh/.zshrc
     ~/.gitconfig: config/git/config
     ~/.config/fontconfig/conf.d/20-japanese-preferred.conf: config/fontconfig/conf.d/20-japanese-preferred.conf
 

@@ -1,14 +1,11 @@
 #!/bin/python
 
 packages = [
-    "awesome-git",
-    "clipmenu",
-    "picom",
-    "rofi",
+    # "awesome-git",
     "sxiv",
-    "transmission-gtk",
+    # "transmission-gtk",
     "xclip",
-    "zathura",
+    # "zathura",
     "fcitx5",
     "fcitx5-configtool",
     "fcitx5-mozc",
