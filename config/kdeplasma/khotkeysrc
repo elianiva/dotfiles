@@ -136,7 +136,7 @@ ForegroundPositive[$d]
 ForegroundVisited[$d]
 
 [Data]
-DataCount=8
+DataCount=9
 
 [Data_1]
 Comment=KMenuEdit Global Shortcuts
@@ -1149,8 +1149,35 @@ Key=Meta+C
 Type=SHORTCUT
 Uuid={c448a1e6-e6eb-44b7-be82-83bed6436325}
 
+[Data_9]
+Comment=Comment
+Enabled=true
+Name=asdasd
+Type=SIMPLE_ACTION_DATA
+
+[Data_9Actions]
+ActionsCount=1
+
+[Data_9Actions0]
+DestinationWindow=0
+Input=
+Type=KEYBOARD_INPUT
+
+[Data_9Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_9Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_9Triggers0]
+GesturePointData=0,0.099784,-0.25,0,0.346154,0.099784,0.099784,0.25,0.0769231,0.269231,0.199568,0.223124,0.102416,0.153846,0.346154,0.422692,0.223124,0.102416,0.384615,0.423077,0.645816,0.2544,0.187167,0.615385,0.5,0.900216,0.099784,0.25,0.846154,0.653846
+Type=GESTURE
+
 [DirSelect Dialog]
 DirSelectDialog Size[$d]
+History Items[$d]
 
 [General]
 BrowserApplication[$d]

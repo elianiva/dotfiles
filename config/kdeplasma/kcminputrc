@@ -7,8 +7,5 @@ NumLock=2
 RepeatDelay=300
 RepeatRate=50
 
-[Mouse]
-cursorTheme=breeze_cursors
-
 [Tmp]
 update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize

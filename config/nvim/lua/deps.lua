@@ -48,7 +48,7 @@ require("jetpack").setup {
 
   -- { "github/copilot.vim", opt = true },
 
-  "nvim-neo-tree/neo-tree.nvim",
+  { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" },
   "MunifTanjim/nui.nvim",
 
   "hrsh7th/nvim-cmp",
@@ -82,4 +82,9 @@ require("jetpack").setup {
   -- "vim-test/vim-test",
 
   "norcalli/nvim-colorizer.lua",
+
+  {
+    "neoclide/coc.nvim",
+    branch = "release"
+  }
 }

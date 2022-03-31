@@ -48,13 +48,4 @@ slideEnabled=false
 
 [TabBox]
 BorderActivate=9
-DesktopLayout=org.kde.breeze.desktop
-DesktopListLayout=org.kde.breeze.desktop
 HighlightWindows=false
-
-[Windows]
-Placement=Centered
-
-[org.kde.kdecoration2]
-library=org.kde.breeze
-theme=Breeze

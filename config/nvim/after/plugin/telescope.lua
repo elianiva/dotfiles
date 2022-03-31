@@ -157,7 +157,7 @@ map("n", "<C-f>", grep_prompt, {
 })
 
 map("n", "<Leader>ft", builtins, {
-  desc = "Fuzzy grep files using Telescope",
+  desc = "Browse Telescope builtin pickers",
   noremap = true,
   silent = true,
 })

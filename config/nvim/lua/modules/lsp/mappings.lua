@@ -11,8 +11,7 @@ M.lsp_mappings = function(bufnr)
     silent = true,
   })
 
-  map(bufnr, "n", "K", "", {
-    callback = vim.lsp.buf.hover,
+  map(bufnr, "n", "K", vim.lsp.buf.hover, {
     desc = "Trigger hover window from the language server",
     noremap = true,
     silent = true,
