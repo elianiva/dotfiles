@@ -1,11 +1,12 @@
 {
+  "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": false,
   "editor.accessibilitySupport": "off",
   "editor.detectIndentation": true,
   "editor.fontFamily": "'JetBrainsMono Nerd Font', monospace",
-  "editor.fontLigatures": true,
   "editor.inlineSuggest.enabled": true,
   "editor.lineHeight": 1.5,
+  "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
   "editor.smoothScrolling": true,
   "editor.suggestSelection": "first",
@@ -13,6 +14,8 @@
   "extensions.autoUpdate": "onlyEnabledExtensions",
   "extensions.ignoreRecommendations": true,
   "files.simpleDialog.enable": true,
+  "files.trimTrailingWhitespace": true,
+  "git.enableCommitSigning": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
@@ -26,6 +29,7 @@
   "typescript.referencesCodeLens.enabled": true,
   "window.dialogStyle": "custom",
   "window.titleBarStyle": "custom",
+  "workbench.colorTheme": "Visual Studio 2019 Dark",
   "workbench.editor.closeOnFileDelete": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.list.smoothScrolling": true,
@@ -62,7 +66,7 @@
     "*.svx": "markdown"
   },
   "[svelte]": {
-    "editor.defaultFormatter": "svelte.svelte-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -113,20 +117,18 @@
 
   // python stuff
   "python.formatting.autopep8Path": "/usr/bin/autopep8",
-  "python.formatting.autopep8Args": [
-    "--max-line-length",
-    "120"
-  ],
-  "mocha.requires": [
-    "ts-node/register"
-  ],
+  "python.formatting.autopep8Args": ["--max-line-length", "120"],
+  "mocha.requires": ["ts-node/register"],
   "mocha.files.ignore": "test/fixtures/**/*.js",
-  
-  "workbench.colorTheme": "GitHub Dark Dimmed",
   "calva.showCalvaSaysOnStart": false,
   "calva.paredit.defaultKeyMap": "strict",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "git.enableCommitSigning": true
+
+  "rust-client.engine": "rust-analyzer",
+  "rust.clippy_preference": "on",
+  "rust-analyzer.inlayHints.enable": false,
+  "blade.format.enable": true,
+  "omnisharp.enableRoslynAnalyzers": true,
 }

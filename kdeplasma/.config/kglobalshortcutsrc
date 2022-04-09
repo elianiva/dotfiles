@@ -64,6 +64,7 @@ MoveZoomDown=none,none,Move Zoomed Area Downwards
 MoveZoomLeft=none,none,Move Zoomed Area to Left
 MoveZoomRight=none,none,Move Zoomed Area to Right
 MoveZoomUp=none,none,Move Zoomed Area Upwards
+Overview=Meta+W,Meta+W,Toggle Overview
 Setup Window Shortcut=none,,Setup Window Shortcut
 Show Desktop=none,Meta+D,Show Desktop
 ShowDesktopGrid=Ctrl+F8,Ctrl+F8,Show Desktop Grid

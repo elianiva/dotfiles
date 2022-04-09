@@ -7,5 +7,9 @@
   {
     "key": "ctrl+j",
     "command": "-workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+alt+t",
+    "command": "workbench.action.tasks.terminate"
   }
 ]
