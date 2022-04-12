@@ -14,7 +14,6 @@
   "extensions.autoUpdate": "onlyEnabledExtensions",
   "extensions.ignoreRecommendations": true,
   "files.simpleDialog.enable": true,
-  "files.trimTrailingWhitespace": true,
   "git.enableCommitSigning": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
@@ -29,7 +28,6 @@
   "typescript.referencesCodeLens.enabled": true,
   "window.dialogStyle": "custom",
   "window.titleBarStyle": "custom",
-  "workbench.colorTheme": "Visual Studio 2019 Dark",
   "workbench.editor.closeOnFileDelete": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.list.smoothScrolling": true,
@@ -40,6 +38,16 @@
   "workbench.tree.renderIndentGuides": "always",
   // "javascript.preferences.importModuleSpecifierEnding": "js",
   // "typescript.preferences.importModuleSpecifierEnding": "js",
+
+  "editor.semanticTokenColorCustomizations": {
+    "[Default Dark+]": {
+      "rules": {
+        "enum": "#b8d7a3",
+        "interface": "#b8d7a3",
+        "struct": "#86C691"
+      } 
+    }
+  },
 
   "search.exclude": {
     "**/.git": true,
@@ -131,4 +139,5 @@
   "rust-analyzer.inlayHints.enable": false,
   "blade.format.enable": true,
   "omnisharp.enableRoslynAnalyzers": true,
+  "workbench.sideBar.location": "right",
 }

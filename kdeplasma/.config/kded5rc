@@ -26,7 +26,7 @@ autoload=true
 autoload=true
 
 [Module-kded_bolt]
-autoload=true
+autoload=false
 
 [Module-kded_touchpad]
 autoload=true

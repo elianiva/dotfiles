@@ -10,8 +10,6 @@ require("jetpack").setup {
   -- "elianiva/gitgud.nvim",
   "Mofiqul/vscode.nvim",
 
-  "akinsho/toggleterm.nvim",
-
   "nvim-treesitter/nvim-treesitter",
   "nvim-treesitter/nvim-treesitter-textobjects",
   "nvim-treesitter/playground",
@@ -52,10 +50,10 @@ require("jetpack").setup {
   { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" },
   "MunifTanjim/nui.nvim",
 
-  "hrsh7th/nvim-cmp",
+  -- "hrsh7th/nvim-cmp",
   -- "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-path",
-  "hrsh7th/cmp-buffer",
+  -- "hrsh7th/cmp-path",
+  -- "hrsh7th/cmp-buffer",
   -- "hrsh7th/cmp-vsnip",
   -- "hrsh7th/vim-vsnip",
 
@@ -83,9 +81,4 @@ require("jetpack").setup {
   -- "vim-test/vim-test",
 
   "norcalli/nvim-colorizer.lua",
-
-  {
-    "neoclide/coc.nvim",
-    branch = "release"
-  }
 }

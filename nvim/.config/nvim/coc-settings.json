@@ -1,8 +1,0 @@
-{
-  "coc.preferences.enableFloatHighlight": true,
-  "dialog.floatBorderHighlight": "FloatBorder",
-  "hover.floatConfig": {
-    "border": true,
-    "borderhighlight": "FloatBorder",
-  }
-}
