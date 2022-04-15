@@ -5,22 +5,32 @@
   "editor.detectIndentation": true,
   "editor.fontFamily": "'JetBrainsMono Nerd Font', monospace",
   "editor.inlineSuggest.enabled": true,
-  "editor.lineHeight": 1.5,
+  "editor.lineHeight": 1.6,
   "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
   "editor.smoothScrolling": true,
   "editor.suggestSelection": "first",
   "editor.unicodeHighlight.invisibleCharacters": true,
+  "eslint.alwaysShowStatus": true,
+  "explorer.compactFolders": false,
   "extensions.autoUpdate": "onlyEnabledExtensions",
   "extensions.ignoreRecommendations": true,
+  "files.insertFinalNewline": true,
   "files.simpleDialog.enable": true,
+  "git.allowForcePush": true,
   "git.enableCommitSigning": true,
+  "git.suggestSmartCommit": false,
+  "gitlens.advanced.abbreviatedShaLength": 8,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
+  "gitlens.keymap": "alternate",
   "javascript.referencesCodeLens.enabled": true,
   "javascript.referencesCodeLens.showOnAllFunctions": true,
+  "prettier.endOfLine": "auto",
+  "security.workspace.trust.enabled": false,
   "svelte.enable-ts-plugin": true,
+  "telemetry.telemetryLevel": "off",
   "terminal.integrated.fontWeight": 400,
   "terminal.integrated.persistentSessionReviveProcess": "never",
   "terminal.integrated.tabs.enabled": true,
@@ -31,27 +41,108 @@
   "workbench.editor.closeOnFileDelete": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.list.smoothScrolling": true,
-  "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
-  "workbench.preferredLightColorTheme": "GitHub Light",
-  "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+  "workbench.preferredDarkColorTheme": "Default Dark+",
+  "workbench.preferredLightColorTheme": "Default Light+",
+  "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "none",
   "workbench.tree.indent": 14,
   "workbench.tree.renderIndentGuides": "always",
+  "gopls": {
+    "ui.semanticTokens": true
+  },
   // "javascript.preferences.importModuleSpecifierEnding": "js",
   // "typescript.preferences.importModuleSpecifierEnding": "js",
 
+  // override some UI colours
+  "workbench.colorCustomizations": {
+    "[Default Dark+]": {
+      "activityBar.background": "#15161f",
+      "activityBarBadge.background": "#007ACC",
+      "dropdown.background": "#0d0e13",
+      "dropdown.border": "#0d0e13",
+      "editor.background": "#15161f",
+      "editor.foreground": "#c7c9d1",
+      "editor.hoverHighlightBackground": "#ef835422",
+      "editor.lineHighlightBackground": "#171922",
+      "editor.selectionBackground": "#2a388865",
+      "editor.wordHighlightBackground": "#ffffff22",
+      "editor.wordHighlightStrongBackground": "#6e81a022",
+      "editorGroupHeader.tabsBackground": "#212431",
+      "editorGutter.addedBackground": "#a7da1e",
+      "editorGutter.deletedBackground": "#e61f44",
+      "editorGutter.modifiedBackground": "#f7b83d",
+      "editorIndentGuide.activeBackground": "#3f4157",
+      "editorIndentGuide.background": "#252735",
+      "editorLink.activeForeground": "#007ACC",
+      "editorOverviewRuler.addedForeground": "#a7da1e",
+      "editorOverviewRuler.deletedForeground": "#e61f44",
+      "editorOverviewRuler.errorForeground": "#e61f44",
+      "editorOverviewRuler.findMatchForeground": "#6e81a055",
+      "editorOverviewRuler.infoForeground": "#9d37fc",
+      "editorOverviewRuler.modifiedForeground": "#f7b83d",
+      "editorOverviewRuler.warningForeground": "#f7b83d",
+      "editorSuggestWidget.foreground": "#c7c9d1",
+      "editorSuggestWidget.highlightForeground": "#007ACC",
+      "editorSuggestWidget.selectedBackground": "#3a3e56",
+      "editorSuggestWidget.selectedForeground": "#c7c9d1",
+      "editorWidget.background": "#262837",
+      "editorWidget.border": "#3a3e56",
+      "editorWidget.foreground": "#c7c9d1",
+      "input.background": "#07070a",
+      "input.border": "#303347",
+      "input.foreground": "#ffffff",
+      "input.placeholderForeground": "#363950",
+      "list.activeSelectionBackground": "#3a3e56",
+      "list.activeSelectionForeground": "#c7c9d1",
+      "list.dropBackground": "#252735",
+      "list.focusBackground": "#303347",
+      "list.hoverBackground": "#171922",
+      "list.inactiveSelectionBackground": "#111219",
+      "menu.background": "#262837",
+      "menu.foreground": "#c7c9d1",
+      "menu.selectionBackground": "#3a3e56",
+      "notifications.foreground": "#ffffff",
+      "panel.background": "#262837",
+      "panel.border": "#3a3e56",
+      "panelTitle.inactiveForeground": "#767ca2",
+      "peekView.border": "#007ACC",
+      "peekViewEditor.background": "#09090d",
+      "peekViewEditor.matchHighlightBackground": "#6e81a055",
+      "peekViewEditorGutter.background": "#0d0e13",
+      "peekViewResult.background": "#1b1d28",
+      "peekViewResult.fileForeground": "#f5f5f5",
+      "peekViewResult.lineForeground": "#e6e6e6",
+      "peekViewResult.matchHighlightBackground": "#6e81a055",
+      "peekViewResult.selectionBackground": "#15161f",
+      "peekViewResult.selectionForeground": "#ffffff",
+      "peekViewTitle.background": "#0d0e13",
+      "peekViewTitleDescription.foreground": "#f7f7f7",
+      "peekViewTitleLabel.foreground": "#ffffff",
+      "scrollbar.shadow": "#000000",
+      "sideBar.background": "#1b1d28",
+      "sideBarSectionHeader.background": "#222331",
+      "statusBar.background": "#2a2b3c",
+      "statusBar.debuggingBackground": "#5b6d8b",
+      "tab.inactiveBackground": "#212431",
+      "titleBar.activeBackground": "#09090d",
+      "tree.indentGuidesStroke": "#3f4157"
+    }
+  },
+
+  // distinguish enum, interface, and struct
   "editor.semanticTokenColorCustomizations": {
     "[Default Dark+]": {
       "rules": {
         "enum": "#b8d7a3",
         "interface": "#b8d7a3",
         "struct": "#86C691"
-      } 
+      }
     }
   },
 
+  // exclude from fuzzy finder
   "search.exclude": {
     "**/.git": true,
-    "**/.github": true,
     "**/.nuxt": true,
     "**/.svelte-kit": true,
     "**/.output": true,
@@ -89,6 +180,9 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
@@ -130,14 +224,15 @@
   "mocha.files.ignore": "test/fixtures/**/*.js",
   "calva.showCalvaSaysOnStart": false,
   "calva.paredit.defaultKeyMap": "strict",
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
 
+  // rust analyzer
   "rust-client.engine": "rust-analyzer",
   "rust.clippy_preference": "on",
   "rust-analyzer.inlayHints.enable": false,
+
+  // laravel stuff
   "blade.format.enable": true,
-  "omnisharp.enableRoslynAnalyzers": true,
-  "workbench.sideBar.location": "right",
+
+  // dotnet
+  "omnisharp.enableRoslynAnalyzers": true
 }

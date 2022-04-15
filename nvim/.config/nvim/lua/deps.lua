@@ -7,8 +7,7 @@ require("jetpack").setup {
   "AndrewRadev/splitjoin.vim",
   "machakann/vim-sandwich",
   "tweekmonster/startuptime.vim" ,
-  -- "elianiva/gitgud.nvim",
-  "Mofiqul/vscode.nvim",
+  "elianiva/gitgud.nvim",
 
   "nvim-treesitter/nvim-treesitter",
   "nvim-treesitter/nvim-treesitter-textobjects",
