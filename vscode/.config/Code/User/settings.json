@@ -1,9 +1,9 @@
 {
-  "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": false,
   "editor.accessibilitySupport": "off",
   "editor.detectIndentation": true,
   "editor.fontFamily": "'JetBrainsMono Nerd Font', monospace",
+  "debug.console.fontFamily": "'JetBrainsMono Nerd Font', monospace",
   "editor.inlineSuggest.enabled": true,
   "editor.lineHeight": 1.6,
   "editor.linkedEditing": true,
@@ -50,6 +50,15 @@
   "gopls": {
     "ui.semanticTokens": true
   },
+  "go.coverageDecorator": {
+    "type": "gutter",
+    "coveredHighlightColor": "rgba(64,128,128,0.5)",
+    "uncoveredHighlightColor": "rgba(128,64,64,0.25)",
+    "coveredGutterStyle": "blockgreen",
+    "uncoveredGutterStyle": "blockred"
+  },
+  "go.coverOnSingleTest": true,
+  // "go.coverOnSave": true,
   // "javascript.preferences.importModuleSpecifierEnding": "js",
   // "typescript.preferences.importModuleSpecifierEnding": "js",
 
@@ -60,7 +69,7 @@
       "activityBarBadge.background": "#007ACC",
       "dropdown.background": "#0d0e13",
       "dropdown.border": "#0d0e13",
-      "editor.background": "#15161f",
+      "editor.background": "#0D1017",
       "editor.foreground": "#c7c9d1",
       "editor.hoverHighlightBackground": "#ef835422",
       "editor.lineHighlightBackground": "#171922",
@@ -102,7 +111,7 @@
       "menu.foreground": "#c7c9d1",
       "menu.selectionBackground": "#3a3e56",
       "notifications.foreground": "#ffffff",
-      "panel.background": "#262837",
+      "panel.background": "#15161f",
       "panel.border": "#3a3e56",
       "panelTitle.inactiveForeground": "#767ca2",
       "peekView.border": "#007ACC",
@@ -162,7 +171,8 @@
 
   // languages
   "files.associations": {
-    "*.svx": "markdown"
+    "*.svx": "markdown",
+    ".env*": "makefile"
   },
   "[svelte]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -191,7 +201,7 @@
     "*": true,
     "yaml": false,
     "plaintext": false,
-    "markdown": false,
+    "markdown": true,
     "typescript": true,
     "clojure": false
   },
@@ -232,7 +242,31 @@
 
   // laravel stuff
   "blade.format.enable": true,
-
-  // dotnet
-  "omnisharp.enableRoslynAnalyzers": true
+  "dart.flutterSdkPath": "/home/elianiva/Dev/android/flutter",
+  "color-highlight.languages": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.showPushSuccessNotification": true,
+  "notebook.lineNumbers": "on",
+  "notebook.output.textLineLimit": 0,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    ".env": ".env, .env.example",
+    ".gitignore": ".gitignore, .dockerignore",
+    "vite.config.ts": "vitest.config.js, vitest.config.ts, vite.config.js, vite.config.ts",
+    "tsconfig.json": "tsconfig.json, jsconfig.json",
+    "*.csproj": "*.csproj, nuget.config"
+  },
+  "editor.bracketPairColorization.enabled": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "omnisharp.enableImportCompletion": true,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "window.customMenuBarAltFocus": false,
 }

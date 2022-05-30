@@ -7,5 +7,9 @@ NumLock=2
 RepeatDelay=300
 RepeatRate=50
 
+[Mouse]
+cursorSize=32
+cursorTheme=Posy's Cursor Black
+
 [Tmp]
 update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize

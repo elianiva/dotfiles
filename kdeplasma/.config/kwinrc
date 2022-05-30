@@ -33,17 +33,26 @@ BorderActivateAll=9
 [Effect-Slide]
 Duration=10
 
+[Effect-kwin4_effect_translucency]
+ComboboxPopups=93
+Dialogs=94
+Inactive=96
+Menus=92
+MoveResize=94
+
 [ModifierOnlyShortcuts]
 Meta=
 
 [Plugins]
 blurEnabled=true
+contrastEnabled=true
 kwin4_effect_fadingpopupsEnabled=false
 kwin4_effect_fullscreenEnabled=false
 kwin4_effect_maximizeEnabled=false
 overviewEnabled=true
 screenedgeEnabled=false
 slideEnabled=false
+slidingpopupsEnabled=false
 
 [TabBox]
 BorderActivate=9

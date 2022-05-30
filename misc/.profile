@@ -40,16 +40,15 @@ export PATH="$HOME/.cargo/bin:$PATH"
 unset JAVA_OPTS
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
 export _JAVA_AWT_WM_NONREPARENTING=1
-export ANDROID_SDK_ROOT="/opt/android-sdk"
-export ANDROID="$HOME/Dev/android"
 
-# # Flutter stuff
-# export PATH="/opt/android-sdk/cmdline-tools/latest/bin:$PATH"
-# export PATH="$HOME/Dev/android/flutter/bin:$PATH"
-# export PATH="$ANDROID_HOME/emulator:$PATH"
-# export PATH="$ANDROID_HOME/platform-tools/:$PATH"
-# export PATH="$ANDROID_HOME/tools/bin/:$PATH"
-# export PATH="$ANDROID_HOME/tools/:$PATH"
+# Flutter stuff
+export FLUTTER_ROOT="$ANDROID_HOME/flutter"
+export ANDROID_HOME="$HOME/Dev/android"
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+export PATH="$ANDROID_HOME/flutter/bin:$PATH"
+export PATH="$ANDROID_HOME/emulator:$PATH"
+export PATH="$ANDROID_HOME/platform-tools/:$PATH"
+export CHROME_EXECUTABLE="/usr/bin/brave"
 
 # Fcitx5 Stuff
 export GLFW_IM_MODULE="ibus"

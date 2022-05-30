@@ -25,4 +25,7 @@ runtime! lua/modules/mappings.lua
 runtime! lua/modules/statusline.lua
 ]]
 
-vim.cmd [[ colorscheme gitgud_dark ]]
+vim.cmd [[
+colorscheme gitgud_dark
+hi Normal guibg=NONE
+]]

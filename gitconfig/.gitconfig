@@ -9,11 +9,15 @@
   helper = cache --timeout 86400
 
 [core]
+  compression = 9
   editor = nvim
   pager = delta
 
 [pull]
-  rebase = true
+  rebase = false
+
+[commit]
+  sign = true
 
 [alias]
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative

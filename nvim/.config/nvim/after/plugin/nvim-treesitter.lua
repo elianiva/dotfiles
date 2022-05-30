@@ -48,8 +48,7 @@ ts_config.setup {
     "rust",
     "svelte",
     "tsx",
-    "typescript",
-    "vim",
+    "typescript"
   },
 
   autotag = { enable = true },
