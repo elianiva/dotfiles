@@ -11,13 +11,10 @@ require("jetpack").setup {
 
   "nvim-treesitter/nvim-treesitter",
   "nvim-treesitter/nvim-treesitter-textobjects",
-  "nvim-treesitter/playground",
   "windwp/nvim-ts-autotag",
 
   "numToStr/Comment.nvim",
   "JoosepAlviste/nvim-ts-context-commentstring",
-
-  "andweeb/presence.nvim",
 
   "nvim-telescope/telescope.nvim",
   "nvim-lua/plenary.nvim",
@@ -26,9 +23,6 @@ require("jetpack").setup {
   "tami5/sqlite.lua",
   { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
   "nvim-telescope/telescope-ui-select.nvim",
-
-   -- requires plenary.nvim
-  "nvim-neorg/neorg",
 
   "luukvbaal/stabilize.nvim",
 
@@ -41,26 +35,26 @@ require("jetpack").setup {
 
   "mhinz/vim-sayonara",
 
-  -- { "rktjmp/lush.nvim", opt = true },
-  -- "rktjmp/shipwright.nvim",
-
-  -- { "github/copilot.vim", opt = true },
+  { "rktjmp/lush.nvim", opt = true },
+  "rktjmp/shipwright.nvim",
 
   { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" },
   "MunifTanjim/nui.nvim",
 
-  -- "hrsh7th/nvim-cmp",
+  "hrsh7th/nvim-cmp",
   -- "hrsh7th/cmp-nvim-lsp",
-  -- "hrsh7th/cmp-path",
-  -- "hrsh7th/cmp-buffer",
-  -- "hrsh7th/cmp-vsnip",
-  -- "hrsh7th/vim-vsnip",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-vsnip",
+  "hrsh7th/vim-vsnip",
 
   -- requires plenary.nvim
   "lewis6991/gitsigns.nvim",
 
   -- requires kyazdani42/nvim-web-devicons
   "akinsho/nvim-bufferline.lua",
+
+  "windwp/nvim-autopairs",
 
   -- "neovim/nvim-lspconfig",
   -- "jose-elias-alvarez/null-ls.nvim",

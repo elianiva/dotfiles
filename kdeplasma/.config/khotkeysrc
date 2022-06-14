@@ -1003,7 +1003,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_4Actions0]
-CommandURL=kitty
+CommandURL=alacritty
 Type=COMMAND_URL
 
 [Data_4Conditions]
@@ -1213,6 +1213,10 @@ Sort directories first[$d]
 Sort reversed[$d]
 Speedbar Width[$d]
 View Style[$d]
+
+[KScreen]
+ScaleFactor[$d]
+ScreenScaleFactors[$d]
 
 [Main]
 AlreadyImported=defaults,kde32b1,konqueror_gestures_kde321,konsole

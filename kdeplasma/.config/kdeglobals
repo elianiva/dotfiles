@@ -183,6 +183,10 @@ Sort reversed=false
 Speedbar Width=138
 View Style=Simple
 
+[KScreen]
+ScaleFactor=1
+ScreenScaleFactors=LVDS1=1;DP1=1;DP2=1;DP3=1;HDMI1=1;HDMI2=1;HDMI3=1;VGA1=1;VIRTUAL1=1;
+
 [WM]
 activeBackground=49,54,59
 activeBlend=252,252,252

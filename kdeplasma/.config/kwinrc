@@ -8,15 +8,13 @@ OpenGLIsUnsafe=false
 [Desktops]
 Id_1=2b49d1e1-b488-48a3-9a82-d0566be53f1f
 Id_2=ad4d22d5-4eb9-4a62-a698-cae6288e334f
-Id_3=9619d3d9-2aeb-42a8-be72-711755e2c04b
-Id_4=8e36e79f-f9c9-419d-b3da-f838e7b97a8c
-Id_5=e72e86a8-a1fa-4b9a-a6b5-7584fc7d600b
+Id_3=8e36e79f-f9c9-419d-b3da-f838e7b97a8c
+Id_4=e72e86a8-a1fa-4b9a-a6b5-7584fc7d600b
 Name_1=一
 Name_2=ニ
 Name_3=三
 Name_4=四
-Name_5=五
-Number=5
+Number=4
 Rows=1
 
 [DrmOutputs][07b2ce0a-06cb-5783-afea-017bfcb3cb18][07b2ce0a-06cb-5783-afea-017bfcb3cb18]
@@ -31,7 +29,8 @@ zPosition=0
 BorderActivateAll=9
 
 [Effect-Slide]
-Duration=10
+Duration=300
+SlideDocks=true
 
 [Effect-kwin4_effect_translucency]
 ComboboxPopups=93
@@ -51,9 +50,12 @@ kwin4_effect_fullscreenEnabled=false
 kwin4_effect_maximizeEnabled=false
 overviewEnabled=true
 screenedgeEnabled=false
-slideEnabled=false
 slidingpopupsEnabled=false
+
+[Script-desktopchangeosd]
+PopupHideDelay=500
 
 [TabBox]
 BorderActivate=9
 HighlightWindows=false
+LayoutName=org.kde.breeze.desktop
