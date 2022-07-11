@@ -4,9 +4,6 @@ set fish_greeting
 # starship prompt
 starship init fish | source
 
-# fnm
-fnm env | source
-
 # Start X at login
 # if status is-login
 #     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
@@ -22,3 +19,8 @@ fnm env | source
 #         # exec startx -- -keeptty
 #     end
 # end
+
+# pnpm
+set -gx PNPM_HOME "/home/elianiva/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end

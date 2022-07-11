@@ -136,7 +136,7 @@ ForegroundPositive[$d]
 ForegroundVisited[$d]
 
 [Data]
-DataCount=9
+DataCount=4
 
 [Data_1]
 Comment=KMenuEdit Global Shortcuts
@@ -996,14 +996,14 @@ Type=GESTURE
 [Data_4]
 Comment=Comment
 Enabled=true
-Name=Open Terminal
+Name=Screenshot
 Type=SIMPLE_ACTION_DATA
 
 [Data_4Actions]
 ActionsCount=1
 
 [Data_4Actions0]
-CommandURL=alacritty
+CommandURL=flameshot gui
 Type=COMMAND_URL
 
 [Data_4Conditions]
@@ -1015,139 +1015,12 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_4Triggers0]
-Key=Meta+Return
-Type=SHORTCUT
-Uuid={747377dc-fed7-4191-bcd1-bc11918a54f9}
-
-[Data_5]
-Comment=Comment
-Enabled=true
-Name=Screenshot
-Type=SIMPLE_ACTION_DATA
-
-[Data_5Actions]
-ActionsCount=1
-
-[Data_5Actions0]
-CommandURL=flameshot gui
-Type=COMMAND_URL
-
-[Data_5Conditions]
-Comment=
-ConditionsCount=0
-
-[Data_5Triggers]
-Comment=Simple_action
-TriggersCount=1
-
-[Data_5Triggers0]
 Key=Print
 Type=SHORTCUT
 Uuid={3e3fc25f-1b8d-4c10-b5ba-b4d8647beb50}
 
-[Data_6]
-Comment=Comment
-Enabled=false
-Name=New Action
-Type=SIMPLE_ACTION_DATA
-
-[Data_6Actions]
-ActionsCount=1
-
-[Data_6Actions0]
-CommandURL=sh ~/.scripts/launcher combi gitgud
-Type=COMMAND_URL
-
-[Data_6Conditions]
-Comment=
-ConditionsCount=0
-
-[Data_6Triggers]
-Comment=Simple_action
-TriggersCount=1
-
-[Data_6Triggers0]
-Key=Meta+D
-Type=SHORTCUT
-Uuid={6317ae45-ecb5-40a4-ad56-6f8ae81b0b4b}
-
-[Data_7]
-Comment=Comment
-Enabled=true
-Name=New Action
-Type=SIMPLE_ACTION_DATA
-
-[Data_7Actions]
-ActionsCount=1
-
-[Data_7Actions0]
-CommandURL=sh ~/.scripts/emoji_picker
-Type=COMMAND_URL
-
-[Data_7Conditions]
-Comment=
-ConditionsCount=0
-
-[Data_7Triggers]
-Comment=Simple_action
-TriggersCount=1
-
-[Data_7Triggers0]
-Key=Meta+E
-Type=SHORTCUT
-Uuid={206f94a6-0af9-4386-93a4-a86d2e6dd088}
-
-[Data_8]
-Comment=Comment
-Enabled=false
-Name=New Action
-Type=SIMPLE_ACTION_DATA
-
-[Data_8Actions]
-ActionsCount=1
-
-[Data_8Actions0]
-CommandURL=clipmenu -p 'Clipboard: ' -theme ~/.config/rofi/themes/gitgud.rasi
-Type=COMMAND_URL
-
-[Data_8Conditions]
-Comment=
-ConditionsCount=0
-
-[Data_8Triggers]
-Comment=Simple_action
-TriggersCount=1
-
-[Data_8Triggers0]
-Key=Meta+C
-Type=SHORTCUT
-Uuid={c448a1e6-e6eb-44b7-be82-83bed6436325}
-
-[Data_9]
-Comment=Comment
-Enabled=true
-Name=asdasd
-Type=SIMPLE_ACTION_DATA
-
-[Data_9Actions]
-ActionsCount=1
-
-[Data_9Actions0]
-DestinationWindow=0
-Input=
-Type=KEYBOARD_INPUT
-
-[Data_9Conditions]
-Comment=
-ConditionsCount=0
-
-[Data_9Triggers]
-Comment=Simple_action
-TriggersCount=1
-
-[Data_9Triggers0]
-GesturePointData=0,0.099784,-0.25,0,0.346154,0.099784,0.099784,0.25,0.0769231,0.269231,0.199568,0.223124,0.102416,0.153846,0.346154,0.422692,0.223124,0.102416,0.384615,0.423077,0.645816,0.2544,0.187167,0.615385,0.5,0.900216,0.099784,0.25,0.846154,0.653846
-Type=GESTURE
+[DesktopGrid]
+ShowDesktopGrid[$d]
 
 [DirSelect Dialog]
 DirSelectDialog Size[$d]
@@ -1163,6 +1036,7 @@ TerminalApplication[$d]
 TerminalService[$d]
 XftHintStyle[$d]
 XftSubPixel[$d]
+accentColorFromWallpaper[$d]
 fixed[$d]
 font[$d]
 menuFont[$d]
@@ -1210,6 +1084,7 @@ Show Speedbar[$d]
 Show hidden files[$d]
 Sort by[$d]
 Sort directories first[$d]
+Sort hidden files last[$d]
 Sort reversed[$d]
 Speedbar Width[$d]
 View Style[$d]

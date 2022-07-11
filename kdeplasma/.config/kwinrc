@@ -1,5 +1,5 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default,kwin.upd:overview-group-plugin-id
 
 [Compositing]
 GLTextureFilter=0
@@ -21,6 +21,7 @@ Rows=1
 Mode=1366x768_60002
 Scale=1
 Transform=normal
+zPosition=0
 
 [Effect-CoverSwitch]
 zPosition=0
@@ -39,15 +40,30 @@ Inactive=96
 Menus=92
 MoveResize=94
 
+[Effect-presentwindows]
+BorderActivateAll=9
+
+[Effect-slide]
+ComboboxPopups=93
+Dialogs=94
+Duration=300
+Inactive=96
+Menus=92
+MoveResize=94
+SlideDocks=true
+
 [ModifierOnlyShortcuts]
 Meta=
 
 [Plugins]
 blurEnabled=true
 contrastEnabled=true
+desktopgridEnabled=false
+glideEnabled=true
 kwin4_effect_fadingpopupsEnabled=false
 kwin4_effect_fullscreenEnabled=false
 kwin4_effect_maximizeEnabled=false
+kwin4_effect_scaleEnabled=false
 overviewEnabled=true
 screenedgeEnabled=false
 slidingpopupsEnabled=false
@@ -58,4 +74,7 @@ PopupHideDelay=500
 [TabBox]
 BorderActivate=9
 HighlightWindows=false
-LayoutName=org.kde.breeze.desktop
+
+[org.kde.kdecoration2]
+library=org.kde.breeze
+theme=Breeze

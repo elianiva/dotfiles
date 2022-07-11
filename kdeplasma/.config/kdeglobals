@@ -26,11 +26,11 @@ IntensityEffect=0
 [Colors:Button]
 BackgroundAlternate=30,87,116
 BackgroundNormal=49,54,59
-DecorationFocus=96,165,250
-DecorationHover=96,165,250
-ForegroundActive=96,165,250
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
 ForegroundInactive=161,169,177
-ForegroundLink=96,165,250
+ForegroundLink=29,153,243
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
 ForegroundNormal=252,252,252
@@ -40,11 +40,11 @@ ForegroundVisited=155,89,182
 [Colors:Complementary]
 BackgroundAlternate=30,87,116
 BackgroundNormal=42,46,50
-DecorationFocus=96,165,250
-DecorationHover=96,165,250
-ForegroundActive=96,165,250
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
 ForegroundInactive=161,169,177
-ForegroundLink=96,165,250
+ForegroundLink=29,153,243
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
 ForegroundNormal=252,252,252
@@ -54,11 +54,11 @@ ForegroundVisited=155,89,182
 [Colors:Header]
 BackgroundAlternate=42,46,50
 BackgroundNormal=49,54,59
-DecorationFocus=96,165,250
-DecorationHover=96,165,250
-ForegroundActive=96,165,250
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
 ForegroundInactive=161,169,177
-ForegroundLink=96,165,250
+ForegroundLink=29,153,243
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
 ForegroundNormal=252,252,252
@@ -80,13 +80,13 @@ ForegroundPositive=39,174,96
 ForegroundVisited=155,89,182
 
 [Colors:Selection]
-BackgroundAlternate=75,124,184
-BackgroundNormal=75,124,184
-DecorationFocus=96,165,250
-DecorationHover=96,165,250
-ForegroundActive=96,165,250
+BackgroundAlternate=30,87,116
+BackgroundNormal=61,174,233
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=252,252,252
 ForegroundInactive=161,169,177
-ForegroundLink=96,165,250
+ForegroundLink=253,188,75
 ForegroundNegative=176,55,69
 ForegroundNeutral=198,92,0
 ForegroundNormal=252,252,252
@@ -96,11 +96,11 @@ ForegroundVisited=155,89,182
 [Colors:Tooltip]
 BackgroundAlternate=42,46,50
 BackgroundNormal=49,54,59
-DecorationFocus=96,165,250
-DecorationHover=96,165,250
-ForegroundActive=96,165,250
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
 ForegroundInactive=161,169,177
-ForegroundLink=96,165,250
+ForegroundLink=29,153,243
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
 ForegroundNormal=252,252,252
@@ -110,11 +110,11 @@ ForegroundVisited=155,89,182
 [Colors:View]
 BackgroundAlternate=35,38,41
 BackgroundNormal=27,30,32
-DecorationFocus=96,165,250
-DecorationHover=96,165,250
-ForegroundActive=96,165,250
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
 ForegroundInactive=161,169,177
-ForegroundLink=96,165,250
+ForegroundLink=29,153,243
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
 ForegroundNormal=252,252,252
@@ -124,24 +124,27 @@ ForegroundVisited=155,89,182
 [Colors:Window]
 BackgroundAlternate=49,54,59
 BackgroundNormal=42,46,50
-DecorationFocus=96,165,250
-DecorationHover=96,165,250
-ForegroundActive=96,165,250
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
 ForegroundInactive=161,169,177
-ForegroundLink=96,165,250
+ForegroundLink=29,153,243
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
 ForegroundNormal=252,252,252
 ForegroundPositive=39,174,96
 ForegroundVisited=155,89,182
 
+[DesktopGrid]
+ShowDesktopGrid=Meta+G
+
 [DirSelect Dialog]
 DirSelectDialog Size=830,592
 History Items[$e]=file:$HOME/Dev/client_tungsurabi
 
 [General]
-AccentColor=96,165,250
 BrowserApplication=brave-browser.desktop
+ColorScheme=BreezeDark
 ColorSchemeHash=d0b3d2da363261958945ede41bfed4e1744dd286
 Name=Breeze Dark
 Name[en_GB]=Breeze Dark
@@ -149,7 +152,8 @@ TerminalApplication=kitty
 TerminalService=kitty.desktop
 XftHintStyle=hintslight
 XftSubPixel=rgb
-fixed=JetBrainsMono Nerd Font,10,-1,5,50,0,0,0,0,0
+accentColorFromWallpaper=false
+fixed=BlexMono Nerd Font,10,-1,5,50,0,0,0,0,0
 font=Inter,10,-1,5,50,0,0,0,0,0
 menuFont=Inter,10,-1,5,50,0,0,0,0,0
 shadeSortColumn=true
@@ -158,7 +162,7 @@ toolBarFont=Inter,10,-1,5,50,0,0,0,0,0
 widgetStyle=Breeze
 
 [KDE]
-AnimationDurationFactor=0.35355339059327373
+AnimationDurationFactor=0.25
 ColorScheme=BreezeDark
 LookAndFeelPackage=org.kde.breezedark.desktop
 SingleClick=false
@@ -179,6 +183,7 @@ Show Speedbar=true
 Show hidden files=false
 Sort by=Name
 Sort directories first=true
+Sort hidden files last=false
 Sort reversed=false
 Speedbar Width=138
 View Style=Simple

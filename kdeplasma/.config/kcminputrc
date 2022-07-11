@@ -8,6 +8,7 @@ RepeatDelay=300
 RepeatRate=50
 
 [Mouse]
+X11LibInputXAccelProfileFlat=false
 cursorSize=32
 cursorTheme=Posy's Cursor Black
 

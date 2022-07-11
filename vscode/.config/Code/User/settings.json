@@ -32,13 +32,14 @@
   "git.enableCommitSigning": true,
   "git.showPushSuccessNotification": true,
   "git.suggestSmartCommit": false,
+  "git.branchProtection": ["master", "main"],
   "gitlens.advanced.abbreviatedShaLength": 8,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.keymap": "alternate",
   "javascript.referencesCodeLens.enabled": true,
-  "javascript.referencesCodeLens.showOnAllFunctions": true,
+  "typescript.referencesCodeLens.enabled": true,
   "notebook.lineNumbers": "on",
   "notebook.output.textLineLimit": 0,
   "omnisharp.enableImportCompletion": true,
@@ -50,9 +51,7 @@
   "terminal.integrated.persistentSessionReviveProcess": "never",
   "terminal.integrated.tabs.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
-  "typescript.referencesCodeLens.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
   "window.customMenuBarAltFocus": false,
   "window.dialogStyle": "custom",
   "window.titleBarStyle": "custom",
@@ -66,6 +65,7 @@
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 14,
   "workbench.tree.renderIndentGuides": "always",
+  "editor.renderWhitespace": "boundary",
   // "typescript.tsserver.experimental.enableProjectDiagnostics": true
 
   "gopls": {
@@ -165,7 +165,8 @@
       "rules": {
         "enum": "#b8d7a3",
         "interface": "#b8d7a3",
-        "struct": "#86C691"
+        "struct": "#86C691",
+        "type": "#86C691"
       }
     }
   },
@@ -272,5 +273,17 @@
   ],
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[handlebars]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
+  "editor.semanticHighlighting.enabled": true,
+  "window.commandCenter": true
 }
