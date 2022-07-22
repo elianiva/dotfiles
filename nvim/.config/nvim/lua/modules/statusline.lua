@@ -159,12 +159,21 @@ Statusline = setmetatable(M, {
 })
 
 -- set statusline
--- TODO(elianiva): replace this once we can define autocmd using lua
-vim.cmd [[
-  augroup Statusline
-  au!
-  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
-  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
-  au WinEnter,BufEnter,FileType neo-tree setlocal statusline=%!v:lua.Statusline('explorer')
-  augroup END
-]]
+local au = api.nvim_create_autocmd
+local augroup = api.nvim_create_augroup("StatusLine", { clear = true })
+
+au({"WinEnter", "BufEnter"}, {
+  group = augroup,
+  pattern = "*",
+  command = "setlocal statusline=%!v:lua.Statusline('active')"
+})
+au({"WinLeave", "BufLeave"}, {
+  group = augroup,
+  pattern = "*",
+  command = "setlocal statusline=%!v:lua.Statusline('inactive')"
+})
+au("FileType", {
+  group = augroup,
+  pattern = "netrw",
+  command = "setlocal statusline=%!v:lua.Statusline('explorer')"
+})
