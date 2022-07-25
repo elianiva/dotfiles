@@ -22,24 +22,26 @@
     ".gitignore": ".gitignore, .dockerignore",
     "vite.config.ts": "vitest.config.js, vitest.config.ts, vite.config.js, vite.config.ts",
     "tsconfig.json": "tsconfig.json, jsconfig.json",
-    "*.csproj": "*.csproj, nuget.config"
+    "*.csproj": "*.csproj, nuget.config",
+    "*.razor": "$(capture).razor.css, $(capture).razor.cs",
+    "*.cshtml": "$(capture).cshtml.cs"
   },
+  "editor.renderWhitespace": "boundary",
   "extensions.autoUpdate": "onlyEnabledExtensions",
   "extensions.ignoreRecommendations": true,
   "files.insertFinalNewline": true,
-  "files.simpleDialog.enable": true,
   "git.allowForcePush": true,
+  "git.branchProtection": ["master", "main"],
   "git.enableCommitSigning": true,
+  "git.mergeEditor": true,
   "git.showPushSuccessNotification": true,
   "git.suggestSmartCommit": false,
-  "git.branchProtection": ["master", "main"],
   "gitlens.advanced.abbreviatedShaLength": 8,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.keymap": "alternate",
   "javascript.referencesCodeLens.enabled": true,
-  "typescript.referencesCodeLens.enabled": true,
   "notebook.lineNumbers": "on",
   "notebook.output.textLineLimit": 0,
   "omnisharp.enableImportCompletion": true,
@@ -51,6 +53,7 @@
   "terminal.integrated.persistentSessionReviveProcess": "never",
   "terminal.integrated.tabs.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
+  "typescript.referencesCodeLens.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "window.customMenuBarAltFocus": false,
   "window.dialogStyle": "custom",
@@ -65,7 +68,7 @@
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 14,
   "workbench.tree.renderIndentGuides": "always",
-  "editor.renderWhitespace": "boundary",
+  "prettier.documentSelectors": ["**/*.astro", "**/*.svg"],
   // "typescript.tsserver.experimental.enableProjectDiagnostics": true
 
   "gopls": {
@@ -88,6 +91,8 @@
     "[Default Dark+]": {
       "activityBar.background": "#15161f",
       "activityBarBadge.background": "#007ACC",
+      "checkbox.background": "#0d0e13",
+      "checkbox.border": "#252735",
       "dropdown.background": "#0d0e13",
       "dropdown.border": "#0d0e13",
       "editor.background": "#0D1017",
@@ -171,6 +176,18 @@
     }
   },
 
+  // enable italic comments
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  },
+
   // exclude from fuzzy finder
   "search.exclude": {
     "**/.git": true,
@@ -194,7 +211,8 @@
   // languages
   "files.associations": {
     "*.svx": "markdown",
-    ".env*": "makefile"
+    ".env*": "makefile",
+    "*.svg": "html"
   },
   "[svelte]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -217,37 +235,9 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
-  // copilot
-  "github.copilot.enable": {
-    "*": true,
-    "yaml": false,
-    "plaintext": false,
-    "markdown": true,
-    "typescript": true,
-    "clojure": false
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
-  // todohighlight
-  "todohighlight.keywordsPattern": "TODO\\((.*)\\):",
-  "todohighlight.defaultStyle": {
-    "backgroundColor": "transparent",
-    "color": "#6CB6FF",
-    "fontWeight": "bold"
-  },
-  "todohighlight.exclude": [
-    "**/node_modules/**",
-    "**/bower_components/**",
-    "**/dist/**",
-    "**/build/**",
-    "**/.vscode/**",
-    "**/.github/**",
-    "**/_output/**",
-    "**/*.min.*",
-    "**/*.map",
-    "**/.next/**",
-    "settings.json"
-  ],
 
   // python stuff
   "python.formatting.autopep8Path": "/usr/bin/autopep8",
@@ -283,7 +273,9 @@
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
   "editor.semanticHighlighting.enabled": true,
-  "window.commandCenter": true
+  "todo-tree.highlights.useColourScheme": true,
+  "todo-tree.filtering.useBuiltInExcludes": "file excludes",
+  "todo-tree.tree.showCountsInTree": true
+  // "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

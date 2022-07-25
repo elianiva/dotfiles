@@ -144,8 +144,7 @@ History Items[$e]=file:$HOME/Dev/client_tungsurabi
 
 [General]
 BrowserApplication=brave-browser.desktop
-ColorScheme=BreezeDark
-ColorSchemeHash=d0b3d2da363261958945ede41bfed4e1744dd286
+ColorSchemeHash=bcce7c1c6181c5e14e633cd8301e7a9036b67ac6
 Name=Breeze Dark
 Name[en_GB]=Breeze Dark
 TerminalApplication=kitty
@@ -191,6 +190,9 @@ View Style=Simple
 [KScreen]
 ScaleFactor=1
 ScreenScaleFactors=LVDS1=1;DP1=1;DP2=1;DP3=1;HDMI1=1;HDMI2=1;HDMI3=1;VGA1=1;VIRTUAL1=1;
+
+[PreviewSettings]
+MaximumRemoteSize=0
 
 [WM]
 activeBackground=49,54,59

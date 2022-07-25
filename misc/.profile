@@ -32,6 +32,7 @@ export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.fnm:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
 
 # export JAVA_OPTS="-XX:+IgnoreUnrecognizedVMOptions"
 # export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"

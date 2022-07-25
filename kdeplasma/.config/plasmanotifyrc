@@ -16,6 +16,9 @@ Seen=true
 [Applications][telegramdesktop]
 Seen=true
 
+[DoNotDisturb]
+Until=2022,7,13,22,0,0.858
+
 [Notifications]
 LowPriorityHistory=true
 LowPriorityPopups=false
