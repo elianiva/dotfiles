@@ -20,6 +20,7 @@ ts_config.setup {
     "query",
     "rst",
     "rust",
+    "yaml",
     "svelte",
     "tsx",
     "typescript"

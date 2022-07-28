@@ -9,6 +9,10 @@ return require("packer").startup {
     "tweekmonster/startuptime.vim" ,
     "elianiva/gitgud.nvim" ,
 
+    "Mofiqul/vscode.nvim",
+
+    "feline-nvim/feline.nvim",
+
     "nvim-treesitter/nvim-treesitter",
     "nvim-treesitter/nvim-treesitter-textobjects",
     "windwp/nvim-ts-autotag",
@@ -34,9 +38,6 @@ return require("packer").startup {
     "junegunn/vim-easy-align",
 
     "mhinz/vim-sayonara",
-
-    { "rktjmp/lush.nvim", opt = true },
-    "rktjmp/shipwright.nvim",
 
     { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" },
     "MunifTanjim/nui.nvim",

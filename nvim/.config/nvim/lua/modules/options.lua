@@ -52,7 +52,7 @@ o.fillchars      = {
 -- o.foldcolumn     = "1" -- enable fold column for better visualisation
 o.inccommand     = "split" -- incrementally show result of command
 o.listchars      = {
-  eol = "↲",
+  -- eol = "↲",
   tab = "» ",
 } -- set listchars
 o.mouse          = "nvi" -- enable mouse support in normal, insert, and visual mode

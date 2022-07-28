@@ -27,6 +27,8 @@ display=Display\tMeta+P,Display\tMeta+P,Switch Display
 [khotkeys]
 _k_friendly_name=Custom Shortcuts Service
 {3e3fc25f-1b8d-4c10-b5ba-b4d8647beb50}=Print,none,Screenshot
+{70bf6112-2157-41d2-bfff-e25315ab265d}=Meta+Return,none,New Action
+{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
 
 [kmix]
 _k_friendly_name=Audio Volume
@@ -214,7 +216,7 @@ _launch=none,Meta+E,Dolphin
 NewTab=none,none,Open a New Tab
 NewWindow=none,none,Open a New Window
 _k_friendly_name=Konsole
-_launch=Meta+Return,none,Konsole
+_launch=none,none,Konsole
 
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents

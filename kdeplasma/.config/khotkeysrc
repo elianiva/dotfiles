@@ -136,7 +136,7 @@ ForegroundPositive[$d]
 ForegroundVisited[$d]
 
 [Data]
-DataCount=4
+DataCount=5
 
 [Data_1]
 Comment=KMenuEdit Global Shortcuts
@@ -1018,6 +1018,32 @@ TriggersCount=1
 Key=Print
 Type=SHORTCUT
 Uuid={3e3fc25f-1b8d-4c10-b5ba-b4d8647beb50}
+
+[Data_5]
+Comment=Comment
+Enabled=true
+Name=New Action
+Type=SIMPLE_ACTION_DATA
+
+[Data_5Actions]
+ActionsCount=1
+
+[Data_5Actions0]
+CommandURL=kitty
+Type=COMMAND_URL
+
+[Data_5Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_5Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_5Triggers0]
+Key=Meta+Return
+Type=SHORTCUT
+Uuid={70bf6112-2157-41d2-bfff-e25315ab265d}
 
 [DesktopGrid]
 ShowDesktopGrid[$d]

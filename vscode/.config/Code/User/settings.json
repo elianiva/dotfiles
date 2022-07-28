@@ -63,7 +63,6 @@
   "workbench.list.smoothScrolling": true,
   "workbench.preferredDarkColorTheme": "Default Dark+",
   "workbench.preferredLightColorTheme": "Default Light+",
-  "workbench.productIconTheme": "icons-carbon",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 14,
@@ -205,7 +204,9 @@
     "**/package-lock.json": true,
     "**/pnpm-lock.yaml": true,
     "**/tmp": true,
-    "**/yarn.lock": true
+    "**/yarn.lock": true,
+    "**/bin": true,
+    "**/obj": true
   },
 
   // languages

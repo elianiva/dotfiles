@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/editorconfig.nvim",
     url = "https://github.com/gpanders/editorconfig.nvim"
   },
+  ["feline.nvim"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/feline.nvim",
+    url = "https://github.com/feline-nvim/feline.nvim"
+  },
   ["gitgud.nvim"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/gitgud.nvim",
@@ -113,12 +118,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/hop.nvim",
     url = "https://github.com/phaazon/hop.nvim"
-  },
-  ["lush.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/opt/lush.nvim",
-    url = "https://github.com/rktjmp/lush.nvim"
   },
   ["neo-tree.nvim"] = {
     loaded = true,
@@ -196,11 +195,6 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["shipwright.nvim"] = {
-    loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/shipwright.nvim",
-    url = "https://github.com/rktjmp/shipwright.nvim"
-  },
   ["splitjoin.vim"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/splitjoin.vim",
@@ -260,6 +254,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vim-vsnip",
     url = "https://github.com/hrsh7th/vim-vsnip"
+  },
+  ["vscode.nvim"] = {
+    loaded = true,
+    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/vscode.nvim",
+    url = "https://github.com/Mofiqul/vscode.nvim"
   }
 }
 
