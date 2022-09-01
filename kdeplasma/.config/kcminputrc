@@ -10,7 +10,7 @@ RepeatRate=50
 [Mouse]
 X11LibInputXAccelProfileFlat=false
 cursorSize=32
-cursorTheme=Posy's Cursor Black
+cursorTheme=Posy's Cursor
 
 [Tmp]
 update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize

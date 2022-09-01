@@ -33,7 +33,6 @@
   "git.allowForcePush": true,
   "git.branchProtection": ["master", "main"],
   "git.enableCommitSigning": true,
-  "git.mergeEditor": true,
   "git.showPushSuccessNotification": true,
   "git.suggestSmartCommit": false,
   "gitlens.advanced.abbreviatedShaLength": 8,
@@ -67,7 +66,7 @@
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 14,
   "workbench.tree.renderIndentGuides": "always",
-  "prettier.documentSelectors": ["**/*.astro", "**/*.svg"],
+  "prettier.documentSelectors": ["**/*.astro", "**/*.svg", "**/*.svelte"],
   // "typescript.tsserver.experimental.enableProjectDiagnostics": true
 
   "gopls": {
@@ -277,6 +276,7 @@
   "editor.semanticHighlighting.enabled": true,
   "todo-tree.highlights.useColourScheme": true,
   "todo-tree.filtering.useBuiltInExcludes": "file excludes",
-  "todo-tree.tree.showCountsInTree": true
+  "todo-tree.tree.showCountsInTree": true,
+  "typescript.tsserver.log": "off"
   // "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

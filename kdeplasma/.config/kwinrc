@@ -55,6 +55,9 @@ SlideDocks=true
 [ModifierOnlyShortcuts]
 Meta=
 
+[NightColor]
+NightTemperature=4600
+
 [Plugins]
 blurEnabled=true
 contrastEnabled=true
@@ -74,7 +77,3 @@ PopupHideDelay=500
 [TabBox]
 BorderActivate=9
 HighlightWindows=false
-
-[org.kde.kdecoration2]
-library=org.kde.breeze
-theme=Breeze

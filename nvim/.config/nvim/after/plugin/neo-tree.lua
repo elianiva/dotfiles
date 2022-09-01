@@ -4,8 +4,8 @@ require("neo-tree").setup {
   use_libuv_file_watcher = true,
   filesystem = {
     window = {
-      position = "left",
-      width = 32,
+      position = "right",
+      width = 40,
       mappings = {
         ["<2-LeftMouse>"] = "open",
         ["o"] = "open",

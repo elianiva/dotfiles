@@ -7,13 +7,13 @@
 </defs>
 <g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
 
-<g fill="#fcfcfc" fill-opacity="1" stroke="none" transform="matrix(2.5,0,0,2.5,2.5,2.5)"
+<g fill="#232629" fill-opacity="1" stroke="none" transform="matrix(2.5,0,0,2.5,2.5,2.5)"
 font-family="Inter" font-size="10" font-weight="400" font-style="normal" 
 >
 <circle cx="9" cy="9" r="9"/>
 </g>
 
-<g fill="none" stroke="#31363b" stroke-opacity="1" stroke-width="1.01" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(2.5,0,0,2.5,2.5,2.5)"
+<g fill="none" stroke="#e3e5e7" stroke-opacity="1" stroke-width="1.01" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(2.5,0,0,2.5,2.5,2.5)"
 font-family="Inter" font-size="10" font-weight="400" font-style="normal" 
 >
 <polyline fill="none" vector-effect="none" points="4,7 9,12 14,7 " />

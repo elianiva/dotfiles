@@ -28,7 +28,6 @@ display=Display\tMeta+P,Display\tMeta+P,Switch Display
 _k_friendly_name=Custom Shortcuts Service
 {3e3fc25f-1b8d-4c10-b5ba-b4d8647beb50}=Print,none,Screenshot
 {70bf6112-2157-41d2-bfff-e25315ab265d}=Meta+Return,none,New Action
-{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
 
 [kmix]
 _k_friendly_name=Audio Volume
