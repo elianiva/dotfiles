@@ -56,7 +56,8 @@ SlideDocks=true
 Meta=
 
 [NightColor]
-NightTemperature=4600
+Mode=Constant
+NightTemperature=6500
 
 [Plugins]
 blurEnabled=true

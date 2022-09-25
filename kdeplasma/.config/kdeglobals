@@ -161,7 +161,7 @@ toolBarFont=Inter,10,-1,5,50,0,0,0,0,0
 widgetStyle=Breeze
 
 [KDE]
-AnimationDurationFactor=0.25
+AnimationDurationFactor=0.5
 ColorScheme=BreezeDark
 LookAndFeelPackage=org.kde.breeze.desktop
 SingleClick=false
@@ -176,7 +176,7 @@ LocationCombo Completionmode=5
 PathCombo Completionmode=5
 Show Bookmarks=false
 Show Full Path=false
-Show Inline Previews=true
+Show Inline Previews=false
 Show Preview=false
 Show Speedbar=true
 Show hidden files=false

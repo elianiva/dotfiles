@@ -238,6 +238,37 @@
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "--shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "--shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["%DOCFILE%"]
+    }
+  ],
 
   // python stuff
   "python.formatting.autopep8Path": "/usr/bin/autopep8",
@@ -277,6 +308,21 @@
   "todo-tree.highlights.useColourScheme": true,
   "todo-tree.filtering.useBuiltInExcludes": "file excludes",
   "todo-tree.tree.showCountsInTree": true,
-  "typescript.tsserver.log": "off"
+  "typescript.tsserver.log": "off",
+  "workbench.editorAssociations": {
+    "*.pdf": "latex-workshop-pdf-hook"
+  },
+  "latex-workshop.latex.verbatimEnvs": [
+    "verbatim",
+    "lstlisting",
+    "minted",
+    "codeblock-java"
+  ],
+  "svelte.plugin.svelte.note-new-transformation": false,
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+  "rust-analyzer.inlayHints.chainingHints.enable": false,
+  "rust-analyzer.inlayHints.parameterHints.enable": false,
+  "rpc.appName": "Visual Studio Code"
   // "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }
