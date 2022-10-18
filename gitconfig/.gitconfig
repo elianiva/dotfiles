@@ -11,7 +11,7 @@
 [core]
   compression = 9
   editor = nvim
-  pager = delta
+  # pager = delta
 
 [pull]
   rebase = false
@@ -29,7 +29,7 @@
   file-modified-label = modified:
 
 [interactive]
-  diffFilter = delta --color-only
+  # diffFilter = delta --color-only
 
 [init]
   defaultBranch = master

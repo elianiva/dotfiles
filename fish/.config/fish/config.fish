@@ -4,23 +4,24 @@ set fish_greeting
 # starship prompt
 starship init fish | source
 
-# Start X at login
-# if status is-login
-#     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-#         exec startx -- -keeptty
-#         # dbus-run-session startplasma-wayland
-#     else if test -z "$DISPLAY" -a "$XDG_VTNR" = 2
-#         # set XDG_SESSION_TYPE     wayland
-#         # set QT_QPA_PLATFORMTHEME wayland
-#         # set QT_QPA_PLATFORM      wayland
-#         # set MOZ_ENABLE_WAYLAND   1
-#         # set GDK_BACKEND          wayland
-#         # exec sway
-#         # exec startx -- -keeptty
-#     end
-# end
-
 # pnpm
 set -gx PNPM_HOME "/home/elianiva/.local/share/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 # pnpm end
+
+function fish_mode_prompt
+  switch $fish_bind_mode
+    case default
+      echo -en "\e[2 q"
+    case insert
+      echo -en "\e[6 q"
+    case replace_one
+      echo -en "\e[4 q"
+    case visual
+      echo -en "\e[2 q"
+      set_color -o brwhite
+    case '*'
+      echo -en "\e[2 q"
+  end
+  set_color normal
+end

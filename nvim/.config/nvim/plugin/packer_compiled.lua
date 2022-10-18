@@ -210,11 +210,6 @@ _G.packer_plugins = {
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/sqlite.lua",
     url = "https://github.com/tami5/sqlite.lua"
   },
-  ["stabilize.nvim"] = {
-    loaded = true,
-    path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/stabilize.nvim",
-    url = "https://github.com/luukvbaal/stabilize.nvim"
-  },
   ["startuptime.vim"] = {
     loaded = true,
     path = "/home/elianiva/.local/share/nvim/site/pack/packer/start/startuptime.vim",

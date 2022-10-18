@@ -20,6 +20,7 @@ o.smartindent    = true -- smarter indentation
 o.smarttab       = true -- make tab behaviour smarter
 o.splitbelow     = true -- split below instead of above
 o.splitright     = true -- split right instead of left
+o.splitkeep      = "screen" -- stabilize split
 o.startofline    = false -- don't go to the start of the line when moving to another file
 o.swapfile       = false -- disable swapfile
 o.termguicolors  = true -- true colours for better experience

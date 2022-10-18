@@ -28,8 +28,6 @@ return require("packer").startup {
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
     "nvim-telescope/telescope-ui-select.nvim",
 
-    "luukvbaal/stabilize.nvim",
-
     -- requires plenary.nvim
     "ruifm/gitlinker.nvim",
 
