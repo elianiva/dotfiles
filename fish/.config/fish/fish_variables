@@ -9,7 +9,7 @@ SETUVAR --export LESS_TERMCAP_so:\x1b\x5b1\x3b33m
 SETUVAR --export LESS_TERMCAP_ue:\x1b\x5b0\x3b10m
 SETUVAR --export LESS_TERMCAP_us:\x1b\x5b4\x3b35m
 SETUVAR --export NIXPKGS_ALLOW_INSECURE:1
-SETUVAR __fish_initialized:3100
+SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr__3A_Q:exit
 SETUVAR _fish_abbr__3A_q:exit
 SETUVAR _fish_abbr_aliasconf:nvim\x20\x7e/\x2econfig/aliasrc

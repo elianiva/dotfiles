@@ -38,9 +38,9 @@ export PATH="$HOME/.dotnet/tools:$PATH"
 # export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 
 # required if java is installed from nix
-unset JAVA_OPTS
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
-export _JAVA_AWT_WM_NONREPARENTING=1
+# unset JAVA_OPTS
+# export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
+# export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Flutter stuff
 export FLUTTER_ROOT="$ANDROID_HOME/flutter"
@@ -231,6 +231,6 @@ export FLYCTL_INSTALL="/home/elianiva/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # init keyring
-eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+# eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 # export keyring
-export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+# export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK

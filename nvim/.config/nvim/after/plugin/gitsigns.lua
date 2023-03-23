@@ -26,9 +26,9 @@ require("gitsigns").setup {
     map("n", "<leader>hP", gs.preview_hunk)
     -- stylua: ignore end
   end,
-  preview_config = {
-    border = Util.borders,
-  },
+  -- preview_config = {
+  --   border = Util.borders,
+  -- },
   current_line_blame = false,
   sign_priority = 5,
   update_debounce = 500,

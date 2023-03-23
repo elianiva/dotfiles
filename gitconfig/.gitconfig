@@ -3,7 +3,7 @@
 [user]
   name = elianiva
   email = dicha.arkana03@gmail.com
-	signingkey = BFA1552CA9680245
+	signingkey = A9680245
 
 [credential]
   helper = cache --timeout 86400
@@ -35,4 +35,4 @@
   defaultBranch = master
 
 [gpg]
-	program = gpg
+	program = gpg2

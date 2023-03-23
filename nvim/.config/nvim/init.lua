@@ -1,5 +1,4 @@
 require("bootstrap")
-require("impatient").enable_profile()
 require("deps")
 
 -- enable filetype.lua
@@ -31,9 +30,9 @@ require('vscode').setup({
 
   -- Override colors (see ./lua/vscode/colors.lua)
   color_overrides = {
-    vscBack = "#0D1017",
+    vscBack = "#181818",
     vscFront = "#c7c9d1",
-    vscCursorDarkDark = "#171922",
+    vscCursorDarkDark = "#1f1f1f",
     vscSelection = "#192044",
     vscPopupHighlightBlue = "#192044",
     vscPopupFront = "#3a3e56",
@@ -53,6 +52,7 @@ require('vscode').setup({
     SignChange = { fg = "#f7b83d" }
   }
 })
+vim.cmd [[ colorscheme vscode ]]
 
 require('feline').setup()
 
