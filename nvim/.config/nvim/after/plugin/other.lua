@@ -1,1 +1,0 @@
-require("gitlinker").setup()

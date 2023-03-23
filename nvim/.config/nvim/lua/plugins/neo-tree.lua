@@ -58,53 +58,65 @@ local global_commands = {
   end,
 }
 
-require("neo-tree").setup {
-  auto_clean_after_session_restore = true,
-  close_if_last_window = true,
-  source_selector = {
-    winbar = true,
-    content_layout = "center",
-  },
-  default_component_configs = {
-    indent = { padding = 0, indent_size = 1 },
-  },
-  window = {
-    position = "right",
-    width = 40,
-    mappings = {
-      ["<2-LeftMouse>"] = "open",
-      ["o"] = "open",
-      ["<C-x>"] = "open_split",
-      ["<C-v>"] = "open_vsplit",
-      ["<bs>"] = "navigate_up",
-      ["."] = "set_root",
-      ["H"] = "toggle_hidden",
-      ["I"] = "toggle_gitignore",
-      ["R"] = "refresh",
-      ["/"] = "filter_as_you_type",
-      ["f"] = "filter_on_submit",
-      ["<BS>"] = "clear_filter",
-      ["a"] = "add",
-      ["d"] = "delete",
-      ["r"] = "rename",
-      ["c"] = "copy_to_clipboard",
-      ["x"] = "cut_to_clipboard",
-      ["p"] = "paste_from_clipboard",
+return {
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    version = "^2",
+    dependencies = {
+      "kyazdani42/nvim-web-devicons",
     },
-  },
-  filesystem = {
-    follow_current_file = true,
-    hijack_netrw_behavior = "open_current",
-    use_libuv_file_watcher = true,
-    commands = global_commands,
-  },
-  buffers = { commands = global_commands },
-  git_status = { commands = global_commands },
-  diagnostics = { commands = global_commands },
-  event_handlers = {
-    {
-      event = "neo_tree_buffer_enter",
-      handler = function(_) vim.opt_local.signcolumn = "auto" end,
+    opts = {
+      auto_clean_after_session_restore = true,
+      close_if_last_window = true,
+      source_selector = {
+        winbar = true,
+        content_layout = "center",
+      },
+      default_component_configs = {
+        indent = { padding = 0, indent_size = 1 },
+      },
+      window = {
+        position = "right",
+        width = 40,
+        mappings = {
+          ["<2-LeftMouse>"] = "open",
+          ["o"] = "open",
+          ["<C-x>"] = "open_split",
+          ["<C-v>"] = "open_vsplit",
+          ["<bs>"] = "navigate_up",
+          ["."] = "set_root",
+          ["H"] = "toggle_hidden",
+          ["I"] = "toggle_gitignore",
+          ["R"] = "refresh",
+          ["/"] = "filter_as_you_type",
+          ["f"] = "filter_on_submit",
+          ["<BS>"] = "clear_filter",
+          ["a"] = "add",
+          ["d"] = "delete",
+          ["r"] = "rename",
+          ["c"] = "copy_to_clipboard",
+          ["x"] = "cut_to_clipboard",
+          ["p"] = "paste_from_clipboard",
+        },
+      },
+      filesystem = {
+        follow_current_file = true,
+        hijack_netrw_behavior = "open_current",
+        use_libuv_file_watcher = true,
+        commands = global_commands,
+      },
+      buffers = { commands = global_commands },
+      git_status = { commands = global_commands },
+      diagnostics = { commands = global_commands },
+      event_handlers = {
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function(_) vim.opt_local.signcolumn = "auto" end,
+        },
+      },
     },
+    config = function(_, opts)
+      require("neo-tree").setup(opts)
+    end
   },
 }
