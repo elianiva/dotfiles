@@ -1,44 +1,56 @@
 return {
-  {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
+  "lewis6991/gitsigns.nvim",
+  opts = {
+    signs = {
+      add = { text = "▎" },
+      change = { text = "▎" },
+      delete = { text = "" },
+      topdelete = { text = "" },
+      changedelete = { text = "▎" },
+      untracked = { text = "▎" },
     },
-    opts = {
-      signs = {
-        add          = { hl = "SignAdd",    text = "▎" },
-        change       = { hl = "SignChange", text = "▎" },
-        delete       = { hl = "SignDelete", text = "" },
-        topdelete    = { hl = "SignDelete", text = "" },
-        changedelete = { hl = "SignChange", text = "▎" },
-      },
-      on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
+    signs_staged = {
+      add = { text = "▎" },
+      change = { text = "▎" },
+      delete = { text = "" },
+      topdelete = { text = "" },
+      changedelete = { text = "▎" },
+    },
+    on_attach = function(buffer)
+      local gs = package.loaded.gitsigns
 
-        local function map(mode, l, r, opts)
-          vim.keymap.set(mode, l, r, opts)
+      local function map(mode, l, r, desc)
+        vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+      end
+
+      -- stylua: ignore start
+      map("n", "]h", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "]c", bang = true })
+        else
+          gs.nav_hunk("next")
         end
-
-        map("n", "<leader>hn", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "Next git hunk" })
-        map("n", "<leader>hp", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "Previous git hunk" })
-        map("n", "<leader>hs", gs.stage_hunk, { desc = "Stage Hunk" })
-        map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo staging hunk" })
-        map({ "n", "v" }, "<leader>hr", "<CMD>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
-        map("n", "<leader>hb", gs.blame_line, { desc = "Blame line" })
-        map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset buffer" })
-        map("n", "<leader>hP", gs.preview_hunk, { desc = "Preview hunk" })
-      end,
-      current_line_blame = false,
-      sign_priority = 5,
-      update_debounce = 500,
-      status_formatter = nil, -- Use default
-      diff_opts = {
-        internal = true,
-      },
-    },
-    config = function(_, opts)
-      require("gitsigns").setup(opts)
-    end
-  }
+      end, "Next Hunk")
+      map("n", "[h", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "[c", bang = true })
+        else
+          gs.nav_hunk("prev")
+        end
+      end, "Prev Hunk")
+      map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
+      map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
+      map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+      map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+      map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
+      map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+      map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
+      map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
+      map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+      map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
+      map("n", "<leader>ghd", gs.diffthis, "Diff This")
+      map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+      map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+    end,
+  },
 }
