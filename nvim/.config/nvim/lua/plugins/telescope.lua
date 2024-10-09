@@ -40,9 +40,11 @@ return {
   opts = {
     extensions = {
       ["ui-select"] = {
-        require("telescope.themes").get_dropdown({
-          previewer = false
-        })
+        function()
+          require("telescope.themes").get_dropdown({
+            previewer = false
+          })
+        end
       },
       fzf = {
         fuzzy = true,
