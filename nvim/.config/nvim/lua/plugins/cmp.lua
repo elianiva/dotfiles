@@ -11,13 +11,16 @@ return {
     },
     windows = {
       autocomplete = {
-        border = require('config.utils').borders,
+        -- border = require('config.utils').borders,
+        border = "single"
       },
       documentation = {
-        border = require('config.utils').borders,
+        -- border = require('config.utils').borders,
+        border = "single"
       },
       signature_help = {
-        border = require('config.utils').borders,
+        -- border = require('config.utils').borders,
+        border = "single"
       }
     },
     highlight = {

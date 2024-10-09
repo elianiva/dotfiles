@@ -1,4 +1,6 @@
-add_newline = false
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
 
 [directory]
 truncation_length = 8
@@ -14,3 +16,6 @@ disabled = true
 
 [golang]
 format = "via [ $version](bold blue) "
+
+[gcloud]
+disabled = true

@@ -40,6 +40,7 @@ return {
       "markdown",
       "markdown_inline",
       "printf",
+      "php",
       "python",
       "query",
       "regex",

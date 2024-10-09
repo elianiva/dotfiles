@@ -52,7 +52,12 @@ vim.cmd [[
   hi FoldColumn guibg=#181818 guifg=#5a5a5a
   hi StatusColumnLine guibg=#181818 guifg=#323232
   hi BlinkCmpKindFile guifg=#d4d4d4 gui=NONE cterm=NONE
+  hi NeoTreeIndentMarker guifg=#323232 guibg=#1f1f1f gui=NONE cterm=NONE
+  hi PMenu guibg=NONE
+  hi FloatBorder guibg=NONE guifg=#5a5a5a gui=NONE
+  hi NormalFloat guibg=NONE
   hi link BlinkCmpKindFolder BlinkCmpKindFile
   hi link BlinkCmpFloatBorder FloatBorder
   hi link BlinkCmpMenuBorder FloatBorder
 ]]
+

@@ -127,9 +127,7 @@ function M.lsp.additional_capabilities(client)
 end
 
 function M.lsp.additional_mappings(bufnr)
-  local telescope = require "telescope.builtin"
-
-  vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, {
+  vim.keymap.set("i", "<C-s>", vim.lsp.handlers.signature_help, {
     desc = "Trigger signature help from the language server",
     noremap = true,
     silent = true,
@@ -203,9 +201,9 @@ function M.lsp.additional_mappings(bufnr)
   })
 
   vim.keymap.set("n", "<Leader>g[", function()
-      vim.diagnostic.goto_prev {
-        float = { show_header = false, border = "single" },
-      }
+    vim.diagnostic.goto_prev {
+      float = { show_header = false, border = "single" },
+    }
   end, {
     desc = "Go to previous diagnostic",
     noremap = true,

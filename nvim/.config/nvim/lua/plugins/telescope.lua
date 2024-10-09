@@ -4,7 +4,11 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
-    'nvim-telescope/telescope-frecency.nvim'
+    'nvim-telescope/telescope-frecency.nvim',
+    {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
+    }
   },
   cmd = {
     'Telescope',
@@ -24,7 +28,7 @@ return {
     { "<leader>flt", "<cmd>Telescope lsp_type_definitions<cr>",     desc = "LSP Type Definitions" },
     { "<leader>fli", "<cmd>Telescope lsp_implementations<cr>",      desc = "LSP Implementations" },
     { "<leader>flr", "<cmd>Telescope lsp_references<cr>",           desc = "LSP References" },
-    { "<leader>fla", "<cmd>lua vim.lsp.buf.code_action()<cr>",         desc = "LSP Code Actions" },
+    { "<leader>fla", "<cmd>lua vim.lsp.buf.code_action()<cr>",      desc = "LSP Code Actions" },
     { "<leader>flj", "<cmd>Telescope lsp_document_diagnostics<cr>", desc = "LSP Diagnostics" },
   },
   config = function(_, opts)
@@ -39,6 +43,11 @@ return {
         require("telescope.themes").get_dropdown({
           previewer = false
         })
+      },
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
       }
     },
     defaults = {

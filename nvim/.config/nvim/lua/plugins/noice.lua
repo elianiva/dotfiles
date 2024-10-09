@@ -14,8 +14,8 @@ return {
           col = "50%",
         },
         border = {
-          style = "none",
-          padding = { 1, 2 },
+          style = "single",
+          padding = { 0, 1 },
         },
         size = {
           min_width = 60,
@@ -46,19 +46,13 @@ return {
         },
       },
       hover = {
-        border = {
-          style = "single",
-        },
+        border = "single"
       },
       confirm = {
-        border = {
-          style = "single",
-        },
+        border = "single"
       },
       popup = {
-        border = {
-          style = "single",
-        },
+        border = "single"
       },
     },
     routes = {
@@ -95,6 +89,10 @@ return {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
       },
+      hover = {
+        enabled = true,
+        border = "single"
+      },
       signature = {
         enabled = true,
         auto_open = {
@@ -102,9 +100,7 @@ return {
         },
         ---@type NoiceViewOptions
         opts = {
-          border = {
-            style = require('config.utils').borders
-          }
+          border = 'single'
         }
       },
     },
@@ -120,6 +116,6 @@ return {
     },
     messages = {
       enabled = false,
-    }
+    },
   },
 }
