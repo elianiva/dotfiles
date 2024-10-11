@@ -10,8 +10,9 @@ return {
       suggestion_color = "#5a5a5a",
       cterm = 244,
     },
-    condition = function()
-      return vim.bo.filetype == "dbui" or vim.bo.filetype == "dbout"
-    end
+    ignore_filetypes = {
+      dbui = true,
+      dbout = true,
+    }
   },
 }

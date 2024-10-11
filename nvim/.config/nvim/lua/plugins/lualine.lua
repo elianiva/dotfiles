@@ -1,5 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
+  event = { "UIEnter" },
   config = function()
     local lualine = require('lualine')
     -- Color table for highlights

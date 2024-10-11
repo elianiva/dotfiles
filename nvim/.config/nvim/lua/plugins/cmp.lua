@@ -3,6 +3,7 @@ return {
   lazy = false, -- lazy loading handled internally
   dependencies = 'rafamadriz/friendly-snippets',
   version = 'v0.*',
+  event = "InsertEnter",
   opts = {
     keymap = {
       accept = '<CR>',

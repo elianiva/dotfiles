@@ -1,5 +1,11 @@
 return {
   "lewis6991/gitsigns.nvim",
+  cond = function()
+    -- only load on git repo
+    local path = vim.uv.cwd() .. "/.git"
+    local ok, err = vim.uv.fs_stat(path)
+    return ok and err == nil
+  end,
   opts = {
     current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
     current_line_blame_opts = {

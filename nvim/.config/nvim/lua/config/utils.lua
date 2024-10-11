@@ -182,6 +182,13 @@ function M.lsp.additional_mappings(bufnr)
     buffer = bufnr,
   })
 
+  vim.keymap.set("n", "<Leader>gr", vim.lsp.buf.references, {
+    desc = "Show references",
+    noremap = true,
+    silent = true,
+    buffer = bufnr,
+  })
+
   vim.keymap.set("n", "<Leader>gR", vim.lsp.buf.rename, {
     desc = "Rename current symbol",
     noremap = true,
