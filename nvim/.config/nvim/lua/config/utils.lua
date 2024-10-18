@@ -124,6 +124,10 @@ function M.lsp.additional_capabilities(client)
     augroup END
     ]]
   end
+
+  if client.supports_method("textDocument/inlayHint") then
+    vim.lsp.inlay_hint.enable(true)
+  end
 end
 
 function M.lsp.additional_mappings(bufnr)
@@ -174,6 +178,7 @@ function M.lsp.additional_mappings(bufnr)
       severity_sort = true,
       header = "",
       scope = "line",
+      border = "single"
     })
   end, {
     desc = "See diagnostics in floating window",
@@ -196,7 +201,7 @@ function M.lsp.additional_mappings(bufnr)
     buffer = bufnr,
   })
 
-  vim.keymap.set("n", "<Leader>g]", function()
+  vim.keymap.set("n", "]d", function()
     vim.diagnostic.goto_next {
       float = { show_header = false, border = "single" },
     }
@@ -207,7 +212,7 @@ function M.lsp.additional_mappings(bufnr)
     buffer = bufnr,
   })
 
-  vim.keymap.set("n", "<Leader>g[", function()
+  vim.keymap.set("n", "[d", function()
     vim.diagnostic.goto_prev {
       float = { show_header = false, border = "single" },
     }

@@ -90,14 +90,14 @@ return {
     ins_left {
       -- mode component
       function()
-        return ''
+        return ''
       end,
       color = function()
         -- auto change color according to neovims mode
         local mode_color = {
-          n = colors.red,
+          n = colors.blue,
           i = colors.green,
-          v = colors.blue,
+          v = colors.red,
           [''] = colors.blue,
           V = colors.blue,
           c = colors.magenta,
@@ -150,13 +150,13 @@ return {
 
     -- Insert mid section. You can make any number of sections in neovim :)
     -- for lualine it's any number greater then 2
-    ins_left {
-      function()
-        return '%='
-      end,
-    }
+    -- ins_left {
+    --   function()
+    --     return '%='
+    --   end,
+    -- }
 
-    ins_left {
+    ins_right {
       -- Lsp server name .
       function()
         local msg = 'No Active Lsp'

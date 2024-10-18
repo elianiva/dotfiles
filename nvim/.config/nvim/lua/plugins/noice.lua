@@ -112,7 +112,7 @@ return {
     },
     notify = {
       enabled = true,
-      view = "mini"
+      view = "mini",
     },
     messages = {
       enabled = false,

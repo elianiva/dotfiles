@@ -1,3 +1,9 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+
 return {
   "williamboman/mason-lspconfig.nvim",
   event = { "BufRead" },
@@ -15,6 +21,7 @@ return {
         end
         if server_name == "basedpyright" then
           require("lspconfig")[server_name].setup {
+            capabilities = capabilities,
             settings = {
               basedpyright = {
                 analysis = {
@@ -30,7 +37,9 @@ return {
           }
           return
         end
-        require("lspconfig")[server_name].setup {}
+        require("lspconfig")[server_name].setup {
+            capabilities = capabilities,
+        }
       end,
     }
   end
