@@ -2,6 +2,7 @@
 let
   nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
   link = config.lib.file.mkOutOfStoreSymlink;
+  dotfiles = "${config.home.homeDirectory}/.dotfiles";
 in
 {
   targets.genericLinux.enable = true;
@@ -148,17 +149,17 @@ in
 
   # I don't want to rebuild everytime i change these configs
   home.file = {
-    ".profile".source = link ./misc/.profile;
+    ".profile".source = link "${dotfiles}/misc/.profile";
     ".config/zellij" = {
-      source = link ./zellij;
+      source = link "${dotfiles}/zellij";
       recursive = true;
     };
     ".config/wezterm" = {
-      source = link ./wezterm;
+      source = link "${dotfiles}/wezterm";
       recursive = true;
     };
     ".config/nvim" = {
-      source = link ./nvim;
+      source = link "${dotfiles}/nvim";
       recursive = true;
     };
   };
