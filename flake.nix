@@ -27,7 +27,10 @@
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; };
         modules = [
-          ./home.nix
+          ./modules/home.nix
+          ./modules/gpg.nix
+          ./modules/git.nix
+          ./modules/terminals.nix
         ];
       };
     };
