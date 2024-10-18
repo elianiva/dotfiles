@@ -1,6 +1,7 @@
 { lib, pkgs, inputs, config, ... }:
 let
   nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
+  link = config.lib.file.mkOutOfStoreSymlink;
 in
 {
   targets.genericLinux.enable = true;
@@ -42,6 +43,10 @@ in
       rclone
       yt-dlp
       lf # tui file manager
+
+      # editor / workspace management
+      zellij
+      neovim
 
       # git related
       git-filter-repo # useful to remove accidentally committed secrets
@@ -90,12 +95,9 @@ in
       };
     };
 
-    zellij.enable = true;
-
     wezterm = {
       enable = true;
       package = config.lib.nixGL.wrap pkgs.wezterm;
-      extraConfig = builtins.readFile ./wezterm/wezterm.lua;
     };
 
     # NOTE(elianiva): as a backup in case wezterm got borked
@@ -141,14 +143,23 @@ in
     };
   };
 
-  # configuration for zellij
-  home.file.".config/zellij" = {
-    source = ./zellij;
-    recursive = true;
-  };
+  # wezterm produces its own wezterm.lua file which causes conflict
+  xdg.configFile."wezterm/wezterm.lua".enable = false;
 
-  # .profile config
-  home.file.".profile" = {
-    source = ./misc/.profile;
+  # I don't want to rebuild everytime i change these configs
+  home.file = {
+    ".profile".source = link ./misc/.profile;
+    ".config/zellij" = {
+      source = link ./zellij;
+      recursive = true;
+    };
+    ".config/wezterm" = {
+      source = link ./wezterm;
+      recursive = true;
+    };
+    ".config/nvim" = {
+      source = link ./nvim;
+      recursive = true;
+    };
   };
 }
