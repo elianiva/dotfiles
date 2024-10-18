@@ -82,6 +82,8 @@ in
       };
     };
 
+    fish.enable = true;
+
     starship = {
       enable = true;
       settings = {
@@ -100,16 +102,23 @@ in
 
   # wezterm produces its own wezterm.lua file which causes conflict
   xdg.configFile."wezterm/wezterm.lua".enable = false;
+  # fish produces its own wezterm.lua file which causes conflict
+  xdg.configFile."fish/config.fish".enable = false;
 
   # I don't want to rebuild everytime i change these configs
   home.file = {
     ".profile".source = link "${dotfiles}/misc/.profile";
+    ".bashrc".source = link "${dotfiles}/misc/.bashrc";
     ".config/zellij" = {
       source = link "${dotfiles}/zellij";
       recursive = true;
     };
     ".config/nvim" = {
       source = link "${dotfiles}/nvim";
+      recursive = true;
+    };
+    ".config/fish" = {
+      source = link "${dotfiles}/fish";
       recursive = true;
     };
   };
