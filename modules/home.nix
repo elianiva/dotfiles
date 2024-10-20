@@ -53,6 +53,7 @@ in
       yt-dlp
       yazi # tui file manager
       pass
+      yq
 
       # docments
       typst
