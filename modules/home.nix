@@ -54,6 +54,9 @@ in
       yazi # tui file manager
       pass
 
+      # docments
+      typst
+
       # editor / workspace management
       zellij
       neovim

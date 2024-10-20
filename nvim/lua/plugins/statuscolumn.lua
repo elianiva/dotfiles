@@ -38,9 +38,9 @@ return {
           click = "v:lua.ScSa",
           hl = "SignColumn"
         },
-        { text = { builtin.lnumfunc }, click = "v:lua.ScLa", hl = "SignColumn" },
+        { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
         -- extra spacer
-        { text = { " ▕" }, hl = "StatusColumnLine" },
+        { text = { " ▕" } },
         {
           sign = {
             namespace = { "gitsigns" },

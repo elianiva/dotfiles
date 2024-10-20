@@ -10,7 +10,7 @@ return {
     claude = {
       endpoint = "https://api.anthropic.com",
       model = "claude-3-5-sonnet-20240620",
-      api_key_name = "cmd:pass show elianiva/avante",
+      api_key_name = "cmd:pass show elianiva/claude",
       temperature = 0,
       max_tokens = 4096,
     },

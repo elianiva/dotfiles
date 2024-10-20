@@ -5,6 +5,8 @@ return {
     local lualine = require('lualine')
     -- Color table for highlights
     -- stylua: ignore
+
+    -- vscode colors
     local colors = {
       bg       = '#181818',
       fg       = '#bbc2cf',
@@ -18,6 +20,21 @@ return {
       blue     = '#51afef',
       red      = '#ec5f67',
     }
+
+    -- catppuccin colors
+    -- local colors = {
+    --   bg = '#181825',
+    --   fg = '#c6d0f5',
+    --   yellow = '#e5c07b',
+    --   cyan = '#8bd5ca',
+    --   darkblue = '#5b4070',
+    --   green = '#a6e3a1',
+    --   orange = '#f4b8e4',
+    --   violet = '#d8b9d0',
+    --   magenta = '#ca9ee6',
+    --   blue = '#8aadf4',
+    --   red = '#f38ba8',
+    -- }
 
     local conditions = {
       buffer_not_empty = function()

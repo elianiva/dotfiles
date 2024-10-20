@@ -18,8 +18,28 @@ layout {
                 color_white   "#d4d4d4"
                 color_orange  "#ce9178"
 
+                // catppuccin mocha dark
+                // color_fg      "#cdd6f4"
+                // color_fg_alt  "#434558"
+                // color_bg      "#1e1e2e"
+                // color_bg_alt  "#2a2b3c"
+                // color_black   "#cdd6f4"
+                // color_red     "#f38ba8"
+                // color_green   "#a6e3a1"
+                // color_yellow  "#f9e2af"
+                // color_blue    "#89b4fa"
+                // color_magenta "#f5c2e7"
+                // color_cyan    "#94e2d5"
+                // color_white   "#cdd6f4"
+                // color_orange  "#f9e2af"
+
+                // datetime indicator
+                datetime        "#[fg=$fg_alt] {format} "
+                datetime_format "%Y-%m-%d %H:%M"
+                datetime_timezone "Asia/Jakarta"
+
                 format_left   "{mode}#[bg=$bg] {tabs}"
-                format_center "#[bg=$bg,fg=$fg]  Zellij: #[bg=$bg,fg=$fg]{session}"
+                format_center "#[bg=$bg,fg=$fg_alt]  Zellij: #[bg=$bg,fg=$fg_alt]{session}"
                 format_right  "{datetime}"
                 format_space  "#[bg=$bg]"
                 format_hide_on_overlength "true"
@@ -69,10 +89,6 @@ layout {
                 command_git_branch_format      "#[fg=$blue] {stdout} "
                 command_git_branch_interval    "10"
                 command_git_branch_rendermode  "static"
-
-                datetime        "#[fg=$fg] {format} "
-                datetime_format "%Y-%m-%d %H:%M"
-                datetime_timezone "Asia/Jakarta"
             }
         }
     }

@@ -7,6 +7,7 @@ o.backup         = false -- disable backup
 o.number         = true -- enable line number
 o.relativenumber = true -- enable relative line number
 o.cursorline     = true -- enable cursor line
+o.cursorlineopt  = "both"
 o.expandtab      = true -- use spaces instead of tabs
 o.autowrite      = true -- auto write buffer when it's not focused
 o.hidden         = true -- keep hidden buffers

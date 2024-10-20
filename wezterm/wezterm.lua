@@ -11,6 +11,7 @@ config.font = wezterm.font "JetBrains Mono"
 config.font_size = 12.5
 config.line_height = 1.3
 config.color_scheme = 'Vs Code Dark+ (Gogh)'
+-- config.color_scheme = 'catppuccin-mocha'
 config.warn_about_missing_glyphs = false
 
 config.enable_wayland = true
