@@ -7,6 +7,14 @@ in
 {
   targets.genericLinux.enable = true;
 
+  # allow unfree packages
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+    };
+  };
+
   imports = [
     # todo: remove when https://github.com/nix-community/home-manager/pull/5355 gets merged:
     (builtins.fetchurl {
@@ -43,7 +51,8 @@ in
       btop
       rclone
       yt-dlp
-      lf # tui file manager
+      yazi # tui file manager
+      pass
 
       # editor / workspace management
       zellij
@@ -53,8 +62,16 @@ in
       git-filter-repo # useful to remove accidentally committed secrets
       delta
 
+      # rust
       rustc
       cargo
+
+      # devenv / direnv
+      devenv
+      direnv
+
+      # php (yikes, but this is needed for phpactor)
+      php
 
       # terminals, nixgl is needed to access intel drivers from non-nixos environments
       (config.lib.nixGL.wrap pkgs.wezterm)

@@ -23,6 +23,15 @@ return {
       json = "biome",
       jsonc = "biome",
       python = { "isort", "ruff" },
+      php = {
+        command = "php-cs-fixer",
+        args = {
+          "fix",
+          "$FILENAME",
+          "--config=/your/path/to/config/file/[filename].php",
+        },
+        stdin = false,
+      }
     }
   },
   config = function()
@@ -41,9 +50,9 @@ return {
         range = range,
         filter = function(client)
           return client.name ~= "tsserver" and
-            client.name ~= "jsonls" and
-            client.name ~= "sumneko_lua" and
-            client.name ~= "typescript-tools"
+              client.name ~= "jsonls" and
+              client.name ~= "sumneko_lua" and
+              client.name ~= "typescript-tools"
         end
       })
     end, { range = true })

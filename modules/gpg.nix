@@ -27,8 +27,6 @@ in
   services.gpg-agent = {
     enable = pkgs.stdenv.isLinux;
 
-    # Update [darwin.nix](darwin.nix) if changed this section
-    #
     # https://superuser.com/questions/624343/keep-gnupg-credentials-cached-for-entire-user-session
     defaultCacheTtl = day * 1;
     # https://github.com/openbsd/src/blob/862f3f2587ccb85ac6d8602dd1601a861ae5a3e8/usr.bin/ssh/ssh-agent.1#L167-L173
@@ -40,7 +38,6 @@ in
   };
 
   # https://github.com/nix-community/home-manager/blob/release-24.05/modules/programs/gpg.nix
-
   programs.gpg = {
     enable = true;
 
@@ -50,11 +47,9 @@ in
     homedir = "${config.xdg.dataHome}/gnupg";
 
     # - How to read `--list-keys` - https://unix.stackexchange.com/questions/613839/help-understanding-gpg-list-keys-output
-    # - Ed448 in GitHub is not yet supported - https://github.com/orgs/community/discussions/45937
     settings = {
       # https://unix.stackexchange.com/questions/339077/set-default-key-in-gpg-for-signing
       # default-key = "<UPDATE_ME_IN_FLAKE>";
-
       personal-digest-preferences = "SHA512";
     };
   };
