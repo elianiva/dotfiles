@@ -86,12 +86,25 @@ in
 
       # terminals, nixgl is needed to access intel drivers from non-nixos environments
       nixGLIntel
+
+      # fonts
+      jetbrains-mono
+      inter
     ];
 
     username = "elianiva";
     homeDirectory = "/home/elianiva";
 
     stateVersion = "24.05";
+  };
+
+  # enable fontconfig
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      monospace = [ "JetBrainsMono" ];
+      sansSerif = [ "Inter" ];
+    };
   };
 
   programs = {

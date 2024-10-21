@@ -14,7 +14,7 @@ return {
           col = "50%",
         },
         border = {
-          style = "single",
+          style = "solid",
           padding = { 0, 1 },
         },
         size = {
@@ -46,13 +46,13 @@ return {
         },
       },
       hover = {
-        border = "single"
+        border = "solid"
       },
       confirm = {
-        border = "single"
+        border = "solid"
       },
       popup = {
-        border = "single"
+        border = "solid"
       },
     },
     routes = {
@@ -91,7 +91,7 @@ return {
       },
       hover = {
         enabled = true,
-        border = "single"
+        border = "solid"
       },
       signature = {
         enabled = true,

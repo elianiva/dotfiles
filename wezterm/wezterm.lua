@@ -8,10 +8,11 @@ wezterm.on("gui-startup", function()
 end)
 
 config.font = wezterm.font "JetBrains Mono"
+config.freetype_load_target = "Normal"
 config.font_size = 12.5
 config.line_height = 1.3
-config.color_scheme = 'Vs Code Dark+ (Gogh)'
--- config.color_scheme = 'catppuccin-mocha'
+-- config.color_scheme = 'Vs Code Dark+ (Gogh)'
+config.color_scheme = 'rose-pine'
 config.warn_about_missing_glyphs = false
 
 config.enable_wayland = true

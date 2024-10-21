@@ -3,7 +3,7 @@ return {
   opts = {
     on_open = function(win)
       local config = vim.api.nvim_win_get_config(win)
-      config.border = "single"
+      config.border = "none"
       vim.api.nvim_win_set_config(win, config)
     end,
     top_down = false

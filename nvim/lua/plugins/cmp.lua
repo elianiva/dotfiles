@@ -12,13 +12,13 @@ return {
     },
     windows = {
       autocomplete = {
-        border = "single",
+        border = "none",
       },
       documentation = {
-        border = "single"
+        border = "solid"
       },
       signature_help = {
-        border = "single"
+        border = "solid"
       }
     },
     highlight = {

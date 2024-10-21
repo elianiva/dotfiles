@@ -1,40 +1,41 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = { "UIEnter" },
+  enabled = false,
   config = function()
     local lualine = require('lualine')
     -- Color table for highlights
     -- stylua: ignore
 
     -- vscode colors
-    local colors = {
-      bg       = '#181818',
-      fg       = '#bbc2cf',
-      yellow   = '#ECBE7B',
-      cyan     = '#008080',
-      darkblue = '#081633',
-      green    = '#98be65',
-      orange   = '#FF8800',
-      violet   = '#a9a1e1',
-      magenta  = '#c678dd',
-      blue     = '#51afef',
-      red      = '#ec5f67',
-    }
-
-    -- catppuccin colors
     -- local colors = {
-    --   bg = '#181825',
-    --   fg = '#c6d0f5',
-    --   yellow = '#e5c07b',
-    --   cyan = '#8bd5ca',
-    --   darkblue = '#5b4070',
-    --   green = '#a6e3a1',
-    --   orange = '#f4b8e4',
-    --   violet = '#d8b9d0',
-    --   magenta = '#ca9ee6',
-    --   blue = '#8aadf4',
-    --   red = '#f38ba8',
+    --   bg       = '#181818',
+    --   fg       = '#bbc2cf',
+    --   yellow   = '#ECBE7B',
+    --   cyan     = '#008080',
+    --   darkblue = '#081633',
+    --   green    = '#98be65',
+    --   orange   = '#FF8800',
+    --   violet   = '#a9a1e1',
+    --   magenta  = '#c678dd',
+    --   blue     = '#51afef',
+    --   red      = '#ec5f67',
     -- }
+
+    -- rose-pine color
+    local colors = {
+      bg       = '#26233a',
+      fg       = '#e0def4',
+      yellow   = '#f6c177',
+      cyan     = '#9ccfd8',
+      darkblue = '#31748f',
+      green    = '#31748f',
+      orange   = '#ebbcba',
+      violet   = '#c4a7e7',
+      magenta  = '#eb6f92',
+      blue     = '#9ccfd8',
+      red      = '#eb6f92',
+    }
 
     local conditions = {
       buffer_not_empty = function()
@@ -100,7 +101,7 @@ return {
       function()
         return '▊'
       end,
-      color = { fg = colors.blue }, -- Sets highlighting of component
+      color = { fg = colors.blue },      -- Sets highlighting of component
       padding = { left = 0, right = 1 }, -- We don't need space before this
     }
 
@@ -196,7 +197,7 @@ return {
 
     -- Add components to right sections
     ins_right {
-      'o:encoding', -- option component same as &encoding in viml
+      'o:encoding',       -- option component same as &encoding in viml
       fmt = string.upper, -- I'm not sure why it's upper case either ;)
       cond = conditions.hide_in_width,
       color = { fg = colors.green, gui = 'bold' },

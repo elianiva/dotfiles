@@ -40,7 +40,8 @@ return {
         },
         { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
         -- extra spacer
-        { text = { " ▕" } },
+        -- { text = { " ▕" } },
+        { text = { "  " } },
         {
           sign = {
             namespace = { "gitsigns" },
