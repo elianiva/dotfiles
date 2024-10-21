@@ -33,7 +33,8 @@ in
     # ssh-agent sets it as infinite by default. So I can relax here (maybe)
     defaultCacheTtlSsh = day * 30;
     maxCacheTtl = day * 7;
-    pinentryPackage = pkgs.pinentry-tty;
+    # pinentryPackage = pkgs.pinentry-tty;
+    pinentryPackage = pkgs.pinentry-gnome3;
     enableSshSupport = true;
   };
 
