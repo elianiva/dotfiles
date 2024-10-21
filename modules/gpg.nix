@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 # ## FAQ - GPG
 #
@@ -23,6 +23,9 @@ let
   day = 60 * 60 * 24;
 in
 {
+  # prevents gnome sabotaging gpg-agent by disabling all of these services
+  services.gnome-keyring.enable = lib.mkForce false;
+
   # https://github.com/nix-community/home-manager/blob/release-24.05/modules/services/gpg-agent.nix
   services.gpg-agent = {
     enable = pkgs.stdenv.isLinux;
@@ -36,6 +39,7 @@ in
     # pinentryPackage = pkgs.pinentry-tty;
     pinentryPackage = pkgs.pinentry-gnome3;
     enableSshSupport = true;
+    enableFishIntegration = true;
   };
 
   # https://github.com/nix-community/home-manager/blob/release-24.05/modules/programs/gpg.nix

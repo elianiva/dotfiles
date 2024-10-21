@@ -64,4 +64,7 @@ export ICEAUTHORITY="${XDG_CACHE_HOME}ICEauthority"
 export FLYCTL_INSTALL="/home/elianiva/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
+# gpg stuff
+export GPG_TTY=$(tty)
+
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh

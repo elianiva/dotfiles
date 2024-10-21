@@ -19,9 +19,13 @@ in
     # todo: remove when https://github.com/nix-community/home-manager/pull/5355 gets merged:
     (builtins.fetchurl {
       url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
-      sha256 = "01dkfr9wq3ib5hlyq9zq662mp0jl42fw3f6gd2qgdf8l8ia78j7i";
+      sha256 = "sha256:1krclaga358k3swz2n5wbni1b2r7mcxdzr6d7im6b66w3sbpvnb3";
     })
   ];
+
+  nixGL.packages = inputs.nixGL.packages;
+  nixGL.defaultWrapper = "mesa";
+  nixGL.installScripts = [ "mesa" ];
 
   nix = {
     enable = true;
@@ -77,9 +81,11 @@ in
       # php (yikes, but this is needed for phpactor)
       php
 
+      # pinentry
+      pinentry-gnome3
+
       # terminals, nixgl is needed to access intel drivers from non-nixos environments
-      (config.lib.nixGL.wrap pkgs.wezterm)
-      (config.lib.nixGL.wrap pkgs.kitty)
+      nixGLIntel
     ];
 
     username = "elianiva";
@@ -87,8 +93,6 @@ in
 
     stateVersion = "24.05";
   };
-
-  nixGL.prefix = "${nixGLIntel}/bin/nixGLIntel";
 
   programs = {
     # let home manager manages itself
