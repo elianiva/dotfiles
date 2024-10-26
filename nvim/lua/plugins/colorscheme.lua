@@ -14,6 +14,13 @@ return {
           StatusLine = { fg = "love", bg = "love", blend = 10 },
           StatusLineNC = { fg = "subtle", bg = "surface" },
 
+          -- notify
+          NotifyERRORBody = { bg = "surface" },
+          NotifyWARNBody = { bg = "surface" },
+          NotifyINFOBody = { bg = "surface" },
+          NotifyDEBUGBody = { bg = "surface" },
+          NotifyTRACEBody = { bg = "surface" },
+
           -- dark statuscolumn
           SignColumn = { fg = "muted", bg = "surface" },
           FoldColumn = { fg = "muted", bg = "surface" },

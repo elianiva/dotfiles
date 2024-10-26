@@ -14,12 +14,17 @@ return {
     ensure_installed = {
       "html-lsp",
       "css-lsp",
+      "basedpyright",
+      "gopls",
+      "ruff",
       "intelephense",
+      "pint",
       "astro-language-server",
       "tailwindcss-language-server",
       "yaml-language-server",
       "lua-language-server",
-      "json-lsp"
+      "json-lsp",
+      "tinymist"
     }
   },
   config = function(_, opts)

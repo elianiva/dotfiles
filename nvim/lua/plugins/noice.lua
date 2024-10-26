@@ -7,7 +7,6 @@ return {
   },
   opts = {
     views = {
-      -- Clean cmdline_popup + palette
       cmdline_popup = {
         position = {
           row = 10,
@@ -68,6 +67,19 @@ return {
         },
         view = "mini",
       },
+      {
+        filter = {
+          event = "lsp",
+          any = {
+             { find = "scanned" }
+          }
+        },
+        opts = { skip = true }
+      },
+      {
+        view = "notify",
+        filter = { event = "msg_showmode" },
+      },
     },
     markdown = {
       hover = {
@@ -100,7 +112,7 @@ return {
         },
         ---@type NoiceViewOptions
         opts = {
-          border = 'single'
+          border = 'solid'
         }
       },
     },

@@ -28,34 +28,6 @@ noremap("N", '"nN"[v:searchforward]', {
 
 nnoremap("<C-n>", "<CMD>Neotree toggle<CR>", { desc = "Toggle NeoTree" })
 
--- resize terminal window
-tnoremap("<Left>", "<C-\\><C-n>:vertical resize +2<CR>", {
-  desc = "Resize terminal window to the left (+2)",
-})
-tnoremap("<Right>", "<C-\\><C-n>:vertical resize -2<CR>", {
-  desc = "Resize terminal window to the right (-2)",
-})
-tnoremap("<Up>", "<C-\\><C-n>:resize +2<CR>", {
-  desc = "Resize terminal window to the top (+2)",
-})
-tnoremap("<Down>", "<C-\\><C-n>:resize -2<CR>", {
-  desc = "Resize terminal window to the bottom (-2)",
-})
-
--- resize buffer window
-nnoremap("<Left>", ":vertical resize +2<CR>", {
-  desc = "Resize buffer to the left",
-})
-nnoremap("<Right>", ":vertical resize -2<CR>", {
-  desc = "Resize buffer to the right",
-})
-nnoremap("<Up>", ":resize +2<CR>", {
-  desc = "Resize buffer to the top",
-})
-nnoremap("<Down>", ":resize -2<CR>", {
-  desc = "Resize buffer to the bottom",
-})
-
 -- Better movement between windows
 nnoremap("<C-h>", "<C-w><C-h>", { desc = "Go to the left window" })
 nnoremap("<C-l>", "<C-w><C-l>", { desc = "Go to the right window" })

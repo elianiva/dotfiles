@@ -6,35 +6,26 @@ return {
   keys = {
     {
       "<leader>cf",
-      function()
-        require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
-      end,
+      "<cmd>Format<cr>",
       mode = { "n", "v" },
       desc = "Format Injected Langs",
     },
   },
   opts = {
     formatters_by_ft = {
-      lua = "stylua",
-      javascript = "biome",
-      javascriptreact = "biome",
-      typescript = "biome",
-      typescriptreact = "biome",
-      json = "biome",
-      jsonc = "biome",
+      lua = { "stylua" },
+      javascript = { "biome" },
+      javascriptreact = { "biome" },
+      typescript = { "biome" },
+      typescriptreact = { "biome" },
+      json = { "biome" },
+      jsonc = { "biome" },
       python = { "isort", "ruff" },
-      php = {
-        command = "php-cs-fixer",
-        args = {
-          "fix",
-          "$FILENAME",
-          "--config=/your/path/to/config/file/[filename].php",
-        },
-        stdin = false,
-      }
+      php = { "pint" }
     }
   },
-  config = function()
+  config = function(_, opts)
+    require("conform").setup(opts)
     vim.api.nvim_create_user_command("Format", function(args)
       local range = nil
       if args.count ~= -1 then

@@ -152,12 +152,6 @@ function M.lsp.additional_mappings(bufnr)
     buffer = bufnr,
   })
 
-  vim.keymap.set("n", "<Leader>gf", "<cmd>Format<cr>", {
-    desc = "Format current document (using conform)",
-    noremap = true,
-    silent = true,
-  })
-
   vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition, {
     desc = "Go to symbol definition",
     noremap = true,
