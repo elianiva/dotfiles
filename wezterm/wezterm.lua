@@ -12,7 +12,7 @@ config.freetype_load_target = "Normal"
 config.font_size = 12.5
 config.line_height = 1.3
 -- config.color_scheme = 'Vs Code Dark+ (Gogh)'
-config.color_scheme = 'rose-pine'
+config.color_scheme = 'rose-pine-dawn'
 config.warn_about_missing_glyphs = false
 
 config.enable_wayland = true
@@ -22,7 +22,7 @@ config.front_end = "WebGpu"
 config.default_prog = { 'zellij'  }
 
 config.enable_tab_bar = false
-config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "RESIZE"
 
 local padding = 4
 config.window_padding = {

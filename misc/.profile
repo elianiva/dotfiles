@@ -40,12 +40,12 @@ export PATH="$HOME/.dotnet/tools:$PATH"
 # export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Flutter stuff
-export FLUTTER_ROOT="$ANDROID_HOME/flutter"
-export ANDROID_HOME="$HOME/Dev/android"
-export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
-export PATH="$ANDROID_HOME/flutter/bin:$PATH"
-export PATH="$ANDROID_HOME/emulator:$PATH"
-export PATH="$ANDROID_HOME/platform-tools/:$PATH"
+# export FLUTTER_ROOT="$ANDROID_HOME/flutter"
+# export ANDROID_HOME="$HOME/Dev/android"
+# export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+# export PATH="$ANDROID_HOME/flutter/bin:$PATH"
+# export PATH="$ANDROID_HOME/emulator:$PATH"
+# export PATH="$ANDROID_HOME/platform-tools/:$PATH"
 export CHROME_EXECUTABLE="/usr/bin/brave"
 
 # Fcitx5 Stuff

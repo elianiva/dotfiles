@@ -1,4 +1,5 @@
-// If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
+theme "rose-pine-dawn"
+
 keybinds {
     normal clear-defaults=true {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
@@ -272,30 +273,9 @@ pane_frames false
 //
 // scrollback_lines_to_serialize 10000
 
-// Define color themes for Zellij
-// For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
-// Once these themes are defined, one of them should to be selected in the "theme" section of this file
-//
-themes {
-     // default {
-     //     fg 1
-     //     bg 10
-     //     black 20
-     //     red 30
-     //     green 40
-     //     yellow 50
-     //     blue 60
-     //     magenta 70
-     //     cyan 80
-     //     white 90
-     //     orange 254
-     // }
- }
-
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-// theme "default"
 
 // The name of the default layout to load on startup
 // Default: "default"

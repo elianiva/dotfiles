@@ -25,3 +25,6 @@ function fish_mode_prompt
   end
   set_color normal
 end
+
+# opam configuration
+source /home/elianiva/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

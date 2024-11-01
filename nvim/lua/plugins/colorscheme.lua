@@ -47,7 +47,7 @@ return {
           Search = { fg = "text", bg = "love", blend = 20, inherit = false },
         }
       }
-      vim.cmd.colorscheme("rose-pine")
+      vim.cmd.colorscheme("rose-pine-dawn")
     end
   },
   {
