@@ -15,21 +15,13 @@ in
     };
   };
 
-  imports = [
-    # todo: remove when https://github.com/nix-community/home-manager/pull/5355 gets merged:
-    (builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
-      sha256 = "sha256:1krclaga358k3swz2n5wbni1b2r7mcxdzr6d7im6b66w3sbpvnb3";
-    })
-  ];
-
   nixGL.packages = inputs.nixGL.packages;
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
 
   nix = {
     enable = true;
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     settings = {
       substituters = [
         "https://cache.nixos.org"
