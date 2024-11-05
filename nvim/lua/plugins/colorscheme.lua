@@ -29,18 +29,34 @@ return {
           CursorLineFold = { bg = "surface" },
 
           -- telescope
-          TelescopeBorder = { fg = "overlay", bg = "overlay" },
-          TelescopeNormal = { fg = "subtle", bg = "overlay" },
-          TelescopeSelection = { fg = "text", bg = "highlight_med" },
-          TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
-          TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
+          -- TelescopeBorder = { fg = "overlay", bg = "overlay" },
+          -- TelescopeNormal = { fg = "subtle", bg = "overlay" },
+          -- TelescopeSelection = { fg = "text", bg = "highlight_med" },
+          -- TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
+          -- TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
+          --
+          -- TelescopeTitle = { fg = "base", bg = "love" },
+          -- TelescopePromptTitle = { fg = "base", bg = "pine" },
+          -- TelescopePreviewTitle = { fg = "base", bg = "iris" },
+          --
+          -- TelescopePromptNormal = { fg = "text", bg = "surface" },
+          -- TelescopePromptBorder = { fg = "surface", bg = "surface" },
+
+          TelescopeNormal = { fg = "subtle", bg = "base" },
+          TelescopeSelection = { fg = "text", bg = "base" },
+          TelescopeSelectionCaret = { fg = "love", bg = "base" },
+          TelescopeMultiSelection = { fg = "text", bg = "base" },
 
           TelescopeTitle = { fg = "base", bg = "love" },
-          TelescopePromptTitle = { fg = "base", bg = "pine" },
-          TelescopePreviewTitle = { fg = "base", bg = "iris" },
+          TelescopeResultsBorder = { fg = "love", bg = "base" },
 
-          TelescopePromptNormal = { fg = "text", bg = "surface" },
-          TelescopePromptBorder = { fg = "surface", bg = "surface" },
+          TelescopePromptTitle = { fg = "base", bg = "pine" },
+          TelescopePromptBorder = { fg = "pine", bg = "base" },
+
+          TelescopePreviewTitle = { fg = "base", bg = "iris" },
+          TelescopePreviewBorder = { fg = "iris", bg = "base" },
+
+          TelescopePromptNormal = { fg = "text", bg = "base" },
 
           -- better search
           CurSearch = { fg = "base", bg = "love", inherit = false },

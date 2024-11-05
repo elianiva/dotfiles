@@ -36,115 +36,116 @@ return {
 		{ "<leader>fli", telescope_fn("lsp_implementations"), desc = "LSP Implementations" },
 		{ "<leader>flr", telescope_fn("lsp_references"), desc = "LSP References" },
 	},
-	config = function(_, opts)
+	config = function()
 		local telescope = require("telescope")
+		telescope.setup({
+			extensions = {
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown({
+						width = 0.5,
+						prompt = " ",
+						height = 0.4,
+						previewer = false,
+					}),
+				},
+				fzf = {
+					fuzzy = true,
+					override_generic_sorter = true,
+					override_file_sorter = true,
+				},
+			},
+			defaults = {
+				scroll_strategy = "cycle",
+				selection_strategy = "reset",
+				layout_strategy = "flex",
+				borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+				layout_config = {
+					horizontal = {
+						width = 0.8,
+						height = 0.8,
+						preview_width = 0.5,
+					},
+					vertical = {
+						height = 0.8,
+						preview_height = 0.5,
+					},
+				},
+				mappings = {
+					i = {
+						["<C-j>"] = function(...)
+							require("telescope.actions").move_selection_next(...)
+						end,
+						["<C-k>"] = function(...)
+							require("telescope.actions").move_selection_previous(...)
+						end,
+						["<C-v>"] = function(...)
+							require("telescope.actions").select_vertical(...)
+						end,
+						["<C-x>"] = function(...)
+							require("telescope.actions").select_horizontal(...)
+						end,
+						["<C-t>"] = function(...)
+							require("telescope.actions").select_tab(...)
+						end,
+						["<C-c>"] = function(...)
+							require("telescope.actions").close(...)
+						end,
+						["<C-u>"] = function(...)
+							require("telescope.actions").preview_scrolling_up(...)
+						end,
+						["<C-d>"] = function(...)
+							require("telescope.actions").preview_scrolling_down(...)
+						end,
+						["<C-q>"] = function(...)
+							require("telescope.actions").smart_send_to_qflist(...)
+							require("telescope.actions").open_qflist(...)
+						end,
+						["<Tab>"] = function(...)
+							require("telescope.actions").toggle_selection(...)
+						end,
+					},
+					n = {
+						["<CR>"] = function(...)
+							require("telescope.actions").select_default(...)
+							require("telescope.actions").center(...)
+						end,
+						["<C-v>"] = function(...)
+							require("telescope.actions").select_vertical(...)
+						end,
+						["<C-x>"] = function(...)
+							require("telescope.actions").select_horizontal(...)
+						end,
+						["<C-t>"] = function(...)
+							require("telescope.actions").select_tab(...)
+						end,
+						["<Esc>"] = function(...)
+							require("telescope.actions").close(...)
+						end,
+						["j"] = function(...)
+							require("telescope.actions").move_selection_next(...)
+						end,
+						["k"] = function(...)
+							require("telescope.actions").move_selection_previous(...)
+						end,
+						["<C-u>"] = function(...)
+							require("telescope.actions").preview_scrolling_up(...)
+						end,
+						["<C-d>"] = function(...)
+							require("telescope.actions").preview_scrolling_down(...)
+						end,
+						["<C-q>"] = function(...)
+							require("telescope.actions").send_to_qflist(...)
+						end,
+						["<Tab>"] = function(...)
+							require("telescope.actions").toggle_selection(...)
+						end,
+					},
+				},
+			},
+		})
+
+    -- load extensions after setting up telescope
 		telescope.load_extension("ui-select")
 		telescope.load_extension("frecency")
-		telescope.setup(opts)
 	end,
-	opts = {
-		extensions = {
-			["ui-select"] = {
-        require("telescope.themes").get_dropdown({
-          width = 0.5,
-          prompt = " ",
-          height = 6,
-          previewer = false,
-        })
-			},
-			fzf = {
-				fuzzy = true,
-				override_generic_sorter = true,
-				override_file_sorter = true,
-			},
-		},
-		defaults = {
-			scroll_strategy = "cycle",
-			selection_strategy = "reset",
-			layout_strategy = "flex",
-			borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-			layout_config = {
-				horizontal = {
-					width = 0.8,
-					height = 0.8,
-					preview_width = 0.6,
-				},
-				vertical = {
-					height = 0.8,
-					preview_height = 0.5,
-				},
-			},
-			mappings = {
-				i = {
-					["<C-j>"] = function(...)
-						require("telescope.actions").move_selection_next(...)
-					end,
-					["<C-k>"] = function(...)
-						require("telescope.actions").move_selection_previous(...)
-					end,
-					["<C-v>"] = function(...)
-						require("telescope.actions").select_vertical(...)
-					end,
-					["<C-x>"] = function(...)
-						require("telescope.actions").select_horizontal(...)
-					end,
-					["<C-t>"] = function(...)
-						require("telescope.actions").select_tab(...)
-					end,
-					["<C-c>"] = function(...)
-						require("telescope.actions").close(...)
-					end,
-					["<C-u>"] = function(...)
-						require("telescope.actions").preview_scrolling_up(...)
-					end,
-					["<C-d>"] = function(...)
-						require("telescope.actions").preview_scrolling_down(...)
-					end,
-					["<C-q>"] = function(...)
-						require("telescope.actions").smart_send_to_qflist(...)
-						require("telescope.actions").open_qflist(...)
-					end,
-					["<Tab>"] = function(...)
-						require("telescope.actions").toggle_selection(...)
-					end,
-				},
-				n = {
-					["<CR>"] = function(...)
-						require("telescope.actions").select_default(...)
-						require("telescope.actions").center(...)
-					end,
-					["<C-v>"] = function(...)
-						require("telescope.actions").select_vertical(...)
-					end,
-					["<C-x>"] = function(...)
-						require("telescope.actions").select_horizontal(...)
-					end,
-					["<C-t>"] = function(...)
-						require("telescope.actions").select_tab(...)
-					end,
-					["<Esc>"] = function(...)
-						require("telescope.actions").close(...)
-					end,
-					["j"] = function(...)
-						require("telescope.actions").move_selection_next(...)
-					end,
-					["k"] = function(...)
-						require("telescope.actions").move_selection_previous(...)
-					end,
-					["<C-u>"] = function(...)
-						require("telescope.actions").preview_scrolling_up(...)
-					end,
-					["<C-d>"] = function(...)
-						require("telescope.actions").preview_scrolling_down(...)
-					end,
-					["<C-q>"] = function(...)
-						require("telescope.actions").send_to_qflist(...)
-					end,
-					["<Tab>"] = function(...)
-						require("telescope.actions").toggle_selection(...)
-					end,
-				},
-			},
-		},
-	},
 }

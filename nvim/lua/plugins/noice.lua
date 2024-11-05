@@ -53,6 +53,10 @@ return {
       popup = {
         border = "solid"
       },
+      popupmenu = {
+        relative = "editor",
+        border = "solid",
+      }
     },
     routes = {
       {
