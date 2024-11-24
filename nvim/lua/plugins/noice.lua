@@ -3,7 +3,6 @@ return {
   event = "VeryLazy",
   dependencies = {
     "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
   },
   opts = {
     views = {
@@ -128,7 +127,6 @@ return {
     },
     notify = {
       enabled = true,
-      view = "mini",
     },
     messages = {
       enabled = false,

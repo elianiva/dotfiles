@@ -58,10 +58,9 @@ o.listchars      = {
 } -- set listchars
 o.mouse          = "nvi" -- enable mouse support in normal, insert, and visual mode
 o.shortmess      = "csa" -- disable some stuff on shortmess
-o.signcolumn     = "yes:1" -- enable sign column all the time 4 column
-o.shell          = "/usr/bin/bash" -- use bash instead of zsh
+-- o.signcolumn     = "yes:1" -- enable sign column all the time 4 column
 -- o.colorcolumn    = { "80" } -- 80 chars color column
-o.laststatus     = 3 -- always enable statusline
+o.shell          = "/usr/bin/bash" -- use bash instead of zsh
 o.pumheight      = 10 -- limit completion items
 o.re             = 0 -- set regexp engine to auto
 o.scrolloff      = 2 -- make scrolling better
@@ -73,3 +72,15 @@ o.timeoutlen     = 400 -- faster timeout wait time
 o.updatetime     = 1000 -- set faster update time
 o.joinspaces     = false
 o.diffopt:append { "algorithm:histogram", "indent-heuristic" }
+
+-- stolen from tjdevries
+o.formatoptions = o.formatoptions
+	- "a" -- Auto formatting is BAD.
+	- "t" -- Don't auto format my code. I got linters for that.
+	+ "c" -- In general, I like it when comments respect textwidth
+	+ "q" -- Allow formatting comments w/ gq
+	- "o" -- O and o, don't continue comments
+	- "r" -- But do continue when pressing enter.
+	+ "n" -- Indent past the formatlistpat, not underneath it.
+	+ "j" -- Auto-remove comments if possible.
+	- "2" -- I'm not in gradeschool anymore

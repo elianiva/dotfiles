@@ -2,10 +2,27 @@ return {
   "lewis6991/gitsigns.nvim",
   cond = function()
     -- only load on git repo
-    local path = vim.uv.cwd() .. "/.git"
-    local ok, err = vim.uv.fs_stat(path)
+    local git_path = vim.uv.cwd() .. "/.git"
+    local ok, err = vim.uv.fs_stat(git_path)
+
+    if not ok then
+      local gitignore_path = vim.uv.cwd() .. "/.gitignore"
+      ok, err = vim.uv.fs_stat(gitignore_path)
+    end
+
     return ok and err == nil
   end,
+  keys = {
+    { "<leader>gsl", "<cmd>Gitsigns blame_line<cr>", desc = "Blame Line" },
+    { "<leader>gsb", "<cmd>Gitsigns blame<cr>", desc = "Blame Buffer" },
+    { "<leader>gsd", "<cmd>Gitsigns diffthis<cr>", desc = "Diff This" },
+    { "<leader>gss", "<cmd>Gitsigns stage_hunk<cr>", desc = "Stage Hunk" },
+    { "<leader>gsp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview Hunk" },
+    { "<leader>gsr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Hunk" },
+    { "<leader>gsR", "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Buffer" },
+    { "<leader>gsh", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Hunk" },
+    { "<leader>gsH", "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Buffer" },
+  },
   opts = {
     current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
     current_line_blame_opts = {
@@ -52,17 +69,6 @@ return {
       end, "Prev Hunk")
       map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
       map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
-      map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-      map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-      map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-      map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-      map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-      map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
-      map("n", "<leader>ghb", function() gs.blame_line() end, "Blame Line")
-      map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
-      map("n", "<leader>ghd", gs.diffthis, "Diff This")
-      map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
-      map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
     end,
   },
 }

@@ -28,7 +28,7 @@ abbr -a awsconf "nvim ~/.config/awesome/rc.lua"
 abbr -a aliasconf "nvim ~/.config/aliasrc"
 abbr -a vnim "nvim" # I got this typo quit a lot
 
-abbr -a ls "exa --colour=always --group-directories-first --sort=name"
+abbr -a ls "eza --colour=always --group-directories-first --sort=name"
 
 # shortcut for youtube-dl when downloading music
 abbr -a ytmusic 'yt-dlp -f251 -x --embed-metadata --embed-thumbnail'

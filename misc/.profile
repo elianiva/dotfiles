@@ -16,9 +16,6 @@ export GOPATH="$HOME/.local/go"
 export GOBIN="$HOME/.local/go/bin"
 # export XDG_DATA_DIRS="$HOME/.nix-profile/share:/usr/share:/usr/local/share:$HOME/.local/share:$XDG_DATA_DIRS"
 
-# Nix stuff
-# export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
-
 # PATH stuff
 export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"

@@ -14,12 +14,29 @@ return {
           StatusLine = { fg = "love", bg = "love", blend = 10 },
           StatusLineNC = { fg = "subtle", bg = "surface" },
 
+          -- less intrusive supermaven suggestion colour
+          SupermavenSuggestion = { fg = "muted", blend = 10 },
+
           -- notify
           NotifyERRORBody = { bg = "surface" },
           NotifyWARNBody = { bg = "surface" },
           NotifyINFOBody = { bg = "surface" },
           NotifyDEBUGBody = { bg = "surface" },
           NotifyTRACEBody = { bg = "surface" },
+
+          -- diagnostics
+          DiagnosticSignInfo = { fg = "foam", bg = "surface" },
+          DiagnosticSignHint = { fg = "iris", bg = "surface" },
+          DiagnosticSignWarn = { fg = "gold", bg = "surface" },
+          DiagnosticSignError = { fg = "love", bg = "surface" },
+
+          -- gitsigns
+          GitSignsAdd = { fg = "foam" },
+          GitSignsChange = { fg = "iris" },
+          GitSignsDelete = { fg = "love" },
+          GitSignsStagedAdd = { fg = "foam" },
+          GitSignsStagedChange = { fg = "iris" },
+          GitSignsStagedDelete = { fg = "love" },
 
           -- dark statuscolumn
           SignColumn = { fg = "muted", bg = "surface" },
@@ -52,15 +69,19 @@ return {
 
           TelescopePromptTitle = { fg = "base", bg = "pine" },
           TelescopePromptBorder = { fg = "pine", bg = "base" },
+          TelescopePromptNormal = { fg = "text", bg = "base" },
 
           TelescopePreviewTitle = { fg = "base", bg = "iris" },
           TelescopePreviewBorder = { fg = "iris", bg = "base" },
 
-          TelescopePromptNormal = { fg = "text", bg = "base" },
-
           -- better search
           CurSearch = { fg = "base", bg = "love", inherit = false },
           Search = { fg = "text", bg = "love", blend = 20, inherit = false },
+
+          -- flush blink.cmp background
+          BlinkCmpMenu = { bg = "base" },
+          BlinkCmpMenuBorder = { bg = "base" },
+          BlinkCmpMenuSelection = { bg = "love", blend = 10 },
         }
       }
       vim.cmd.colorscheme("rose-pine-dawn")

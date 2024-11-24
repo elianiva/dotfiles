@@ -3,6 +3,18 @@
   programs.gh = {
     enable = true;
   };
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui.theme = {
+        lightTheme = true;
+      };
+      git.paging = {
+        colorArg = "always";
+        useConfig = true;
+      };
+    };
+  };
   programs.git = {
     enable = true;
     userName = "elianiva";
@@ -42,6 +54,7 @@
         syntax-theme = "base16";
         side-by-side = false;
         file-modified-label = "modified:";
+        light = true;
       };
       init.defaultBranch = "master";
     };

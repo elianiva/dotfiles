@@ -24,18 +24,6 @@ vim.cmd([[
   autocmd BufEnter term://* startinsert
 ]])
 
--- stolen from tjdevries
-vim.opt.formatoptions = vim.opt.formatoptions
-	- "a" -- Auto formatting is BAD.
-	- "t" -- Don't auto format my code. I got linters for that.
-	+ "c" -- In general, I like it when comments respect textwidth
-	+ "q" -- Allow formatting comments w/ gq
-	- "o" -- O and o, don't continue comments
-	- "r" -- But do continue when pressing enter.
-	+ "n" -- Indent past the formatlistpat, not underneath it.
-	+ "j" -- Auto-remove comments if possible.
-	- "2" -- I'm not in gradeschool anymore
-
 -- prevent typo when pressing `wq` or `q`
 vim.cmd([[
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
@@ -46,3 +34,18 @@ cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('
 
 -- for some reason vim-zig adds autoformatting on save
 vim.g.zig_fmt_autosave = false
+
+vim.diagnostic.config({
+  float = {
+    border = "single",
+    severity_sort = true,
+  },
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
+		},
+	},
+})

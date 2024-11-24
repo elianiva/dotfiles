@@ -41,7 +41,6 @@ in
     packages = with pkgs; [
       # cli tools
       dust
-      lazygit
       ripgrep
       fd
       btop
@@ -50,8 +49,10 @@ in
       yazi # tui file manager
       pass
       yq
+      zoxide # jump between directories faster
+      eza # better ls
 
-      # docments
+      # documents
       typst
 
       # editor / workspace management
@@ -88,6 +89,13 @@ in
     homeDirectory = "/home/elianiva";
 
     stateVersion = "24.05";
+
+    sessionVariables = {
+      # Make it possible to handle "xterm-kitty" in SSH remotes or lima guest VM with tiny filesize and setups. See GH-932
+      #
+      # Don't set this in NixOS desktop. It has own value.
+      TERMINFO_DIRS = "${pkgs.kitty.terminfo}/share/terminfo";
+    };
   };
 
   # enable fontconfig
@@ -112,6 +120,16 @@ in
       };
     };
 
+    fzf = {
+      enable = true;
+      # https://github.com/junegunn/fzf/blob/d579e335b5aa30e98a2ec046cb782bbb02bc28ad/README.md#respecting-gitignore
+      defaultCommand = "${pkgs.fd}/bin/fd --type f --strip-cwd-prefix --hidden --follow --exclude .git";
+      defaultOptions = [
+        # --walker*: Default file filtering will be changed by this option if FZF_DEFAULT_COMMAND is not set: https://github.com/junegunn/fzf/pull/3649/files
+        "--walker-skip '.git,node_modules,.direnv,vendor,dist'"
+      ];
+    };
+
     fish.enable = true;
 
     starship = {
@@ -130,9 +148,7 @@ in
     };
   };
 
-  # wezterm produces its own wezterm.lua file which causes conflict
-  xdg.configFile."wezterm/wezterm.lua".enable = false;
-  # fish produces its own wezterm.lua file which causes conflict
+  # fish produces its own config file which causes conflict
   xdg.configFile."fish/config.fish".enable = false;
 
   # I don't want to rebuild everytime i change these configs

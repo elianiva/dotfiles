@@ -26,6 +26,11 @@ return {
       "<leader>d",
       function() require("which-key").show({ group = "d" }) end,
       desc = "Dadbod",
+    },
+    {
+      "<leader>gs",
+      function() require("which-key").show({ group = "gs" }) end,
+      desc = "Gitsigns",
     }
   }
 }

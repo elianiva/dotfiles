@@ -8,7 +8,8 @@ return {
 		keymap = "enter",
 		windows = {
 			autocomplete = {
-				border = "none",
+				border = "single",
+        draw = "reversed",
 			},
 			documentation = {
 				border = "solid",
@@ -33,5 +34,10 @@ return {
 				show_on_insert_on_trigger_character = false,
 			},
 		},
+    fuzzy = {
+      use_frecency = false,
+      use_proximity = false,
+      sorts = { 'label', 'kind', 'score' },
+    }
 	},
 }

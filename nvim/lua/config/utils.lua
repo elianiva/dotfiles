@@ -169,13 +169,11 @@ function M.lsp.additional_mappings(bufnr)
   vim.keymap.set("n", "<Leader>gD", function()
     vim.diagnostic.open_float({
       bufnr = bufnr,
-      severity_sort = true,
       header = "",
       scope = "line",
-      border = "solid"
     })
   end, {
-    desc = "See diagnostics in floating window",
+    desc = "See line diagnostics in floating window",
     noremap = true,
     silent = true,
     buffer = bufnr,
@@ -197,7 +195,7 @@ function M.lsp.additional_mappings(bufnr)
 
   vim.keymap.set("n", "]d", function()
     vim.diagnostic.goto_next {
-      float = { show_header = false, border = "solid" },
+      float = { show_header = false },
     }
   end, {
     desc = "Go to next diagnostic",
@@ -208,7 +206,7 @@ function M.lsp.additional_mappings(bufnr)
 
   vim.keymap.set("n", "[d", function()
     vim.diagnostic.goto_prev {
-      float = { show_header = false, border = "solid" },
+      float = { show_header = false },
     }
   end, {
     desc = "Go to previous diagnostic",
