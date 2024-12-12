@@ -29,30 +29,47 @@ return {
 	},
 	config = function()
 		local mason_lsp = require("mason-lspconfig")
-		mason_lsp.setup_handlers({
-			function(server_name)
-				-- ignore these servers, we only use mason to install the binary
-				if server_name == "ts_ls" then
-					return
-				end
+		mason_lsp.setup({
+			ensure_installed = {},
+			automatic_installation = false,
+			handlers = {
+				function(server_name)
+					if server_name == "ts_ls" then
+						return
+					end
 
-				-- use custom capabilities for phpactor
-				if server_name == "phpactor" then
-					require("lspconfig")[server_name].setup({
-						capabilities = phpactor_capabilities,
-					})
-					return
-				end
-				if server_name == "intelephense" then
-					require("lspconfig")[server_name].setup({
-						capabilities = intelephense_capabilities,
-					})
-					return
-				end
-
-				if server_name == "basedpyright" then
 					require("lspconfig")[server_name].setup({
 						capabilities = capabilities,
+						on_attach = function()
+							-- disable inlay hints
+							vim.lsp.inlay_hint.enable(false)
+						end,
+					})
+				end,
+
+				["ts_ls"] = function()
+					-- disable ts_ls
+				end,
+
+				["phpactor"] = function()
+					require("lspconfig").phpactor.setup({
+						capabilities = phpactor_capabilities,
+					})
+				end,
+
+				["intelephense"] = function()
+					require("lspconfig").intelephense.setup({
+						capabilities = intelephense_capabilities,
+					})
+				end,
+
+				["basedpyright"] = function()
+					require("lspconfig").basedpyright.setup({
+						capabilities = capabilities,
+            on_attach = function()
+              -- disable inlay hints
+              vim.lsp.inlay_hint.enable(false)
+            end,
 						settings = {
 							basedpyright = {
 								analysis = {
@@ -66,24 +83,15 @@ return {
 							},
 						},
 					})
-					return
-				end
-
-				require("lspconfig")[server_name].setup({
-					capabilities = capabilities,
-					on_attach = function(client)
-            -- disable inlay hints
-            vim.lsp.inlay_hint.enable(false)
-          end,
-				})
-			end,
+				end,
+			},
 		})
 
-    -- other manual stuff that comes from nix shell
-    local lsp = require("lspconfig")
-    lsp.ocamlls.setup {
-      cmd = { "ocamllsp", "--stdio" },
-      filetypes = { "ocaml", "ocaml_interface" },
-    }
+		-- other manual stuff that comes from nix shell
+		local lsp = require("lspconfig")
+		lsp.ocamlls.setup({
+			cmd = { "ocamllsp", "--stdio" },
+			filetypes = { "ocaml", "ocaml_interface" },
+		})
 	end,
 }

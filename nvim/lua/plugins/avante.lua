@@ -2,15 +2,22 @@
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  enabled = false,
+  enabled = true,
   lazy = false,
   version = false,
   opts = {
-    provider = "claude",
-    claude = {
-      endpoint = "https://api.anthropic.com",
-      model = "claude-3-5-sonnet-20240620",
-      api_key_name = "cmd:pass show elianiva/claude",
+    provider = "openai",
+    -- claude = {
+    --   endpoint = "https://api.anthropic.com",
+    --   model = "claude-3-5-sonnet-20240620",
+    --   api_key_name = "cmd:pass show elianiva/claude",
+    --   temperature = 0,
+    --   max_tokens = 4096,
+    -- },
+    openai = {
+      endpoint = "https://api.deepseek.com",
+      model = "deepseek-coder",
+      api_key_name = "cmd:pass show elianiva/deepseek",
       temperature = 0,
       max_tokens = 4096,
     },

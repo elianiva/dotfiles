@@ -5,11 +5,10 @@ return {
 	version = "v0.*", -- last release is too old
 	event = "InsertEnter",
 	opts = {
-		keymap = "enter",
+    keymap = { preset = 'enter' },
 		windows = {
 			autocomplete = {
 				border = "single",
-        draw = "reversed",
 			},
 			documentation = {
 				border = "solid",
@@ -35,8 +34,8 @@ return {
 			},
 		},
     fuzzy = {
-      use_frecency = false,
-      use_proximity = false,
+      use_frecency = true,
+      use_proximity = true,
       sorts = { 'label', 'kind', 'score' },
     }
 	},

@@ -12,19 +12,26 @@ return {
 		-- stylua: ignore end
 	},
 	opts = {
-		bigfile = { enabled = true },
+		bigfile = {
+			enabled = true,
+			notify = true,
+		},
 		notifier = {
 			enabled = true,
 			timeout = 3000,
 			style = "compact",
 			top_down = false,
-      margin = {
-        bottom = 1,
-      }
+			margin = {
+				bottom = 1,
+			},
 		},
 		quickfile = { enabled = true },
+		indent = {
+			enabled = true,
+			hl = "SnacksIndent",
+		},
 		statuscolumn = {
-      enabled = false,
+			enabled = false,
 		},
 		words = { enabled = true },
 		styles = {

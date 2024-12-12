@@ -4,7 +4,7 @@ return {
     name = "rose-pine",
     init = function()
       vim.opt.laststatus = 3 -- Or 3 for global statusline
-      vim.opt.statusline = " ♥  %f %m %r %= %y %l:%c   "
+      vim.opt.statusline = " %f %m %r %= %y %l:%c   "
     end,
     config = function()
       require("rose-pine").setup {
@@ -82,38 +82,12 @@ return {
           BlinkCmpMenu = { bg = "base" },
           BlinkCmpMenuBorder = { bg = "base" },
           BlinkCmpMenuSelection = { bg = "love", blend = 10 },
+
+          -- snacks
+          SnacksIndent = { fg = "highlight_high", blend = 10 },
         }
       }
       vim.cmd.colorscheme("rose-pine-dawn")
     end
-  },
-  {
-    "Mofiqul/vscode.nvim",
-    lazy = false,
-    enabled = false,
-    config = function()
-      local c = require('vscode.colors').get_colors()
-      local dark = "#181818";
-      require("vscode").setup {
-        italic_comments = true,
-        underline_links = true,
-        group_overrides = {
-          FloatBorder = { bg = "NONE", fg = c.vscLineNumber },
-          PMenu = { bg = "NONE" },
-          NormalFloat = { bg = "NONE" },
-          SignColumn = { fg = c.vscLineNumber, bg = dark },
-          FoldColumn = { fg = c.vscLineNumber, bg = dark },
-          LineNr = { fg = c.vscLineNumber, bg = dark },
-          CursorLineNr = { fg = c.vscFront, bg = dark },
-          CursorLineFold = { bg = dark },
-        }
-      }
-      require("vscode").load()
-      vim.cmd [[
-        hi link BlinkCmpKindFolder BlinkCmpKindFile
-        hi link BlinkCmpFloatBorder FloatBorder
-        hi link BlinkCmpMenuBorder FloatBorder
-      ]]
-    end,
   },
 }

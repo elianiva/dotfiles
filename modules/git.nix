@@ -24,7 +24,9 @@
       core = {
         compression = 9;
         editor = "nvim";
-        pager = "delta";
+      };
+      diff = {
+        external = "difft";
       };
       pull.rebase = false;
       commit.gpgsign = true;
@@ -49,12 +51,15 @@
           ];
         };
       };
-      delta = {
-        line-numbers = true;
-        syntax-theme = "base16";
-        side-by-side = false;
-        file-modified-label = "modified:";
-        light = true;
+      # delta = {
+      #   line-numbers = true;
+      #   syntax-theme = "base16";
+      #   side-by-side = false;
+      #   file-modified-label = "modified:";
+      #   light = true;
+      # };
+      difftastic = {
+        background = "light";
       };
       init.defaultBranch = "master";
     };

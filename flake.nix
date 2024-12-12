@@ -2,7 +2,7 @@
   description = "elianiva nix config";
 
   inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.follows = "nixpkgs-unstable";
     nixGL = {

@@ -43,14 +43,14 @@ in
       dust
       ripgrep
       fd
-      btop
       rclone
       yt-dlp
       yazi # tui file manager
       pass
       yq
-      zoxide # jump between directories faster
+      zoxide # switch between multiple projects faster
       eza # better ls
+      lazydocker # manage docker stuff
 
       # documents
       typst
@@ -62,6 +62,7 @@ in
       # git related
       git-filter-repo # useful to remove accidentally committed secrets
       delta
+      difftastic
 
       # rust
       rustc
@@ -77,23 +78,23 @@ in
       # pinentry
       pinentry-gnome3
 
-      # terminals, nixgl is needed to access intel drivers from non-nixos environments
+      # nixgl is needed to access intel drivers from non-nixos environments
       nixGLIntel
 
       # fonts
-      jetbrains-mono
+      monaspace
+      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "IosevkaTermSlab" ]; })
       inter
     ];
 
     username = "elianiva";
     homeDirectory = "/home/elianiva";
 
+    # don't change this, see: https://nix-community.github.io/home-manager/
     stateVersion = "24.05";
 
     sessionVariables = {
       # Make it possible to handle "xterm-kitty" in SSH remotes or lima guest VM with tiny filesize and setups. See GH-932
-      #
-      # Don't set this in NixOS desktop. It has own value.
       TERMINFO_DIRS = "${pkgs.kitty.terminfo}/share/terminfo";
     };
   };
@@ -117,6 +118,13 @@ in
         theme = "base16";
         "italic-text" = "always";
         style = "numbers";
+      };
+    };
+
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = "TTY";
       };
     };
 
