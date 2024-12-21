@@ -25,7 +25,7 @@ return {
         -- includeInlayFunctionLikeReturnTypeHints = true,
         -- includeInlayEnumMemberValueHints = true,
 
-        -- includeCompletionsForModuleExports = true,
+        includeCompletionsForModuleExports = true,
         quotePreference = "auto",
       },
     }

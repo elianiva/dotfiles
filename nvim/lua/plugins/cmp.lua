@@ -5,38 +5,39 @@ return {
 	version = "v0.*", -- last release is too old
 	event = "InsertEnter",
 	opts = {
-    keymap = { preset = 'enter' },
-		windows = {
-			autocomplete = {
+		keymap = { preset = "enter" },
+		appearance = {
+			nerd_font_variant = "normal",
+		},
+		signature = {
+			window = {
+				border = "solid",
+			},
+		},
+		sources = {
+			default = { "lsp", "path", "snippets", "buffer" },
+			cmdline = {},
+		},
+		completion = {
+			accept = {
+				create_undo_point = true,
+				auto_brackets = {
+					enabled = true,
+				},
+			},
+			menu = {
 				border = "single",
 			},
 			documentation = {
-				border = "solid",
+				window = {
+					border = "solid",
+				},
 			},
-			signature_help = {
-				border = "solid",
-			},
-		},
-		highlight = {
-			use_nvim_cmp_as_default = true,
-		},
-		nerd_font_variant = "normal",
-		accept = {
-			create_undo_point = true,
-			auto_brackets = {
-				enabled = true,
+			trigger = {
+				show_on_insert_on_trigger_character = true,
+				-- these are annoying
+				show_on_x_blocked_trigger_characters = { "'", '"', "(", "[", "{" },
 			},
 		},
-		trigger = {
-			signature_help = {
-				enabled = false,
-				show_on_insert_on_trigger_character = false,
-			},
-		},
-    fuzzy = {
-      use_frecency = true,
-      use_proximity = true,
-      sorts = { 'label', 'kind', 'score' },
-    }
 	},
 }

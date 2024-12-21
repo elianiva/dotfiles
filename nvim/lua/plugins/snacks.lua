@@ -29,6 +29,12 @@ return {
 		indent = {
 			enabled = true,
 			hl = "SnacksIndent",
+			scope = {
+				enabled = true,
+				animate = {
+					enabled = false,
+				},
+			},
 		},
 		statuscolumn = {
 			enabled = false,

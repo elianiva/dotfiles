@@ -50,12 +50,11 @@ in
       yq
       zoxide # switch between multiple projects faster
       eza # better ls
+
       lazydocker # manage docker stuff
 
-      # documents
-      typst
+      typst # documents
 
-      # editor / workspace management
       zellij
       neovim
 
@@ -83,8 +82,11 @@ in
 
       # fonts
       monaspace
-      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "IosevkaTermSlab" ]; })
       inter
+      lora
+      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "IosevkaTermSlab" ]; })
+
+      obsidian
     ];
 
     username = "elianiva";
