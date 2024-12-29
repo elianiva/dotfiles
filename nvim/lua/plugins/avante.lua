@@ -5,7 +5,7 @@ return {
 	build = "make",
 	enabled = true,
 	lazy = false,
-	version = "v0.0.13",
+	version = "v0.0.14",
 	opts = {
 		provider = "openai",
     auto_suggestions_provider = "openai",
@@ -35,6 +35,7 @@ return {
 			},
 			edit = {
 				border = "single",
+        start_insert = false,
 			},
 			ask = {
 				floating = false,

@@ -13,6 +13,8 @@ return {
     ignore_filetypes = {
       dbui = true,
       dbout = true,
+      DressingInput = true,
+      ["neo-tree-popup"] = true,
     }
   },
 }

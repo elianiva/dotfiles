@@ -36,5 +36,6 @@ function fish_mode_prompt
   set_color normal
 end
 
-# opam configuration
-source /home/elianiva/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+if status is-interactive
+    eval (zellij setup --generate-auto-start fish | string collect)
+end

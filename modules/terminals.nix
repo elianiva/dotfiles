@@ -1,15 +1,14 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 let
   link = config.lib.file.mkOutOfStoreSymlink;
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
 in
 {
-  programs.wezterm = {
-    enable = true;
-    package = config.lib.nixGL.wrap pkgs.wezterm;
-  };
+  home.packages = [
+    (config.lib.nixGL.wrap inputs.ghostty.packages."${pkgs.system}".default)
+  ];
 
-  # NOTE(elianiva): as a backup in case wezterm got borked
+  # NOTE(elianiva): as a backup in case ghostty got borked
   programs.kitty = {
     enable = true;
     package = config.lib.nixGL.wrap pkgs.kitty;
@@ -27,6 +26,10 @@ in
     };
     ".config/kitty" = {
       source = link "${dotfiles}/kitty";
+      recursive = true;
+    };
+    ".config/ghostty" = {
+      source = link "${dotfiles}/ghostty";
       recursive = true;
     };
   };
