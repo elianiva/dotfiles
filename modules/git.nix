@@ -14,6 +14,7 @@
         useConfig = true;
         externalDiffCommand = "difft";
       };
+      git.log.order = "default";
     };
   };
   programs.git = {

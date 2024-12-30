@@ -97,8 +97,13 @@ return {
 							require("telescope.actions").preview_scrolling_down(...)
 						end,
 						["<C-q>"] = function(...)
-							require("telescope.actions").smart_send_to_qflist(...)
-							require("telescope.actions").open_qflist(...)
+              local ok, trouble = pcall(require, "trouble.sources.telescope")
+              if ok then
+                trouble.open(...)
+              else
+                require("telescope.actions").smart_send_to_qflist(...)
+                require("telescope.actions").open_qflist(...)
+              end
 						end,
 						["<Tab>"] = function(...)
 							require("telescope.actions").toggle_selection(...)

@@ -33,14 +33,13 @@ layout {
                 color_white   "#e0def4"
                 color_orange  "#f6c177"
 
-                // datetime indicator
                 datetime        "#[fg=$fg_alt] {format} "
                 datetime_format "%Y-%m-%d %H:%M"
                 datetime_timezone "Asia/Jakarta"
 
-                format_left   "{mode}#[bg=$bg] {tabs}"
-                format_center "#[bg=$bg,fg=$fg_alt]  Zellij: #[bg=$bg,fg=$fg_alt]{session}"
-                format_right  "{datetime}"
+                format_left   "{mode}"
+                format_center "#[bg=$bg]{tabs}"
+                format_right  "{datetime}#[fg=$fg_alt]@ {session}"
                 format_space  "#[bg=$bg]"
                 format_hide_on_overlength "true"
                 format_precedence "crl"
@@ -52,33 +51,31 @@ layout {
 
                 hide_frame_for_single_pane "true"
 
-                mode_normal        "#[bg=$green,fg=$bg,bold] NORMAL#[bg=$green,fg=$green] "
-                mode_locked        "#[bg=$red,fg=$bg,bold] LOCKED #[bg=$red,fg=$red] "
-                mode_resize        "#[bg=$blue,fg=$bg,bold] RESIZE#[bg=$blue,fg=$blue] "
-                mode_pane          "#[bg=$blue,fg=$bg,bold] PANE#[bg=$blue,fg=$blue] "
-                mode_tab           "#[bg=$yellow,fg=$bg,bold] TAB#[bg=$yellow,fg=$yellow] "
-                mode_scroll        "#[bg=$blue,fg=$bg,bold] SCROLL#[bg=$blue,fg=$blue] "
-                mode_enter_search  "#[bg=$orange,fg=$bg,bold] ENT-SEARCH#[bg=$orange,fg=$orange] "
-                mode_search        "#[bg=$orange,fg=$bg,bold] SEARCHARCH#[bg=$orange,fg=$orange] "
-                mode_rename_tab    "#[bg=$yellow,fg=$bg,bold] RENAME-TAB#[bg=$yellow,fg=$yellow] "
-                mode_rename_pane   "#[bg=$blue,fg=$bg,bold] RENAME-PANE#[bg=$blue,fg=$blue] "
-                mode_session       "#[bg=$blue,fg=$bg,bold] SESSION#[bg=$blue,fg=$blue] "
-                mode_move          "#[bg=$blue,fg=$bg,bold] MOVE#[bg=$blue,fg=$blue] "
-                mode_prompt        "#[bg=$blue,fg=$bg,bold] PROMPT#[bg=$blue,fg=$blue] "
-                mode_tmux          "#[bg=$magenta,fg=$bg,bold] TMUX#[bg=$magenta,fg=$magenta] "
+                mode_normal        "#[fg=$green,bold]  NORMAL "
+                mode_locked        "#[fg=$red,bold]  LOCKED "
+                mode_resize        "#[fg=$blue,bold] 󰆏 RESIZE "
+                mode_pane          "#[fg=$blue,bold] 󰏫 PANE "
+                mode_tab           "#[fg=$yellow,bold] 󰓩 TAB "
+                mode_scroll        "#[fg=$blue,bold] 󰇙 SCROLL "
+                mode_enter_search  "#[fg=$orange,bold] 󰥻 ENT-SEARCH "
+                mode_search        "#[fg=$orange,bold] 󰥻 SEARCH "
+                mode_rename_tab    "#[fg=$yellow,bold] 󰏬 RENAME-TAB "
+                mode_rename_pane   "#[fg=$blue,bold] 󰏬 RENAME-PANE "
+                mode_session       "#[fg=$blue,bold] 󰆍 SESSION "
+                mode_move          "#[fg=$blue,bold] 󰁔 MOVE "
+                mode_prompt        "#[fg=$blue,bold] 󰘳 PROMPT "
+                mode_tmux          "#[fg=$magenta,bold]  TMUX "
 
-                // formatting for inactive tabs
-                tab_normal              "#[bg=$fg_alt,fg=$cyan] #[bg=$fg_alt,fg=$fg,bold]{index} #[bg=$bg_alt,fg=$fg,bold] {name}{floating_indicator}#[bg=$bg_alt,fg=$bg,bold] "
-                tab_normal_fullscreen   "#[bg=$fg_alt,fg=$cyan] #[bg=$fg_alt,fg=$fg,bold]{index} #[bg=$bg_alt,fg=$fg,bold] {name}{fullscreen_indicator}#[bg=$bg_alt,fg=$bg,bold] "
-                tab_normal_sync         "#[bg=$fg_alt,fg=$cyan] #[bg=$fg_alt,fg=$fg,bold]{index} #[bg=$bg_alt,fg=$fg,bold] {name}{sync_indicator}#[bg=$bg_alt,fg=$bg,bold] "
+                tab_normal                 "#[fg=$fg_alt] {index}:{name} {floating_indicator}"
+                tab_normal_fullscreen      "#[fg=$fg_alt] {index}:{name} {fullscreen_indicator}"
+                tab_normal_sync            "#[fg=$fg_alt] {index}:{name} {sync_indicator}"
 
-                // formatting for the current active tab
-                tab_active              "#[bg=$yellow,fg=$yellow] #[bg=$yellow,fg=$bg,bold]{index} #[bg=$bg_alt,fg=$yellow,bold] {name}{floating_indicator}#[bg=$bg_alt,fg=$bg,bold] "
-                tab_active_fullscreen   "#[bg=$yellow,fg=$yellow] #[bg=$yellow,fg=$bg,bold]{index} #[bg=$bg_alt,fg=$yellow,bold] {name}{fullscreen_indicator}#[bg=$bg_alt,fg=$bg,bold] "
-                tab_active_sync         "#[bg=$yellow,fg=$yellow] #[bg=$yellow,fg=$bg,bold]{index} #[bg=$bg_alt,fg=$yellow,bold] {name}{sync_indicator}#[bg=$bg_alt,fg=$bg,bold] "
+                tab_active                 "#[fg=$red,bold] {index}:{name} {floating_indicator}"
+                tab_active_fullscreen      "#[fg=$red,bold] {index}:{name} {fullscreen_indicator}"
+                tab_active_sync            "#[fg=$red,bold] {index}:{name} {sync_indicator}"
 
                 // separator between the tabs
-                tab_separator           "#[bg=$bg] "
+                tab_separator           "#[bg=$bg,fg=$fg_alt]|"
 
                 // indicators
                 tab_sync_indicator       " "

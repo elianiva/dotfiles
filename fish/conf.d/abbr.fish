@@ -19,13 +19,6 @@ abbr -a gwip 'git add -A; git rm (git ls-files --deleted) 2> /dev/null; git comm
 
 # config stuff
 abbr -a nvimconf "nvim ~/.config/nvim/init.lua"
-abbr -a swayconf "nvim ~/.config/sway/config"
-abbr -a barconf "nvim ~/.config/waybar/config"
-abbr -a kittyconf "nvim ~/.config/kitty/kitty.conf"
-abbr -a fishconf "nvim ~/.config/fish/config.fish"
-abbr -a zshconf "nvim ~/.zshrc"
-abbr -a awsconf "nvim ~/.config/awesome/rc.lua"
-abbr -a aliasconf "nvim ~/.config/aliasrc"
 abbr -a vnim "nvim" # I got this typo quit a lot
 
 abbr -a ls "eza --colour=always --group-directories-first --sort=name"

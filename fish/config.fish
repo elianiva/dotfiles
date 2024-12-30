@@ -1,16 +1,12 @@
 # disable greeting
 set fish_greeting
 
-# starship prompt
 starship init fish | source
 
-# zoxide
 zoxide init fish --cmd cd | source
 
-# pnpm
 set -gx PNPM_HOME "/home/elianiva/.local/share/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
-# pnpm end
 
 function zellij_tab_name_update --on-event fish_preexec
     if set -q ZELLIJ
@@ -34,8 +30,4 @@ function fish_mode_prompt
       echo -en "\e[2 q"
   end
   set_color normal
-end
-
-if status is-interactive
-    eval (zellij setup --generate-auto-start fish | string collect)
 end

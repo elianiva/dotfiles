@@ -83,7 +83,7 @@ function M.lsp.on_rename(from, to, rename)
     } }
   }
 
-  local clients = M.get_clients()
+  local clients = vim.lsp.get_clients()
   for _, client in ipairs(clients) do
     if client.supports_method("workspace/willRenameFiles") then
       local resp = client.request_sync("workspace/willRenameFiles", changes, 1000, 0)
