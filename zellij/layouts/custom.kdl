@@ -39,7 +39,7 @@ layout {
 
                 format_left   "{mode}"
                 format_center "#[bg=$bg]{tabs}"
-                format_right  "{datetime}#[fg=$fg_alt]@ {session}"
+                format_right  "{datetime}#[fg=$fg_alt]@ {session} "
                 format_space  "#[bg=$bg]"
                 format_hide_on_overlength "true"
                 format_precedence "crl"

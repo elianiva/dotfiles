@@ -153,6 +153,10 @@ in
   home.file = {
     ".profile".source = link "${dotfiles}/misc/.profile";
     ".bashrc".source = link "${dotfiles}/misc/.bashrc";
+    ".config/fastfetch" = {
+      source = link "${dotfiles}/fastfetch";
+      recursive = true;
+    };
     ".config/zellij" = {
       source = link "${dotfiles}/zellij";
       recursive = true;

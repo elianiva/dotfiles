@@ -1,4 +1,8 @@
-theme = rose-pine-dawn
+theme = light:rose-pine-dawn,dark:rose-pine
+window-theme = ghostty
+
+adw-toolbar-style = flat
+bold-is-bright = true
 
 command = zellij
 

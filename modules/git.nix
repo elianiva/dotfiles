@@ -20,7 +20,7 @@
   programs.git = {
     enable = true;
     userName = "elianiva";
-    userEmail = "dicha.arkana03@gmail.com";
+    userEmail = "51877647+elianiva@users.noreply.github.com";
     extraConfig = {
       credential.helper = "cache --timeout 86400";
       core = {
