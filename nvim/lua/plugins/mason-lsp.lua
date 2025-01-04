@@ -4,19 +4,6 @@ capabilities.textDocument.foldingRange = {
 	lineFoldingOnly = true,
 }
 
--- disable conflicting capabilities conflicting with intelephense
-local phpactor_capabilities = vim.lsp.protocol.make_client_capabilities()
-phpactor_capabilities.textDocument.hover.dynamicRegistration = false
-phpactor_capabilities.textDocument.documentSymbol.dynamicRegistration = false
-phpactor_capabilities.textDocument.references.dynamicRegistration = false
-phpactor_capabilities.textDocument.completion.dynamicRegistration = false
-phpactor_capabilities.textDocument.formatting.dynamicRegistration = false
-phpactor_capabilities.textDocument.definition.dynamicRegistration = false
-phpactor_capabilities.textDocument.implementation.dynamicRegistration = true
-phpactor_capabilities.textDocument.typeDefinition.dynamicRegistration = false
-phpactor_capabilities.textDocument.diagnostic.dynamicRegistration = true
-
--- disable conflicting capabilities conflicting with phpactor
 local intelephense_capabilities = vim.lsp.protocol.make_client_capabilities()
 intelephense_capabilities.textDocument.completion.dynamicRegistration = true
 
@@ -51,15 +38,12 @@ return {
 					-- disable ts_ls
 				end,
 
-				["phpactor"] = function()
-					require("lspconfig").phpactor.setup({
-						capabilities = phpactor_capabilities,
-					})
-				end,
-
 				["intelephense"] = function()
 					require("lspconfig").intelephense.setup({
 						capabilities = intelephense_capabilities,
+            init_options = {
+              licenceKey = "EducationalCode"
+            }
 					})
 				end,
 

@@ -58,9 +58,6 @@ in
       devenv
       direnv
 
-      # php (yikes, but this is needed for phpactor)
-      php
-
       # pinentry
       pinentry-gnome3
 
