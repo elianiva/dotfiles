@@ -45,6 +45,10 @@ in
       zellij
       neovim
 
+      # these are so annoying but i need them
+      php
+      php84Packages.composer
+
       # git related
       git-filter-repo # useful to remove accidentally committed secrets
       delta
@@ -53,10 +57,6 @@ in
       # rust
       rustc
       cargo
-
-      # devenv / direnv
-      devenv
-      direnv
 
       # pinentry
       pinentry-gnome3
@@ -98,6 +98,13 @@ in
   programs = {
     # let home manager manages itself
     home-manager.enable = true;
+
+    # nix-direnv
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      stdlib = builtins.readFile ../direnv/direnvrc;
+    };
 
     bat = {
       enable = true;

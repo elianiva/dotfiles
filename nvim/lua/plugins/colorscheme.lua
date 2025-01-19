@@ -10,6 +10,9 @@ return {
       require("rose-pine").setup {
         variant = "main",
         highlight_groups = {
+          -- annoying quickfix line highlight
+          QuickFixLine = { fg = "none", bg = "surface" },
+
           -- pink statusline
           StatusLine = { fg = "love", bg = "love", blend = 10 },
           StatusLineNC = { fg = "subtle", bg = "surface" },
