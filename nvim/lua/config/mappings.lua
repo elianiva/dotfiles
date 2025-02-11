@@ -47,4 +47,4 @@ vnoremap("<", "<gv", { desc = "Dedent current selection" })
 vnoremap(">", ">gv", { desc = "Indent current selection" })
 
 nnoremap("<Leader>n", "<CMD>nohl<CR>", { desc = "Toggle search highlight" })
-inoremap("<C-W>", "<C-S-W>", { desc = "Delete word backwards (this is needed for telescope prompt)" })
+inoremap("<C-W>", "<C-S-W>", { desc = "Delete word backwards" })

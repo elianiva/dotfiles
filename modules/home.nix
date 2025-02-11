@@ -45,6 +45,8 @@ in
       zellij
       neovim
 
+      csvlens
+
       # these are so annoying but i need them
       php
       php84Packages.composer

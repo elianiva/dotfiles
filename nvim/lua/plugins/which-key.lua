@@ -10,17 +10,12 @@ return {
     {
       "<leader>f",
       function() require("which-key").show({ group = "f" }) end,
-      desc = "Telescope",
+      desc = "Picker",
     },
     {
       "<leader>fl",
       function() require("which-key").show({ group = "fl" }) end,
-      desc = "Telescope LSP Actions",
-    },
-    {
-      "<leader>j",
-      function() require("which-key").show({ group = "j" }) end,
-      desc = "Flash.nvim",
+      desc = "Picker (LSP)",
     },
     {
       "<leader>d",

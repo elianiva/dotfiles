@@ -9,6 +9,12 @@ return {
 		{ "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit", },
 		{ "<leader>cR", function() Snacks.rename() end, desc = "Rename File", },
     { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
+		{ "<C-p>",      function() Snacks.picker.files() end, desc = "Find Files" },
+		{ "<leader>fg", function() Snacks.picker.grep() end, desc = "Find Text", },
+		{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find Text", },
+    -- lsp related pickers
+		{ "<leader>fls", function() Snacks.picker.lsp_symbols() end, desc = "LSP Document Symbols", },
+		{ "<leader>flr", function() Snacks.picker.lsp_references() end, desc = "LSP References", },
 		-- stylua: ignore end
 	},
 	opts = {
@@ -43,6 +49,42 @@ return {
 		styles = {
 			notification = {
 				wo = { wrap = true },
+			},
+		},
+		picker = {
+      ui_select = true,
+			layout = {
+				reverse = true,
+				layout = {
+					box = "horizontal",
+					backdrop = false,
+					width = 0.8,
+					height = 0.9,
+					border = "none",
+					{
+						box = "vertical",
+						{
+							win = "list",
+							title = " Results ",
+							title_pos = "center",
+							border = "single",
+						},
+						{
+							win = "input",
+							height = 1,
+							border = "single",
+							title = "{title} {live} {flags}",
+							title_pos = "center",
+						},
+					},
+					{
+						win = "preview",
+						title = "{preview:Preview}",
+						width = 0.5,
+						border = "single",
+						title_pos = "center",
+					},
+				},
 			},
 		},
 	},

@@ -5,7 +5,7 @@ return {
 	build = "make",
 	enabled = true,
 	lazy = false,
-	version = "v0.0.14",
+	version = "v0.0.18",
 	opts = {
 		provider = "openai",
     auto_suggestions_provider = "openai",
@@ -17,7 +17,7 @@ return {
 		--   max_tokens = 4096,
 		-- },
 		openai = {
-			endpoint = "https://api.deepseek.com/beta",
+			endpoint = "https://api.deepseek.com",
 			model = "deepseek-chat",
 			api_key_name = "cmd:pass show elianiva/deepseek",
 			temperature = 0,
