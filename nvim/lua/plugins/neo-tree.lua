@@ -89,28 +89,11 @@ return {
 				end
 			end,
 		})
-
-    -- integrate with snacks rename
-		local prev = { new_name = "", old_name = "" } -- Prevents duplicate events
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "NvimTreeSetup",
-			callback = function()
-				local events = require("nvim-tree.api").events
-				events.subscribe(events.Event.NodeRenamed, function(data)
-					if prev.new_name ~= data.new_name or prev.old_name ~= data.old_name then
-						data = data
-						Snacks.rename.on_rename_file(data.old_name, data.new_name)
-					end
-				end)
-			end,
-		})
 	end,
 	config = function(_, opts)
-		local utils = require("config.utils")
-
-		local on_move = function(data)
-			utils.lsp.on_rename(data.source, data.destination)
-		end
+    local function on_move(data)
+      Snacks.rename.on_rename_file(data.source, data.destination)
+    end
 
 		local events = require("neo-tree.events")
 		opts.event_handlers = opts.event_handlers or {}
