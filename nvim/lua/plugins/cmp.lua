@@ -5,7 +5,14 @@ return {
 	version = "v0.*", -- last release is too old
 	event = "InsertEnter",
 	opts = {
-		keymap = { preset = "enter" },
+		keymap = {
+			preset = "enter",
+		},
+		cmdline = {
+			keymap = {
+        preset = "none",
+			},
+		},
 		appearance = {
 			nerd_font_variant = "normal",
 		},
@@ -15,8 +22,7 @@ return {
 			},
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
-			cmdline = {},
+			default = { "lsp", "path", "codecompanion", "snippets", "buffer" },
 		},
 		completion = {
 			accept = {
@@ -27,6 +33,9 @@ return {
 			},
 			menu = {
 				border = "single",
+				auto_show = function(ctx)
+					return ctx.mode ~= "cmdline"
+				end,
 			},
 			documentation = {
 				window = {
@@ -38,6 +47,17 @@ return {
 				-- these are annoying
 				show_on_x_blocked_trigger_characters = { "'", '"', "(", "[", "{" },
 			},
+			list = {
+				selection = {
+					preselect = function(ctx)
+						return ctx.mode ~= "cmdline"
+					end,
+					auto_insert = function(ctx)
+						return ctx.mode ~= "cmdline"
+					end,
+				},
+			},
 		},
 	},
+	opts_extend = { "sources.default" },
 }

@@ -3,12 +3,12 @@ return {
 	"yetone/avante.nvim",
 	event = "VeryLazy",
 	build = "make",
-	enabled = true,
+	enabled = false,
 	lazy = false,
 	version = "v0.0.18",
 	opts = {
 		provider = "openai",
-    auto_suggestions_provider = "openai",
+		auto_suggestions_provider = "openai",
 		-- claude = {
 		--   endpoint = "https://api.anthropic.com",
 		--   model = "claude-3-5-sonnet-20240620",
@@ -17,17 +17,20 @@ return {
 		--   max_tokens = 4096,
 		-- },
 		openai = {
-			endpoint = "https://api.deepseek.com",
-			model = "deepseek-chat",
-			api_key_name = "cmd:pass show elianiva/deepseek",
+			endpoint = "https://openrouter.ai/api/v1",
+			-- model = "deepseek/deepseek-r1-distill-llama-70b:free",
+			-- model = "google/gemini-2.0-flash-001",
+			model = "openai/gpt-4o-mini",
+			api_key_name = "cmd:pass show elianiva/openrouter",
 			temperature = 0,
 			max_tokens = 8192,
+			disable_tools = true,
 		},
 		behaviour = {
 			auto_suggestions = false,
 		},
 		windows = {
-      width = 40,
+			width = 40,
 			sidebar_header = {
 				enabled = true,
 				align = "center",
@@ -35,7 +38,7 @@ return {
 			},
 			edit = {
 				border = "single",
-        start_insert = false,
+				start_insert = false,
 			},
 			ask = {
 				floating = false,
@@ -48,23 +51,6 @@ return {
 		"stevearc/dressing.nvim",
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
-		--- The below dependencies are optional,
-		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-		--   {
-		--     -- support for image pasting
-		--     "HakonHarnes/img-clip.nvim",
-		--     event = "VeryLazy",
-		--     opts = {
-		--       default = {
-		--         embed_image_as_base64 = false,
-		--         prompt_for_file_name = false,
-		--         drag_and_drop = {
-		--           insert_mode = true,
-		--         },
-		--         use_absolute_path = true,
-		--       },
-		--     },
-		--   },
-		-- },
+		"nvim-tree/nvim-web-devicons",
 	},
 }

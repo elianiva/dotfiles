@@ -53,6 +53,8 @@ return {
         border = "solid"
       },
       popupmenu = {
+        enabled = true,
+        backend = "nui",
         relative = "editor",
         border = "solid",
       }

@@ -4,6 +4,11 @@ capabilities.textDocument.foldingRange = {
 	lineFoldingOnly = true,
 }
 
+local ok, blink = pcall(require, "blink.cmp")
+if ok then
+	capabilities = vim.tbl_deep_extend("force", capabilities, blink.get_lsp_capabilities(capabilities))
+end
+
 local intelephense_capabilities = vim.lsp.protocol.make_client_capabilities()
 intelephense_capabilities.textDocument.completion.dynamicRegistration = true
 
@@ -28,7 +33,6 @@ return {
 					require("lspconfig")[server_name].setup({
 						capabilities = capabilities,
 						on_attach = function()
-							-- disable inlay hints
 							vim.lsp.inlay_hint.enable(false)
 						end,
 					})
@@ -41,19 +45,19 @@ return {
 				["intelephense"] = function()
 					require("lspconfig").intelephense.setup({
 						capabilities = intelephense_capabilities,
-            init_options = {
-              licenceKey = "EducationalCode"
-            }
+						init_options = {
+							licenceKey = "EducationalCode",
+						},
 					})
 				end,
 
 				["basedpyright"] = function()
 					require("lspconfig").basedpyright.setup({
 						capabilities = capabilities,
-            on_attach = function()
-              -- disable inlay hints
-              vim.lsp.inlay_hint.enable(false)
-            end,
+						on_attach = function()
+							-- disable inlay hints
+							vim.lsp.inlay_hint.enable(false)
+						end,
 						settings = {
 							basedpyright = {
 								analysis = {

@@ -48,6 +48,7 @@ return {
           CursorLineNr = { fg = "text", bg = "surface" },
           CursorLineFold = { bg = "surface" },
 
+          -- snacks
           SnacksPicker = { fg = "subtle", bg = "base" },
           SnacksPickerListTitle = { fg = "base", bg = "love" },
           SnacksPickerListBorder = { fg = "love", bg = "base" },
@@ -55,6 +56,9 @@ return {
           SnacksPickerInputBorder = { fg = "pine", bg = "base" },
           SnacksPickerPreviewTitle = { fg = "base", bg = "iris" },
           SnacksPickerPreviewBorder = { fg = "iris", bg = "base" },
+
+          -- codecompanion
+          CodeCompanionChatVariable = { fg = "base", bg = "love" },
 
           -- better search
           CurSearch = { fg = "base", bg = "love", inherit = false },
