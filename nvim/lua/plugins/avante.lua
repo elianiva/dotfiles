@@ -1,11 +1,10 @@
--- unused for now
 return {
 	"yetone/avante.nvim",
 	event = "VeryLazy",
 	build = "make",
-	enabled = false,
+	enabled = true,
 	lazy = false,
-	version = "v0.0.18",
+	version = "v0.0.23",
 	opts = {
 		provider = "openai",
 		auto_suggestions_provider = "openai",
@@ -45,6 +44,18 @@ return {
 				border = "single",
 			},
 		},
+		system_prompt = function()
+			local hub = require("mcphub").get_hub_instance()
+			if hub then
+				return hub:get_active_servers_prompt()
+			end
+		end,
+		-- The custom_tools type supports both a list and a function that returns a list. Using a function here prevents requiring mcphub before it's loaded
+		custom_tools = function()
+			return {
+				require("mcphub.extensions.avante").mcp_tool(),
+			}
+		end,
 	},
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",

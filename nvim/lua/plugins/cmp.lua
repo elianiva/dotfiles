@@ -10,7 +10,7 @@ return {
 		},
 		cmdline = {
 			keymap = {
-        preset = "none",
+				preset = "none",
 			},
 		},
 		appearance = {
@@ -21,8 +21,9 @@ return {
 				border = "solid",
 			},
 		},
+		fuzzy = { implementation = "prefer_rust" },
 		sources = {
-			default = { "lsp", "path", "codecompanion", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer" },
 		},
 		completion = {
 			accept = {

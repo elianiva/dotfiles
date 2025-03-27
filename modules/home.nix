@@ -51,6 +51,8 @@ in
       php
       php84Packages.composer
 
+      bun
+
       # git related
       git-filter-repo # useful to remove accidentally committed secrets
       delta
