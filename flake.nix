@@ -12,6 +12,10 @@
       url = "github:nix-community/nixGL/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    bash-env-json = {
+      url = "github:tesujimath/bash-env-json/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,12 +27,15 @@
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+        flakePkgs = {
+          bash-env-json = inputs.bash-env-json.packages.${system}.default;
+        };
     in
     {
       homeConfigurations = {
         elianiva = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = { inherit inputs; inherit flakePkgs; };
           modules = [
             ./modules/home.nix
             ./modules/gpg.nix

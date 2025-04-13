@@ -49,3 +49,9 @@ vim.diagnostic.config({
 		},
 	},
 })
+
+-- add mdx as markdown
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "*.mdx" },
+  command = "set ft=markdown",
+})

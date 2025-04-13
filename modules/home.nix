@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, config, ... }:
+{ lib, pkgs, inputs, flakePkgs, config, ... }:
 let
   nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
   link = config.lib.file.mkOutOfStoreSymlink;
@@ -76,6 +76,8 @@ in
       nerd-fonts.jetbrains-mono
 
       obsidian
+    ] ++ [
+      flakePkgs.bash-env-json
     ];
 
     username = "elianiva";
@@ -136,7 +138,12 @@ in
       ];
     };
 
-    fish.enable = true;
+    # fish.enable = true;
+    nushell.enable = true;
+
+    # completion
+    carapace.enable = true;
+    carapace.enableNushellIntegration = true;
 
     starship = {
       enable = true;
@@ -157,6 +164,10 @@ in
   # fish produces its own config file which causes conflict
   xdg.configFile."fish/config.fish".enable = false;
 
+  # nushell produces its own config file which causes conflict
+  xdg.configFile."nushell/config.nu".enable = false;
+  xdg.configFile."nushell/env.nu".enable = false;
+
   # I don't want to rebuild everytime i change these configs
   home.file = {
     ".profile".source = link "${dotfiles}/misc/.profile";
@@ -175,6 +186,10 @@ in
     };
     ".config/fish" = {
       source = link "${dotfiles}/fish";
+      recursive = true;
+    };
+    ".config/nushell" = {
+      source = link "${dotfiles}/nushell";
       recursive = true;
     };
   };

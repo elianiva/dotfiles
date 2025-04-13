@@ -4,6 +4,7 @@ return {
 	lazy = false,
 	keys = {
     -- stylua: ignore start
+		{ "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode", },
 		{ "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications", },
 		{ "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer", },
 		{ "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit", },
@@ -110,6 +111,30 @@ return {
 					},
 				},
 			},
+		},
+		zen = {
+			win = {
+				enter = true,
+				fixbuf = true,
+				minimal = true,
+				width = 80,
+				height = 0.9,
+				backdrop = { transparent = false, blend = 99 },
+				keys = { q = false },
+				zindex = 40,
+				w = {
+					snacks_main = true,
+				},
+			},
+      on_open = function()
+        vim.wo.signcolumn = "no"
+        vim.wo.foldcolumn = "0"
+        vim.wo.wrap = true
+        vim.wo.linebreak = true
+      end,
+      toggles = {
+        dim = false,
+      }
 		},
 	},
 	init = function()
