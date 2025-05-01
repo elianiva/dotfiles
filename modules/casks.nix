@@ -12,10 +12,14 @@ _:
   # Productivity Tools
   "raycast"
   "brave-browser"
+  "orbstack"
 
   # Terminals
   "ghostty"
 
   # Tools
   "bitwarden"
+  "aldente"
+  "stats"
+  "eqmac"
 ]
