@@ -6,13 +6,13 @@ window-decoration = client
 adw-toolbar-style = flat
 bold-is-bright = true
 
-command = zellij
+command = /run/current-system/sw/bin/nu
 
 window-padding-x = 2
 window-padding-y = 2
 window-padding-balance = true
 
-font-size = 12
+font-size = 14
 
 font-family = Monaspace Neon
 font-family-bold = Monaspace Neon

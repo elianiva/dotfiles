@@ -14,20 +14,19 @@ export QT_FONT_DPI=80
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export GOPATH="$HOME/.local/go"
 export GOBIN="$HOME/.local/go/bin"
+export NODE_COMPILE_CACHE="$HOME/.cache/nodejs-compile-cache"
 # export XDG_DATA_DIRS="$HOME/.nix-profile/share:/usr/share:/usr/local/share:$HOME/.local/share:$XDG_DATA_DIRS"
 
 # PATH stuff
-export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH="$HOME/.local/go/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
-export PATH="$HOME/.fnm:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.dotnet/tools:$PATH"
+# export PATH="$HOME/.dotnet/tools:$PATH"
 
 # export JAVA_OPTS="-XX:+IgnoreUnrecognizedVMOptions"
 # export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
@@ -44,7 +43,7 @@ export PATH="$HOME/.dotnet/tools:$PATH"
 # export PATH="$ANDROID_HOME/flutter/bin:$PATH"
 # export PATH="$ANDROID_HOME/emulator:$PATH"
 # export PATH="$ANDROID_HOME/platform-tools/:$PATH"
-export CHROME_EXECUTABLE="/usr/bin/brave"
+# export CHROME_EXECUTABLE="/usr/bin/brave"
 
 # Fcitx5 Stuff
 export GLFW_IM_MODULE="ibus"
@@ -64,5 +63,3 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # gpg stuff
 export GPG_TTY=$(tty)
-
-source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh

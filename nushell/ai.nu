@@ -6,7 +6,8 @@ def ai [instruction] {
   let key = (pass show elianiva/openrouter | str trim)
 
   let body = {
-    model: "deepseek/deepseek-chat-v3-0324:free",
+    # model: "deepseek/deepseek-chat-v3-0324:free",
+    model: "gemini/gemini-2.0-flash",
     messages: [
       { role: "system", content: "You are a helpful assistant that turns natural language into Nushell commands on Linux. You can only provide command with no explanations, no quotation, just plain string." }
       { role: "user", content: $instruction }

@@ -1,11 +1,4 @@
-def sail [...args] {
-  let script = if (ls sail | is-empty) {
-    "vendor/bin/sail"
-  } else {
-    "sail"
-  }
-  sh -c $"($script) ($args | str join ' ')"
-}
+alias sail = ./vendor/bin/sail
 
 alias :q = exit
 alias :Q = exit

@@ -3,6 +3,8 @@ require("config.options")
 require("config.mappings")
 require("config.lsp")
 
+vim.o.shell = "/run/current-system/sw/bin/zsh"
+
 -- set current directory
 vim.cmd([[
   au VimEnter * cd %:p:h

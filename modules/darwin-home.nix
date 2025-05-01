@@ -1,103 +1,17 @@
 { lib, pkgs, inputs, flakePkgs, config, ... }:
 let
-  nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
+  user = "elianiva";
   link = config.lib.file.mkOutOfStoreSymlink;
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
 in
 {
-  targets.genericLinux.enable = true;
-
-  # allow unfree packages
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (_: true);
-    };
-  };
-
-  nixGL.packages = inputs.nixGL.packages;
-  nixGL.defaultWrapper = "mesa";
-  nixGL.installScripts = [ "mesa" ];
-
-  nix = {
-    enable = true;
-    package = pkgs.nixVersions.stable;
-  };
-
   home = {
-    packages = with pkgs; [
-      # cli tools
-      dust
-      ripgrep
-      fd
-      rclone
-      yt-dlp
-      yazi # tui file manager
-      pass
-      yq
-      zoxide # switch between multiple projects faster
-      eza # better ls
-
-      lazydocker # manage docker stuff
-
-      typst # documents
-
-      zellij
-      neovim
-
-      csvlens
-
-      # these are so annoying but i need them
-      php
-      php84Packages.composer
-
-      bun
-
-      # git related
-      git-filter-repo # useful to remove accidentally committed secrets
-      delta
-      difftastic
-
-      # rust
-      rustc
-      cargo
-
-      # pinentry
-      pinentry-gnome3
-
-      # nixgl is needed to access intel drivers from non-nixos environments
-      nixGLIntel
-
-      # fonts
-      monaspace
-      inter
-      lora
-
-      nerd-fonts.jetbrains-mono
-
-      obsidian
-    ] ++ [
-      flakePkgs.bash-env-json
-    ];
-
-    username = "elianiva";
-    homeDirectory = "/home/elianiva";
-
     # don't change this, see: https://nix-community.github.io/home-manager/
     stateVersion = "24.05";
 
     sessionVariables = {
       # Make it possible to handle "xterm-kitty" in SSH remotes or lima guest VM with tiny filesize and setups. See GH-932
       TERMINFO_DIRS = "${pkgs.kitty.terminfo}/share/terminfo";
-    };
-  };
-
-  # enable fontconfig
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts = {
-      monospace = [ "JetBrainsMono" ];
-      sansSerif = [ "Inter" ];
     };
   };
 
@@ -138,9 +52,6 @@ in
       ];
     };
 
-    # fish.enable = true;
-    nushell.enable = true;
-
     # completion
     carapace.enable = true;
     carapace.enableNushellIntegration = true;
@@ -161,36 +72,42 @@ in
     };
   };
 
-  # fish produces its own config file which causes conflict
-  xdg.configFile."fish/config.fish".enable = false;
+  home.file = {
+    "Library/Application Support/nushell" = {
+      source = link "${dotfiles}/nushell";
+      recursive = true;
+    };
+    "Library/Application Support/com.mitchellh.ghostty" = {
+      source = link "${dotfiles}/ghostty";
+      recursive = true;
+    };
+  };
 
-  # nushell produces its own config file which causes conflict
-  xdg.configFile."nushell/config.nu".enable = false;
-  xdg.configFile."nushell/env.nu".enable = false;
+  xdg.configFile = {
+    # fish produces its own config file which causes conflict
+    "fish/config.fish".enable = false;
+
+    "fastfetch" = {
+      source = link "${dotfiles}/fastfetch";
+      recursive = true;
+    };
+    "zellij" = {
+      source = link "${dotfiles}/zellij";
+      recursive = true;
+    };
+    "nvim" = {
+      source = link "${dotfiles}/nvim";
+      recursive = true;
+    };
+    "fish" = {
+      source = link "${dotfiles}/fish";
+      recursive = true;
+    };
+  };
 
   # I don't want to rebuild everytime i change these configs
   home.file = {
     ".profile".source = link "${dotfiles}/misc/.profile";
     ".bashrc".source = link "${dotfiles}/misc/.bashrc";
-    ".config/fastfetch" = {
-      source = link "${dotfiles}/fastfetch";
-      recursive = true;
-    };
-    ".config/zellij" = {
-      source = link "${dotfiles}/zellij";
-      recursive = true;
-    };
-    ".config/nvim" = {
-      source = link "${dotfiles}/nvim";
-      recursive = true;
-    };
-    ".config/fish" = {
-      source = link "${dotfiles}/fish";
-      recursive = true;
-    };
-    ".config/nushell" = {
-      source = link "${dotfiles}/nushell";
-      recursive = true;
-    };
   };
 }
