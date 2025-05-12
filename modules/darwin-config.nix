@@ -28,6 +28,7 @@ in
 
     homebrew = {
       enable = true;
+      brews = pkgs.callPackage ./brews.nix { };
       casks = pkgs.callPackage ./casks.nix { };
       caskArgs = {
         appdir = "~/Applications";
@@ -43,6 +44,7 @@ in
     };
 
     environment.systemPackages = import ./darwin-packages.nix { inherit pkgs flakePkgs; };
+    fonts.packages = with pkgs; [ monaspace inter lora ];
 
     # enable touchid for sudo
     security.pam.services.sudo_local.touchIdAuth = true;
@@ -66,8 +68,15 @@ in
 
     # misc settings
     system.defaults.NSGlobalDomain = {
-      InitialKeyRepeat = 10;
-      KeyRepeat = 10;
+      # Repeat character while key held instead of showing character accents menu
+      ApplePressAndHoldEnabled = false;
+
+      # fastest possible key repeat with minimum delay
+      InitialKeyRepeat = 15;
+      KeyRepeat = 2;
+
+      # turn off font smoothing
+      AppleFontSmoothing = 0;
 
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
@@ -78,6 +87,8 @@ in
       CreateDesktop = false;
       FXDefaultSearchScope = "SCcf";
       FXPreferredViewStyle = "clmv";
+      FXRemoveOldTrashItems = true;
+      _FXSortFoldersFirst = true;
       ShowPathbar = true;
     };
 
@@ -92,4 +103,13 @@ in
     };
 
     system.defaults.hitoolbox.AppleFnUsageType = "Change Input Source";
+
+    # ads
+    system.defaults.CustomUserPreferences."com.apple.AdLib" = {
+      allowApplePersonalizedAdvertising = false;
+      allowIdentifierForAdvertising = false;
+    };
+
+    # disable power chime sound
+    system.defaults.CustomUserPreferences."com.apple.PowerChime".ChimeOnNoHardware = false;
 }

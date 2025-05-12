@@ -36,11 +36,6 @@ with pkgs; [
     # rust
     rustc
     cargo
-
-    # fonts
-    monaspace
-    inter
-    lora
 ] ++ [
   flakePkgs.bash-env-json
 ]

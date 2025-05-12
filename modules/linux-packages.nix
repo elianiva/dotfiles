@@ -7,4 +7,9 @@ shared-packages ++ [
     # nixgl is needed to access intel drivers from non-nixos environments
     nixGLIntel
     lazydocker # manage docker stuff
+
+    # fonts
+    monaspace
+    inter
+    lora
 ]

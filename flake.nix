@@ -22,6 +22,8 @@
     homebrew-cask.flake = false;
     homebrew-bundle.url = "github:homebrew/homebrew-bundle";
     homebrew-bundle.flake = false;
+    homebrew-mhaeuser.url = "github:mhaeuser/homebrew-mhaeuser";
+    homebrew-mhaeuser.flake = false;
 
     ghostty.url = "github:ghostty-org/ghostty";
 
@@ -35,7 +37,17 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nix-darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, ... }:
+  outputs = inputs@{
+    nixpkgs,
+    home-manager,
+    nix-darwin,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
+    homebrew-bundle,
+    homebrew-mhaeuser,
+    ...
+  }:
     let
       lib = nixpkgs.lib;
       flakePkgs = system: {
@@ -64,6 +76,7 @@
                   "homebrew/homebrew-core" = homebrew-core;
                   "homebrew/homebrew-cask" = homebrew-cask;
                   "homebrew/homebrew-bundle" = homebrew-bundle;
+                  "mhaeuser/homebrew-mhaeuser" = homebrew-mhaeuser;
                 };
                 mutableTaps = false;
                 autoMigrate = true;

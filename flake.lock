@@ -197,6 +197,22 @@
         "type": "github"
       }
     },
+    "homebrew-mhaeuser": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741301203,
+        "narHash": "sha256-qIaTX+E8xxLz0vSSCVEI2Je09tzJsSc7w7otvzU9TLA=",
+        "owner": "mhaeuser",
+        "repo": "homebrew-mhaeuser",
+        "rev": "4e74215f97e904c817527ecbe89c21af2526217e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mhaeuser",
+        "repo": "homebrew-mhaeuser",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -365,6 +381,7 @@
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "homebrew-mhaeuser": "homebrew-mhaeuser",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixGL": "nixGL",

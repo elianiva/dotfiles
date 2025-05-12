@@ -17,6 +17,13 @@ export GOBIN="$HOME/.local/go/bin"
 export NODE_COMPILE_CACHE="$HOME/.cache/nodejs-compile-cache"
 # export XDG_DATA_DIRS="$HOME/.nix-profile/share:/usr/share:/usr/local/share:$HOME/.local/share:$XDG_DATA_DIRS"
 
+# pnpm
+export PNPM_HOME="/Users/elianiva/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 # PATH stuff
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
