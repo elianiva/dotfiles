@@ -1,4 +1,8 @@
 { pkgs, config, ... }:
+let
+  email = "51877647+elianiva@users.noreply.github.com";
+  name = "elianiva";
+in
 {
   programs.gh.enable = true;
   programs.lazygit = {
@@ -17,8 +21,8 @@
   };
   programs.git = {
     enable = true;
-    userName = "elianiva";
-    userEmail = "51877647+elianiva@users.noreply.github.com";
+    userName = "${name}";
+    userEmail = "${email}";
     extraConfig = {
       credential.helper = "cache --timeout 86400";
       core = {
@@ -60,6 +64,15 @@
         background = "light";
       };
       init.defaultBranch = "master";
+    };
+  };
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        email = "${email}";
+        name = "${name}";
+      };
     };
   };
 }

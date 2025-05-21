@@ -1,8 +1,8 @@
 linux:
-	home-manager switch --flake .#elianiva --print-build-logs
+	nh home switch --flake .#elianiva --print-build-logs
 
 darwin:
-	darwin-rebuild switch --flake .#
+	nh darwin switch --flake .#
 
 clean:
-	nix-collect-garbage -d
+	nh clean

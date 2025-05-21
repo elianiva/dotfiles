@@ -12,6 +12,7 @@ with pkgs; [
     yq
     zoxide # switch between multiple projects faster
     eza # better ls
+    nh # nix helper
 
     typst # documents
 
