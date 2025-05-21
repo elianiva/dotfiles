@@ -87,6 +87,7 @@
                 imports = [
                   ./modules/darwin-home.nix
                   ./modules/git.nix
+                  ./modules/gpg.nix
                 ];
               };
             }
@@ -113,7 +114,7 @@
     };
 
   nixConfig = {
-    substituters = [
+    trusted-substituters = [
       "https://cache.nixos.org"
 
       "https://nix-community.cachix.org"

@@ -93,7 +93,7 @@ in
     };
 
     system.defaults.screencapture = {
-      disable-shadow = true;
+      disable-shadow = false;
       location = "~/Pictures/Screenshots";
     };
 

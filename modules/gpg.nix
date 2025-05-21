@@ -24,11 +24,11 @@ let
 in
 {
   # prevents gnome sabotaging gpg-agent by disabling all of these services
-  services.gnome-keyring.enable = lib.mkForce false;
+  # services.gnome-keyring.enable = lib.mkForce false;
 
   # https://github.com/nix-community/home-manager/blob/release-24.05/modules/services/gpg-agent.nix
   services.gpg-agent = {
-    enable = pkgs.stdenv.isLinux;
+    enable = true;
 
     # https://superuser.com/questions/624343/keep-gnupg-credentials-cached-for-entire-user-session
     defaultCacheTtl = day * 1;
@@ -36,8 +36,10 @@ in
     # ssh-agent sets it as infinite by default. So I can relax here (maybe)
     defaultCacheTtlSsh = day * 30;
     maxCacheTtl = day * 7;
-    # pinentryPackage = pkgs.pinentry-tty;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package =
+      if pkgs.stdenv.isLinux then pkgs.pinentry-gnome3
+      else if pkgs.stdenv.isDarwin then pkgs.pinentry_mac
+      else pkgs.pinentry-curses;
     enableSshSupport = true;
     enableFishIntegration = true;
   };

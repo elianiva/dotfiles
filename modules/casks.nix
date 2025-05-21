@@ -26,4 +26,7 @@ _:
   "battery-toolkit"
   "stats"
   "jordanbaird-ice"
+  "qbittorrent"
+  "clop"
+  "vlc"
 ]

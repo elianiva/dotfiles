@@ -27,6 +27,7 @@ with pkgs; [
     php84Packages.composer
 
     bun
+    uv
 
     # git related
     git-filter-repo # useful to remove accidentally committed secrets
