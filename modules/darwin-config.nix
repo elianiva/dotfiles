@@ -64,6 +64,7 @@ in
         "/Users/${user}/Applications/Ghostty.app"
         "/Applications/Zen.app"
       ];
+      appswitcher-all-displays = true;
     };
 
     # misc settings
@@ -80,6 +81,12 @@ in
 
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
+
+      # faster trackpad speed
+      "com.apple.trackpad.scaling" = 2.0;
+
+      # enable forceclick to show definition
+      "com.apple.trackpad.forceClick" = true;
     };
 
     system.defaults.finder = {

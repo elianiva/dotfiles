@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  email = "51877647+elianiva@users.noreply.github.com";
+  email = "git@elianiva.my.id";
   name = "elianiva";
 in
 {
@@ -66,12 +66,23 @@ in
       init.defaultBranch = "master";
     };
   };
+
   programs.jujutsu = {
     enable = true;
     settings = {
       user = {
         email = "${email}";
         name = "${name}";
+      };
+      signing = {
+        behavior = "own";
+        backend = "ssh";
+        key = "~/.ssh/id_ed25519";
+        backends.ssh.allowed-signers = "${config.home.homeDirectory}/.ssh/allowed_signers";
+      };
+      ui = {
+        paginate = "never";
+        diff.tool = ["difft" "--color=always" "$left" "$right"];
       };
     };
   };

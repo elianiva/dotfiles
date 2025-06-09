@@ -17,6 +17,7 @@ _:
   "brave-browser"
   "orbstack"
   "cherry-studio"
+  "simplenote"
 
   # Terminals
   "ghostty"
@@ -27,6 +28,9 @@ _:
   "stats"
   "jordanbaird-ice"
   "qbittorrent"
-  "clop"
+  "blip"
   "vlc"
+
+  # Creative
+  "medibangpaintpro"
 ]
