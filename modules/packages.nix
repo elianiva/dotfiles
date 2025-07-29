@@ -13,6 +13,8 @@ with pkgs; [
     zoxide # switch between multiple projects faster
     eza # better ls
     nh # nix helper
+    ffmpeg
+    imagemagick
 
     typst # documents
 

@@ -4,6 +4,7 @@ _:
   # Development Tools
   "visual-studio-code"
   "cursor"
+  "meld"
   "zed"
 
   # Communication Tools
@@ -14,7 +15,6 @@ _:
 
   # Productivity Tools
   "raycast"
-  "brave-browser"
   "orbstack"
   "cherry-studio"
   "simplenote"
@@ -33,4 +33,5 @@ _:
 
   # Creative
   "medibangpaintpro"
+  "obs"
 ]

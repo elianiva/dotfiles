@@ -46,6 +46,8 @@ in
     environment.systemPackages = import ./darwin-packages.nix { inherit pkgs flakePkgs; };
     fonts.packages = with pkgs; [ monaspace inter lora ];
 
+    system.primaryUser = user;
+
     # enable touchid for sudo
     security.pam.services.sudo_local.touchIdAuth = true;
 
@@ -60,7 +62,7 @@ in
       magnification = true;
       show-recents = false;
       persistent-apps = [
-        "/Users/${user}/Applications/Visual Studio Code.app"
+        # "/Users/${user}/Applications/Visual Studio Code.app"
         "/Users/${user}/Applications/Ghostty.app"
         "/Applications/Zen.app"
       ];

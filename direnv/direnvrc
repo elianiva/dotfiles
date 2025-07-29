@@ -1,4 +1,4 @@
-: ${XDG_RUNTIME_DIR:=/run/user/$UID}
+: ${XDG_RUNTIME_DIR:=/tmp/nix-direnv/$UID}
 declare -A direnv_layout_dirs
 direnv_layout_dir() {
     local hash path

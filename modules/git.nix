@@ -82,7 +82,11 @@ in
       };
       ui = {
         paginate = "never";
+        conflict-marker-style = "git";
         diff.tool = ["difft" "--color=always" "$left" "$right"];
+        merge-editor = "meld";
+      };
+      merge-tools.meld = {
       };
     };
   };
