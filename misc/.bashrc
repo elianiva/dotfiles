@@ -18,3 +18,8 @@ then
 fi
 export PATH
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/elianiva/.lmstudio/bin"
+# End of LM Studio CLI section
+

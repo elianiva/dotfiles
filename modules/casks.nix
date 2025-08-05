@@ -29,7 +29,7 @@ _:
   "jordanbaird-ice"
   "qbittorrent"
   "blip"
-  "vlc"
+  "iina"
 
   # Creative
   "medibangpaintpro"

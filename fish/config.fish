@@ -31,3 +31,8 @@ function fish_mode_prompt
   end
   set_color normal
 end
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/elianiva/.lmstudio/bin
+# End of LM Studio CLI section
+

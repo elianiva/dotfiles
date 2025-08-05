@@ -45,7 +45,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Flutter stuff
 # export FLUTTER_ROOT="$ANDROID_HOME/flutter"
-# export ANDROID_HOME="$HOME/Dev/android"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 # export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
 # export PATH="$ANDROID_HOME/flutter/bin:$PATH"
 # export PATH="$ANDROID_HOME/emulator:$PATH"
@@ -70,3 +70,8 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # gpg stuff
 export GPG_TTY=$(tty)
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/elianiva/.lmstudio/bin"
+# End of LM Studio CLI section
+
