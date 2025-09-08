@@ -33,6 +33,7 @@ export PATH="$HOME/.local/go/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 # export PATH="$HOME/.dotnet/tools:$PATH"
 
 # export JAVA_OPTS="-XX:+IgnoreUnrecognizedVMOptions"
@@ -46,10 +47,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Flutter stuff
 # export FLUTTER_ROOT="$ANDROID_HOME/flutter"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-# export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+export PATH="$ANDROID_HOME/platform-tools/:$PATH"
+export PATH="$ANDROID_HOME/emulator:$PATH"
 # export PATH="$ANDROID_HOME/flutter/bin:$PATH"
-# export PATH="$ANDROID_HOME/emulator:$PATH"
-# export PATH="$ANDROID_HOME/platform-tools/:$PATH"
 # export CHROME_EXECUTABLE="/usr/bin/brave"
 
 # Fcitx5 Stuff
