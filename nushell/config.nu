@@ -44,7 +44,7 @@ $env.NIX_PROFILES = [
 ]
 
 $env.ANTHROPIC_BASE_URL = "https://api.z.ai/api/anthropic"
-$env.ANTHROPIC_AUTH_TOKEN = "fd9533ac32104efea51636f2eb6040ab.0ktSLmwEkKdyXdNQ"
+$env.ANTHROPIC_AUTH_TOKEN = "-"
 
 if ($"($env.HOME)/.nix-defexpr/channels" | path exists) {
     $env.NIX_PATH = ($env.PATH | split row (char esep) | append $"($env.HOME)/.nix-defexpr/channels")

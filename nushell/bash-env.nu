@@ -1,4 +1,4 @@
-def bash-env [
+export def bash-env [
   path?: string
   --export: list
   --shellvars (-s)
@@ -20,7 +20,7 @@ def bash-env [
   let raw = $input_str | bash-env-json ...($fn_args ++ $path_args) | complete
   let raw_json = $raw.stdout | from json
 
-  let error = $raw_json | get -i error
+  let error = $raw_json | get -o error
   if $error != null {
     error make { msg: $error }
   } else if $raw.exit_code != 0 {
@@ -29,7 +29,7 @@ def bash-env [
 
   if ($export | is-not-empty) {
     print "warning: --export is deprecated, use --shellvars(-s) instead"
-    let exported_shellvars = ($raw_json.shellvars | select -i ...$export)
+    let exported_shellvars = ($raw_json.shellvars | select -o ...$export)
     $raw_json.env | merge ($exported_shellvars)
   } else if $shellvars or ($fn | is-not-empty) {
     $raw_json
