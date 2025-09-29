@@ -114,10 +114,10 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1757277416,
+        "lastModified": 1758065851,
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "155bd1dbed0c1bfd62a2e1c5eb09b2eb1f11bdfc",
+        "rev": "0f0a61c38dbebbd70979afbd3df81bf143efca9d",
         "type": "github"
       },
       "original": {
@@ -133,10 +133,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1757256385,
+        "lastModified": 1758077428,
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f35703b412c67b48e97beb6e27a6ab96a084cd37",
+        "rev": "6efc49be7c6115a0e07b3a2fa042cd41d9195545",
         "type": "github"
       },
       "original": {
@@ -163,10 +163,10 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1757296722,
+        "lastModified": 1758076056,
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "448bafb7c0f4b29d6dfea0080aa91ea5d4790402",
+        "rev": "f06982a95e7ca8124b6982bf829f70087a106394",
         "type": "github"
       },
       "original": {
@@ -178,10 +178,10 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1757294707,
+        "lastModified": 1758077559,
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "20d4902575abbcff7f56e38a11a94a91b96fca30",
+        "rev": "33264b4e773484ab89bf9213bd886e45d5302fda",
         "type": "github"
       },
       "original": {
@@ -212,10 +212,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1757130842,
+        "lastModified": 1757430124,
         "owner": "nix-darwin",
         "repo": "nix-darwin",
-        "rev": "15f067638e2887c58c4b6ba1bdb65a0b61dc58c5",
+        "rev": "830b3f0b50045cf0bcfd4dab65fad05bf882e196",
         "type": "github"
       },
       "original": {
@@ -293,10 +293,10 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1757034884,
+        "lastModified": 1758029226,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ca77296380960cd497a765102eeb1356eb80fed0",
+        "rev": "08b8f92ac6354983f5382124fef6006cade4a1c1",
         "type": "github"
       },
       "original": {

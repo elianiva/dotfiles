@@ -26,7 +26,7 @@ _:
   "bitwarden"
   "battery-toolkit"
   "stats"
-  "jordanbaird-ice"
+  "jordanbaird-ice@beta"
   "qbittorrent"
   "blip"
   "iina"

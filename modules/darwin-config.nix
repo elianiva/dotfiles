@@ -35,6 +35,8 @@ in
         require_sha = true;
       };
       onActivation = {
+        autoUpdate = true;
+        upgrade = true;
         cleanup = "zap";
         extraFlags = [ "--verbose" ];
       };

@@ -23,7 +23,9 @@ with pkgs; [
 
     csvlens
 
+    vivid
     nushell
+    act
 
     # these are so annoying but i need them for intelephense
     php

@@ -44,7 +44,9 @@ $env.NIX_PROFILES = [
 ]
 
 $env.ANTHROPIC_BASE_URL = "https://api.z.ai/api/anthropic"
-$env.ANTHROPIC_AUTH_TOKEN = "-"
+$env.ANTHROPIC_AUTH_TOKEN = "35a466c2d4674d40b411308527d7e9bb.sfOJPHffFNbJtqcl"
+
+$env.LS_COLORS = (vivid generate rose-pine-dawn)
 
 if ($"($env.HOME)/.nix-defexpr/channels" | path exists) {
     $env.NIX_PATH = ($env.PATH | split row (char esep) | append $"($env.HOME)/.nix-defexpr/channels")
@@ -53,8 +55,6 @@ if ($"($env.HOME)/.nix-defexpr/channels" | path exists) {
 if (false in (ls -l `/nix/var/nix`| where type == dir | where name == "/nix/var/nix/db" | get mode | str contains "w")) {
     $env.NIX_REMOTE = "daemon"
 }
-
-# --- END STARTUP CONFIG ---
 
 const cfg = ($nu.config-path | path dirname)
 

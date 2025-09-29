@@ -1,7 +1,8 @@
-theme = light:rose-pine-dawn,dark:rose-pine
+theme = light:Rose Pine Dawn,dark:Rose Pine
 window-theme = ghostty
 window-titlebar-background = #faf4ed
 window-decoration = client
+window-colorspace = display-p3
 
 adw-toolbar-style = flat
 bold-is-bright = true
