@@ -8,13 +8,12 @@ popup-border = "all"
 color-modes = true
 
 [editor.statusline]
-left = ["mode", "spacer", "version-control", "spacer", "spinner"]
-center = ["file-name", "read-only-indicator", "file-modification-indicator"]
-right = ["diagnostics", "register", "position", "position-percentage", "file-encoding", "file-line-ending"]
+left = ["spacer", "separator", "spacer", "file-name", "read-only-indicator", "file-modification-indicator", "spacer"]
+right = ["version-control", "spacer", "diagnostics", "register", "position", "file-encoding", "file-line-ending", "file-type"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
-separator = "│"
+separator = ""
 
 [editor.cursor-shape]
 insert = "bar"

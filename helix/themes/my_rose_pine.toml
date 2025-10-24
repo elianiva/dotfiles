@@ -1,3 +1,5 @@
 inherits = "rose_pine_dawn"
 
 "ui.virtual.indent-guide" = { fg = "overlay" }
+"ui.statusline" =  { fg = "rose", bg = "rose_10" }
+"ui.statusline.separator" = { fg = "rose", bg = "" }
