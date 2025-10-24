@@ -1,0 +1,30 @@
+theme = "my_rose_pine"
+
+[editor]
+bufferline = "multiple"
+line-number = "relative"
+cursorline = true
+popup-border = "all"
+color-modes = true
+
+[editor.statusline]
+left = ["mode", "spacer", "version-control", "spacer", "spinner"]
+center = ["file-name", "read-only-indicator", "file-modification-indicator"]
+right = ["diagnostics", "register", "position", "position-percentage", "file-encoding", "file-line-ending"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+separator = "│"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+
+[editor.lsp]
+auto-signature-help = false
+display-messages = true
+
+[editor.indent-guides]
+render = true
+character = "▏"

@@ -18,6 +18,7 @@ _:
   "orbstack"
   "cherry-studio"
   "simplenote"
+  # "zathura"
 
   # Terminals
   "ghostty"

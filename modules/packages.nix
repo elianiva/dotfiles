@@ -16,10 +16,17 @@ with pkgs; [
     ffmpeg
     imagemagick
 
+    # typst related things
     typst # documents
+    typstyle # formatting
+    zathura
 
+    # editing related things
     zellij
     neovim
+    helix
+    ast-grep
+    fastmod
 
     csvlens
 
@@ -32,7 +39,6 @@ with pkgs; [
     php84Packages.composer
 
     bun
-    uv
 
     # git related
     git-filter-repo # useful to remove accidentally committed secrets
@@ -44,4 +50,16 @@ with pkgs; [
     cargo
 ] ++ [
   flakePkgs.bash-env-json
+] ++ [
+  # language servers related things
+  harper # spell checking
+  tinymist # typst support
+  vtsls # typescript
+  superhtml # html
+  tailwindcss-language-server # tailwind
+  mdx-language-server
+  docker-language-server
+  astro-language-server
+  nil # nix lang server
+  vscode-langservers-extracted
 ]

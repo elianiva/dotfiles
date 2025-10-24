@@ -1,0 +1,46 @@
+[language-server.tinymist]
+command = "tinymist"
+
+[language-server.tinymist.config]
+preview.background.enabled = true
+preview.background.args = ["--data-plane-host=127.0.0.1:9898", "--invert-colors=never"]
+
+[language-server.harper-ls]
+command = "harper-ls"
+args = [ "--stdio" ]
+
+[language-server.vtsls]
+command = "vtsls"
+args = [ "--stdio" ]
+
+[[language]]
+name = "typst"
+language-servers = ["tinymist", "harper-ls"]
+formatter.command = "typstyle"
+rulers = [80]
+auto-format = true
+soft-wrap.enable = true
+soft-wrap.wrap-at-text-width = true
+
+[[language]]
+name = "markdown"
+language-servers = ["harper-ls"]
+rulers = [80]
+soft-wrap.enable = true
+soft-wrap.wrap-at-text-width = true
+
+[[language]]
+name = "typescript"
+language-servers = ["vtsls"]
+
+[[language]]
+name = "javascript"
+language-servers = ["vtsls"]
+
+[[language]]
+name = "tsx"
+language-servers = ["vtsls"]
+
+[[language]]
+name = "jsx"
+language-servers = ["vtsls"]

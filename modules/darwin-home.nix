@@ -99,6 +99,10 @@ in
       source = link "${dotfiles}/nvim";
       recursive = true;
     };
+    "helix" = {
+      source = link "${dotfiles}/helix";
+      recursive = true;
+    };
     "fish" = {
       source = link "${dotfiles}/fish";
       recursive = true;

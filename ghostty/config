@@ -1,7 +1,6 @@
 theme = light:Rose Pine Dawn,dark:Rose Pine
 window-theme = ghostty
 window-titlebar-background = #faf4ed
-window-decoration = client
 window-colorspace = display-p3
 
 adw-toolbar-style = flat
@@ -15,14 +14,17 @@ window-padding-balance = true
 
 font-size = 14
 
-font-family = Monaspace Neon
-font-family-bold = Monaspace Neon
-font-family-italic = Monaspace Neon
-font-family-bold-italic = Monaspace Neon
+font-family = Lilex
+font-family-bold = Lilex
+font-family-italic = Lilex
+font-family-bold-italic = Lilex
 
 font-feature = calt, liga
 
-font-variation-italic = wght=400
+font-variation = wght=430
+font-variation-italic = wght=430
 
 adjust-cell-height = 40%
 adjust-cursor-height = 40%
+
+macos-titlebar-style = tabs
