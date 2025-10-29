@@ -21,9 +21,11 @@ in
   };
   programs.git = {
     enable = true;
-    userName = "${name}";
-    userEmail = "${email}";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "${name}";
+        email = "${email}";
+      };
       credential.helper = "cache --timeout 86400";
       core = {
         compression = 9;

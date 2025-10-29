@@ -13,6 +13,28 @@ args = [ "--stdio" ]
 command = "vtsls"
 args = [ "--stdio" ]
 
+[language-server.vtsls.config.typescript.inlayHints]
+parameterNames.enabled = "literals"
+parameterTypes.enabled = true
+variableTypes.enabled = true
+properlyDeclarationTypes.enabled = true
+functionLikeReturnTypes.enabled = true
+enummemberValues.enabled = true
+
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+# ------------------
+ 
+[[language]]
+name = "html"
+language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
+
 [[language]]
 name = "typst"
 language-servers = ["tinymist", "harper-ls"]
@@ -31,16 +53,25 @@ soft-wrap.wrap-at-text-width = true
 
 [[language]]
 name = "typescript"
-language-servers = ["vtsls"]
+language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }
 
 [[language]]
 name = "javascript"
-language-servers = ["vtsls"]
+language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }
 
 [[language]]
 name = "tsx"
-language-servers = ["vtsls"]
+language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }
 
 [[language]]
 name = "jsx"
-language-servers = ["vtsls"]
+language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }
+
+[[language]]
+name = "astro"
+language-servers = [{ name = "astro-ls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }

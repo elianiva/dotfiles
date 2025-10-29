@@ -49,7 +49,6 @@
     ...
   }:
     let
-      lib = nixpkgs.lib;
       flakePkgs = system: {
         bash-env-json = inputs.bash-env-json.packages.${system}.default;
       };
@@ -68,7 +67,6 @@
             home-manager.darwinModules.home-manager
             {
               nix-homebrew = {
-                # install homebrew under default prefix
                 enable = true;
                 enableRosetta = true;
                 user = "elianiva";

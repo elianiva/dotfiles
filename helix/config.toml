@@ -8,8 +8,8 @@ popup-border = "all"
 color-modes = true
 
 [editor.statusline]
-left = ["spacer", "separator", "spacer", "file-name", "read-only-indicator", "file-modification-indicator", "spacer"]
-right = ["version-control", "spacer", "diagnostics", "register", "position", "file-encoding", "file-line-ending", "file-type"]
+left = ["spacer", "separator", "spacer", "file-name", "read-only-indicator", "file-modification-indicator"]
+right = ["spinner", "spacer", "version-control", "spacer", "diagnostics", "register", "position", "file-encoding", "file-line-ending", "file-type"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
@@ -27,3 +27,6 @@ display-messages = true
 [editor.indent-guides]
 render = true
 character = "▏"
+
+[keys.normal.space]
+i = ":toggle lsp.display-inlay-hints"
