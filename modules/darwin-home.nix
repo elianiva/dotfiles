@@ -107,6 +107,10 @@ in
       source = link "${dotfiles}/fish";
       recursive = true;
     };
+    "yazi" = {
+      source = link "${dotfiles}/yazi";
+      recursive = true;
+    };
   };
 
   # I don't want to rebuild everytime i change these configs

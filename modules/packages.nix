@@ -46,11 +46,18 @@ with pkgs; [
     difftastic
 
     # rust
-    rustc
-    cargo
-] ++ [
-  flakePkgs.bash-env-json
-] ++ [
+    (fenix.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
+    rust-analyzer
+    mold
+] ++ (with flakePkgs; [
+  bash-env-json
+]) ++ [
   # language servers related things
   harper # spell checking
   tinymist # typst support

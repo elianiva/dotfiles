@@ -54,22 +54,22 @@ soft-wrap.wrap-at-text-width = true
 [[language]]
 name = "typescript"
 language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.ts"] }
 
 [[language]]
 name = "javascript"
 language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.js"] }
 
 [[language]]
 name = "tsx"
 language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.tsx"] }
 
 [[language]]
 name = "jsx"
 language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.jsx"] }
 
 [[language]]
 name = "astro"

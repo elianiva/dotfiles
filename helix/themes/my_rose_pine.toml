@@ -1,5 +1,12 @@
 inherits = "rose_pine_dawn"
 
 "ui.virtual.indent-guide" = { fg = "overlay" }
-"ui.statusline" =  { fg = "love", bg = "love_10" }
-"ui.statusline.separator" = { fg = "love", bg = "" }
+
+"ui.statusline" = { fg = "love", bg = "love_10" }
+"ui.statusline.separator" = { fg = "love" }
+
+"ui.popup" = {}
+"ui.popup.info" = {}
+
+"ui.menu" = { fg = "subtle" }
+"ui.help" = { fg = "subtle" }

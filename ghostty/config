@@ -24,7 +24,7 @@ font-feature = calt, liga
 font-variation = wght=430
 font-variation-italic = wght=430
 
-adjust-cell-height = 40%
-adjust-cursor-height = 40%
+adjust-cell-height = 30%
+adjust-cursor-height = 30%
 
 macos-titlebar-style = tabs

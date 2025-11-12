@@ -25,6 +25,10 @@
     homebrew-mhaeuser.url = "github:mhaeuser/homebrew-mhaeuser";
     homebrew-mhaeuser.flake = false;
 
+    # fenix for rust
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
+
     ghostty.url = "github:ghostty-org/ghostty";
 
     # only needed for linux
@@ -37,17 +41,19 @@
     };
   };
 
-  outputs = inputs@{
-    nixpkgs,
-    home-manager,
-    nix-darwin,
-    nix-homebrew,
-    homebrew-core,
-    homebrew-cask,
-    homebrew-bundle,
-    homebrew-mhaeuser,
-    ...
-  }:
+  outputs =
+    inputs@{
+      nixpkgs,
+      home-manager,
+      nix-darwin,
+      nix-homebrew,
+      homebrew-core,
+      homebrew-cask,
+      homebrew-bundle,
+      homebrew-mhaeuser,
+      fenix,
+      ...
+    }:
     let
       flakePkgs = system: {
         bash-env-json = inputs.bash-env-json.packages.${system}.default;
@@ -58,8 +64,15 @@
         melon = nix-darwin.lib.darwinSystem {
           inherit inputs;
           system = "aarch64-darwin";
-          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+          # pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+            overlays = [
+              fenix.overlays.default
+            ];
+          };
           specialArgs = {
+            inherit (inputs) fenix;
             flakePkgs = flakePkgs "aarch64-darwin";
           };
           modules = [

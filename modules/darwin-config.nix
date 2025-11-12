@@ -1,4 +1,4 @@
-{ pkgs, flakePkgs, config, ... }:
+{ pkgs, flakePkgs, fenix, ... }:
 
 let
   user = "elianiva";
@@ -17,6 +17,7 @@ in
 
     # allow unfree packages
     nixpkgs = {
+      overlays = [ fenix.overlays.default ];
       config = {
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
@@ -45,7 +46,7 @@ in
       };
     };
 
-    environment.systemPackages = import ./darwin-packages.nix { inherit pkgs flakePkgs; };
+    environment.systemPackages = import ./darwin-packages.nix { inherit pkgs flakePkgs fenix; };
     fonts.packages = with pkgs; [ monaspace inter lora lilex ];
 
     system.primaryUser = user;
@@ -64,9 +65,7 @@ in
       magnification = true;
       show-recents = false;
       persistent-apps = [
-        # "/Users/${user}/Applications/Visual Studio Code.app"
         "/Users/${user}/Applications/Ghostty.app"
-        "/Applications/Zen.app"
       ];
       appswitcher-all-displays = true;
     };

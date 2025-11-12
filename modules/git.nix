@@ -71,6 +71,18 @@ in
 
   programs.jujutsu = {
     enable = true;
+    # cargo-nextest fails to build on macOS, skip tests until the issue
+    # is resolved.
+    # see: https://github.com/NixOS/nixpkgs/issues/456113
+    package =
+      if pkgs.stdenv.hostPlatform.isDarwin then
+        pkgs.jujutsu.override {
+          rustPlatform = pkgs.rustPlatform // {
+            buildRustPackage = pkgs.rustPlatform.buildRustPackage.override { cargoNextestHook = null; };
+          };
+        }
+      else
+        pkgs.jujutsu;
     settings = {
       user = {
         email = "${email}";
@@ -85,7 +97,12 @@ in
       ui = {
         paginate = "never";
         conflict-marker-style = "git";
-        diff.tool = ["difft" "--color=always" "$left" "$right"];
+        diff.tool = [
+          "difft"
+          "--color=always"
+          "$left"
+          "$right"
+        ];
         merge-editor = "meld";
       };
       merge-tools.meld = {

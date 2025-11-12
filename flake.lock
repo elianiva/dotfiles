@@ -38,6 +38,26 @@
         "type": "github"
       }
     },
+    "fenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": "rust-analyzer-src"
+      },
+      "locked": {
+        "lastModified": 1761893049,
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "c2ac9a5c0d6d16630c3b225b874bd14528d1abe6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -114,10 +134,10 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1761316130,
+        "lastModified": 1761798603,
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "3f75c66e8395d7389f05d360d89af567dcd22cba",
+        "rev": "c7d5d1b9fcddf7f3afaf0d95c2abf247080c521c",
         "type": "github"
       },
       "original": {
@@ -133,10 +153,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1761344779,
+        "lastModified": 1761770832,
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c644cb018f9fdec55f5ac2afb4713a8c7beb757c",
+        "rev": "124b99dbd1594dbebdd575ac7142752ee96a98a0",
         "type": "github"
       },
       "original": {
@@ -163,10 +183,10 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1761370048,
+        "lastModified": 1761797541,
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "53aad198efdf088cbd887db1e4b9badee77d4580",
+        "rev": "5513410e8c3404feb86f7d860e1dac7de2ce183c",
         "type": "github"
       },
       "original": {
@@ -178,10 +198,10 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1761370289,
+        "lastModified": 1761799271,
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "793e7cc1ab68a5da92939a55ae66dbd8fdb1575b",
+        "rev": "38f66fe3f15e5c43128f5f5c6bb35e4f672ca9a1",
         "type": "github"
       },
       "original": {
@@ -266,10 +286,10 @@
     "nixpkgs": {
       "locked": {
         "lastModified": 315532800,
-        "narHash": "sha256-sV6pJNzFkiPc6j9Bi9JuHBnWdVhtKB/mHgVmMPvDFlk=",
-        "rev": "82c2e0d6dde50b17ae366d2aa36f224dc19af469",
+        "narHash": "sha256-LDT9wuUZtjPfmviCcVWif5+7j4kBI2mWaZwjNNeg4eg=",
+        "rev": "a7fc11be66bdfb5cdde611ee5ce381c183da8386",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre877938.82c2e0d6dde5/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre887438.a7fc11be66bd/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -293,10 +313,10 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1761236834,
+        "lastModified": 1761656231,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d5faa84122bc0a1fd5d378492efce4e289f8eac1",
+        "rev": "e99366c665bdd53b7b500ccdc5226675cfc51f45",
         "type": "github"
       },
       "original": {
@@ -322,6 +342,7 @@
     "root": {
       "inputs": {
         "bash-env-json": "bash-env-json",
+        "fenix": "fenix",
         "ghostty": "ghostty",
         "home-manager": "home-manager",
         "homebrew-bundle": "homebrew-bundle",
@@ -336,6 +357,23 @@
         ],
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable"
+      }
+    },
+    "rust-analyzer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1761849405,
+        "narHash": "sha256-igXdvC+WCUN+3gnfk+ptT7rMmxQuY6WbIg1rXMUN1DM=",
+        "owner": "rust-lang",
+        "repo": "rust-analyzer",
+        "rev": "f7de8ae045a5fe80f1203c5a1c3015b05f7c3550",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rust-lang",
+        "ref": "nightly",
+        "repo": "rust-analyzer",
+        "type": "github"
       }
     },
     "systems": {
