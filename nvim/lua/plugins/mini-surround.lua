@@ -4,12 +4,12 @@ return {
   opts = {
     -- Module mappings. Use `''` (empty string) to disable one.
     mappings = {
-      add = 'sa', -- Add surrounding in Normal and Visual modes
-      delete = 'sd', -- Delete surrounding
-      find = 'sf', -- Find surrounding (to the right)
-      find_left = 'sF', -- Find surrounding (to the left)
-      highlight = 'sh', -- Highlight surrounding
-      replace = 'sr', -- Replace surrounding
+      add = 'ma', -- Add surrounding in Normal and Visual modes
+      delete = 'md', -- Delete surrounding
+      find = 'mf', -- Find surrounding (to the right)
+      find_left = 'mF', -- Find surrounding (to the left)
+      highlight = 'mh', -- Highlight surrounding
+      replace = 'mr', -- Replace surrounding
       update_n_lines = 'sn', -- Update `n_lines`
 
       suffix_last = 'l', -- Suffix to search with "prev" method

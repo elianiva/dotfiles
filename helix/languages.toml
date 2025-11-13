@@ -54,24 +54,24 @@ soft-wrap.wrap-at-text-width = true
 [[language]]
 name = "typescript"
 language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.ts"] }
+# formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.ts"] }
 
 [[language]]
 name = "javascript"
 language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.js"] }
+# formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.js"] }
 
 [[language]]
 name = "tsx"
 language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.tsx"] }
+# formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.tsx"] }
 
 [[language]]
 name = "jsx"
 language-servers = [{ name = "vtsls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.jsx"] }
+# formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.jsx"] }
 
 [[language]]
 name = "astro"
 language-servers = [{ name = "astro-ls", except-features = ["format"] }, "biome", "tailwindcss-ls"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }
+# formatter = { command = "biome", args = ["format", "--stdin-file-path", "index.astro"] }

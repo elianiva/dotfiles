@@ -10,9 +10,9 @@ return {
 		{ "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit", },
 		{ "<leader>cR", function() Snacks.rename() end, desc = "Rename File", },
     { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
-		{ "<C-p>",      function() Snacks.picker.files() end, desc = "Find Files" },
-		{ "<leader>fg", function() Snacks.picker.grep() end, desc = "Find Text", },
-		{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find Text", },
+		{ "<leader>f",      function() Snacks.picker.files() end, desc = "Find Files" },
+		{ "<leader>/",      function() Snacks.picker.grep() end, desc = "Find Text" },
+
     -- lsp related pickers
 		{ "<leader>fls", function() Snacks.picker.lsp_symbols() end, desc = "LSP Document Symbols", },
 		{ "<leader>flr", function() Snacks.picker.lsp_references() end, desc = "LSP References", },
@@ -22,30 +22,6 @@ return {
 		bigfile = {
 			enabled = true,
 			notify = true,
-		},
-		dashboard = {
-			enabled = true,
-			sections = {
-				{ section = "header" },
-				{ section = "keys", gap = 1, padding = 1 },
-				{ pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-				{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-				{
-					pane = 2,
-					icon = " ",
-					title = "Git Status",
-					section = "terminal",
-					enabled = function()
-						return Snacks.git.get_root() ~= nil
-					end,
-					cmd = "git status --short --branch --renames",
-					height = 5,
-					padding = 1,
-					ttl = 5 * 60,
-					indent = 3,
-				},
-				{ section = "startup" },
-			},
 		},
 		notifier = {
 			enabled = true,

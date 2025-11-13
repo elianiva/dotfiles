@@ -4,7 +4,7 @@ return {
     name = "rose-pine",
     init = function()
       vim.opt.laststatus = 3 -- Or 3 for global statusline
-      vim.opt.statusline = " %f %m %r %= %y %l:%c   "
+      vim.opt.statusline = "   %f %m %r %= %y %l:%c"
     end,
     config = function()
       require("rose-pine").setup {

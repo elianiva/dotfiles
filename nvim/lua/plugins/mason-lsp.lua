@@ -14,7 +14,7 @@ intelephense_capabilities.textDocument.completion.dynamicRegistration = true
 
 return {
 	"williamboman/mason-lspconfig.nvim",
-	event = { "BufRead" },
+	event = { "WinEnter", "BufRead", "BufNewFile" },
 	dependencies = {
 		"williamboman/mason.nvim",
 		"neovim/nvim-lspconfig",
@@ -39,7 +39,7 @@ return {
 				end,
 
 				["ts_ls"] = function()
-					-- disable ts_ls
+					-- disable ts_ls, we have its own plugin
 				end,
 
 				["intelephense"] = function()
@@ -73,13 +73,6 @@ return {
 					})
 				end,
 			},
-		})
-
-		-- other manual stuff that comes from nix shell
-		local lsp = require("lspconfig")
-		lsp.ocamlls.setup({
-			cmd = { "ocamllsp", "--stdio" },
-			filetypes = { "ocaml", "ocaml_interface" },
 		})
 	end,
 }

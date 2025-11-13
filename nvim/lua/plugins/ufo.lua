@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"kevinhwang91/promise-async",
 	},
-	event = "BufRead",
+	event = { "BufRead", "BufNewFile" },
 	keys = {
     -- stylua: ignore start
     { "zm", function() require("ufo").closeAllFolds() end, desc = "󱃄 Close All Folds" },

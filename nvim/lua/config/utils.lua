@@ -1,13 +1,6 @@
 local M = {}
 M.lsp = {}
 
-M.CREATE_UNDO = vim.api.nvim_replace_termcodes("<c-G>u", true, true, true)
-function M.create_undo()
-	if vim.api.nvim_get_mode().mode == "i" then
-		vim.api.nvim_feedkeys(M.CREATE_UNDO, "n", false)
-	end
-end
-
 M.borders = {
 	-- fancy border
 	{ "🭽", "FloatBorder" },
@@ -28,52 +21,6 @@ M.borders = {
 	-- {"▀", "PaddingBorder"},
 	-- {"▀", "PaddingBorder"},
 	-- {"█", "PaddingBorder"}
-}
-
-M.nui_borders = vim.tbl_map(function(x)
-	return x[1]
-end, M.borders)
-
-M.completion_icons = {
-	Array = " ",
-	Boolean = "󰨙 ",
-	Class = " ",
-	Codeium = "󰘦 ",
-	Color = " ",
-	Control = " ",
-	Collapsed = " ",
-	Constant = "󰏿 ",
-	Constructor = " ",
-	Copilot = " ",
-	Enum = " ",
-	EnumMember = " ",
-	Event = " ",
-	Field = " ",
-	File = " ",
-	Folder = " ",
-	Function = "󰊕 ",
-	Interface = " ",
-	Key = " ",
-	Keyword = " ",
-	Method = "󰊕 ",
-	Module = " ",
-	Namespace = "󰦮 ",
-	Null = " ",
-	Number = "󰎠 ",
-	Object = " ",
-	Operator = " ",
-	Package = " ",
-	Property = " ",
-	Reference = " ",
-	Snippet = " ",
-	String = " ",
-	Struct = "󰆼 ",
-	TabNine = "󰏚 ",
-	Text = " ",
-	TypeParameter = " ",
-	Unit = " ",
-	Value = " ",
-	Variable = "󰀫 ",
 }
 
 function M.lsp.additional_capabilities(client)
@@ -103,28 +50,28 @@ function M.lsp.additional_capabilities(client)
 end
 
 function M.lsp.additional_mappings(bufnr)
-	vim.keymap.set("i", "<C-s>", vim.lsp.handlers.signature_help, {
+	vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, {
 		desc = "Trigger signature help from the language server",
 		noremap = true,
 		silent = true,
 		buffer = bufnr,
 	})
 
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, {
+	vim.keymap.set("n", "<Leader>k", vim.lsp.buf.hover, {
 		desc = "Trigger hover window from the language server",
 		noremap = true,
 		silent = true,
 		buffer = bufnr,
 	})
 
-	vim.keymap.set("n", "<Leader>ga", vim.lsp.buf.code_action, {
+	vim.keymap.set("n", "<Leader>a", vim.lsp.buf.code_action, {
 		desc = "Pick code actions from the language server",
 		noremap = true,
 		silent = true,
 		buffer = bufnr,
 	})
 
-	vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition, {
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
 		desc = "Go to symbol definition",
 		noremap = true,
 		silent = true,
@@ -138,7 +85,7 @@ function M.lsp.additional_mappings(bufnr)
 		buffer = bufnr,
 	})
 
-	vim.keymap.set("n", "<Leader>gD", function()
+	vim.keymap.set("n", "<Leader>d", function()
 		vim.diagnostic.open_float({
 			bufnr = bufnr,
 			header = "",

@@ -3,28 +3,7 @@ require("config.options")
 require("config.mappings")
 require("config.lsp")
 
-vim.o.shell = "/run/current-system/sw/bin/zsh"
-
--- set current directory
-vim.cmd([[
-  au VimEnter * cd %:p:h
-
-  " highlight yanked text for 250ms
-  augroup Yank
-    au!
-    au TextYankPost * silent! lua vim.highlight.on_yank { timeout = 250, higroup = "Visual" }
-  augroup END
-
-  " Remove trailing whitespace on save
-  let g:strip_whitespace = v:true
-  augroup Whitespace
-    au!
-    au BufWritePre * if g:strip_whitespace | %s/\s\+$//e
-  augroup END
-
-  " automatically go to insert mode on terminal buffer
-  autocmd BufEnter term://* startinsert
-]])
+vim.o.shell = "/run/current-system/sw/bin/bash"
 
 -- prevent typo when pressing `wq` or `q`
 vim.cmd([[
@@ -52,8 +31,48 @@ vim.diagnostic.config({
 	},
 })
 
--- add mdx as markdown
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+  desc = "Set current cwd",
+  pattern = { "*" },
+  command = "cd %:p:h",
+})
+
+vim.api.nvim_create_autocmd({ "Bufenter" }, {
+  desc = "Start insert on terminal",
+  pattern = { "term://*" },
+  command = "startinsert",
+})
+
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  desc = "Assign mdx to markdown",
   pattern = { "*.mdx" },
   command = "set ft=markdown",
+})
+
+vim.g.STRIP = true -- to temporarily disable
+vim.api.nvim_create_augroup("strip_whitespace", {
+  clear = true
+})
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  desc = "Remove trailing whitespace on save",
+  group = "strip_whitespace",
+  pattern = { "*" },
+  callback = function ()
+    if vim.g.STRIP then
+      vim.cmd("%s/\\s\\+$//e")
+    end
+  end,
+})
+
+vim.api.nvim_create_augroup("hl_on_yank", {
+  clear = true
+})
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  desc = "Highlight yanked text",
+  group = "hl_on_yank",
+  pattern = { "*" },
+  callback = function()
+    vim.highlight.on_yank { timeout = 250, higroup = "Visual" }
+  end
 })
