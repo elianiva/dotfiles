@@ -50,10 +50,17 @@ return {
 
           -- snacks
           SnacksPicker = { fg = "subtle", bg = "base" },
+          SnacksPickerPrompt = { fg = "love", bg = "base" },
+
           SnacksPickerListTitle = { fg = "base", bg = "love" },
           SnacksPickerListBorder = { fg = "love", bg = "base" },
+
           SnacksPickerInputTitle = { fg = "base", bg = "pine" },
           SnacksPickerInputBorder = { fg = "pine", bg = "base" },
+
+          FloatTitle = { fg = "base", bg = "pine" },
+          SnacksPickerBorder = { fg = "pine", bg = "base" },
+
           SnacksPickerPreviewTitle = { fg = "base", bg = "iris" },
           SnacksPickerPreviewBorder = { fg = "iris", bg = "base" },
 

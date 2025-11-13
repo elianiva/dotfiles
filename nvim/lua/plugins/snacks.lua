@@ -14,8 +14,7 @@ return {
 		{ "<leader>/",      function() Snacks.picker.grep() end, desc = "Find Text" },
 
     -- lsp related pickers
-		{ "<leader>fls", function() Snacks.picker.lsp_symbols() end, desc = "LSP Document Symbols", },
-		{ "<leader>flr", function() Snacks.picker.lsp_references() end, desc = "LSP References", },
+		{ "<leader>s", function() Snacks.picker.lsp_symbols() end, desc = "LSP Document Symbols", },
 		-- stylua: ignore end
 	},
 	opts = {
@@ -55,27 +54,24 @@ return {
 		picker = {
 			ui_select = true,
 			layout = {
-				reverse = true,
+				reverse = false,
 				layout = {
 					box = "horizontal",
 					backdrop = false,
-					width = 0.8,
+					width = 0.9,
 					height = 0.9,
 					border = "none",
 					{
 						box = "vertical",
-						{
-							win = "list",
-							title = " Results ",
-							title_pos = "center",
-							border = "single",
-						},
+            border = "single",
+            title = "{title} {live} {flags}",
 						{
 							win = "input",
 							height = 1,
-							border = "single",
-							title = "{title} {live} {flags}",
-							title_pos = "center",
+							border = "bottom",
+						},
+						{
+							win = "list",
 						},
 					},
 					{
