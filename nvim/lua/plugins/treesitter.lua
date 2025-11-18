@@ -7,8 +7,8 @@ return {
 	build = ":TSUpdate",
 	lazy = false,
 	keys = {
-		{ "<Alt-o>", desc = "Increment Selection" },
-		{ "<Alt-i>", desc = "Decrement Selection", mode = "x" },
+		{ "<M-o>", desc = "Increment Selection" },
+		{ "<M-i>", desc = "Decrement Selection", mode = "x" },
 	},
 	opts = {
 		sync_install = true,
@@ -45,10 +45,10 @@ return {
 		incremental_selection = {
 			enable = true,
 			keymaps = {
-				init_selection = "<Alt-o>",
-				node_incremental = "<C-space>",
+				init_selection = "<M-o>",
+				node_incremental = "<M-o>",
+				node_decremental = "<M-i>",
 				scope_incremental = false,
-				node_decremental = "<bs>",
 			},
 		},
 		textobjects = {

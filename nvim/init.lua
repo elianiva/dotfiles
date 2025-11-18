@@ -17,18 +17,19 @@ cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('
 vim.g.zig_fmt_autosave = false
 
 vim.diagnostic.config({
+  virtual_lines = false,
   float = {
     border = "single",
     severity_sort = true,
   },
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "",
-			[vim.diagnostic.severity.WARN] = "",
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
       [vim.diagnostic.severity.INFO] = "",
       [vim.diagnostic.severity.HINT] = "",
-		},
-	},
+    },
+  },
 })
 
 
@@ -58,7 +59,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   desc = "Remove trailing whitespace on save",
   group = "strip_whitespace",
   pattern = { "*" },
-  callback = function ()
+  callback = function()
     if vim.g.STRIP then
       vim.cmd("%s/\\s\\+$//e")
     end

@@ -8,11 +8,6 @@ in
   home = {
     # don't change this, see: https://nix-community.github.io/home-manager/
     stateVersion = "24.05";
-
-    sessionVariables = {
-      # Make it possible to handle "xterm-kitty" in SSH remotes or lima guest VM with tiny filesize and setups. See GH-932
-      TERMINFO_DIRS = "${pkgs.kitty.terminfo}/share/terminfo";
-    };
   };
 
   programs = {
@@ -21,8 +16,8 @@ in
 
     # nix-direnv
     direnv = {
-      enable = true;
-      nix-direnv.enable = true;
+      enable = false;
+      nix-direnv.enable = false;
       stdlib = builtins.readFile ../direnv/direnvrc;
     };
 

@@ -8,7 +8,7 @@ return {
       "<leader>cf",
       "<cmd>Format<cr>",
       mode = { "n", "v" },
-      desc = "Format Injected Langs",
+      desc = "Format",
     },
   },
   opts = {

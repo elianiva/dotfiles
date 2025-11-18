@@ -77,7 +77,7 @@ return {
           BlinkCmpMenuSelection = { bg = "love", blend = 10 },
 
           -- snacks
-          SnacksIndent = { fg = "highlight_high", blend = 10 },
+          SnacksIndent = { fg = "overlay", blend = 10 },
         }
       }
       vim.cmd.colorscheme("rose-pine-dawn")

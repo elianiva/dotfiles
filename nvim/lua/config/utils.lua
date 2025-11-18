@@ -78,7 +78,7 @@ function M.lsp.additional_mappings(bufnr)
 		buffer = bufnr,
 	})
 
-	vim.keymap.set("n", "<Leader>gl", vim.lsp.codelens.run, {
+	vim.keymap.set("n", "<Leader>l", vim.lsp.codelens.run, {
 		desc = "Run codelens from the language server",
 		noremap = true,
 		silent = true,
@@ -105,7 +105,7 @@ function M.lsp.additional_mappings(bufnr)
 		buffer = bufnr,
 	})
 
-	vim.keymap.set("n", "<Leader>gR", vim.lsp.buf.rename, {
+	vim.keymap.set("n", "<Leader>r", vim.lsp.buf.rename, {
 		desc = "Rename current symbol",
 		noremap = true,
 		silent = true,
@@ -113,7 +113,8 @@ function M.lsp.additional_mappings(bufnr)
 	})
 
 	vim.keymap.set("n", "]d", function()
-		vim.diagnostic.goto_next({
+		vim.diagnostic.jump({
+      count = 1,
 			float = { show_header = false },
 		})
 	end, {
@@ -124,7 +125,8 @@ function M.lsp.additional_mappings(bufnr)
 	})
 
 	vim.keymap.set("n", "[d", function()
-		vim.diagnostic.goto_prev({
+		vim.diagnostic.jump({
+      count = -1,
 			float = { show_header = false },
 		})
 	end, {
