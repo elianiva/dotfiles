@@ -11,11 +11,13 @@ in
       gui.theme = {
         lightTheme = true;
       };
-      git.paging = {
-        colorArg = "always";
-        useConfig = true;
-        externalDiffCommand = "difft";
-      };
+      git.pagers = [
+        {
+          colorArg = "always";
+          useConfig = true;
+          externalDiffCommand = "difft";
+        }
+      ];
       git.log.order = "default";
     };
   };
