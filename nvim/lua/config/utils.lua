@@ -25,23 +25,7 @@ M.borders = {
 
 function M.lsp.additional_capabilities(client)
 	if client.supports_method("textDocument/codeLens") then
-		vim.cmd([[
-    augroup CodeLens
-      au!
-      au InsertEnter,InsertLeave * lua vim.lsp.codelens.refresh()
-    augroup END
-    ]])
-	end
-
-	if client.supports_method("textDocument/documentHighlight") then
-		vim.cmd([[
-    augroup DocumentHighlight
-      au!
-      autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    augroup END
-    ]])
+		vim.lsp.codelens.refresh()
 	end
 
 	if client.supports_method("textDocument/inlayHint") then

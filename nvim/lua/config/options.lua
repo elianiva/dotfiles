@@ -28,7 +28,6 @@ o.swapfile       = false -- disable swapfile
 o.termguicolors  = true -- true colours for better experience
 o.wrap           = false -- don't wrap lines
 o.writebackup    = false -- disable backup
-o.swapfile       = false -- disable swap
 o.backupcopy     = "yes" -- fix weirdness for stuff that replaces the entire file when hot reloading
 o.completeopt    = {
   "menu",
@@ -60,7 +59,7 @@ o.mouse          = "nvi" -- enable mouse support in normal, insert, and visual m
 o.shortmess      = "csa" -- disable some stuff on shortmess
 -- o.signcolumn     = "yes:1" -- enable sign column all the time 4 column
 -- o.colorcolumn    = { "80" } -- 80 chars color column
-o.shell          = "/usr/bin/bash" -- use bash instead of zsh
+o.shell          = "/run/current-system/sw/bin/bash" -- use bash instead of zsh
 o.pumheight      = 10 -- limit completion items
 o.re             = 0 -- set regexp engine to auto
 o.scrolloff      = 2 -- make scrolling better
