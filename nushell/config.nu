@@ -119,5 +119,14 @@ const NU_PLUGIN_DIRS = [
   ...$NU_PLUGIN_DIRS
 ]
 
-mkdir ($nu.data-dir | path join "vendor/autoload")
-starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+$env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {
+  {
+    condition: {|| not ($nu.data-dir | path join "vendor/autoload/starship.nu" | path exists) }
+    code: {|| 
+      mkdir ($nu.data-dir | path join "vendor/autoload")
+      starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+    }
+  }
+})
+
+source ($nu.data-dir | path join "vendor/autoload/starship.nu")
