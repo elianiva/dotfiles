@@ -16,9 +16,17 @@ in
 
     # nix-direnv
     direnv = {
-      enable = false;
-      nix-direnv.enable = false;
+      enable = true;
+      nix-direnv.enable = true;
+      enableFishIntegration = false;
+      enableBashIntegration = false;
+      enableNushellIntegration = true;
+      enableZshIntegration = false;
       stdlib = builtins.readFile ../direnv/direnvrc;
+
+      package = pkgs.direnv.overrideAttrs (old: {
+        doCheck = false;
+      });
     };
 
     bat = {

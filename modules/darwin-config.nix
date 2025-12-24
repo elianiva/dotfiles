@@ -47,7 +47,7 @@ in
     };
 
     environment.systemPackages = import ./darwin-packages.nix { inherit pkgs flakePkgs fenix; };
-    fonts.packages = with pkgs; [ monaspace inter lora lilex ];
+    fonts.packages = with pkgs; [ monaspace inter lora lilex departure-mono ];
 
     system.primaryUser = user;
 

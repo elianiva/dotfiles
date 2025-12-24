@@ -41,7 +41,7 @@ in
       else if pkgs.stdenv.isDarwin then pkgs.pinentry_mac
       else pkgs.pinentry-curses;
     enableSshSupport = true;
-    enableFishIntegration = true;
+    enableFishIntegration = false;
   };
 
   # https://github.com/nix-community/home-manager/blob/release-24.05/modules/programs/gpg.nix

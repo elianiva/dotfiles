@@ -99,7 +99,8 @@ in
       ui = {
         paginate = "never";
         conflict-marker-style = "git";
-        diff.tool = [
+        default-command = "log";
+        diff-formatter = [
           "difft"
           "--color=always"
           "$left"

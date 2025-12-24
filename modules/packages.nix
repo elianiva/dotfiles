@@ -9,12 +9,14 @@ with pkgs; [
     yt-dlp
     yazi # tui file manager
     pass
+    wget
     yq
     zoxide # switch between multiple projects faster
     eza # better ls
     nh # nix helper
     ffmpeg
     imagemagick
+    pkg-config
 
     # typst related things
     typst # documents
