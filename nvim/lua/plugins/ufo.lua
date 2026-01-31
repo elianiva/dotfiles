@@ -29,9 +29,6 @@ return {
 			end
 			return { "lsp", "indent" }
 		end,
-		close_fold_kinds_for_ft = {
-			default = { "imports", "comment" },
-		},
 		fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
 			local hlgroup = "NonText"
 			local newVirtText = {}

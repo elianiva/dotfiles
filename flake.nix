@@ -24,6 +24,8 @@
     homebrew-bundle.flake = false;
     homebrew-mhaeuser.url = "github:mhaeuser/homebrew-mhaeuser";
     homebrew-mhaeuser.flake = false;
+    homebrew-jnsahaj.url = "github:jnsahaj/homebrew-lumen";
+    homebrew-jnsahaj.flake = false;
 
     # fenix for rust
     fenix.url = "github:nix-community/fenix";
@@ -47,10 +49,6 @@
       home-manager,
       nix-darwin,
       nix-homebrew,
-      homebrew-core,
-      homebrew-cask,
-      homebrew-bundle,
-      homebrew-mhaeuser,
       fenix,
       ...
     }:
@@ -84,10 +82,11 @@
                 enableRosetta = true;
                 user = "elianiva";
                 taps = {
-                  "homebrew/homebrew-core" = homebrew-core;
-                  "homebrew/homebrew-cask" = homebrew-cask;
-                  "homebrew/homebrew-bundle" = homebrew-bundle;
-                  "mhaeuser/homebrew-mhaeuser" = homebrew-mhaeuser;
+                  "homebrew/homebrew-core" = inputs.homebrew-core;
+                  "homebrew/homebrew-cask" = inputs.homebrew-cask;
+                  "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+                  "mhaeuser/homebrew-mhaeuser" = inputs.homebrew-mhaeuser;
+                  "jnsahaj/homebrew-lumen" = inputs.homebrew-jnsahaj;
                 };
                 mutableTaps = false;
                 autoMigrate = true;

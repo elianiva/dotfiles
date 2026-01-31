@@ -2,6 +2,7 @@
 
 with pkgs; [
     # cli tools
+    tree
     dust
     ripgrep
     fd
@@ -17,6 +18,8 @@ with pkgs; [
     ffmpeg
     imagemagick
     pkg-config
+    csvlens
+    protobuf
 
     # typst related things
     typst # documents
@@ -30,9 +33,7 @@ with pkgs; [
     ast-grep
     fastmod
 
-    csvlens
-
-    vivid
+    vivid # better LS_COLORS
     nushell
     act
 
@@ -60,15 +61,16 @@ with pkgs; [
 ] ++ (with flakePkgs; [
   bash-env-json
 ]) ++ [
-  # language servers related things
-  harper # spell checking
-  tinymist # typst support
-  vtsls # typescript
-  superhtml # html
-  tailwindcss-language-server # tailwind
-  mdx-language-server
-  docker-language-server
-  astro-language-server
-  nil # nix lang server
-  vscode-langservers-extracted
+  # TODO: not sure if we should keep this or remove entirely
+  # # language servers related things
+  # harper # spell checking
+  # tinymist # typst support
+  # vtsls # typescript
+  # superhtml # html
+  # tailwindcss-language-server # tailwind
+  # mdx-language-server
+  # docker-language-server
+  # astro-language-server
+  # nil # nix lang server
+  # vscode-langservers-extracted
 ]

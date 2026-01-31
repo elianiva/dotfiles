@@ -71,20 +71,12 @@ in
     };
   };
 
+  programs.jjui = {
+    enable = true;
+  };
+
   programs.jujutsu = {
     enable = true;
-    # cargo-nextest fails to build on macOS, skip tests until the issue
-    # is resolved.
-    # see: https://github.com/NixOS/nixpkgs/issues/456113
-    package =
-      if pkgs.stdenv.hostPlatform.isDarwin then
-        pkgs.jujutsu.override {
-          rustPlatform = pkgs.rustPlatform // {
-            buildRustPackage = pkgs.rustPlatform.buildRustPackage.override { cargoNextestHook = null; };
-          };
-        }
-      else
-        pkgs.jujutsu;
     settings = {
       user = {
         email = "${email}";
@@ -96,19 +88,37 @@ in
         key = "~/.ssh/id_ed25519";
         backends.ssh.allowed-signers = "${config.home.homeDirectory}/.ssh/allowed_signers";
       };
+      revsets = {
+        log = "::"; # show all commits by default
+      };
+      aliases ={
+        # Bring nearest bookmark up to recent commit
+        tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+        # Retrunk:
+        # `jj rebase -d 'trunk()' is shorthand for `jj rebase -b @ -d 'trunk()'`
+        # What it does:
+        # `-b @` rebases the entire branch that the current @ is on relative to the destination
+        # `-d trunk()` sets the destination. trunk() finds the most recent `main | master | whatever main branch`
+        retrunk = ["rebase" "-b" "@" "-d" "trunk()"];
+        # Logs last 10 revisions
+        lg = ["log" "-r" "all()" "-n" "10"];
+        # Compare current revision with the previous one
+        compare = ["diff" "--from" "@" "-to" "@-" "--git"];
+      };
       ui = {
         paginate = "never";
         conflict-marker-style = "git";
         default-command = "log";
         diff-formatter = [
           "difft"
+          # it's bad, better to disable it since it causes confusion
+          # see: https://github.com/Wilfred/difftastic/issues/275
+          "--syntax-highlight=off"
           "--color=always"
+          "--display=side-by-side-show-both"
           "$left"
           "$right"
         ];
-        merge-editor = "meld";
-      };
-      merge-tools.meld = {
       };
     };
   };

@@ -3,6 +3,7 @@ $env.__NIX_DARWIN_SET_ENVIRONMENT_DONE = 1
 $env.PATH = [
     $"($env.HOME)/.nix-profile/bin"
     $"/etc/profiles/per-user/($env.USER)/bin"
+    $"($env.HOME)/Library/Python/3.9/bin"
     "/run/current-system/sw/bin"
     "/nix/var/nix/profiles/default/bin"
     "/usr/local/bin"
@@ -122,7 +123,7 @@ const NU_PLUGIN_DIRS = [
 $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {
   {
     condition: {|| not ($nu.data-dir | path join "vendor/autoload/starship.nu" | path exists) }
-    code: {|| 
+    code: {||
       mkdir ($nu.data-dir | path join "vendor/autoload")
       starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
     }

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["@tarquinen/opencode-dcp"],
+  "agent": {
+    "general": {
+      "disable": true
+    },
+    "plan": {
+      "permission": {
+        "edit": {
+          "*": "deny",
+          "./**/*.md": "allow",
+        }
+      }
+    }
+  },
+  "mcp": {
+    "exa": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp",
+      "headers": {}
+    }
+  }
+}

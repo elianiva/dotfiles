@@ -89,7 +89,6 @@ in
   xdg.configFile = {
     # fish produces its own config file which causes conflict
     "fish/config.fish".enable = false;
-
     "fastfetch" = {
       source = link "${dotfiles}/fastfetch";
       recursive = true;
@@ -112,6 +111,24 @@ in
     };
     "yazi" = {
       source = link "${dotfiles}/yazi";
+      recursive = true;
+    };
+    "jjui" = {
+      source = link "${dotfiles}/jjui";
+      recursive = true;
+    };
+    "opencode/opencode.json" = {
+      source = link "${dotfiles}/opencode/opencode.json";
+    };
+    "opencode/commands" = {
+      source = link "${dotfiles}/opencode/commands";
+      recursive = true;
+    };
+    "opencode/AGENTS.md" = {
+      source = link "${dotfiles}/agents/AGENTS.md";
+    };
+    "opencode/skills" = {
+      source = link "${dotfiles}/agents/skills";
       recursive = true;
     };
   };

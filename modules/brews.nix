@@ -4,5 +4,8 @@ _:
   # Development Tools
   "mysql-client"
   "cloudflared"
-  # "zathura-pdf-mupdf"
+  "jnsahaj/lumen/lumen"
+
+  # Google Workspace CLI
+  "gogcli"
 ]
