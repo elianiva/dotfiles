@@ -103,7 +103,7 @@ in
         # Logs last 10 revisions
         lg = ["log" "-r" "all()" "-n" "10"];
         # Compare current revision with the previous one
-        compare = ["diff" "--from" "@" "-to" "@-" "--git"];
+        compare = ["diff" "--from" "@-" "--to" "@" "--git"];
       };
       ui = {
         paginate = "never";

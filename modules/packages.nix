@@ -21,6 +21,10 @@ with pkgs; [
     csvlens
     protobuf
 
+    # finance stuff
+    beancount
+    beanquery
+
     # typst related things
     typst # documents
     typstyle # formatting

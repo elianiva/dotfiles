@@ -11,7 +11,7 @@ _:
   "zoom"
   "telegram"
   "whatsapp"
-  "legcord"
+  "vesktop"
 
   # Productivity Tools
   "raycast"
