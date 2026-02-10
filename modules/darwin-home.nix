@@ -120,10 +120,6 @@ in
     "opencode/opencode.json" = {
       source = link "${dotfiles}/opencode/opencode.json";
     };
-    "opencode/commands" = {
-      source = link "${dotfiles}/opencode/commands";
-      recursive = true;
-    };
     "opencode/AGENTS.md" = {
       source = link "${dotfiles}/agents/AGENTS.md";
     };

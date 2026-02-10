@@ -1,25 +1,44 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["@tarquinen/opencode-dcp"],
   "agent": {
     "general": {
       "disable": true
     },
+    "explore": {
+      "disable": true
+    },
     "plan": {
       "permission": {
-        "edit": {
+        "edit": "deny",
+        "skill": {
           "*": "deny",
-          "./**/*.md": "allow",
+          "code-review-*": "allow",
+          "brainstorming": "allow",
+          "build-feature": "allow",
+          "*-best-practices": "allow",
         }
       }
     }
   },
-  "mcp": {
-    "exa": {
-      "enabled": true,
-      "type": "remote",
-      "url": "https://mcp.exa.ai/mcp",
-      "headers": {}
-    }
+  "permission": {
+    "*": "deny",
+    "read": "allow",
+    "write": "allow",
+    "bash": "allow",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "lsp": "allow",
+    "list": "allow",
+    "grep": "allow",
+    "glob": "allow",
+    "edit": "allow",
+    "external_directory": "ask",
+    "question": "allow",
+    "codesearch": "allow",
+    "skill": {
+      "*": "allow",
+      "pdf": "deny",
+      "xlsx": "deny",
+    },
   }
 }

@@ -24,6 +24,7 @@ with pkgs; [
     # finance stuff
     beancount
     beanquery
+    fava
 
     # typst related things
     typst # documents

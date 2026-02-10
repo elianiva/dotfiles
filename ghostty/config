@@ -14,12 +14,9 @@ window-padding-balance = true
 
 font-size = 14
 
-# font-family = Lilex
-# font-family-bold = Lilex
-# font-family-italic = Lilex
-# font-family-bold-italic = Lilex
+# font-family = Departure Mono
 
-font-family = Departure Mono
+font-family = Iosevka Extended
 
 font-feature = calt, liga
 
