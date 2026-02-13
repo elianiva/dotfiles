@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "plugin": ["@mohak34/opencode-notifier@0.1.15"],
   "agent": {
     "general": {
       "disable": true
