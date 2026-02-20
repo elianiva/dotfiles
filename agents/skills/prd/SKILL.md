@@ -10,6 +10,8 @@ Convert plans into actionable structured Product Requirements Documents (PRDs).
 
 ## PRD Format
 
+PRD is a JSON array of objects, each object representing a PRD. Each object should be commit-size changes.
+
 ```json
 {
   "category": "functional",
@@ -25,7 +27,7 @@ Convert plans into actionable structured Product Requirements Documents (PRDs).
 
 ## Output Location
 
-Write to: `~/.local/share/opencode/prds/{project-name}/prd.json`
+Write to: `./.claude/plans/prd.json`
 
 Project name is the last section of the current working directory.
 

@@ -1,0 +1,11 @@
+{
+  "lastChangelogVersion": "0.54.0",
+  "defaultProvider": "openrouter",
+  "defaultModel": "moonshotai/kimi-k2.5",
+  "defaultThinkingLevel": "off",
+  "theme": "rose-pine-dawn",
+  "quietStartup": true,
+  "packages": [
+    "npm:pi-mcp-adapter"
+  ]
+}

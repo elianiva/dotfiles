@@ -1,6 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["@mohak34/opencode-notifier@0.1.15"],
   "agent": {
     "general": {
       "disable": true
@@ -10,7 +9,10 @@
     },
     "plan": {
       "permission": {
-        "edit": "deny",
+        "edit": {
+          "*": "deny",
+          "*.md": "ask"
+        },
         "skill": {
           "*": "deny",
           "code-review-*": "allow",
@@ -33,7 +35,13 @@
     "grep": "allow",
     "glob": "allow",
     "edit": "allow",
-    "external_directory": "ask",
+    "external_directory": {
+      "*": "ask",
+      "~/Development/personal/*": "allow",
+      "~/Development/work/*": "allow",
+      "~/Repositories/*": "allow",
+      "/tmp/*": "allow",
+    },
     "question": "allow",
     "codesearch": "allow",
     "skill": {

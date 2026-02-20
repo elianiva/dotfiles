@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "opensrc": {
+      "type": "local",
+      "command": "bunx",
+      "args": ["-y", "opensrc-mcp"]
+    },
+    "exa": {
+      "url": "https://mcp.exa.ai/mcp"
+    }
+  }
+}

@@ -42,22 +42,22 @@ in
       else pkgs.pinentry-curses;
     enableSshSupport = true;
     enableFishIntegration = false;
+    extraConfig = ''
+      allow-loopback-pinentry
+    '';
   };
 
   # https://github.com/nix-community/home-manager/blob/release-24.05/modules/programs/gpg.nix
   programs.gpg = {
     enable = true;
 
-    # Preferring XDG_DATA_HOME rather than XDG_CONFIG_HOME from following examples
-    #   - https://wiki.archlinux.org/title/XDG_Base_Directory
-    #   - https://github.com/nix-community/home-manager/blob/5171f5ef654425e09d9c2100f856d887da595437/modules/programs/gpg.nix#L192
-    homedir = "${config.xdg.dataHome}/gnupg";
-
     # - How to read `--list-keys` - https://unix.stackexchange.com/questions/613839/help-understanding-gpg-list-keys-output
     settings = {
       # https://unix.stackexchange.com/questions/339077/set-default-key-in-gpg-for-signing
       # default-key = "<UPDATE_ME_IN_FLAKE>";
       personal-digest-preferences = "SHA512";
+      pinentry-mode = "default";
+      use-agent = true;
     };
   };
 

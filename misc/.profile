@@ -73,8 +73,8 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export GPG_TTY=$(tty)
 
 # Opencode stuff
-OPENCODE_ENABLE_EXA = 1
-OPENCODE_EXPERIMENTAL_EXA = 1
+export OPENCODE_ENABLE_EXA = 1
+export OPENCODE_EXPERIMENTAL_EXA = 1
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/elianiva/.lmstudio/bin"

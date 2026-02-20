@@ -1,6 +1,7 @@
 { lib, pkgs, inputs, flakePkgs, config, ... }:
 let
   user = "elianiva";
+  pi = ".pi/agent";
   link = config.lib.file.mkOutOfStoreSymlink;
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
 in
@@ -117,21 +118,35 @@ in
       source = link "${dotfiles}/jjui";
       recursive = true;
     };
-    "opencode/opencode.json" = {
-      source = link "${dotfiles}/opencode/opencode.json";
-    };
-    "opencode/AGENTS.md" = {
-      source = link "${dotfiles}/agents/AGENTS.md";
-    };
+
+    # opencode configs
+    "opencode/opencode.json".source = link "${dotfiles}/agents/opencode/opencode.json";
+    "opencode/AGENTS.md". source = link "${dotfiles}/agents/AGENTS.md";
     "opencode/skills" = {
       source = link "${dotfiles}/agents/skills";
       recursive = true;
     };
   };
 
-  # I don't want to rebuild everytime i change these configs
   home.file = {
     ".profile".source = link "${dotfiles}/misc/.profile";
     ".bashrc".source = link "${dotfiles}/misc/.bashrc";
+
+    # pi coding agent related configs
+    "${pi}/AGENTS.md". source = link "${dotfiles}/agents/AGENTS.md";
+    "${pi}/settings.json".source = link "${dotfiles}/agents/pi/settings.json";
+    "${pi}/mcp.json".source = link "${dotfiles}/agents/pi/mcp.json";
+    "${pi}/skills" = {
+      source = link "${dotfiles}/agents/skills";
+      recursive = true;
+    };
+    "${pi}/extensions" = {
+      source = link "${dotfiles}/agents/pi/extensions";
+      recursive = true;
+    };
+    "${pi}/themes" = {
+      source = link "${dotfiles}/agents/pi/themes";
+      recursive = true;
+    };
   };
 }
