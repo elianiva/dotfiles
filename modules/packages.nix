@@ -12,7 +12,7 @@ with pkgs; [
     pass
     wget
     yq
-    zoxide # switch between multiple projects faster
+
     eza # better ls
     nh # nix helper
     ffmpeg
@@ -38,6 +38,9 @@ with pkgs; [
     ast-grep
     fastmod
 
+    # mobile ssh
+    mosh
+
     vivid # better LS_COLORS
     nushell
     act
@@ -62,7 +65,6 @@ with pkgs; [
       "rustfmt"
     ])
     rust-analyzer
-    mold
 ] ++ (with flakePkgs; [
   bash-env-json
 ]) ++ [

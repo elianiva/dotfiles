@@ -89,7 +89,7 @@ return {
 				enter = true,
 				fixbuf = true,
 				minimal = true,
-				width = 80,
+				width = 100,
 				height = 0.9,
 				backdrop = { transparent = false, blend = 99 },
 				keys = { q = false },

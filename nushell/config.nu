@@ -44,9 +44,6 @@ $env.NIX_PROFILES = [
     $"($env.HOME)/.nix-profile"
 ]
 
-$env.ANTHROPIC_BASE_URL = "https://api.z.ai/api/anthropic"
-$env.ANTHROPIC_AUTH_TOKEN = "35a466c2d4674d40b411308527d7e9bb.sfOJPHffFNbJtqcl"
-
 $env.LS_COLORS = (vivid generate rose-pine-dawn)
 
 if ($"($env.HOME)/.nix-defexpr/channels" | path exists) {
@@ -79,6 +76,14 @@ const history_path = ($nu.data-dir | path join "history.txt")
 $env.config = {
   edit_mode: 'vi',
   color_config: (rose-pine-dawn),
+  shell_integration: {
+    osc2: true
+    osc7: true
+    osc8: true
+    osc9_9: false
+    osc133: false
+    osc633: false
+  },
   history: {
     file_format: sqlite
     max_size: 1_000_000

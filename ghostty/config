@@ -6,6 +6,9 @@ window-colorspace = display-p3
 adw-toolbar-style = flat
 bold-is-bright = true
 
+shell-integration = detect
+window-inherit-working-directory = true
+
 command = /run/current-system/sw/bin/nu
 
 window-padding-x = 2

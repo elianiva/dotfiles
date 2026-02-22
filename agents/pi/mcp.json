@@ -3,10 +3,15 @@
     "opensrc": {
       "type": "local",
       "command": "bunx",
-      "args": ["-y", "opensrc-mcp"]
+      "args": [
+        "-y",
+        "opensrc-mcp"
+      ],
+      "directTools": false
     },
     "exa": {
       "url": "https://mcp.exa.ai/mcp"
     }
   }
 }
+

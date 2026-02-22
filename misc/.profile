@@ -1,11 +1,7 @@
 #!/bin/sh
 
 export EDITOR="nvim"
-export DOTS="/home/elianiva/repos/dotfiles"
-export TERMINAL="kitty"
 export CC="gcc"
-export CM_LAUNCHER="rofi"
-export CM_SELECTIONS="clipboard"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --ignore-file ".gitignore"'
 export SKIM_DEFAULT_COMMAND='rg --files --no-ignore --ignore-file ".gitignore"'
 export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -65,9 +61,6 @@ export IBUS_USE_PORTAL=1
 export LESSHISTFILE="${XDG_CONFIG_HOME}less/history"
 export LESSKEY="${XDG_CONFIG_HOME}less/keys"
 export ICEAUTHORITY="${XDG_CACHE_HOME}ICEauthority"
-
-export FLYCTL_INSTALL="/home/elianiva/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # gpg stuff
 export GPG_TTY=$(tty)

@@ -5,7 +5,7 @@ let
 in
 {
   home.packages = [
-    (config.lib.nixGL.wrap inputs.ghostty.packages."${pkgs.system}".default)
+    (config.lib.nixGL.wrap pkgs.ghostty-bin)
   ];
 
   # NOTE(elianiva): as a backup in case ghostty got borked

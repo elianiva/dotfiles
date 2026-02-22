@@ -25,7 +25,7 @@ interface VcsInfo {
   type: "git" | "jj";
   branch: string;
   commit: string;
-  commitRest?: string;  // remaining chars after commit (jj only)
+  commitRest?: string; // remaining chars after commit (jj only)
   dirty: boolean;
 }
 
@@ -46,28 +46,37 @@ const vcs: VcsCache = {
 const CACHE_TTL = 2000;
 const EXEC_TIMEOUT = 300;
 
-async function getVcsInfo(cwd: string, ctx: ExtensionContext): Promise<VcsInfo | null> {
+async function getVcsInfo(
+  cwd: string,
+  ctx: ExtensionContext,
+): Promise<VcsInfo | null> {
   const execOptions = { cwd, timeout: EXEC_TIMEOUT };
 
   // Try jj first (no existence check - just try it)
   try {
     const { stdout } = await execAsync(
-      "jj log -r @ --no-graph -T 'change_id.shortest() ++ \"\\n\" ++ change_id.shortest(8) ++ \"\\n\" ++ self.bookmarks().join(\", \")'",
+      'jj log -r @ --no-graph -T \'change_id.shortest() ++ "\\n" ++ change_id.shortest(8) ++ "\\n" ++ self.bookmarks().join(", ")\'',
       execOptions,
     );
 
     const lines = stdout.trim().split("\n");
 
-    const commitShort = lines[0]?.trim() ?? "";  // e.g., "nv"
-    const commitLong = lines[1]?.trim() ?? "";   // e.g., "nvpouuzo"
+    const commitShort = lines[0]?.trim() ?? ""; // e.g., "nv"
+    const commitLong = lines[1]?.trim() ?? ""; // e.g., "nvpouuzo"
     const commitRest = commitLong.slice(commitShort.length); // e.g., "pouuzo"
-    const bookmark = lines[2]?.trim().replace("*", "");  // empty string if no bookmarks
+    const bookmark = lines[2]?.trim().replace("*", ""); // empty string if no bookmarks
 
     const dirty = await execAsync("jj diff --stat", execOptions)
       .then(({ stdout }) => stdout.trim().length > 0)
       .catch(() => false);
 
-    return { type: "jj", branch: bookmark, commit: commitShort, commitRest, dirty };
+    return {
+      type: "jj",
+      branch: bookmark,
+      commit: commitShort,
+      commitRest,
+      dirty,
+    };
   } catch {
     // Not a jj repo or jj failed - fall through to git
   }
@@ -93,7 +102,11 @@ async function getVcsInfo(cwd: string, ctx: ExtensionContext): Promise<VcsInfo |
   }
 }
 
-async function refreshVcs(cwd: string, ctx: ExtensionContext, cb?: () => void): Promise<void> {
+async function refreshVcs(
+  cwd: string,
+  ctx: ExtensionContext,
+  cb?: () => void,
+): Promise<void> {
   const now = Date.now();
 
   // Return cached if valid and same cwd
@@ -144,7 +157,7 @@ function buildPromptLine(
   pi: ExtensionAPI,
 ): string[] {
   const p: string[] = [];
-  p.push(t.bold(t.fg("mdLink", `(󰐀) `)));
+  p.push(t.bold(t.fg("mdHeading", ` ) `)));
 
   const cwd = process.cwd();
   const home = process.env.HOME || "";
@@ -218,15 +231,14 @@ function buildPromptLine(
   }
 
   // Always show stats (even if 0)
-  p.push(t.fg("dim", " |"));
+  p.push(t.fg("dim", " · "));
 
   // Token counts: input (with cached reads in dim), output (always fresh)
   p.push(
-    " " +
-      t.fg("syntaxFunction", `󰜷 ${tk(inp)}`) +
+    t.fg("syntaxFunction", `↑ ${tk(inp)}`) +
       (cacheRead > 0 ? t.fg("dim", `/${tk(cacheRead)}`) : "") +
       " " +
-      t.fg("syntaxString", `󰜮 ${tk(out)}`),
+      t.fg("syntaxString", `↓ ${tk(out)}`),
   );
   if (cost > 0) p.push(t.fg("dim", ` $${cost.toFixed(4)}`));
 
@@ -244,7 +256,7 @@ function buildPromptLine(
             : "success"
         : "dim";
     const limitStr = limit > 0 ? tk(limit) : "???";
-    p.push(" " + t.fg(color, `󰍛 ${tk(usage.tokens)}/${limitStr}`));
+    p.push(" · " + t.fg(color, `󰍛 ${tk(usage.tokens)}/${limitStr}`));
   }
 
   return [p.join("")];

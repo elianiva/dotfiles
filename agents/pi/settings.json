@@ -6,6 +6,7 @@
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
-    "npm:pi-mcp-adapter"
+    "npm:pi-mcp-adapter",
+    "npm:pi-hashline-edit"
   ]
 }

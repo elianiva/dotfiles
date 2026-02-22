@@ -31,8 +31,6 @@
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    ghostty.url = "github:ghostty-org/ghostty";
-
     # only needed for linux
     nixGL.url = "github:nix-community/nixGL/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a";
     nixGL.inputs.nixpkgs.follows = "nixpkgs";
@@ -117,7 +115,7 @@
             ./modules/linux-home.nix
             ./modules/gpg.nix
             ./modules/git.nix
-            ./modules/terminals.nix
+            ./modules/linux-terminals.nix
           ];
         };
       };
@@ -128,13 +126,11 @@
       "https://cache.nixos.org"
 
       "https://nix-community.cachix.org"
-      "https://ghostty.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
 
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
     ];
   };
 }

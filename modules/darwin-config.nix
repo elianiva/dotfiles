@@ -17,10 +17,8 @@ in
 
     # allow unfree packages
     nixpkgs = {
-      overlays = [ fenix.overlays.default ];
       config = {
         allowUnfree = true;
-        allowUnfreePredicate = (_: true);
       };
     };
 

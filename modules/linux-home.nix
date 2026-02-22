@@ -5,15 +5,12 @@ let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
 in
 {
+  imports = [ ./home-common.nix ];
+
   targets.genericLinux.enable = true;
 
   # allow unfree packages
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (_: true);
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   nixGL.packages = inputs.nixGL.packages;
   nixGL.defaultWrapper = "mesa";
@@ -25,13 +22,10 @@ in
   };
 
   home = {
-    packages = import ./linux-packages.nix { inherit pkgs flakePkgs; }
+    packages = import ./linux-packages.nix { inherit pkgs flakePkgs; };
 
     username = "elianiva";
     homeDirectory = "/home/elianiva";
-
-    # don't change this, see: https://nix-community.github.io/home-manager/
-    stateVersion = "24.05";
 
     sessionVariables = {
       # Make it possible to handle "xterm-kitty" in SSH remotes or lima guest VM with tiny filesize and setups. See GH-932
@@ -48,96 +42,16 @@ in
     };
   };
 
-  programs = {
-    # let home manager manages itself
-    home-manager.enable = true;
-
-    # nix-direnv
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-      stdlib = builtins.readFile ../direnv/direnvrc;
-    };
-
-    bat = {
-      enable = true;
-      config = {
-        theme = "base16";
-        "italic-text" = "always";
-        style = "numbers";
-      };
-    };
-
-    btop = {
-      enable = true;
-      settings = {
-        color_theme = "TTY";
-      };
-    };
-
-    fzf = {
-      enable = true;
-      # https://github.com/junegunn/fzf/blob/d579e335b5aa30e98a2ec046cb782bbb02bc28ad/README.md#respecting-gitignore
-      defaultCommand = "${pkgs.fd}/bin/fd --type f --strip-cwd-prefix --hidden --follow --exclude .git";
-      defaultOptions = [
-        # --walker*: Default file filtering will be changed by this option if FZF_DEFAULT_COMMAND is not set: https://github.com/junegunn/fzf/pull/3649/files
-        "--walker-skip '.git,node_modules,.direnv,vendor,dist'"
-      ];
-    };
-
-    # fish.enable = true;
-    nushell.enable = true;
-
-    # completion
-    carapace.enable = true;
-    carapace.enableNushellIntegration = true;
-
-    starship = {
-      enable = true;
-      settings = {
-        add_newline = true;
-        directory.truncation_length = 8;
-        git_status.format = "([\($all_status$ahead_behind\)]($style) )";
-        git_status.ahead = "⇡$\{count\}";
-        git_status.behind = "⇣$\{count\}";
-        git_status.diverged = "⇕⇡$\{ahead_count\} ⇣$\{behind_count\}";
-        package.disabled = true;
-        golang.format = "via [ $version](bold blue) ";
-        gcloud.disabled = true;
-      };
-    };
-  };
-
-  # fish produces its own config file which causes conflict
-  xdg.configFile."fish/config.fish".enable = false;
+  programs.nushell.enable = true;
 
   # nushell produces its own config file which causes conflict
-  xdg.configFile."nushell/config.nu".enable = false;
-  xdg.configFile."nushell/env.nu".enable = false;
+  xdg.configFile = {
+    "nushell/config.nu".enable = false;
+    "nushell/env.nu".enable = false;
+  };
 
-  # I don't want to rebuild everytime i change these configs
-  home.file = {
-    ".profile".source = link "${dotfiles}/misc/.profile";
-    ".bashrc".source = link "${dotfiles}/misc/.bashrc";
-    ".config/fastfetch" = {
-      source = link "${dotfiles}/fastfetch";
-      recursive = true;
-    };
-    ".config/zellij" = {
-      source = link "${dotfiles}/zellij";
-      recursive = true;
-    };
-    ".config/nvim" = {
-      source = link "${dotfiles}/nvim";
-      recursive = true;
-    };
-    ".config/fish" = {
-      source = link "${dotfiles}/fish";
-      recursive = true;
-    };
-    ".config/nushell" = {
-      source = link "${dotfiles}/nushell";
-      recursive = true;
-    };
+  home.file.".config/nushell" = {
+    source = link "${dotfiles}/nushell";
+    recursive = true;
   };
 }
