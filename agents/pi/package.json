@@ -7,8 +7,10 @@
     "@mariozechner/pi-coding-agent": "*",
     "@mariozechner/pi-tui": "*",
     "@sinclair/typebox": "*",
-    "turndown": "^7.2.2"
-,
+    "turndown": "^7.2.2",
     "koffi": "^2.11.0"
+  },
+  "dependencies": {
+    "just-bash": "^2.11.2"
   }
 }
