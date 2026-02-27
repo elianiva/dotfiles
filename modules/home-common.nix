@@ -126,6 +126,7 @@ in
     "${pi}/AGENTS.md".source = link "${dotfiles}/agents/AGENTS.md";
     "${pi}/settings.json".source = link "${dotfiles}/agents/pi/settings.json";
     "${pi}/mcp.json".source = link "${dotfiles}/agents/pi/mcp.json";
+    "${pi}/package.json".source = link "${dotfiles}/agents/pi/package.json";
     "${pi}/skills" = {
       source = link "${dotfiles}/agents/skills";
       recursive = true;

@@ -4,20 +4,16 @@ _:
   # Development Tools
   "visual-studio-code"
   "cursor"
-  "meld"
   "zed"
 
   # Communication Tools
   "zoom"
   "telegram"
-  "whatsapp"
   "vesktop"
 
   # Productivity Tools
   "raycast"
   "orbstack"
-  "cherry-studio"
-  "simplenote"
   # "zathura"
 
   # Terminals

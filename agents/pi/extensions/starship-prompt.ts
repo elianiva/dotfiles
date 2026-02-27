@@ -46,6 +46,18 @@ const vcs: VcsCache = {
 const CACHE_TTL = 2000;
 const EXEC_TIMEOUT = 300;
 
+// ── agent profile ────────────────────────────────────────────────────────
+
+interface AgentProfile {
+  name: string;
+  description: string;
+}
+
+let currentAgent: AgentProfile = {
+  name: "default",
+  description: "Default agent with full capabilities",
+};
+
 async function getVcsInfo(
   cwd: string,
   ctx: ExtensionContext,
@@ -211,6 +223,9 @@ function buildPromptLine(
     p.push(" " + t.bold(t.fg(c[lvl] ?? "warning", `󱐋 ${lvl}`)));
   }
 
+  // agent profile
+  p.push(" " + t.bold(t.fg("warning", `(${currentAgent.name})`)));
+
   // stats (tokens/cost/context) - dim
   const branch = ctx.sessionManager.getBranch();
 
@@ -303,6 +318,7 @@ class PromptEditor extends CustomEditor {
 
 export default function (pi: ExtensionAPI) {
   let bashDebounceTimer: NodeJS.Timeout | null = null;
+  let currentCtx: ExtensionContext | null = null;
   const BASH_DEBOUNCE_MS = 300;
 
   function update(ctx: ExtensionContext) {
@@ -323,7 +339,15 @@ export default function (pi: ExtensionAPI) {
     }, BASH_DEBOUNCE_MS);
   }
 
+  // Listen for agent profile changes
+  pi.events.on("agent-profile:changed", (data: AgentProfile) => {
+    currentAgent = data;
+    if (currentCtx) update(currentCtx);
+  });
+
   pi.on("session_start", (_ev, ctx) => {
+    currentCtx = ctx;
+
     // empty footer
     ctx.ui.setFooter((_tui, _theme) => ({
       invalidate() {},
@@ -341,7 +365,9 @@ export default function (pi: ExtensionAPI) {
     vcsThenUpdate(ctx);
   });
 
-  pi.on("session_switch", (_ev, ctx) => vcsThenUpdate(ctx));
+  pi.on("session_switch", (ev, ctx) => {
+    vcsThenUpdate(ctx);
+  });
   pi.on("agent_start", (_ev, ctx) => update(ctx));
   pi.on("turn_end", (_ev, ctx) => update(ctx));
   pi.on("agent_end", (_ev, ctx) => update(ctx));
