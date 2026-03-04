@@ -1,5 +1,4 @@
 import path from "node:path";
-import os from "node:os";
 import fs from "node:fs";
 import https from "node:https";
 import { fileURLToPath } from "node:url";
@@ -8,7 +7,7 @@ import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { CombinedAutocompleteProvider, type AutocompleteItem } from "@mariozechner/pi-tui";
 
 // --- Downloader logic ---
-const FFF_URL = "https://github.com/dmtrKovalenko/fff.nvim/releases/download/7c2d46f/c-lib-aarch64-apple-darwin.dylib";
+const FFF_URL = "https://github.com/dmtrKovalenko/fff.nvim/releases/download/10a27f9/c-lib-aarch64-apple-darwin.dylib";
 
 async function downloadFile(url: string, dest: string): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -105,7 +104,7 @@ type LibraryHandle = {
     query: string,
     optsJson: string,
   ) => koffi.Pointer;
-  fff_scan_files: (handle: FffHandle) => koffi.Pointer;
+  fff_scan_files: ((handle: FffHandle) => koffi.Pointer) & { async: (handle: FffHandle, cb: (err: any, res: koffi.Pointer) => void) => void };
   fff_is_scanning: (handle: FffHandle) => boolean;
   fff_get_scan_progress: (handle: FffHandle) => koffi.Pointer;
   fff_wait_for_scan: (handle: FffHandle, timeoutMs: number) => koffi.Pointer;
@@ -264,8 +263,13 @@ export class FffBindings {
     ) as Result<FilePickerResponse>;
   }
 
-  scanFiles(handle: FffHandle) {
-    return this.parseResult<void>(this.lib.fff_scan_files(handle));
+  async scanFiles(handle: FffHandle): Promise<Result<void>> {
+    return new Promise((resolve, reject) => {
+      this.lib.fff_scan_files.async(handle, (err, resultPtr) => {
+        if (err) reject(err);
+        else resolve(this.parseResult<void>(resultPtr));
+      });
+    });
   }
 
   liveGrep(handle: FffHandle, query: string, opts: Record<string, unknown>) {
@@ -436,8 +440,9 @@ export default function fffPickerExtension(pi: ExtensionAPI) {
     const created = fff.create({ base_path: ctx.cwd });
     if (created.ok && created.handle) {
       handle = created.handle;
-      fff.scanFiles(handle);
-
+      fff.scanFiles(handle).catch((err) => {
+        ctx.ui.notify(`FFF scan failed: ${err.message}`, "error");
+      });
       const prototype = CombinedAutocompleteProvider.prototype as any;
       if (!prototype.__fffPatched) {
           originalGet = prototype.getFuzzyFileSuggestions;

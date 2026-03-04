@@ -1,7 +1,7 @@
 ---
 name: plan
 description: Planning mode - explore and plan without making changes
-tools: [read, mcp]
+tools: [read, mcp, ask, find, grep, ls]
 thinkingLevel: high
 ---
 

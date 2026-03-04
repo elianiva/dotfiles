@@ -1,0 +1,87 @@
+{
+  "providers": {
+    "openrouter": {
+      "modelOverrides": {
+        "minimax/minimax-m2.5": {
+          "name": "Minimax M2.5 RR",
+          "compat": {
+            "openRouterRouting": {
+              "only": ["sambanova", "fireworks", "friendli"]
+            }
+          }
+        },
+        "moonshotai/kimi-k2.5": {
+          "name": "Kimi K2.5 RR",
+          "compat": {
+            "openRouterRouting": {
+              "only": ["fireworks", "together"]
+            }
+          }
+        },
+        "z-ai/glm-5": {
+          "name": "GLM 5 RR",
+          "compat": {
+            "openRouterRouting": {
+              "only": ["together", "friendli"]
+            }
+          }
+        }
+      }
+    },
+    "opencode-go": {
+      "apiKey": "!pass show opencode-go",
+      "baseUrl": "https://opencode.ai/zen/go/v1",
+      "models": [
+        {
+          "id": "minimax-m2.5",
+          "name": "MiniMax M2.5",
+          "api": "anthropic-messages",
+          "provider": "opencode-go",
+          "baseUrl": "https://opencode.ai/zen/go",
+          "reasoning": true,
+          "input": ["text"],
+          "cost": {
+            "input": 0.3,
+            "output": 1.2,
+            "cacheRead": 0.03,
+            "cacheWrite": 0
+          },
+          "contextWindow": 204800,
+          "maxTokens": 131072
+        },
+        {
+          "id": "glm-5",
+          "name": "GLM 5",
+          "api": "openai-completions",
+          "provider": "opencode-go",
+          "reasoning": true,
+          "input": ["text"],
+          "cost": {
+            "input": 1,
+            "output": 3.2,
+            "cacheRead": 0.2,
+            "cacheWrite": 0
+          },
+          "contextWindow": 204800,
+          "maxTokens": 131072
+        },
+        {
+          "id": "kimi-k2.5",
+          "name": "Kimi K2.5",
+          "api": "openai-completions",
+          "provider": "opencode-go",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": {
+            "input": 0.6,
+            "output": 3.0,
+            "cacheRead": 0.1,
+            "cacheWrite": 0
+          },
+          "contextWindow": 256000,
+          "maxTokens": 256000
+        }
+      ]
+    }
+  }
+}

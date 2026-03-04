@@ -49,7 +49,7 @@ layout {
                 border_format   "#[fg=#6C7086]{char}"
                 border_position "top"
 
-                hide_frame_for_single_pane "true"
+                // hide_frame_for_single_pane "false"
 
                 mode_normal        "#[fg=$green,bold]  NORMAL "
                 mode_locked        "#[fg=$red,bold]  LOCKED "

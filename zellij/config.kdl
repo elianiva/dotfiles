@@ -137,7 +137,7 @@ keybinds clear-defaults=true {
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt w" { ToggleFloatingPanes; }
-        bind "Ctrl g" { SwitchToMode "locked"; }
+        bind "Ctrl G" { SwitchToMode "locked"; }
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt left" { MoveFocusOrTab "left"; }
         bind "Alt j" { MoveFocus "down"; }
@@ -147,7 +147,6 @@ keybinds clear-defaults=true {
         bind "Alt i" { MoveTab "left"; }
         bind "Alt o" { MoveTab "right"; }
         bind "Alt n" { NewPane; }
-        bind "Ctrl q" { Quit; }
         bind "Alt 1" { GoToTab 1; }
         bind "Alt 2" { GoToTab 2; }
         bind "Alt 3" { GoToTab 3; }
@@ -329,7 +328,7 @@ default_shell "nu"
 // The name of the default layout to load on startup
 // Default: "default"
 //
-default_layout "custom"
+default_layout "plain"
 
 // The folder in which Zellij will look for layouts
 // (Requires restart)

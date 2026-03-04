@@ -6,7 +6,7 @@ import { join, dirname } from "path";
 
 // Configuration
 const PACKAGE_MANAGERS = ["npm", "pnpm", "bun", "yarn", "npx", "bunx"];
-const LINT_FORMAT_TOOLS = ["eslint", "prettier", "lint", "format", "stylelint", "oxlint"];
+const LINT_FORMAT_TOOLS = ["eslint", "prettier", "oxfmt", "stylelint", "oxlint"];
 const DEV_BUILD_COMMANDS = ["dev", "build", "watch", "serve", "start"];
 const PYTHON_COMMANDS = ["python", "python3"];
 
@@ -91,7 +91,8 @@ function checkBlocked(ast: any): string | null {
   return null;
 }
 
-function rewriteCommand(ast: any, manager: "bun" | "pnpm"): void {
+function rewriteCommand(ast: any, manager: "bun" | "pnpm"): boolean {
+  let hasRewritten = false;
   for (const stmt of ast.statements) {
     if (stmt.type !== "Statement") continue;
     for (const pipe of stmt.pipelines) {
@@ -101,6 +102,7 @@ function rewriteCommand(ast: any, manager: "bun" | "pnpm"): void {
 
         if (name === "npm") {
           cmd.name.parts = [{ type: "Literal", value: manager }];
+          hasRewritten = true;
         } else if (name === "npx") {
           if (manager === "pnpm") {
             cmd.name.parts = [{ type: "Literal", value: "pnpm" }];
@@ -111,16 +113,19 @@ function rewriteCommand(ast: any, manager: "bun" | "pnpm"): void {
           } else {
             cmd.name.parts = [{ type: "Literal", value: "bunx" }];
           }
+          hasRewritten = true;
         } else if (PYTHON_COMMANDS.includes(name)) {
           cmd.name.parts = [{ type: "Literal", value: "uv" }];
           cmd.args.unshift({
             type: "Word",
             parts: [{ type: "Literal", value: "run" }],
           });
+          hasRewritten = true;
         }
       }
     }
   }
+  return hasRewritten;
 }
 
 export default function bashGuardExtension(pi: ExtensionAPI) {
@@ -154,8 +159,9 @@ export default function bashGuardExtension(pi: ExtensionAPI) {
           try {
             const ast = parse(spawnArgs.command);
             const original = spawnArgs.command;
-            rewriteCommand(ast, manager);
-            const rewritten = serialize(ast);
+            const hasRewritten = rewriteCommand(ast, manager);
+            // only send the rewritten command if it's different since the parser treats 2>&1 as 2>& 1 which isn't what we want
+            const rewritten = hasRewritten ? serialize(ast) : original;
             if (original !== rewritten) {
               ctx.ui.notify(`Rewriting command: ${original} -> ${rewritten}`, "info");
             }

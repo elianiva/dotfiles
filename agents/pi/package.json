@@ -1,16 +1,17 @@
 {
   "name": "nil",
-  "type": "module",
-  "private": true,
   "peerDependencies": {
     "@mariozechner/pi-ai": "*",
     "@mariozechner/pi-coding-agent": "*",
     "@mariozechner/pi-tui": "*",
     "@sinclair/typebox": "*",
     "turndown": "^7.2.2",
-    "koffi": "^2.11.0"
+    "koffi": "^2.11.0",
+    "just-bash": "^2.11.2",
+    "vscode-jsonrpc": "^8.2.1",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver-protocol": "^3.17.5"
   },
-  "dependencies": {
-    "just-bash": "^2.11.2"
-  }
+  "private": true,
+  "type": "module"
 }

@@ -105,8 +105,10 @@
       };
       homeConfigurations = {
         elianiva = home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          pkgs = import nixpkgs {
+            system = ${system};
+            config.allowUnfree = true;
+          };
           extraSpecialArgs = {
             inherit inputs;
             flakePkgs = flakePkgs "x86_64-linux";

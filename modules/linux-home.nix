@@ -12,9 +12,11 @@ in
   # allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nixGL.packages = inputs.nixGL.packages;
-  nixGL.defaultWrapper = "mesa";
-  nixGL.installScripts = [ "mesa" ];
+  targets.genericLinux.nixGL = {
+    packages = inputs.nixGL.packages;
+    defaultWrapper = "mesa";
+    installScripts = [ "mesa" ];
+  };
 
   nix = {
     enable = true;
@@ -22,15 +24,10 @@ in
   };
 
   home = {
-    packages = import ./linux-packages.nix { inherit pkgs flakePkgs; };
+    packages = import ./linux-packages.nix { inherit pkgs flakePkgs nixGLIntel; };
 
     username = "elianiva";
     homeDirectory = "/home/elianiva";
-
-    sessionVariables = {
-      # Make it possible to handle "xterm-kitty" in SSH remotes or lima guest VM with tiny filesize and setups. See GH-932
-      TERMINFO_DIRS = "${pkgs.kitty.terminfo}/share/terminfo";
-    };
   };
 
   # enable fontconfig

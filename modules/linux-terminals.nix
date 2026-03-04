@@ -5,14 +5,8 @@ let
 in
 {
   home.packages = [
-    (config.lib.nixGL.wrap pkgs.ghostty-bin)
+    (config.lib.nixGL.wrap pkgs.ghostty)
   ];
-
-  # NOTE(elianiva): as a backup in case ghostty got borked
-  programs.kitty = {
-    enable = true;
-    package = (config.lib.nixGL.wrap inputs.kitty.packages."${pkgs.system}".default);
-  };
 
   # terminals produces their own config file which causes conflict
   xdg.configFile = {

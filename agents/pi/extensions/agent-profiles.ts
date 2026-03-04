@@ -52,7 +52,7 @@ interface AgentProfile {
   content: string; // appended to system prompt
 }
 
-const DEFAULT_TOOLS = ["read", "bash", "edit", "write", "grep", "find", "ls"];
+const DEFAULT_TOOLS = ["read", "bash", "edit", "write", "grep", "find", "ls", "mcp", "ask"];
 
 // Hardcoded default agent - always available as fallback
 const DEFAULT_AGENT: AgentProfile = {

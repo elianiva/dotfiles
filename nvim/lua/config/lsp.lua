@@ -1,3 +1,48 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
+capabilities.textDocument.semanticTokens.multilineTokenSupport = true
+
+local ok, blink = pcall(require, "blink.cmp")
+if ok then
+	capabilities = vim.tbl_deep_extend("force", capabilities, blink.get_lsp_capabilities(capabilities))
+end
+
+-- global lsp settings
+vim.lsp.config("*", {
+    capabilities = capabilities,
+})
+
+-- intelephense specific settings
+local intelephense_capabilities = vim.lsp.protocol.make_client_capabilities()
+intelephense_capabilities.textDocument.completion.dynamicRegistration = true
+vim.lsp.config("intelephense", {
+  capabilities = intelephense_capabilities
+})
+
+-- basedpyright specific settings
+vim.lsp.config("basedpyright", {
+  settings = {
+    basedpyright = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        useLibraryCodeForTypes = true,
+        diagnosticSeverityOverrides = {
+          reportUnknownVariableType = false,
+        },
+      },
+    },
+  }
+})
+
+-- use harper for markdown and typst
+vim.lsp.config("harper_ls", {
+  filetypes = { "markdown", "typst" }
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local utils = require("config.utils")
@@ -7,7 +52,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
-    -- Setup additional capabilities
+    -- trigger additional capabilities
     utils.lsp.additional_capabilities(client)
 
     -- Setup buffer-specific mappings

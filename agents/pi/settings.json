@@ -1,26 +1,17 @@
 {
-  "lastChangelogVersion": "0.55.1",
-  "defaultProvider": "google-antigravity",
-  "defaultModel": "gemini-3-flash",
-  "defaultThinkingLevel": "off",
+  "lastChangelogVersion": "0.55.4",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "kimi-k2.5",
+  "defaultThinkingLevel": "medium",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
-    "npm:pi-mcp-adapter",
-    "npm:pi-hashline-edit"
+    "npm:pi-mcp-adapter"
   ],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,
   "transport": "auto",
   "doubleEscapeAction": "tree",
-  "enabledModels": [
-    "kimi-coding/k2p5",
-    "openrouter/moonshotai/kimi-k2.5",
-    "github-copilot/claude-sonnet-4.6",
-    "openrouter/minimax/minimax-m2.5",
-    "openrouter/z-ai/glm-5",
-    "google-antigravity/gemini-3-flash",
-    "github-copilot/grok-code-fast-1"
-  ],
+  "enabledModels": [],
   "hideThinkingBlock": false
 }

@@ -1,4 +1,4 @@
-{ pkgs, flakePkgs, ... }:
+{ pkgs, flakePkgs, nixGLIntel, ... }:
 
 with pkgs;
 let shared-packages = import ./packages.nix { inherit pkgs flakePkgs; }; in
