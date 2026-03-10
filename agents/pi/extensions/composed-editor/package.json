@@ -1,0 +1,10 @@
+{
+  "name": "composed-editor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Composed editor with starship-prompt + pi-ckers",
+  "dependencies": {
+    "@elianiva/pi-ckers": "link:@elianiva/pi-ckers",
+    "@elianiva/pi-starship": "link:@elianiva/pi-starship"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "composed-editor",
+      "dependencies": {
+        "@elianiva/pi-ckers": "link:@elianiva/pi-ckers",
+        "@elianiva/pi-starship": "link:@elianiva/pi-starship",
+      },
+    },
+  },
+  "packages": {
+    "@elianiva/pi-ckers": ["@elianiva/pi-ckers@link:@elianiva/pi-ckers", {}],
+
+    "@elianiva/pi-starship": ["@elianiva/pi-starship@link:@elianiva/pi-starship", {}],
+  }
+}

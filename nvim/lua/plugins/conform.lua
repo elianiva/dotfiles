@@ -3,14 +3,6 @@ return {
   dependencies = { "mason.nvim" },
   lazy = true,
   cmd = "Format",
-  keys = {
-    {
-      "<leader>cf",
-      "<cmd>Format<cr>",
-      mode = { "n", "v" },
-      desc = "Format",
-    },
-  },
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },

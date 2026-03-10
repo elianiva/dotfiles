@@ -10,11 +10,11 @@ return {
 		{ "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit", },
 		{ "<leader>cR", function() Snacks.rename() end, desc = "Rename File", },
     { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
-		{ "<leader>f",      function() Snacks.picker.files() end, desc = "Find Files" },
-		{ "<leader>/",      function() Snacks.picker.grep() end, desc = "Find Text" },
+		-- { "<leader>f",      function() Snacks.picker.files() end, desc = "Find Files" },
+		-- { "<leader>/",      function() Snacks.picker.grep() end, desc = "Find Text" },
 
     -- lsp related pickers
-		{ "<leader>s", function() Snacks.picker.lsp_symbols() end, desc = "LSP Document Symbols", },
+		-- { "<leader>s", function() Snacks.picker.lsp_symbols() end, desc = "LSP Document Symbols", },
 		-- stylua: ignore end
 	},
 	opts = {

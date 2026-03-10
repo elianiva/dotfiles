@@ -3,3 +3,4 @@ config/fish/fish_variables
 __pycache__
 
 nushell/history*
+bin

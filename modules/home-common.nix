@@ -72,6 +72,11 @@ in
         package.disabled = true;
         golang.format = "via [ $version](bold blue) ";
         gcloud.disabled = true;
+        custom.jj = {
+          when = "jj-starship detect";
+          shell = ["jj-starship"];
+          format = "$output ";
+        };
       };
     };
   };

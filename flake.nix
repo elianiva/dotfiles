@@ -35,6 +35,8 @@
     nixGL.url = "github:nix-community/nixGL/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a";
     nixGL.inputs.nixpkgs.follows = "nixpkgs";
 
+    jj-starship.url = "github:dmmulroy/jj-starship";
+
     bash-env-json = {
       url = "github:tesujimath/bash-env-json/main";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +50,7 @@
       nix-darwin,
       nix-homebrew,
       fenix,
+      jj-starship,
       ...
     }:
     let
@@ -65,6 +68,7 @@
             system = "aarch64-darwin";
             overlays = [
               fenix.overlays.default
+              jj-starship.overlays.default
             ];
           };
           specialArgs = {
@@ -105,8 +109,9 @@
       };
       homeConfigurations = {
         elianiva = home-manager.lib.homeManagerConfiguration {
+          system = "x86_64-linux";
           pkgs = import nixpkgs {
-            system = ${system};
+            system = "x86_64-linux";
             config.allowUnfree = true;
           };
           extraSpecialArgs = {

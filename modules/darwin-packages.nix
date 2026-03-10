@@ -5,4 +5,5 @@ let shared-packages = import ./packages.nix { inherit pkgs flakePkgs fenix; }; i
 shared-packages ++ [
   nushell
   devbox
+  jj-starship
 ]

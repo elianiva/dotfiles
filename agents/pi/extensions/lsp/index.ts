@@ -474,7 +474,7 @@ export default function (pi: ExtensionAPI) {
         const combined = allDiags.flatMap((d) => d.diagnostics);
         const formatted = formatDiagnostics(combined);
         pi.sendUserMessage(`Current diagnostics for \`${filePath}\`:\n${formatted}`, {
-          deliverAs: "steer",
+          deliverAs: "followUp",
         });
       }
       return;
@@ -490,7 +490,7 @@ export default function (pi: ExtensionAPI) {
     if (diagnostics.length > 0) {
       const formatted = formatDiagnostics(diagnostics);
       pi.sendUserMessage(`Diagnostics for \`${filePath}\`:\n${formatted}`, {
-        deliverAs: "steer",
+        deliverAs: "followUp",
       });
     } else {
       ctx.ui.notify(`✓ ${filePath}: clean`, "success");
