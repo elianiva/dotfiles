@@ -71,7 +71,7 @@ return {
       desc = 'LiFFFe grep',
     },
     {
-      "<leader>c",
+      "<leader>cc",
       function() require('fff').live_grep({ query = vim.fn.expand("<cword>") }) end,
       desc = 'Search current word',
     },

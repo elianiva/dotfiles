@@ -65,11 +65,5 @@ export ICEAUTHORITY="${XDG_CACHE_HOME}ICEauthority"
 # gpg stuff
 export GPG_TTY=$(tty)
 
-# Opencode stuff
-export OPENCODE_ENABLE_EXA = 1
-export OPENCODE_EXPERIMENTAL_EXA = 1
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/elianiva/.lmstudio/bin"
-# End of LM Studio CLI section
-
+# vite env stuff
+. "$HOME/.vite-plus/env"

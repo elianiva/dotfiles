@@ -252,7 +252,6 @@ class LspConnectionManager {
     }
   }
 
-
   /**
    * Touch file with diagnostic subscription BEFORE sending didOpen
    * This is the key fix from opencode to avoid race conditions
@@ -474,7 +473,7 @@ export default function (pi: ExtensionAPI) {
         const combined = allDiags.flatMap((d) => d.diagnostics);
         const formatted = formatDiagnostics(combined);
         pi.sendUserMessage(`Current diagnostics for \`${filePath}\`:\n${formatted}`, {
-          deliverAs: "followUp",
+          deliverAs: "steer",
         });
       }
       return;
@@ -490,7 +489,7 @@ export default function (pi: ExtensionAPI) {
     if (diagnostics.length > 0) {
       const formatted = formatDiagnostics(diagnostics);
       pi.sendUserMessage(`Diagnostics for \`${filePath}\`:\n${formatted}`, {
-        deliverAs: "followUp",
+        deliverAs: "steer",
       });
     } else {
       ctx.ui.notify(`✓ ${filePath}: clean`, "success");
