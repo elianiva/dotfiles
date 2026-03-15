@@ -1,18 +1,19 @@
+local util = require("lspconfig.util")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
-	dynamicRegistration = false,
-	lineFoldingOnly = true,
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
 }
 capabilities.textDocument.semanticTokens.multilineTokenSupport = true
 
 local ok, blink = pcall(require, "blink.cmp")
 if ok then
-	capabilities = vim.tbl_deep_extend("force", capabilities, blink.get_lsp_capabilities(capabilities))
+  capabilities = vim.tbl_deep_extend("force", capabilities, blink.get_lsp_capabilities(capabilities))
 end
 
 -- global lsp settings
 vim.lsp.config("*", {
-    capabilities = capabilities,
+  capabilities = capabilities,
 })
 
 -- intelephense specific settings
@@ -41,6 +42,23 @@ vim.lsp.config("basedpyright", {
 -- use harper for markdown and typst
 vim.lsp.config("harper_ls", {
   filetypes = { "markdown", "typst" }
+})
+
+vim.lsp.config("oxfmt", {
+  root_markers = { ".git", ".oxfmtrc.json", ".oxfmtrc.jsonc", "vite.config.ts" },
+  settings = {
+    fmt = {
+      configPath = "./vite.config.ts"
+    }
+  }
+})
+
+vim.lsp.config("oxlint", {
+  root_markers = { ".git", ".oxlintrc.json", ".oxlintrc.jsonc", "vite.config.ts" },
+  settings = {
+    typeAware = true,
+    configPath = "./vite.config.ts"
+  }
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
