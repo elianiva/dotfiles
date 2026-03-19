@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "just-bash": "^2.13.0",
-    "koffi": "^2.11.0"
+    "koffi": "^2.11.0",
+    "secure-exec": "^0.1.0"
   }
 }

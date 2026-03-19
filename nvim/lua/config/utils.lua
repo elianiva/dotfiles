@@ -82,7 +82,14 @@ function M.lsp.additional_mappings(bufnr)
     buffer = bufnr,
   })
 
-  vim.keymap.set("n", "<Leader>gr", function()
+  vim.keymap.set("n", "<Leader>gr", vim.lsp.buf.references, {
+    desc = "Find references",
+    noremap = true,
+    silent = true,
+    buffer = bufnr,
+  })
+
+  vim.keymap.set("n", "<Leader>cf", function()
     vim.lsp.buf.format({
       filter = function(client)
         return client.name ~= "ts_ls"
@@ -90,13 +97,6 @@ function M.lsp.additional_mappings(bufnr)
     })
   end, {
     desc = "Show references",
-    noremap = true,
-    silent = true,
-    buffer = bufnr,
-  })
-
-  vim.keymap.set("n", "<Leader>cf", vim.lsp.buf.format, {
-    desc = "Format document",
     noremap = true,
     silent = true,
     buffer = bufnr,

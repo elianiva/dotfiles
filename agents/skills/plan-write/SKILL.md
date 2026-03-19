@@ -21,8 +21,6 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **IMPORTANT**: Use plan-execute skill to implement this plan task-by-task.
-
 **Goal:** [One sentence goal]
 **Architecture:** [2-3 sentences on approach]
 **Tech Stack:** [Key libraries/tools]

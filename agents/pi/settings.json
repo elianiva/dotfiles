@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.58.1",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "kimi-k2.5",
+  "lastChangelogVersion": "0.60.0",
+  "defaultProvider": "openrouter",
+  "defaultModel": "moonshotai/kimi-k2.5",
   "defaultThinkingLevel": "medium",
   "theme": "rose-pine-dawn",
   "quietStartup": true,

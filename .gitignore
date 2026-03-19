@@ -4,3 +4,4 @@ __pycache__
 
 nushell/history*
 bin
+node_modules
