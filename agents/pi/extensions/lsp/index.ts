@@ -469,13 +469,13 @@ export default function (pi: ExtensionAPI) {
         conns.map((conn) => manager.touchFile(conn, absPath, content, languageId, false)),
       );
       const allDiags = manager.getAllDiagnostics(absPath);
-      if (allDiags.length > 0) {
-        const combined = allDiags.flatMap((d) => d.diagnostics);
-        const formatted = formatDiagnostics(combined);
-        pi.sendUserMessage(`Current diagnostics for \`${filePath}\`:\n${formatted}`, {
-          deliverAs: "steer",
-        });
-      }
+      // if (allDiags.length > 0) {
+      //   const combined = allDiags.flatMap((d) => d.diagnostics);
+      //   const formatted = formatDiagnostics(combined);
+      //   pi.sendUserMessage(`Current diagnostics for \`${filePath}\`:\n${formatted}`, {
+      //     deliverAs: "steer",
+      //   });
+      // }
       return;
     }
     // For write operations: use opencode pattern - subscribe BEFORE sending

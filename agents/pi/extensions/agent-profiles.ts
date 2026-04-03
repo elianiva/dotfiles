@@ -424,7 +424,6 @@ export default function agentProfilesExtension(pi: ExtensionAPI) {
     pi.events.emit("agent-profile:changed", {
       name: DEFAULT_AGENT.name,
       description: DEFAULT_AGENT.description,
-      tools: DEFAULT_AGENT.tools,
     });
 
     // Check CLI flag first
@@ -470,13 +469,9 @@ export default function agentProfilesExtension(pi: ExtensionAPI) {
     updateStatus(ctx);
   });
 
-  // Persist active agent
-  pi.on("turn_start", async () => {
-    if (activeAgent) {
-      pi.appendEntry("agent-profile", { name: activeAgent.name });
-    } else {
-      pi.appendEntry("agent-profile", { name: "default" });
-    }
+  // Persist active agent when it changes
+  pi.on("agent-profile:changed", async (event) => {
+    pi.appendEntry("agent-profile", { name: event.name });
   });
 
   // Register /agent command

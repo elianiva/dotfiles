@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.60.0",
+  "lastChangelogVersion": "0.64.0",
   "defaultProvider": "openrouter",
   "defaultModel": "moonshotai/kimi-k2.5",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
