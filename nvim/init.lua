@@ -31,5 +31,5 @@ vim.diagnostic.config({
   },
 })
 
-
-vim.g.STRIP = true -- to temporarily disable
+-- set to false to disable stripping trailing whitespace
+vim.g.STRIP = true

@@ -7,7 +7,7 @@ in
 {
   home = {
     # don't change this, see: https://nix-community.github.io/home-manager/
-    stateVersion = "24.05";
+    stateVersion = "25.11";
   };
 
   programs = {

@@ -8,6 +8,10 @@ return {
     vim.api.nvim_create_autocmd("BufEnter", {
       pattern = "*",
       callback = function()
+        -- Skip during startup to prevent intro screen flash
+        if vim.v.vim_did_init == 0 then
+          return
+        end
         local ft = vim.bo.filetype
         if ft == "dbui" or ft == "neo-tree" or ft == "snacks_notif" then
           vim.o.signcolumn = "no"

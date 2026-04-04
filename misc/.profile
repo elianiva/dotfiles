@@ -30,6 +30,8 @@ export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+# radicle stuff
+export PATH="$HOME/.radicle/bin:$PATH"
 # export PATH="$HOME/.dotnet/tools:$PATH"
 
 # export JAVA_OPTS="-XX:+IgnoreUnrecognizedVMOptions"
@@ -67,3 +69,4 @@ export GPG_TTY=$(tty)
 
 # vite env stuff
 . "$HOME/.vite-plus/env"
+

@@ -7,11 +7,12 @@ with pkgs; [
     ripgrep
     fd
     rclone
-    yt-dlp
+    yt-dlp-light
     yazi # tui file manager
     pass
     wget
     yq
+    tree-sitter
 
     eza # better ls
     nh # nix helper

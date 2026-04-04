@@ -23,12 +23,12 @@ M.borders = {
   -- {"█", "PaddingBorder"}
 }
 
-function M.lsp.additional_capabilities(client)
-  if client.supports_method("textDocument/codeLens") then
-    vim.lsp.codelens.refresh()
-  end
+function M.lsp.additional_capabilities(client, bufnr)
+  -- if client:supports_method("textDocument/codeLens") then
+  --   vim.lsp.codelens.enable(true, { bufnr = bufnr })
+  -- end
 
-  if client.supports_method("textDocument/inlayHint") then
+  if client:supports_method("textDocument/inlayHint") then
     vim.lsp.inlay_hint.enable(true)
   end
 end
