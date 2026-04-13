@@ -19,8 +19,8 @@ const pickers: Picker[] = [
   filePicker(),
   dirPicker(),
   grepPicker(),
-  gitPicker(),
-  jjPicker(),
+  // gitPicker(),
+  // jjPicker(),
 ];
 
 const ComposedEditor = withPickers(StarshipEditor, pickers);

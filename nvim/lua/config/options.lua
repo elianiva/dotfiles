@@ -77,7 +77,6 @@ o.listchars      = {
 } -- set listchars
 o.mouse          = "nvi" -- enable mouse support in normal, insert, and visual mode
 o.shortmess      = "filnxtToOFAs" -- disable some messages, keep intro
-o.cmdheight      = 1 -- hide command line
 -- o.signcolumn     = "yes:1" -- enable sign column all the time 4 column
 -- o.colorcolumn    = { "80" } -- 80 chars color column
 o.shell          = "/run/current-system/sw/bin/bash" -- use bash instead of zsh
@@ -108,7 +107,7 @@ o.formatoptions = o.formatoptions
 -- Experimental UI2: floating cmdline and messages (Neovim 0.12+)
 -- No more "Press ENTER to continue" prompts
 -- DISABLED: causes grey flash on intro screen
---[[ require('vim._core.ui2').enable({
+require('vim._core.ui2').enable({
   enable = true,
   msg = {
     targets = {
@@ -154,4 +153,3 @@ o.formatoptions = o.formatoptions
     },
   },
 })
---]]

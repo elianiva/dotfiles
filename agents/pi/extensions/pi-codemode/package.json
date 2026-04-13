@@ -1,0 +1,27 @@
+{
+  "name": "pi-codemode",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "pi codemode extension with executor SDK and secure-exec sandbox",
+  "keywords": [
+    "pi-package"
+  ],
+  "peerDependencies": {
+    "@mariozechner/pi-ai": "*",
+    "@mariozechner/pi-agent-core": "*",
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-tui": "*",
+    "@sinclair/typebox": "*"
+  },
+  "dependencies": {
+    "@executor-js/sdk": "^0.0.1-beta.2",
+    "secure-exec": "^0.2.1"
+  },
+  "devDependencies": {},
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

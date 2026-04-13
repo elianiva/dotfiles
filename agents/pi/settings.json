@@ -1,12 +1,13 @@
 {
-  "lastChangelogVersion": "0.65.0",
-  "defaultProvider": "openrouter",
-  "defaultModel": "moonshotai/kimi-k2.5",
+  "lastChangelogVersion": "0.66.1",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-5.3-codex",
   "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
-    "npm:pi-mcp-adapter"
+    "npm:pi-mcp-adapter",
+    "./extensions/pi-codemode"
   ],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,

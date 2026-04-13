@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": true,
+    "paths": {
+      "@executor/codemode-core": ["./node_modules/@executor/codemode-core/src/index.ts"]
+    }
+  },
+  "include": ["./src/**/*.ts", "./index.ts"],
+  "exclude": ["node_modules", "examples"]
+}

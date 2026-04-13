@@ -62,12 +62,6 @@ xnoremap("x", '"_x', { desc = "Delete char (no yank)" })
 -- Smart paste: don't yank replaced text in visual mode
 xnoremap("p", '"_dP', { desc = "Paste without yanking replaced text" })
 
--- Fast vertical movement
-nnoremap("J", "5j", { desc = "Jump 5 down" })
-nnoremap("K", "5k", { desc = "Jump 5 up" })
-xnoremap("J", "5j", { desc = "Jump 5 down" })
-xnoremap("K", "5k", { desc = "Jump 5 up" })
-
 -- Resize splits with Alt+arrow
 nnoremap("<A-Up>", "<CMD>resize +2<CR>", { desc = "Increase height" })
 nnoremap("<A-Down>", "<CMD>resize -2<CR>", { desc = "Decrease height" })

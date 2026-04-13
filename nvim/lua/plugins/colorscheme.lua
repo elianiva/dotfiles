@@ -1,10 +1,43 @@
+function CustomStatusline()
+  -- Diagnostics (shows e.g. "E:2 W:1" when there are issues)
+  local diagnostics = ""
+  if vim.diagnostic.status then
+    local d = vim.diagnostic.status()
+    if d and d ~= "" then
+      diagnostics = " " .. d
+    end
+  end
+
+  -- Progress / LSP status (shows "rust-analyzer: Indexing 45%" etc.)
+  local progress = ""
+  if vim.ui.progress_status then
+    local p = vim.ui.progress_status()
+    if p and p ~= "" then
+      progress = " " .. p
+    end
+  end
+
+  -- Build the final statusline
+  return table.concat({
+    "  ",           -- your heart icon
+    "%f",           -- filename
+    "%m",           -- modified flag [+]
+    "%r",           -- readonly flag [RO]
+    diagnostics,    -- diagnostic counts
+    "%=",           -- switch to right side
+    progress,       -- LSP / progress info
+    " %y",          -- filetype
+    " %l:%c",       -- line:column
+  }, " ")
+end
+
 return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
     init = function()
-      vim.opt.laststatus = 3 -- Or 3 for global statusline
-      vim.opt.statusline = "   %f %m %r %= %y %l:%c"
+      vim.opt.laststatus = 3
+      vim.opt.statusline = "%!v:lua.CustomStatusline()"
     end,
     config = function()
       require("rose-pine").setup {

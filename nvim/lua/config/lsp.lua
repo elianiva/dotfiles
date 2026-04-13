@@ -77,16 +77,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     utils.lsp.additional_mappings(args.buf)
 
     -- Setup buffer-specific autocmds for this LSP client
-    if client:supports_method("textDocument/codeLens", args.buf) then
-      local group = vim.api.nvim_create_augroup("lsp_codelens_" .. args.buf, { clear = true })
-      vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
-        group = group,
-        buffer = args.buf,
-        callback = function()
-          vim.lsp.codelens.refresh()
-        end,
-      })
-    end
+    -- if client:supports_method("textDocument/codeLens", args.buf) then
+    --   local group = vim.api.nvim_create_augroup("lsp_codelens_" .. args.buf, { clear = true })
+    --   vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+    --     group = group,
+    --     buffer = args.buf,
+    --     callback = function()
+    --       vim.lsp.codelens.refresh()
+    --     end,
+    --   })
+    -- end
 
     if client:supports_method("textDocument/documentHighlight", args.buf) then
       local group = vim.api.nvim_create_augroup("lsp_document_highlight_" .. args.buf, { clear = true })
@@ -113,4 +113,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
   end
+})
+
+vim.api.nvim_create_autocmd('LspProgress', {
+  callback = function(ev)
+    local value = ev.data.params.value
+    vim.api.nvim_echo({ { value.message or 'done' } }, false, {
+      id = 'lsp.' .. ev.data.client_id,
+      kind = 'progress',
+      source = 'vim.lsp',
+      title = value.title,
+      status = value.kind ~= 'end' and 'running' or 'success',
+      percent = value.percentage,
+    })
+  end,
 })

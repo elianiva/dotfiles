@@ -44,11 +44,27 @@ return {
     }
     local alreadyInstalled = require('nvim-treesitter.config').get_installed()
     local parsersToInstall = vim.iter(ensureInstalled)
-      :filter(function(parser)
-        return not vim.tbl_contains(alreadyInstalled, parser)
-      end)
-      :totable()
+        :filter(function(parser)
+          return not vim.tbl_contains(alreadyInstalled, parser)
+        end)
+        :totable()
     require('nvim-treesitter').install(parsersToInstall)
+
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function(args)
+        local treesitter = require('nvim-treesitter')
+        local lang = vim.treesitter.language.get_lang(args.match)
+        if vim.list_contains(treesitter.get_available(), lang) then
+          if not vim.list_contains(treesitter.get_installed(), lang) then
+            treesitter.install(lang):wait()
+          end
+          vim.schedule(function()
+            vim.treesitter.start(args.buf)
+          end)
+        end
+      end,
+      desc = "Enable nvim-treesitter and install parser if not installed"
+    })
   end,
   config = function(_, opts)
     -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -107,7 +123,7 @@ return {
         },
         selection_modes = {
           ["@parameter.outer"] = "v", -- charwise
-          ["@function.outer"] = "V", -- linewise
+          ["@function.outer"] = "V",  -- linewise
           ["@class.outer"] = "<c-v>", -- blockwise
         },
       },
