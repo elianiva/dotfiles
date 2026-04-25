@@ -46,10 +46,10 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1775201252,
+        "lastModified": 1776068450,
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "0b88bfd10f819d000d35d296debe283db89b623b",
+        "rev": "a8c773e277756e481d946637e6fac860bb429bc8",
         "type": "github"
       },
       "original": {
@@ -116,15 +116,30 @@
         ]
       },
       "locked": {
-        "lastModified": 1775143651,
+        "lastModified": 1776136611,
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d166a078541982a76f14d3e06e9665fa5c9ed85e",
+        "rev": "8a423e444b17dde406097328604a64fc7429e34e",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "homebrew-barutsrb": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775904841,
+        "owner": "BarutSRB",
+        "repo": "homebrew-tap",
+        "rev": "1e2283d4d5d7603c4695d040c06c4fb8b69b4a6a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BarutSRB",
+        "repo": "homebrew-tap",
         "type": "github"
       }
     },
@@ -146,10 +161,10 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1775209412,
+        "lastModified": 1776149440,
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "31104f8c48d32bbb56685a1a3b92ac1e2a4410e5",
+        "rev": "a7c4967da3e83985b231ca4d0756864c4c6f61ac",
         "type": "github"
       },
       "original": {
@@ -161,30 +176,15 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1775210746,
+        "lastModified": 1776147451,
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "f4a8b97712cfc1409b72e4886e77d9eb1d45114e",
+        "rev": "2bd4409a0b001859a5b1c5c5d41d304b3f44f14b",
         "type": "github"
       },
       "original": {
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "type": "github"
-      }
-    },
-    "homebrew-jnsahaj": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1773339604,
-        "owner": "jnsahaj",
-        "repo": "homebrew-lumen",
-        "rev": "48159999632e7bfe2cbd5fcc277c3a0b3bfccb87",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jnsahaj",
-        "repo": "homebrew-lumen",
         "type": "github"
       }
     },
@@ -312,10 +312,10 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1775095191,
+        "lastModified": 1775888245,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "106eb93cbb9d4e4726bf6bc367a3114f7ed6b32f",
+        "rev": "13043924aaa7375ce482ebe2494338e058282925",
         "type": "github"
       },
       "original": {
@@ -330,10 +330,10 @@
         "bash-env-json": "bash-env-json",
         "fenix": "fenix",
         "home-manager": "home-manager",
+        "homebrew-barutsrb": "homebrew-barutsrb",
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
-        "homebrew-jnsahaj": "homebrew-jnsahaj",
         "homebrew-mhaeuser": "homebrew-mhaeuser",
         "jj-starship": "jj-starship",
         "nix-darwin": "nix-darwin",
@@ -349,11 +349,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1775174431,
-        "narHash": "sha256-jSw1C5MuyySiCpPgjdR+H0wPR3AgPRuylLunw+yd7A0=",
+        "lastModified": 1775979430,
+        "narHash": "sha256-LryjOOjPsZ6Hs3RlVHla6MV8uxO2GoZolF0I/eB5zFM=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "9767050b2db436f5a770c5f91a548c88fd91ec71",
+        "rev": "7b6e1249b7320e16792e31ce67bb2e5f4acd6a8b",
         "type": "github"
       },
       "original": {

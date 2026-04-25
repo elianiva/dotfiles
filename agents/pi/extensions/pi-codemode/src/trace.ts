@@ -109,32 +109,42 @@ export const summarizeTraceForContext = (trace: CodemodeTrace): string => {
 };
 
 export const formatTraceForAgent = (trace: CodemodeTrace, value: unknown, logs: string[]): string => {
-  const lines: string[] = [
-    `status:${trace.status} steps:${trace.steps.length} logs:${logs.length}`,
-    `summary:${summarizeTraceForContext(trace)}`,
-  ];
+  const durationMs = trace.endedAt ? trace.endedAt - trace.startedAt : 0;
+  const duration = formatDuration(durationMs);
 
-  if (trace.error) lines.push(`error:${JSON.stringify(trace.error)}`);
-  if (value !== undefined) {
-    const raw = typeof value === "string" ? value : JSON.stringify(value);
-    lines.push(`value:${raw.length > 5000 ? `${raw.slice(0, 4987)}[truncated]` : raw}`);
-  }
+  const result: string[] = [`status:${trace.status} duration:${duration}`];
 
   if (trace.steps.length > 0) {
-    lines.push("--");
+    result.push("", "steps:");
     for (const step of trace.steps) {
-      const status = step.status === "error" ? "err" : "ok";
-      const input = typeof step.input === "string" ? step.input : JSON.stringify(step.input);
-      if (step.output) {
-        const text = step.output.text.length > 1200 ? `${step.output.text.slice(0, 1187)}[truncated]` : step.output.text;
-        lines.push(`${step.toolPath}:${input.slice(0, 120)} -> ${status} text:${JSON.stringify(text)}`);
-      } else if (step.error) {
-        lines.push(`${step.toolPath}:${input.slice(0, 120)} -> err error:${JSON.stringify(step.error)}`);
-      } else {
-        lines.push(`${step.toolPath}:${input.slice(0, 120)} -> ${status}`);
+      const stepDuration = step.endedAt ? formatDuration(step.endedAt - step.startedAt) : "";
+      const prefix = step.status === "error" ? "[ERR]" : step.status === "ok" ? "[OK]" : "[...]";
+      result.push(`${prefix} ${step.label} ${stepDuration}`);
+      if (step.error) {
+        result.push(`  error: ${step.error}`);
+      } else if (step.output?.text) {
+        const lines = step.output.text.split(/\r?\n/).filter((l) => l.trim().length > 0);
+        const preview = lines.slice(0, 8).join("\n  ");
+        result.push(`  output: ${preview}${lines.length > 8 ? `\n  ... (${lines.length - 8} more lines)` : ""}`);
       }
     }
   }
 
-  return lines.join("\n");
+  if (trace.error) {
+    result.push("", `execution error: ${trace.error}`);
+  }
+
+  if (value !== undefined) {
+    const raw = typeof value === "string" ? value : JSON.stringify(value);
+    result.push("", `return value: ${raw}`);
+  }
+
+  if (logs.length > 0) {
+    result.push("", "logs:");
+    for (const log of logs) {
+      result.push(log.replace(/^\[\w+\] /, ""));
+    }
+  }
+
+  return result.join("\n");
 };

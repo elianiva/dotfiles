@@ -1,13 +1,15 @@
 {
-  "lastChangelogVersion": "0.66.1",
-  "defaultProvider": "github-copilot",
-  "defaultModel": "gpt-5.3-codex",
-  "defaultThinkingLevel": "high",
+  "lastChangelogVersion": "0.70.0",
+  "defaultProvider": "openrouter",
+  "defaultModel": "moonshotai/kimi-k2.6",
+  "defaultThinkingLevel": "medium",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
+    "./extensions/pi-codemode",
+    "npm:@plannotator/pi-extension",
     "npm:pi-mcp-adapter",
-    "./extensions/pi-codemode"
+    "git:github.com/SamuelLHuber/pi-fff"
   ],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,

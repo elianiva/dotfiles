@@ -5,6 +5,7 @@
   "description": "Composed editor with starship-prompt + pi-ckers",
   "dependencies": {
     "@elianiva/pi-ckers": "link:@elianiva/pi-ckers",
-    "@elianiva/pi-starship": "link:@elianiva/pi-starship"
+    "@elianiva/pi-starship": "link:@elianiva/pi-starship",
+    "@mariozechner/pi-coding-agent": "*"
   }
 }

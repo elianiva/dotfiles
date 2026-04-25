@@ -1,13 +1,13 @@
 import { Type } from "@sinclair/typebox";
 import { Text } from "@mariozechner/pi-tui";
-import type { ExtensionContext, ToolDefinition } from "@mariozechner/pi-coding-agent";
+import type { ExtensionContext, Theme, ToolDefinition } from "@mariozechner/pi-coding-agent";
 import { buildCodemodeApiPrompt } from "./builtins.js";
 import { getExecutor } from "./executor-cache.js";
 import { renderCodemodeCall, renderCodemodeResult } from "./render.js";
 import { runCodemode } from "./runtime.js";
 import { formatTraceForAgent, summarizeTraceForContext } from "./trace.js";
 import type { CodemodeResultDetails } from "./types.js";
-import { stripCodeFences } from "./util.js";
+import { buildPromptGuidelines, stripCodeFences } from "./util.js";
 
 const codemodeSchema = Type.Object({
   code: Type.String({ description: "JavaScript code with tools.pi.* access" }),
@@ -17,13 +17,9 @@ export function createCodemodeTool(): ToolDefinition<typeof codemodeSchema, Code
   return {
     name: "codemode",
     label: "codemode",
-    description: "Execute JavaScript in secure-exec with executor tools proxy",
+    description: "Execute JavaScript in a secure sandbox with access to pi filesystem tools, fff search tools, and dynamically loaded executor tools (MCP, OpenAPI, GraphQL).",
     promptSnippet: buildCodemodeApiPrompt(),
-    promptGuidelines: [
-      "Write plain JavaScript body only. No imports/exports. No markdown fences.",
-      "Use tools.pi.* only.",
-      "Batch related work in one codemode call.",
-    ],
+    promptGuidelines: buildPromptGuidelines(),
     parameters: codemodeSchema,
 
     async execute(
@@ -38,7 +34,9 @@ export function createCodemodeTool(): ToolDefinition<typeof codemodeSchema, Code
       const result = await runCodemode({ code, cwd: ctx.cwd, executor, signal });
 
       return {
-        content: [{ type: "text", text: formatTraceForAgent(result.trace, result.value, result.logs) }],
+        content: [
+          { type: "text", text: formatTraceForAgent(result.trace, result.value, result.logs) },
+        ],
         details: {
           trace: result.trace,
           value: result.value,
@@ -48,7 +46,7 @@ export function createCodemodeTool(): ToolDefinition<typeof codemodeSchema, Code
       };
     },
 
-    renderCall(args: { code?: string }, theme: any) {
+    renderCall(args: { code?: string }, theme: Theme) {
       return renderCodemodeCall(args.code ?? "", theme);
     },
 

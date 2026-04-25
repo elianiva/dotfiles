@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "kind": "mcp",
+      "transport": "remote",
+      "name": "mcp-typescript server on vercel",
+      "endpoint": "https://mcp.exa.ai/mcp",
+      "remoteTransport": "auto",
+      "namespace": "mcp_typescript_server_on_vercel"
+    }
+  ]
+}

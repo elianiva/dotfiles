@@ -23,8 +23,12 @@ const turndownService = new TurndownService({
   emDelimiter: "*",
 });
 
-// Remove script/style/meta/link tags
-turndownService.remove(["script", "style", "meta", "link", "noscript"]);
+// Remove script/style/meta/link/media tags
+turndownService.remove([
+  "script", "style", "meta", "link", "noscript",
+  "img", "svg", "picture", "figure", "canvas",
+  "video", "audio", "source", "track", "embed", "object", "iframe",
+]);
 
 export default function (pi: ExtensionAPI) {
   pi.registerTool({
@@ -144,7 +148,11 @@ export default function (pi: ExtensionAPI) {
           };
         }
 
-        const text = new TextDecoder().decode(arrayBuffer);
+        let text = new TextDecoder().decode(arrayBuffer);
+
+        if (mime.includes("text/html")) {
+          text = stripMediaTags(text);
+        }
 
         // Process based on format
         let output = "";
@@ -206,13 +214,31 @@ export default function (pi: ExtensionAPI) {
   });
 }
 
+// Strip media and embed tags from raw HTML before conversion
+function stripMediaTags(html: string): string {
+  return (
+    html
+      .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
+      .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
+      .replace(/<svg\b[\s\S]*?<\/svg>/gi, "")
+      .replace(/<img\b[^>]*>/gi, "")
+      .replace(/<picture\b[\s\S]*?<\/picture>/gi, "")
+      .replace(/<figure\b[\s\S]*?<\/figure>/gi, "")
+      .replace(/<canvas\b[\s\S]*?<\/canvas>/gi, "")
+      .replace(/<video\b[\s\S]*?<\/video>/gi, "")
+      .replace(/<audio\b[\s\S]*?<\/audio>/gi, "")
+      .replace(/<iframe\b[\s\S]*?<\/iframe>/gi, "")
+      .replace(/<object\b[\s\S]*?<\/object>/gi, "")
+      .replace(/<embed\b[^>]*>/gi, "")
+      .replace(/<source\b[^>]*>/gi, "")
+      .replace(/<track\b[^>]*>/gi, "")
+  );
+}
+
 // Simple HTML to text conversion (no turndown for text format)
 function htmlToText(html: string): string {
   return (
     html
-      // Remove script/style tags and their content
-      .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
-      .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
       // Replace common block elements with newlines
       .replace(/<\/p>/gi, "\n\n")
       .replace(/<br\s*\/?>/gi, "\n")

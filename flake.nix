@@ -16,16 +16,21 @@
     # manage homebrew through nix
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     nix-homebrew.inputs.nixpkgs.follows = "nixpkgs";
+
     homebrew-core.url = "github:homebrew/homebrew-core";
     homebrew-core.flake = false;
+
     homebrew-cask.url = "github:homebrew/homebrew-cask";
     homebrew-cask.flake = false;
+
     homebrew-bundle.url = "github:homebrew/homebrew-bundle";
     homebrew-bundle.flake = false;
+
     homebrew-mhaeuser.url = "github:mhaeuser/homebrew-mhaeuser";
     homebrew-mhaeuser.flake = false;
-    homebrew-jnsahaj.url = "github:jnsahaj/homebrew-lumen";
-    homebrew-jnsahaj.flake = false;
+
+    homebrew-barutsrb.url = "github:BarutSRB/homebrew-tap";
+    homebrew-barutsrb.flake = false;
 
     # fenix for rust
     fenix.url = "github:nix-community/fenix";
@@ -88,7 +93,7 @@
                   "homebrew/homebrew-cask" = inputs.homebrew-cask;
                   "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
                   "mhaeuser/homebrew-mhaeuser" = inputs.homebrew-mhaeuser;
-                  "jnsahaj/homebrew-lumen" = inputs.homebrew-jnsahaj;
+                  "BarutSRB/homebrew-tap" = inputs.homebrew-barutsrb;
                 };
                 mutableTaps = false;
                 autoMigrate = true;
@@ -103,6 +108,10 @@
                 ];
               };
             }
+            # Align homebrew taps config with nix-homebrew
+            ({config, ...}: {
+              homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+            })
             ./modules/darwin-config.nix
           ];
         };

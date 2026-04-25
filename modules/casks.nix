@@ -18,6 +18,9 @@ _:
 
   # Terminals
   "ghostty"
+  # Window Manager
+  "omniwm"
+
 
   # Tools
   "bitwarden"

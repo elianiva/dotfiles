@@ -5,4 +5,3 @@
 - No compatibility wrappers, no legacy shims, no temporary plumbing, no backward compats, no reexport for "convenience".
 - Treat the project as greenfield unless stated otherwise.
 - You are not alone, expect parallel changes in unrelated files by others.
-- Use the fff MCP tools for all file search operations instead of default tools.

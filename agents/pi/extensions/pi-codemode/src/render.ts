@@ -1,4 +1,5 @@
 import { Text } from "@mariozechner/pi-tui";
+import type { Theme } from "@mariozechner/pi-coding-agent";
 import type { CodemodeTrace, TraceStep } from "./types.js";
 
 const truncate = (value: string, max: number): string => (value.length <= max ? value : `${value.slice(0, max - 1)}…`);
@@ -14,7 +15,7 @@ const summarizeStep = (step: TraceStep): string => {
   return truncate(step.output.text.split(/\r?\n/)[0] ?? "", 80);
 };
 
-export function renderCodemodeCall(code: string, theme: any): Text {
+export function renderCodemodeCall(code: string, theme: Theme): Text {
   const lines = code.trim().split(/\r?\n/);
   const suffix = lines.length > 1 ? theme.fg("muted", ` (${lines.length} lines)`) : "";
   const shown = lines.slice(0, 12).map((line) => theme.fg("accent", line)).join("\n");
@@ -25,7 +26,7 @@ export function renderCodemodeCall(code: string, theme: any): Text {
   return new Text(content, 0, 0);
 }
 
-export function renderCodemodeResult(trace: CodemodeTrace, expanded: boolean, theme: any): Text {
+export function renderCodemodeResult(trace: CodemodeTrace, expanded: boolean, theme: Theme): Text {
   const duration = trace.endedAt ? formatDuration(trace.endedAt - trace.startedAt) : "running";
   const isError = trace.status === "error" || trace.steps.some((step) => step.status === "error");
   const statusColor = isError ? "error" : trace.status === "ok" ? "success" : "accent";

@@ -1,29 +1,51 @@
 import { createExecutor, type Executor } from "@executor-js/sdk";
+import { mcpPlugin } from "@executor-js/plugin-mcp";
+import { openApiPlugin } from "@executor-js/plugin-openapi";
+import { graphqlPlugin } from "@executor-js/plugin-graphql";
 import { piPlugin } from "./pi-plugin.js";
+import { fffPlugin } from "./fff-plugin.js";
+import { loadSourcesFromConfig } from "./source-config.js";
+import { hydrateExecutorSources } from "./source-hydrate.js";
 
-const cache = new Map<string, Executor>();
+type CachedExecutor = {
+  executor: Executor;
+  fingerprint: string;
+};
+
+const cache = new Map<string, CachedExecutor>();
 
 export const getExecutor = async (cwd: string): Promise<Executor> => {
+  const loaded = await loadSourcesFromConfig();
   const cached = cache.get(cwd);
-  if (cached) return cached;
+  if (cached && cached.fingerprint === loaded.fingerprint) return cached.executor;
+
+  if (cached) {
+    await cached.executor.close();
+    cache.delete(cwd);
+  }
 
   const executor = await createExecutor({
-    scope: { name: `pi-codemode-${cwd}` },
-    plugins: [piPlugin(cwd)] as const,
+    scope: { name: "pi-codemode-" + cwd },
+    plugins: [piPlugin(cwd), fffPlugin(cwd), mcpPlugin(), openApiPlugin(), graphqlPlugin()] as const,
   });
 
-  cache.set(cwd, executor);
+  await hydrateExecutorSources(executor, loaded.sources, {
+    configPath: loaded.configPath,
+    unsupported: loaded.unsupported,
+  });
+
+  cache.set(cwd, { executor, fingerprint: loaded.fingerprint });
   return executor;
 };
 
 export const disposeExecutor = async (cwd: string): Promise<void> => {
-  const executor = cache.get(cwd);
-  if (!executor) return;
-  await executor.close();
+  const cached = cache.get(cwd);
+  if (!cached) return;
+  await cached.executor.close();
   cache.delete(cwd);
 };
 
 export const disposeAllExecutors = async (): Promise<void> => {
-  await Promise.all(Array.from(cache.values()).map((executor) => executor.close()));
+  await Promise.allSettled(Array.from(cache.values()).map((entry) => entry.executor.close()));
   cache.clear();
 };

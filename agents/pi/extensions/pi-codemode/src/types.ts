@@ -1,9 +1,14 @@
-import type { ImageContent, TextContent } from "@mariozechner/pi-ai";
-
-export const builtinToolNames = ["read", "bash", "edit", "write", "grep", "find", "ls"] as const;
+export const builtinToolNames = ["read", "bash", "edit", "write", "grep", "find", "ls", "webfetch"] as const;
 export type BuiltinToolName = (typeof builtinToolNames)[number];
 
-export type ToolContent = (TextContent | ImageContent)[];
+export const fffToolNames = [
+  "grep",
+  "fileSearch",
+  "multiGrep",
+  "recentFiles",
+  "searchThenGrep",
+] as const;
+export type FffToolName = (typeof fffToolNames)[number];
 
 export type ToolResultSnapshot = {
   value: unknown;
