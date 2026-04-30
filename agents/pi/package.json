@@ -6,11 +6,7 @@
     "@mariozechner/pi-tui": "*",
     "@sinclair/typebox": "*",
     "turndown": "^7.2.2",
-    "koffi": "^2.11.0",
-    "just-bash": "^2.11.2",
-    "vscode-jsonrpc": "^8.2.1",
-    "vscode-languageclient": "^9.0.1",
-    "vscode-languageserver-protocol": "^3.17.5"
+    "koffi": "^2.11.0"
   },
   "private": true,
   "type": "module"
