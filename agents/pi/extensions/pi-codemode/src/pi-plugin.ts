@@ -9,25 +9,6 @@ import { createBuiltinToolset } from "./builtins.js";
 import { builtinToolNames, type BuiltinToolName } from "./types.js";
 import { formatError } from "./util.js";
 
-const isTextContent = (item: unknown): item is { type: "text"; text: string } =>
-  typeof item === "object" &&
-  item !== null &&
-  (item as Record<string, unknown>).type === "text" &&
-  typeof (item as Record<string, unknown>).text === "string";
-
-const unwrapTextResult = (data: unknown): unknown => {
-  if (
-    typeof data === "object" &&
-    data !== null &&
-    "content" in data &&
-    Array.isArray((data as { content?: unknown[] }).content)
-  ) {
-    const first = (data as { content: unknown[] }).content.find(isTextContent);
-    if (first) return first.text;
-  }
-  return data;
-};
-
 export const piPlugin = (cwd: string) =>
   definePlugin({
     key: "pi",
@@ -44,8 +25,7 @@ export const piPlugin = (cwd: string) =>
           const tool = tools[name];
           try {
             const result = await tool.execute(toolId, args ?? {}, undefined, () => {});
-            const data = unwrapTextResult(result);
-            return new ToolInvocationResult({ data, error: null });
+            return new ToolInvocationResult({ data: result, error: null });
           } catch (cause) {
             return new ToolInvocationResult({ data: null, error: formatError(cause) });
           }

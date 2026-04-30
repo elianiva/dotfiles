@@ -1,15 +1,15 @@
 {
-  "lastChangelogVersion": "0.70.0",
-  "defaultProvider": "openrouter",
-  "defaultModel": "moonshotai/kimi-k2.6",
-  "defaultThinkingLevel": "medium",
+  "lastChangelogVersion": "0.70.6",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "minimal",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
     "./extensions/pi-codemode",
     "npm:@plannotator/pi-extension",
-    "npm:pi-mcp-adapter",
-    "git:github.com/SamuelLHuber/pi-fff"
+    "git:github.com/SamuelLHuber/pi-fff",
+    "npm:pi-boomerang"
   ],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,

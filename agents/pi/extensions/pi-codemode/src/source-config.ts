@@ -1,5 +1,4 @@
-import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { parse, printParseErrorCode, type ParseError } from "jsonc-parser";
@@ -64,7 +63,7 @@ export type UnsupportedSourceConfig = {
 
 export type LoadedSourceConfig = {
   configPath: string;
-  fingerprint: string;
+  mtimeMs: number;
   sources: SupportedSourceConfig[];
   unsupported: UnsupportedSourceConfig[];
 };
@@ -261,23 +260,22 @@ const parseGraphqlSource = (entry: UnknownRecord): { source?: SupportedSourceCon
 const parseErrorsToMessage = (errors: ParseError[]): string =>
   errors.map((error) => "offset " + error.offset + ": " + printParseErrorCode(error.error)).join("; ");
 
-const hashContent = (content: string): string =>
-  "sha256:" + createHash("sha256").update(content).digest("hex");
-
 export const getExecutorConfigPath = (): string => join(homedir(), ".pi", "agent", "executor.jsonc");
 
 export const loadSourcesFromConfig = async (): Promise<LoadedSourceConfig> => {
   const configPath = getExecutorConfigPath();
 
   let raw: string;
+  let mtimeMs: number;
   try {
+    mtimeMs = (await stat(configPath)).mtimeMs;
     raw = await readFile(configPath, "utf8");
   } catch (cause) {
     const error = cause as NodeJS.ErrnoException;
     if (error?.code === "ENOENT") {
       return {
         configPath,
-        fingerprint: "missing",
+        mtimeMs: 0,
         sources: [],
         unsupported: [],
       };
@@ -295,11 +293,10 @@ export const loadSourcesFromConfig = async (): Promise<LoadedSourceConfig> => {
     throw new Error("Invalid config at " + configPath + ": root must be an object");
   }
 
-  const fingerprint = hashContent(raw);
   const rawSources = parsed.sources;
 
   if (rawSources === undefined) {
-    return { configPath, fingerprint, sources: [], unsupported: [] };
+    return { configPath, mtimeMs, sources: [], unsupported: [] };
   }
 
   if (!Array.isArray(rawSources)) {
@@ -356,5 +353,5 @@ export const loadSourcesFromConfig = async (): Promise<LoadedSourceConfig> => {
     });
   }
 
-  return { configPath, fingerprint, sources, unsupported };
+  return { configPath, mtimeMs, sources, unsupported };
 };

@@ -4,29 +4,46 @@ import { openApiPlugin } from "@executor-js/plugin-openapi";
 import { graphqlPlugin } from "@executor-js/plugin-graphql";
 import { piPlugin } from "./pi-plugin.js";
 import { fffPlugin } from "./fff-plugin.js";
-import { loadSourcesFromConfig } from "./source-config.js";
+import { getExecutorConfigPath, loadSourcesFromConfig } from "./source-config.js";
 import { hydrateExecutorSources } from "./source-hydrate.js";
+import { stat } from "node:fs/promises";
 
 type CachedExecutor = {
   executor: Executor;
-  fingerprint: string;
+  mtimeMs: number;
 };
 
 const cache = new Map<string, CachedExecutor>();
 
+const configMtime = async (): Promise<number> => {
+  try {
+    return (await stat(getExecutorConfigPath())).mtimeMs;
+  } catch {
+    return 0;
+  }
+};
+
 export const getExecutor = async (cwd: string): Promise<Executor> => {
-  const loaded = await loadSourcesFromConfig();
+  const mtimeMs = await configMtime();
   const cached = cache.get(cwd);
-  if (cached && cached.fingerprint === loaded.fingerprint) return cached.executor;
+  if (cached && cached.mtimeMs === mtimeMs) return cached.executor;
 
   if (cached) {
     await cached.executor.close();
     cache.delete(cwd);
   }
 
+  const loaded = await loadSourcesFromConfig();
+
   const executor = await createExecutor({
     scope: { name: "pi-codemode-" + cwd },
-    plugins: [piPlugin(cwd), fffPlugin(cwd), mcpPlugin(), openApiPlugin(), graphqlPlugin()] as const,
+    plugins: [
+      piPlugin(cwd),
+      fffPlugin(cwd),
+      mcpPlugin(),
+      openApiPlugin(),
+      graphqlPlugin(),
+    ] as const,
   });
 
   await hydrateExecutorSources(executor, loaded.sources, {
@@ -34,7 +51,7 @@ export const getExecutor = async (cwd: string): Promise<Executor> => {
     unsupported: loaded.unsupported,
   });
 
-  cache.set(cwd, { executor, fingerprint: loaded.fingerprint });
+  cache.set(cwd, { executor, mtimeMs: loaded.mtimeMs });
   return executor;
 };
 

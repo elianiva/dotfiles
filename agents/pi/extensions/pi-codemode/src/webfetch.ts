@@ -10,12 +10,7 @@ const MAX_RESPONSE_SIZE = 5 * 1024 * 1024;
 const DEFAULT_TIMEOUT = 30 * 1000;
 const MAX_TIMEOUT = 120 * 1000;
 
-let turndownService: TurndownService | undefined;
-
-function getTurndown(): TurndownService {
-  if (!turndownService) turndownService = new TurndownService();
-  return turndownService;
-}
+const turndownService = new TurndownService();
 
 // Simple HTML to text conversion
 function htmlToText(html: string): string {
@@ -42,7 +37,7 @@ function htmlToText(html: string): string {
 
 function htmlToMarkdown(html: string): string {
   try {
-    return getTurndown().turndown(html);
+    return turndownService.turndown(html);
   } catch {
     return htmlToText(html);
   }

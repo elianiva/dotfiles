@@ -1,3 +1,5 @@
+import type { ImageContent } from "@mariozechner/pi-ai";
+
 export const builtinToolNames = ["read", "bash", "edit", "write", "grep", "find", "ls", "webfetch"] as const;
 export type BuiltinToolName = (typeof builtinToolNames)[number];
 
@@ -13,6 +15,7 @@ export type FffToolName = (typeof fffToolNames)[number];
 export type ToolResultSnapshot = {
   value: unknown;
   text: string;
+  images?: ImageContent[];
   isError: boolean;
 };
 

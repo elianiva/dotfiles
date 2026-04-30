@@ -1,3 +1,4 @@
+import type { ImageContent } from "@mariozechner/pi-ai";
 import type { CodemodeTrace, ToolResultSnapshot, TraceStep } from "./types.js";
 
 const clone = <T>(value: T): T => {
@@ -108,7 +109,7 @@ export const summarizeTraceForContext = (trace: CodemodeTrace): string => {
     .join(" · ");
 };
 
-export const formatTraceForAgent = (trace: CodemodeTrace, value: unknown, logs: string[]): string => {
+export const formatTraceForAgent = (trace: CodemodeTrace, value: unknown, logs: string[]): { text: string; images: ImageContent[] } => {
   const durationMs = trace.endedAt ? trace.endedAt - trace.startedAt : 0;
   const duration = formatDuration(durationMs);
 
@@ -146,5 +147,7 @@ export const formatTraceForAgent = (trace: CodemodeTrace, value: unknown, logs: 
     }
   }
 
-  return result.join("\n");
+  const images = trace.steps.flatMap((s) => s.output?.images ?? []);
+
+  return { text: result.join("\n"), images };
 };

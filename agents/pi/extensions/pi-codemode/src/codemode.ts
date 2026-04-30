@@ -31,11 +31,18 @@ export function createCodemodeTool(): ToolDefinition<typeof codemodeSchema, Code
     ) {
       const code = stripCodeFences(params.code);
       const executor = await getExecutor(ctx.cwd);
-      const result = await runCodemode({ code, cwd: ctx.cwd, executor, signal });
+      const result = await runCodemode({
+        code,
+        cwd: ctx.cwd,
+        executor,
+        signal,
+      });
+      const { text, images } = formatTraceForAgent(result.trace, result.value, result.logs);
 
       return {
         content: [
-          { type: "text", text: formatTraceForAgent(result.trace, result.value, result.logs) },
+          { type: "text", text },
+          ...images.map((img) => ({ type: "image" as const, data: img.data, mimeType: img.mimeType })),
         ],
         details: {
           trace: result.trace,
