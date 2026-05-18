@@ -1,14 +1,35 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 let
   pi = ".pi/agent";
   link = config.lib.file.mkOutOfStoreSymlink;
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
+  vpPkgs = import ./vp-global-packages.nix;
 in
 {
   home = {
     # don't change this, see: https://nix-community.github.io/home-manager/
     stateVersion = "25.11";
   };
+
+  # Bootstrap vp and install missing global packages on activation
+  home.activation.vp-global-packages = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    vp="$HOME/.vite-plus/bin/vp"
+    if [[ ! -f "$vp" ]]; then
+      $DRY_RUN_CMD curl -fsSL https://vite.plus | bash
+    fi
+    if [[ -f "$vp" ]]; then
+      installed=$("$vp" list -g --json 2>/dev/null | sed -n 's/.*"name": "\([^"]*\)".*/\1/p')
+      missing=""
+      for pkg in ${builtins.toString vpPkgs.globalPackages}; do
+        if ! echo "$installed" | grep -qxF "$pkg"; then
+          missing="$missing $pkg"
+        fi
+      done
+      if [[ -n "$missing" ]]; then
+        $DRY_RUN_CMD "$vp" install -g $missing
+      fi
+    fi
+  '';
 
   programs = {
     # let home manager manages itself
@@ -112,6 +133,7 @@ in
       source = link "${dotfiles}/jjui";
       recursive = true;
     };
+    "hunk/config.toml".source = link "${dotfiles}/hunk/config.toml";
 
     # opencode configs
     "opencode/opencode.json".source = link "${dotfiles}/agents/opencode/opencode.json";

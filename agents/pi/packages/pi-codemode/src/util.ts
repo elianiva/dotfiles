@@ -11,10 +11,8 @@ export const buildPromptGuidelines = () => [
   "Only do filesystem related operations using tools.pi.*",
   "Never rely on bash if it can be done in JavaScript",
   "Batch related work in one codemode call",
-  "Prefer tools.pi.read over shell commands: read({ offset, limit }) gives line ranges",
-  "Prefer tools.pi.grep over grep: it returns structured results with line numbers",
-  "Output visibility: use `return value` to show output visibly, use `console.log(value)` for logs. Bare expressions like `result;` or string tricks like `'' + result` are silently swallowed.",
-  "Bash is available for package managers (npm, pnpm, bun, yarn, npx, node), file operations (mkdir, cp, mv, rm, ln, chmod), and utilities (pwd, echo, which, uname, date). Use tools.pi.* for reading/writing/searching/grepping/editing files.",
+  "Output visibility: use `return value` to show output visibly, use `console.log(value)` for logs.",
+  "Bare expressions like `result;` or string tricks like `'' + result` are silently swallowed.",
 ];
 
 export const formatError = (cause: unknown): string => {
@@ -26,3 +24,4 @@ export const formatError = (cause: unknown): string => {
     return String(cause);
   }
 };
+

@@ -2,7 +2,7 @@ return {
 	"saghen/blink.cmp",
 	lazy = false, -- lazy loading handled internally
 	dependencies = "rafamadriz/friendly-snippets",
-	version = "v0.*", -- last release is too old
+	version = "v1.*", -- last release is too old
 	event = "InsertEnter",
 	opts = {
 		keymap = {

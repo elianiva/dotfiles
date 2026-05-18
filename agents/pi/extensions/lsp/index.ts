@@ -441,150 +441,150 @@ function formatDuration(ms: number): string {
 export default function (pi: ExtensionAPI) {
   const manager = new LspConnectionManager();
 
-  // Warm up LSP on read, full diagnostics on write/edit
-  pi.on("tool_result", async (event: ToolResultEvent, ctx: ExtensionContext) => {
-    const fileInfo = extractFileFromEvent(event);
-    if (!fileInfo) return;
+  // // Warm up LSP on read, full diagnostics on write/edit
+  // pi.on("tool_result", async (event: ToolResultEvent, ctx: ExtensionContext) => {
+  //   const fileInfo = extractFileFromEvent(event);
+  //   if (!fileInfo) return;
+  //
+  //   const { path: filePath, isWrite } = fileInfo;
+  //   const absPath = resolve(ctx.cwd, filePath);
+  //
+  //   const conns = await manager.getOrCreateConnections(filePath, ctx.cwd, ctx);
+  //   if (conns.length === 0) return;
+  //
+  //   let content: string;
+  //   try {
+  //     content = readFileSync(absPath, "utf-8");
+  //   } catch {
+  //     return;
+  //   }
+  //
+  //   const ext = extname(filePath);
+  //   const languageId = LANGUAGE_MAP[ext];
+  //   if (!languageId) return;
+  //
+  //   // For read operations: warm up and fetch existing diagnostics if available
+  //   if (!isWrite) {
+  //     await Promise.all(
+  //       conns.map((conn) => manager.touchFile(conn, absPath, content, languageId, false)),
+  //     );
+  //     const allDiags = manager.getAllDiagnostics(absPath);
+  //     // if (allDiags.length > 0) {
+  //     //   const combined = allDiags.flatMap((d) => d.diagnostics);
+  //     //   const formatted = formatDiagnostics(combined);
+  //     //   pi.sendUserMessage(`Current diagnostics for \`${filePath}\`:\n${formatted}`, {
+  //     //     deliverAs: "steer",
+  //     //   });
+  //     // }
+  //     return;
+  //   }
+  //   // For write operations: use opencode pattern - subscribe BEFORE sending
+  //   const diagnostics = (
+  //     await Promise.all(
+  //       conns.map((conn) => manager.touchFile(conn, absPath, content, languageId, true)),
+  //     )
+  //   ).flat();
+  //
+  //   // Show results
+  //   if (diagnostics.length > 0) {
+  //     const formatted = formatDiagnostics(diagnostics);
+  //     pi.sendUserMessage(`Diagnostics for \`${filePath}\`:\n${formatted}`, {
+  //       deliverAs: "steer",
+  //     });
+  //   } else {
+  //     ctx.ui.notify(`✓ ${filePath}: clean`, "success");
+  //   }
+  // });
 
-    const { path: filePath, isWrite } = fileInfo;
-    const absPath = resolve(ctx.cwd, filePath);
+  // // Cleanup on shutdown
+  // pi.on("session_shutdown", async () => {
+  //   await manager.shutdownAll();
+  // });
 
-    const conns = await manager.getOrCreateConnections(filePath, ctx.cwd, ctx);
-    if (conns.length === 0) return;
-
-    let content: string;
-    try {
-      content = readFileSync(absPath, "utf-8");
-    } catch {
-      return;
-    }
-
-    const ext = extname(filePath);
-    const languageId = LANGUAGE_MAP[ext];
-    if (!languageId) return;
-
-    // For read operations: warm up and fetch existing diagnostics if available
-    if (!isWrite) {
-      await Promise.all(
-        conns.map((conn) => manager.touchFile(conn, absPath, content, languageId, false)),
-      );
-      const allDiags = manager.getAllDiagnostics(absPath);
-      // if (allDiags.length > 0) {
-      //   const combined = allDiags.flatMap((d) => d.diagnostics);
-      //   const formatted = formatDiagnostics(combined);
-      //   pi.sendUserMessage(`Current diagnostics for \`${filePath}\`:\n${formatted}`, {
-      //     deliverAs: "steer",
-      //   });
-      // }
-      return;
-    }
-    // For write operations: use opencode pattern - subscribe BEFORE sending
-    const diagnostics = (
-      await Promise.all(
-        conns.map((conn) => manager.touchFile(conn, absPath, content, languageId, true)),
-      )
-    ).flat();
-
-    // Show results
-    if (diagnostics.length > 0) {
-      const formatted = formatDiagnostics(diagnostics);
-      pi.sendUserMessage(`Diagnostics for \`${filePath}\`:\n${formatted}`, {
-        deliverAs: "steer",
-      });
-    } else {
-      ctx.ui.notify(`✓ ${filePath}: clean`, "success");
-    }
-  });
-
-  // Cleanup on shutdown
-  pi.on("session_shutdown", async () => {
-    await manager.shutdownAll();
-  });
-
-  // /lsp command - dashboard
-  pi.registerCommand("lsp", {
-    description:
-      "LSP status dashboard - show running servers, available LSPs, and manage processes",
-    getArgumentCompletions: (prefix: string) => {
-      const actions = ["status", "available", "kill", "killall"];
-      const filtered = actions.filter((a) => a.startsWith(prefix));
-      return filtered.length > 0 ? filtered.map((a) => ({ value: a, label: a })) : null;
-    },
-    handler: async (args: string, ctx) => {
-      const parts = args.trim().split(/\s+/);
-      const action = parts[0] || "status";
-      const serverKey = parts[1];
-
-      switch (action) {
-        case "status": {
-          const status = manager.getStatus();
-          if (status.length === 0) {
-            ctx.ui.notify("No LSP servers currently running", "info");
-            return;
-          }
-
-          const lines = [
-            "📊 LSP Server Status",
-            "",
-            ...status.map((s) => {
-              const uptime = formatDuration(s.uptime);
-              const statusStr = s.initialized ? "🟢 ready" : "🟡 initializing";
-              return `  ${s.name}\n    PID: ${s.pid} | Status: ${statusStr}\n    Root: ${s.rootDir}\n    Languages: ${s.languages.join(", ")}\n    Uptime: ${uptime} | Files: ${s.filesTracked}`;
-            }),
-            "",
-            "Use `/lsp kill <server>` to kill a specific server",
-            "Use `/lsp killall` to kill all servers",
-          ];
-
-          ctx.ui.notify(lines.join("\n"), "info");
-          break;
-        }
-
-        case "available": {
-          const lines = [
-            "🔧 Available LSP Servers",
-            "",
-            "Configured servers:",
-            ...LSP_SERVERS.map((s) => `  ${s.id} - ${s.extensions.join(", ")}`),
-          ];
-
-          ctx.ui.notify(lines.join("\n"), "info");
-          break;
-        }
-
-        case "kill": {
-          if (!serverKey) {
-            const status = manager.getStatus();
-            if (status.length === 0) {
-              ctx.ui.notify("No servers running", "info");
-              return;
-            }
-
-            const keys = status.map((s) => `${s.name}:${s.rootDir}`);
-            ctx.ui.notify("Usage: /lsp kill <server-key>\n\nAvailable servers:", "error");
-            ctx.ui.notify(keys.join("\n"), "info");
-            return;
-          }
-
-          const killed = manager.killConnection(serverKey);
-          if (killed) {
-            ctx.ui.notify(`Killed LSP server: ${serverKey}`, "success");
-          } else {
-            ctx.ui.notify(`Server not found: ${serverKey}`, "error");
-          }
-          break;
-        }
-
-        case "killall": {
-          const status = manager.getStatus();
-          await manager.shutdownAll();
-          ctx.ui.notify(
-            `Killed ${status.length} LSP server${status.length > 1 ? "s" : ""}`,
-            "success",
-          );
-          break;
-        }
-      }
-    },
-  });
+  // // /lsp command - dashboard
+  // pi.registerCommand("lsp", {
+  //   description:
+  //     "LSP status dashboard - show running servers, available LSPs, and manage processes",
+  //   getArgumentCompletions: (prefix: string) => {
+  //     const actions = ["status", "available", "kill", "killall"];
+  //     const filtered = actions.filter((a) => a.startsWith(prefix));
+  //     return filtered.length > 0 ? filtered.map((a) => ({ value: a, label: a })) : null;
+  //   },
+  //   handler: async (args: string, ctx) => {
+  //     const parts = args.trim().split(/\s+/);
+  //     const action = parts[0] || "status";
+  //     const serverKey = parts[1];
+  //
+  //     switch (action) {
+  //       case "status": {
+  //         const status = manager.getStatus();
+  //         if (status.length === 0) {
+  //           ctx.ui.notify("No LSP servers currently running", "info");
+  //           return;
+  //         }
+  //
+  //         const lines = [
+  //           "📊 LSP Server Status",
+  //           "",
+  //           ...status.map((s) => {
+  //             const uptime = formatDuration(s.uptime);
+  //             const statusStr = s.initialized ? "🟢 ready" : "🟡 initializing";
+  //             return `  ${s.name}\n    PID: ${s.pid} | Status: ${statusStr}\n    Root: ${s.rootDir}\n    Languages: ${s.languages.join(", ")}\n    Uptime: ${uptime} | Files: ${s.filesTracked}`;
+  //           }),
+  //           "",
+  //           "Use `/lsp kill <server>` to kill a specific server",
+  //           "Use `/lsp killall` to kill all servers",
+  //         ];
+  //
+  //         ctx.ui.notify(lines.join("\n"), "info");
+  //         break;
+  //       }
+  //
+  //       case "available": {
+  //         const lines = [
+  //           "🔧 Available LSP Servers",
+  //           "",
+  //           "Configured servers:",
+  //           ...LSP_SERVERS.map((s) => `  ${s.id} - ${s.extensions.join(", ")}`),
+  //         ];
+  //
+  //         ctx.ui.notify(lines.join("\n"), "info");
+  //         break;
+  //       }
+  //
+  //       case "kill": {
+  //         if (!serverKey) {
+  //           const status = manager.getStatus();
+  //           if (status.length === 0) {
+  //             ctx.ui.notify("No servers running", "info");
+  //             return;
+  //           }
+  //
+  //           const keys = status.map((s) => `${s.name}:${s.rootDir}`);
+  //           ctx.ui.notify("Usage: /lsp kill <server-key>\n\nAvailable servers:", "error");
+  //           ctx.ui.notify(keys.join("\n"), "info");
+  //           return;
+  //         }
+  //
+  //         const killed = manager.killConnection(serverKey);
+  //         if (killed) {
+  //           ctx.ui.notify(`Killed LSP server: ${serverKey}`, "success");
+  //         } else {
+  //           ctx.ui.notify(`Server not found: ${serverKey}`, "error");
+  //         }
+  //         break;
+  //       }
+  //
+  //       case "killall": {
+  //         const status = manager.getStatus();
+  //         await manager.shutdownAll();
+  //         ctx.ui.notify(
+  //           `Killed ${status.length} LSP server${status.length > 1 ? "s" : ""}`,
+  //           "success",
+  //         );
+  //         break;
+  //       }
+  //     }
+  //   },
+  // });
 }

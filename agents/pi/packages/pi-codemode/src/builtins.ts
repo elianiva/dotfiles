@@ -30,15 +30,22 @@ const BASH_COMMAND_WHITELIST = new Set([
   "yarn",
   "npx",
   // File operations (no codemode tool equivalent)
+  "cd",
   "mkdir",
   "touch",
   "cp",
   "mv",
+  "rm",
   // Utilities
   "pwd",
   "which",
   "type",
   "uname",
+  // Vcs
+  "git",
+  "jj",
+  // Tools
+  "agent-browser"
 ]);
 
 const WHITELIST_HELP = () => [
@@ -153,24 +160,19 @@ export function createBuiltinToolset(cwd: string) {
 export function buildCodemodeApiPrompt(): string {
   return [
     "## Available APIs",
-    "",
     "### pi tools",
     ...PI_SIGNATURES,
-    "",
     "### fff tools",
     ...FFF_SIGNATURES,
-    "",
     "### Discovery",
     ...META_APIS,
-    "",
     "All pi and fff tools return plain text strings. Other tools (MCP, OpenAPI, GraphQL) return objects.",
-    "If the user mentions an unknown tool, call tools.list() to get a list of available tools",
+    "IMPORTANT: If the user mentions an unknown tool, call tools.list() to get a list of available tools!",
+    "Prefer one codemode call; batch work with JS and Promise.all!",
     "Before using any unfamiliar tool, call tools.schema('tool.name') to get its exact parameter and return types.",
     "Dynamically loaded tools are namespaced: tools.openapi.petstore.listPets, tools.mcp.myServer.search.",
-    "Prefer one codemode call; batch work with JS and Promise.all.",
-    "",
     "### Bash restrictions",
     `tools.pi.bash only allows: ${[...BASH_COMMAND_WHITELIST].sort().join(", ")}.`,
-    "Everything else is blocked — use the dedicated tools above instead.",
+    "Everything else is blocked. Use the dedicated tools above instead.",
   ].join("\n");
 }

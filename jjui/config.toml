@@ -1,2 +1,43 @@
 [ui]
 theme = "rose-pine-dawn"
+
+[preview]
+revision_command = ["show", "--color", "always", "-r", "$change_id"]
+evolog_command   = ["evolog", "--color", "always", "-r", "$commit_id", "-p", "-n", "1"]
+oplog_command    = ["op", "show", "$operation_id", "--color", "always"]
+file_command     = ["diff", "--color", "always", "-r", "$change_id", "$file"]
+
+[[actions]]
+name = "open_in_hunk"
+lua = '''
+local change_id = context.change_id()
+if not change_id or change_id == "" then
+  flash({ text = "No revision selected", error = true })
+  return
+end
+exec_shell(string.format("jj diff -r %q --git --color=always | hunk pager", change_id))
+'''
+
+[[actions]]
+name = "open_file_in_hunk"
+lua = '''
+local change_id = context.change_id()
+local file = context.file()
+if not change_id or not file then
+  flash({ text = "No file selected", error = true })
+  return
+end
+exec_shell(string.format("jj diff -r %q --git --color=always -- %q | hunk pager", change_id, file))
+'''
+
+[[bindings]]
+action = "open_in_hunk"
+key = "ctrl+d"
+scope = "revisions"
+desc = "Open revision in Hunk"
+
+[[bindings]]
+action = "open_file_in_hunk"
+key = "ctrl+d"
+scope = "revisions.details"
+desc = "Open file in Hunk"

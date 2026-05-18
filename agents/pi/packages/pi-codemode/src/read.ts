@@ -5,8 +5,8 @@ import type { ImageContent, TextContent } from "@mariozechner/pi-ai";
 import { Type } from "@sinclair/typebox";
 
 // Much higher defaults than the built-in read tool (2000 lines / 50KB)
-export const CUSTOM_MAX_LINES = 100_000;
-export const CUSTOM_MAX_BYTES = 10 * 1024 * 1024; // 10MB
+export const CUSTOM_MAX_LINES = 10_000;
+export const CUSTOM_MAX_BYTES = 1 * 1024 * 1024; // 1MB
 
 const IMAGE_MIME_TYPES: Record<string, string> = {
   ".jpg": "image/jpeg",
@@ -93,42 +93,45 @@ export function createCustomReadTool(cwd: string, options?: ReadToolOptions) {
       }
 
       // Slice content based on offset/limit
-      let selectedLines: string[];
-      let userLimitApplied = false;
+      let selectedContent: string;
+      let userLimitedLines: number | undefined;
 
+      // If limit is specified by the user, honor it first. Otherwise truncateHead decides.
       if (limit !== undefined) {
         const endLine = Math.min(startLine + limit, allLines.length);
-        selectedLines = allLines.slice(startLine, endLine);
-        userLimitApplied = endLine - startLine < allLines.length - startLine;
+        selectedContent = allLines.slice(startLine, endLine).join("\n");
+        userLimitedLines = endLine - startLine;
       } else {
-        selectedLines = allLines.slice(startLine);
+        selectedContent = allLines.slice(startLine).join("\n");
       }
 
-      // Apply our own truncation (much higher limits)
-      const result = truncateHead(selectedLines.join("\n"), { maxLines, maxBytes });
+      // Apply truncation, respecting both line and byte limits.
+      const truncation = truncateHead(selectedContent, { maxLines, maxBytes });
 
       let outputText: string;
 
-      if (result.firstLineExceedsLimit) {
-        const firstLineSize = formatSize(Buffer.byteLength(selectedLines[0] || "", "utf-8"));
+      if (truncation.firstLineExceedsLimit) {
+        // First line alone exceeds the byte limit. Point the model at a bash fallback.
+        const firstLineSize = formatSize(Buffer.byteLength(allLines[startLine], "utf-8"));
         outputText = `[Line ${startLineDisplay} is ${firstLineSize}, exceeds ${formatSize(maxBytes)} limit. Use bash: sed -n '${startLineDisplay}p' ${path} | head -c ${maxBytes}]`;
-      } else if (result.truncated) {
-        const endLineDisplay = startLineDisplay + result.outputLines - 1;
+      } else if (truncation.truncated) {
+        // Truncation occurred. Build an actionable continuation notice.
+        const endLineDisplay = startLineDisplay + truncation.outputLines - 1;
         const nextOffset = endLineDisplay + 1;
-        outputText = result.content;
-        if (result.truncatedBy === "lines") {
+        outputText = truncation.content;
+        if (truncation.truncatedBy === "lines") {
           outputText += `\n\n[Showing lines ${startLineDisplay}-${endLineDisplay} of ${totalFileLines}. Use offset=${nextOffset} to continue.]`;
         } else {
           outputText += `\n\n[Showing lines ${startLineDisplay}-${endLineDisplay} of ${totalFileLines} (${formatSize(maxBytes)} limit). Use offset=${nextOffset} to continue.]`;
         }
-      } else if (userLimitApplied) {
-        const endLine = startLine + (limit ?? 0);
-        const remaining = totalFileLines - endLine;
-        const nextOffset = endLine + 1;
-        outputText = result.content;
-        outputText += `\n\n[${remaining} more lines in file. Use offset=${nextOffset} to continue.]`;
+      } else if (userLimitedLines !== undefined && startLine + userLimitedLines < allLines.length) {
+        // User-specified limit stopped early, but the file still has more content.
+        const remaining = allLines.length - (startLine + userLimitedLines);
+        const nextOffset = startLine + userLimitedLines + 1;
+        outputText = `${truncation.content}\n\n[${remaining} more lines in file. Use offset=${nextOffset} to continue.]`;
       } else {
-        outputText = result.content;
+        // No truncation and no remaining user-limited content.
+        outputText = truncation.content;
       }
 
       return {

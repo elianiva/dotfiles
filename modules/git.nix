@@ -106,19 +106,20 @@ in
         compare = ["diff" "--from" "@-" "--to" "@" "--git"];
       };
       ui = {
-        paginate = "never";
         conflict-marker-style = "git";
         default-command = "log";
-        diff-formatter = [
-          "difft"
-          # it's bad, better to disable it since it causes confusion
-          # see: https://github.com/Wilfred/difftastic/issues/275
-          "--syntax-highlight=off"
-          "--color=always"
-          "--display=side-by-side-show-both"
-          "$left"
-          "$right"
-        ];
+        pager = ["hunk" "pager"];
+        diff-formatter = ":git";
+        # diff-formatter = [
+        #   "difft"
+        #   # it's bad, better to disable it since it causes confusion
+        #   # see: https://github.com/Wilfred/difftastic/issues/275
+        #   "--syntax-highlight=off"
+        #   "--color=always"
+        #   "--display=side-by-side-show-both"
+        #   "$left"
+        #   "$right"
+        # ];
       };
     };
   };

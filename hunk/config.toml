@@ -1,0 +1,5 @@
+theme = "paper"
+mode = "auto"
+exclude_untracked = false
+line_numbers = true
+wrap_lines = false

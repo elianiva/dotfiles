@@ -1,15 +1,16 @@
 {
-  "lastChangelogVersion": "0.70.6",
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "minimal",
+  "lastChangelogVersion": "0.75.1",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "kimi-k2.6",
+  "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
-    "./extensions/pi-codemode",
     "npm:@plannotator/pi-extension",
     "git:github.com/SamuelLHuber/pi-fff",
-    "npm:pi-boomerang"
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents",
+    "npm:pi-web-access"
   ],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,

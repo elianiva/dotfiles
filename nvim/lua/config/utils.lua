@@ -29,7 +29,7 @@ function M.lsp.additional_capabilities(client, bufnr)
   -- end
 
   if client:supports_method("textDocument/inlayHint") then
-    vim.lsp.inlay_hint.enable(true)
+    vim.lsp.inlay_hint.enable(false)
   end
 end
 

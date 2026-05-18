@@ -17,7 +17,8 @@ export function createCodemodeTool(): ToolDefinition<typeof codemodeSchema, Code
   return {
     name: "codemode",
     label: "codemode",
-    description: "Execute JavaScript in a secure sandbox with access to pi filesystem tools, fff search tools, and dynamically loaded executor tools (MCP, OpenAPI, GraphQL).",
+    description:
+      "Execute JavaScript in a secure sandbox with access to pi filesystem tools, fff search tools, and dynamically loaded executor tools (MCP, OpenAPI, GraphQL).",
     promptSnippet: buildCodemodeApiPrompt(),
     promptGuidelines: buildPromptGuidelines(),
     parameters: codemodeSchema,
@@ -42,7 +43,11 @@ export function createCodemodeTool(): ToolDefinition<typeof codemodeSchema, Code
       return {
         content: [
           { type: "text", text },
-          ...images.map((img) => ({ type: "image" as const, data: img.data, mimeType: img.mimeType })),
+          ...images.map((img) => ({
+            type: "image" as const,
+            data: img.data,
+            mimeType: img.mimeType,
+          })),
         ],
         details: {
           trace: result.trace,

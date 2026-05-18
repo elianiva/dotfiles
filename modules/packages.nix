@@ -14,6 +14,8 @@ with pkgs; [
     yq
     tree-sitter
 
+    caddy
+
     eza # better ls
     nh # nix helper
     ffmpeg

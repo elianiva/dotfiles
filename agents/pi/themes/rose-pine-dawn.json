@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/src/modes/interactive/theme/theme-schema.json",
+  "$schema": "./theme-schema.json",
   "name": "rose-pine-dawn",
   "vars": {
     "base": "#faf4ed",
@@ -40,14 +40,14 @@
     "toolTitle": "iris",
     "toolOutput": "muted",
 
-    "mdHeading": "rose",
-    "mdLink": "foam",
+    "mdHeading": "iris",
+    "mdLink": "pine",
     "mdLinkUrl": "subtle",
-    "mdCode": "iris",
+    "mdCode": "pine",
     "mdCodeBlock": "text",
     "mdCodeBlockBorder": "overlay",
     "mdQuote": "muted",
-    "mdQuoteBorder": "subtle",
+    "mdQuoteBorder": "muted",
     "mdHr": "overlay",
     "mdListBullet": "rose",
 
@@ -58,11 +58,11 @@
     "syntaxComment": "muted",
     "syntaxKeyword": "pine",
     "syntaxFunction": "rose",
-    "syntaxVariable": "gold",
-    "syntaxString": "foam",
+    "syntaxVariable": "text",
+    "syntaxString": "gold",
     "syntaxNumber": "gold",
     "syntaxType": "iris",
-    "syntaxOperator": "pine",
+    "syntaxOperator": "subtle",
     "syntaxPunctuation": "subtle",
 
     "thinkingOff": "muted",
@@ -73,5 +73,25 @@
     "thinkingXhigh": "love",
 
     "bashMode": "pine"
+  },
+  "pixelated": {
+    "pageBg": "base",
+    "cardBg": "surface",
+    "panelBg": "overlay",
+    "inputBg": "surface",
+    "textFaint": "muted",
+    "textOnAccent": "text",
+    "borderFaint": "overlay",
+    "iconBase": "text",
+    "iconMuted": "muted",
+    "iconAccent": "rose",
+    "neutralBase": "overlay",
+    "neutralSurface": "surface",
+    "rowHoverBg": "overlay",
+    "rowActiveBg": "overlay",
+    "selectionBg": "overlay",
+    "tooltipBg": "overlay",
+    "scrollbarBg": "overlay",
+    "scrollbarThumb": "muted"
   }
 }
