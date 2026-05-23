@@ -109,8 +109,8 @@
               };
             }
             # Align homebrew taps config with nix-homebrew
-            ({config, ...}: {
-              homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+            ({config, lib, ...}: {
+              homebrew.taps = builtins.attrNames (lib.filterAttrs (n: _: !lib.hasPrefix "homebrew/" n) config.nix-homebrew.taps);
             })
             ./modules/darwin-config.nix
           ];

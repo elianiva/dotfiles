@@ -19,7 +19,7 @@ _:
   # Terminals
   "ghostty"
   # Window Manager
-  "omniwm"
+  "barutsrb/tap/omniwm"
 
 
   # Tools
