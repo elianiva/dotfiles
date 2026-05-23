@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  email = "git@elianiva.my.id";
+  email = "git@elianiva.com";
   name = "elianiva";
 in
 {
