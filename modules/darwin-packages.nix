@@ -1,9 +1,11 @@
 { pkgs, flakePkgs, fenix, ... }:
 
-with pkgs;
-let shared-packages = import ./packages.nix { inherit pkgs flakePkgs fenix; }; in
+let
+  shared-packages = import ./packages.nix { inherit pkgs flakePkgs; };
+  rust = import ./rust.nix { inherit pkgs fenix; };
+in
 shared-packages ++ [
-  nushell
-  devbox
-  jj-starship
-]
+  pkgs.nushell
+  pkgs.devbox
+  pkgs.jj-starship
+] ++ [ rust ]

@@ -15,7 +15,6 @@
 
     # manage homebrew through nix
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    nix-homebrew.inputs.nixpkgs.follows = "nixpkgs";
 
     homebrew-core.url = "github:homebrew/homebrew-core";
     homebrew-core.flake = false;
@@ -59,9 +58,18 @@
       ...
     }:
     let
+      raw-identity = import ./identity.nix;
       flakePkgs = system: {
         bash-env-json = inputs.bash-env-json.packages.${system}.default;
       };
+      # Resolve platform-specific identity fields
+      mkIdentity = platform: raw-identity // {
+        inherit (raw-identity.platforms.${platform}) homeDir;
+        dotfiles = "${raw-identity.platforms.${platform}.homeDir}/.dotfiles";
+        workspacePath = "${raw-identity.platforms.${platform}.homeDir}/Development";
+        repositoriesPath = "${raw-identity.platforms.${platform}.homeDir}/Repositories";
+      };
+      identity = mkIdentity "darwin";
     in
     {
       darwinConfigurations = {
@@ -79,6 +87,7 @@
           specialArgs = {
             inherit (inputs) fenix;
             flakePkgs = flakePkgs "aarch64-darwin";
+            inherit identity;
           };
           modules = [
             nix-homebrew.darwinModules.nix-homebrew
@@ -87,7 +96,7 @@
               nix-homebrew = {
                 enable = true;
                 enableRosetta = true;
-                user = "elianiva";
+                user = identity.username;
                 taps = {
                   "homebrew/homebrew-core" = inputs.homebrew-core;
                   "homebrew/homebrew-cask" = inputs.homebrew-cask;
@@ -100,7 +109,8 @@
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.elianiva = {
+              home-manager.extraSpecialArgs = { inherit identity; };
+              home-manager.users.${identity.username} = {
                 imports = [
                   ./modules/darwin-home.nix
                   ./modules/git.nix
@@ -117,7 +127,7 @@
         };
       };
       homeConfigurations = {
-        elianiva = home-manager.lib.homeManagerConfiguration {
+        ${identity.username} = home-manager.lib.homeManagerConfiguration {
           system = "x86_64-linux";
           pkgs = import nixpkgs {
             system = "x86_64-linux";
@@ -125,7 +135,9 @@
           };
           extraSpecialArgs = {
             inherit inputs;
+            identity = mkIdentity "linux";
             flakePkgs = flakePkgs "x86_64-linux";
+            inherit (inputs) fenix;
           };
           modules = [
             ./modules/linux-home.nix

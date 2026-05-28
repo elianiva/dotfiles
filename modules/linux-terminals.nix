@@ -1,7 +1,7 @@
-{ pkgs, config, inputs, ... }:
+{ pkgs, config, inputs, identity, ... }:
 let
-  link = config.lib.file.mkOutOfStoreSymlink;
-  dotfiles = "${config.home.homeDirectory}/.dotfiles";
+  inherit (import ./helpers.nix { inherit config; }) link;
+  inherit (identity) dotfiles;
 in
 {
   home.packages = [

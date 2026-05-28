@@ -1,13 +1,13 @@
 {
-  "lastChangelogVersion": "0.75.4",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "off",
+  "lastChangelogVersion": "0.76.0",
+  "defaultProvider": "opencode",
+  "defaultModel": "mimo-v2.5-free",
+  "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
     "npm:@plannotator/pi-extension",
-    "git:github.com/SamuelLHuber/pi-fff",
+    "npm:@ff-labs/pi-fff",
     "npm:pi-mcp-adapter",
     "npm:pi-subagents",
     "npm:pi-web-access"

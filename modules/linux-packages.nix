@@ -1,15 +1,18 @@
-{ pkgs, flakePkgs, nixGLIntel, ... }:
+{ pkgs, flakePkgs, fenix, nixGLIntel, ... }:
 
-with pkgs;
-let shared-packages = import ./packages.nix { inherit pkgs flakePkgs; }; in
+let
+  shared-packages = import ./packages.nix { inherit pkgs flakePkgs; };
+  rust = import ./rust.nix { inherit pkgs fenix; };
+in
 shared-packages ++ [
-    pinentry-gnome3
-    # nixgl is needed to access intel drivers from non-nixos environments
-    nixGLIntel
-    lazydocker # manage docker stuff
+  rust
+  pkgs.pinentry-gnome3
+  # nixgl is needed to access intel drivers from non-nixos environments
+  nixGLIntel
+  pkgs.lazydocker # manage docker stuff
 
-    # fonts
-    monaspace
-    inter
-    lora
+  # fonts
+  pkgs.monaspace
+  pkgs.inter
+  pkgs.lora
 ]

@@ -1,0 +1,13 @@
+{ pkgs, fenix, ... }:
+
+[
+  # Rust toolchain
+  (fenix.complete.withComponents [
+    "cargo"
+    "clippy"
+    "rust-src"
+    "rustc"
+    "rustfmt"
+  ])
+  pkgs.rust-analyzer
+]

@@ -1,8 +1,8 @@
-{ lib, pkgs, inputs, flakePkgs, config, ... }:
+{ lib, pkgs, inputs, flakePkgs, fenix, config, identity, ... }:
 let
+  inherit (import ./helpers.nix { inherit config; }) link;
+  inherit (identity) dotfiles;
   nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
-  link = config.lib.file.mkOutOfStoreSymlink;
-  dotfiles = "${config.home.homeDirectory}/.dotfiles";
 in
 {
   imports = [ ./home-common.nix ];
@@ -18,16 +18,17 @@ in
     installScripts = [ "mesa" ];
   };
 
+  # nix is managed by home-manager on Linux (unlike macOS where nix-darwin handles it)
   nix = {
     enable = true;
     package = pkgs.nixVersions.stable;
   };
 
   home = {
-    packages = import ./linux-packages.nix { inherit pkgs flakePkgs nixGLIntel; };
+    packages = import ./linux-packages.nix { inherit pkgs flakePkgs fenix nixGLIntel; };
 
-    username = "elianiva";
-    homeDirectory = "/home/elianiva";
+    username = identity.username;
+    homeDirectory = "/home/${identity.username}";
   };
 
   # enable fontconfig

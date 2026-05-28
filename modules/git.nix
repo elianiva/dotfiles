@@ -1,7 +1,6 @@
-{ pkgs, config, ... }:
+{ pkgs, config, identity, ... }:
 let
-  email = "git@elianiva.com";
-  name = "elianiva";
+  inherit (identity) gitIdentity repositoriesPath;
 in
 {
   programs.gh.enable = true;
@@ -25,8 +24,8 @@ in
     enable = true;
     settings = {
       user = {
-        name = "${name}";
-        email = "${email}";
+        name = gitIdentity.name;
+        email = gitIdentity.email;
       };
       credential.helper = "cache --timeout 86400";
       core = {
@@ -42,7 +41,7 @@ in
       gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
       user.signingkey = "~/.ssh/id_ed25519.pub";
       alias = {
-        lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative";
+        lg = "log --graph --all --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
         c = "commit -S -m";
         ca = "commit -S --amend";
       };
@@ -68,6 +67,7 @@ in
         background = "light";
       };
       init.defaultBranch = "master";
+      ghq.root = repositoriesPath;
     };
   };
 
@@ -79,8 +79,8 @@ in
     enable = true;
     settings = {
       user = {
-        email = "${email}";
-        name = "${name}";
+        email = gitIdentity.email;
+        name = gitIdentity.name;
       };
       signing = {
         behavior = "own";

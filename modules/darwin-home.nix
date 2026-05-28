@@ -1,8 +1,8 @@
-{ lib, pkgs, inputs, flakePkgs, config, ... }:
+{ lib, pkgs, inputs, config, identity, ... }:
 let
+  inherit (import ./helpers.nix { inherit config; }) link;
+  inherit (identity) dotfiles;
   appConfig = "Library/Application Support";
-  link = config.lib.file.mkOutOfStoreSymlink;
-  dotfiles = "${config.home.homeDirectory}/.dotfiles";
 in
 {
   imports = [ ./home-common.nix ];

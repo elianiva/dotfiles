@@ -1,8 +1,8 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, identity, ... }:
 let
+  inherit (import ./helpers.nix { inherit config; }) link;
+  inherit (identity) dotfiles;
   pi = ".pi/agent";
-  link = config.lib.file.mkOutOfStoreSymlink;
-  dotfiles = "${config.home.homeDirectory}/.dotfiles";
   vpPkgs = import ./vp-global-packages.nix;
 in
 {

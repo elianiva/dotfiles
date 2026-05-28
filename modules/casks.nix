@@ -2,8 +2,6 @@ _:
 
 [
   # Development Tools
-  "visual-studio-code"
-  "cursor"
   "zed"
 
   # Communication Tools

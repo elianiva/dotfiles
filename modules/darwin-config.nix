@@ -1,8 +1,8 @@
-{ pkgs, flakePkgs, fenix, ... }:
+{ pkgs, identity, ... }:
 
 let
-  user = "elianiva";
-  hostname = "melon";
+  user = identity.username;
+  hostname = identity.hostname;
 in
 {
     system.stateVersion = 6;
@@ -11,8 +11,8 @@ in
     networking.localHostName = "${hostname}";
 
     users.users.${user} = {
-      name = "${user}";
-      home = "/Users/${user}";
+      name = user;
+      home = identity.homeDir;
     };
 
     # allow unfree packages
@@ -22,7 +22,7 @@ in
       };
     };
 
-    # setup nix
+    # nix is managed by the official installer, not home-manager
     nix.enable = false;
 
     homebrew = {
@@ -44,7 +44,7 @@ in
       };
     };
 
-    environment.systemPackages = import ./darwin-packages.nix { inherit pkgs flakePkgs fenix; };
+    environment.systemPackages = import ./darwin-packages.nix { inherit pkgs; };
     fonts.packages = with pkgs; [ monaspace inter lora lilex departure-mono iosevka ];
 
     system.primaryUser = user;
@@ -63,7 +63,7 @@ in
       magnification = true;
       show-recents = false;
       persistent-apps = [
-        "/Users/${user}/Applications/Ghostty.app"
+        "${identity.homeDir}/Applications/Ghostty.app"
       ];
       appswitcher-all-displays = true;
     };
