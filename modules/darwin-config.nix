@@ -1,4 +1,4 @@
-{ pkgs, identity, ... }:
+{ pkgs, flakePkgs, identity, ... }:
 
 let
   user = identity.username;
@@ -44,7 +44,7 @@ in
       };
     };
 
-    environment.systemPackages = import ./darwin-packages.nix { inherit pkgs; };
+    environment.systemPackages = import ./darwin-packages.nix { inherit pkgs flakePkgs; };
     fonts.packages = with pkgs; [ monaspace inter lora lilex departure-mono iosevka ];
 
     system.primaryUser = user;

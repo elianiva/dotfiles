@@ -1,8 +1,8 @@
-{ lib, pkgs, inputs, flakePkgs, fenix, config, identity, ... }:
+{ lib, pkgs, inputs, flakePkgs, config, identity, ... }:
 let
   inherit (import ./helpers.nix { inherit config; }) link;
   inherit (identity) dotfiles;
-  nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
+  nixGLIntel = inputs.nixGL.packages."${pkgs.stdenv.hostPlatform.system}".nixGLIntel;
 in
 {
   imports = [ ./home-common.nix ];
@@ -25,7 +25,7 @@ in
   };
 
   home = {
-    packages = import ./linux-packages.nix { inherit pkgs flakePkgs fenix nixGLIntel; };
+    packages = import ./linux-packages.nix { inherit pkgs flakePkgs nixGLIntel; };
 
     username = identity.username;
     homeDirectory = "/home/${identity.username}";

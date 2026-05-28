@@ -1,8 +1,8 @@
-{ pkgs, fenix, ... }:
+{ pkgs, ... }:
 
 [
   # Rust toolchain
-  (fenix.complete.withComponents [
+  (pkgs.fenix.complete.withComponents [
     "cargo"
     "clippy"
     "rust-src"
