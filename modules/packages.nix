@@ -32,7 +32,6 @@
     # typst related things
     pkgs.typst # documents
     pkgs.typstyle # formatting
-    pkgs.zathura
 
     # editing related things
     pkgs.zellij

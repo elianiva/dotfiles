@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.76.0",
-  "defaultProvider": "opencode",
-  "defaultModel": "mimo-v2.5-free",
+  "lastChangelogVersion": "0.78.0",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "mimo-v2.5",
   "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
@@ -9,8 +9,8 @@
     "npm:@plannotator/pi-extension",
     "npm:@ff-labs/pi-fff",
     "npm:pi-mcp-adapter",
-    "npm:pi-subagents",
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "npm:@howaboua/pi-auto-trees"
   ],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,

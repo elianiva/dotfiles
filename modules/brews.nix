@@ -7,4 +7,5 @@ _:
 
   # Google Workspace CLI
   "gogcli"
+
 ]

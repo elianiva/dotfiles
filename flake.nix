@@ -31,6 +31,7 @@
     homebrew-barutsrb.url = "github:BarutSRB/homebrew-tap";
     homebrew-barutsrb.flake = false;
 
+
     # fenix for rust
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -40,6 +41,8 @@
     nixGL.inputs.nixpkgs.follows = "nixpkgs";
 
     jj-starship.url = "github:dmmulroy/jj-starship";
+
+    ioshelfka.url = "github:NotAShelf/Ioshelfka";
 
     bash-env-json = {
       url = "github:tesujimath/bash-env-json/main";
@@ -85,7 +88,7 @@
             ];
           };
           specialArgs = {
-            inherit (inputs) fenix;
+            inherit (inputs) fenix ioshelfka;
             flakePkgs = flakePkgs "aarch64-darwin";
             inherit identity;
           };
@@ -135,6 +138,7 @@
           };
           extraSpecialArgs = {
             inherit inputs;
+            inherit (inputs) ioshelfka;
             identity = mkIdentity "linux";
             flakePkgs = flakePkgs "x86_64-linux";
             inherit (inputs) fenix;

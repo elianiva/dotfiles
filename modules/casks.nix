@@ -16,18 +16,13 @@ _:
 
   # Terminals
   "ghostty"
-  # Window Manager
-  "barutsrb/tap/omniwm"
-
 
   # Tools
   "bitwarden"
   "battery-toolkit"
   "stats"
   "jordanbaird-ice@beta"
-  "qbittorrent"
   "blip"
-  "iina"
 
   # Creative
   "medibangpaintpro"

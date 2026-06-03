@@ -15,7 +15,7 @@ if not change_id or change_id == "" then
   flash({ text = "No revision selected", error = true })
   return
 end
-exec_shell(string.format("jj diff -r %q --git --color=always | hunk pager", change_id))
+exec_shell(string.format("hunk diff %q", change_id))
 '''
 
 [[actions]]
@@ -27,7 +27,7 @@ if not change_id or not file then
   flash({ text = "No file selected", error = true })
   return
 end
-exec_shell(string.format("jj diff -r %q --git --color=always -- %q | hunk pager", change_id, file))
+exec_shell(string.format("hunk diff %q -- %q", change_id, file))
 '''
 
 [[bindings]]

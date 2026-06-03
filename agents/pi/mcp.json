@@ -2,11 +2,6 @@
   "mcpServers": {
     "exa": {
       "url": "https://mcp.exa.ai/mcp"
-    },
-    "fff": {
-      "command": "fff-mcp",
-      "directTools": true,
-      "lifecycle": "keep-alive"
     }
   }
 }

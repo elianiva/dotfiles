@@ -7,5 +7,6 @@ in
 shared-packages ++ [
   pkgs.nushell
   pkgs.devbox
-  pkgs.jj-starship
+  pkgs.iina
+  # pkgs.jj-starship
 ] ++ rust

@@ -9,7 +9,7 @@ import type {
   ExtensionAPI,
   ToolResultEvent,
   ExtensionContext,
-} from "@mariozechner/pi-coding-agent";
+} from "@earendil-works/pi-coding-agent";
 import { spawn, type ChildProcess } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { resolve, extname } from "node:path";

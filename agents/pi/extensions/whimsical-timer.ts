@@ -1,5 +1,5 @@
-import type { AssistantMessage } from "@mariozechner/pi-ai";
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { AssistantMessage } from "@earendil-works/pi-ai";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 const messages = [
   "Schlepping...",
@@ -116,12 +116,17 @@ const messages = [
 ];
 
 let agentStartMs: number | null = null;
-let intervalMs: number | null = null;
 let timerInterval: ReturnType<typeof setInterval> | null = null;
 let currentMessage: string | null = null;
+let totalTokens = 0;
 
 function pickRandom(): string {
   return messages[Math.floor(Math.random() * messages.length)];
+}
+
+function formatTokenCount(n: number): string {
+  if (n < 1000) return String(n) + " tokens";
+  return (n / 1000).toFixed(1) + "k tokens";
 }
 
 function formatDuration(ms: number): string {
@@ -138,33 +143,35 @@ function isAssistantMessage(message: unknown): message is AssistantMessage {
 }
 
 export default function (pi: ExtensionAPI) {
-  pi.on("agent_start", () => {
+  pi.on("agent_start", async (_event, ctx) => {
     agentStartMs = Date.now();
-  });
-
-  pi.on("turn_start", async (_event, ctx) => {
-    intervalMs = Date.now();
     currentMessage = pickRandom();
+    totalTokens = 0;
 
     ctx.ui.setWorkingMessage(currentMessage);
 
     timerInterval = setInterval(() => {
-      if (intervalMs === null || currentMessage === null) return;
-      const elapsedMs = Date.now() - intervalMs;
-      ctx.ui.setWorkingMessage(currentMessage + " (" + formatDuration(elapsedMs) + ")");
+      if (agentStartMs === null || currentMessage === null) return;
+      const elapsedMs = Date.now() - agentStartMs;
+      const usage = ctx.getContextUsage();
+      const tokens = usage ? usage.tokens : totalTokens;
+      const msg = currentMessage + " " + formatDuration(elapsedMs) + " ⋅ " + formatTokenCount(tokens);
+      ctx.ui.setWorkingMessage(msg);
     }, 1000);
   });
 
-  pi.on("turn_end", async (_event, ctx) => {
-    currentMessage = null;
-    ctx.ui.setWorkingMessage();
+  pi.on("message_end", async (event, ctx) => {
+    if (event.message.role !== "assistant") return;
+    const usage = event.message.usage;
+    if (usage) {
+      totalTokens = usage.input + usage.output;
+    }
   });
 
   pi.on("agent_end", (event, ctx) => {
     if (!ctx.hasUI) return;
     if (agentStartMs === null) return;
 
-    intervalMs = null;
     if (timerInterval !== null) {
       clearInterval(timerInterval);
       timerInterval = null;
@@ -182,8 +189,9 @@ export default function (pi: ExtensionAPI) {
 
     if (output <= 0) return;
 
-    const tps = (output / (elapsedMs / 1000)).toFixed(1);
-    const msg = "TPS: " + tps + " tok/s took " + formatDuration(elapsedMs);
+    const finalTps = output / (elapsedMs / 1000);
+    const msg = formatDuration(elapsedMs) + " ⋅ " + formatTokenCount(output) + " ⋅ " + finalTps.toFixed(1) + " tok/s";
+    ctx.ui.setWorkingMessage(msg);
     ctx.ui.notify(msg, "info");
   });
 }

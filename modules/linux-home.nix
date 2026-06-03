@@ -25,7 +25,7 @@ in
   };
 
   home = {
-    packages = import ./linux-packages.nix { inherit pkgs flakePkgs nixGLIntel; };
+    packages = import ./linux-packages.nix { inherit pkgs flakePkgs nixGLIntel ioshelfka; };
 
     username = identity.username;
     homeDirectory = "/home/${identity.username}";

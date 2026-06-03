@@ -1,4 +1,4 @@
-{ pkgs, flakePkgs, nixGLIntel, ... }:
+{ pkgs, flakePkgs, nixGLIntel, ioshelfka, ... }:
 
 let
   shared-packages = import ./packages.nix { inherit pkgs flakePkgs; };
@@ -9,9 +9,11 @@ shared-packages ++ rust ++ [
   # nixgl is needed to access intel drivers from non-nixos environments
   nixGLIntel
   pkgs.lazydocker # manage docker stuff
+  pkgs.zathura
 
   # fonts
   pkgs.monaspace
   pkgs.inter
   pkgs.lora
+  ioshelfka.packages.${pkgs.hostPlatform.system}.ioshelfka-mono-nerd
 ]
