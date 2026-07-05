@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.78.0",
+  "lastChangelogVersion": "0.80.3",
   "defaultProvider": "opencode-go",
-  "defaultModel": "mimo-v2.5",
+  "defaultModel": "deepseek-v4-flash",
   "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
@@ -17,5 +17,6 @@
   "transport": "auto",
   "doubleEscapeAction": "tree",
   "enabledModels": [],
-  "hideThinkingBlock": false
+  "hideThinkingBlock": false,
+  "treeFilterMode": "default"
 }

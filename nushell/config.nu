@@ -1,87 +1,43 @@
-$env.__NIX_DARWIN_SET_ENVIRONMENT_DONE = 1
-
-$env.PATH = [
-    $"($env.HOME)/.nix-profile/bin"
-    $"/etc/profiles/per-user/($env.USER)/bin"
-    $"($env.HOME)/Library/Python/3.9/bin"
-    "/run/current-system/sw/bin"
-    "/nix/var/nix/profiles/default/bin"
-    "/usr/local/bin"
-    "/usr/bin"
-    "/usr/sbin"
-    "/bin"
-    "/sbin"
-]
-$env.NIX_PATH = [
-    $"darwin-config=($env.HOME)/.nixpkgs/darwin-configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
-]
-$env.NIX_SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt"
-$env.TERMINFO_DIRS = [
-    $"($env.HOME)/.nix-profile/share/terminfo"
-    $"/etc/profiles/per-user/($env.USER)/share/terminfo"
-    "/run/current-system/sw/share/terminfo"
-    "/nix/var/nix/profiles/default/share/terminfo"
-    "/usr/share/terminfo"
-]
-$env.XDG_CONFIG_DIRS = [
-    $"($env.HOME)/.nix-profile/etc/xdg"
-    $"/etc/profiles/per-user/($env.USER)/etc/xdg"
-    "/run/current-system/sw/etc/xdg"
-    "/nix/var/nix/profiles/default/etc/xdg"
-]
-$env.XDG_DATA_DIRS = [
-    $"($env.HOME)/.nix-profile/share"
-    $"/etc/profiles/per-user/($env.USER)/share"
-    "/run/current-system/sw/share"
-    "/nix/var/nix/profiles/default/share"
-]
-$env.NIX_USER_PROFILE_DIR = $"/nix/var/nix/profiles/per-user/($env.USER)"
-$env.NIX_PROFILES = [
-    "/nix/var/nix/profiles/default"
-    "/run/current-system/sw"
-    $"/etc/profiles/per-user/($env.USER)"
-    $"($env.HOME)/.nix-profile"
-]
-
-$env.LS_COLORS = (vivid generate rose-pine-dawn)
-
-if ($"($env.HOME)/.nix-defexpr/channels" | path exists) {
-    $env.NIX_PATH = ($env.PATH | split row (char esep) | append $"($env.HOME)/.nix-defexpr/channels")
-}
-
-if (false in (ls -l `/nix/var/nix`| where type == dir | where name == "/nix/var/nix/db" | get mode | str contains "w")) {
-    $env.NIX_REMOTE = "daemon"
-}
-
 const cfg = ($nu.config-path | path dirname)
 
 source ($cfg | path join "bash-env.nu")
+source ($cfg | path join "darwin-env.nu")
+source ($cfg | path join "brew-env.nu")
 
 bash-env ~/.profile | load-env
-brew shellenv | bash-env | load-env
 
 source ($cfg | path join "alias.nu")
 source ($cfg | path join "ai.nu")
-source ($cfg | path join "zoxide.nu")
+
+$env.LS_COLORS = (vivid generate rose-pine-dawn)
 
 use ($cfg | path join "rose-pine-dawn.nu")
+
+
+# zoxide
+source ($cfg | path join "zoxide.nu")
+
+# starship
+source ($cfg | path join "starship.nu")
 
 let carapace_completer = {|spans|
   carapace $spans.0 nushell ...$spans | from json
 }
 
-const history_path = ($nu.data-dir | path join "history.txt")
-
 $env.config = {
   edit_mode: 'vi',
   color_config: (rose-pine-dawn),
+  cursor_shape: {
+    emacs: "line"
+    vi_insert: "line"
+    vi_normal: "block"
+  },
   shell_integration: {
     osc2: true
     osc7: true
     osc8: true
     osc9_9: false
-    osc133: false
+    osc133: true
     osc633: false
   },
   history: {
@@ -119,20 +75,3 @@ $env.config = {
     }]
   }
 }
-
-const NU_PLUGIN_DIRS = [
-  ($nu.current-exe | path dirname)
-  ...$NU_PLUGIN_DIRS
-]
-
-$env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {
-  {
-    condition: {|| not ($nu.data-dir | path join "vendor/autoload/starship.nu" | path exists) }
-    code: {||
-      mkdir ($nu.data-dir | path join "vendor/autoload")
-      starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
-    }
-  }
-})
-
-source ($nu.data-dir | path join "vendor/autoload/starship.nu")

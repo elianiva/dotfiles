@@ -8,5 +8,6 @@ shared-packages ++ [
   pkgs.nushell
   pkgs.devbox
   pkgs.iina
+  pkgs.nh
   # pkgs.jj-starship
 ] ++ rust

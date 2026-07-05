@@ -13,6 +13,7 @@
     pkgs.wget
     pkgs.yq
     pkgs.tree-sitter
+    pkgs.pandoc
 
     pkgs.caddy
 
@@ -40,6 +41,8 @@
     pkgs.ast-grep
     pkgs.fastmod
 
+    pkgs.zig
+
     # mobile ssh
     pkgs.mosh
 
@@ -51,7 +54,6 @@
     pkgs.php
     pkgs.php84Packages.composer
 
-    pkgs.bun
     pkgs.ghq
     pkgs.git-filter-repo # useful to remove accidentally committed secrets
     pkgs.delta

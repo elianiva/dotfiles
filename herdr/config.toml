@@ -1,0 +1,76 @@
+# docs: https://herdr.dev/docs/configuration/
+
+# skip first-run setup
+onboarding = false
+
+[theme]
+# match ghostty's light/dark rose-pine auto-switching
+name = "rose-pine-dawn"
+auto_switch = true
+dark_name = "rose-pine"
+light_name = "rose-pine-dawn"
+
+[terminal]
+# same shell zellij uses
+default_shell = "nu"
+# inherit cwd from the source pane/workspace like zellij does
+new_cwd = "follow"
+
+[update]
+# updates come from the package manager, not herdr's background checks
+channel = "stable"
+version_check = false
+manifest_check = false
+
+[keys]
+# keep the tmux-style prefix that zellij also uses
+prefix = "ctrl+b"
+
+[ui]
+# match zellij's frameless panes
+pane_borders = true
+pane_gaps = false
+# ghostty already redraws cleanly; avoid the flash on focus
+redraw_on_focus_gained = false
+# let pane apps receive ctrl-right-click drag gestures
+right_click_passthrough_modifier = "ctrl"
+# rose pine subtle (#908caa) for pane borders - less vivid than default
+accent = "#908caa"
+
+agent_panel_sort = "spaces"
+[ui.toast]
+# ghostty supports terminal notification sequences
+delivery = "terminal"
+delay_seconds = 1
+
+[ui.sound]
+# no notification sounds
+enabled = false
+
+[session]
+# resume supported ai agents after herdr server restart
+resume_agents_on_restore = true
+
+ [worktrees]
+ # keep herdr git worktree checkouts next to your other repos
+ directory = "~/Repositories/herdr-worktrees"
+
+ [[keys.command]]
+ key = "prefix+alt+g"
+ type = "pane"
+ command = "lazygit"
+ description = "open lazygit"
+
+ [[keys.command]]
+ key = "prefix+alt+j"
+ type = "pane"
+ command = "jjui"
+ description = "open jjui"
+
+[remote]
+# keep the ssh bridge alive behind idle networks without clobbering user config
+manage_ssh_config = true
+
+[advanced]
+# 10 MiB per pane, close to ghostty's default scrollback limit
+scrollback_limit_bytes = 10485760

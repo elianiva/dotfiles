@@ -22,6 +22,13 @@ in
   nix = {
     enable = true;
     package = pkgs.nixVersions.stable;
+
+    gc = {
+      automatic = true;
+      frequency = "weekly";
+      options = "--delete-older-than 7d";
+    };
+    settings.auto-optimise-store = true;
   };
 
   home = {

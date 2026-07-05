@@ -2,71 +2,66 @@
 
 export EDITOR="nvim"
 export CC="gcc"
+
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --ignore-file ".gitignore"'
 export SKIM_DEFAULT_COMMAND='rg --files --no-ignore --ignore-file ".gitignore"'
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export QT_FONT_DPI=80
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+
+export NODE_COMPILE_CACHE="$HOME/.cache/nodejs-compile-cache"
+
 export GOPATH="$HOME/.local/go"
 export GOBIN="$HOME/.local/go/bin"
-export NODE_COMPILE_CACHE="$HOME/.cache/nodejs-compile-cache"
-# export XDG_DATA_DIRS="$HOME/.nix-profile/share:/usr/share:/usr/local/share:$HOME/.local/share:$XDG_DATA_DIRS"
 
 # pnpm
-export PNPM_HOME="/Users/elianiva/Library/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+if [ "$(uname -s)" = "Darwin" ]; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+fi
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
+  *":$PNPM_HOME:") ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# PATH stuff
+# common paths
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH="$HOME/.local/go/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
-export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
-# radicle stuff
 export PATH="$HOME/.radicle/bin:$PATH"
-# export PATH="$HOME/.dotnet/tools:$PATH"
 
-# export JAVA_OPTS="-XX:+IgnoreUnrecognizedVMOptions"
-# export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
-
-# required if java is installed from nix
-# unset JAVA_OPTS
-# export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
-# export _JAVA_AWT_WM_NONREPARENTING=1
-
-# Flutter stuff
-# export FLUTTER_ROOT="$ANDROID_HOME/flutter"
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
-export PATH="$ANDROID_HOME/platform-tools/:$PATH"
-export PATH="$ANDROID_HOME/emulator:$PATH"
-# export PATH="$ANDROID_HOME/flutter/bin:$PATH"
-# export CHROME_EXECUTABLE="/usr/bin/brave"
-
-# Fcitx5 Stuff
-export GLFW_IM_MODULE="ibus"
-export GTK_IM_MODULE="fcitx"
-export QT_IM_MODULE="fcitx"
-export XMODIFIERS="@im=fcitx"
-export SDL_IM_MODULE="fcitx"
-export IBUS_USE_PORTAL=1
-
-# Tidy up stuff
-export LESSHISTFILE="${XDG_CONFIG_HOME}less/history"
-export LESSKEY="${XDG_CONFIG_HOME}less/keys"
-export ICEAUTHORITY="${XDG_CACHE_HOME}ICEauthority"
-
-# gpg stuff
-export GPG_TTY=$(tty)
-
-# vite env stuff
+# vite-plus
 . "$HOME/.vite-plus/env"
 
+export GPG_TTY=$(tty)
+
+# tidy up xdg paths
+export LESSHISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/less/history"
+export LESSKEY="${XDG_CONFIG_HOME:-$HOME/.config}/less/keys"
+export ICEAUTHORITY="${XDG_CACHE_HOME:-$HOME/.cache}/ICEauthority"
+
+case "$(uname -s)" in
+  Darwin)
+    export PATH="/opt/homebrew/bin:$PATH"
+    export QT_AUTO_SCREEN_SCALE_FACTOR=0
+    export QT_FONT_DPI=80
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+    export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+    export PATH="$ANDROID_HOME/platform-tools:$PATH"
+    export PATH="$ANDROID_HOME/emulator:$PATH"
+    ;;
+
+  Linux)
+    export QT_QPA_PLATFORMTHEME="qt5ct"
+    export QT_AUTO_SCREEN_SCALE_FACTOR=0
+    export QT_FONT_DPI=80
+    export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+    export GLFW_IM_MODULE="ibus"
+    export GTK_IM_MODULE="fcitx"
+    export QT_IM_MODULE="fcitx"
+    export XMODIFIERS="@im=fcitx"
+    export SDL_IM_MODULE="fcitx"
+    export IBUS_USE_PORTAL=1
+    ;;
+esac

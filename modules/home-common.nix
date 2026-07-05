@@ -4,6 +4,7 @@ let
   inherit (identity) dotfiles;
   pi = ".pi/agent";
   vpPkgs = import ./vp-global-packages.nix;
+  omp = ".omp/agent";
 in
 {
   home = {
@@ -49,7 +50,7 @@ in
     bat = {
       enable = true;
       config = {
-        theme = "base16";
+        theme = "Catppuccin Latte";
         "italic-text" = "always";
         style = "numbers";
       };
@@ -58,7 +59,7 @@ in
     btop = {
       enable = true;
       settings = {
-        color_theme = "TTY";
+        color_theme = "paper";
       };
     };
 
@@ -113,6 +114,7 @@ in
       source = link "${dotfiles}/zellij";
       recursive = true;
     };
+    "herdr/config.toml".source = link "${dotfiles}/herdr/config.toml";
     "nvim" = {
       source = link "${dotfiles}/nvim";
       recursive = true;
@@ -152,7 +154,6 @@ in
     # pi coding agent related configs
     "${pi}/AGENTS.md".source = link "${dotfiles}/agents/AGENTS.md";
     "${pi}/settings.json".source = link "${dotfiles}/agents/pi/settings.json";
-    "${pi}/mcp.json".source = link "${dotfiles}/agents/pi/mcp.json";
     "${pi}/models.json".source = link "${dotfiles}/agents/pi/models.json";
     "${pi}/package.json".source = link "${dotfiles}/agents/pi/package.json";
     "${pi}/skills" = {
@@ -166,6 +167,23 @@ in
     "${pi}/themes" = {
       source = link "${dotfiles}/agents/pi/themes";
       recursive = true;
+    };
+    # omp coding agent related configs
+    "${omp}/AGENTS.md".source = link "${dotfiles}/agents/AGENTS.md";
+    "${omp}/skills" = {
+      source = link "${dotfiles}/agents/skills";
+      recursive = true;
+    };
+    "${omp}/config.yml".source = link "${dotfiles}/agents/omp/config.yml";
+    "${omp}/extensions" = {
+      source = link "${dotfiles}/agents/omp/extensions";
+      recursive = true;
+      force = true;
+    };
+    "${omp}/themes" = {
+      source = link "${dotfiles}/agents/omp/themes";
+      recursive = true;
+      force = true;
     };
   };
 }

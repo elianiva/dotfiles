@@ -5,8 +5,11 @@ starship init fish | source
 
 zoxide init fish --cmd cd | source
 
-set -gx PNPM_HOME "/home/elianiva/.local/share/pnpm"
-set -gx PATH "$PNPM_HOME" $PATH
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+if test (uname -s) = Darwin
+  set -gx PNPM_HOME "$HOME/Library/pnpm"
+end
+fish_add_path $PNPM_HOME
 
 function zellij_tab_name_update --on-event fish_preexec
     if set -q ZELLIJ
@@ -31,8 +34,4 @@ function fish_mode_prompt
   end
   set_color normal
 end
-
-# Added by LM Studio CLI (lms)
-set -gx PATH $PATH /Users/elianiva/.lmstudio/bin
-# End of LM Studio CLI section
 

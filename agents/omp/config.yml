@@ -1,0 +1,63 @@
+providers: 
+  webSearch: exa
+  image: none
+  memoryModel: online
+symbolPreset: nerd
+theme: 
+  dark: dark-rose-pine
+  light: rose-pine-light
+setupVersion: 1
+statusLine: 
+  preset: ascii
+  separator: ascii
+  sessionAccent: true
+  transparent: true
+  compactThinkingLevel: false
+  showHookStatus: true
+terminal: 
+  showProgress: false
+tui: 
+  tight: false
+display: 
+  shimmer: classic
+  showTokenUsage: false
+inlineToolDescriptors: auto
+personality: default
+memory: 
+  backend: mnemopi
+edit: 
+  mode: hashline
+todo: 
+  enabled: true
+  reminders: false
+debug: 
+  enabled: false
+plan: 
+  enabled: true
+interruptMode: immediate
+tools: 
+  approvalMode: yolo
+  approval:
+    ask: deny
+    generate_image: deny
+    tts: deny
+magicKeywords: 
+  enabled: false
+  ultrathink: false
+  orchestrate: false
+  workflow: false
+startup: 
+  quiet: true
+compaction: 
+  strategy: snapcompact
+  thresholdPercent: 70
+treeFilterMode: default
+branchSummary: 
+  enabled: true
+modelRoles: 
+  default: opencode-go/mimo-v2.5:high
+  smol: opencode-go/deepseek-v4-flash:high
+  slow: opencode-go/glm-5.2:high
+includeModelInPrompt: false
+advisor: 
+  enabled: false
