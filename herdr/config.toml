@@ -37,7 +37,7 @@ right_click_passthrough_modifier = "ctrl"
 # rose pine subtle (#908caa) for pane borders - less vivid than default
 accent = "#908caa"
 
-agent_panel_sort = "spaces"
+agent_panel_sort = "priority"
 [ui.toast]
 # ghostty supports terminal notification sequences
 delivery = "terminal"

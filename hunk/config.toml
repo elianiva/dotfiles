@@ -1,4 +1,4 @@
-theme = "paper"
+theme = "rose-pine-dawn"
 mode = "auto"
 exclude_untracked = false
 line_numbers = true
