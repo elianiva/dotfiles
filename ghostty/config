@@ -9,7 +9,7 @@ bold-is-bright = true
 shell-integration = detect
 window-inherit-working-directory = true
 
-command = nu
+command = /run/current-system/sw/bin/nu
 
 window-padding-x = 2
 window-padding-y = 2
