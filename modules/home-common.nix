@@ -3,8 +3,8 @@ let
   inherit (import ./helpers.nix { inherit config; }) link;
   inherit (identity) dotfiles;
   pi = ".pi/agent";
-  vpPkgs = import ./vp-global-packages.nix;
   omp = ".omp/agent";
+  vpPkgs = import ./vp-global-packages.nix;
 in
 {
   home = {

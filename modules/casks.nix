@@ -19,7 +19,6 @@ _:
 
   # Tools
   "bitwarden"
-  "battery-toolkit"
   "stats"
   "jordanbaird-ice@beta"
   "blip"

@@ -14,6 +14,8 @@
     pkgs.yq
     pkgs.tree-sitter
     pkgs.pandoc
+    pkgs.sshpass
+    pkgs.just
 
     pkgs.caddy
 

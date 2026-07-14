@@ -188,21 +188,6 @@
         "type": "github"
       }
     },
-    "homebrew-mhaeuser": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1754982560,
-        "owner": "mhaeuser",
-        "repo": "homebrew-mhaeuser",
-        "rev": "fefa7acb6f19eedc2e40387e4a40a9d64cf78a13",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mhaeuser",
-        "repo": "homebrew-mhaeuser",
-        "type": "github"
-      }
-    },
     "iosevka-upstream": {
       "flake": false,
       "locked": {
@@ -385,7 +370,6 @@
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
-        "homebrew-mhaeuser": "homebrew-mhaeuser",
         "ioshelfka": "ioshelfka",
         "jj-starship": "jj-starship",
         "nix-darwin": "nix-darwin",

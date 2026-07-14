@@ -2,6 +2,7 @@ providers:
   webSearch: exa
   image: none
   memoryModel: online
+  tinyModel: online
 symbolPreset: nerd
 theme:
   dark: dark-rose-pine
@@ -20,9 +21,10 @@ tui:
   tight: false
 display:
   shimmer: classic
-  showTokenUsage: false
+  showTokenUsage: true
+  cacheMissMarker: true
 inlineToolDescriptors: auto
-personality: default
+personality: none
 memory:
   backend: mnemopi
 edit:
@@ -41,6 +43,8 @@ tools:
   approval:
     generate_image: deny
     tts: deny
+  format: auto
+  discoveryMode: auto
 magicKeywords:
   enabled: false
   ultrathink: false
@@ -58,9 +62,10 @@ modelRoles:
   default: opencode-go/mimo-v2.5:high
   smol: opencode-go/deepseek-v4-flash:high
   slow: opencode-go/glm-5.2:high
+  advisor: opencode-go/deepseek-v4-flash
 includeModelInPrompt: false
 advisor:
-  enabled: false
+  enabled: true
 read:
   summarize:
     enabled: false
@@ -68,5 +73,19 @@ read:
 task:
   isolation:
     mode: none
+  eager: default
 secrets:
   enabled: false
+ask:
+  enabled: true
+browser:
+  cmux: false
+goal:
+  enabled: false
+  statusInFooter: true
+commands:
+  enableClaudeUser: false
+  enableClaudeProject: false
+  enableOpencodeUser: false
+  enableOpencodeProject: false
+colorBlindMode: false

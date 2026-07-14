@@ -25,12 +25,8 @@
     homebrew-bundle.url = "github:homebrew/homebrew-bundle";
     homebrew-bundle.flake = false;
 
-    homebrew-mhaeuser.url = "github:mhaeuser/homebrew-mhaeuser";
-    homebrew-mhaeuser.flake = false;
-
     homebrew-barutsrb.url = "github:BarutSRB/homebrew-tap";
     homebrew-barutsrb.flake = false;
-
 
     # fenix for rust
     fenix.url = "github:nix-community/fenix";
@@ -104,7 +100,6 @@
                   "homebrew/homebrew-core" = inputs.homebrew-core;
                   "homebrew/homebrew-cask" = inputs.homebrew-cask;
                   "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-                  "mhaeuser/homebrew-mhaeuser" = inputs.homebrew-mhaeuser;
                   "BarutSRB/homebrew-tap" = inputs.homebrew-barutsrb;
                 };
                 mutableTaps = false;
@@ -123,7 +118,12 @@
             }
             # Align homebrew taps config with nix-homebrew
             ({config, lib, ...}: {
-              homebrew.taps = builtins.attrNames (lib.filterAttrs (n: _: !lib.hasPrefix "homebrew/" n) config.nix-homebrew.taps);
+              homebrew.taps = lib.mapAttrsToList (name: _:
+                let parts = lib.splitString "/" name;
+                     org = lib.head parts;
+                     repo = lib.last parts;
+                in if org == "homebrew" then "homebrew/${lib.removePrefix "homebrew-" repo}" else name
+              ) config.nix-homebrew.taps;
             })
             ./modules/darwin-config.nix
           ];
