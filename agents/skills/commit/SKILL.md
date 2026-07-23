@@ -1,6 +1,7 @@
 ---
 name: commit
 description: Conventional commit message generator for jj and git repos. Analyzes diffs and produces scoped, well-formed commit messages. Use whenever the user says "commit", "make a commit", "write commit message", or similar.
+disable-model-invocation: true
 ---
 
 # Commit Skill

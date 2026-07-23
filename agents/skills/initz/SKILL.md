@@ -2,6 +2,7 @@
 name: initz
 version: 1.0.0
 description: Initialize or improve AGENTS.md
+disable-model-invocation: true
 ---
 
 # AGENTS.md Initialization

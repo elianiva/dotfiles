@@ -44,16 +44,42 @@ vim.lsp.config("harper_ls", {
   filetypes = { "markdown", "typst" }
 })
 
+local function project_bin(name)
+  local cwd = vim.fn.getcwd()
+  local bin = vim.fn.findfile("node_modules/.bin/" .. name, cwd .. ";")
+  if bin ~= "" then
+    return vim.fn.fnamemodify(bin, ":p")
+  end
+  return name
+end
+
 vim.lsp.config("oxfmt", {
-  root_markers = { ".git", ".oxfmtrc.json", ".oxfmtrc.jsonc", "vite.config.ts" },
-  settings = {
-    fmt = {
-      configPath = "./vite.config.ts"
-    }
-  }
+  cmd = { project_bin("oxfmt"), "--lsp" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "toml",
+    "json",
+    "jsonc",
+    "json5",
+    "yaml",
+    "html",
+    "vue",
+    "handlebars",
+    "css",
+    "scss",
+    "less",
+    "graphql",
+    "markdown",
+  },
+  root_markers = { ".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts", "vite.config.ts", "vite.config.js" },
+  autostart = true,
 })
 
 vim.lsp.config("oxlint", {
+  cmd = { project_bin("oxlint"), "--lsp" },
   root_markers = { ".git", ".oxlintrc.json", ".oxlintrc.jsonc", "vite.config.ts" },
   settings = {
     typeAware = true,

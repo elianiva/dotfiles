@@ -1,6 +1,7 @@
 ---
 name: pi-improvements
 description: When encountering pi tool limitations, propose focused extensions that solve one problem each.
+disable-model-invocation: true
 ---
 
 ## Rules

@@ -58,9 +58,8 @@ in
     # enable touchid for sudo
     security.pam.services.sudo_local.touchIdAuth = true;
 
-    # keyboard
-    system.keyboard.enableKeyMapping = true;
-    system.keyboard.remapCapsLockToEscape = true;
+    # keyboard (handled by karabiner-elements for multi-keyboard support)
+    system.keyboard.enableKeyMapping = false;
 
      # docks
     system.defaults.dock = {

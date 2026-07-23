@@ -1,9 +1,7 @@
 return {
   "stevearc/conform.nvim",
-  dependencies = { "mason.nvim" },
-  lazy = true,
   cmd = "Format",
-  config = function(_, opts)
+  config = function()
     local conform = require("conform")
 
     conform.setup({
@@ -16,8 +14,8 @@ return {
         json = { "oxfmt", lsp_format = "prefer" },
         jsonc = { "oxfmt", lsp_format = "prefer" },
         python = { "isort", "ruff" },
-        php = { "pint" }
-      }
+        php = { "pint" },
+      },
     })
 
     vim.api.nvim_create_user_command("Format", function(args)
@@ -29,17 +27,7 @@ return {
           ["end"] = { args.line2, end_line:len() },
         }
       end
-      conform.format({
-        async = true,
-        lsp_format = "fallback",
-        range = range,
-        filter = function(client)
-          return client.name ~= "tsserver" and
-              client.name ~= "jsonls" and
-              client.name ~= "sumneko_lua" and
-              client.name ~= "typescript-tools"
-        end
-      })
+      conform.format({ async = true, lsp_format = "fallback", range = range })
     end, { range = true })
-  end
+  end,
 }

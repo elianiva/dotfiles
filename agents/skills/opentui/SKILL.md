@@ -1,6 +1,7 @@
 ---
 name: opentui
 description: Build terminal UIs with OpenTUI. Covers the core API, keymaps, React and Solid bindings, components, layout, keyboard input, plugins, and testing.
+disable-model-invocation: true
 ---
 
 # OpenTUI Skill

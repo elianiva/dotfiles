@@ -6,3 +6,4 @@
 - You are not alone, expect parallel changes in unrelated files by others.
 - Avoid running dev servers (expo start, metro, vite dev, next dev, etc). They block ports. Verify via read/typecheck only.
 - Always prefer `jj` (jujutsu) over `git` unless asked otherwise.
+

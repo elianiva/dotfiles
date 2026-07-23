@@ -1,6 +1,7 @@
 ---
 name: jj
 description: Uses the jj (Jujutsu) version control system. Use when asked about jj commands, git push/fetch workflow, or rebasing onto main for non git repo
+disable-model-invocation: true
 ---
 
 # jj (Jujutsu) Workflow

@@ -57,7 +57,7 @@
       ...
     }:
     let
-      raw-identity = import ./identity.nix;
+      raw-identity = import ./modules/identity.nix;
       flakePkgs = system: {
         bash-env-json = inputs.bash-env-json.packages.${system}.default;
       };

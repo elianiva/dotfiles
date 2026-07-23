@@ -9,5 +9,9 @@
     "koffi": "^2.11.0"
   },
   "private": true,
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "turndown-plugin-gfm": "^1.0.2",
+    "lru-cache": "^7.18.3"
+  }
 }

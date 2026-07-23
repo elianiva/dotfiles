@@ -90,13 +90,9 @@ function M.lsp.additional_mappings(bufnr)
   })
 
   vim.keymap.set("n", "<Leader>cf", function()
-    vim.lsp.buf.format({
-      filter = function(client)
-        return client.name ~= "ts_ls"
-      end,
-    })
+    require("conform").format({ async = false, lsp_format = "fallback" })
   end, {
-    desc = "Show references",
+    desc = "Format document",
     noremap = true,
     silent = true,
     buffer = bufnr,

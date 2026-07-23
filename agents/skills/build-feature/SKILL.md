@@ -1,6 +1,7 @@
 ---
 name: build-feature
 description: Use when creating or developing a feature, this contains a focused instructions for building features.
+disable-model-invocation: true
 ---
 
 ## Rules

@@ -24,16 +24,16 @@
     "brew-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1781226006,
-        "narHash": "sha256-w4ZTuOnhYiDxjaynrMTASzp802QblBWmo3wpB8wVN4Y=",
+        "lastModified": 1784068757,
+        "narHash": "sha256-7KnV7rTlMpys+2J+TFVxUDDyKPLXFs4wIMtckMC72VM=",
         "owner": "Homebrew",
         "repo": "brew",
-        "rev": "109191be4988470b51a60a5ef1998520aa24c01b",
+        "rev": "6bd951d96e7ebc54787799dba77bfb26ec956c4c",
         "type": "github"
       },
       "original": {
         "owner": "Homebrew",
-        "ref": "6.0.1",
+        "ref": "6.0.11",
         "repo": "brew",
         "type": "github"
       }
@@ -46,10 +46,10 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1782900513,
+        "lastModified": 1784622960,
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "16810aa8f4ad89ca480b1513774e8b6f485fe368",
+        "rev": "c9b21541e30ed4453dfa026820b57eefe17d7f25",
         "type": "github"
       },
       "original": {
@@ -116,10 +116,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783479733,
+        "lastModified": 1784690067,
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cee3f0e7fec85d80c149c7afc29926747f7bd3c2",
+        "rev": "6d8d61567802997f9ec3086b2a837e3ef31fac16",
         "type": "github"
       },
       "original": {
@@ -131,10 +131,10 @@
     "homebrew-barutsrb": {
       "flake": false,
       "locked": {
-        "lastModified": 1783460298,
+        "lastModified": 1784249131,
         "owner": "BarutSRB",
         "repo": "homebrew-tap",
-        "rev": "d929a5ec4028f429b724649c6f03137ac3bc1fb0",
+        "rev": "9fc3e0c5817e2a1f3f503a78b3ccfe104e6edb1f",
         "type": "github"
       },
       "original": {
@@ -161,10 +161,10 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1783510596,
+        "lastModified": 1784690970,
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "17163696ae0db052bf34044dd62b63b463674aca",
+        "rev": "02103072d904d87d399c9bbc92ce743394691961",
         "type": "github"
       },
       "original": {
@@ -176,10 +176,10 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1783509695,
+        "lastModified": 1784691126,
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "1e858c2c4bcde1db009f5da88eeae7ba3a9601d5",
+        "rev": "f8fca78b7bedc9b1a54bdfea6296545b578cc2bd",
         "type": "github"
       },
       "original": {
@@ -248,10 +248,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783395956,
+        "lastModified": 1784500460,
         "owner": "nix-darwin",
         "repo": "nix-darwin",
-        "rev": "d5bd9cd77aea4c0a8f49e7fd85545671a208ed15",
+        "rev": "57a3171f94705599a2499248ca5758d5eb47c0e0",
         "type": "github"
       },
       "original": {
@@ -266,10 +266,10 @@
         "brew-src": "brew-src"
       },
       "locked": {
-        "lastModified": 1781389246,
+        "lastModified": 1784159664,
         "owner": "zhaofengli",
         "repo": "nix-homebrew",
-        "rev": "de7953a08ed4bb9245be043e468561c17b89130d",
+        "rev": "842eeb863ecca0eeb463f7a814cdc51e1d925776",
         "type": "github"
       },
       "original": {
@@ -332,10 +332,10 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1783279667,
+        "lastModified": 1784555310,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f205b5574fd0cb7da5b702a2da51507b7f4fdd1b",
+        "rev": "421eebfd0ec7bccd4abe826ce62d7e6e83129493",
         "type": "github"
       },
       "original": {
@@ -385,11 +385,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1782864348,
-        "narHash": "sha256-NVYhLbaefeIUftPlo3kS6qr0xd8eFJRodEiaHrvFKR4=",
+        "lastModified": 1784568416,
+        "narHash": "sha256-edHcabLC6XRa5wG1UgUwcdIk8669SUD06JZYtplDdgE=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "0d381ca097a8e0375a19387874d952c0a230ac4f",
+        "rev": "0069617d8971879f47679f559fd6a103f029ce9e",
         "type": "github"
       },
       "original": {

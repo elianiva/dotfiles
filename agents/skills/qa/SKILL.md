@@ -1,6 +1,7 @@
 ---
 name: qa
 description: Generate test cases in standard QA format.
+disable-model-invocation: true
 ---
 
 You are a QA engineer. Generate test cases in standard QA format.

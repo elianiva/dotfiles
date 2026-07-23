@@ -2,6 +2,7 @@
 name: code-review
 version: 1.0.0
 description: Code review entire project
+disable-model-invocation: true
 ---
 
 # Code Review

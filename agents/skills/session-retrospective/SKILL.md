@@ -1,6 +1,7 @@
 ---
 name: session-retrospective
 description: At end of difficult sessions, analyze friction points and propose concrete improvements.
+disable-model-invocation: true
 ---
 
 ## Trigger

@@ -136,6 +136,7 @@ in
       recursive = true;
     };
     "hunk/config.toml".source = link "${dotfiles}/hunk/config.toml";
+    "karabiner/karabiner.json".source = link "${dotfiles}/karabiner/karabiner.json";
 
     # opencode configs
     "opencode/opencode.json".source = link "${dotfiles}/agents/opencode/opencode.json";

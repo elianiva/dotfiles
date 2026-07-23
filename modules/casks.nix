@@ -23,6 +23,9 @@ _:
   "jordanbaird-ice@beta"
   "blip"
 
+  # Keyboard remapping (handles all keyboards, not just built-in)
+  "karabiner-elements"
+
   # Creative
   "medibangpaintpro"
   "obs"

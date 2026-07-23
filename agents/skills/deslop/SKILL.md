@@ -1,6 +1,7 @@
 ---
 name: deslop
 description: Remove all AI-generated slop like useless comments, try/catch blocks, and casts
+disable-model-invocation: true
 ---
 
 Remove all AI-generated slop, this includes:
