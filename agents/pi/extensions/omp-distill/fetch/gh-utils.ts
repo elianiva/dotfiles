@@ -2,7 +2,6 @@
  * Shared gh CLI utilities.
  *
  * Provides cached gh binary detection and both sync/async execution.
- * Both github.ts and github-repo.ts use these instead of rolling their own.
  */
 import { execFile, execSync } from "node:child_process";
 

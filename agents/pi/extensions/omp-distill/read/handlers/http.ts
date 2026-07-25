@@ -1,12 +1,12 @@
 /**
  * HTTP/S protocol handler for the read tool.
  *
- * Delegates to the shared fetch pipeline in fetch-content.ts.
+ * Delegates to the shared fetch pipeline in fetch/content.
  * Supports :raw, :N, :N-M, :N+K selectors via parseReadSelector.
  */
 import type { ProtocolHandler } from "./types";
-import { parseReadSelector } from "../utils/utils";
-import { extractContent } from "./fetch-content";
+import { parseReadSelector } from "../selector";
+import { extractContent } from "../../fetch/content";
 
 function formatResult(url: string, title: string, content: string, error: string | null): string {
   if (error) {
@@ -16,7 +16,6 @@ function formatResult(url: string, title: string, content: string, error: string
   return `${header}\n\n---\n\n${content}`;
 }
 
-/** Protocol handler for http:// and https:// URLs. */
 export const httpHandler: ProtocolHandler = {
   scheme: "http",
   matches: (path) => /^https?:\/\//i.test(path),
@@ -26,7 +25,6 @@ export const httpHandler: ProtocolHandler = {
 
     let output = formatResult(result.url, result.title, result.content, result.error);
 
-    // Apply line offset/limit selectors (:N, :N-M, :N+K)
     const bodyLines = output.split("\n");
     if (offset !== undefined) {
       const start = Math.max(0, offset - 1);

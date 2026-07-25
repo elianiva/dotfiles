@@ -10,9 +10,10 @@
  *   pi://examples/xxx → file from pi's examples/ directory
  */
 import { readFileSync, readdirSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { join } from "node:path";
 import { getReadmePath, getDocsPath, getExamplesPath } from "@earendil-works/pi-coding-agent";
-import { parseReadSelector } from "../utils/utils";
+import { parseReadSelector } from "../selector";
+import type { ProtocolHandler } from "./types";
 
 export interface PiDocResult {
   content: string;
@@ -22,13 +23,11 @@ export interface PiDocResult {
 
 const PI_PKG_DIR = join(getReadmePath(), "..");
 
-/** Served prefixes and their filesystem roots. */
 const MOUNTS: Array<{ prefix: string; root: string }> = [
   { prefix: "docs", root: getDocsPath() },
   { prefix: "examples", root: getExamplesPath() },
 ];
 
-/** Files served at the root level. */
 const ROOT_FILES: Array<{ name: string; label: string; path: string }> = [
   { name: "README.md", label: "README.md", path: getReadmePath() },
   { name: "CHANGELOG.md", label: "CHANGELOG.md", path: join(PI_PKG_DIR, "CHANGELOG.md") },
@@ -41,14 +40,12 @@ export async function resolvePiDoc(url: string): Promise<PiDocResult> {
     return { content: renderIndex(), contentType: "text/markdown", source: "pi://" };
   }
 
-  // Root files
   for (const rf of ROOT_FILES) {
     if (parsed.path === rf.name || parsed.path === rf.label) {
       return readFile(rf.path, `pi://${rf.label}`);
     }
   }
 
-  // Mounted prefixes
   for (const mnt of MOUNTS) {
     const prefix = mnt.prefix + "/";
     if (parsed.path.startsWith(prefix) || parsed.path === mnt.prefix) {
@@ -125,9 +122,6 @@ function listFiles(dir: string): string[] {
   }
 }
 
-import type { ProtocolHandler } from "./types";
-
-/** Protocol handler for pi:// URLs. */
 export const piDocHandler: ProtocolHandler = {
   scheme: "pi",
   matches: isPiUrl,

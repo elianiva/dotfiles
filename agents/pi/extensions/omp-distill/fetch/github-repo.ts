@@ -4,34 +4,12 @@
  * Parses GitHub URLs, clones repos to ~/Development/repos, and
  * returns structured content (file tree, README, file contents).
  * Falls back to `gh` API when cloning is not forced or fails.
- * All fs operations use async APIs.
  */
 import { promises as fs, constants as fsc } from "node:fs";
 import { execFile } from "node:child_process";
 import { extname, join, resolve as resolvePath, sep as pathSep } from "node:path";
 import { homedir } from "node:os";
-async function isProbablyBinary(filePath: string): Promise<boolean> {
-  const fd = await fs.open(filePath);
-  try {
-    const { size } = await fd.stat();
-    const len = Math.min(size, 8192);
-    if (len === 0) return false;
-    const buf = Buffer.allocUnsafe(len);
-    const { bytesRead } = await fd.read(buf, 0, len, 0);
-    const header = buf.subarray(0, bytesRead);
-    if (header.indexOf(0) !== -1) return true;
-    try { new TextDecoder("utf-8", { fatal: true }).decode(header, { stream: true }); return false; }
-    catch { return true; }
-  } finally { await fd.close(); }
-}
-
-function formatBytes(bytes: number): string {
-  if (bytes < 1024) return `${bytes}B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)}KB`;
-  if (bytes < 1024 * 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)}MB`;
-  return `${(bytes / (1024 * 1024 * 1024)).toFixed(1)}GB`;
-}
-import type { ExtractedContent } from "./fetch-content";
+import type { ExtractedContent } from "./content";
 import { isGhAvailable, execGhAsync } from "./gh-utils";
 
 const CLONE_BASE = join(homedir(), "Development", "repos");
@@ -51,6 +29,11 @@ const NON_CODE = new Set([
   "sponsors", "invitations", "notifications", "insights",
 ]);
 
+const MAX_TREE = 200;
+const MAX_INLINE = 100_000;
+const CLONE_TIMEOUT_MS = 30_000;
+const MAX_REPO_MB = 350;
+
 /* ---- Types ---- */
 
 interface GitHubUrlInfo {
@@ -61,12 +44,7 @@ interface GitHubUrlInfo {
   type: "root" | "blob" | "tree";
 }
 
-const MAX_TREE = 200;
-const MAX_INLINE = 100_000;
-const CLONE_TIMEOUT_MS = 30_000;
-const MAX_REPO_MB = 350;
-
-/* ---- URL parsing (sync, no I/O) ---- */
+/* ---- URL parsing ---- */
 
 export function parseGitHubUrl(url: string): GitHubUrlInfo | null {
   let parsed: URL;
@@ -110,9 +88,31 @@ export function parseGitHubUrl(url: string): GitHubUrlInfo | null {
   };
 }
 
+/* ---- Helpers ---- */
+
+async function isProbablyBinary(filePath: string): Promise<boolean> {
+  const fd = await fs.open(filePath);
+  try {
+    const { size } = await fd.stat();
+    const len = Math.min(size, 8192);
+    if (len === 0) return false;
+    const buf = Buffer.allocUnsafe(len);
+    const { bytesRead } = await fd.read(buf, 0, len, 0);
+    const header = buf.subarray(0, bytesRead);
+    if (header.indexOf(0) !== -1) return true;
+    try { new TextDecoder("utf-8", { fatal: true }).decode(header, { stream: true }); return false; }
+    catch { return true; }
+  } finally { await fd.close(); }
+}
+
+function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes}B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)}KB`;
+  if (bytes < 1024 * 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)}MB`;
+  return `${(bytes / (1024 * 1024 * 1024)).toFixed(1)}GB`;
+}
+
 /* ---- Cloning ---- */
-
-
 
 function cloneDir(owner: string, repo: string, ref?: string): string {
   return ref ? join(CLONE_BASE, owner, `${repo}@${ref}`) : join(CLONE_BASE, owner, repo);
@@ -244,8 +244,6 @@ async function resolveWithin(rootPath: string, relative: string): Promise<string
   }
   return candidate;
 }
-
-
 
 async function buildTree(rootPath: string): Promise<string> {
   const entries: string[] = [];
@@ -430,7 +428,7 @@ export async function extractGitHub(
 
   const { owner, repo } = info;
 
-  // SHA refs → API only (can't clone a specific commit easily with depth=1)
+  // SHA refs → API only
   if (info.ref && /^[0-9a-f]{40}$/.test(info.ref)) {
     const ref = info.ref;
     if (info.type === "blob" && info.path) {
@@ -455,7 +453,7 @@ export async function extractGitHub(
     return { url, title: `${owner}/${repo}`, content: lines.join("\n"), error: null };
   }
 
-  // Size check (skip if forceClone)
+  // Size check
   if (!forceClone) {
     const sizeMB = await checkRepoSizeMB(owner, repo);
     if (sizeMB !== null && sizeMB > MAX_REPO_MB) {

@@ -3,9 +3,9 @@ import { Type } from "typebox";
 import { StringEnum } from "@earendil-works/pi-ai/compat";
 import type { ExtensionAPI, Theme } from "@earendil-works/pi-coding-agent";
 import { getMarkdownTheme } from "@earendil-works/pi-coding-agent";
-import { searchWeb, type SearchOptions } from "../utils/search";
-import { generateId, storeResult, type QueryResultData, type SearchResult } from "../utils/storage";
-import { formatCount, formatExpandHint, formatPublishedDate, formatStatusIcon, getDomain, progressBar, truncate } from "../utils/render-utils";
+import { searchWeb, type SearchOptions } from "./search";
+import { generateId, storeResult, type QueryResultData, type SearchResult } from "./storage";
+import { formatCount, formatExpandHint, formatPublishedDate, formatStatusIcon, getDomain, progressBar, truncate } from "./render-utils";
 
 /* ---- Render: Call ---- */
 

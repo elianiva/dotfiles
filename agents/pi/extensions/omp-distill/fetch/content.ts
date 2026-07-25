@@ -1,7 +1,7 @@
 /**
  * URL content extraction with Readability + turndown.
  *
- * Single fetch pipeline used by both `read http://` and (previously) `fetch_content`.
+ * Single fetch pipeline used by the read tool's HTTP handler.
  * Features UA rotation, 429 retry, LRU caching, and Readability article extraction.
  */
 import { Readability } from "@mozilla/readability";
@@ -9,6 +9,37 @@ import { parseHTML } from "linkedom";
 import TurndownService from "turndown";
 import { extractGitHub } from "./github-repo";
 import { signalWithTimeout, readResponseBody, USER_AGENTS, isBotBlocked } from "./http-client";
+import { urlCache } from "./cache";
+
+const TIMEOUT_MS = 30_000;
+const MAX_RESPONSE_BYTES = 5 * 1024 * 1024;
+const MIN_CONTENT = 500;
+
+const turndown = new TurndownService({
+  headingStyle: "atx",
+  codeBlockStyle: "fenced",
+});
+
+/* ---- Types ---- */
+
+export interface ExtractedContent {
+  url: string;
+  title: string;
+  content: string;
+  error: string | null;
+}
+
+export interface ExtractOptions {
+  prompt?: string;
+  timestamp?: string;
+  frames?: number;
+  model?: string;
+  forceClone?: boolean;
+  /** Skip Readability/turndown, return raw body. */
+  raw?: boolean;
+}
+
+/* ---- Rate-limit helpers ---- */
 
 const QUOTA_RESET_PATTERN = /reset after (?:(\d+)h)?(?:(\d+)m)?(\d+(?:\.\d+)?)s/i;
 const PLEASE_RETRY_PATTERN = /Please retry in ([0-9.]+)(ms|s)/i;
@@ -88,35 +119,6 @@ function extractRetryHint(source: Response | Headers | null | undefined, body?: 
     }
   }
   return undefined;
-}
-import { urlCache } from "../utils/cache";
-
-const TIMEOUT_MS = 30_000;
-const MAX_RESPONSE_BYTES = 5 * 1024 * 1024;
-const MIN_CONTENT = 500;
-
-const turndown = new TurndownService({
-  headingStyle: "atx",
-  codeBlockStyle: "fenced",
-});
-
-/* ---- Types ---- */
-
-export interface ExtractedContent {
-  url: string;
-  title: string;
-  content: string;
-  error: string | null;
-}
-
-export interface ExtractOptions {
-  prompt?: string;
-  timestamp?: string;
-  frames?: number;
-  model?: string;
-  forceClone?: boolean;
-  /** Skip Readability/turndown, return raw body. */
-  raw?: boolean;
 }
 
 /* ---- Main ---- */

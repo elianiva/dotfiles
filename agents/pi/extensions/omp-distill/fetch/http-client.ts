@@ -11,7 +11,6 @@ export const DEFAULT_TIMEOUT_MS = 20_000;
 
 /**
  * Create an AbortSignal that combines the caller's signal with a timeout.
- * Returns the combined signal and a cleanup function to clear the timeout.
  */
 export function signalWithTimeout(
   signal: AbortSignal | undefined,
@@ -30,7 +29,6 @@ export function signalWithTimeout(
 
 /**
  * Read a Response body as UTF-8 text, enforcing a byte limit.
- * Shared implementation used by both http.ts and fetch-content.ts.
  */
 export async function readResponseBody(
   res: Response,
@@ -76,5 +74,3 @@ export function isBotBlocked(status: number, body: string): boolean {
   ];
   return signals.some((s) => lower.includes(s));
 }
-
-

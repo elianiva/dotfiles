@@ -2,18 +2,7 @@
  * Multi-protocol read tool.
  *
  * Dispatches to registered protocol handlers. Adding a new protocol means
- * creating a handler module — no need to edit this router.
- *
- * Supported protocols:
- *   - file://            — stripped and delegated to native read
- *   - http:// / https://  — fetch web pages (Readability extraction, UA rotation, caching, GitHub repos)
- *   - skill://<name>     — read skill SKILL.md or a file inside the skill dir
- *   - pi://              — read pi documentation (README, docs/, examples/)
- *   - issue://<n>        — read a GitHub issue
- *   - pr://<n>           — read a GitHub pull request
- *   - conflict://[<path>] — read conflict info for the current repo or a specific file
- *
- * Non-protocol paths fall through to pi's native read tool.
+ * creating a handler module and registering it in read/handlers/index.ts.
  */
 import { stat } from "node:fs/promises";
 import { resolve, isAbsolute } from "node:path";
@@ -25,12 +14,15 @@ import type {
 } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
 
-import { httpHandler } from "./protocol/http";
-import { skillHandler } from "./protocol/skill";
-import { piDocHandler } from "./protocol/pi-docs";
-import { issueHandler, prHandler } from "./protocol/github";
-import { conflictHandler } from "./protocol/conflict";
-import type { ProtocolHandler, HandlerContext } from "./protocol/types";
+import {
+  httpHandler,
+  skillHandler,
+  piDocHandler,
+  issueHandler,
+  prHandler,
+  conflictHandler,
+} from "./handlers";
+import type { ProtocolHandler, HandlerContext } from "./handlers";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Details = Record<string, any>;

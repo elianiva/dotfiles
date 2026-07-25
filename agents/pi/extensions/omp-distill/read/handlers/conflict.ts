@@ -12,7 +12,7 @@ import { execSync } from "node:child_process";
 import { readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import type { ProtocolHandler } from "./types";
-import { parseReadSelector } from "../utils/utils";
+import { parseReadSelector } from "../selector";
 
 export interface ConflictResult {
   content: string;
@@ -21,21 +21,19 @@ export interface ConflictResult {
 
 type VcsKind = "git" | "jj" | null;
 
-/** Detect VCS kind by walking up from cwd looking for .jj/ or .git/. */
 function detectVcs(cwd: string): { kind: VcsKind; root: string } {
   let dir = path.resolve(cwd);
-  // Walk up at most 10 levels to avoid infinite loops
   for (let i = 0; i < 10; i++) {
     try {
       if (statSync(path.join(dir, ".jj")).isDirectory()) {
         return { kind: "jj", root: dir };
       }
-    } catch { /* not found */ }
+    } catch {}
     try {
       if (statSync(path.join(dir, ".git")).isDirectory()) {
         return { kind: "git", root: dir };
       }
-    } catch { /* not found */ }
+    } catch {}
     const parent = path.dirname(dir);
     if (parent === dir) break;
     dir = parent;
@@ -47,15 +45,12 @@ function exec(cmd: string, cwd: string): string {
   return execSync(cmd, { encoding: "utf-8", cwd, timeout: 15_000 }).trim();
 }
 
-/** List conflicted files via git. */
 function listGitConflicts(cwd: string): string[] {
   const out = exec("git diff --name-only --diff-filter=U", cwd);
   return out ? out.split("\n").filter(Boolean) : [];
 }
 
-/** List conflicted files via jj. */
 function listJjConflicts(cwd: string): string[] {
-  // Redirect stderr to avoid noise from "No conflicts" (exit code != 0)
   try {
     const out = execSync("jj resolve --list 2>/dev/null", { encoding: "utf-8", cwd, timeout: 15_000 }).trim();
     const files: string[] = [];
@@ -71,25 +66,12 @@ function listJjConflicts(cwd: string): string[] {
   } catch {
     return [];
   }
-  const files: string[] = [];
-  for (const line of out.split("\n")) {
-    const trimmed = line.trim();
-    if (trimmed && !trimmed.startsWith("Error: No conflicts")) {
-      // Lines look like: "path/to/file: description" or just "path/to/file"
-      const colonIdx = trimmed.indexOf(": ");
-      const file = colonIdx >= 0 ? trimmed.slice(0, colonIdx) : trimmed;
-      files.push(file);
-    }
-  }
-  return files;
 }
 
-/** Get git conflict details for a specific file. */
 function gitFileConflict(file: string, cwd: string): string {
   const lines: string[] = [];
   const absPath = path.resolve(cwd, file);
 
-  // Read the file with conflict markers
   try {
     const content = readFileSync(absPath, "utf-8");
     lines.push(`# Conflict: ${file}`);
@@ -99,7 +81,6 @@ function gitFileConflict(file: string, cwd: string): string {
     lines.push(`File not found: ${file}`);
   }
 
-  // Show ancestor, ours, theirs stages
   for (const [label, ref] of [["Ours (stage 2)", ":2:"], ["Theirs (stage 3)", ":3:"]] as const) {
     try {
       const stage = exec(`git show ${ref}${file}`, cwd);
@@ -107,20 +88,16 @@ function gitFileConflict(file: string, cwd: string): string {
       lines.push(`--- ${label} ---`);
       lines.push("");
       lines.push(stage);
-    } catch {
-      // Stage may not exist
-    }
+    } catch {}
   }
 
   return lines.join("\n");
 }
 
-/** Get jj conflict details for a specific file. */
 function jjFileConflict(file: string, cwd: string): string {
   const lines: string[] = [];
   const absPath = path.resolve(cwd, file);
 
-  // Read the file with conflict markers
   try {
     const content = readFileSync(absPath, "utf-8");
     lines.push(`# Conflict: ${file} (jj)`);
@@ -130,7 +107,6 @@ function jjFileConflict(file: string, cwd: string): string {
     lines.push(`File not found: ${file}`);
   }
 
-  // Show jj file info for the conflicted revision
   try {
     const sides = exec(`jj file show ${file}`, cwd);
     if (sides) {
@@ -139,16 +115,11 @@ function jjFileConflict(file: string, cwd: string): string {
       lines.push("");
       lines.push(sides);
     }
-  } catch {
-    // fallback — file content with markers is already shown above
-  }
+  } catch {}
 
   return lines.join("\n");
 }
 
-/**
- * Resolve a conflict:// URL.
- */
 export function resolveConflict(raw: string, cwd: string): ConflictResult {
   const { basePath } = parseReadSelector(raw);
   const file = basePath.slice("conflict://".length);
@@ -159,7 +130,6 @@ export function resolveConflict(raw: string, cwd: string): ConflictResult {
   }
 
   if (!file) {
-    // List all conflicted files
     const files = kind === "git" ? listGitConflicts(root) : listJjConflicts(root);
 
     if (files.length === 0) {
@@ -179,7 +149,6 @@ export function resolveConflict(raw: string, cwd: string): ConflictResult {
     return { content: lines.join("\n"), source: `conflict:// (${kind})` };
   }
 
-  // Show details for a specific file
   const content = kind === "git"
     ? gitFileConflict(file, root)
     : jjFileConflict(file, root);
@@ -190,7 +159,6 @@ export function isConflictUrl(path: string): boolean {
   return /^conflict:\/\//i.test(path);
 }
 
-/** Protocol handler for conflict:// URLs. */
 export const conflictHandler: ProtocolHandler = {
   scheme: "conflict",
   matches: isConflictUrl,

@@ -35,7 +35,6 @@ export async function resolveSkill(raw: string, cwd: string): Promise<SkillResul
   }
 
   if (pathname) {
-    // Resolve relative path within skill dir
     const { readFileSync, existsSync } = await import("node:fs");
     const { join } = await import("node:path");
     const target = join(skill.baseDir, pathname);
@@ -63,7 +62,6 @@ export function isSkillUrl(path: string): boolean {
   return /^skill:\/\//i.test(path);
 }
 
-/** Protocol handler for skill:// URLs. */
 export const skillHandler: ProtocolHandler = {
   scheme: "skill",
   matches: isSkillUrl,

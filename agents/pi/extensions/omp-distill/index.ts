@@ -1,5 +1,5 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { createProtocolReadTool } from "./read-tool";
+import { createProtocolReadTool } from "./read";
 import { createWebSearchTool } from "./tools/web-search";
 import setupBashTool from "./tools/bash-tool";
 import { setupWriteTool } from "./tools/write-tool";

@@ -10,9 +10,9 @@
  *   pr://<number>              → single PR in the current repo
  *   pr://<owner>/<repo>/<n>    → fully qualified PR
  */
-import { parseReadSelector } from "../utils/utils";
+import { parseReadSelector } from "../selector";
 import type { ProtocolHandler } from "./types";
-import { execGhSync } from "./gh-utils";
+import { execGhSync } from "../../fetch/gh-utils";
 
 export interface GhResult {
   content: string;
@@ -20,9 +20,6 @@ export interface GhResult {
   notes?: string[];
 }
 
-/**
- * Resolve an issue:// URL.
- */
 export async function resolveIssue(raw: string, cwd: string): Promise<GhResult> {
   const parsed = parseIssuePrUrl(raw, "issue");
   if (!parsed) {
@@ -31,9 +28,6 @@ export async function resolveIssue(raw: string, cwd: string): Promise<GhResult> 
   return fetchGhItem("issue", parsed, cwd);
 }
 
-/**
- * Resolve a pr:// URL.
- */
 export async function resolvePr(raw: string, cwd: string): Promise<GhResult> {
   const parsed = parseIssuePrUrl(raw, "pr");
   if (!parsed) {
@@ -54,7 +48,7 @@ export function isPrUrl(path: string): boolean {
 
 interface ParsedIssuePr {
   number: number;
-  repo?: string; // "owner/repo"
+  repo?: string;
 }
 
 function parseIssuePrUrl(raw: string, kind: "issue" | "pr"): ParsedIssuePr | null {
@@ -65,13 +59,11 @@ function parseIssuePrUrl(raw: string, kind: "issue" | "pr"): ParsedIssuePr | nul
   const parts = rest.split("/").filter(Boolean);
 
   if (parts.length === 1) {
-    // issue://123
     const n = parseInt(parts[0], 10);
     return isNaN(n) ? null : { number: n };
   }
 
   if (parts.length === 3) {
-    // issue://owner/repo/123
     const n = parseInt(parts[2], 10);
     return isNaN(n) ? null : { number: n, repo: `${parts[0]}/${parts[1]}` };
   }
@@ -135,7 +127,6 @@ function formatGhItem(kind: "issue" | "pr", data: any, repo?: string): GhResult 
   lines.push(`**URL:** ${data.url ?? ""}`);
   lines.push("");
 
-  // Body
   if (body && body !== "(no description)") {
     lines.push("---");
     lines.push("");
@@ -143,7 +134,6 @@ function formatGhItem(kind: "issue" | "pr", data: any, repo?: string): GhResult 
     lines.push("");
   }
 
-  // Comments
   if (comments.length > 0) {
     lines.push("---");
     lines.push(`## Comments (${comments.length})`);
@@ -167,7 +157,6 @@ function formatGhItem(kind: "issue" | "pr", data: any, repo?: string): GhResult 
   };
 }
 
-/** Protocol handler for issue:// URLs. */
 export const issueHandler: ProtocolHandler = {
   scheme: "issue",
   matches: isIssueUrl,
@@ -181,7 +170,6 @@ export const issueHandler: ProtocolHandler = {
   },
 };
 
-/** Protocol handler for pr:// URLs. */
 export const prHandler: ProtocolHandler = {
   scheme: "pr",
   matches: isPrUrl,
@@ -194,5 +182,3 @@ export const prHandler: ProtocolHandler = {
     };
   },
 };
-
-
