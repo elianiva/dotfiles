@@ -334,7 +334,7 @@ async function launchSubagent(
 
   const effectiveTools = agentDef?.tools;
   if (effectiveTools) {
-    const BUILTIN_TOOLS = new Set(["read", "bash", "edit", "write", "grep", "find", "ls", "glob"]);
+    const BUILTIN_TOOLS = new Set(["read", "bash", "edit", "write", "grep", "find", "ls"]);
     const builtins = effectiveTools.split(",").map((t) => t.trim()).filter((t) => BUILTIN_TOOLS.has(t));
     if (builtins.length > 0) {
       piArgs.push("--tools", shellQuote(builtins.join(",")));

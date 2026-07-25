@@ -72,9 +72,9 @@ function buildSpecializedToolsSection(activeTools: string[]): string {
       "- Regex/literal content search → `grep` (NOT grep/rg/ag/ack/awk)",
     );
   }
-  if (activeTools.includes("glob")) {
+  if (activeTools.includes("find")) {
     lines.push(
-      "- File globbing → `glob` (NOT find/fd/locate or shell globs)",
+      "- File path lookup → `find` (NOT find/fd/locate or shell globs)",
     );
   }
 

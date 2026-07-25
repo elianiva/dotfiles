@@ -33,6 +33,7 @@ interface ExaSearchItem {
   url?: string;
   text?: string;
   highlights?: string[];
+  publishedDate?: string;
 }
 
 interface ExaSearchResponse {
@@ -252,7 +253,7 @@ function parseMcpResults(text: string): ExaMcpItem[] | null {
 function mapCitations(citations: ExaCitation[]): SearchResult[] {
   return citations
     .filter((c) => c.url)
-    .map((c) => ({ title: c.title ?? "Source", url: c.url!, snippet: c.text ?? "" }));
+    .map((c) => ({ title: c.title ?? "Source", url: c.url!, snippet: c.text ?? "", publishedDate: c.publishedDate }));
 }
 
 function mapSearchResults(results: ExaSearchItem[]): SearchResult[] {
@@ -262,6 +263,7 @@ function mapSearchResults(results: ExaSearchItem[]): SearchResult[] {
       title: r.title ?? "Source",
       url: r.url!,
       snippet: (r.highlights?.join(" ") ?? r.text ?? "").replace(/\s+/g, " ").trim().slice(0, 500),
+      publishedDate: r.publishedDate,
     }));
 }
 

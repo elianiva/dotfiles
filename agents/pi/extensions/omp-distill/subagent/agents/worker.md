@@ -2,7 +2,7 @@
 name: worker
 description: General-purpose implementation agent — writes code, runs tests, makes commits
 model: opencode-go/deepseek-v4-flash
-tools: read,grep,glob,ls,bash,edit,write
+tools: read,grep,find,ls,bash,edit,write
 auto-exit: true
 session-mode: standalone
 spawning: false

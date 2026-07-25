@@ -13,7 +13,7 @@ Use this INSTEAD of: grep, rg, ripgrep, ag, ack, awk (for search).`,
   promptSnippet: "Search file contents for patterns (use instead of grep/rg)",
   promptGuidelines: [
     "Use grep to search file contents instead of shelling out to grep/rg/awk.",
-    "For file path lookup (not contents), use find/glob instead of find/fd.",
+    "For file path lookup (not contents), use `find` instead of find/fd.",
   ],
 };
 

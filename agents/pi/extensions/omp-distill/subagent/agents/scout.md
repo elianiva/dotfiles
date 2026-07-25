@@ -2,7 +2,7 @@
 name: scout
 description: Fast codebase reconnaissance — maps files, patterns, conventions
 model: opencode-go/deepseek-v4-flash
-tools: read,grep,glob,ls,bash
+tools: read,grep,find,ls,bash
 auto-exit: true
 session-mode: standalone
 spawning: false

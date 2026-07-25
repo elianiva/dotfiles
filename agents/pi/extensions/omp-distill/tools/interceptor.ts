@@ -28,18 +28,11 @@ export const INTERCEPT_RULES: InterceptRule[] = [
     tool: "read",
   },
   {
-    // ls → read (handles both files and directory listing)
-    re: /^\s*ls\s+/,
-    message:
-      "Use `read` instead of ls. read handles both file contents and directory listing.",
-    tool: "read",
-  },
-  {
-    // find/fd/locate → glob tool (bare, with or without flags)
+    // find/fd/locate → find tool (bare, with or without flags)
     re: /^\s*(find|fd|locate)\s+/,
     message:
-      "Use the `glob` tool instead of find/fd. It respects .gitignore and is faster for glob patterns.",
-    tool: "glob",
+      "Use the `find` tool instead of find/fd. It respects .gitignore and is faster for file lookup.",
+    tool: "find",
   },
   {
     // sed -i → edit tool
