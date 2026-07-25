@@ -10,10 +10,6 @@ return {
   version = false,
   build = ":TSUpdate",
   lazy = false,
-  keys = {
-    { "<M-o>", desc = "Increment Selection" },
-    { "<M-i>", desc = "Decrement Selection", mode = "x" },
-  },
   init = function()
     local ensureInstalled = {
       "bash",
@@ -88,15 +84,6 @@ return {
       sync_install = true,
       highlight = { enable = true },
       indent = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<M-o>",
-          node_incremental = "<M-o>",
-          node_decremental = "<M-i>",
-          scope_incremental = false,
-        },
-      },
       textobjects = {
         move = {
           enable = true,

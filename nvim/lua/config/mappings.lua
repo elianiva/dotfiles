@@ -133,3 +133,13 @@ inoremap("?", "?<C-g>u")
 
 -- Repeat last action in visual mode
 xnoremap(".", "<CMD>norm.<CR>", { desc = "Repeat last action" })
+
+-- Incremental selection (treesitter, built-in Neovim 0.12+)
+local function select(target)
+  return function()
+    vim.treesitter.select(target, vim.v.count1)
+  end
+end
+nnoremap("<M-o>", select("parent"), { desc = "Start incremental selection" })
+xnoremap("<M-o>", select("parent"), { desc = "Expand selection to parent node" })
+xnoremap("<M-i>", select("child"), { desc = "Shrink selection to child node" })
