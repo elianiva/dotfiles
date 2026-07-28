@@ -21,6 +21,7 @@ import {
   issueHandler,
   prHandler,
   conflictHandler,
+  vaultHandler,
 } from "./handlers";
 import type { ProtocolHandler, HandlerContext } from "./handlers";
 
@@ -30,7 +31,7 @@ type Details = Record<string, any>;
 const readSchema = Type.Object({
   path: Type.String({
     description:
-      "Local path, URL (https://...), or internal URI (skill://, pi://, issue://, pr://, conflict://). URL selectors like :N-M and :raw are supported.",
+      "Local path, URL (https://...), or internal URI (skill://, pi://, issue://, pr://, conflict://, vault://). URL selectors like :N-M and :raw are supported.",
   }),
   offset: Type.Optional(
     Type.Number({
@@ -59,6 +60,10 @@ Supports:
 - **issue://<number>** — read a GitHub issue
 - **pr://<number>** — read a GitHub pull request
 - **conflict://[path]** — read conflict info (list all or show specific file)
+- **vault://[path]** — read files from your Obsidian vault (set PI_VAULT_DIR env or defaults to ~/Development/personal/notes)
+- **vault://search?q=<query>** — search your vault using QMD (requires global qmd CLI)
+- **vault://tree** — full recursive vault tree
+- **vault://collections** — list QMD collections
 
 URL selectors: append :N, :N-M, :N+K, :raw (e.g. https://example.com:50-100, https://example.com:raw)
 For files, output is truncated to 2000 lines or 50KB. Use offset/limit for large files.`;
@@ -71,6 +76,7 @@ const handlers: ProtocolHandler[] = [
   issueHandler,
   prHandler,
   conflictHandler,
+  vaultHandler,
 ];
 
 /** file:// handler — strips prefix and delegates to native read. */
@@ -100,7 +106,7 @@ export function createProtocolReadTool(): ToolDefinition<typeof readSchema, Deta
     label: "read",
     description: TOOL_DESCRIPTION,
     promptGuidelines: [
-      "Use read for files, directories, URLs, skill://, pi://, issue://, pr://, and conflict:// resources",
+      "Use read for files, directories, URLs, skill://, pi://, issue://, pr://, conflict://, and vault:// resources",
       "Use read with a directory path to list contents instead of ls",
       "Use offset/limit for large files instead of head/tail",
       "For web pages, the tool returns markdown-converted content (Readability extraction with UA rotation)",
@@ -111,6 +117,9 @@ export function createProtocolReadTool(): ToolDefinition<typeof readSchema, Deta
       "pr://<N> (or pr://<owner>/<repo>/<N>) — read a GitHub PR (disk-cached)",
       "conflict://[path] — read conflict info for the current repo or a specific file",
       "conflict:// without a path lists all conflicted files; conflict://<path> shows details",
+      "vault://[path] — read files from your Obsidian vault (set PI_VAULT_DIR env or defaults to ~/Development/personal/notes)",
+      "vault://search?q=<query> — search your vault using QMD",
+      "vault://tree — full recursive vault tree",
     ],
     parameters: readSchema,
 

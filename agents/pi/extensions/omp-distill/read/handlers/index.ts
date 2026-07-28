@@ -7,3 +7,4 @@ export { skillHandler } from "./skill";
 export { piDocHandler } from "./pi-docs";
 export { issueHandler, prHandler } from "./github";
 export { conflictHandler } from "./conflict";
+export { vaultHandler } from "./vault";
