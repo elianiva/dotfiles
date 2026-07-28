@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.82.1",
   "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-pro",
+  "defaultModel": "deepseek-v4-flash",
   "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,

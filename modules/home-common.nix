@@ -2,8 +2,8 @@
 let
   inherit (import ./helpers.nix { inherit config; }) link;
   inherit (identity) dotfiles;
+  agentsDir = "${identity.homeDir}/.agents";
   pi = ".pi/agent";
-  omp = ".omp/agent";
   vpPkgs = import ./vp-global-packages.nix;
 in
 {
@@ -140,11 +140,6 @@ in
 
     # opencode configs
     "opencode/opencode.json".source = link "${dotfiles}/agents/opencode/opencode.json";
-    "opencode/AGENTS.md".source = link "${dotfiles}/agents/AGENTS.md";
-    "opencode/skills" = {
-      source = link "${dotfiles}/agents/skills";
-      recursive = true;
-    };
   };
 
   home.file = {
@@ -152,15 +147,17 @@ in
     ".profile".source = link "${dotfiles}/misc/.profile";
     ".bashrc".source = link "${dotfiles}/misc/.bashrc";
 
-    # pi coding agent related configs
-    "${pi}/AGENTS.md".source = link "${dotfiles}/agents/AGENTS.md";
-    "${pi}/settings.json".source = link "${dotfiles}/agents/pi/settings.json";
-    "${pi}/models.json".source = link "${dotfiles}/agents/pi/models.json";
-    "${pi}/package.json".source = link "${dotfiles}/agents/pi/package.json";
-    "${pi}/skills" = {
+    # canonical agents location (shared by all coding agent)
+    ".agents/AGENTS.md".source = link "${dotfiles}/agents/AGENTS.md";
+    ".agents/skills" = {
       source = link "${dotfiles}/agents/skills";
       recursive = true;
     };
+
+    # pi coding agent related configs
+    "${pi}/settings.json".source = link "${dotfiles}/agents/pi/settings.json";
+    "${pi}/models.json".source = link "${dotfiles}/agents/pi/models.json";
+    "${pi}/package.json".source = link "${dotfiles}/agents/pi/package.json";
     "${pi}/extensions" = {
       source = link "${dotfiles}/agents/pi/extensions";
       recursive = true;
@@ -168,23 +165,6 @@ in
     "${pi}/themes" = {
       source = link "${dotfiles}/agents/pi/themes";
       recursive = true;
-    };
-    # omp coding agent related configs
-    "${omp}/AGENTS.md".source = link "${dotfiles}/agents/AGENTS.md";
-    "${omp}/skills" = {
-      source = link "${dotfiles}/agents/skills";
-      recursive = true;
-    };
-    "${omp}/config.yml".source = link "${dotfiles}/agents/omp/config.yml";
-    "${omp}/extensions" = {
-      source = link "${dotfiles}/agents/omp/extensions";
-      recursive = true;
-      force = true;
-    };
-    "${omp}/themes" = {
-      source = link "${dotfiles}/agents/omp/themes";
-      recursive = true;
-      force = true;
     };
   };
 }

@@ -28,6 +28,59 @@
                     "to": [{ "key_code": "grave_accent_and_tilde" }]
                 }
             ],
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Alt+Space → Switch Input Source (English ↔ Japanese)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": ["left_option"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "select_input_source": {
+                                            "language": "^ja$"
+                                        }
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "input_source_unless",
+                                        "input_sources": [{ "language": "^ja$" }]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": ["left_option"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "select_input_source": {
+                                            "language": "^en$"
+                                        }
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "input_source_if",
+                                        "input_sources": [{ "language": "^ja$" }]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "keyboard_type": "ansi",

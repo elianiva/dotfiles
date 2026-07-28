@@ -1,0 +1,13 @@
+{
+  "name": "session-search",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fast, typo-tolerant session search for pi using fff",
+  "type": "module",
+  "dependencies": {
+    "@ff-labs/fff-node": "^0.8.0"
+  },
+  "pi": {
+    "extensions": ["./index.ts"]
+  }
+}
