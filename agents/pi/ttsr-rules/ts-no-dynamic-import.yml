@@ -1,0 +1,9 @@
+id: ts-no-dynamic-import
+language: TypeScript
+severity: warning
+message: Do not use `await import()` — use static imports
+note: |
+  Static imports fail during build rather than under load.
+  Use `await import()` only when the module specifier is genuinely runtime-selected.
+rule:
+  pattern: "await import($$$)"

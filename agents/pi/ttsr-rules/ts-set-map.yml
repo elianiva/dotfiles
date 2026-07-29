@@ -1,0 +1,11 @@
+id: ts-set-map
+language: TypeScript
+severity: hint
+message: Prefer `Record<K, V>` for small static literals; use Set/Map for dynamic data
+note: |
+  Use `Record<K, V>` for static string-keyed lookup tables.
+  Use `Set` / `Map` when keys are dynamic, non-string, or change at runtime.
+rule:
+  any:
+    - pattern: "new Set($$$)"
+    - pattern: "new Map($$$)"

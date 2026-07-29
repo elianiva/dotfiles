@@ -136,6 +136,7 @@ in
       recursive = true;
     };
     "hunk/config.toml".source = link "${dotfiles}/hunk/config.toml";
+    "qmd/index.yml".source = link "${dotfiles}/qmd/index.yml";
     "karabiner/karabiner.json".source = link "${dotfiles}/karabiner/karabiner.json";
 
     # opencode configs
@@ -164,6 +165,10 @@ in
     };
     "${pi}/themes" = {
       source = link "${dotfiles}/agents/pi/themes";
+      recursive = true;
+    };
+    "${pi}/ttsr-rules" = {
+      source = link "${dotfiles}/agents/pi/ttsr-rules";
       recursive = true;
     };
   };

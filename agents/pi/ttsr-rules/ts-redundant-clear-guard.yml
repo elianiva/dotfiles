@@ -1,0 +1,24 @@
+id: ts-redundant-clear-guard
+language: TypeScript
+severity: warning
+message: Do not guard clearTimeout/clearInterval/clearImmediate — they accept null/undefined
+note: |
+  Per the WHATWG/Node timers spec these functions are no-ops when handed
+  null or undefined. The guard adds a redundant branch.
+rule:
+  any:
+    - pattern: "if ($X) { clearTimeout($X); }"
+    - pattern: "if ($X) { clearInterval($X); }"
+    - pattern: "if ($X) { clearImmediate($X); }"
+    - pattern: "if ($X !== null) { clearTimeout($X); }"
+    - pattern: "if ($X !== null) { clearInterval($X); }"
+    - pattern: "if ($X !== null) { clearImmediate($X); }"
+    - pattern: "if ($X != null) { clearTimeout($X); }"
+    - pattern: "if ($X != null) { clearInterval($X); }"
+    - pattern: "if ($X != null) { clearImmediate($X); }"
+    - pattern: "if ($X !== undefined) { clearTimeout($X); }"
+    - pattern: "if ($X !== undefined) { clearInterval($X); }"
+    - pattern: "if ($X !== undefined) { clearImmediate($X); }"
+    - pattern: "if ($X != undefined) { clearTimeout($X); }"
+    - pattern: "if ($X != undefined) { clearInterval($X); }"
+    - pattern: "if ($X != undefined) { clearImmediate($X); }"

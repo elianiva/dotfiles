@@ -1,0 +1,10 @@
+id: ts-no-return-type
+language: TypeScript
+severity: warning
+message: Do not use `ReturnType<typeof fn>` — name the type explicitly
+note: |
+  Named types document the contract directly and decouple consumers
+  from implementation helpers. Export an interface instead.
+rule:
+  kind: generic_type
+  regex: "^ReturnType<"

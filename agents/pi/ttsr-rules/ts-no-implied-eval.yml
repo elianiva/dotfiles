@@ -1,0 +1,16 @@
+id: ts-no-implied-eval
+language: TypeScript
+severity: error
+message: Do not pass string code to `setTimeout` or `setInterval`
+note: |
+  `setTimeout('code')` and `setInterval('code')` execute strings as code,
+  equivalent to `eval()`. Pass a function reference or arrow function instead.
+rule:
+  any:
+    - pattern: setTimeout($CODE)
+    - pattern: "setTimeout($CODE, $$$)"
+    - pattern: setInterval($CODE)
+    - pattern: "setInterval($CODE, $$$)"
+constraints:
+  CODE:
+    kind: string

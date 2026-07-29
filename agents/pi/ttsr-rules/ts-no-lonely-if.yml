@@ -1,0 +1,9 @@
+id: ts-no-lonely-if
+language: TypeScript
+severity: hint
+message: Merge nested `if` into `else if` — reduce unnecessary nesting
+note: |
+  `else { if (x) { ... } }` can be written as `else if (x) { ... }`,
+  removing one level of nesting.
+rule:
+  pattern: "if ($C1) { $$$B1 } else { if ($C2) { $$$B2 } }"

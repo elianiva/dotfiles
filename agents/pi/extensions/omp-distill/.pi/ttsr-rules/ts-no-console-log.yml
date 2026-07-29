@@ -1,0 +1,18 @@
+id: ts-no-console-log
+language: TypeScript
+severity: warning
+message: Avoid `console.log/debug/warn` in production code — use a proper logger
+note: |
+  `console.error` inside catch blocks is acceptable for debugging.
+  For everything else, use a proper logging library.
+rule:
+  any:
+    - pattern: console.error($$$)
+      not:
+        inside:
+          kind: catch_clause
+          stopBy: end
+    - pattern: console.$METHOD($$$)
+constraints:
+  METHOD:
+    regex: 'log|debug|warn|info|trace|dir|table|group|groupCollapsed|groupEnd|time|timeEnd|timeLog'

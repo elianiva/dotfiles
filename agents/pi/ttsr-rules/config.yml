@@ -1,0 +1,41 @@
+# .pi/ttsr-rules/config.yml
+# Pi-specific TTSR configuration: maps rules to projects, declares per-rule behavior.
+
+defaults:
+  enabled: true
+  severity_threshold: hint
+
+rules:
+  ts-no-tiny-functions:
+    enabled: false   # Heuristic rule, noisy by default
+
+projects:
+  # Catch-all: applies to all TypeScript projects
+  - detect:
+      language: ["ts", "tsx"]
+    enable:
+      # From oh-my-pi
+      - ts-bare-catch
+      - ts-import-type
+      - ts-no-any
+      - ts-no-deprecated
+      - ts-no-dynamic-import
+      - ts-no-inline-cast-access
+      - ts-no-return-type
+      - ts-no-test-timers
+      - ts-promise-with-resolvers
+      - ts-redundant-clear-guard
+      - ts-set-map
+      # New additions
+      - ts-no-await-in-promise-all
+      - ts-no-console-log
+      - ts-no-debugger
+      - ts-no-eval
+      - ts-no-var
+      - ts-no-array-constructor
+      - ts-prefer-template
+      - ts-no-empty-catch
+      - ts-no-implied-eval
+      - ts-no-lonely-if
+    disable:
+      - ts-no-tiny-functions

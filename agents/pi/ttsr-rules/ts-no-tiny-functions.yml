@@ -1,0 +1,28 @@
+id: ts-no-tiny-functions
+language: TypeScript
+severity: hint
+message: Avoid extracting 1-2 line functions that only wrap an expression
+note: |
+  One-line wrappers hide no real behavior and force readers to jump.
+  Inline unless the name creates a durable contract, callback identity matters,
+  or the function is exported as a stable domain concept.
+rule:
+  any:
+    - kind: arrow_function
+      not:
+        has:
+          kind: statement_block
+    - kind: function_declaration
+      has:
+        kind: statement_block
+        has:
+          kind: return_statement
+        not:
+          has:
+            any:
+              - kind: if_statement
+              - kind: for_statement
+              - kind: while_statement
+              - kind: switch_statement
+              - kind: try_statement
+              - kind: variable_declaration

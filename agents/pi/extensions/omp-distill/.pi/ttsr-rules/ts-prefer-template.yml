@@ -1,0 +1,17 @@
+id: ts-prefer-template
+language: TypeScript
+severity: hint
+message: Use template literals instead of string concatenation
+note: |
+  Template literals (`\`Hello ${name}\``) are more readable and less error-prone
+  than string concatenation with `+`.
+rule:
+  kind: binary_expression
+  all:
+    - has:
+        field: operator
+        regex: '^\+$'
+    - has:
+        any:
+          - kind: string
+          - kind: template_string

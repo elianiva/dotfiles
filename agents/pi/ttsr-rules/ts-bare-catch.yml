@@ -1,0 +1,10 @@
+id: ts-bare-catch
+language: TypeScript
+severity: warning
+message: Use bare `catch {}` when the error binding is unused
+note: |
+  An underscore-prefixed catch binding adds noise and still allocates a local name.
+  Use bare `catch {}` instead of `catch (_err) {}`.
+rule:
+  kind: catch_clause
+  regex: 'catch\s*\(\s*_'

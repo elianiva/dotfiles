@@ -1,0 +1,9 @@
+id: ts-no-array-constructor
+language: TypeScript
+severity: warning
+message: Use `[]` literal instead of `new Array()`
+note: |
+  `new Array()` is more verbose and has inconsistent behavior with single
+  numeric arguments. Use the `[]` literal instead.
+rule:
+  pattern: "new Array($$$)"

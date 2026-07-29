@@ -1,0 +1,13 @@
+id: ts-no-deprecated
+language: TypeScript
+severity: warning
+message: Do not leave `@deprecated` shims behind — finish the refactor
+note: |
+  Update all call sites and remove the deprecated API in the same change.
+  Deprecated aliases keep two contracts alive and hide unfinished work.
+rule:
+  any:
+    - kind: comment
+      regex: '@deprecated'
+    - kind: decorator
+      regex: 'deprecated'

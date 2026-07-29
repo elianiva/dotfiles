@@ -1,0 +1,9 @@
+id: ts-no-eval
+language: TypeScript
+severity: error
+message: Do not use `eval()` — it is a security risk and degrades performance
+note: |
+  `eval()` executes arbitrary strings as code, opening injection vectors
+  and preventing optimization. There is almost always a safer alternative.
+rule:
+  pattern: eval($$$)

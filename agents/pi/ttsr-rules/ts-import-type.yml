@@ -1,0 +1,17 @@
+id: ts-import-type
+language: TypeScript
+severity: warning
+message: Use top-level `import type` instead of inline `import('pkg').Type`
+note: |
+  Top-level imports expose dependencies immediately, keep signatures readable,
+  and let import sorting/deduplication manage them.
+rule:
+  any:
+    - kind: member_expression
+      has:
+        kind: call_expression
+        regex: '^import\('
+    - kind: subscript_expression
+      has:
+        kind: call_expression
+        regex: '^import\('

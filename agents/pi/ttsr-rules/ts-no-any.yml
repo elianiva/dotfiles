@@ -1,0 +1,14 @@
+id: ts-no-any
+language: TypeScript
+severity: error
+message: "Never use `: any` or `as any` — use `unknown`, generics, or a schema parse"
+note: |
+  `any` disables type checking exactly where the boundary needs precision.
+  Use `unknown` for unvalidated input, a schema parse for external data,
+  a generic when the caller supplies the shape, or `satisfies` for object literals.
+rule:
+  any:
+    - kind: type_annotation
+      regex: ':\s*any\b'
+    - kind: as_expression
+      regex: '\bas\s+any\b'

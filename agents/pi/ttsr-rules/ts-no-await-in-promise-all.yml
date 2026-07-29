@@ -1,0 +1,17 @@
+id: ts-no-await-in-promise-all
+language: TypeScript
+severity: error
+message: Do not use `await` inside `Promise.all` — it defeats parallel execution
+note: |
+  Each `await` inside `Promise.all([...])` makes its promise resolve before
+  the array is passed to Promise.all, turning parallel into sequential.
+  Remove the `await` — Promise.all handles the awaiting.
+rule:
+  pattern: await $A
+  inside:
+    pattern: Promise.all($_)
+    stopBy:
+      not:
+        any:
+          - kind: array
+          - kind: arguments

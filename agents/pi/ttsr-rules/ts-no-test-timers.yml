@@ -1,0 +1,18 @@
+id: ts-no-test-timers
+language: TypeScript
+severity: error
+message: Do not use real timers in test files — drive time with fake timers
+note: |
+  Real delays add fixed latency to every CI run.
+  Use `vi.useFakeTimers()` and `vi.advanceTimersByTime()` instead.
+files:
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+rule:
+  any:
+    - kind: call_expression
+      regex: "^Bun\\.sleep"
+    - kind: call_expression
+      regex: "^setTimeout"
+    - kind: call_expression
+      regex: "^setInterval"

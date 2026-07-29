@@ -1,0 +1,9 @@
+id: ts-no-debugger
+language: TypeScript
+severity: error
+message: Do not leave `debugger` statements in code
+note: |
+  `debugger` statements pause execution in the debugger and have no place
+  in committed code. Remove them before committing.
+rule:
+  kind: debugger_statement

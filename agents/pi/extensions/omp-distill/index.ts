@@ -7,6 +7,7 @@ import { setupEditTool } from "./tools/edit-tool";
 import { setupGrepTool } from "./tools/grep-tool";
 import { createPromptEnhancer } from "./prompt-enhancer";
 import { createSubagentTool } from "./subagent/tool";
+import { setupTtsr, resetTtsr } from "./ttsr";
 
 export default function (pi: ExtensionAPI): void {
   // Custom tools (not overriding built-ins)
@@ -23,4 +24,13 @@ export default function (pi: ExtensionAPI): void {
 
   // Inject "Specialized Tools" section + prompt files into system prompt
   createPromptEnhancer(pi);
+
+  // Wire up TTSR hooks on session_start to get the correct cwd
+  pi.on("session_start", (_event, ctx) => {
+    setupTtsr(pi, ctx.cwd);
+  });
+
+  pi.on("session_shutdown", () => {
+    resetTtsr();
+  });
 }

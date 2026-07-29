@@ -1,0 +1,13 @@
+id: ts-no-var
+language: TypeScript
+severity: warning
+message: Use `let` or `const` instead of `var`
+note: |
+  `var` is function-scoped and hoisted in confusing ways. Use `const`
+  for variables that are never reassigned, `let` otherwise.
+rule:
+  any:
+    - pattern: "var $NAME = $VALUE"
+    - pattern: "var $NAME: $TYPE = $VALUE"
+    - pattern: "var $NAME: $TYPE"
+    - pattern: "var $NAME"

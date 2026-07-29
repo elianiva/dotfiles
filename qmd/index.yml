@@ -1,0 +1,21 @@
+global_context: Knowledge base for my projects
+models:
+  embed: hf:ggml-org/embeddinggemma-300M-GGUF/embeddinggemma-300M-Q8_0.gguf
+  generate: hf:tobil/qmd-query-expansion-1.7B-gguf/qmd-query-expansion-1.7B-q4_k_m.gguf
+  rerank: hf:ggml-org/Qwen3-Reranker-0.6B-Q8_0-GGUF/qwen3-reranker-0.6b-q8_0.gguf
+collections:
+  notes:
+    path: /Users/elianiva/Development/personal/notes
+    pattern: "**/*.{md,html}"
+    ignore:
+      - Daily/**
+      - Inbox/**
+      - Templates/**
+      - "**/drafts/**"
+    update: git pull --rebase
+    includeByDefault: true
+    context:
+      Articles: Small notes shared with other people
+      Learn: Currently learning
+      Vault: Collections of random general knowledge
+      Projects: Place to store wiki for each projects. Contains subdir of each project

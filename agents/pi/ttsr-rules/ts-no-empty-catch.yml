@@ -1,0 +1,24 @@
+id: ts-no-empty-catch
+language: TypeScript
+severity: warning
+message: Do not leave catch blocks empty — at minimum log or rethrow the error
+note: |
+  Swallowing errors silently makes bugs impossible to diagnose.
+  At minimum, log the error or rethrow it. If the error is truly ignorable,
+  add a comment explaining why.
+rule:
+  kind: catch_clause
+  has:
+    kind: statement_block
+    not:
+      has:
+        any:
+          - kind: expression_statement
+          - kind: return_statement
+          - kind: throw_statement
+          - kind: if_statement
+          - kind: for_statement
+          - kind: while_statement
+          - kind: try_statement
+          - kind: switch_statement
+          - kind: variable_declaration
