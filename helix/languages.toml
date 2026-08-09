@@ -25,6 +25,9 @@ enummemberValues.enabled = true
 command = "biome"
 args = ["lsp-proxy"]
 
+[language-server.tailwindcss-ls.config.tailwindCSS.experimental]
+classRegex = [ "h\\.Class\\(['\"]([^'\"]*)['\"]\\)" ]
+
 # ------------------
 
 [[language]]

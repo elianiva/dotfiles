@@ -1,0 +1,13 @@
+id: efx-no-sleep-in-test
+language: TypeScript
+severity: hint
+message: Review `Effect.sleep` usage — prefer `TestClock` in tests, justify in production
+note: |
+  `Effect.sleep` in tests introduces real-time flakiness and slows suites.
+  Use `TestClock.adjust(...)` or `TestClock.yieldNow(...)` for deterministic
+  time in tests. In production code, prefer `Schedule` for pacing.
+rule:
+  pattern: Effect.sleep($DURATION)
+constraints:
+  DURATION:
+    regex: '.+'

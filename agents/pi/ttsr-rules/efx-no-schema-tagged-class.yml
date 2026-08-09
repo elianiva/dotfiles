@@ -1,0 +1,11 @@
+id: efx-no-schema-tagged-class
+language: TypeScript
+severity: error
+message: Do not use `Schema.TaggedClass` — prefer `Schema.TaggedStruct` or `Schema.TaggedErrorClass`
+note: |
+  `Schema.TaggedClass` is a legacy pattern. For data variants use
+  `Schema.TaggedStruct(...)`. For typed errors use
+  `Schema.TaggedErrorClass(...)`. Both give you `_tag` discrimination
+  without the class-based schema overhead.
+rule:
+  pattern: Schema.TaggedClass($$$)

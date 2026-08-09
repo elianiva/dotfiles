@@ -45,11 +45,16 @@ export default function (pi: ExtensionAPI) {
 
     pi.on("agent_end", (event, ctx) => {
       const messages = (event as any).messages as any[] | undefined;
+      let failure: string | undefined;
       if (messages) {
         for (let i = messages.length - 1; i >= 0; i--) {
           const msg = messages[i];
           if (msg?.role === "assistant") {
             if (msg.stopReason === "aborted") return;
+            if (msg.stopReason === "error") {
+              const em = typeof msg.errorMessage === "string" ? msg.errorMessage.trim() : "";
+              failure = em || "Agent terminated with an error";
+            }
             break;
           }
         }
@@ -57,8 +62,14 @@ export default function (pi: ExtensionAPI) {
 
       recorder.subagentDone();
       // Write sidecar + shutdown — sidecar lets parent detect completion
-      // even if ctx.shutdown() doesn't exit the process cleanly.
-      done("done");
+      // even if ctx.shutdown() doesn't exit the process cleanly. An errored
+      // run gets an "error" sidecar so the parent reports failure (with the
+      // subagent's output intact) instead of a misleading "completed".
+      if (failure) {
+        done("error", { error: failure });
+      } else {
+        done("done");
+      }
       ctx.shutdown();
     });
   }

@@ -39,3 +39,17 @@ projects:
       - ts-no-lonely-if
     disable:
       - ts-no-tiny-functions
+
+  # Effect projects
+  - detect:
+      language: ["ts", "tsx"]
+      dependency: ["effect"]
+    enable:
+      - efx-no-custom-error-class
+      - efx-no-schema-class
+      - efx-no-schema-tagged-class
+      - efx-no-process-env
+      - efx-no-cause-recovery
+      - efx-no-sleep-in-test
+      - efx-no-merge-all
+      - efx-no-useless-wrapper

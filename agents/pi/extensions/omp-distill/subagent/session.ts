@@ -90,7 +90,14 @@ export function getNewEntries(sessionFile: string, afterLine: number): SessionEn
     .map((line) => JSON.parse(line) as SessionEntry);
 }
 
-/** Find the last assistant message text in a list of entries. */
+/**
+ * Find the last assistant message text in a list of entries.
+ *
+ * Only text content counts. A terminal message with no text (e.g. a failed
+ * stream with stopReason "error" that carries only thinking blocks) is
+ * skipped so it can't shadow the subagent's actual output — the error is
+ * reported separately via the result's `error` field.
+ */
 export function findLastAssistant(entries: SessionEntry[]): string | null {
   for (let i = entries.length - 1; i >= 0; i--) {
     const entry = entries[i];
@@ -106,13 +113,6 @@ export function findLastAssistant(entries: SessionEntry[]): string | null {
       .map((block) => block.text as string);
 
     if (texts.length > 0 && texts.join("").trim()) return texts.join("\n");
-
-    // Check for error stop reason
-    const sr = (msg.message as { stopReason?: unknown }).stopReason;
-    const em = (msg.message as { errorMessage?: unknown }).errorMessage;
-    if (sr === "error" && typeof em === "string" && em.trim()) {
-      return `Subagent error: ${em.trim()}`;
-    }
   }
   return null;
 }

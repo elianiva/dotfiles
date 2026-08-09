@@ -43,37 +43,22 @@ Supports multi-query search (2-4 varied angles), domain filtering, recency filte
 (`tools/write-tool.ts`, `tools/edit-tool.ts`, `tools/grep-tool.ts`, `tools/bash-tool.ts`, `tools/wrap-builtin.ts`)
 
 Each built-in tool (`write`, `edit`, `grep`, `bash`) is overridden with:
-- A **description** that explicitly tells the LLM to use the specialized tool instead of shell commands
+- A **description** that points out the specialized tool exists and is better than the shell equivalent
 - A **promptSnippet** and **promptGuidelines** that appear in the system prompt
 
-### 4. Bash Interceptor
+Soft steering only — no runtime enforcement. Agents may use `bash` however they want; the tool descriptions and guidelines just make the better option visible.
 
-(`tools/interceptor.ts`, `tools/bash-tool.ts`)
-
-Runtime enforcement: blocks shell commands that shadow dedicated pi tools:
-
-| Blocked commands | Redirect to |
-|---|---|
-| `grep`, `rg`, `ag`, `ack` | `grep` tool |
-| `cat`, `head`, `tail`, `less`, `more` | `read` tool |
-| `find`, `fd`, `locate` | `find` tool |
-| `sed -i`, `perl -i`, `awk -i inplace` | `edit` tool |
-| `echo >`, `printf >`, `cat <<` redirections | `write` tool |
-
-Each block returns a helpful message explaining which tool to use instead.
-
-### 5. Prompt Enhancer
+### 4. Prompt Enhancer
 
 (`prompt-enhancer.ts`, `prompts/`)
 
-Injects dynamic sections into the system prompt on `before_agent_start`:
-1. **Specialized Tools** — auto-generated section mapping file operations to the correct tool, with a litmus test for `bash`. Only includes mappings for currently active tools.
-2. **Static prompt files** — `delivery-contract.md`, `execution-workflow.md`, `verification-rules.md` from `prompts/`
-3. **Delegation Strategy** — injected when the `subagent` tool is active
+Injects behavioral prompts into the system prompt on `before_agent_start`:
+1. **Static prompt files** — `delivery-contract.md`, `execution-workflow.md`, `verification-rules.md` from `prompts/`
+2. **Delegation Strategy** — `delegation-strategy.md`, injected only when the `subagent` tool is active
 
-Avoids double-injection via anchor text detection.
+Avoids double-injection via anchor text detection. Tool-usage steering is deliberately not injected here — it lives in the tool descriptions and `promptGuidelines`.
 
-### 6. Subagent Tool — Parallel Delegation
+### 5. Subagent Tool — Parallel Delegation
 
 (`subagent/`, `subagent-child/`)
 
@@ -89,6 +74,20 @@ Spawns child pi agents in new herdr tabs for parallel task execution:
 - **Auto-exit** — agent shuts down automatically when task completes
 - **Self-spawn prevention** — blocks recursive subagent spawning
 - **Deny tools** — per-agent tool restrictions
+
+### 6. Eval Tool — Persistent Sandboxed JavaScript
+
+(`tools/eval/`)
+
+Omp-style code execution: the agent runs JavaScript cells in a **secure-exec sandboxed VM** instead of shelling out:
+
+- **Persistent session state** — `globalThis`, `var`, and `function` declarations survive across cells and tool calls; `let`/`const` are per-cell (omp parity)
+- **Sandbox policy** — project cwd mounted read-write, project `node_modules` read-only (npm packages importable), **no network**, no host subprocesses
+- **Tool bridge** — `tool.read()` / `tool.write()` / `tool.edit()` / `tool.grep()` / `tool.find()` / `tool.ls()` / `tool.web_search()` route to the real pi tools host-side; `bash`/`eval`/`subagent` are deliberately excluded
+- **Helpers** — `display()`, `read()`, `write()`, `env()`; `reset: true` wipes state
+- **Timeouts** — per-cell (default 30s, clamped 1–3600s, wall-clock including bridge calls); timeout kills and respawns the VM
+- **Batched cells** — `{ cells: [{ code, title?, timeout?, reset? }] }` with streaming `[i/n] title` progress
+- **Lazy lifecycle** — VMs boot on first use (~0.5s) and are disposed on `session_shutdown`
 
 ### 7. GitHub Integration
 

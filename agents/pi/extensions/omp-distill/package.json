@@ -7,6 +7,7 @@
     "@mozilla/readability": "^0.6.0",
     "linkedom": "^0.16.0",
     "picomatch": "^4.0.5",
+    "secure-exec": "^0.3.3",
     "tinyglobby": "^0.2.17",
     "turndown": "^7.2.0",
     "yaml": "^2.7.0"

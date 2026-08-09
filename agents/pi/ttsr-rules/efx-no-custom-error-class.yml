@@ -1,0 +1,11 @@
+id: efx-no-custom-error-class
+language: TypeScript
+severity: error
+message: Do not define custom error classes — use `Schema.TaggedErrorClass` instead
+note: |
+  Hand-rolled `class XxxError extends Error` classes miss Effect's typed error
+  model. Use `Schema.TaggedErrorClass` to get `_tag` discrimination, schema
+  encoding, and proper `Cause` integration for free.
+rule:
+  kind: class_declaration
+  regex: '^\s*class\s+\w*Error\b'

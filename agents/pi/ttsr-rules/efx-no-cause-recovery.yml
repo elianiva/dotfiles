@@ -1,0 +1,15 @@
+id: efx-no-cause-recovery
+language: TypeScript
+severity: warning
+message: Prefer typed-error recovery over cause-level recovery
+note: |
+  `Effect.catchCause` / `Effect.catchAllCause` expose the full `Cause` value
+  when you only need to handle specific typed errors. Use typed-error
+  combinators (`Effect.catchTag`, `Effect.catchTags`, `Effect.catchIf`) unless
+  you genuinely need to inspect defect or interrupt semantics.
+rule:
+  any:
+    - pattern: Effect.catchCause($$$)
+    - pattern: Effect.catchAllCause($$$)
+    - pattern: $X.pipe(Effect.catchCause($$$))
+    - pattern: $X.pipe(Effect.catchAllCause($$$))

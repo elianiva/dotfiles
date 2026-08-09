@@ -1,0 +1,11 @@
+id: efx-no-schema-class
+language: TypeScript
+severity: error
+message: Do not use `Schema.Class` — prefer `Schema.Struct` for data modeling
+note: |
+  `Schema.Class` creates class-based schemas that couple data to runtime
+  identity. Use `Schema.Struct(...)` plus a same-name `interface` for
+  ordinary records. Use `Schema.TaggedStruct` for boundary-crossing variants
+  and `Schema.TaggedErrorClass` for typed errors.
+rule:
+  pattern: Schema.Class($$$)

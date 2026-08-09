@@ -1,12 +1,17 @@
 /**
- * Injects oh-my-pi-derived system prompt enhancements into pi.
+ * Injects oh-my-pi-derived behavioral prompts into the system prompt.
  *
  * Injections:
- * 1. Static markdown prompt files from prompts/ (delivery-contract, execution-workflow, etc.)
- * 2. Dynamic "Specialized Tools" section with per-tool mappings + litmus test
- * 3. Delegation strategy section when subagent tool is active
+ * 1. Static behavioral files from prompts/ (delivery-contract, execution-workflow,
+ *    verification-rules) — the "delivery discipline" enumeration.
+ * 2. Delegation strategy — only when the subagent tool is active.
+ *
+ * Tool-usage steering ("use read not cat", litmus test) is intentionally NOT
+ * injected here: it lives in each tool's description and promptGuidelines,
+ * plus the read tool's protocol documentation. No runtime enforcement —
+ * agents may use bash however they want.
  */
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
@@ -14,115 +19,40 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = join(__dirname, "prompts");
 
-interface PromptSection {
-  name: string;
-  content: string;
-}
+const STATIC_PROMPTS = ["delivery-contract", "execution-workflow", "verification-rules"];
+const DELEGATION_PROMPT = "delegation-strategy";
+const DELEGATION_ANCHOR = "Use `subagent` to parallelize independent work";
 
-function loadPromptSections(): PromptSection[] {
-  let files: string[];
+function loadPrompt(name: string): string | null {
   try {
-    files = readdirSync(PROMPTS_DIR).filter((f) => f.endsWith(".md"));
+    const content = readFileSync(join(PROMPTS_DIR, `${name}.md`), "utf-8").trim();
+    return content || null;
   } catch {
-    return [];
+    return null;
   }
-
-  return files
-    .sort()
-    .map((file) => {
-      const name = file.replace(/\.md$/, "");
-      const fullPath = join(PROMPTS_DIR, file);
-      try {
-        const content = readFileSync(fullPath, "utf-8").trim();
-        return content ? { name, content } : null;
-      } catch {
-        return null;
-      }
-    })
-    .filter((p): p is PromptSection => p !== null);
-}
-
-/**
- * Build a "Specialized Tools" section that maps file operations to their
- * dedicated tools, with a litmus test for bash. Only includes mappings
- * for tools that are currently active.
- */
-function buildSpecializedToolsSection(activeTools: string[]): string {
-  const lines: string[] = [
-    "# Specialized Tools",
-    "",
-    "You MUST use the specialized tool over its shell equivalent:",
-  ];
-
-  if (activeTools.includes("read")) {
-    lines.push(
-      "- File reads AND directory listing → `read` (NOT cat/head/tail/less/more, NOT ls in bash)",
-    );
-  }
-  if (activeTools.includes("edit")) {
-    lines.push("- Surgical text edits → `edit` (NOT sed/perl/awk -i)");
-  }
-  if (activeTools.includes("write")) {
-    lines.push(
-      "- Create or overwrite files → `write` (NOT echo/printf/cat redirections)",
-    );
-  }
-  if (activeTools.includes("grep")) {
-    lines.push(
-      "- Regex/literal content search → `grep` (NOT grep/rg/ag/ack/awk)",
-    );
-  }
-  if (activeTools.includes("find")) {
-    lines.push(
-      "- File path lookup → `find` (NOT find/fd/locate or shell globs)",
-    );
-  }
-
-  if (activeTools.includes("bash")) {
-    lines.push("");
-    lines.push(
-      "Litmus test for bash: one external-CLI call or short pipeline returning a count, frequency, set difference, or checksum → bash. " +
-        "Merely moves, pages, or trims bytes a tool can fetch → use the specialized tool.",
-    );
-    lines.push(
-      "Commands shadowing the specialized tools above are BLOCKED at runtime.",
-    );
-  }
-
-  return lines.join("\n");
 }
 
 export function createPromptEnhancer(pi: ExtensionAPI): void {
-  const sections = loadPromptSections();
-  const injectedStatic = sections.map((s) => s.content).join("\n\n");
+  const staticSections = STATIC_PROMPTS.map(loadPrompt)
+    .filter((c): c is string => c !== null)
+    .join("\n\n");
+  const delegationSection = loadPrompt(DELEGATION_PROMPT);
 
   pi.on("before_agent_start", async (event) => {
-    const activeTools = pi.getActiveTools();
-    const specializedSection = buildSpecializedToolsSection(activeTools);
     let systemPrompt = event.systemPrompt;
 
-    // Inject the "Specialized Tools" section (avoid double-injection)
-    const specAnchor =
-      "You MUST use the specialized tool over its shell equivalent";
-    if (specializedSection && !systemPrompt.includes(specAnchor)) {
-      systemPrompt = `${systemPrompt}\n\n${specializedSection}`;
+    // Inject behavioral prompts (avoid double-injection)
+    if (staticSections && !systemPrompt.includes(staticSections.slice(0, 80))) {
+      systemPrompt = `${systemPrompt}\n\n${staticSections}`;
     }
 
-    // Inject static prompt files (avoid double-injection)
-    if (injectedStatic) {
-      const staticAnchor = injectedStatic.slice(0, 80);
-      if (!systemPrompt.includes(staticAnchor)) {
-        systemPrompt = `${systemPrompt}\n\n${injectedStatic}`;
-      }
-    }
-
-    // Inject delegation strategy section if subagent tool is active
-    if (activeTools.includes("subagent")) {
-      const delegationAnchor = "Use `subagent` to parallelize independent work";
-      const delegationSection = loadPromptSections().find((s) => s.name === "delegation-strategy");
-      if (delegationSection && !systemPrompt.includes(delegationAnchor)) {
-        systemPrompt = `${systemPrompt}\n\n${delegationSection.content}`;
-      }
+    // Inject delegation strategy only when the subagent tool is active
+    if (
+      delegationSection &&
+      pi.getActiveTools().includes("subagent") &&
+      !systemPrompt.includes(DELEGATION_ANCHOR)
+    ) {
+      systemPrompt = `${systemPrompt}\n\n${delegationSection}`;
     }
 
     return { systemPrompt };

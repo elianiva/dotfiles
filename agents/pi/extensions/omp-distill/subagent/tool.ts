@@ -103,6 +103,8 @@ interface SubagentResult {
   exitCode: number;
   elapsedMs: number;
   error?: string;
+  /** Set when the subagent pings the parent (caller_ping). Carries the ping message. */
+  ping?: string;
 }
 
 interface RunningSubagent {
@@ -170,11 +172,17 @@ function resultFromSidecar(
   startTime: number,
 ): SubagentResult {
   const elapsedMs = Date.now() - startTime;
-  if (sidecar.type === "error") {
-    const summary = sessionFile ? findLastAssistant([...getNewEntries(sessionFile, 0)]) : null;
-    return { name, agent: agentName, task, summary: summary ?? sidecar.error ?? "Unknown error", sessionFile, exitCode: 1, elapsedMs, error: sidecar.error };
-  }
   const summary = sessionFile ? findLastAssistant([...getNewEntries(sessionFile, 0)]) : null;
+  if (sidecar.type === "error") {
+    // Keep whatever the subagent produced before failing; the error is
+    // reported separately so it doesn't replace the output.
+    return { name, agent: agentName, task, summary: summary ?? "(no output)", sessionFile, exitCode: 1, elapsedMs, error: sidecar.error };
+  }
+  if (sidecar.type === "ping") {
+    // The sidecar carries the actual ping message — use it as the summary
+    // instead of guessing from the session transcript.
+    return { name, agent: agentName, task, summary: sidecar.message ?? summary ?? "(no output)", sessionFile, exitCode: 0, elapsedMs, ping: sidecar.message };
+  }
   return { name, agent: agentName, task, summary: summary ?? "(no output)", sessionFile, exitCode: 0, elapsedMs };
 }
 
@@ -395,6 +403,21 @@ async function launchSubagent(
 
 // ── Watch (fire-and-forget mode: steer result back when done) ──
 
+function formatResultMessage(result: SubagentResult): string {
+  const elapsed = formatDuration(result.elapsedMs);
+  const ref = result.sessionFile ? `\n\nSession: \`${result.sessionFile}\`` : "";
+  const body = result.summary || "(no output)";
+
+  if (result.error) {
+    // Report the failure without discarding what the subagent produced.
+    return `Subagent "${result.name}" failed (${elapsed}).\n\n${body}\n\nError: ${result.error}${ref}`;
+  }
+  if (result.ping) {
+    return `Subagent "${result.name}" needs help (${elapsed}).\n\n${body}${ref}`;
+  }
+  return `Subagent "${result.name}" completed (${elapsed}).\n\n${body}${ref}`;
+}
+
 async function watchSubagent(
   r: RunningSubagent,
   signal: AbortSignal,
@@ -405,19 +428,10 @@ async function watchSubagent(
   running.delete(r.id);
   refreshWidget();
 
-  const elapsed = formatDuration(result.elapsedMs);
-  const ref = result.sessionFile ? `\n\nSession: \`${result.sessionFile}\`` : "";
-  let text: string;
-  if (result.error) {
-    text = `Subagent "${result.name}" failed (${elapsed}).\n\n${result.error}${ref}`;
-  } else {
-    text = `Subagent "${result.name}" completed (${elapsed}).\n\n${result.summary}${ref}`;
-  }
-
   pi.sendMessage(
     {
       customType: "subagent_result",
-      content: text,
+      content: formatResultMessage(result),
       display: true,
       details: result as any,
     },
@@ -558,13 +572,14 @@ export function createSubagentTool(pi: ExtensionAPI): ToolDefinition<typeof Suba
 
         refreshWidget();
 
-        // Aggregate results
+        // Aggregate results — full summaries, no truncation.
         const successCount = results.filter((r) => r.exitCode === 0).length;
         const summary = results.map((r) => {
           const status = r.exitCode === 0 ? "✓" : "✗";
           const elapsed = formatDuration(r.elapsedMs);
-          const excerpt = r.summary.length > 200 ? r.summary.slice(0, 200) + "…" : r.summary;
-          return `### ${status} ${r.agent}/${r.name} (${elapsed})\n\n${excerpt}`;
+          const body = r.summary || "(no output)";
+          const note = r.error ? `\n\nError: ${r.error}` : "";
+          return `### ${status} ${r.agent}/${r.name} (${elapsed})\n\n${body}${note}`;
         }).join("\n\n---\n\n");
 
         return {

@@ -1,0 +1,20 @@
+id: efx-no-useless-wrapper
+language: TypeScript
+severity: warning
+message: This function is a thin wrapper around `Effect.run*` — call it directly
+note: |
+  A function that just returns `Effect.runSync(effect)` or
+  `Effect.runPromise(effect)` adds indirection without behavior.
+  Call the runtime function directly at the call site.
+  This rule intentionally allows wrappers that add `.pipe(...)` logic
+  (scoped error handling, logging, default options, etc.).
+rule:
+  any:
+    - kind: function_declaration
+      regex: 'Effect\.run(Promise|Sync|Fork|ForkDaemon|ForkScoped|Callback)\([^)]*\)'
+      not:
+        regex: '\.pipe\('
+    - kind: arrow_function
+      regex: 'Effect\.run(Promise|Sync|Fork|ForkDaemon|ForkScoped|Callback)\([^)]*\)'
+      not:
+        regex: '\.pipe\('

@@ -1,0 +1,12 @@
+id: efx-no-process-env
+language: TypeScript
+severity: error
+message: Do not read `process.env` directly — use `Config` for runtime configuration
+note: |
+  Direct `process.env` access bypasses Effect's config system, making values
+  untestable and un-overridable via `ConfigProvider`. Use `Config.string(...)`
+  or similar recipes in layers so config is composable and testable.
+rule:
+  any:
+    - pattern: process.env.$KEY
+    - pattern: process.env[$KEY]

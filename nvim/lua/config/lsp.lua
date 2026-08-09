@@ -44,6 +44,19 @@ vim.lsp.config("harper_ls", {
   filetypes = { "markdown", "typst" }
 })
 
+-- tailwindcss: detect class names inside h.Class('...') calls
+vim.lsp.config("tailwindcss", {
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          'h\\.Class\\([\'"]([^\'"]*)[\'"]\\)',
+        },
+      },
+    },
+  },
+})
+
 local function project_bin(name)
   local cwd = vim.fn.getcwd()
   local bin = vim.fn.findfile("node_modules/.bin/" .. name, cwd .. ";")

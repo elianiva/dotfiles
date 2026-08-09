@@ -1,15 +1,16 @@
 {
-  "lastChangelogVersion": "0.82.1",
+  "lastChangelogVersion": "0.84.1",
   "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-pro",
-  "defaultThinkingLevel": "high",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "max",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
     "npm:@plannotator/pi-extension",
     "npm:@ff-labs/pi-fff",
     "npm:pi-mcp-adapter",
-    "npm:@howaboua/pi-auto-trees"
+    "npm:@howaboua/pi-auto-trees",
+    "npm:pi-dynamic-workflows"
   ],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,
@@ -17,5 +18,8 @@
   "doubleEscapeAction": "tree",
   "enabledModels": [],
   "hideThinkingBlock": false,
-  "treeFilterMode": "default"
+  "treeFilterMode": "default",
+  "fullscreenScrollbar": "always",
+  "tuiMode": "regular",
+  "outputPad": 1
 }

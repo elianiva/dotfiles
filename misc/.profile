@@ -65,3 +65,5 @@ case "$(uname -s)" in
     export IBUS_USE_PORTAL=1
     ;;
 esac
+
+export EXA_API_KEY="436e9f30-422f-4cde-a645-e5a2c1f4c707"

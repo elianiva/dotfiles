@@ -62,6 +62,10 @@ export function checkFile(
     if (!ruleCfg) continue;
     if (!ruleCfg.enabled) continue;
 
+    // Rule's grammar must match the parsed file's language, otherwise
+    // ast-grep rejects the rule's kind matchers (e.g. TS kinds on an HTML tree).
+    if (!ruleAppliesToLang(loaded.rule.language, lang)) continue;
+
     // Check severity threshold
     if (!meetsSeverityThreshold(loaded.rule.severity, ruleCfg.severity_threshold)) {
       continue;
@@ -195,6 +199,19 @@ function parseRuleFile(filePath: string): AstGrepRule | null {
 }
 
 // ─── Helpers ───
+
+/**
+ * Whether a rule declared for `ruleLang` can run against a tree parsed
+ * as `fileLang`. Matches on the ast-grep Lang name (e.g. "TypeScript"),
+ * case-insensitively. Tsx grammar is a superset of TypeScript, so
+ * TypeScript rules also apply to .tsx files.
+ */
+function ruleAppliesToLang(ruleLang: string, fileLang: string): boolean {
+  const rule = ruleLang.toLowerCase();
+  const file = fileLang.toLowerCase();
+  if (rule === file) return true;
+  return file === "tsx" && (rule === "typescript" || rule === "ts");
+}
 
 const SEVERITY_RANK: Record<string, number> = {
   error: 0,
