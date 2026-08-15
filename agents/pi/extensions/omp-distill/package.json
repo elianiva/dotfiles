@@ -4,7 +4,8 @@
   "type": "module",
   "dependencies": {
     "@ast-grep/napi": "^0.37.0",
-    "@mozilla/readability": "^0.6.0",
+    "@pydantic/monty": "^0.0.19",
+    "defuddle": "^0.19.2",
     "linkedom": "^0.16.0",
     "picomatch": "^4.0.5",
     "secure-exec": "^0.3.3",

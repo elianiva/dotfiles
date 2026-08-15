@@ -1,10 +1,13 @@
 id: ts-no-test-timers
 language: TypeScript
-severity: error
-message: Do not use real timers in test files — drive time with fake timers
+severity: hint
+message: Review real timers in test files — prefer fake timers in unit tests
 note: |
-  Real delays add fixed latency to every CI run.
-  Use `vi.useFakeTimers()` and `vi.advanceTimersByTime()` instead.
+  Real delays add fixed latency and flakiness to unit tests.
+  Use `vi.useFakeTimers()` and `vi.advanceTimersByTime()` instead (or
+  `TestClock.adjust` in Effect tests). Integration tests that exercise real
+  I/O — sockets, child processes, databases, cluster — legitimately need real
+  timers; if the test does real I/O, dismiss this hint.
 files:
   - "**/*.test.ts"
   - "**/*.test.tsx"

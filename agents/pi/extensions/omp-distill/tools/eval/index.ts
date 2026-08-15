@@ -1,24 +1,47 @@
 /**
- * eval tool — omp-style persistent JavaScript cells inside a secure-exec VM.
+ * eval tool — omp-style persistent code cells in a sandboxed runtime.
  *
- * Cells run in order; `globalThis`, `var`, and `function` declarations persist
- * across cells and across tool calls within the session (`let`/`const` are
- * per-cell). The guest filesystem is the project cwd (read-write); network is
- * denied; npm packages resolve from the project's node_modules.
+ * Two languages, one API surface:
+ * - `lang: "js"` (default) — JavaScript inside a secure-exec VM. Cells run in
+ *   order; `globalThis`, `var`, and `function` declarations persist across
+ *   cells and across tool calls within the session (`let`/`const` are
+ *   per-cell). The guest filesystem is the project cwd (read-write); network
+ *   is denied; npm packages resolve from the project's node_modules.
+ * - `lang: "python"` — Python inside a Monty sandbox (Rust interpreter,
+ *   microsecond startup). Variables, functions and classes persist across
+ *   cells; top-level await works. Emit output with print() — trailing
+ *   expression values are captured but truncated, so don't return them.
+ *   `/workspace` is the project cwd (read-write,
+ *   open()/pathlib work). No network, no subprocesses, no third-party
+ *   packages (stdlib subset: json, math, re, pathlib, os, sys, datetime,
+ *   dataclasses, asyncio, typing, ...).
+ *
+ * Per-language state: each language keeps its own session; `reset: true`
+ * wipes the state for the cell's language only.
  */
 
 import { Type } from "typebox";
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { EvalBridge } from "./bridge";
-import { getEvalSession, resetEvalSession } from "./vm";
-import type { CellRunResult } from "./repl";
+import { getJsSession, resetJsSession } from "./vm";
+import { getPySession, resetPySession } from "./python/pool";
+import type { EvalSession } from "./vm";
+import type { PyEvalSession } from "./python/pool";
+import type { CellRunResult } from "./types";
 
 const DEFAULT_CELL_TIMEOUT_S = 30;
 const MAX_CELL_TIMEOUT_S = 3600;
 const MIN_CELL_TIMEOUT_S = 1;
 
+const langSchema = Type.Optional(
+  Type.Union([Type.Literal("js"), Type.Literal("python")], {
+    description: 'Cell language (default "js"). Each language keeps its own persistent session state.',
+  }),
+);
+
 const cellSchema = Type.Object({
-  code: Type.String({ description: "JavaScript cell body. Top-level `await` and `return` are supported." }),
+  code: Type.String({ description: "Cell body. Top-level `await` and top-level `return` are supported (js). Python: print output with print() — trailing expression values are captured but truncated by an upstream Monty bug, so return values are not reliable." }),
+  lang: langSchema,
   title: Type.Optional(Type.String({ description: "Short label rendered in the transcript (e.g. \"load config\")" })),
   timeout: Type.Optional(
     Type.Integer({
@@ -28,7 +51,7 @@ const cellSchema = Type.Object({
     }),
   ),
   reset: Type.Optional(
-    Type.Boolean({ description: "Wipe the persistent VM state before running this cell (state persists across cells otherwise)" }),
+    Type.Boolean({ description: "Wipe the cell's language session state before running this cell" }),
   ),
 });
 
@@ -42,6 +65,7 @@ const params = Type.Object({
 type Params = {
   cells: Array<{
     code: string;
+    lang?: "js" | "python";
     title?: string;
     timeout?: number;
     reset?: boolean;
@@ -50,6 +74,7 @@ type Params = {
 
 export interface EvalCellResult {
   code: string;
+  lang: "js" | "python";
   title?: string;
   status: "ok" | "error" | "timeout";
   output: string;
@@ -67,7 +92,7 @@ function renderCells(cells: EvalCellResult[]): string {
   const parts: string[] = [];
   for (let i = 0; i < cells.length; i++) {
     const cell = cells[i];
-    const header = `[${i + 1}/${cells.length}]${cell.title ? ` ${cell.title}` : ""}`;
+    const header = `[${i + 1}/${cells.length}]${cell.title ? ` ${cell.title}` : ""}${cell.lang === "python" ? " python" : ""}`;
     const body: string[] = [header];
     if (cell.output) body.push(cell.output.trimEnd());
     for (const d of cell.displays) {
@@ -79,10 +104,11 @@ function renderCells(cells: EvalCellResult[]): string {
   return parts.join("\n\n");
 }
 
-function toCellResult(input: { code: string; title?: string }, run: CellRunResult): EvalCellResult {
+function toCellResult(input: { code: string; lang?: "js" | "python"; title?: string }, run: CellRunResult): EvalCellResult {
   const output = [run.stdout, run.stderr].filter(Boolean).join("");
   return {
     code: input.code,
+    lang: input.lang ?? "js",
     title: input.title,
     status: run.ok ? "ok" : run.timedOut ? "timeout" : "error",
     output,
@@ -97,26 +123,31 @@ export function createEvalTool(pi: ExtensionAPI) {
     name: "eval",
     label: "Eval",
     executionMode: "sequential" as const,
-    description: `Execute JavaScript code in a persistent, sandboxed runtime (secure-exec VM).
-Cells run in order; state persists across cells and across tool calls within this session (globalThis, var, and function declarations survive; let/const do not). Use reset: true to wipe state. Top-level await and top-level return are supported (the returned value is captured as structured output).
+    description: `Execute JavaScript or Python code cells in a persistent, sandboxed runtime (omp-style eval).
+Cells run in order; state persists within each language across cells and across tool calls within this session. Use reset: true to wipe the cell's language state.
 
-Helpers available inside cells:
-- tool.<name>({...}) — call an agent tool from inside the sandbox. Exposed: ${EvalBridge.toolNames()}. Resolves to the tool's text output, or { text, details } when it returns structured details. Tool calls count against the cell timeout.
-- read(path, { offset?, limit? }) — read a file (relative to the project cwd). Protocol URIs (https://, file://, skill://, pi://, issue://, pr://, conflict://, vault://) are delegated to the read tool.
-- write(path, content) — write a file under the project cwd (protocol paths rejected).
-- display(value) — emit structured JSON output into the transcript.
-- env(name?) — read an allowlisted host env var (PWD, HOME, USER, SHELL, TERM, LANG, PATH).
+Languages (per-cell \`lang\`):
+- "js" (default) — secure-exec VM. globalThis/var/function declarations survive; let/const do not. Top-level await and top-level return are supported (the returned value is captured as structured output). npm packages from the project's node_modules are importable via await import(\`pkg\`).
+- "python" — Monty sandbox (Rust Python 3.14 interpreter; microsecond startup). Variables, functions and classes persist; top-level await works. IMPORTANT: print instead of return — always emit results with print(); the trailing expression value is captured but truncated to {} for dicts by an upstream Monty bug, so never rely on it. /workspace is the project cwd (read-write) — use open()/pathlib. Stdlib subset only: json, math, re, pathlib, os, sys, datetime, dataclasses, asyncio, typing, collections-free (no itertools/collections in 0.0.19); no third-party packages.
 
-Sandbox rules: the guest filesystem is the project cwd (mounted read-write). Network access is denied (fetch fails). Child processes run inside the VM only. Project npm packages are importable via await import(\`pkg\`).
+Helpers inside cells:
+- js: tool.<name>({...}) — exposed: \${EvalBridge.toolNames()}. Python: tool_<name>(...) with positional args or kwargs — bridge calls are async, so await them: await tool_read('/workspace/x.json'), tool_write('/workspace/out.txt', 'text'), tool_edit(path, edits), tool_grep(pattern, {'path': 'src'}), tool_find(pattern), tool_ls('/workspace'), tool_web_search('query').
+- read(path, { offset?, limit? }) — js helper; python uses open()/pathlib on /workspace instead. Protocol URIs (https://, file://, skill://, pi://, issue://, pr://, conflict://, vault://) are delegated to the read tool.
+- write(path, content) — js helper (protocol paths rejected).
+- display(value) — emit structured JSON output into the transcript (both languages).
+- env(name?) — read an allowlisted host env var (PWD, HOME, USER, SHELL, TERM, LANG, PATH); python also sees it via os.getenv/os.environ.
 
-Per-cell timeout defaults to ${DEFAULT_CELL_TIMEOUT_S}s (1..${MAX_CELL_TIMEOUT_S} allowed). On timeout the VM is killed and state is lost.
+Sandbox rules (both languages): the guest filesystem is the project cwd (mounted read-write at /workspace); network access is denied; child processes stay inside the sandbox. Python: no third-party packages and no subprocess at all.
 
-Do NOT shell out to node -e / bun -e via the bash tool for ad-hoc JavaScript — use this tool.`,
-    promptSnippet: "Run JavaScript code cells in a persistent sandboxed runtime (omp-style eval)",
+Per-cell timeout defaults to \${DEFAULT_CELL_TIMEOUT_S}s (1..\${MAX_CELL_TIMEOUT_S} allowed). On timeout the guest process is killed and the language's state is lost.
+
+Do NOT shell out to node -e / bun -e / python -c via the bash tool for ad-hoc snippets — use this tool.`,
+    promptSnippet: "Run JavaScript or Python code cells in a persistent sandboxed runtime (omp-style eval)",
     promptGuidelines: [
-      "Use eval for ad-hoc JavaScript: parsing data, charting, testing snippets — not bash one-liners.",
-      "Cells share state with the session; reset: true wipes it. Prefer several small cells over one giant one.",
-      "Sandboxed code can call tool.<name>() to use read/write/edit/grep/find/ls/web_search, but cannot reach the network directly.",
+      "Use eval for ad-hoc code: parsing data, charting, testing snippets — not bash one-liners.",
+      "Cells share state with the session per language; reset: true wipes the cell's language state. Prefer several small cells over one giant one.",
+      "Python cells: print instead of return — always emit results with print(); trailing-expression/dict return values are truncated to {} by an upstream @pydantic/monty bug and are never captured reliably. No third-party packages; files live under /workspace.",
+      "Sandboxed code can call tool.<name>() / tool_<name>() to use read/write/edit/grep/find/ls/web_search, but cannot reach the network directly.",
     ],
     parameters: params,
 
@@ -134,26 +165,35 @@ Do NOT shell out to node -e / bun -e via the bash tool for ad-hoc JavaScript —
       const cells: EvalCellResult[] = [];
       const jsonOutputs: unknown[] = [];
 
-      let session;
-      try {
-        session = await getEvalSession(sessionId, ctx.cwd);
-      } catch (e) {
-        const message = e instanceof Error ? e.message : String(e);
-        return {
-          content: [{ type: "text" as const, text: `eval unavailable: ${message}` }],
-          details: { cells: [], jsonOutputs: [], isError: true, error: message },
-        };
-      }
+      // Language sessions boot lazily on first use of that language.
+      let jsSession: EvalSession | undefined;
+      let pySession: PyEvalSession | undefined;
 
       for (let i = 0; i < p.cells.length; i++) {
         const input = p.cells[i];
+        const lang = input.lang ?? "js";
         const timeoutMs = clampTimeout(input.timeout);
+        let session: { repl: { runCell(code: string, opts: { timeoutMs: number; signal?: AbortSignal; bridge: (name: string, args: unknown) => Promise<unknown> }): Promise<CellRunResult> } };
+        try {
+          if (lang === "python") {
+            pySession ??= await getPySession(sessionId, ctx.cwd);
+            session = pySession;
+          } else {
+            jsSession ??= await getJsSession(sessionId, ctx.cwd);
+            session = jsSession;
+          }
+        } catch (e) {
+          const message = e instanceof Error ? e.message : String(e);
+          cells.push({ code: input.code, lang, title: input.title, status: "error", output: "", error: `eval unavailable: ${message}`, durationMs: 0, displays: [] });
+          break;
+        }
         if (input.reset) {
           try {
-            await resetEvalSession(session);
+            if (lang === "python") await resetPySession(pySession!);
+            else await resetJsSession(jsSession!);
           } catch (e) {
             const message = e instanceof Error ? e.message : String(e);
-            cells.push({ code: input.code, title: input.title, status: "error", output: "", error: `reset failed: ${message}`, durationMs: 0, displays: [] });
+            cells.push({ code: input.code, lang, title: input.title, status: "error", output: "", error: `reset failed: ${message}`, durationMs: 0, displays: [] });
             break;
           }
         }

@@ -1,0 +1,21 @@
+id: efx-no-native-date
+language: TypeScript
+severity: hint
+message: Use the `DateTime` module instead of native `Date` for current time and parsing
+note: |
+  Effect projects use `DateTime` for testable current time, safe parsing,
+  stable ISO formatting, and calendar arithmetic (see LLMS.md "Working with
+  DateTime"): `Date.now()` maps to `DateTime.now` (or `DateTime.unsafeNow` in
+  sync contexts), `new Date(...)` parsing maps to `DateTime.unsafeParse`.
+  Dismiss when interop with a non-Effect API genuinely requires a native
+  `Date` value. Test files are excluded — real-time poll deadlines in
+  integration tests are standard.
+ignores:
+  - "**/*.test.*"
+  - "**/*.spec.*"
+  - "**/test/**"
+  - "**/tests/**"
+rule:
+  any:
+    - pattern: Date.now($$$)
+    - pattern: new Date($$$)

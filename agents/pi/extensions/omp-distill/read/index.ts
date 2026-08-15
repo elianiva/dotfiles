@@ -54,7 +54,7 @@ Use this INSTEAD of: cat, head, tail, less, more (for file reads), or ls (for di
 Supports:
 - **Files** — local filesystem paths, images (jpg, png, gif, webp, bmp). Prefix with file:// for explicit file paths.
 - **Directories** — lists directory contents when path points to a directory.
-- **URLs** — HTTP/HTTPS web pages (converted to markdown via Readability extraction, with caching and user-agent rotation). Also handles GitHub repos and video content.
+- **URLs** — HTTP/HTTPS web pages (converted to markdown via Defuddle extraction, with caching and user-agent rotation). Also handles GitHub repos and video content.
 - **skill://<name>** — read a skill's SKILL.md file
 - **pi://** — browse pi documentation (README, docs/, examples/)
 - **issue://<number>** — read a GitHub issue
@@ -109,7 +109,7 @@ export function createProtocolReadTool(): ToolDefinition<typeof readSchema, Deta
       "Use read for files, directories, URLs, skill://, pi://, issue://, pr://, conflict://, and vault:// resources",
       "Use read with a directory path to list contents instead of ls",
       "Use offset/limit for large files instead of head/tail",
-      "For web pages, the tool returns markdown-converted content (Readability extraction with UA rotation)",
+      "For web pages, the tool returns markdown-converted content (Defuddle extraction with UA rotation)",
       "GitHub URLs are auto-detected and cloned/extracted via the read tool",
       "skill://<name> — read a skill's SKILL.md file",
       "pi://[path] — browse pi docs (README, docs/, examples/)",

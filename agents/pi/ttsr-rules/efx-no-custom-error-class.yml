@@ -1,11 +1,23 @@
 id: efx-no-custom-error-class
 language: TypeScript
 severity: error
-message: Do not define custom error classes — use `Schema.TaggedErrorClass` instead
+message: Do not define custom error classes — use `Schema.TaggedError` instead
 note: |
   Hand-rolled `class XxxError extends Error` classes miss Effect's typed error
-  model. Use `Schema.TaggedErrorClass` to get `_tag` discrimination, schema
-  encoding, and proper `Cause` integration for free.
+  model. Define errors with `Schema.TaggedError` — the pattern used throughout
+  the Effect codebase and docs (LLMS.md "Error handling", `CliError.ts`):
+
+      export class NotFound extends Schema.TaggedError<NotFound>()("NotFound", {
+        message: Schema.String
+      }) {}
+
+  This gives `_tag` discrimination, schema encoding, and `Effect.catchTag`
+  support for free. For untagged yieldable errors (no `_tag` needed), use
+  `Data.Error`. Note that classes extending `Schema.TaggedError` or
+  `Data.Error` are the correct pattern and are NOT flagged — the rule only
+  fires when a class extends the native `Error` constructor directly.
 rule:
   kind: class_declaration
-  regex: '^\s*class\s+\w*Error\b'
+  has:
+    kind: class_heritage
+    regex: '^extends Error$'

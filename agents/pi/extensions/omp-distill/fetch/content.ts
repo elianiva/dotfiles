@@ -1,12 +1,11 @@
 /**
- * URL content extraction with Readability + turndown.
+ * URL content extraction with Defuddle.
  *
  * Single fetch pipeline used by the read tool's HTTP handler.
- * Features UA rotation, 429 retry, LRU caching, and Readability article extraction.
+ * Features UA rotation, 429 retry, LRU caching, and Defuddle article extraction.
  */
-import { Readability } from "@mozilla/readability";
+import { Defuddle, type DefuddleResponse } from "defuddle/node";
 import { parseHTML } from "linkedom";
-import TurndownService from "turndown";
 import { extractGitHub } from "./github-repo";
 import { signalWithTimeout, readResponseBody, USER_AGENTS, isBotBlocked } from "./http-client";
 import { urlCache } from "./cache";
@@ -15,10 +14,22 @@ const TIMEOUT_MS = 30_000;
 const MAX_RESPONSE_BYTES = 5 * 1024 * 1024;
 const MIN_CONTENT = 500;
 
-const turndown = new TurndownService({
-  headingStyle: "atx",
-  codeBlockStyle: "fenced",
-});
+/**
+ * Defuddle options for `:raw` mode: convert the whole page to markdown with
+ * no article detection, clutter removal, or HTML standardization.
+ */
+const RAW_DEFUDDLE_OPTIONS = {
+  markdown: true,
+  contentSelector: "body",
+  removeExactSelectors: false,
+  removePartialSelectors: false,
+  removeHiddenElements: false,
+  removeLowScoring: false,
+  removeSmallImages: false,
+  removeContentPatterns: false,
+  standardize: false,
+  useAsync: false,
+} as const;
 
 /* ---- Types ---- */
 
@@ -35,7 +46,7 @@ export interface ExtractOptions {
   frames?: number;
   model?: string;
   forceClone?: boolean;
-  /** Skip Readability/turndown, return raw body. */
+  /** Skip article extraction; convert the whole page to markdown. */
   raw?: boolean;
 }
 
@@ -204,37 +215,44 @@ export async function extractContent(
         return { url, title: extractTitle(text, url), content: text, error: null };
       }
 
-      // Raw mode: skip Readability, use turndown on full HTML
+      // Raw mode: skip article extraction, convert the whole page to markdown
       if (options?.raw) {
-        const md = turndown.turndown(text).trim();
+        const { document } = parseHTML(text) as unknown as { document: Document };
+        const result = await Defuddle(document, url, RAW_DEFUDDLE_OPTIONS);
+        const md = result.content.trim();
         urlCache.set(url, md);
         cleanup();
-        return { url, title: extractTitle(md, url), content: md, error: null };
+        return { url, title: result.title || extractTitle(md, url), content: md, error: null };
       }
 
-      // HTML: use Readability for article extraction
+      // HTML: use Defuddle for article extraction + markdown conversion
       const { document } = parseHTML(text) as unknown as { document: Document };
-      const article = new Readability(document).parse();
-
-      if (!article) {
-        const fallback = turndown.turndown(text).trim();
-        urlCache.set(url, fallback);
+      let result: DefuddleResponse;
+      try {
+        result = await Defuddle(document, url, { markdown: true });
+      } catch (err) {
         cleanup();
-        return { url, title: extractTitle(fallback, url), content: fallback, error: "Could not extract readable content" };
+        const message = err instanceof Error ? err.message : String(err);
+        return { url, title: "", content: "", error: `Defuddle extraction failed: ${message}` };
       }
 
-      const markdown = turndown.turndown(article.content);
+      const markdown = result.content;
+
+      if (!markdown.trim()) {
+        cleanup();
+        return { url, title: result.title ?? "", content: markdown, error: "Could not extract readable content" };
+      }
 
       if (markdown.length < MIN_CONTENT) {
         urlCache.set(url, markdown);
         cleanup();
-        return { url, title: article.title ?? "", content: markdown, error: "Extracted content appears incomplete" };
+        return { url, title: result.title ?? "", content: markdown, error: "Extracted content appears incomplete" };
       }
 
       // Cache and return
       urlCache.set(url, markdown);
       cleanup();
-      return { url, title: article.title ?? "", content: markdown, error: null };
+      return { url, title: result.title ?? "", content: markdown, error: null };
     } catch (err) {
       cleanup();
       if (signal?.aborted) return { url, title: "", content: "", error: "Aborted" };

@@ -2,7 +2,7 @@ import LRUCache from "lru-cache";
 
 /**
  * Thin LRU cache wrapper keyed by URL string.
- * Caches the full response body (post-turndown) so repeated reads
+ * Caches the full response body (post-extraction) so repeated reads
  * of the same URL within a session avoid a network round-trip.
  */
 export class UrlCache {

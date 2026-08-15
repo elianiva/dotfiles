@@ -8,7 +8,8 @@ import { setupGrepTool } from "./tools/grep-tool";
 import { createPromptEnhancer } from "./prompt-enhancer";
 import { createSubagentTool } from "./subagent/tool";
 import { createEvalTool } from "./tools/eval";
-import { disposeEvalSession } from "./tools/eval/vm";
+import { disposeJsSession } from "./tools/eval/vm";
+import { disposePySession } from "./tools/eval/python/pool";
 import { setupTtsr, resetTtsr } from "./ttsr";
 
 export default function (pi: ExtensionAPI): void {
@@ -36,6 +37,9 @@ export default function (pi: ExtensionAPI): void {
   pi.on("session_shutdown", (_event, ctx) => {
     resetTtsr();
     const sessionId = ctx.sessionManager.getSessionId();
-    if (sessionId) void disposeEvalSession(sessionId);
+    if (sessionId) {
+      void disposeJsSession(sessionId);
+      void disposePySession(sessionId);
+    }
   });
 }

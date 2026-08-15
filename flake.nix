@@ -126,7 +126,7 @@
               ) config.nix-homebrew.taps;
             })
             ./modules/darwin-config.nix
-            ./modules/iosevka-output.nix
+            ./modules/iosevka.nix
           ];
         };
       };

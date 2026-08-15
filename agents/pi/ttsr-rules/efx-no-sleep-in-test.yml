@@ -1,13 +1,18 @@
 id: efx-no-sleep-in-test
 language: TypeScript
 severity: hint
-message: Review `Effect.sleep` usage — prefer `TestClock` in tests, justify in production
+message: Review `Effect.sleep` in tests — prefer `TestClock.adjust` for deterministic time
 note: |
-  `Effect.sleep` in tests introduces real-time flakiness and slows suites.
-  Use `TestClock.adjust(...)` or `TestClock.yieldNow(...)` for deterministic
-  time in tests. In production code, prefer `Schedule` for pacing.
+  `Effect.sleep` in unit tests introduces real-time flakiness and slows the
+  suite. Drive time deterministically with `TestClock.adjust(...)` (from
+  `effect/testing`), as the Effect test suite does. Integration tests that
+  exercise real I/O (sockets, child processes, cluster, databases) legitimately
+  need real time — if the test does real I/O, dismiss this hint. Production
+  code is not flagged: pacing there belongs to `Schedule`.
+files:
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+  - "**/*.spec.ts"
+  - "**/*.spec.tsx"
 rule:
-  pattern: Effect.sleep($DURATION)
-constraints:
-  DURATION:
-    regex: '.+'
+  pattern: Effect.sleep($$$)

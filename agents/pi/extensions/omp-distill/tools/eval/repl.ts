@@ -10,35 +10,10 @@
 
 import type { NodeRuntime, NodeRuntimeProcess } from "secure-exec";
 import { GUEST_REPL_SOURCE } from "./guest";
+import type { CellRunOptions, CellRunResult } from "./types";
 
 const FRAME_PREFIX = "\u0000omp1:";
 const READY_TIMEOUT_MS = 15_000;
-
-export interface CellRunOptions {
-  /** Wall-clock budget for the cell, including bridge calls (ms). */
-  timeoutMs: number;
-  /**
-   * Abort the cell when this signal fires (user cancel). Destructive: the
-   * guest process is killed and state is lost.
-   */
-  signal?: AbortSignal;
-  /**
-   * Host-side handler for guest bridge calls (`tool.<name>(...)`, `env`).
-   * Must return a JSON-serializable value or throw.
-   */
-  bridge: (name: string, args: unknown) => Promise<unknown>;
-}
-
-export interface CellRunResult {
-  ok: boolean;
-  error?: string;
-  stdout: string;
-  stderr: string;
-  /** Values emitted via display() / captured from top-level return. */
-  displays: unknown[];
-  durationMs: number;
-  timedOut?: boolean;
-}
 
 interface PendingCell {
   result: CellRunResult;

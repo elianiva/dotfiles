@@ -16,7 +16,7 @@ Replaces the built-in `read` with a router that dispatches to protocol handlers:
 
 | Protocol | Description | Source |
 |---|---|---|
-| `https://` | Web pages (Readability extraction, UA rotation, LRU cache, 429 retry) | From oh-my-pi |
+| `https://` | Web pages (Defuddle extraction, UA rotation, LRU cache, 429 retry) | From oh-my-pi |
 | `skill://<name>` | Read a skill's SKILL.md | From oh-my-pi |
 | `pi://[path]` | Browse pi documentation (README, docs/, examples/) | From oh-my-pi |
 | `issue://<N>` | GitHub issue via `gh` CLI (disk-cached) | From oh-my-pi |
@@ -75,19 +75,21 @@ Spawns child pi agents in new herdr tabs for parallel task execution:
 - **Self-spawn prevention** — blocks recursive subagent spawning
 - **Deny tools** — per-agent tool restrictions
 
-### 6. Eval Tool — Persistent Sandboxed JavaScript
+### 6. Eval Tool — Persistent Sandboxed Code (JS + Python)
 
 (`tools/eval/`)
 
-Omp-style code execution: the agent runs JavaScript cells in a **secure-exec sandboxed VM** instead of shelling out:
+Omp-style code execution: the agent runs **JavaScript** cells in a **secure-exec sandboxed VM** or **Python** cells in a **Monty sandbox** (Rust Python interpreter) instead of shelling out. One tool, per-cell `lang`:
 
-- **Persistent session state** — `globalThis`, `var`, and `function` declarations survive across cells and tool calls; `let`/`const` are per-cell (omp parity)
-- **Sandbox policy** — project cwd mounted read-write, project `node_modules` read-only (npm packages importable), **no network**, no host subprocesses
-- **Tool bridge** — `tool.read()` / `tool.write()` / `tool.edit()` / `tool.grep()` / `tool.find()` / `tool.ls()` / `tool.web_search()` route to the real pi tools host-side; `bash`/`eval`/`subagent` are deliberately excluded
-- **Helpers** — `display()`, `read()`, `write()`, `env()`; `reset: true` wipes state
-- **Timeouts** — per-cell (default 30s, clamped 1–3600s, wall-clock including bridge calls); timeout kills and respawns the VM
-- **Batched cells** — `{ cells: [{ code, title?, timeout?, reset? }] }` with streaming `[i/n] title` progress
-- **Lazy lifecycle** — VMs boot on first use (~0.5s) and are disposed on `session_shutdown`
+- **JavaScript** (`lang: "js"`, default) — `globalThis`, `var`, and `function` declarations survive across cells and tool calls; `let`/`const` are per-cell (omp parity); npm packages from the project's `node_modules` are importable
+- **Python** (`lang: "python"`) — variables, functions and classes persist across cells; top-level `await` works; microsecond cell latency (no VM round-trip); **print instead of return** — results are output via `print()`, since trailing-expression return values are truncated to `{}` for dicts by an upstream Monty bug
+- **Sandbox policy (both)** — project cwd mounted read-write at `/workspace`, **no network**, no host subprocesses; Python additionally has no third-party packages (stdlib subset) and no filesystem access outside the mount
+- **Tool bridge** — `tool.read()` / `tool.write()` / `tool.edit()` / `tool.grep()` / `tool.find()` / `tool.ls()` / `tool.web_search()` (js) and `await tool_read(...)` / `tool_write(...)` etc. (python) route to the real pi tools host-side; `bash`/`eval`/`subagent` are deliberately excluded
+- **Helpers** — js: `display()`, `read()`, `write()`, `env()`; python: `display()`, `env()`, `os.getenv`/`os.environ` (allowlisted)
+- **Timeouts** — per-cell (default 30s, clamped 1–3600s, wall-clock including bridge calls); timeout kills the guest process and resets that language's state
+- **Batched cells** — `{ cells: [{ code, lang?, title?, timeout?, reset? }] }` with streaming `[i/n] title` progress; per-language state, `reset: true` wipes one language
+- **Lazy lifecycle** — sessions boot on first use of each language (~0.5s) and are disposed on `session_shutdown`
+- **Python internals** — `tools/eval/python/pool.ts`: one Monty worker pool per session, `feedRun` cells, `externalLookup` bridge, `MountDir` at `/workspace`, worker crash isolation (a segfault kills only the cell's session)
 
 ### 7. GitHub Integration
 
@@ -127,8 +129,8 @@ Read files from an Obsidian vault:
 (`fetch/content.ts`, `fetch/cache.ts`, `fetch/http-client.ts`)
 
 Shared HTTP infrastructure used by the read tool's web handler:
-- **Readability extraction** — article content extraction via `@mozilla/readability`
-- **Markdown conversion** — via `turndown`
+- **Defuddle extraction** — article content + metadata extraction via `defuddle` (site-specific extractors for Reddit, Hacker News, Twitter/X, YouTube, GitHub, etc.)
+- **Markdown conversion** — via defuddle's built-in converter (math, footnotes, callouts, tables)
 - **User-agent rotation** — 3 UAs (Chrome, Firefox, Safari) to avoid bot blocking
 - **LRU cache** — 50-entry in-memory cache keyed by URL
 - **Rate-limit parsing** — extracts retry hints from response headers and body text

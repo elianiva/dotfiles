@@ -3,10 +3,28 @@ language: TypeScript
 severity: error
 message: Do not read `process.env` directly — use `Config` for runtime configuration
 note: |
-  Direct `process.env` access bypasses Effect's config system, making values
-  untestable and un-overridable via `ConfigProvider`. Use `Config.string(...)`
-  or similar recipes in layers so config is composable and testable.
+  Direct `process.env` access in application code bypasses Effect's config
+  system, making values untestable and un-overridable via `ConfigProvider`.
+  Use `Config.string(...)` or similar recipes in layers so config is composable
+  and testable.
+
+  Config files (`vite.config.ts`, `vitest.config.ts`, `eslint.config.*`),
+  test files, scripts, and `e2e/` directories are excluded — reading
+  `process.env` there is standard tooling behavior. Passing env vars to child
+  processes via `effect/unstable/process` is also fine.
+ignores:
+  - "**/*.config.*"
+  - "**/*.test.*"
+  - "**/*.spec.*"
+  - "**/e2e/**"
+  - "**/test/**"
+  - "**/tests/**"
+  - "**/scripts/**"
 rule:
   any:
     - pattern: process.env.$KEY
     - pattern: process.env[$KEY]
+    - kind: variable_declarator
+      has:
+        kind: object_pattern
+      regex: 'process\.env'

@@ -1,11 +1,13 @@
 id: ts-no-inline-cast-access
 language: TypeScript
-severity: error
+severity: hint
 message: Do not assert an inline object type just to read a property
 note: |
   `(value as { content: unknown }).content` trusts an unchecked shape.
-  Validate with a schema parse at trust boundaries, narrow with `in`/`typeof`,
-  or use a validated named type.
+  In Effect projects, validate with a `Schema` parse at trust boundaries;
+  otherwise narrow with `in`/`typeof` or use a validated named type. If the
+  value was already validated upstream (schema parse or a trusted API), the
+  cast is fine — dismiss this hint.
 rule:
   any:
     - pattern: "($X as { $$$BODY }).$PROP"

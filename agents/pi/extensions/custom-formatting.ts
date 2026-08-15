@@ -13,11 +13,13 @@ export default function (pi: ExtensionAPI) {
 
   // Override bold to use 'warning' color (usually yellow/orange)
   Theme.prototype.bold = function(this: Theme, text: string) {
+    if (!this?.fg)  return originalBold(text);
     return originalBold(this.fg("mdHeading", text));
   };
 
   // Override italic to use 'accent' color (usually teal/cyan)
   Theme.prototype.italic = function(this: Theme, text: string) {
+    if (!this?.fg)  return originalItalic(text);
     return originalItalic(this.fg("accent", text));
   };
 

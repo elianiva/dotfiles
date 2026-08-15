@@ -3,13 +3,17 @@ language: TypeScript
 severity: warning
 message: Prefer typed-error recovery over cause-level recovery
 note: |
-  `Effect.catchCause` / `Effect.catchAllCause` expose the full `Cause` value
-  when you only need to handle specific typed errors. Use typed-error
-  combinators (`Effect.catchTag`, `Effect.catchTags`, `Effect.catchIf`) unless
-  you genuinely need to inspect defect or interrupt semantics.
+  `Effect.catchCause` / `Effect.catchCauseIf` / `Effect.catchCauseFilter`
+  expose the full `Cause` value when you only need to handle specific typed
+  errors. Use typed-error combinators (`Effect.catchTag`, `Effect.catchTags`,
+  `Effect.catchIf`, `Effect.catchFilter`) unless you genuinely need to inspect
+  defect or interrupt semantics — e.g. resource cleanup, cause mapping, or
+  implementing library internals (the Effect codebase itself uses
+  `catchCause` in those cases). (In v4, `catchAllCause` was renamed to
+  `catchCause`, and `catchCauseIf` / `catchCauseFilter` are the filtered
+  cause-level variants.)
 rule:
   any:
     - pattern: Effect.catchCause($$$)
-    - pattern: Effect.catchAllCause($$$)
-    - pattern: $X.pipe(Effect.catchCause($$$))
-    - pattern: $X.pipe(Effect.catchAllCause($$$))
+    - pattern: Effect.catchCauseIf($$$)
+    - pattern: Effect.catchCauseFilter($$$)

@@ -46,13 +46,13 @@ function buildMounts(cwd: string): Array<{ guestPath: string; hostPath: string; 
  * the VM survives, only the guest process is restarted, so state is lost but
  * boot latency stays low.
  */
-export async function getEvalSession(sessionId: string, cwd: string): Promise<EvalSession> {
+export async function getJsSession(sessionId: string, cwd: string): Promise<EvalSession> {
   const existing = sessions.get(sessionId);
   if (existing && existing.cwd === cwd && !existing.repl.isDead()) {
     return existing;
   }
   if (existing) {
-    await disposeEvalSession(sessionId);
+    await disposeJsSession(sessionId);
   }
   const runtime = await NodeRuntime.create({
     cwd: "/workspace",
@@ -65,13 +65,13 @@ export async function getEvalSession(sessionId: string, cwd: string): Promise<Ev
 }
 
 /** Wipe a session's VM state: kill the REPL and start a fresh one. */
-export async function resetEvalSession(session: EvalSession): Promise<void> {
+export async function resetJsSession(session: EvalSession): Promise<void> {
   session.repl.kill();
   session.repl = await Repl.start(session.runtime);
 }
 
 /** Tear down a session's VM entirely. */
-export async function disposeEvalSession(sessionId: string): Promise<void> {
+export async function disposeJsSession(sessionId: string): Promise<void> {
   const session = sessions.get(sessionId);
   if (!session) return;
   sessions.delete(sessionId);
@@ -85,7 +85,7 @@ export async function disposeEvalSession(sessionId: string): Promise<void> {
 }
 
 /** Tear down every VM (used defensively; session events cover normal use). */
-export async function disposeAllEvalSessions(): Promise<void> {
+export async function disposeAllJsSessions(): Promise<void> {
   const ids = [...sessions.keys()];
-  await Promise.all(ids.map((id) => disposeEvalSession(id)));
+  await Promise.all(ids.map((id) => disposeJsSession(id)));
 }

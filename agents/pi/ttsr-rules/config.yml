@@ -25,7 +25,6 @@ projects:
       - ts-no-test-timers
       - ts-promise-with-resolvers
       - ts-redundant-clear-guard
-      - ts-set-map
       # New additions
       - ts-no-await-in-promise-all
       - ts-no-console-log
@@ -46,10 +45,8 @@ projects:
       dependency: ["effect"]
     enable:
       - efx-no-custom-error-class
-      - efx-no-schema-class
-      - efx-no-schema-tagged-class
+      - efx-no-native-date
       - efx-no-process-env
       - efx-no-cause-recovery
       - efx-no-sleep-in-test
-      - efx-no-merge-all
       - efx-no-useless-wrapper

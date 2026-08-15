@@ -1,20 +1,23 @@
 id: efx-no-useless-wrapper
 language: TypeScript
-severity: warning
-message: This function is a thin wrapper around `Effect.run*` — call it directly
+severity: hint
+message: This arrow is a pure pass-through to `Effect.run*` — call the runtime function directly
 note: |
-  A function that just returns `Effect.runSync(effect)` or
-  `Effect.runPromise(effect)` adds indirection without behavior.
-  Call the runtime function directly at the call site.
-  This rule intentionally allows wrappers that add `.pipe(...)` logic
-  (scoped error handling, logging, default options, etc.).
+  An arrow that takes one effect and returns `Effect.runSync(e)` /
+  `Effect.runPromise(e)` — with the exact same argument, no `.pipe(...)`, no
+  layers, no options — is pure indirection. Call the runtime function at the
+  call site instead. For process entry points, use `NodeRuntime.runMain` /
+  `BunRuntime.runMain` (or `Layer.launch` for long-running programs).
+
+  This rule intentionally only matches single-parameter expression-body arrows
+  whose argument is passed through untouched. Test hooks, entry points,
+  typed/async helpers, and wrappers that add `.pipe(...)` / `.provide(...)`
+  logic are NOT flagged — if you wrote a pass-through helper deliberately for
+  readability, dismiss this hint.
 rule:
   any:
-    - kind: function_declaration
-      regex: 'Effect\.run(Promise|Sync|Fork|ForkDaemon|ForkScoped|Callback)\([^)]*\)'
-      not:
-        regex: '\.pipe\('
-    - kind: arrow_function
-      regex: 'Effect\.run(Promise|Sync|Fork|ForkDaemon|ForkScoped|Callback)\([^)]*\)'
-      not:
-        regex: '\.pipe\('
+    - pattern: "($ARG) => Effect.runSync($ARG)"
+    - pattern: "($ARG) => Effect.runPromise($ARG)"
+    - pattern: "($ARG) => Effect.runSyncExit($ARG)"
+    - pattern: "($ARG) => Effect.runPromiseExit($ARG)"
+    - pattern: "($ARG) => Effect.runFork($ARG)"
