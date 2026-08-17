@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
   "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-flash",
+  "defaultModel": "gpt-5.6-luna",
   "defaultThinkingLevel": "max",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
