@@ -17,8 +17,8 @@ export def bash-env [
   }
 
   let input_str = $in | default "" | str join "\n"
-  let raw = $input_str | bash-env-json ...($fn_args ++ $path_args) | complete
-  let raw_json = $raw.stdout | from json
+  let raw = do { $input_str | ^bash-env-json ...($fn_args ++ $path_args) } | complete
+  let raw_json = $raw.stdout | into string | from json
 
   let error = $raw_json | get -o error
   if $error != null {

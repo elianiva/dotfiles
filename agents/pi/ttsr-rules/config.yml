@@ -42,7 +42,7 @@ projects:
   # Effect projects
   - detect:
       language: ["ts", "tsx"]
-      dependency: ["effect"]
+      hasDep: ["effect"]
     enable:
       - efx-no-custom-error-class
       - efx-no-native-date

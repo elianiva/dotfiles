@@ -1,7 +1,6 @@
 ---
 name: reviewer
 description: Reviews code for bugs, security issues, correctness, and style
-model: opencode-go/deepseek-v4-flash
 tools: read,grep,find,ls
 auto-exit: true
 session-mode: standalone

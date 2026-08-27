@@ -169,6 +169,21 @@
         "type": "github"
       }
     },
+    "homebrew-onevcat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786754390,
+        "owner": "onevcat",
+        "repo": "homebrew-tap",
+        "rev": "b34c734e94ac4417978e1260bc246f964e51d32f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "onevcat",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
     "iosevka-upstream": {
       "flake": false,
       "locked": {
@@ -351,6 +366,7 @@
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "homebrew-onevcat": "homebrew-onevcat",
         "ioshelfka": "ioshelfka",
         "jj-starship": "jj-starship",
         "nix-darwin": "nix-darwin",

@@ -28,6 +28,9 @@
     homebrew-barutsrb.url = "github:BarutSRB/homebrew-tap";
     homebrew-barutsrb.flake = false;
 
+    homebrew-onevcat.url = "github:onevcat/homebrew-tap";
+    homebrew-onevcat.flake = false;
+
     # fenix for rust
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -101,6 +104,7 @@
                   "homebrew/homebrew-cask" = inputs.homebrew-cask;
                   "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
                   "BarutSRB/homebrew-tap" = inputs.homebrew-barutsrb;
+                  "onevcat/homebrew-tap" = inputs.homebrew-onevcat;
                 };
                 mutableTaps = false;
                 autoMigrate = true;

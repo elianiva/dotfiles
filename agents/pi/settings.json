@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.84.3",
   "defaultProvider": "opencode-go",
-  "defaultModel": "gpt-5.6-luna",
-  "defaultThinkingLevel": "max",
+  "defaultModel": "ox-alpha-free",
+  "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
   "packages": [
@@ -18,7 +18,7 @@
   "hideThinkingBlock": false,
   "treeFilterMode": "default",
   "fullscreenScrollbar": "always",
-  "tuiMode": "regular",
+  "tuiMode": "fullscreen",
   "outputPad": 1,
   "showCacheMissNotices": true
 }

@@ -1,22 +1,33 @@
 {
   "providers": {
-    "orcarouter": {
-      "baseUrl": "https://api.orcarouter.ai/v1",
-      "api": "openai-completions",
-      "apiKey": "$ORCA_KEY",
-      "authHeader": true,
+    "opencode-go": {
+      "baseUrl": "https://opencode.ai/zen/go/v1",
+      "api": "openai-responses",
       "models": [
         {
-          "id": "tencent/hy3",
-          "name": "Tencent Hy3",
+          "id": "muse-spark-1.2-contributor",
+          "name": "Muse Spark 1.2 Contributor",
           "reasoning": true,
-          "input": ["text"],
-          "contextWindow": 200000,
-          "maxTokens": 8192,
+          "input": ["text", "image"],
+          "cost": {
+            "input": 0.1,
+            "output": 0.2,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": true,
-            "maxTokensField": "max_tokens"
+            "sessionAffinityFormat": "openai-nosession"
+          },
+          "contextWindow": 1048576,
+          "maxTokens": 131072,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "minimal",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": null
           }
         }
       ]

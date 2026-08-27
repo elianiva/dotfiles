@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # Commit Skill
 
+Commit based on previous conversation if there's any, otherwise check the diff.
+
 ## Detection
 
 ```bash

@@ -39,30 +39,34 @@ function formatDuration(ms: number): string {
 
 // ── Module reload safety ──
 
-const WIDGET_KEY = Symbol.for("pi-subagent/widget");
-const STATUS_KEY = Symbol.for("pi-subagent/status");
-const ABORT_KEY = Symbol.for("pi-subagent/abort");
+/** Module-level state kept on globalThis so hot reloads can clean up. */
+interface SubagentGlobalState {
+  abortController: AbortController;
+  widgetTimer?: NodeJS.Timeout;
+  statusTimer?: NodeJS.Timeout;
+}
 
-function getAbortSignal(): AbortSignal {
-  let ctrl = (globalThis as any)[ABORT_KEY] as AbortController | undefined;
-  if (!ctrl) {
-    ctrl = new AbortController();
-    (globalThis as any)[ABORT_KEY] = ctrl;
-  }
-  return ctrl.signal;
+const STATE_KEY = Symbol.for("pi-subagent/state");
+
+const globalState = globalThis as unknown as Record<symbol, SubagentGlobalState | undefined>;
+
+function getState(): SubagentGlobalState {
+  const existing = globalState[STATE_KEY];
+  if (existing) return existing;
+  const fresh = { abortController: new AbortController() };
+  globalState[STATE_KEY] = fresh;
+  return fresh;
 }
 
 // On reload: kill old state
 {
-  const p = (globalThis as any)[ABORT_KEY] as AbortController | undefined;
-  if (p) p.abort();
-  (globalThis as any)[ABORT_KEY] = new AbortController();
-  const w = (globalThis as any)[WIDGET_KEY] as ReturnType<typeof setInterval> | undefined;
-  if (w) clearInterval(w);
-  (globalThis as any)[WIDGET_KEY] = null;
-  const s = (globalThis as any)[STATUS_KEY] as ReturnType<typeof setInterval> | undefined;
-  if (s) clearInterval(s);
-  (globalThis as any)[STATUS_KEY] = null;
+  const prev = globalState[STATE_KEY];
+  if (prev) {
+    prev.abortController.abort();
+    if (prev.widgetTimer) clearInterval(prev.widgetTimer);
+    if (prev.statusTimer) clearInterval(prev.statusTimer);
+  }
+  globalState[STATE_KEY] = { abortController: new AbortController() };
 }
 
 // ── Constants ──
@@ -70,6 +74,7 @@ function getAbortSignal(): AbortSignal {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CHILD_EXT_PATH = join(__dirname, "..", "subagent-child", "index.ts");
 const SENTINEL_RE = /__DELEGATE_DONE_(\d+)__/;
+const BUILTIN_TOOLS = ["read", "bash", "edit", "write", "grep", "find", "ls"];
 
 // ── Tool params ──
 
@@ -137,6 +142,12 @@ function getShellDelay(): number {
   return Number.isFinite(n) && n >= 0 ? n : 500;
 }
 
+function sleep(ms: number): Promise<void> {
+  const { promise, resolve } = Promise.withResolvers<void>();
+  setTimeout(resolve, ms);
+  return promise;
+}
+
 function getSessionDir(cwd: string): string {
   const agentDir = process.env.PI_CODING_AGENT_DIR ?? join(homedir(), ".pi", "agent");
   const safe = `--${cwd.replace(/^[/\\]/, "").replace(/[/\\:]/g, "-")}--`;
@@ -200,12 +211,12 @@ async function pollForDone(
     const sidecar = readSidecar(sessionFile);
     if (sidecar) return resultFromSidecar(sidecar, agentName, name, task, sessionFile, startTime);
 
-    // Slow: sentinel in pane output
-    try {
-      const output = await readOutputAsync(paneId, 5);
+    // Slow: sentinel in pane output. A closed pane rejects — treat as no output.
+    const output = await readOutputAsync(paneId, 5).catch(() => undefined);
+    if (output !== undefined) {
       const m = output.match(SENTINEL_RE);
       if (m) {
-        await new Promise((r2) => setTimeout(r2, 300));
+        await sleep(300);
         const late = readSidecar(sessionFile);
         if (late) return resultFromSidecar(late, agentName, name, task, sessionFile, startTime);
 
@@ -214,11 +225,9 @@ async function pollForDone(
           "(no output)";
         return { name, agent: agentName, task, summary, sessionFile, exitCode: parseInt(m[1], 10), elapsedMs: Date.now() - startTime };
       }
-    } catch {
-      // pane gone — keep polling, sidecar might arrive
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await sleep(1000);
   }
 
   return { name, agent: agentName, task, summary: "Cancelled", sessionFile, exitCode: 1, elapsedMs: Date.now() - startTime, error: "cancelled" };
@@ -236,7 +245,7 @@ function refreshWidget() {
 
   latestCtx.ui.setWidget(
     "subagent-status",
-    (_tui: any, _theme: any) => ({
+    (_tui, _theme) => ({
       invalidate() {},
       render(width: number) {
         const agents: WidgetAgent[] = Array.from(running.values()).map((r) => ({
@@ -253,16 +262,17 @@ function refreshWidget() {
 }
 
 function startWidget() {
-  if ((globalThis as any)[WIDGET_KEY]) return;
+  const st = getState();
+  if (st.widgetTimer) return;
   refreshWidget();
-  const timer = setInterval(refreshWidget, 1000);
-  (globalThis as any)[WIDGET_KEY] = timer;
+  st.widgetTimer = setInterval(refreshWidget, 1000);
 }
 
 function startStatusMonitor(pi: ExtensionAPI) {
-  if ((globalThis as any)[STATUS_KEY]) return;
+  const st = getState();
+  if (st.statusTimer) return;
 
-  const timer = setInterval(() => {
+  st.statusTimer = setInterval(() => {
     if (running.size === 0) return;
 
     const now = Date.now();
@@ -275,8 +285,6 @@ function startStatusMonitor(pi: ExtensionAPI) {
 
     refreshWidget();
   }, 2000);
-
-  (globalThis as any)[STATUS_KEY] = timer;
 }
 
 // ── Launch ──
@@ -294,7 +302,7 @@ async function launchSubagent(
   const sessionDir = getSessionDir(cwd);
   mkdirSync(sessionDir, { recursive: true });
 
-  const ts = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 23) + "Z";
+  const ts = `${new Date().toISOString().replace(/[:.]/g, "-").slice(0, 23)}Z`;
   const uuid = [id, Math.random().toString(16).slice(2, 10), Math.random().toString(16).slice(2, 10), Math.random().toString(16).slice(2, 6)].join("-");
   const sessionFile = join(sessionDir, `${ts}_${uuid}.jsonl`);
   const artifactDir = getArtifactDir(sessionDir, id);
@@ -337,13 +345,14 @@ async function launchSubagent(
   // Build pi command
   const piArgs = ["pi", "--session", shellQuote(sessionFile), "-e", shellQuote(CHILD_EXT_PATH)];
 
-  const effectiveModel = params.model ?? agentDef?.model;
+  // Model precedence: explicit override → agent definition → primary's current model.
+  const inheritedModel = ctx.model ? `${ctx.model.provider}/${ctx.model.id}` : undefined;
+  const effectiveModel = params.model ?? agentDef?.model ?? inheritedModel;
   if (effectiveModel) piArgs.push("--model", shellQuote(effectiveModel));
 
   const effectiveTools = agentDef?.tools;
   if (effectiveTools) {
-    const BUILTIN_TOOLS = new Set(["read", "bash", "edit", "write", "grep", "find", "ls"]);
-    const builtins = effectiveTools.split(",").map((t) => t.trim()).filter((t) => BUILTIN_TOOLS.has(t));
+    const builtins = effectiveTools.split(",").map((t) => t.trim()).filter((t) => BUILTIN_TOOLS.includes(t));
     if (builtins.length > 0) {
       piArgs.push("--tools", shellQuote(builtins.join(",")));
     }
@@ -369,17 +378,17 @@ async function launchSubagent(
     envParts.push(`PI_DENY_TOOLS=${shellQuote([...denySet].join(","))}`);
   }
 
-  const envPrefix = envParts.join(" ") + " ";
+  const envPrefix = `${envParts.join(" ")} `;
   const scriptLines = [
     "#!/bin/bash",
     `cd ${shellQuote(cwd)}`,
     `${envPrefix}${piArgs.join(" ")}`,
     `echo __DELEGATE_DONE_$?__`,
   ];
-  writeFileSync(scriptPath, scriptLines.join("\n") + "\n", { mode: 0o755 });
+  writeFileSync(scriptPath, `${scriptLines.join("\n")}\n`, { mode: 0o755 });
 
   // Brief delay for shell startup
-  await new Promise((resolve) => setTimeout(resolve, getShellDelay()));
+  await sleep(getShellDelay());
 
   runCommand(paneId, `bash ${shellQuote(scriptPath)}`);
 
@@ -433,7 +442,7 @@ async function watchSubagent(
       customType: "subagent_result",
       content: formatResultMessage(result),
       display: true,
-      details: result as any,
+      details: result,
     },
     { triggerTurn: true, deliverAs: "steer" },
   );
@@ -458,24 +467,22 @@ async function runSingleAndWait(
 
 export function createSubagentTool(pi: ExtensionAPI): ToolDefinition<typeof SubagentParams> {
   // Respect PI_DENY_TOOLS (set by parent agent for spawning control)
-  const deniedTools = new Set(
-    (process.env.PI_DENY_TOOLS ?? "")
-      .split(",")
-      .map((s) => s.trim())
-      .filter(Boolean),
-  );
+  const deniedTools = (process.env.PI_DENY_TOOLS ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
 
-  if (deniedTools.has("subagent")) {
+  if (deniedTools.includes("subagent")) {
     return {
       name: "subagent",
       label: "Subagent",
       description: "Spawn a subagent in a new herdr tab.",
-      parameters: Type.Object({ task: Type.String() }),
+      parameters: SubagentParams,
       execute: async () => ({
         content: [{ type: "text", text: "subagent is disabled for this agent." }],
         details: { error: "denied" },
       }),
-    } as any;
+    };
   }
 
   // Capture context for widget
@@ -485,12 +492,11 @@ export function createSubagentTool(pi: ExtensionAPI): ToolDefinition<typeof Suba
 
   // Cleanup
   pi.on("session_shutdown", () => {
-    const w = (globalThis as any)[WIDGET_KEY] as ReturnType<typeof setInterval> | undefined;
-    if (w) clearInterval(w);
-    (globalThis as any)[WIDGET_KEY] = null;
-    const s = (globalThis as any)[STATUS_KEY] as ReturnType<typeof setInterval> | undefined;
-    if (s) clearInterval(s);
-    (globalThis as any)[STATUS_KEY] = null;
+    const st = getState();
+    if (st.widgetTimer) clearInterval(st.widgetTimer);
+    st.widgetTimer = undefined;
+    if (st.statusTimer) clearInterval(st.statusTimer);
+    st.statusTimer = undefined;
     // Abort all running subagents
     for (const r of running.values()) {
       r.abortController.abort();
@@ -502,17 +508,17 @@ export function createSubagentTool(pi: ExtensionAPI): ToolDefinition<typeof Suba
     name: "subagent",
     label: "Subagent",
     description:
-      "Spawn a pi subagent in a new herdr tab. Use for delegation — fire off independent exploration or scouting tasks. " +
-      "Two modes:\n" +
-      "1. Single mode (task + agent) — fire-and-forget: returns immediately, result steered back when done. Do NOT poll.\n" +
-      "2. Parallel mode (tasks array) — blocks until all complete, returns aggregated results.\n\n" +
-      "When to use:\n" +
-      "- Delegate codebase recon to a scout while you focus on implementation\n" +
-      "- Fire multiple scouts in parallel (each exploring different areas) for faster research\n" +
-      "- Delegate a code review to reviewer while continuing to code\n" +
-      "- Split large tasks into parallel work streams with multiple workers\n\n" +
-      "Multiple single-mode subagents can run concurrently — fire several at once. " +
-      "For parallel exploration, prefer the tasks array (blocking) when you need all answers before proceeding.",
+      `Spawn a pi subagent in a new herdr tab. Use for delegation — fire off independent exploration or scouting tasks. Two modes:\n\
+1. Single mode (task + agent) — fire-and-forget: returns immediately, result steered back when done. Do NOT poll.\n\
+2. Parallel mode (tasks array) — blocks until all complete, returns aggregated results.\n\
+\
+When to use:\n\
+- Delegate codebase recon to a scout while you focus on implementation\n\
+- Fire multiple scouts in parallel (each exploring different areas) for faster research\n\
+- Delegate a code review to reviewer while continuing to code\n\
+- Split large tasks into parallel work streams with multiple workers\n\
+\
+Multiple single-mode subagents can run concurrently — fire several at once. For parallel exploration, prefer the tasks array (blocking) when you need all answers before proceeding.`,
     parameters: SubagentParams,
     execute: async (_toolCallId, params, signal, _onUpdate, ctx) => {
       if (!isHerdrAvailable()) {

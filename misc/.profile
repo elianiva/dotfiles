@@ -32,7 +32,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.radicle/bin:$PATH"
 
 # vite-plus
-. "$HOME/.vite-plus/env"
 
 export GPG_TTY=$(tty)
 
@@ -67,3 +66,6 @@ case "$(uname -s)" in
 esac
 
 export EXA_API_KEY="436e9f30-422f-4cde-a645-e5a2c1f4c707"
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
