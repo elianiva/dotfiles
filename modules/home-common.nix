@@ -171,5 +171,9 @@ in
       source = link "${dotfiles}/agents/pi/ttsr-rules";
       recursive = true;
     };
+    "${pi}/agents" = {
+      source = link "${dotfiles}/agents/pi/agents";
+      recursive = true;
+    };
   };
 }

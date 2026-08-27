@@ -8,7 +8,8 @@
   "packages": [
     "npm:@ff-labs/pi-fff",
     "npm:pi-mcp-adapter",
-    "npm:@howaboua/pi-auto-trees"
+    "npm:@howaboua/pi-auto-trees",
+    "/Users/elianiva/.dotfiles/agents/pi/extensions/pi-pstack"
   ],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,

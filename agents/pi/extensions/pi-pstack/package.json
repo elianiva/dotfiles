@@ -1,0 +1,17 @@
+{
+  "name": "pi-pstack",
+  "version": "0.1.0",
+  "description": "Pi-native port of Cursor pstack skills, sticky Poteto Mode, and isolated subagents.",
+  "license": "MIT",
+  "keywords": ["pi-package", "pi", "skills", "subagent", "pstack"],
+  "files": ["extensions", "skills", "agents", "README.md", "LICENSE"],
+  "pi": {
+    "extensions": ["./extensions/pstack/index.ts"],
+    "skills": ["./skills"]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  }
+}
