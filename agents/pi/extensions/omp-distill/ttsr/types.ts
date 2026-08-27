@@ -99,10 +99,27 @@ export interface Violation {
   lineEnd?: number;
 }
 
+/** File extensions that belong to the JavaScript/TypeScript family. */
+export const JS_TS_EXTS = new Set([
+  "js",
+  "jsx",
+  "mjs",
+  "cjs",
+  "ts",
+  "tsx",
+  "mts",
+  "cts",
+]);
+
+/** ast-grep Lang values for the JavaScript/TypeScript family. */
+export const JS_TS_LANGS = new Set(["JavaScript", "TypeScript", "Tsx"]);
+
 /** Language extension mapping: file extension → ast-grep Lang enum value. */
 export const EXT_TO_LANG: Record<string, string> = {
   ts: "TypeScript",
   tsx: "Tsx",
+  mts: "TypeScript",
+  cts: "TypeScript",
   js: "JavaScript",
   jsx: "JavaScript",
   cjs: "JavaScript",

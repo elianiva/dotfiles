@@ -6,12 +6,13 @@
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { isAbsolute, join as pathJoin, relative as pathRelative } from "node:path";
+import { extname, isAbsolute, join as pathJoin, relative as pathRelative } from "node:path";
 import { homedir } from "node:os";
 import { loadConfig, resolveRules } from "./config";
 import { checkFile } from "./checker";
 import { isNapiAvailable } from "./napi";
 import type { Violation } from "./types";
+import { JS_TS_EXTS } from "./types";
 
 // ─── Constants ───
 
@@ -72,6 +73,10 @@ export function setupTtsr(pi: ExtensionAPI, cwd: string): void {
     const input = event.input as { path?: string; filePath?: string };
     const rawPath = input?.path ?? input?.filePath;
     if (!rawPath) return;
+
+    // Only run for JavaScript/TypeScript files
+    const ext = extname(rawPath).toLowerCase().slice(1);
+    if (!JS_TS_EXTS.has(ext)) return;
 
     // Resolve relative paths against cwd
     const filePath = isAbsolute(rawPath) ? rawPath : pathJoin(ctx.cwd, rawPath);

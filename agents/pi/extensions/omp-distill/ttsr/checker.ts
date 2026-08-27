@@ -16,7 +16,7 @@ import type {
   ResolvedRuleConfig,
   Violation,
 } from "./types";
-import { EXT_TO_LANG } from "./types";
+import { EXT_TO_LANG, JS_TS_LANGS } from "./types";
 import { parseSource, findMatches } from "./napi";
 
 // ─── Public API ───
@@ -36,7 +36,7 @@ export function checkFile(
 ): Violation[] {
   const ext = extname(filePath).toLowerCase().slice(1);
   const lang = EXT_TO_LANG[ext];
-  if (!lang) return [];
+  if (!lang || !JS_TS_LANGS.has(lang)) return [];
 
   // Read the file content
   let source: string;
@@ -112,7 +112,9 @@ export function checkFile(
  */
 export function getLangForFile(filePath: string): string | undefined {
   const ext = extname(filePath).toLowerCase().slice(1);
-  return EXT_TO_LANG[ext];
+  const lang = EXT_TO_LANG[ext];
+  if (!lang || !JS_TS_LANGS.has(lang)) return undefined;
+  return lang;
 }
 
 // ─── Rule loading ───

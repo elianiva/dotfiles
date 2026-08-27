@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.3",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "ox-alpha-free",
+  "defaultProvider": "opencode",
+  "defaultModel": "muse-spark-1.2-contributor-free",
   "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
