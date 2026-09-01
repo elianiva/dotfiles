@@ -4,7 +4,7 @@
  * Resolves `skill://<name>` to the skill's SKILL.md content.
  * Falls back to scanning project + global skill dirs.
  */
-import { loadSkills, getAgentDir } from "@earendil-works/pi-coding-agent";
+import { loadSkills, getAgentDir, SettingsManager, DefaultPackageManager } from "@earendil-works/pi-coding-agent";
 
 export interface SkillResult {
   content: string;
@@ -21,10 +21,20 @@ export async function resolveSkill(raw: string, cwd: string): Promise<SkillResul
   if (!host) throw new Error("skill:// URL requires a skill name. Usage: skill://<name>");
 
   const agentDir = getAgentDir();
+  let packageSkillPaths: string[] = [];
+  try {
+    const sm = SettingsManager.create(cwd, agentDir);
+    await sm.reload();
+    const pm = new DefaultPackageManager({ cwd, agentDir, settingsManager: sm });
+    const resolved = await pm.resolve();
+    packageSkillPaths = resolved.skills.filter((r) => r.enabled).map((r) => r.path);
+  } catch {
+    // fallback to defaults only
+  }
   const { skills } = loadSkills({
     cwd,
     agentDir,
-    skillPaths: [],
+    skillPaths: packageSkillPaths,
     includeDefaults: true,
   });
 

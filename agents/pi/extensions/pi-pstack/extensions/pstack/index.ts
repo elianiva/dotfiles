@@ -51,9 +51,16 @@ export default function (pi: ExtensionAPI) {
   });
 
   pi.on("before_agent_start", (event) => {
-    if (!potetoMode) return;
+    const isPotetoSubagent = process.env.PI_SUBAGENT_AGENT === "poteto-agent";
+    if (!potetoMode && !isPotetoSubagent) return;
+    const skillPath = path.join(packageRoot(), "skills/poteto-mode/SKILL.md");
+    if (isPotetoSubagent && !potetoMode) {
+      return {
+        systemPrompt: `${event.systemPrompt}\n\nYou are running as poteto-agent. Read the poteto-mode skill in full before any work, including its inline Principles index. The full skill is at ${skillPath}. Also read skill://poteto-mode via the read tool if available.`,
+      };
+    }
     return {
-      systemPrompt: `${event.systemPrompt}\n\nPstack Poteto Mode is enabled for this session. Follow its persisted workflow: use pstack_todo for non-trivial work, select and read the matching playbook, delegate through the subagent tool (provided by omp-distill) when delegation helps, verify real behavior, and name only principles that changed a decision. The full skill is at ${path.join(packageRoot(), "skills/poteto-mode/SKILL.md")}.`,
+      systemPrompt: `${event.systemPrompt}\n\nPstack Poteto Mode is enabled for this session. Follow its persisted workflow: use pstack_todo for non-trivial work, select and read the matching playbook, delegate through the subagent tool (provided by omp-distill) when delegation helps, verify real behavior, and name only principles that changed a decision. The full skill is at ${skillPath}.`,
     };
   });
 
