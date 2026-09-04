@@ -5,12 +5,7 @@
   "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
-  "packages": [
-    "npm:@ff-labs/pi-fff",
-    "npm:pi-mcp-adapter",
-    "npm:@howaboua/pi-auto-trees",
-    "/Users/elianiva/.dotfiles/agents/pi/extensions/pi-pstack"
-  ],
+  "packages": ["npm:@ff-labs/pi-fff", "npm:pi-mcp-adapter", "npm:@howaboua/pi-auto-trees"],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,
   "transport": "auto",

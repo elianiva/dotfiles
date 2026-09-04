@@ -20,7 +20,6 @@ _:
   # Tools
   "bitwarden"
   "stats"
-  "jordanbaird-ice@beta"
   "blip"
 
   # Keyboard remapping (handles all keyboards, not just built-in)

@@ -1,0 +1,198 @@
+{
+  "managedBy": "bb-plugin-pstack",
+  "updated": "2026-09-04T05:50:13.182Z",
+  "skills": {
+    "architect": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/architect"
+    },
+    "arena": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/arena"
+    },
+    "automate-me": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/automate-me"
+    },
+    "blast-radius": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/blast-radius"
+    },
+    "bro": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/bro"
+    },
+    "comment-sicko": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/comment-sicko"
+    },
+    "create-verification-skill": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/create-verification-skill"
+    },
+    "example-todos": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/example-todos"
+    },
+    "figure-it-out": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/figure-it-out"
+    },
+    "how": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/how"
+    },
+    "interrogate": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/interrogate"
+    },
+    "maintain-verification-skill": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/maintain-verification-skill"
+    },
+    "make-bot-ui": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/make-bot-ui"
+    },
+    "no-comments": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/no-comments"
+    },
+    "poteto-agent": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/poteto-agent"
+    },
+    "poteto-mode": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/poteto-mode"
+    },
+    "principle-boundary-discipline": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-boundary-discipline"
+    },
+    "principle-build-the-lever": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-build-the-lever"
+    },
+    "principle-encode-lessons-in-structure": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-encode-lessons-in-structure"
+    },
+    "principle-exhaust-the-design-space": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-exhaust-the-design-space"
+    },
+    "principle-experience-first": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-experience-first"
+    },
+    "principle-fix-root-causes": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-fix-root-causes"
+    },
+    "principle-foundational-thinking": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-foundational-thinking"
+    },
+    "principle-guard-the-context-window": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-guard-the-context-window"
+    },
+    "principle-laziness-protocol": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-laziness-protocol"
+    },
+    "principle-make-operations-idempotent": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-make-operations-idempotent"
+    },
+    "principle-migrate-callers-then-delete-legacy-apis": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-migrate-callers-then-delete-legacy-apis"
+    },
+    "principle-minimize-reader-load": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-minimize-reader-load"
+    },
+    "principle-model-the-domain": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-model-the-domain"
+    },
+    "principle-never-block-on-the-human": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-never-block-on-the-human"
+    },
+    "principle-outcome-oriented-execution": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-outcome-oriented-execution"
+    },
+    "principle-prove-it-works": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-prove-it-works"
+    },
+    "principle-redesign-from-first-principles": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-redesign-from-first-principles"
+    },
+    "principle-separate-before-serializing-shared-state": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-separate-before-serializing-shared-state"
+    },
+    "principle-sequence-verifiable-units": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-sequence-verifiable-units"
+    },
+    "principle-subtract-before-you-add": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-subtract-before-you-add"
+    },
+    "principle-type-system-discipline": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/principle-type-system-discipline"
+    },
+    "recall": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/recall"
+    },
+    "reflect": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/reflect"
+    },
+    "setup-pstack": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/setup-pstack"
+    },
+    "show-me-your-work": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/show-me-your-work"
+    },
+    "swarm": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/swarm"
+    },
+    "tdd": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/tdd"
+    },
+    "teach": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/teach"
+    },
+    "technical-writing": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/technical-writing"
+    },
+    "typescript-best-practices": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/typescript-best-practices"
+    },
+    "unslop": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/unslop"
+    },
+    "why": {
+      "mode": "symlink",
+      "source": "/Users/elianiva/Development/personal/bb-plugins/bb-plugin-pstack/skills/why"
+    }
+  }
+}

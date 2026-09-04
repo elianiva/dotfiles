@@ -6,7 +6,7 @@ import { setupWriteTool } from "./tools/write-tool";
 import { setupEditTool } from "./tools/edit-tool";
 import { setupGrepTool } from "./tools/grep-tool";
 import { createPromptEnhancer } from "./prompt-enhancer";
-import { createSubagentTool } from "./subagent/tool";
+// import { createSubagentTool } from "./subagent/tool";
 import { createEvalTool } from "./tools/eval";
 import { disposeJsSession } from "./tools/eval/vm";
 import { disposePySession } from "./tools/eval/python/pool";
@@ -16,7 +16,7 @@ export default function (pi: ExtensionAPI): void {
   // Custom tools (not overriding built-ins)
   pi.registerTool(createProtocolReadTool());
   pi.registerTool(createWebSearchTool(pi));
-  pi.registerTool(createSubagentTool(pi));
+  // pi.registerTool(createSubagentTool(pi));
   pi.registerTool(createEvalTool(pi));
 
   // Override all built-in tools with enhanced descriptions
