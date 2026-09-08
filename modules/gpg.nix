@@ -37,8 +37,8 @@ in
     defaultCacheTtlSsh = day * 30;
     maxCacheTtl = day * 7;
     pinentry.package =
-      if pkgs.stdenv.isLinux then pkgs.pinentry-gnome3
-      else if pkgs.stdenv.isDarwin then pkgs.pinentry_mac
+      if pkgs.stdenv.hostPlatform.isLinux then pkgs.pinentry-gnome3
+      else if pkgs.stdenv.hostPlatform.isDarwin then pkgs.pinentry_mac
       else pkgs.pinentry-curses;
     enableSshSupport = true;
     enableFishIntegration = false;

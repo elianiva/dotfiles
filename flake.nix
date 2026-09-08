@@ -133,31 +133,37 @@
           ];
         };
       };
-      homeConfigurations = {
-        ${identity.username} = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-            overlays = [
-              fenix.overlays.default
-              jj-starship.overlays.default
+      homeConfigurations =
+        let
+          mkHome = system: home-manager.lib.homeManagerConfiguration {
+            pkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+              overlays = [
+                fenix.overlays.default
+                jj-starship.overlays.default
+              ];
+            };
+            extraSpecialArgs = {
+              inherit inputs;
+              inherit (inputs) ioshelfka;
+              identity = mkIdentity "linux";
+              flakePkgs = flakePkgs system;
+              inherit (inputs) fenix;
+            };
+            modules = [
+              ./modules/linux-home.nix
+              ./modules/gpg.nix
+              ./modules/git.nix
+              ./modules/linux-terminals.nix
             ];
           };
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit (inputs) ioshelfka;
-            identity = mkIdentity "linux";
-            flakePkgs = flakePkgs "x86_64-linux";
-            inherit (inputs) fenix;
-          };
-          modules = [
-            ./modules/linux-home.nix
-            ./modules/gpg.nix
-            ./modules/git.nix
-            ./modules/linux-terminals.nix
-          ];
+        in
+        {
+          ${identity.username} = mkHome "aarch64-linux";
+          "${identity.username}@intel" = mkHome "x86_64-linux";
+          "${identity.username}@asahi" = mkHome "aarch64-linux";
         };
-      };
     };
 
   nixConfig = {

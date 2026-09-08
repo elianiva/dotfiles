@@ -163,7 +163,7 @@ in
 
     # opencode configs
     "opencode/opencode.json".source = link "${dotfiles}/agents/opencode/opencode.json";
-  } // lib.optionalAttrs pkgs.stdenv.isDarwin {
+  } // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
     "karabiner/karabiner.json".source = link "${dotfiles}/karabiner/karabiner.json";
   };
 

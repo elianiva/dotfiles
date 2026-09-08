@@ -2,7 +2,9 @@
 let
   inherit (import ./helpers.nix { inherit config; }) link;
   inherit (identity) dotfiles;
-  nixGLIntel = inputs.nixGL.packages."${pkgs.stdenv.hostPlatform.system}".nixGLIntel;
+  nixGLIntel =
+    if pkgs.stdenv.hostPlatform.isAarch64 then null
+    else inputs.nixGL.packages."${pkgs.stdenv.hostPlatform.system}".nixGLIntel;
 in
 {
   imports = [ ./home-common.nix ];
@@ -12,7 +14,10 @@ in
   # allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  targets.genericLinux.nixGL = {
+  # nixGL is only for x86_64 non-NixOS (Intel/Nvidia). On aarch64/Asahi,
+  # Fedora provides native Mesa (Apple AGX) via the host — wrapping mismatches
+  # host Mesa and pulls i686 libs that fail to eval on ARM.
+  targets.genericLinux.nixGL = lib.mkIf (!pkgs.stdenv.hostPlatform.isAarch64) {
     packages = inputs.nixGL.packages;
     defaultWrapper = "mesa";
     installScripts = [ "mesa" ];
@@ -35,7 +40,7 @@ in
     packages =
       (import ./packages.nix { inherit pkgs flakePkgs; })
       ++ (import ./rust.nix { inherit pkgs; })
-      ++ (import ./linux-packages.nix { inherit pkgs nixGLIntel; })
+      ++ (import ./linux-packages.nix { inherit pkgs nixGLIntel lib; })
       ++ (import ./fonts.nix { inherit pkgs ioshelfka; });
 
     username = identity.username;
