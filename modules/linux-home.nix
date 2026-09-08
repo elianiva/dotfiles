@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, flakePkgs, config, identity, ... }:
+{ lib, pkgs, inputs, flakePkgs, config, identity, ioshelfka, ... }:
 let
   inherit (import ./helpers.nix { inherit config; }) link;
   inherit (identity) dotfiles;
@@ -32,10 +32,14 @@ in
   };
 
   home = {
-    packages = import ./linux-packages.nix { inherit pkgs flakePkgs nixGLIntel ioshelfka; };
+    packages =
+      (import ./packages.nix { inherit pkgs flakePkgs; })
+      ++ (import ./rust.nix { inherit pkgs; })
+      ++ (import ./linux-packages.nix { inherit pkgs nixGLIntel; })
+      ++ (import ./fonts.nix { inherit pkgs ioshelfka; });
 
     username = identity.username;
-    homeDirectory = "/home/${identity.username}";
+    homeDirectory = identity.homeDir;
   };
 
   # enable fontconfig
@@ -47,8 +51,9 @@ in
     };
   };
 
-  programs.nushell.enable = true;
-
+  # nushell is provided via shared packages (packages.nix) and configured
+  # via home.file symlink below — no need for programs.nushell.enable here
+  # (kept in sync with darwin-home which also links config manually).
   # nushell produces its own config file which causes conflict
   xdg.configFile = {
     "nushell/config.nu".enable = false;

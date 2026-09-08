@@ -7,13 +7,6 @@ in
 {
   imports = [ ./home-common.nix ];
 
-  programs.direnv = {
-    enableFishIntegration = false;
-    enableBashIntegration = false;
-    enableNushellIntegration = true;
-    enableZshIntegration = false;
-  };
-
   home.file = {
     "${appConfig}/nushell" = {
       source = link "${dotfiles}/nushell";

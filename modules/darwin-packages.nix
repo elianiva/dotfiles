@@ -1,13 +1,6 @@
-{ pkgs, flakePkgs, ... }:
-
-let
-  shared-packages = import ./packages.nix { inherit pkgs flakePkgs; };
-  rust = import ./rust.nix { inherit pkgs; };
-in
-shared-packages ++ [
-  pkgs.nushell
-  pkgs.devbox
-  pkgs.iina
-  pkgs.nh
-  # pkgs.jj-starship
-] ++ rust
+{ pkgs, ... }:
+# Darwin-only extras. Common packages (including rust/devbox) and fonts
+# are composed in darwin-config.nix via packages.nix + rust.nix + fonts.nix.
+[
+  pkgs.iina # macOS video player — no Linux equivalent needed
+]

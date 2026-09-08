@@ -130,16 +130,18 @@
               ) config.nix-homebrew.taps;
             })
             ./modules/darwin-config.nix
-            ./modules/iosevka.nix
           ];
         };
       };
       homeConfigurations = {
         ${identity.username} = home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = true;
+            overlays = [
+              fenix.overlays.default
+              jj-starship.overlays.default
+            ];
           };
           extraSpecialArgs = {
             inherit inputs;

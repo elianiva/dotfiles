@@ -36,11 +36,17 @@ in
     # let home manager manages itself
     home-manager.enable = true;
 
-    # nix-direnv
+    # nix-direnv — single source of truth for integrations.
+    # Nushell-only: fish/bash/zsh are handled via explicit shell configs,
+    # not direnv's automatic hooks.
     direnv = {
       enable = true;
       nix-direnv.enable = true;
       stdlib = builtins.readFile ../direnv/direnvrc;
+      enableFishIntegration = false;
+      enableBashIntegration = false;
+      enableNushellIntegration = true;
+      enableZshIntegration = false;
 
       package = pkgs.direnv.overrideAttrs (old: {
         doCheck = false;
@@ -137,10 +143,28 @@ in
     };
     "hunk/config.toml".source = link "${dotfiles}/hunk/config.toml";
     "qmd/index.yml".source = link "${dotfiles}/qmd/index.yml";
-    "karabiner/karabiner.json".source = link "${dotfiles}/karabiner/karabiner.json";
+
+    # terminals — single source of truth (Linux wraps ghostty via nixGL
+    # in linux-terminals.nix; Darwin also symlinks via Library/Application Support).
+    "wezterm/wezterm.lua".enable = false;
+    "kitty/kitty.conf".enable = false;
+    "wezterm" = {
+      source = link "${dotfiles}/wezterm";
+      recursive = true;
+    };
+    "kitty" = {
+      source = link "${dotfiles}/kitty";
+      recursive = true;
+    };
+    "ghostty" = {
+      source = link "${dotfiles}/ghostty";
+      recursive = true;
+    };
 
     # opencode configs
     "opencode/opencode.json".source = link "${dotfiles}/agents/opencode/opencode.json";
+  } // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    "karabiner/karabiner.json".source = link "${dotfiles}/karabiner/karabiner.json";
   };
 
   home.file = {

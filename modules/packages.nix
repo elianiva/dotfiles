@@ -51,6 +51,7 @@
     pkgs.vivid # better LS_COLORS
     pkgs.nushell
     pkgs.act
+    pkgs.devbox # cross-platform, was duplicated in darwin/linux packages
 
     # these are so annoying but i need them for intelephense
     pkgs.php

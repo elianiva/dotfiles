@@ -1,19 +1,9 @@
-{ pkgs, flakePkgs, nixGLIntel, ioshelfka, ... }:
-
-let
-  shared-packages = import ./packages.nix { inherit pkgs flakePkgs; };
-  rust = import ./rust.nix { inherit pkgs; };
-in
-shared-packages ++ rust ++ [
+{ pkgs, nixGLIntel, ... }:
+# Linux-only extras. Common packages (including rust/devbox) and fonts
+# are composed in linux-home.nix via packages.nix + rust.nix + fonts.nix.
+[
   pkgs.pinentry-gnome3
-  # nixgl is needed to access intel drivers from non-nixos environments
-  nixGLIntel
-  pkgs.lazydocker # manage docker stuff
+  nixGLIntel # nixGL wrapper for non-NixOS GPU acceleration
+  pkgs.lazydocker
   pkgs.zathura
-
-  # fonts
-  pkgs.monaspace
-  pkgs.inter
-  pkgs.lora
-  ioshelfka.packages.${pkgs.hostPlatform.system}.ioshelfka-mono-nerd
 ]

@@ -1,4 +1,4 @@
-{ pkgs, flakePkgs, identity, ... }:
+{ pkgs, flakePkgs, ioshelfka, identity, ... }:
 
 let
   user = identity.username;
@@ -44,14 +44,11 @@ in
       };
     };
 
-    environment.systemPackages = import ./darwin-packages.nix { inherit pkgs flakePkgs; };
-    fonts.packages = with pkgs; [
-      monaspace
-      inter
-      lora
-      lilex
-      departure-mono
-    ];
+    environment.systemPackages =
+      (import ./packages.nix { inherit pkgs flakePkgs; })
+      ++ (import ./rust.nix { inherit pkgs; })
+      ++ (import ./darwin-packages.nix { inherit pkgs; });
+    fonts.packages = import ./fonts.nix { inherit pkgs ioshelfka; };
 
     system.primaryUser = user;
 
