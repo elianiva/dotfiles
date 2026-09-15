@@ -37,6 +37,20 @@
         "type": "github"
       }
     },
+    "den": {
+      "locked": {
+        "lastModified": 1788557660,
+        "owner": "denful",
+        "repo": "den",
+        "rev": "d50f0fce6fc1a8ba00fd0d310746d0e8ecc2f70d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "denful",
+        "repo": "den",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -181,6 +195,20 @@
       "original": {
         "owner": "onevcat",
         "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1788467110,
+        "owner": "denful",
+        "repo": "import-tree",
+        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "denful",
+        "repo": "import-tree",
         "type": "github"
       }
     },
@@ -360,6 +388,7 @@
     "root": {
       "inputs": {
         "bash-env-json": "bash-env-json",
+        "den": "den",
         "fenix": "fenix",
         "home-manager": "home-manager",
         "homebrew-barutsrb": "homebrew-barutsrb",
@@ -367,6 +396,7 @@
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
         "homebrew-onevcat": "homebrew-onevcat",
+        "import-tree": "import-tree",
         "ioshelfka": "ioshelfka",
         "jj-starship": "jj-starship",
         "nix-darwin": "nix-darwin",

@@ -6,6 +6,10 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.follows = "nixpkgs-unstable";
 
+    # aspect-oriented composition over the Nix module system
+    den.url = "github:denful/den";
+    import-tree.url = "github:denful/import-tree";
+
     # nix darwin stuff
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -49,122 +53,15 @@
     };
   };
 
+  # All of ./modules is loaded recursively by import-tree. Each file contributes
+  # aspects (den.aspects.*), entities (den.hosts.*/den.homes.*), or global
+  # defaults; Den resolves them into darwinConfigurations/homeConfigurations.
   outputs =
-    inputs@{
-      nixpkgs,
-      home-manager,
-      nix-darwin,
-      nix-homebrew,
-      fenix,
-      jj-starship,
-      ...
-    }:
-    let
-      raw-identity = import ./modules/identity.nix;
-      flakePkgs = system: {
-        bash-env-json = inputs.bash-env-json.packages.${system}.default;
-      };
-      # Resolve platform-specific identity fields
-      mkIdentity = platform: raw-identity // {
-        inherit (raw-identity.platforms.${platform}) homeDir;
-        dotfiles = "${raw-identity.platforms.${platform}.homeDir}/.dotfiles";
-        workspacePath = "${raw-identity.platforms.${platform}.homeDir}/Development";
-        repositoriesPath = "${raw-identity.platforms.${platform}.homeDir}/Repositories";
-      };
-      identity = mkIdentity "darwin";
-    in
-    {
-      darwinConfigurations = {
-        melon = nix-darwin.lib.darwinSystem {
-          inherit inputs;
-          system = "aarch64-darwin";
-          # pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            overlays = [
-              fenix.overlays.default
-              jj-starship.overlays.default
-            ];
-          };
-          specialArgs = {
-            inherit (inputs) fenix ioshelfka;
-            flakePkgs = flakePkgs "aarch64-darwin";
-            inherit identity;
-          };
-          modules = [
-            nix-homebrew.darwinModules.nix-homebrew
-            home-manager.darwinModules.home-manager
-            {
-              nix-homebrew = {
-                enable = true;
-                enableRosetta = true;
-                user = identity.username;
-                taps = {
-                  "homebrew/homebrew-core" = inputs.homebrew-core;
-                  "homebrew/homebrew-cask" = inputs.homebrew-cask;
-                  "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-                  "BarutSRB/homebrew-tap" = inputs.homebrew-barutsrb;
-                  "onevcat/homebrew-tap" = inputs.homebrew-onevcat;
-                };
-                mutableTaps = false;
-                autoMigrate = true;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit identity; };
-              home-manager.users.${identity.username} = {
-                imports = [
-                  ./modules/darwin-home.nix
-                  ./modules/git.nix
-                  ./modules/gpg.nix
-                ];
-              };
-            }
-            # Align homebrew taps config with nix-homebrew
-            ({config, lib, ...}: {
-              homebrew.taps = lib.mapAttrsToList (name: _:
-                let parts = lib.splitString "/" name;
-                     org = lib.head parts;
-                     repo = lib.last parts;
-                in if org == "homebrew" then "homebrew/${lib.removePrefix "homebrew-" repo}" else name
-              ) config.nix-homebrew.taps;
-            })
-            ./modules/darwin-config.nix
-          ];
-        };
-      };
-      homeConfigurations =
-        let
-          mkHome = system: home-manager.lib.homeManagerConfiguration {
-            pkgs = import nixpkgs {
-              inherit system;
-              config.allowUnfree = true;
-              overlays = [
-                fenix.overlays.default
-                jj-starship.overlays.default
-              ];
-            };
-            extraSpecialArgs = {
-              inherit inputs;
-              inherit (inputs) ioshelfka;
-              identity = mkIdentity "linux";
-              flakePkgs = flakePkgs system;
-              inherit (inputs) fenix;
-            };
-            modules = [
-              ./modules/linux-home.nix
-              ./modules/gpg.nix
-              ./modules/git.nix
-              ./modules/linux-terminals.nix
-            ];
-          };
-        in
-        {
-          ${identity.username} = mkHome "aarch64-linux";
-          "${identity.username}@intel" = mkHome "x86_64-linux";
-          "${identity.username}@asahi" = mkHome "aarch64-linux";
-        };
-    };
+    inputs:
+    (inputs.nixpkgs.lib.evalModules {
+      modules = [ (inputs.import-tree ./modules) ];
+      specialArgs = { inherit inputs; };
+    }).config.flake;
 
   nixConfig = {
     trusted-substituters = [

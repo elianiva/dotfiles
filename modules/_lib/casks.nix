@@ -1,5 +1,3 @@
-_:
-
 [
   # Development Tools
   "zed"
