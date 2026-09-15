@@ -60,7 +60,6 @@
     pkgs.ghq
     pkgs.git-filter-repo # useful to remove accidentally committed secrets
     pkgs.delta
-    pkgs.difftastic
 ] ++ (with flakePkgs; [
   bash-env-json
 ])

@@ -1,11 +1,15 @@
 {
-  "lastChangelogVersion": "0.84.4",
+  "lastChangelogVersion": "0.85.1",
   "defaultProvider": "opencode-go",
-  "defaultModel": "muse-spark-1.2-contributor",
+  "defaultModel": "deepseek-v4.1-flash",
   "defaultThinkingLevel": "high",
   "theme": "rose-pine-dawn",
   "quietStartup": true,
-  "packages": ["npm:@ff-labs/pi-fff", "npm:pi-mcp-adapter", "npm:@howaboua/pi-auto-trees"],
+  "packages": [
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-mcp-adapter",
+    "npm:@howaboua/pi-auto-trees"
+  ],
   "editorPaddingX": 0,
   "autocompleteMaxVisible": 10,
   "transport": "auto",

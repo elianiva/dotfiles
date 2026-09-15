@@ -14,7 +14,7 @@ in
         {
           colorArg = "always";
           useConfig = true;
-          externalDiffCommand = "difft";
+          externalDiffCommand = "delta";
         }
       ];
       git.log.order = "default";
@@ -32,7 +32,7 @@ in
         compression = 9;
         editor = "nvim";
       };
-      diff.external = "difft";
+      diff.external = "delta";
       pull.rebase = false;
       commit.gpgsign = true;
       gpg.format = "ssh";
@@ -56,15 +56,12 @@ in
           ];
         };
       };
-      # delta = {
-      #   line-numbers = true;
-      #   syntax-theme = "base16";
-      #   side-by-side = false;
-      #   file-modified-label = "modified:";
-      #   light = true;
-      # };
-      difftastic = {
-        background = "light";
+      delta = {
+        line-numbers = true;
+        syntax-theme = "base16";
+        side-by-side = false;
+        file-modified-label = "modified:";
+        light = true;
       };
       init.defaultBranch = "master";
       ghq.root = repositoriesPath;
@@ -110,16 +107,6 @@ in
         default-command = "log";
         pager = ["hunk" "pager"];
         diff-formatter = ":git";
-        # diff-formatter = [
-        #   "difft"
-        #   # it's bad, better to disable it since it causes confusion
-        #   # see: https://github.com/Wilfred/difftastic/issues/275
-        #   "--syntax-highlight=off"
-        #   "--color=always"
-        #   "--display=side-by-side-show-both"
-        #   "$left"
-        #   "$right"
-        # ];
       };
     };
   };
