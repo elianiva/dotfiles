@@ -1,6 +1,11 @@
 # Single source of truth for font packages.
-# Used by darwin-config.nix (fonts.packages) and linux-home.nix (home.packages + fontconfig).
-{ pkgs, ioshelfka, lib ? pkgs.lib }:
+# Used by den.aspects.fonts for darwin's system fonts and for the Linux
+# home-manager profile.
+{
+  pkgs,
+  ioshelfka,
+  lib ? pkgs.lib,
+}:
 let
   # Official Iosevka release (v34.8.0) — plain "regular" Iosevka family.
   # The "-sgr-" infix means single group, default spacing. One .ttc per weight.
