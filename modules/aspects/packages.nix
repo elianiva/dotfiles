@@ -102,7 +102,10 @@ in
 
     homeManager =
       { pkgs, ... }:
-      lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+      # `mkIf` keeps the module's top-level shape static: forcing `pkgs` during
+      # module application recurses (home-manager resolves it via
+      # `_module.args.pkgs`, which needs the config being built).
+      lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
         home.packages = mkCommon pkgs ++ mkLinux pkgs;
       };
   };

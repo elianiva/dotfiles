@@ -44,10 +44,13 @@
     },
     "question": "allow",
     "codesearch": "allow",
-    "skill": {
-      "*": "allow",
-      "pdf": "deny",
-      "xlsx": "deny",
-    },
+  },
+  "mcp": {
+    "servers": {
+      "brilliant": {
+        "type": "remote",
+        "url": "http:///127.0.0.1:3333/mcp"
+      }
+    }
   }
 }

@@ -4,6 +4,8 @@ return {
   ft = { "markdown", "Avante", "codecompanion" },
   opts = {
     file_types = { "markdown", "Avante", "codecompanion" },
+    link = { enabled = false },
+    pipe_table = { enabled = false },
     overrides = {
       buftype = {
         nofile = {

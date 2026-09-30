@@ -6,6 +6,12 @@ return {
   ---@type obsidian.config
   opts = {
     legacy_commands = false,
+    -- render-markdown.nvim already handles markdown UI (checkboxes, bullets,
+    -- callouts). Keep Obsidian's UI off so it doesn't conceal [text](url)
+    -- links and [[wiki-links]] with its own extmarks.
+    ui = {
+      enable = false,
+    },
     workspaces = {
       {
         name = "personal-notes",

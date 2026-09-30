@@ -10,9 +10,10 @@
     den.url = "github:denful/den";
     import-tree.url = "github:denful/import-tree";
 
-    # nix darwin stuff
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    # nix darwin stuff (input must be named `darwin`: den's host entity
+    # defaults `instantiate` to inputs.darwin.lib.darwinSystem)
+    darwin.url = "github:nix-darwin/nix-darwin/master";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
