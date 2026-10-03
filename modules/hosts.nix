@@ -2,8 +2,8 @@
 # each one. Nothing else lives here — the aspects themselves are in ./aspects.
 { den, inputs, ... }:
 let
-  # Standalone home-manager owns its own nixpkgs instance, so the overlays that
-  # nix-darwin gets from `nixpkgs.overlays` (see ./aspects/host-darwin.nix) have
+  # Standalone home-manager owns its own nixpkgs instance, so the overlay that
+  # nix-darwin gets from `nixpkgs.overlays` (see ./aspects/host-darwin.nix) has
   # to be applied here too.
   mkPkgs =
     system:
@@ -11,7 +11,6 @@ let
       inherit system;
       config.allowUnfree = true;
       overlays = [
-        inputs.fenix.overlays.default
         inputs.jj-starship.overlays.default
       ];
     };

@@ -18,12 +18,11 @@ in
         homeDir = homeDirFor host.system;
       in
       {
-        # nixpkgs instance for this host: unfree + the overlays that provide
-        # pkgs.fenix (see ./rust.nix) and pkgs.jj-starship.
+        # nixpkgs instance for this host: unfree + the overlay that provides
+        # pkgs.jj-starship.
         nixpkgs = {
           config.allowUnfree = true;
           overlays = [
-            inputs.fenix.overlays.default
             inputs.jj-starship.overlays.default
           ];
         };

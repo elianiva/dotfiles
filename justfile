@@ -17,3 +17,6 @@ darwin:
 # clean nix store
 clean:
     nh clean
+
+update:
+    env NIX_CONFIG="access-tokens = github.com=$(gh auth token)" nix flake update

@@ -36,10 +36,6 @@
     homebrew-onevcat.url = "github:onevcat/homebrew-tap";
     homebrew-onevcat.flake = false;
 
-    # fenix for rust
-    fenix.url = "github:nix-community/fenix";
-    fenix.inputs.nixpkgs.follows = "nixpkgs";
-
     # only needed for linux
     nixGL.url = "github:nix-community/nixGL/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a";
     nixGL.inputs.nixpkgs.follows = "nixpkgs";

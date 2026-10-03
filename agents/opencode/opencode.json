@@ -18,7 +18,7 @@
           "code-review-*": "allow",
           "brainstorming": "allow",
           "build-feature": "allow",
-          "*-best-practices": "allow",
+          "*-best-practices": "allow"
         }
       }
     }
@@ -40,17 +40,16 @@
       "~/Development/personal/*": "allow",
       "~/Development/work/*": "allow",
       "~/Repositories/*": "allow",
-      "/tmp/*": "allow",
+      "/tmp/*": "allow"
     },
     "question": "allow",
-    "codesearch": "allow",
+    "codesearch": "allow"
   },
   "mcp": {
-    "servers": {
-      "brilliant": {
-        "type": "remote",
-        "url": "http:///127.0.0.1:3333/mcp"
-      }
+    "brilliant": {
+      "type": "remote",
+      "url": "http://127.0.0.1:3333/mcp",
+      "enabled": true
     }
   }
 }

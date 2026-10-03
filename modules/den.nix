@@ -31,7 +31,6 @@
       # concerns that are configurable from both an OS and a home profile
       den.aspects.packages
       den.aspects.fonts
-      den.aspects.rust
     ];
   };
 }

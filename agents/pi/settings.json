@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "1.0.1",
   "defaultProvider": "opencode-go",
   "defaultModel": "muse-spark-1.3-contributor",
   "defaultThinkingLevel": "high",
@@ -7,7 +7,6 @@
   "quietStartup": true,
   "packages": [
     "npm:@ff-labs/pi-fff",
-    "npm:pi-mcp-adapter",
     "npm:@howaboua/pi-auto-trees"
   ],
   "editorPaddingX": 0,
@@ -18,7 +17,7 @@
   "hideThinkingBlock": false,
   "treeFilterMode": "default",
   "fullscreenScrollbar": "always",
-  "tuiMode": "fullscreen",
+  "tuiMode": "regular",
   "outputPad": 1,
   "showCacheMissNotices": true
 }

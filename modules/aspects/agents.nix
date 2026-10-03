@@ -11,8 +11,13 @@
     in
     {
       xdg.configFile = {
-        # opencode configs
-        "opencode/opencode.json".source = link "${dotfiles}/agents/opencode/opencode.json";
+        # opencode configs (`force` because opencode rewrites opencode.json in
+        # place, which would otherwise fail activation with
+        # "would be clobbered". The dotfiles copy is canonical.)
+        "opencode/opencode.json" = {
+          source = link "${dotfiles}/agents/opencode/opencode.json";
+          force = true;
+        };
       };
 
       home.file = {
