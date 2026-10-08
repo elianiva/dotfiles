@@ -32,7 +32,7 @@ flake.nix                             # inputs + evalModules + import-tree, noth
         ├── host-darwin.nix           # melon: system defaults, nixpkgs overlays, home-manager opts
         ├── homebrew.nix              # nix-homebrew taps + homebrew brews/casks
         ├── home-linux.nix            # genericLinux + nixGL + nix.gc
-        ├── packages.nix  fonts.nix  rust.nix
+        ├── packages.nix  fonts.nix  go.nix
         ├── programs.nix              # direnv, bat, btop, fzf, carapace, zoxide, starship
         ├── git.nix  gpg.nix  agents.nix  shell-files.nix  vp-global-packages.nix
         └── nvim.nix  fish.nix  nushell.nix  ghostty.nix  kitty.nix  …
@@ -55,6 +55,7 @@ Shared sources of truth:
 |---------|--------------|---------|
 | CLI tools & editors | `aspects/packages.nix` | darwin `environment.systemPackages`, linux `home.packages` |
 | Rust toolchain (fenix) | `aspects/rust.nix` | same split |
+| Go toolchain + dev tools (delve, golangci-lint, gofumpt) | `aspects/go.nix` | same split |
 | Fonts (MonaSpace, Inter, Lora, Lilex, Departure Mono, Ioshelfka, Iosevka 34.8 TTC) | `_lib/fonts.nix` via `aspects/fonts.nix` | darwin `fonts.packages`, linux `home.packages` + `fonts.fontconfig` |
 | Terminal configs (ghostty/kitty/wezterm) | their own aspect | both — `aspects/ghostty.nix` carries the nixGL wrap *and* the macOS Application Support symlink |
 | Direnv integrations, shell programs | `aspects/programs.nix` | both |
@@ -136,7 +137,7 @@ nix run home-manager -- switch --flake .#elianiva --print-build-logs
 What this does:
 
 - Each `den.homes.<system>.<name>` gets its own `pkgs`: `nixpkgs` with `allowUnfree = true` + `fenix` + `jj-starship` overlays (`modules/hosts.nix`)
-- `den.aspects.packages` + `den.aspects.rust` + `den.aspects.fonts` contribute `home.packages` through their Linux branch
+- `den.aspects.packages` + `den.aspects.go` + `den.aspects.fonts` contribute `home.packages` through their Linux branch
 - `den.aspects.home-linux` enables `targets.genericLinux` + `nixGL` (`mesa` wrapper), `nix.gc`
 - Symlinks everything via `mkOutOfStoreSymlink`, one aspect per tool — `~/.config/nvim`, `~/.config/ghostty`, `fish`, `nushell`, `jjui`, `yazi`, etc. all point into `~/.dotfiles`
 
@@ -241,7 +242,7 @@ What this does:
 - `den.hosts.aarch64-darwin.melon` → `darwinConfigurations.melon`, with `nixpkgs.overlays` = `fenix` + `jj-starship` (`aspects/host-darwin.nix`)
 - `den.aspects.homebrew` declaratively taps `homebrew/core`, `cask`, `bundle`, `BarutSRB`, `onevcat` (`mutableTaps = false`)
 - `homebrew` brews/casks from `modules/_lib/brews.nix`/`casks.nix` (`onActivation.cleanup = "zap"`)
-- `environment.systemPackages` from the darwin branch of `aspects/packages.nix` + `aspects/rust.nix`
+- `environment.systemPackages` from the darwin branch of `aspects/packages.nix` + `aspects/go.nix`
 - `fonts.packages` from the darwin branch of `aspects/fonts.nix` (includes Iosevka 34.8 TTC)
 - `home-manager` user `elianiva` = `den.aspects.elianiva` (every tool aspect + git + gpg), sharing the host pkgs via `useGlobalPkgs`
 - Symlinks `~/Library/Application Support/nushell` and `…/com.mitchellh.ghostty` from the nushell/ghostty aspects, plus `~/.config/*`, via `mkOutOfStoreSymlink`

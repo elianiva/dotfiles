@@ -47,6 +47,7 @@ let
 
       # editing related things
       pkgs.zellij
+      pkgs.tmux
       pkgs.neovim
       pkgs.helix
       pkgs.ast-grep
