@@ -14,13 +14,6 @@ in
           gui.theme = {
             lightTheme = true;
           };
-          git.pagers = [
-            {
-              colorArg = "always";
-              useConfig = true;
-              externalDiffCommand = "delta";
-            }
-          ];
           git.log.order = "default";
         };
       };
@@ -36,7 +29,6 @@ in
             compression = 9;
             editor = "nvim";
           };
-          diff.external = "delta";
           pull.rebase = false;
           commit.gpgsign = true;
           gpg.format = "ssh";
@@ -59,13 +51,6 @@ in
                 "https://github.com/"
               ];
             };
-          };
-          delta = {
-            line-numbers = true;
-            syntax-theme = "base16";
-            side-by-side = false;
-            file-modified-label = "modified:";
-            light = true;
           };
           init.defaultBranch = "master";
           ghq.root = "${config.home.homeDirectory}/Repositories";

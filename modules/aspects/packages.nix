@@ -69,7 +69,6 @@ let
 
       pkgs.ghq
       pkgs.git-filter-repo # useful to remove accidentally committed secrets
-      pkgs.delta
     ]
     ++ [
       inputs.bash-env-json.packages.${pkgs.stdenv.hostPlatform.system}.default
