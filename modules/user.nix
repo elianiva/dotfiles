@@ -34,6 +34,7 @@
       den.aspects.ghostty
       den.aspects.karabiner
       den.aspects.go
+      den.aspects.bazel
     ];
   };
 
