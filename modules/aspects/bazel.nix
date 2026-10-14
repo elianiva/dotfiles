@@ -7,7 +7,7 @@
 }:
 let
   mkBazel = pkgs: [
-    pkgs.bazel
+    pkgs.bazelisk
   ];
 in
 {
