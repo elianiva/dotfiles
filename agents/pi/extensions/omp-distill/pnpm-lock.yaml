@@ -321,8 +321,8 @@ packages:
     engines: {node: '>= 14.6'}
     hasBin: true
 
-  zod@4.4.3:
-    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+  zod@4.6.7:
+    resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
 
 snapshots:
 
@@ -396,7 +396,7 @@ snapshots:
     dependencies:
       '@rivetkit/bare-ts': 0.6.2
       '@secure-exec/sidecar': 0.3.3
-      zod: 4.4.3
+      zod: 4.6.7
 
   '@secure-exec/sidecar-darwin-arm64@0.3.3':
     optional: true
@@ -584,4 +584,4 @@ snapshots:
 
   yaml@2.9.0: {}
 
-  zod@4.4.3: {}
+  zod@4.6.7: {}
